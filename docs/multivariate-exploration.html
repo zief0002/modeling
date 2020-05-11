@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Exploration: Comparing Many Groups | Comparing Groups (Draft)" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="A draft of an updated version of Comparing Groups" />
+<meta name="github-repo" content="zief0002/comparing-groups-draft" />
+
+<meta name="author" content="Andrew Zieffler, Jeffrey Harring, and Jeffrey Long" />
+
+<meta name="date" content="2020-04-12" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="A draft of an updated version of Comparing Groups">
+
+<title>Exploration: Comparing Many Groups | Comparing Groups (Draft)</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+<link rel="stylesheet" href="style/table-styles.css" type="text/css" />
+<link rel="stylesheet" href="style/syntax.css" type="text/css" />
+<link rel="stylesheet" href="style/navbar.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#foreword-second-edition">Foreword (Second Edition)</a></li>
+<li><a href="foreword-first-edition.html#foreword-first-edition">Foreword (First Edition)</a></li>
+<li><a href="preface.html#preface">Preface</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li><a href="KDE.html#KDE">Kernel Density Estimation</a></li>
+<li><a href="exploration.html#exploration">Exploration: Comparing Two Groups</a></li>
+<li><a href="multivariate-exploration.html#multivariate-exploration">Exploration: Comparing Many Groups</a></li>
+<li><a href="randomization-tests.html#randomization-tests">Randomization and Permutation Tests</a></li>
+<li><a href="final-words.html#final-words">Final Words</a></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="multivariate-exploration" class="section level1">
+<h1>Exploration: Comparing Many Groups</h1>
+<p>Adapted from <span class="citation">Zieffler et al. (<a href="#ref-Zieffler:2011">2011</a>)</span></p>
+<p><br /><br /></p>
+<!-- Researchers from nearly every social and physical science discipline have found themselves in the position of simultaneously evaluating many questions, testing many hypothesis, or comparing many point estimates. A. Gelman, J. Hill, \& M. Yajima (in press) -->
+<div class="note">
+<p>This chapter assumes a working knowledge of <strong>dplyr</strong> and <strong>ggplot2</strong> functionality to work with and plot data.</p>
+</div>
+<p><br /><br /></p>
+<p>In the chapter <a href="KDE.html#KDE">Kernel Density Estimation</a> the Vietnam Living Standards Survey (VLSS) was introduced. The survey was designed to provide an up-to-date source of data on households to be used in public policy formation, to assess current living standards, and to evaluate the impact of public programs. In this chapter, we will address the following research question:</p>
+<blockquote>
+<p>Are there differences in the annual household per capita expenditures between the seven Vietnamese regions?</p>
+</blockquote>
+<p>To address these research questions, we will again use the <a href="https://raw.githubusercontent.com/zief0002/musings/master/data/vlss-per-capita.csv">vlss-per-capita.csv</a> to explore and compare the household expenditures across different demographic variables in the sample data.</p>
+<p><br /><br /></p>
+<div id="loading-packages-and-importing-the-data-2" class="section level2">
+<h2>Loading Packages and Importing the Data</h2>
+<p>To begin, we will load three packages that we will use in this analysis.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># Load libraries</span></a>
+<a class="sourceLine" id="cb37-2" title="2"><span class="kw">library</span>(e1071)</a>
+<a class="sourceLine" id="cb37-3" title="3"><span class="kw">library</span>(ggridges)</a>
+<a class="sourceLine" id="cb37-4" title="4"><span class="kw">library</span>(psych)</a>
+<a class="sourceLine" id="cb37-5" title="5"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<p>The data contains the household per capita expenditures for 5,999 households along with two demographic variables. We will import this data using the <code>read_csv()</code> function from the <strong>tidyverse</strong> package<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># Import data</span></a>
+<a class="sourceLine" id="cb38-2" title="2">vlss =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/zief0002/comparing-groups-draft/master/data/vlss-per-capita.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="kw">head</span>(vlss)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   expend area  region       
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;        
+## 1   156. Rural Central Coast
+## 2   109. Rural Central Coast
+## 3   139. Rural Central Coast
+## 4   124. Rural Central Coast
+## 5   158. Rural Central Coast
+## 6   136. Rural Central Coast</code></pre>
+<p><br /><br /></p>
+</div>
+<div id="graphically-summarizing-conditional-distributions-1" class="section level2">
+<h2>Graphically Summarizing Conditional Distributions</h2>
+<p>To graphically examine the differences in household per capita expenditures across the seven regions, we will plot the KDE for the seven conditional distributions by mapping the fill aesthetic to the <code>region</code> attribute in the dataframe. This will create the seven KDEs in different colors in our plot. Because we are mapping an attribute in the data to an aesthetic, this is included inside the <code>aes()</code> function. The <code>alpha=0.6</code> argument makes the density plots semi-transparent<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> so that we can see both plots in the figure.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> vlss, <span class="kw">aes</span>(<span class="dt">x =</span> expend)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> region), <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Household per capita expenditures (in U.S. dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-5" title="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-6" title="6"><span class="st">  </span><span class="kw">scale_fill_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Region&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:fig-01"></span>
+<img src="06-exploration-multivariate_files/figure-html/fig-01-1.png" alt="Kernel density estimate for the distribution of household per capita expenditures conditioned on region." width="60%" />
+<p class="caption">
+Figure 1: Kernel density estimate for the distribution of household per capita expenditures conditioned on region.
+</p>
+</div>
+<p>Examining the plot produced in Figure <a href="KDE.html#fig:fig-01">1</a>, it is very difficult to interpret the differences in per capita household expenditures between the seven regions. The primary difficulty is that having many superimposed densities on the same plot, especially when those distributions overlap, makes it very difficult to make out group differences. There are a few potential solutions to this difficulty, including the use of facetting (panel plots) and mapping the conditioning attribute to the <em>y</em>-axis.</p>
+<p><br /><br /></p>
+<div id="facetting-panel-plots" class="section level3">
+<h3>Facetting: Panel Plots</h3>
+<p>One solution to the difficulty of many superimposed densities is to plot the kernel density estimate for each region in a different <em>facet</em> or <em>panel</em>. All the facets are plotted using the same scale, so that all the graphs are comparable.</p>
+<p>To facet by an attribute we will add the <code>facet_wrap()</code> layer to our plotting syntax. Within this layer, we specify the attribute we want to facet on by including this attribute name in the function and preceeding it with the tilde operator (<code>~Attribute</code>). The syntax below shows how to facet by <code>region</code>. The <code>guides(fill=FALSE)</code> layer removes the legend associated with the fill mapping as it is no longer needed to differentiate the seven regions.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> vlss, <span class="kw">aes</span>(<span class="dt">x =</span> expend)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb41-2" title="2"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> region), <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb41-3" title="3"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb41-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Household per capita expenditures (in U.S. dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb41-5" title="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb41-6" title="6"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>region) <span class="op">+</span></a>
+<a class="sourceLine" id="cb41-7" title="7"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">fill =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:fig-02"></span>
+<img src="06-exploration-multivariate_files/figure-html/fig-02-1.png" alt="Kernel density estimate for the distribution of household per capita expenditures facetted by region." width="80%" />
+<p class="caption">
+Figure 3: Kernel density estimate for the distribution of household per capita expenditures facetted by region.
+</p>
+</div>
+<p>The panel plots in Figure <a href="KDE.html#fig:fig-02">3</a> clearly show the density for each region. Note that all panels are plotted using the same axis scales which facilitates comparison. For example, it is clear that the peak of the South East region is the lowest of all the regions.</p>
+<p><br /><br /></p>
+<!-- ### Side-by-Side Box-and-Whiskers Plots -->
+<!-- Another method of displaying information about several distributions simultaneously, is side-by-side box-and-whiskers plots. To produce side-by-side box-and-whiskers plot, we use the `geom_boxplot()` layer rather than `geom_density()`. This layer takes both an `x=` and `y=` aesthetic mapping. To plot the household expenditures by region we will map the `expend` attribute to `x=` and the `region` attribute to `y=`.^[We could also have mapped the `expend` attribute to `y=` and the `region` attribute to `x=`. This ould have just reversed the axes.] -->
+<!-- ```{r fig-03, fig.cap='Side-by-side box-and-whisker plots for the distribution of household per capita expenditures conditioned on region.', fig.width=8, fig.height=6, out.width="60%"} -->
+<!-- ggplot(data = vlss, aes(x = expend, y = region)) + -->
+<!--   geom_boxplot(aes(fill = region)) + -->
+<!--   theme_bw() + -->
+<!--   xlab("Household per capita expenditures (in U.S. dollars)") + -->
+<!--   ylab("Region") + -->
+<!--   guides(fill = FALSE) -->
+<!-- ``` -->
+<!-- Figure \@ref(fig:fig-03) shows that all the distributions are positively skewed with several potential outliers. There are median differences among the regions with the South East having the largest value. The South East distribution is also the most varied for the innermost 50\%, as its box length is greater than the other regions. The South East also has the most extreme outlier, with at least one household per capita value greater than \$3000 (households with identical values are superimposed). -->
+<!-- <br /><br /> -->
+</div>
+<div id="mapping-the-conditioning-attribute-to-the-y-axis" class="section level3">
+<h3>Mapping the Conditioning Attribute to the <em>y</em>-Axis</h3>
+<p>Another solution to the problem of many overlapping distributions is to map the conditioning attribute to the <em>y</em>-axis. The <a href="https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html"><strong>ggridges</strong></a> package includes the <code>geom_density_ridges()</code> layer for mapping a factor to the <em>y</em>-axis.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> vlss, <span class="kw">aes</span>(<span class="dt">x =</span> expend, <span class="dt">y =</span> region)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-2" title="2"><span class="st">  </span><span class="kw">geom_density_ridges</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> region)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-3" title="3"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Household per capita expenditures (in U.S. dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-5" title="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Region&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-6" title="6"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">fill =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:fig-04"></span>
+<img src="06-exploration-multivariate_files/figure-html/fig-04-1.png" alt="Kernel density estimate for the distribution of household per capita expenditures conditioned on region." width="60%" />
+<p class="caption">
+Figure 5: Kernel density estimate for the distribution of household per capita expenditures conditioned on region.
+</p>
+</div>
+<p>Figure <a href="KDE.html#fig:fig-04">5</a> includes a plot of all seven kernel density estimates in the same panel. In this plot, the <code>region</code> attribute is mapped to the <em>y</em>-axis using the <code>y=</code> aesthetic. This allows the same sort of comparison that could be made in the facetted plot inFigure <a href="KDE.html#fig:fig-02">3</a>.</p>
+<p><br /><br /></p>
+</div>
+</div>
+<div id="numerically-summarizing-the-data" class="section level2">
+<h2>Numerically Summarizing the Data</h2>
+<p>The density plots in Figures <a href="KDE.html#fig:fig-02">3</a> and <a href="KDE.html#fig:fig-04">5</a> indicate that each distribution is positively skewed. Because of the extreme skewness and potential outliers in these distributions, we are inclined to use the more robust estimates for mean and variance. Recall that robust estimates are less affected by extreme scores than conventional estimates and, thus, are arguably more desirable summaries. The focus here is on the trimmed mean and Winsorized standard deviation introduced in the chapter <a href="exploration.html#exploration">Exploration: Comparing Two Groups</a>. The syntax below shows how to compute these robust measures, along with the sample sizes, for each region.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co">## Conditional trimmed means, Windorized standard deviations, and sample sizes</span></a>
+<a class="sourceLine" id="cb43-2" title="2">vlss <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(region) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb43-5" title="5">    <span class="dt">M_t =</span> <span class="kw">mean</span>(expend, <span class="dt">trim =</span> <span class="fl">0.2</span>),</a>
+<a class="sourceLine" id="cb43-6" title="6">    <span class="dt">SD_W =</span> <span class="kw">winsor.sd</span>(expend, <span class="dt">trim =</span> <span class="fl">0.2</span>),</a>
+<a class="sourceLine" id="cb43-7" title="7">    <span class="dt">N =</span> <span class="kw">n</span>()</a>
+<a class="sourceLine" id="cb43-8" title="8">    )</a></code></pre></div>
+<pre><code>## # A tibble: 7 x 4
+##   region              M_t  SD_W     N
+##   &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 Central Coast      165.  59.2   754
+## 2 Central Highlands  126.  44.8   368
+## 3 Mekong Delta       162.  57.2  1112
+## 4 North Coast        138.  42.5   708
+## 5 Northern Uplands   127.  45.7   859
+## 6 Red River Delta    177.  66.4  1175
+## 7 South East         289. 120.   1023</code></pre>
+<p>The numerical evidence shows there are regional differences in both the typical household per capita expenditure and in the variation within regions. Consistent with the plots, the trimmed mean for the South East region is the largest, and so is its Winsorized standard deviation. It is yet to be seen whether the sample differences suggests differences in the population.</p>
+<p><br /><br /></p>
+</div>
+<div id="summarizing-the-findings-1" class="section level2">
+<h2>Summarizing the Findings</h2>
+<p>When the information for several groups is presented, the statistical data should be summarized in either a table or graph, rather than in the text. This makes it easier for readers to take in and understand the information. In the narrative describing the results, reference is made to the table(s) and/or graph(s). The narrative of the manuscript is used to emphasize particular analyses that highlight interpretations, rather than to re-report all of the statistics in the text <span class="citation">(American Psychological Association, <a href="#ref-apa">2019</a>)</span>.</p>
+<p>Regarding the results of the example, there are several issues that should be considered. Because of the asymmetry and outliers in the data, it is desirable to report the values for the trimmed mean and Winsorized standard deviations, rather than the conventional estimates. The sample size for each region is also reported to further inform comparisons. When reporting numerical values—both in text and tables, the APA manual recommends that they be “express[<em>ed</em>] to the number of decimal places that the precision of measurement justifies, and if possible, carry all comparable values to the same number of decimal places” <span class="citation">(American Psychological Association, <a href="#ref-apa">2019</a>, p. 137)</span>. For the example, rounding to the nearest U.S. dollar seems appropriate given that the original responses were recorded to the nearest dong, which is the standard Vietnamese currency. The decimal points in the data result from the conversion from Vietnamese dong to U.S. dollars.</p>
+<p>As always, for the write-up, we will use substantive content knowledge to help summarize and interpret the statistical findings.</p>
+<blockquote>
+<p>
+The graphical and statistical evidence shows there are sample differences in the household per capita expenditures between the regions. The numerical summaries obtained from the analysis are reported in Table <a href="exploration.html#tab:tab-01">1</a>. The South East region has the highest household typical per capita expenditure. The distribution of expenditures per capita in the South East region, which includes Ho Chi Minh City and the hinterland, is typically higher and more variable, compared with other regions. Also, more than 75% of the people sampled from the South East region are above the poverty line of $119.32. The distributions in the other six regions are fairly similar. It is worthwhile to note that in the two most impoverished regions, the Central Highlands and Northern Uplands, close to 50% of the households are below the poverty line.
+</p>
+</blockquote>
+<p><br /></p>
+<table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+<span id="tab:tab-01">Table 1: </span>Trimmed Mean, Winsorized Standard Deviation and Sample Sizes for Household per Capita Expenditures (in dollars) Conditioned on Region
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;text-align: center;">
+Region
+</th>
+<th style="text-align:center;text-align: center;">
+<span class="math inline">\(M_t\)</span>
+</th>
+<th style="text-align:center;text-align: center;">
+<span class="math inline">\(SD_W\)</span>
+</th>
+<th style="text-align:center;text-align: center;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Central Coast
+</td>
+<td style="text-align:center;">
+165
+</td>
+<td style="text-align:center;">
+59
+</td>
+<td style="text-align:center;">
+754
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Central Highlands
+</td>
+<td style="text-align:center;">
+126
+</td>
+<td style="text-align:center;">
+45
+</td>
+<td style="text-align:center;">
+368
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mekong Delta
+</td>
+<td style="text-align:center;">
+162
+</td>
+<td style="text-align:center;">
+57
+</td>
+<td style="text-align:center;">
+1112
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+North Coast
+</td>
+<td style="text-align:center;">
+138
+</td>
+<td style="text-align:center;">
+42
+</td>
+<td style="text-align:center;">
+708
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Northern Uplands
+</td>
+<td style="text-align:center;">
+127
+</td>
+<td style="text-align:center;">
+46
+</td>
+<td style="text-align:center;">
+859
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Red River Delta
+</td>
+<td style="text-align:center;">
+177
+</td>
+<td style="text-align:center;">
+66
+</td>
+<td style="text-align:center;">
+1175
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+South East
+</td>
+<td style="text-align:center;">
+289
+</td>
+<td style="text-align:center;">
+120
+</td>
+<td style="text-align:center;">
+1023
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>a</sup> The mean was trimmed by 20%. The standard deviation was computed from a variance that was Winsorized by 20%.
+</td>
+</tr>
+</tfoot>
+</table>
+<p><br /><br /></p>
+</div>
+<div id="examining-distributions-conditioned-on-two-attributes" class="section level2">
+<h2>Examining Distributions Conditioned on Two Attributes</h2>
+<p>Now that regional differences in household per capita expenditures have been identified in the sample—and in <a href="exploration.html#exploration">Chapter 4</a> urban and rural differences were evident—there is interest in examining urban and rural differences within each region.</p>
+<p>A facetted panel plot conditioned on two attributes can be created in a similar manner as presented earlier in this chapter. Rather than using the layer <code>facet_wrap()</code>, to condition on multiple attributes, we use instead use the layer <code>facet_grid()</code>. Within this layer we provide the attribute names of two conditioning attributes separate by the tilde operator (<code>Attribute 1 ~ Attribute 2</code>).</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> vlss, <span class="kw">aes</span>(<span class="dt">x =</span> expend)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> region), <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-3" title="3"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Household per capita expenditures (in U.S. dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-5" title="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-6" title="6"><span class="st">  </span><span class="kw">facet_grid</span>(region <span class="op">~</span><span class="st"> </span>area) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-7" title="7"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">fill =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:fig-05"></span>
+<img src="06-exploration-multivariate_files/figure-html/fig-05-1.png" alt="Kernel density estimate for the distribution of household per capita expenditures facetted by region and area." width="80%" />
+<p class="caption">
+Figure 8: Kernel density estimate for the distribution of household per capita expenditures facetted by region and area.
+</p>
+</div>
+<p>Notice that the panel plot produced puts the <code>region</code> attribute (the attribute prior to the tilde) in rows and the <code>area</code> attribute (the attribute after the tilde) in columns.</p>
+<p>Numerical summaries conditioned on more than one attribute can be computed by including all grouping attributes in the <code>group_by()</code> function. The syntax below can be used to obtain the 20% trimmed means, the 20% Winsorized standard deviations, and the sample sizes for each of the 14 groups.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co">## Trimmed means, Windorized standard deviations, and sample sizes</span></a>
+<a class="sourceLine" id="cb46-2" title="2"><span class="co">## conditioned on region and area</span></a>
+<a class="sourceLine" id="cb46-3" title="3">vlss <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(region, area) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-5" title="5"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb46-6" title="6">    <span class="dt">M_t =</span> <span class="kw">mean</span>(expend, <span class="dt">trim =</span> <span class="fl">0.2</span>),</a>
+<a class="sourceLine" id="cb46-7" title="7">    <span class="dt">SD_W =</span> <span class="kw">winsor.sd</span>(expend, <span class="dt">trim =</span> <span class="fl">0.2</span>),</a>
+<a class="sourceLine" id="cb46-8" title="8">    <span class="dt">N =</span> <span class="kw">n</span>()</a>
+<a class="sourceLine" id="cb46-9" title="9">    )</a></code></pre></div>
+<pre><code>## # A tibble: 13 x 5
+## # Groups:   region [7]
+##    region            area    M_t  SD_W     N
+##    &lt;chr&gt;             &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+##  1 Central Coast     Rural  138.  42.5   502
+##  2 Central Coast     Urban  243.  91.9   252
+##  3 Central Highlands Rural  126.  44.8   368
+##  4 Mekong Delta      Rural  143.  40.1   830
+##  5 Mekong Delta      Urban  262. 104.    282
+##  6 North Coast       Rural  128.  34.5   600
+##  7 North Coast       Urban  242.  96.9   108
+##  8 Northern Uplands  Rural  109.  29.5   672
+##  9 Northern Uplands  Urban  215.  51.6   187
+## 10 Red River Delta   Rural  145.  36.8   783
+## 11 Red River Delta   Urban  291. 107.    392
+## 12 South East        Rural  208.  65.6   514
+## 13 South East        Urban  406. 150.    509</code></pre>
+<p>Notice that there is no output for the urban area of the Central Highlands region. This is because there are no rows in the data corresponding to urban households in the Central Highlands region. This can also be seen in Figure <a href="exploration.html#fig:fig-05">8</a> in which there is no plot for urban households in this region. All the summaries can again be placed in a table for publication as shown in Table <a href="exploration.html#tab:tab-02">2</a>.</p>
+<table style="width:80%; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+<span id="tab:tab-02">Table 2: </span>Trimmed Mean, Winsorized Standard Deviation and Sample Sizes for Household per Capita Expenditures (in dollars) Conditioned on Region and Area
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; border-bottom: 1px solid black;" colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Rural
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; border-bottom: 1px solid black;" colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Urban
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;text-align: center;">
+Region
+</th>
+<th style="text-align:center;text-align: center;">
+<span class="math inline">\(M_t\)</span>
+</th>
+<th style="text-align:center;text-align: center;">
+<span class="math inline">\(SD_W\)</span>
+</th>
+<th style="text-align:center;text-align: center;">
+n
+</th>
+<th style="text-align:center;text-align: center;">
+<span class="math inline">\(M_t\)</span>
+</th>
+<th style="text-align:center;text-align: center;">
+<span class="math inline">\(SD_W\)</span>
+</th>
+<th style="text-align:center;text-align: center;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Central Coast
+</td>
+<td style="text-align:center;">
+138
+</td>
+<td style="text-align:center;">
+43
+</td>
+<td style="text-align:center;">
+502
+</td>
+<td style="text-align:center;">
+243.153355263158
+</td>
+<td style="text-align:center;">
+92
+</td>
+<td style="text-align:center;">
+252
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Central Highlands
+</td>
+<td style="text-align:center;">
+126
+</td>
+<td style="text-align:center;">
+45
+</td>
+<td style="text-align:center;">
+368
+</td>
+<td style="text-align:center;">
+—
+</td>
+<td style="text-align:center;">
+—
+</td>
+<td style="text-align:center;">
+—
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mekong Delta
+</td>
+<td style="text-align:center;">
+143
+</td>
+<td style="text-align:center;">
+40
+</td>
+<td style="text-align:center;">
+830
+</td>
+<td style="text-align:center;">
+262
+</td>
+<td style="text-align:center;">
+104
+</td>
+<td style="text-align:center;">
+282
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+North Coast
+</td>
+<td style="text-align:center;">
+128
+</td>
+<td style="text-align:center;">
+35
+</td>
+<td style="text-align:center;">
+600
+</td>
+<td style="text-align:center;">
+242
+</td>
+<td style="text-align:center;">
+97
+</td>
+<td style="text-align:center;">
+108
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Northern Uplands
+</td>
+<td style="text-align:center;">
+109
+</td>
+<td style="text-align:center;">
+29
+</td>
+<td style="text-align:center;">
+672
+</td>
+<td style="text-align:center;">
+215
+</td>
+<td style="text-align:center;">
+52
+</td>
+<td style="text-align:center;">
+187
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Red River Delta
+</td>
+<td style="text-align:center;">
+145
+</td>
+<td style="text-align:center;">
+37
+</td>
+<td style="text-align:center;">
+783
+</td>
+<td style="text-align:center;">
+291
+</td>
+<td style="text-align:center;">
+107
+</td>
+<td style="text-align:center;">
+392
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+South East
+</td>
+<td style="text-align:center;">
+208
+</td>
+<td style="text-align:center;">
+66
+</td>
+<td style="text-align:center;">
+514
+</td>
+<td style="text-align:center;">
+406
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+509
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>a</sup> The mean was trimmed by 20%. The standard deviation was computed from a variance that was Winsorized by 20%.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>A write-up of the complete results might be as follows.</p>
+<blockquote>
+<p>
+Given the economic differences that were found in both region and area, a decision was made to examine the differences between rural and urban areas within each region. Table <a href="exploration.html#tab:tab-02">2</a> shows that in Vietnam, rural households have approximately half the per capita expenditures on average as do urban households. While there is much more variation in the wealth of these urban households, it is apparent that the rural households in every region are not only poorer on average, but also show very little variability.
+</p>
+<p>
+From examining both the graphical and statistical evidence, there are sample differences in the household per capita expenditures between the regions. The South East region has the highest household per capita expenditure. The distribution of expenditures per capita in the South East region, which includes Ho Chi Minh City and the hinterland, is typically higher and more variable, compared with other regions. Also, more than 75% of the people sampled from the South East region are above the poverty line of $119. The distributions in the other six regions are fairly similar. It is worthwhile to note that in the two most impoverished regions, the Central Highlands and Northern Uplands, close to 50% of the households are below the poverty line.
+</p>
+</blockquote>
+<p><br /><br /></p>
+</div>
+<div id="extension-conditioning-on-continuous-variables" class="section level2">
+<h2>Extension: Conditioning on Continuous Variables</h2>
+<p>In <a href="exploration.html#exploration">Exploration: Comparing Two Groups</a> and also earlier in this chapter, we examined distributions conditioning on one or more variables. In all of the examples, the conditioning variables were categorical in nature. It is also possible to condition the response variable on factors that are ordinal in nature, or even on continuous variables. To illustrate this type of conditioning, another data set is considered. The data set is from a study that had the primary research question of whether there are differences in mathematics achievement for students who spend differing amounts of time on mathematics homework.</p>
+<p>During the spring of 1988, the National Center for Education Statistics initiated a longitudinal study—the National Educational Longitudinal Study (NELS)—of eighth-grade students attending 1052 high schools across the 50 states and the District of Columbia. These students, who constituted a nationally representative sample, were surveyed on a variety of topics related to education, and also given achievement tests in four content areas—reading, social studies, mathematics, and science. Samples of the original 27,394 participants were also surveyed and assessed again in 1990, 1992, 1994, and 2000.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> The data in <a href="https://raw.githubusercontent.com/zief0002/musings/master/data/nels.csv">nels.csv</a> is a pared down sample from the original 1988 data that consists of two variables—the average amount of time (in hours) spent on mathematics homework per week, and the mathematics achievement score for 100 students. The achievement scores are T-scores, which are based on a transformation resulting in a distribution with a mean of 50 and a standard deviation of 10.</p>
+<p>After the data are imported, the marginal distribution of mathematics achievement is examined (syntax below). The density plot of the marginal distribution of mathematics achievement indicates the estimated density for the mathematics achievement scores is roughly symmetric. As expected for T-scores, the typical value is around 50. There is also variation in the scores.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Import data</span></a>
+<a class="sourceLine" id="cb48-2" title="2">nels =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/zief0002/comparing-groups-draft/master/data/nels.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb48-3" title="3"><span class="kw">head</span>(nels)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##   homework math_achievement
+##      &lt;dbl&gt;            &lt;dbl&gt;
+## 1        4               53
+## 2        0               56
+## 3        3               37
+## 4        4               55
+## 5        7               50
+## 6        0               36</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co"># Marginal distribution of achievement scores</span></a>
+<a class="sourceLine" id="cb50-2" title="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> nels, <span class="kw">aes</span>(<span class="dt">x =</span> math_achievement)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-3" title="3"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mathematics achievment score (T-score)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-6" title="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</a></code></pre></div>
+<p><img src="06-exploration-multivariate_files/figure-html/fig-06-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>The distributions of mathematics achievement conditioned on the time spent on mathematics homework are also examined. Here we display these conditional distributions using box-and-whiskers plots. The conditioning attribute needs to be categorical to use <code>geom_boxplot()</code>, so we coerce it into a factor using the <code>factor()</code> function. The optional arguments <code>fill=</code> and <code>width=</code> are included to set the box’s fill color and width (thinner than default), respectively. Figure <a href="KDE.html#fig:fig-07">7</a> shows the resulting plot. Numerical summaries for the conditional distributions are also computed.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># Side-by-side boxplots</span></a>
+<a class="sourceLine" id="cb51-2" title="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> nels, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(homework), <span class="dt">y =</span> math_achievement)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="dt">width =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mathematics achievment score (T-score)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-6" title="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Average time spent on mathematics homework per week (in hours)&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:fig-07"></span>
+<img src="06-exploration-multivariate_files/figure-html/fig-07-1.png" alt="The distribution of mathematics achievement conditioned on average weekly time spent on mathematics homework. Achievement is reported as a T-score which are transformed scores having a mean of 50 and a standard deviation of 10." width="60%" />
+<p class="caption">
+Figure 7: The distribution of mathematics achievement conditioned on average weekly time spent on mathematics homework. Achievement is reported as a T-score which are transformed scores having a mean of 50 and a standard deviation of 10.
+</p>
+</div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="co"># Numerical summaries</span></a>
+<a class="sourceLine" id="cb52-2" title="2">nels <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(homework) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb52-5" title="5">    <span class="dt">M =</span> <span class="kw">mean</span>(math_achievement),</a>
+<a class="sourceLine" id="cb52-6" title="6">    <span class="dt">SD =</span> <span class="kw">sd</span>(math_achievement),</a>
+<a class="sourceLine" id="cb52-7" title="7">    <span class="dt">N =</span> <span class="kw">n</span>()</a>
+<a class="sourceLine" id="cb52-8" title="8">  )</a></code></pre></div>
+<pre><code>## # A tibble: 9 x 4
+##   homework     M    SD     N
+##      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1        0  41.6 11.2     19
+## 2        1  53    7.83    19
+## 3        2  51.1 10.5     25
+## 4        3  56.6 12.7     16
+## 5        4  56.1  8.94    11
+## 6        5  56.3 10.7      6
+## 7        6  48.5  2.12     2
+## 8        7  50   NA        1
+## 9       10  59   NA        1</code></pre>
+<p>The side-by-side box-and-whiskers plots, shown in Figure <a href="KDE.html#fig:fig-07">7</a>, and the numerical summaries suggest that the conditional distributions of mathematics achievement are not extremely asymmetric; and all have roughly the same amount of within-group variation. We also see evidence of differences in mathematics achievement for the differing amounts of time spent on mathematics homework. The side-by-side box-and-whiskers plots show that the typical mathematics achievement score is increasing across the conditional distributions. They also show that the variation in mathematics achievement scores are roughly similar for the differing amounts of time spent on mathematics homework. The small amount of variation shown in the box-and-whiskers plots on the right-hand side of the plot (i.e., at the values of 6, 7, and 10) is likely an artifact of the extremely small sample sizes at those values.</p>
+<p><br /><br /></p>
+<div id="scatterplots-of-the-conditional-distributions" class="section level3">
+<h3>Scatterplots of the Conditional Distributions</h3>
+<p>When the conditioning variable is continuous or is measuring a trait that is assumed to be continuous, it can be useful to use a <em>scatterplot</em> to examine the conditional distributions. The <code>geom_point()</code> layer can be used to produce a scatterplot. The syntax below creates a scatterplot of the mathematics achievement scores versus time spent on homework.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="co"># Side-by-side boxplots</span></a>
+<a class="sourceLine" id="cb54-2" title="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> nels, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(homework), <span class="dt">y =</span> math_achievement)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb54-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb54-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb54-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mathematics achievment score (T-score)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb54-6" title="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Average time spent on mathematics homework per week (in hours)&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:fig-08"></span>
+<img src="06-exploration-multivariate_files/figure-html/fig-08-1.png" alt="Scatterplot showing the distribution of mathematics achievement conditioned on average weekly time spent on mathematics homework." width="60%" />
+<p class="caption">
+Figure 9: Scatterplot showing the distribution of mathematics achievement conditioned on average weekly time spent on mathematics homework.
+</p>
+</div>
+<p>Figure <a href="multivariate-exploration.html#fig:fig-08">9</a> shows a scatterplot of the relationship between time spent on mathematics homework and mathematics achievement scores for the sample of 100 eighth-grade students. Each observation (point) in the scatterplot is defined by a student’s achievement score and hours of homework. The scatterplot shows the same overall increasing trend in typical mathematics achievement scores as the side-by-side box-and-whiskers plots in Figure <a href="KDE.html#fig:fig-07">7</a>. It also shows the same pattern of variation in the conditional distributions.</p>
+<p>Figure <a href="multivariate-exploration.html#fig:fig-09">10</a> shows the same scatterplot with side-by-side boxplots superimposed on the plot. This is easily accomplished by including both the <code>geom_boxplot()</code> layer and the <code>geom_point()</code> layer in the same plot syntax. The syntax below illustrates the produces the plot displayed in Figure <a href="multivariate-exploration.html#fig:fig-09">10</a>. Superimposing side-by-side boxplots on the scatterplot is a nice way to display smaller data sets. The side-by-side boxplots allow the examination of each conditional distribution, while the scatterplot still shows the individual cases.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># Side-by-side boxplots</span></a>
+<a class="sourceLine" id="cb55-2" title="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> nels, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(homework), <span class="dt">y =</span> math_achievement)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="dt">width =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-6" title="6"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mathematics achievment score (T-score)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-7" title="7"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Average time spent on mathematics homework per week (in hours)&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:fig-09"></span>
+<img src="06-exploration-multivariate_files/figure-html/fig-09-1.png" alt="Scatterplot and side-by-side box-and-whiskers plots showing the distribution of mathematics achievement conditioned on average weekly time spent on mathematics homework." width="60%" />
+<p class="caption">
+Figure 10: Scatterplot and side-by-side box-and-whiskers plots showing the distribution of mathematics achievement conditioned on average weekly time spent on mathematics homework.
+</p>
+</div>
+<p><br /><br /></p>
+</div>
+</div>
+<div id="further-reading-2" class="section level2">
+<h2>Further Reading</h2>
+<p>Panel plots were introduced by <span class="citation">Cleveland (<a href="#ref-cleveland">1993</a>)</span> as a part of a data visualization framework called <em>trellis graphics</em> that was developed at Bell Labs.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> <span class="citation">Sarkar (<a href="#ref-sarkar">2008</a>)</span> provides an excellent starting point for the reader interested in learning more about this package. For more information on the use and interpretations of scatterplots, any good regression book would suffice <span class="citation">(e.g., Cook &amp; Weisberg, <a href="#ref-cook2">1999</a>; Mosteller &amp; Tukey, <a href="#ref-mosteller">1977</a>; Sheather, <a href="#ref-sheather2">2009</a>)</span>.</p>
+<p><br /><br /></p>
+<!-- FIX MATH -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ CommonHTML: { scale: 180 } });
+</script>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-apa">
+<p>American Psychological Association. (2019). <em>Publication manual of the American Psychological Association</em> (7th ed.). Author.</p>
+</div>
+<div id="ref-cleveland">
+<p>Cleveland, W. S. (1993). <em>Visualizing data</em>. Hobart Press.</p>
+</div>
+<div id="ref-cook2">
+<p>Cook, R. D., &amp; Weisberg, S. (1999). <em>Applied regression including computing and graphics</em>. Wiley.</p>
+</div>
+<div id="ref-mosteller">
+<p>Mosteller, F., &amp; Tukey, J. W. (1977). <em>Data analysis and regression</em>. Addison-Wesley.</p>
+</div>
+<div id="ref-sarkar">
+<p>Sarkar, D. (2008). <em>Lattice: Multivariate data visualization with R</em>. Springer.</p>
+</div>
+<div id="ref-sheather2">
+<p>Sheather, S. J. (2009). <em>A modern approach to regression with R</em>. Springer.</p>
+</div>
+<div id="ref-Zieffler:2011">
+<p>Zieffler, A. S., Harring, J. R., &amp; Long, J. D. (2011). <em>Comparing groups: Randomization and bootstrap methods using R</em>. Wiley.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="11">
+<li id="fn11"><p>The <code>read_csv()</code> function is technically included in the <strong>readr</strong> package which is included in the <strong>tidyverse</strong> package.<a href="multivariate-exploration.html#fnref11" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p>Any value from 0–1 can be used, where <code>alpha=0</code> is fully transparent and <code>alpha=1</code> is fully opaque.<a href="multivariate-exploration.html#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn13"><p>For more information on the methodology used in the NELS study, visit the official website: .<a href="multivariate-exploration.html#fnref13" class="footnote-back">↩</a></p></li>
+<li id="fn14"><p>An older implementation of the trellis graphics framework can be found in the <strong>lattice</strong> package.<a href="multivariate-exploration.html#fnref14" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="exploration.html"><button class="btn btn-default">Previous</button></a>
+<a href="randomization-tests.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

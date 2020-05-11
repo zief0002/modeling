@@ -1,0 +1,414 @@
+---
+title: "Creating Tables - Tables"
+header-includes:
+   - \usepackage{xcolor}
+   - \definecolor{umn}{HTML}{FF2D21}
+   - \usepackage{caption}
+   - \captionsetup[table]{textfont={it}, labelfont={bf}, singlelinecheck=false, labelsep=newline}
+   - \captionsetup[figure]{textfont={}, labelfont={it}, singlelinecheck=false, labelsep=period}
+   - \usepackage{xfrac}
+output: 
+  pdf_document:
+    highlight: tango
+    latex_engine: xelatex
+    fig_width: 6
+    fig_height: 6
+mainfont: "Sabon"
+sansfont: "Helvetica Neue UltraLight"
+monofont: Inconsolata
+urlcolor: "umn"
+always_allow_html: yes
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Load libraries
+library(corrr)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+library(readr)
+library(tidyr)
+
+# Read in data
+ed = read_csv(file = "~/Documents/github/epsy-8252/data/ed-schools-2018.csv") %>% drop_na()
+riverview = read_csv(file = "~/Documents/github/epsy-8252/data/riverview.csv")
+```
+
+
+```{r echo=FALSE}
+# Set up data frame
+data.frame(
+  Measure = c("Peer rating", "Acceptance rate for Ph.D. students", "Enrollment", "GRE score (verbal)", "GRE score (quantitative)"),
+  M  = c(mean(ed$peer), mean(ed$doc_accept), mean(ed$enroll), mean(ed$gre_verbal), mean(ed$gre_quant)),
+  SD = c(sd(ed$peer), sd(ed$doc_accept), sd(ed$enroll), sd(ed$gre_verbal), sd(ed$gre_quant))
+) %>%
+  kable(
+    col.names = c("Measure", "\\textit{M}", "\\textit{SD}"),
+    align = c("l", "c", "c"),
+    digits = 1,
+    caption = "\\\\[0.1ex]Means and Standard Deviations of Five Measures of Graduate Programs of Education ($N=122$)",
+    format = "latex",
+    booktabs = TRUE,
+    escape = FALSE
+    ) %>%
+  kable_styling(latex_options = "HOLD_position", position = "left")
+```
+
+
+\vspace{1in}
+
+```{r echo=FALSE}
+# Set up data frame
+data.frame(
+  Measure = c("Education level (in years)", "Seniority (in years)", "Income (in U.S. dollars"),
+  M_f  = c(
+    mean(riverview$education[riverview$gender == "female"]),
+    mean(riverview$seniority[riverview$gender == "female"]),
+    mean(riverview$income[riverview$gender == "female"])
+  ),
+  SD_f = c(
+    sd(riverview$education[riverview$gender == "female"]),
+    sd(riverview$seniority[riverview$gender == "female"]),
+    sd(riverview$income[riverview$gender == "female"])
+    ),
+  M_m  = c(
+    mean(riverview$education[riverview$gender == "male"]), 
+    mean(riverview$seniority[riverview$gender == "male"]),
+    mean(riverview$income[riverview$gender == "male"])
+    ),
+  SD_m = c(
+    sd(riverview$education[riverview$gender == "male"]), 
+    sd(riverview$seniority[riverview$gender == "male"]),
+    sd(riverview$income[riverview$gender == "male"])
+    )
+) %>%
+  kable(
+    col.names = c("Measure", "\\textit{M}", "\\textit{SD}", "\\textit{M}", "\\textit{SD}"),
+    align = c("l", "c", "c", "c", "c"),
+    digits = 0,
+    caption = "\\\\[0.1ex]Means and Standard Deviations of Three Measures of Riverview Employees Conditioned on Sex",
+    format = "latex",
+    booktabs = TRUE,
+    escape = FALSE
+    ) %>%
+  kable_styling(latex_options = "HOLD_position", position = "left") %>%
+  add_header_above(
+    header = c(" " = 1, "Females" = 2, "Males" = 2)
+    )
+```
+
+
+\newpage
+
+```{r echo=FALSE}
+# Set up data frame
+data.frame(
+  Measure = c("Education level (in years)", "Seniority (in years)", "Income (in U.S. dollars"),
+  M_f  = c("16 (4)", "14 (7)", "48938	(13265)"),
+  CI_f = c("[13.7, 17.8]", "[10.7, 17.5]", "[42342, 55535]"),
+  M_m  = c("16 (5)", "16 (7)", "59919	(14210)"),
+  CI_m = c("[13.5, 19.1]", "[11.5, 19.9]", "[51714, 68123]")
+) %>%
+  kable(
+    col.names = c("Measure", "\\textit{M} (\\textit{SD})", "95\\% CI", "\\textit{M} (\\textit{SD})", "95\\% CI"),
+    align = c("l", "c", "c", "c", "c"),
+    digits = 0,
+    caption = "\\\\[0.1ex]Means, Standard Deviations, and Confidence Intervals (CIs) of Three Measures of Riverview Employees Conditioned on Sex",
+    format = "latex",
+    booktabs = TRUE,
+    escape = FALSE
+    ) %>%
+  kable_styling(latex_options = "HOLD_position", position = "left")  %>%
+  add_header_above(
+    header = c(" " = 1, "Females" = 2, "Males" = 2)
+  )
+```
+
+
+\vspace{1in}
+
+```{r echo=FALSE, message=FALSE}
+tab_04 = ed %>%
+  select(peer, doc_accept, enroll, gre_verbal, gre_quant) %>%
+  correlate() %>%
+  shave(upper = TRUE) %>%
+  fashion(decimals = 2, na_print = "—") %>%
+  mutate(
+    rowname = c("1. Peer rating", "2. Acceptance rate for Ph.D. students", "3. Enrollment", "4. GRE score (verbal)", "5. GRE score (quantitative)")
+  )
+
+tab_04[1, 3:6] = ""
+tab_04[2, 4:6] = ""
+tab_04[3, 5:6] = ""
+tab_04[4, 6] = ""
+    
+tab_04 %>%
+  kable(
+    caption = "\\\\[0.1ex]Intercorrelations between Five Measures of Graduate Programs of Education",
+    col.names = c("Measure", "1", "2", "3", "4", "5"),
+    align = c("l", "c", "c", "c", "c", "c"),
+    format = "latex",
+    booktabs = TRUE,
+    escape = FALSE
+  ) %>%
+  kable_styling(latex_options = "HOLD_position", position = "left")
+```
+
+\newpage
+
+```{r echo=FALSE, message=FALSE}
+tab_05_2 = ed %>%
+  select(peer, doc_accept, enroll, gre_verbal, gre_quant) %>%
+  correlate() %>%
+  shave(upper = TRUE) %>%
+  fashion(decimals = 2, na_print = "—") 
+
+tab_05_1 = data.frame(
+  M = c(3.3, 40.1, 970, 154.9, 151.0),
+  SD = c(0.5, 20.2, 665, 3.7, 4.4)
+)
+
+tab_05 = cbind(tab_05_2[, 1], tab_05_1, tab_05_2[, 2:6])
+
+tab_05[1, 5:8] = ""
+tab_05[2, 6:8] = ""
+tab_05[3, 7:8] = ""
+tab_05[4, 8] = ""
+  
+tab_05 %>% 
+  mutate(
+    `tab_05_2[, 1]` = c("1. Peer rating", "2. Acceptance rate for Ph.D. students", "3. Enrollment", "4. GRE score (verbal)", "5. GRE score (quantitative)")
+  ) %>%
+  kable(
+    caption = "\\\\[0.1ex]Intercorrelations between Five Measures of Graduate Programs of Education. Means and Standard Deviations are Presented Along the Main Diagonal",
+    col.names = c("Measure", "\\textit{M}", "\\textit{SD}", "1", "2", "3", "4", "5"),
+    align = c("l", "c", "c", "c", "c", "c", "c", "c"),
+    format = "latex",
+    booktabs = TRUE,
+    escape = FALSE
+  ) %>%
+  kable_styling(latex_options = "HOLD_position", position = "left")
+```
+
+
+\vspace{1in}
+
+
+```{r echo=FALSE}
+tab_06 = lm(peer ~ 1 + doc_accept + enroll + gre_verbal + gre_quant, data = ed) %>%
+  broom::tidy() %>%
+  mutate(
+    term = c("Constant", "Acceptance rate for Ph.D. students", "Enrollment", "GRE score (verbal)", "GRE score (quantitative)")
+  )
+
+tab_06 = tab_06[c(2:5, 1), ]
+
+tab_06 %>%
+  kable(
+    caption = "\\\\[0.1ex]Coefficient-Level Estimates for a Model Fitted to Estimate Variation in Peer Ratings",
+    col.names = c("Predictor", "\\textit{B}", "\\textit{SE}", "\\textit{t}", "\\textit{p}"),
+    digits = c(0, 2, 3, 2, 3),
+    align = c("l", "c", "c", "c", "c"),
+    format = "latex",
+    booktabs = TRUE,
+    escape = FALSE
+  ) %>%
+  kable_styling(latex_options = "HOLD_position", position = "left")
+```
+
+
+\newpage
+
+
+```{r echo=FALSE}
+tab_06 %>%
+  mutate(
+    CI = c("[-0.014, -0.006]", "[0.000, 0.000]", "[-0.031, 0.034]", "[0.007, 0.061]", "[-4.894, 1.521]"),
+    Beta = c(-.43, .07, .01, .32, .01)
+  ) %>%
+  select(term, estimate, std.error, CI)  %>%
+  kable(
+    caption = "\\\\[0.1ex]Coefficient-Level Estimates and Uncertainty for a Model Fitted to Estimate Variation in Peer Ratings",
+    col.names = c("Predictor", "\\textit{B}", "\\textit{SE}", "95\\% CI"),
+    digits = c(0, 2, 2, 0),
+    align = c("l", "r", "c", "c"),
+    format = "latex",
+    booktabs = TRUE,
+    escape = FALSE
+  ) %>%
+  kable_styling(latex_options = "HOLD_position", position = "left")
+```
+
+
+\vspace{1in}
+
+
+```{r echo=FALSE}
+tab_06 %>%
+  mutate(
+    CI = c("[-0.014, -0.006]", "[0.000, 0.000]", "[-0.031, 0.034]", "[0.007, 0.061]", "[-4.894, 1.521]"),
+    Beta = c(-.43, .07, .01, .32, .01)
+  ) %>%
+  select(term, estimate, std.error, CI, Beta)  %>%
+  kable(
+    caption = "\\\\[0.1ex]Coefficient-Level Estimates (Unstandardized and Standardized) and Uncertainty for a Model Fitted to Estimate Variation in Peer Ratings",
+    col.names = c("Predictor", "\\textit{B}", "\\textit{SE}", "95\\% CI", "$\\beta$"),
+    digits = c(0, 2, 2, 0, 2),
+    align = c("l", "c", "c", "c", "c"),
+    format = "latex",
+    booktabs = TRUE,
+    escape = FALSE
+  ) %>%
+  kable_styling(latex_options = "HOLD_position", position = "left")
+```
+
+
+\newpage
+
+
+```{r, message=FALSE, echo=FALSE, results='asis', eval=FALSE}
+library(stargazer)
+
+lm.1 = lm(peer ~ 1 + gre_verbal + gre_quant, data = ed)
+lm.2 = lm(peer ~ 1 + doc_accept + enroll, data = ed)
+lm.3 = lm(peer ~ 1 + doc_accept + enroll + gre_verbal + gre_quant, data = ed)
+
+stargazer(lm.1, lm.2, lm.3,
+  ci = TRUE,
+  column.labels = c("Model 1", "Model 2", "Model 3"),
+  covariate.labels = c("GRE score (verbal)", "GRE score (quantitative)", "Acceptance rate for Ph.D. students", "Enrollment"),
+  dep.var.caption = "Outcome variable: Peer ratings",
+  dep.var.labels = NULL,
+  dep.var.labels.include = FALSE,
+  type = "latex",
+  keep.stat = c("rsq","ser"),
+  star.cutoffs = NA,
+  header = FALSE,
+  table.placement = 'H',
+  title = "Unstandardized Coefficients and Confidence Intervals for a Series of Regression Models Fitted to Data from $n=129$ Graduate Schools of Education to Predict Variation in Peer Ratings",
+  omit.table.layout = "n"
+  )
+```
+
+\begin{table}[H]  
+  \caption{Unstandardized Coefficients and Confidence Intervals for a Series of Regression Models Fitted to Data from $n=129$ Graduate Schools of Education to Predict Variation in Peer Ratings} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lccc} 
+\\[-1.8ex]\hline\\[1ex] 
+ & Model 1 & Model 2 & Model 3 \\ 
+\hline \\[-1.8ex] 
+ GRE score (verbal) & 0.011 &  & 0.001 \\ 
+  & ($-$0.024, 0.046) &  & ($-$0.031, 0.033) \\ 
+  & & & \\ 
+ GRE score (quantitative) & 0.047 &  & 0.036 \\ 
+  & (0.017, 0.076) &  & (0.009, 0.063) \\ 
+  & & & \\ 
+ Acceptance rate for Ph.D. students &  & $-$0.013 & $-$0.010 \\ 
+  &  & ($-$0.017, $-$0.009) & ($-$0.014, $-$0.006) \\ 
+  & & & \\ 
+ Enrollment &  & 0.0001 & 0.0001 \\ 
+  &  & ($-$0.00004, 0.0002) & ($-$0.0001, 0.0002) \\ 
+  & & & \\ 
+ Constant & $-$5.488 & 3.769 & $-$1.857 \\ 
+  & ($-$8.683, $-$2.294) & (3.572, 3.967) & ($-$5.054, 1.340) \\ 
+  & & & \\ 
+\hline \\[-1.8ex] 
+R$^{2}$ & 0.243 & 0.300 & 0.390 \\ 
+RMSE & 0.429 & 0.413 & 0.389 \\ 
+\hline 
+\end{tabular} 
+\end{table} 
+
+
+
+\newpage
+
+```{r, message=FALSE, echo=FALSE, results='asis', eval=FALSE}
+stargazer(lm.1, lm.2, lm.3,
+  column.labels = c("Model 1", "Model 2", "Model 3"),
+  covariate.labels = c("GRE score (verbal)", "GRE score (quantitative)", "Acceptance rate for Ph.D. students", "Enrollment"),
+  dep.var.caption = "Outcome variable: Peer ratings",
+  dep.var.labels = NULL,
+  dep.var.labels.include = FALSE,
+  type = "latex",
+  keep.stat = c("rsq","ser"),
+  report = c("vcsp"),
+  star.cutoffs = NA,
+  header = FALSE,
+  table.placement = 'H',
+  title = "Unstandardized Coefficients and Confidence Intervals for a Series of Regression Models Fitted to Data from $n=129$ Graduate Schools of Education to Predict Variation in Peer Ratings",
+  omit.table.layout = "n"
+  )
+```
+
+
+
+\begin{table}[H] 
+  \caption{Unstandardized Coefficients and Confidence Intervals for a Series of Regression Models Fitted to Data from $n=129$ Graduate Schools of Education to Predict Variation in Peer Ratings} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lccc} 
+\\[-1.8ex]\hline\\[1ex] 
+ & Model 1 & Model 2 & Model 3 \\ 
+\hline \\[-1.8ex] 
+ GRE score (verbal) & 0.011 &  & 0.001 \\ 
+  & (0.018) &  & (0.016) \\ 
+  & $p = 0.531$ &  & $p = 0.950$ \\ 
+  & & & \\ 
+ GRE score (quantitative) & 0.047 &  & 0.036 \\ 
+  & (0.015) &  & (0.014) \\ 
+  & $p = 0.003$ &  & $p = 0.012$ \\ 
+  & & & \\ 
+ Acceptance rate for Ph.D. students &  & $-$0.013 & $-$0.010 \\ 
+  &  & (0.002) & (0.002) \\ 
+  &  & $p = 0.000$ & $p = 0.00000$ \\ 
+  & & & \\ 
+ Enrollment &  & 0.0001 & 0.0001 \\ 
+  &  & (0.0001) & (0.0001) \\ 
+  &  & $p = 0.239$ & $p = 0.347$ \\ 
+  & & & \\ 
+ Constant & $-$5.488 & 3.769 & $-$1.857 \\ 
+  & (1.630) & (0.101) & (1.631) \\ 
+  & $p = 0.002$ & $p = 0.000$ & $p = 0.258$ \\ 
+  & & & \\ 
+\hline \\[-1.8ex] 
+R$^{2}$ & 0.243 & 0.300 & 0.390 \\ 
+RMSE & 0.429 & 0.413 & 0.389 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+
+\newpage
+
+\begin{table}[H] 
+  \caption{Unstandardized Coefficients and Confidence Intervals for a Series of Regression Models Fitted to Data from $n=129$ Graduate Schools of Education to Predict Variation in Peer Ratings} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lccc} 
+\\[-1.8ex]\hline\\[1ex] 
+ & Model 1 & Model 2 & Model 3 \\ 
+\hline \\[-1.8ex] 
+ GRE score (verbal) & 0.011 (0.018) &  & 0.001 (0.016) \\ 
+  & $p = 0.531$ &  & $p = 0.950$ \\ 
+  & & & \\ 
+ GRE score (quantitative) & 0.047 (0.015) &  & 0.036 (0.014) \\ 
+  & $p = 0.003$ &  & $p = 0.012$ \\ 
+  & & & \\ 
+ Acceptance rate for Ph.D. students &  & $-$0.013 (0.002) & $-$0.010 (0.002) \\ 
+  &  & $p = 0.000$ & $p = 0.00000$ \\ 
+  & & & \\ 
+ Enrollment &  & 0.0001 (0.0001) & 0.0001 (0.0001)\\ 
+  &  & $p = 0.239$ & $p = 0.347$ \\ 
+  & & & \\ 
+ Constant & $-$5.488 (1.630) & 3.769 (0.101) & $-$1.857 (1.631) \\ 
+  & $p = 0.002$ & $p = 0.000$ & $p = 0.258$ \\ 
+  & & & \\ 
+\hline \\[-1.8ex] 
+R$^{2}$ & 0.243 & 0.300 & 0.390 \\ 
+RMSE & 0.429 & 0.413 & 0.389 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+

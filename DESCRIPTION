@@ -1,0 +1,6 @@
+Package: Modeling in Education
+Type: Book
+Title: Modeling in Education
+Version: 2.0.0
+Imports: bookdown
+Remotes: rstudio/bookdown

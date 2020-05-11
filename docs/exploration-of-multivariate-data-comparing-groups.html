@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Exploration of Multivariate Data: Comparing Groups | Old Notes, Musings, and Miscellany" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="Old notes, musings, and miscellany" />
+<meta name="github-repo" content="zief0002/musings" />
+
+<meta name="author" content="Andrew Zieffler" />
+
+<meta name="date" content="2020-03-23" />
+
+
+<meta name="description" content="Old notes, musings, and miscellany">
+
+<title>Exploration of Multivariate Data: Comparing Groups | Old Notes, Musings, and Miscellany</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+<link rel="stylesheet" href="style/table-styles.css" type="text/css" />
+<link rel="stylesheet" href="style/syntax.css" type="text/css" />
+<link rel="stylesheet" href="style/navbar.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#foreword">Foreword</a></li>
+<li><a href="exploration-of-multivariate-data-comparing-groups.html#exploration-of-multivariate-data-comparing-groups">Exploration of Multivariate Data: Comparing Groups</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="exploration-of-multivariate-data-comparing-groups" class="section level1">
+<h1>Exploration of Multivariate Data: Comparing Groups</h1>
+<p>Adapted from <span class="citation">Zieffler et al. (<a href="#ref-Zieffler:2011">2011</a>)</span></p>
+<p><br /><br /></p>
+<p>In the chapter on kernel density estimation the Vietnam Living Standards Survey (VLSS) was introduced. The survey was designed to provide an up-to-date source of data on households to be used in public policy formation, to assess current living standards, and to evaluate the impact of public programs. In this chapter, we will address the following research question:</p>
+<blockquote>
+<p>Are there differences in the annual household per capita expenditures between the rural and urban populations in Vietnam?
+Are there differences in the annual household per capita expenditures between the seven Vietnamese regions?</p>
+</blockquote>
+<p>To address these research questions, we will use the <a href="https://raw.githubusercontent.com/zief0002/musings/master/data/vlss-per-capita.csv">vlss-per-capita.csv</a> to explore and compare the household expenditures across different demographic variables in the sample data.</p>
+<p><br /><br /></p>
+<div id="loading-packages-and-importing-the-data" class="section level2">
+<h2>Loading Packages and Importing the Data</h2>
+<p>To begin, we will load three packages that we will use in this analysis.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Load libraries</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<p>The data contains the household per capita expenditures for 5,999 households along with two demographic variables. We will import this data using the <code>read_csv()</code> function from the <strong>tidyverse</strong> package.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Import data</span></a>
+<a class="sourceLine" id="cb2-2" title="2">vlss =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/zief0002/musings/master/data/vlss-per-capita.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw">head</span>(vlss)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   expend area  region
+##    &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1  184.  Rural      5
+## 2   62.7 Rural      5
+## 3  119.  Rural      5
+## 4   76.6 Rural      5
+## 5   97.5 Rural      5
+## 6  132.  Rural      5</code></pre>
+<p><br /><br /></p>
+</div>
+<div id="graphically-summarizing-the-marginal-distribution" class="section level2">
+<h2>Graphically Summarizing the Marginal Distribution</h2>
+<p>Initially, the distribution of the per capita expenditures for all 5,999 households—ignoring whether they are urban or rural—is examined. The distribution ignoring the population area is known as the <em>marginal distribution</em>. The syntax to create a plot of the kernel density estimate (KDE) for the marginal distribution of the per capita expenditures is show below.</p>
+<div class="figure" style="text-align: center">
+<img src="05-exploration_files/figure-html/fig-01-1.png" alt="Kernel density estimate for the marginal distribution of household per capita expenditures." width="50%" />
+<p class="caption">
+Kernel density estimate for the marginal distribution of household per capita expenditures.
+</p>
+</div>
+<p>The plot of the marginal distribution shown in Figure <a href="#fig:fig-01"><strong>??</strong></a> indicates that the per capita expenditures data is right skewed, as the majority of household per capita expenditures pile up at the low end, and taper off moving to the right. This suggests that many of the households in Vietnam have a low per capita expenditure (around $100 U.S.). It also shows some households that may be potential outliers in the marginal distribution. These are households with very high expenditures relative to the rest of the households in the sample.</p>
+<p><br /><br /></p>
+</div>
+<div id="graphically-summarizing-conditional-distributions" class="section level2">
+<h2>Graphically Summarizing Conditional Distributions</h2>
+<p>Examining the marginal distribution is useful in an initial examination of the data, but it does not help in answering the research question about rural and urban differences. To help address the first research question, the distribution of per capita expenditures for each area must be examined separately. The distributions of per capita household expenditures for each area are called <em>conditional distributions</em> because they are defined conditional on area.</p>
+<p>To graphically examine the conditional distributions, we will plot the KDE for the distribution of household per capita expenditures separately for the urban and rural households. There are many ways to do this using the <em>tidyverse</em> functionality. Below we will map the color aesthetic to the <code>area</code> attribute in the dataframe. This will create the two KDEs in different colors in our plot. Because we are mapping an attribute in the data to an aesthetic, this is included inside the <code>aes()</code> function.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> vlss, <span class="kw">aes</span>(<span class="dt">x =</span> expend, <span class="dt">color =</span> area)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Household per capita expenditures (in U.S. dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Density&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="05-exploration_files/figure-html/fig-02-1.png" alt="Kernel density estimate for the distribution of household per capita expenditures conditioned on area." width="50%" />
+<p class="caption">
+Kernel density estimate for the distribution of household per capita expenditures conditioned on area.
+</p>
+</div>
+<p>Figure <a href="#fig:fig-02"><strong>??</strong></a> shows a single graph—or panel—with the conditional density curves superimposed and coded by line color. By having both conditional distributions in the same panel, this type of plot makes it psychologically easier for people to make comparisons. As can be seen in the plot, the urban curve is shifted to the right of the rural curve toward higher per capita household expenditures. In addition, the peak of the urban curve is lower than that of the rural curve, and both distributions are positively skewed.</p>
+<p><br /><br /></p>
+<div id="variations-on-the-conditional-density-plot" class="section level3">
+<h3>Variations on the Conditional Density Plot</h3>
+<p>ADD TEXT ABOUT CHANGING COLORS, FILL, AND LINETYPE</p>
+<p>The syntax below is used to create the conditional density plots shown in Figure <a href="#fig:fig-03"><strong>??</strong></a>. The <code>alpha=0.6</code> argument makes the density plots semi-transparent<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> so that we can see both plots in the figure. The <code>scale_fill_manual()</code> layer changes the fill color used to shade in the density plots.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> vlss, <span class="kw">aes</span>(<span class="dt">x =</span> expend)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> area), <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Household per capita expenditures (in U.S. dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="st">  </span><span class="kw">scale_fill_manual</span>(</a>
+<a class="sourceLine" id="cb5-6" title="6">    <span class="dt">name =</span> <span class="st">&quot;Area&quot;</span>,</a>
+<a class="sourceLine" id="cb5-7" title="7">    <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#003366&quot;</span>, <span class="st">&quot;#ffcc00&quot;</span>)</a>
+<a class="sourceLine" id="cb5-8" title="8">  )</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="05-exploration_files/figure-html/fig-03-1.png" alt="Kernel density estimate for the distribution of household per capita expenditures conditioned on area." width="50%" />
+<p class="caption">
+Kernel density estimate for the distribution of household per capita expenditures conditioned on area.
+</p>
+</div>
+<p><br /><br /></p>
+</div>
+</div>
+<div id="numerical-summaries-of-data-estimates-of-the-population-parameters" class="section level2">
+<h2>Numerical Summaries of Data: Estimates of the Population Parameters</h2>
+<p>After graphically examining the data, it is desirable to obtain a more precise numerical summarization of the estimated population distribution. The numerical summaries can generally be split into two different types:</p>
+<ul>
+<li>Measures of location, or central tendency</li>
+<li>Measures of variability, or dispersion</li>
+</ul>
+<p>Measures of location are single values that represent the measurement of a typical individual or unit in the distribution being studied. For example, in Figure <a href="#fig:fig-02"><strong>??</strong></a>, a typical household in the distribution might be defined as having a per capita expenditure at the dollar amount directly below the peak of the curve. Based on this, the typical urban household has a higher per capita expenditure than the typical rural household.</p>
+<p>Measures of variability provide an indication of how different, or variable, the measurements in the distribution happen to be. For instance, Figure <a href="#fig:fig-02"><strong>??</strong></a> also shows that the urban distribution spans a longer interval than the rural distribution, indicating urban household have more variation in their per capita expenditures than rural housholds. Researchers are often interested in the measures of location and variation in the population as they constitute relatively clear summaries of important aspects of distributions. The numerical summaries of the population distribution are called <em>parameters</em>. Parameters are estimated using sample data.</p>
+<p><br /><br /></p>
+<div id="measuring-central-tendency" class="section level3">
+<h3>Measuring Central Tendency</h3>
+<p>The three most common measures of location are the <em>mean</em>, the <em>median</em>, and the <em>mode</em>. The mode describes a typical measurement in terms of the most common outcome or most frequently occurring score. In Figure <a href="#fig:fig-02"><strong>??</strong></a>, the mode of each distribution is the household expenditure value directly under the peak of the curve. A limitation in using the mode is that a distribution can have more than one. This indicates that the mode will not always have a unique value and, thus, cannot be recommended for general use.</p>
+<p>In contrast to the mode, the median and mean are always unique values. The median is the middle-most score in a distribution. The <code>median()</code> function is used to find the median of the distribution. The best known and most frequently used measure of central tendency is the mean, or the average. The <code>mean()</code> function is used to find the mean of a distribution.</p>
+<p>The <code>summarize()</code> function (from the <strong>tidyverse</strong> package) is used to indicate a data frame (<code>vlss</code> in this case) and then the <code>mean()</code> or <code>median()</code> functions are called on an attribute in that data frame. The use of the <code>median()</code> and <code>mean()</code> functions to find the median and mean household per capita expenditure, respectively, are shown the syntax below.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co">## Marginal median household per capita expenditure</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">summarize</span>(vlss, <span class="kw">median</span>(expend))</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   `median(expend)`
+##              &lt;dbl&gt;
+## 1             160.</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co">## Marginal mean household per capita expenditure</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw">summarize</span>(vlss, <span class="kw">mean</span>(expend))</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   `mean(expend)`
+##            &lt;dbl&gt;
+## 1           213.</code></pre>
+<p>The median household per capita expenditure is $160, and the mean household per capita expenditure is $213. In symmetric distributions, the mean and median can be equal or nearly so. However, in asymmetric distributions, the two can differ, sometimes drastically.</p>
+<p><br /><br /></p>
+</div>
+<div id="piping-more-readable-syntax" class="section level3">
+<h3>Piping: More Readable Syntax</h3>
+<p>We can get the same results using the “pipe” syntax (the syntax <code>%&gt;%</code> is called the pipe operator). As our syntax calls get longer, this syntax is easier to read and work with.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co">## Marginal median household per capita expenditure</span></a>
+<a class="sourceLine" id="cb10-2" title="2">vlss <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">summarize</span>( <span class="kw">median</span>(expend) )</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   `median(expend)`
+##              &lt;dbl&gt;
+## 1             160.</code></pre>
+<p>To actually “read” this syntax, every time we see <code>%&gt;%</code> we can use the words “and then do <this>”. So the syntax would be read as: Take the <code>vlss</code> data frame and then <code>summarize</code> it by computing the <code>median</code> household expenditure.</p>
+</div>
+<div id="conditional-means-and-medians" class="section level3">
+<h3>Conditional Means and Medians</h3>
+<p>The mean and median computed in the previous section summarize the marginal distribution, as <code>area</code> is ignored. Though the marginal estimates are useful, the goal is to compute the conditional estimates of a typical household per capita expenditure for each area. To do this we add a <code>group_by()</code> layer into our piping syntax prior to computing the summary values. Consider the following syntax:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co">## Condition mean household per capita expenditure</span></a>
+<a class="sourceLine" id="cb12-2" title="2">vlss <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(area) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="st">  </span><span class="kw">summarize</span>( <span class="kw">mean</span>(expend) )</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   area  `mean(expend)`
+##   &lt;chr&gt;          &lt;dbl&gt;
+## 1 Rural           157.
+## 2 Urban           349.</code></pre>
+<p>This syntax would be read as: Take the <code>vlss</code> data frame and then <code>group it by</code> area and then <code>summarize</code> it by computing the <code>mean</code> household expenditure. The <code>group_by()</code> layer separates the urban and rural houeholds into “groups”. Then all of the syntax following that layer is applied to both groups, in our case, computing the mean household per capita expenditure.</p>
+<p>The mean household per capita expenditure for the urban area is more than twice that for the rural area. This is consistent with Figure <a href="#fig:fig-02"><strong>??</strong></a> that shows the urban distribution being right-shifted relative to the rural distribution. This suggests that the average household per capita expenditure differs for urban and rural areas in the sample.</p>
+<p><br /><br /></p>
+</div>
+<div id="measuring-variation" class="section level3">
+<h3>Measuring Variation</h3>
+<p>When an analysis deals with at least two groups, as in the rural/urban comparisons, it is important to consider group differences in variability and well as location. Variability within the groups influences the evaluation of location differences. High within-group variability can be an overwhelming feature that can render location differences as irrelevant, or at least less relevant. On the other hand, low within-group variability can work to accentuate location differences.</p>
+<p>Consider the examples of Figures <a href="#fig:fig-04"><strong>??</strong></a> and <a href="#fig:fig-05"><strong>??</strong></a>. In both figures the mean difference between the distributions is the same. However, the large within-group variation in the rural distribution in Figure <a href="#fig:fig-04"><strong>??</strong></a> makes the interpretation of group differences less clear for these data than for the data shown in Figure <a href="#fig:fig-05"><strong>??</strong></a>. In fact, it can be argued that the most important feature is the fact that the urban distribution is almost entirely contained within the rural distributions. This means, for example, that though the rural mean is lower than the urban mean, there are several rural households that are higher than the urban mean, and some that are higher than <em>any</em> urban households.</p>
+<div class="figure" style="text-align: center">
+<img src="05-exploration_files/figure-html/unnamed-chunk-6-1.png" alt="Simulated density plots for the distribution of household per capita expenditures conditioned on area showing large within-group variation." width="90%" />
+<p class="caption">
+Simulated density plots for the distribution of household per capita expenditures conditioned on area showing large within-group variation.
+</p>
+</div>
+<!-- ```{r echo=FALSE, fig.cap='Illustration of the kernel density estimation (solid line) for *N=6* observations (vertical lines). A Gaussian kernel function (dashed lines) with a fixed smoothing parameter was centered at each observation. The figure was adapted from Sain (1994).'} -->
+<!-- knitr::include_graphics("figs/fig-03-01.png") -->
+<!-- ``` -->
+<!-- In the figure, the kernel function is the normal, or Gaussian, distribution.^[There are several kernel functions that can be used in density estimation.] Each kernel function is centered at one of the $N=6$ observations and identically scaled. An estimate of the overall density can then be found by summing the height of all the kernel densities at each observation.  -->
+<!-- Note that the variation (width) in the kernel determines the amount of overlap at each observed value. Skinnier kernels have less overlap resulting in a smaller overall sum, while wider kernels would result in more overlap and a larger sum. The data analyst not only specifies the kernel function, but also the variation in the kernel function. The kernel density illustration  shows a visual depiction of the variation in the kernel functions based on the half-width of the kernel (i.e., half the width of each kernel). This is also referred to as the *smoothing parameter* since it has a direct impact on the overall smoothness of the plot. -->
+<!-- <br /><br /> -->
+<!-- ## Plotting a Kernel Density Estimate -->
+<!-- To plot a kernel density estimate of a distribution, we will use the `geom_density()` function from the **ggplot2** package. This package is loaded when the **tidyverse** package is loaded.  -->
+<!-- ```{r message=FALSE, fig.cap='Kernel density plot of the age distribution using the default (Gaussian) kernel.', fig.width=5, fig.height=4} -->
+<!-- # Load library -->
+<!-- library(tidyverse) -->
+<!-- # Create density plot -->
+<!-- ggplot(data = vlss, aes(x = Age)) + -->
+<!--   geom_density() + -->
+<!--   theme_bw() + -->
+<!--   ylab("Density") -->
+<!-- ``` -->
+<!-- Changing either the kernel function or the smoothing parameter affects the overall density that is estimated. There are several kernel functions that can be used in R. You can change the kernel function by adding the `kernel=` argument to `geom_density()` layer. For example, to use the Epanechnikov kernel, we would add `kernel="epanechnikov"` to the `geom_density()` layer. -->
+<!-- ```{r message=FALSE, fig.cap='Kernel density plot of the age distribution using the Epanechnikov kernel. Changing the kernel has little effect on the estimation of the density; this plot looks almost identical to the density plot using the Gaussian kernel.', fig.width=5, fig.height=4} -->
+<!-- # Change kernel function -->
+<!-- ggplot(data = vlss, aes(x = Age)) + -->
+<!--   geom_density(kernel="epanechnikov") + -->
+<!--   theme_bw() + -->
+<!--   ylab("Density") -->
+<!-- ``` -->
+<!-- Changing the kernel function uses a different shaped distribution to estimate the density at each observation. The methodological research literature suggests that the choice of the functional form of the kernel has little effect on the estimation of the density&mdash;all are essentially equivalently efficient in minimizing the error when approximating the true density [e.g., @epanechnikov; @silverman]&mdash;and thus it is reasonable to simply use the default Gaussian kernel function. -->
+<!-- Selecting the smoothing parameter is another matter. Change in the amount of variation in the kernel has a large effect on the appearance and interpretation of the density estimate. This is similar to forcing fewer or additional bins in the traditional histogram. The figure below shows the difference in appearance in the overall plot of the kernel density that is associated with changing the smoothing parameter. The three density estimates are based on the same sample of data, and all use the Gaussian kernel function. It can be seen that using a smoothing parameter of 0.5 produces an estimate of the density which is quite rough (left-hand plot), while using a smoothing parameter of 2 (middle plot) produces a smoother estimate. A smoothing parameter of 10 (right-hand plot) produces an even smoother plot. As the smoothing parameter increases, the density curve becomes smoother.  -->
+<!-- ```{r echo=FALSE, fig.cap='Kernel density estimates using three different smoothing parameters. Each estimate used a Gaussian kernel. The estimate on the left used a smoothing parameter of 0.5. The estimate in the middle used a smoothing parameter of 2. The estimate on the right used a smoothing parameter of 10.', fig.width=15, fig.height=4, out.width='90%'} -->
+<!-- p1 = ggplot(data = vlss, aes(x = Age)) + -->
+<!--   geom_density(bw = 0.5) + -->
+<!--   theme_bw() + -->
+<!--   ylab("Density") + -->
+<!--   ggtitle("bw = 0.5") -->
+<!-- p2 = ggplot(data = vlss, aes(x = Age)) + -->
+<!--   geom_density(bw = 2) + -->
+<!--   theme_bw() + -->
+<!--   ylab("Density") + -->
+<!--   ggtitle("bw = 2") -->
+<!-- p3 = ggplot(data = vlss, aes(x = Age)) + -->
+<!--   geom_density(bw = 10) + -->
+<!--   theme_bw() + -->
+<!--   ylab("Density") + -->
+<!--   ggtitle("bw = 10") -->
+<!-- p1 + p2 + p3 -->
+<!-- ``` -->
+<!-- To set the smoothing parameter, we use the `bw=` argument in the `geom_density()` layer of the plot. For example, to set the smoothing parameter to 10, we would use the following syntax: -->
+<!-- ```{r message=FALSE, eval=FALSE} -->
+<!-- # Change smoothing parameter -->
+<!-- ggplot(data = vlss, aes(x = Age)) + -->
+<!--   geom_density(bw = 10) + -->
+<!--   theme_bw() + -->
+<!--   ylab("Density") -->
+<!-- ``` -->
+<!-- If the researcher chooses a smoothing parameter that is too small, the density estimate will appear jagged, spuriously highlighting anomalies of the data such as asymmetry and multiple modes. Such features can appear because of chance variation rather than because they are structures present in the probability distribution. If the researcher chooses a smoothing parameter that is too large, she may obscure much of the structure in the data, a phenomenon known as oversmoothing. Ideally a smoothing parameter is chosen that is small enough to reveal detail in the graph but large enough to inhibit random noise.  -->
+<!-- Several methods have been proposed to choose an optimum smoothing parameter based on the data [see @sheather]. While these methods tend to compute smoothing parameters that perform well in simulation studies, for sample data that is substantially nonnormal, some manual adjustment may be required. The method that the `geom_density()` function uses to compute the value of the smoothing parameter is  based on Silverman's rule of thumb [@silverman]. The method popularized by Silverman&mdash;which was originally proposed for improved density estimation in histograms [e.g., @deheuvels; @scott]&mdash;is a computationally simple method for choosing the smoothing parameter. The `geom_density()` function computes the density based on several popular methods: -->
+<!-- - Silverman's method (default); `bw="nrd0"` -->
+<!-- - Scott's method; `bw="nrd"` -->
+<!-- - Sheather and Jones' method; `bw="SJ"` -->
+<!-- - Unbiased cross-validation; `bw="ucv"` -->
+<!-- - Biased cross-validation; `bw="bcv"` -->
+<!-- This actual value of the smoothing parameter can be obtained by employing the `density()` function. -->
+<!-- ```{r} -->
+<!-- # Obtain smoothing parameter for Silverman's method -->
+<!-- d = density(vlss$Age, bw = "nrd0") -->
+<!-- d -->
+<!-- ``` -->
+<!-- For Silverman's method, the default used in the `geom_density()` function, the numerical value of the smoothing parameter for the age variable is 2.344. Although the default smoothing parameter in this case seems reasonable in providing a smooth plot, the prudent data analyst should try several smoothing parameters to ensure that the plot is not oversmoothed. The figure below shows the original plot, as well as additional kernel density plots using the Sheather and Jones method of computing the smoothing parameter. All the methods yield similar curves for the age variable. -->
+<!-- ```{r message=FALSE, echo=FALSE, fig.cap="Kernel density estimates using Silverman's rule of thumb for the smoothing parameter (left-hand plot) and Sheather and Jones' method of computing the smoothing parameter, (right-hand plot)", fig.width=10, fig.height=4, out.width='90%'} -->
+<!-- p1 = ggplot(data = vlss, aes(x = Age)) + -->
+<!--   geom_density() + -->
+<!--   theme_bw() + -->
+<!--   ylab("Density") + -->
+<!--   ggtitle("Silverman's Method") -->
+<!-- p2 = ggplot(data = vlss, aes(x = Age)) + -->
+<!--   geom_density(bw = "SJ") + -->
+<!--   theme_bw() + -->
+<!--   ylab("Density") + -->
+<!--   ggtitle("Sheather and Jones' Method") -->
+<!-- p1 + p2 -->
+<!-- ``` -->
+<!-- <br /><br /> -->
+<!-- ## Adaptive Kernel Density Estimation -->
+<!-- One promising method for computing the degree of smoothing is the use of *adaptive kernel estimation* [e.g., @bowman; @silverman; @terrell2]. This method seems especially well-suited for estimating densities of long-tailed or multi-modal data. Adaptive kernel density estimation allows the kernels to have differing widths. Varying the smoothing parameter reduces the potential of undersmoothing the density estimate where there are sparse data and also reduces the potential of oversmoothing the density estimate where there are heavy data.  -->
+<!-- Adaptive kernel densities can be estimated using the `akj()` function from the **quantreg** package. The `z=` argument takes an equispace sequence of values for which the density should be estimated. From the computations earlier, recall that the density object, `d`, contains a set of equispaced $x$-values at which the density was estimated. These can be accessed using `d\$x`, which is then supplied to the `z=` argument in the `akj()` function. The estimated density is assigned to the object `adapt`. Because of the iterative method that adaptive kernel estimation uses, running the function can take some time depending on the computer's processor and the size of the sample.  -->
+<!-- ```{r message=FALSE, cache=TRUE} -->
+<!-- # Create density plot using adaptive kernel density estimation -->
+<!-- adapt = akj(x = vlss$Age, z = d$x)  -->
+<!-- ``` -->
+<!-- To plot this, we first dreate a data frame that includes the *x*-values used in the `z=` argument and the density estimates, stored in `adapt$dens`. Then we can use `geom_line()` to plot the actual density estimates. -->
+<!-- ```{r fig.cap="Density plot using adaptive kernel density estimation.", fig.width=5, fig.height=4} -->
+<!-- # Set up data frame -->
+<!-- density_est = data.frame( -->
+<!--   x = d$x, -->
+<!--   y = adapt$dens -->
+<!-- ) -->
+<!-- # Plot density estimates -->
+<!-- ggplot(data = density_est, aes(x = x, y = y)) + -->
+<!--   geom_line() + -->
+<!--   theme_bw() + -->
+<!--   xlab("Age") + -->
+<!--   ylab("Density") -->
+<!-- ``` -->
+<!-- <br /><br /> -->
+<!-- ## Density Estimation in Practice -->
+<!-- Unfortunately, there is no one uniform best method for choosing the smoothing parameter [@simonoff]. @terrell [p. 470] asserts that "most density estimates are presumably designed on aesthetic grounds: The practitioner picks the smoothing parameter so that the density looks good. Clearly, though, such an individualistic approach does not lead to replicable results; nor does it lead reliably to sensible estimates from a novice." -->
+<!-- While researchers may make different analytic decisions about the choice of kernel and smoothing parameters, hopefully, the substantive findings about the research questions will not change (although it is possible that they may). For example, in all three methods of smoothing preseneted, the estimated kernel density shows that the population has three potential modes in the distribution. These likely refer to three distinct age groups or subpopulations. Each of these age groups has a higher density (taller distribution) and seems to have less variation (a thinner distribution) than the subsequent younger age group. -->
+<!-- Regardless of the analytic decisions made, any statistical results presented need to include sufficient information included to judge the soundness of the conclusions drawn. This helps the researcher either verify or call into question what she is seeing from the analysis. There are two things to keep in mind: -->
+<!-- - There is no "right" answer in statistical analysis [@box; @box2] but only explanation and presentation. -->
+<!-- - There is a distinction between how most researchers do their analysis and how they present their results. -->
+<!-- When presenting results, researchers should integrate or synthesize information from the data analysis with the content and findings from the substantive literature. Relating the findings back to previous research helps the researcher evaluate her findings. The results might verify other findings or question them. The researcher might also question her own results if they are not consistent with expectations and other studies. Remember, the statistical analysis is used to inform the substantive area, and the writing should reflect this. An example of a write-up for the age distribution analysis might be as follows. -->
+<!-- > The density for a sample of ages from $N=28,633$ Vietnamese citizens was estimated using an adaptive kernel method [@portnoy]. The plot of the estimated kernel density reveals three potential subpopulations in the distribution which depict three distinct age groups: a younger, middle-aged, and older generation. The population pyramid based on the 1999 Vietnam census also seems to indicate the presence of three subpopulations [@gso]. The overall positive skew in the distribution also suggests that the population of each subsequently higher age group has relatively lower frequency. Two other interesting features emerge in the density plot that have also been documented in the research literature [e.g., @haughton]. The second mode in the age distribution occurs near the age of 40. This mode has lower frequency in part because of lives lost during the Vietnam War, which ended in 1975 with the reunification of North and South Vietnam. One can also see the effect of decreasing fertility rates in the fact that estimated density decreases as ages decrease from about 16 to zero. -->
+<!-- ## Variability Bands for Kernel Densities -->
+<!-- One concern that is raised by using the density estimate in exploring univariate data is the need to evaluate which features of the density estimate indicate legitimate underlying structure and which can be attributable to random variation. For example, does the age variable actually contain three modes? Or, in particular, is the third mode attributable to chance variation produced by poor estimation of the density at those age values? One method of capturing the uncertainty associated with a density estimate is to create a *variability band* or *uncertainty envelope* around the density estimate. @wand argue that the graphical display of the variance structure can be helpful when determining if interesting features of the density are indeed part of the underlying structure in the population.  -->
+<!-- As demonstrated by @bowman, variability bands around the density estimate, $\hat{p}(x)$, have the form  -->
+<!-- $$ -->
+<!-- \hat{p}(x) \pm 2 \times \mathrm{SE}_{\hat{p}(x)}, -->
+<!-- $$ -->
+<!-- where $\mathrm{SE}_{\hat{p}(x)}$ is the standard error computed from the variance estimate, which in turn is computed using a Taylor series approximation. @bowman have implemented functionality to compute and plot the density estimate along with variability bands in R, using the `sm.density()` function from the **sm** package. Within the `sm.density()` function, the argument `display="se"` indicates that variability bands are to be plotted along with the density estimate. The argument `h=` indicates the smoothing parameter to be used in the density estimation. The figure below shows the plotted density and variability bands for the subset of ages.  -->
+<!-- ```{r echo=FALSE, message=FALSE, fig.cap="Kernel density estimate (solid line) with variability bands (dotted lines) for the distribution of ages for the Vietnamese population. A smoothing parameter of 4 was used in the density estimation.", fig.width=5, fig.height=4} -->
+<!-- library(sm) -->
+<!-- sm.density(vlss$Age, display = "se", xlab="Age", h = 4) -->
+<!-- ``` -->
+<!-- For example, the width of bands for the VLSS data strengthens the evidence that the troughs and peaks of the small wiggles seen in Figure \ref{fig:3-5} stay within each other's variability bands suggesting that there is no good evidence that the wiggles exist in the population. On the other hand, the different plateau near ages 35 and 70 are clearly distinct. -->
+<p><br /><br /></p>
+
+<div id="refs" class="references">
+<div>
+<p>Zieffler, A. S., Harring, J. R., &amp; Long, J. D. (2011). <em>Comparing groups: Randomization and bootstrap methods using R</em>. Wiley.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Zieffler:2011">
+<p>Zieffler, A. S., Harring, J. R., &amp; Long, J. D. (2011). <em>Comparing groups: Randomization and bootstrap methods using R</em>. Wiley.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Any value from 0–1 can be used, where <code>alpha=0</code> is fully transparent and <code>alpha=1</code> is fully opaque.<a href="exploration-of-multivariate-data-comparing-groups.html#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="index.html"><button class="btn btn-default">Previous</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>
