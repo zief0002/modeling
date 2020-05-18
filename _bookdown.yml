@@ -7,11 +7,11 @@ rmd_files: [
     #"foreword.Rmd",
     "preface.Rmd",
     #"acknowledgments.Rmd",
-    #"04-kde.Rmd",
+    "04-simple-regression-description.Rmd",
     #"05-exploration.Rmd",
     #"06-exploration-multivariate.Rmd",
     #"07-randomization-tests.Rmd",
-    #"06-summary.Rmd"
+    "99-references.Rmd"
     ]
 clean: [packages.bib, bookdown.bbl]
 new_session: yes
