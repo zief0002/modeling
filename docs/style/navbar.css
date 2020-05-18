@@ -13,7 +13,7 @@
   display: block; /*change from block to none for landing page */
   height: 150px;
   margin: 10px 10px 40px 10px;
-  background-image: url("../figs/mn-hist.png");
+  background-image: url("../figs/banner.png");
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;

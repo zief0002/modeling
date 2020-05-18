@@ -469,6 +469,15 @@ ggplot(data = city, aes(x = education, y = income)) +
 ```
 
 
+<br />
 
+## Answering the Research Question
+
+Remember that this whole analysis was driven because we wanted to answer a question, namely whether education level is related to income for the Riverview employees. The results from the regression analysis allows us to answer this question.
+
+> To answer the question of whether education level is related to income, a linear regression model was fitted to the data using ordinary least squares estimation. The results of this analysis suggested that education level is positively related to income for the 32 employees ($\hat\beta_1 = 2.65$). Each year of education is associated with a \$2,651 difference in income, on average.
+
+
+Here the regression analysis provides a quantitative summary of the relationship between education level and income. It provides us information about the direction of the relationship (positive) and the magnitude of that relationship. Although this can give us a description of the realtionship, it is only for the sample of data you looked at (i.e., for these 32 employees). To make further statements about whether there is a relationship between education level and income in a broader popualtion (e.g., all Riverview employees, or all California residents), we need more information, namely [whether the sample is representative of the larger population](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3105563/) and also statistical information about the amount of sampling error we have. (We will cover sampling error in Chapter 5.)
 
 
