@@ -1,4 +1,4 @@
-# Simple Linear Regression---Description
+# Simple Linear Regression---Description {#slrd}
 
 ```{r echo=FALSE, message=FALSE}
 # Global options

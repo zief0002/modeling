@@ -5,7 +5,7 @@
 <meta charset="utf-8" />
 <meta name="generator" content="pandoc" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Preface | Statistical Modeling and Computation for Educational Scientists" />
+<meta property="og:title" content="Intercept-Only Model | Statistical Modeling and Computation for Educational Scientists" />
 <meta property="og:type" content="book" />
 
 
@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-05-19" />
+<meta name="date" content="2020-05-18" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -25,7 +25,7 @@ MathJax.Hub.Config({
 
 <meta name="description" content="EPsy 8251 and 8252 Notes">
 
-<title>Preface | Statistical Modeling and Computation for Educational Scientists</title>
+<title>Intercept-Only Model | Statistical Modeling and Computation for Educational Scientists</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -140,8 +140,9 @@ img {
 <ul>
 <li><a href="index.html#foreword">Foreword</a></li>
 <li><a href="preface.html#preface">Preface</a></li>
-<li><a href="slrd.html#slrd">Simple Linear Regression—Description</a></li>
+<li><a href="simple-linear-regressiondescription.html#simple-linear-regressiondescription">Simple Linear Regression—Description</a></li>
 <li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
+<li><a href="intercept-only-model.html#intercept-only-model">Intercept-Only Model</a></li>
 <li><a href="references-1.html#references-1">References</a></li>
 </ul>
 </div>
@@ -149,47 +150,26 @@ img {
 </div>
 <div class="row">
 <div class="col-sm-12">
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<!-- :::chapterquote -->
-<!-- Computational advances have changed the face of statistical practice by transforming what we do and by challenging how we think about scientific problems.<br /> -->
-<!-- <span class="quoteauthor">---@thisted2</span> -->
-<!-- ::: -->
-<p><br /><br /></p>
-<p>The content in this “book”, as the title suggests, is related to statistical modeling and computation. More specifically, the content focuses on using the General Linear Model (GLM) to provide statistical evidence that can help answer substantive questions in the educational and social sciences. It is a book intended for applied practitioners in the educational or social sciences. The statistical content is hopefully presented in a manner that these domian scientists will find useful, including practical suggestions for analysis and the presentation of results intended to help researchers clearly communicate the results of a data analysis.</p>
-<p>While the content is not overly mathematical in nature, the reader will need a solid understanding of the principles in algebra for maximum benefit. The burden of caclulation that typically accompanied statisical work in previous generations is now primarily carried out in a scientific computing environment. As <span class="citation">Thisted &amp; Velleman (<a href="#ref-thisted2">1992</a>)</span> point out, “computational advances have changed the face of statistical practice by transforming what we do and by challenging how we think about scientific problems.”</p>
-<p>And to that end, to support and help facilitate the use of scientific computing, examples using the R computer language will be used throughout this work.</p>
-<p>The organization of content is consistent with the sequence this content is taught in EPsy 8251 and EPsy 8252, two applied statistics courses that form the foundational sequence for many graduate students in the educational and social sciences at the University of Minnesota. These courses require that students have taken a previous statistics course at either the undergraduate or graduate level. Because of that, many introducotry ideas are assumed.</p>
-<p><br /><br /></p>
-<div id="content-for-epsy-8251" class="section level2">
-<h2>Content for EPsy 8251</h2>
-<p>The content for EPsy 8251 focuses on introducing ideas of statistical computation, and foundations of building, interpreting, and evaluating GLMs. In particular, this content includes OLS estimation, coefficient- and model-based inference, dummy-coded variables, and statistical interactions.</p>
-<p><br /><br /></p>
-</div>
-<div id="content-for-epsy-8252" class="section level2">
-<h2>Content for EPsy 8252</h2>
-<p>The content for EPsy 8252 focuses on extending ideas of scientific computation and statistical modeling. In particular, this content focuses on dealing with some of the issues that crop up in practical work including modeling non-linearity using statistical transformations, and modeling non-independent data using mixed-effects models. Additional tools for model evaluation (e.g., information criteria) are also presented.</p>
-<p><br /><br /></p>
-</div>
-<div id="extras" class="section level2">
-<h2>Extras</h2>
-<p>This book refers to and uses several data sets throughout the text. Each of these data sets and their codebooks are available online at the book’s github repository, <a href="https://github.com/zief0002/modeling/" class="uri">https://github.com/zief0002/modeling/</a>.</p>
-<p><br /><br /></p>
-</div>
-<div id="references" class="section level2">
-<h2>References</h2>
+<div id="intercept-only-model" class="section level1">
+<h1>Intercept-Only Model</h1>
+<p>Consider again the equation for the statistical model that includes a single predictor,</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i.
+\]</span></p>
+<p>A simpler model (one with fewer terms/parameters) would be,</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \epsilon_i.
+\]</span></p>
+<p>This model, referred to as the <em>intercept-only model</em>, does not include the effect of <span class="math inline">\(X\)</span>. The value of <span class="math inline">\(Y\)</span> is not a function of <span class="math inline">\(X\)</span> in this model; it is not conditional on <span class="math inline">\(X\)</span>. The fitted equation,</p>
+<p><span class="math display">\[
+\hat{Y}_i = \hat{\beta}_0
+\]</span></p>
+<p>indicates that the predicted <span class="math inline">\(Y\)</span> would be the same (constant) regardless of what <span class="math inline">\(X\)</span> is. In our example, this would be equivalent to saying that an employees’ incomes would be predicted to be the same, regardless of what their education level was.</p>
 
 </div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-thisted2">
-<p>Thisted, R. A., &amp; Velleman, P. F. (1992). Computers and modern statistics. In D. C. Hoaglin &amp; D. S. Moore (Eds.), <em>Perspectives on contemporary statistics, MAA notes no. 21</em> (pp. 41–53). Mathematical Association of America.</p>
-</div>
-</div>
 <p style="text-align: center;">
-<a href="index.html"><button class="btn btn-default">Previous</button></a>
-<a href="slrd.html"><button class="btn btn-default">Next</button></a>
+<a href="ordinary-least-squares-ols-estimation.html"><button class="btn btn-default">Previous</button></a>
+<a href="references-1.html"><button class="btn btn-default">Next</button></a>
 </p>
 </div>
 </div>
