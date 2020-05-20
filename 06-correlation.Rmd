@@ -1,0 +1,154 @@
+# Correlation and Standardized Regression {#cor}
+
+```{r echo=FALSE, message=FALSE}
+# Load libraries
+library(knitr)
+library(kableExtra)
+library(patchwork)
+
+# Global options
+options(
+  tibble.pillar.subtle = FALSE, 
+  tibble.pillar.sigfig = 7, 
+  tibble.pillar.min_title_chars = 10,
+  scipen = 5
+  )
+
+# Chunk options
+opts_chunk$set(
+  # General
+  comment = NA,
+  message = FALSE, 
+  warning = FALSE,
+  tidy = FALSE,
+  
+  # Figures
+  fig.align = 'center',
+  fig.height = 6,
+  fig.width = 6,  
+  out.width = '50%' 
+  )
+```
+
+
+In this chapter, you will learn about correlation and its role in regression. To do so, we will use the *keith-gpa.csv* data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of $n=100$ 8th-grade students (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html)). To begin, we will load several libraries and import the data into an object called `keith`. 
+
+```{r warning=FALSE, message=FALSE}
+# Load libraries
+library(corrr)
+library(dplyr)
+library(ggplot2)
+library(readr)
+
+# Read in data
+keith = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8251/master/data/keith-gpa.csv")
+head(keith)
+```
+
+<br />
+
+
+## Data Exploration
+
+We begin by looking at the marginal distributions of both time spent on homework and GPA. We will also examine summary statistics of these variables (output presented in table). Finally, we also examine a scatterplot of GPA versus time spent on homework.
+
+```{r echo=FALSE, out.width='31%', fig.cap='Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown.', fig.show='hold'}
+# Density plot of the marginal distribution of homework
+ggplot(data = keith, aes(x = gpa)) +
+  stat_density(geom = "line") +
+  theme_bw() +
+  xlab("GPA (on a 100-pt. scale)") +
+  ylab("Probability density") +
+  ggtitle("Outcome: GPA")
+
+# Density plot of the marginal distribution of homework
+ggplot(data = keith, aes(x = homework)) +
+  stat_density(geom = "line") +
+  theme_bw() +
+  xlab("Time spent on homework per week (in hours)") +
+  ylab("Probability density")  +
+  ggtitle("Predictor: Homework")
+
+# Scatterplot
+ggplot( data = keith, aes(x = homework, y = gpa) ) +
+  geom_point() +
+  theme_bw() +
+  xlab("Time spent on homework per week (in hours)") +
+  ylab("GPA (on a 100-pt. scale)")
+```
+
+```{r eval=FALSE}
+# Summary statistics
+keith %>%
+  summarize(
+    M_gpa  = mean(gpa),
+    SD_gpa = sd(gpa),
+    M_hw   = mean(homework),
+    SD_hw  = sd(homework)
+    )
+```
+
+
+
+```{r echo=FALSE}
+data.frame(
+  Measure = c("GPA", "Time spent on homework"),
+  M = c(80.47, 5.09),
+  SD = c(7.62, 2.06)
+) %>%
+  kable(
+    caption = "Summary measures for 8th-Grade students' GPA and time spent on homework",
+    align = c("l", "c", "c"),
+    format = "html",
+    table.attr = "style='width:40%;'"
+  ) %>%
+  kable_styling() %>%
+  row_spec(row = 0, align = "c")
+```
+
+We might describe the results of this analysis as follows:
+
+> The marginal distributions of GPA and time spent on homework are both unimodal. The average amount of time these 8th-grade students spend on homework each week is 5.09 hours (*SD* = 2.06). These 8th-grade students have a mean GPA of 80.47 (*SD* = 7.62) on a 100-pt scale. There is a moderate, positive, linear relationship between time spent on homework and GPA for these students. This suggests that 8th-grade students who spend less time on homework tend to have lower GPAs, on average, than students who spend more time on homework.
+
+<br />
+
+
+## Correlation
+
+To numerically summarize the *linear relationship* between variables, we typically compute correlation coefficients. The correlation coefficient is a quantification of the direction and strength of the relationship. (It is important to note that the correlation coefficient is only an appropriate summarization of the relationship if the functional form of the relationship is linear.) 
+
+To compute the correlation coefficient, we use the `correlate()` function from the **corrr** package. We can use the dplyr-type syntax to select the variables we want correlations between, and then pipe that into the `correlate()` function. Typically the response (or outcome) variable is the first variable provided in the `select()` function, followed by the predictor.
+
+```{r}
+keith %>%
+  select(gpa, homework) %>%
+  correlate()
+```
+
+When reporting the correlation coefficient is is conventional to use a lower-case $r$ and report the value to two decimal places. Subscripts are also generally used to indicate the variables. For example,
+
+$$
+r_{\mathrm{GPA,~Homework}} = 0.33
+$$
+
+It is important to keep in mind this value is only useful as a measure of the strength of the relationship when the relationship between variables is linear. Here is an example where the correlation coefficient would be misleading about the strength of the relationship.
+
+```{r echo=FALSE, fig.cap="Hours of daylight versus day of the year for $n=75$ days in Minneapolis.", out.width='3in'}
+set.seed(100)
+read_csv(file = "~/Documents/github/epsy-8251/data/hours-of-daylight-minneapolis.csv") %>%
+  sample_n(75) %>%
+  ggplot(aes(x = Day, y = hours)) +
+    geom_point() +
+    xlab("Day of the Year") +
+    ylab("Hours of Daylight") +
+    theme_bw() +
+    annotate("text", x = 270, y = 14.3, label = paste("r == -0.34"), parse = TRUE)
+```
+
+Here there is a perfect relationship between day of the year and hours of daylight. If you fitted a nonlinear model here, your "line" would match the data exactly (no residual error!). But the correlation coefficient does not reflect that ($r=-0.34$).
+
+:::note
+You should always create a scatterplot to examine the relationship graphically before computing a correlation coefficient to numerically summarize it. 
+:::
+
+

@@ -39,5 +39,5 @@ This book refers to and uses several data sets throughout the text. Each of thes
 
 <br /><br />
 
-## References
+
 

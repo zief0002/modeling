@@ -61,7 +61,7 @@ How does R determine the coefficient values of $\hat{\beta}_0=11.321$ and $\hat{
 
 
 <table style="width:40%; margin-left: auto; margin-right: auto;" class="table">
-<caption>(\#tab:unnamed-chunk-3)Toy data set with predictor (X) and outcome (Y) for five observations.</caption>
+<caption>Toy data set with predictor (X) and outcome (Y) for five observations.</caption>
  <thead>
   <tr>
    <th style="text-align:center;text-align: center;"> $X_i$ </th>
@@ -70,23 +70,23 @@ How does R determine the coefficient values of $\hat{\beta}_0=11.321$ and $\hat{
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 63 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> 44 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 40 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 50 </td>
    <td style="text-align:center;"> 68 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 20 </td>
    <td style="text-align:center;"> 25 </td>
   </tr>
 </tbody>
@@ -94,14 +94,14 @@ How does R determine the coefficient values of $\hat{\beta}_0=11.321$ and $\hat{
 
 Which of the following two models fits these data better?
 
-- **Model A:** $~~\hat{Y_i} = 28 + 8(X_i)$
-- **Model B:** $~~\hat{Y_i} = 20 + 10(X_i)$
+- **Model A:** $~~\hat{Y_i} = 28 + 0.8(X_i)$
+- **Model B:** $~~\hat{Y_i} = 20 + 1(X_i)$
 
 We could plot the data and both lines and try to determine which seems to fit better. 
 
 <div class="figure" style="text-align: center">
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-4-1.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for two models." width="45%" /><img src="05-ols-estimation_files/figure-html/unnamed-chunk-4-2.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for two models." width="45%" />
-<p class="caption">(\#fig:unnamed-chunk-4)Scatterplot of the observed toy data and the OLS fitted regression line for two models.</p>
+<p class="caption">Scatterplot of the observed toy data and the OLS fitted regression line for two models.</p>
 </div>
 
 <br />
@@ -115,7 +115,7 @@ Remember, to compute the residuals, we will first need to  compute the predicted
 
 
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
-<caption>(\#tab:unnamed-chunk-5)Observed values, predicted values and residuals for Model A.</caption>
+<caption>Observed values, predicted values and residuals for Model A.</caption>
  <thead>
   <tr>
    <th style="text-align:center;text-align: center;"> $X_i$ </th>
@@ -126,31 +126,31 @@ Remember, to compute the residuals, we will first need to  compute the predicted
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 63 </td>
    <td style="text-align:center;"> 52 </td>
    <td style="text-align:center;"> 11 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> 44 </td>
    <td style="text-align:center;"> 36 </td>
    <td style="text-align:center;"> 8 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 40 </td>
    <td style="text-align:center;"> 52 </td>
    <td style="text-align:center;"> -12 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 50 </td>
    <td style="text-align:center;"> 68 </td>
    <td style="text-align:center;"> 68 </td>
    <td style="text-align:center;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 20 </td>
    <td style="text-align:center;"> 25 </td>
    <td style="text-align:center;"> 44 </td>
    <td style="text-align:center;"> -19 </td>
@@ -159,7 +159,7 @@ Remember, to compute the residuals, we will first need to  compute the predicted
 </table>
 
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
-<caption>(\#tab:unnamed-chunk-6)Observed values, predicted values and residuals for Model B.</caption>
+<caption>Observed values, predicted values and residuals for Model B.</caption>
  <thead>
   <tr>
    <th style="text-align:center;text-align: center;"> $X_i$ </th>
@@ -170,31 +170,31 @@ Remember, to compute the residuals, we will first need to  compute the predicted
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 63 </td>
    <td style="text-align:center;"> 50 </td>
    <td style="text-align:center;"> 13 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> 44 </td>
    <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 14 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 40 </td>
    <td style="text-align:center;"> 50 </td>
    <td style="text-align:center;"> -10 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 50 </td>
    <td style="text-align:center;"> 68 </td>
    <td style="text-align:center;"> 70 </td>
    <td style="text-align:center;"> -2 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 20 </td>
    <td style="text-align:center;"> 25 </td>
    <td style="text-align:center;"> 40 </td>
    <td style="text-align:center;"> -15 </td>
@@ -214,7 +214,7 @@ $$
 This is called a *sum of squared residuals* or *sum of squared error* (SSE; good name, isn't it). Computing the squared residuals for Model A and Model B we get:
 
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
-<caption>(\#tab:unnamed-chunk-7)Observed values, predicted values, residuals, and squared residuals for Model A.</caption>
+<caption>Observed values, predicted values, residuals, and squared residuals for Model A.</caption>
  <thead>
   <tr>
    <th style="text-align:center;text-align: center;"> $X_i$ </th>
@@ -226,35 +226,35 @@ This is called a *sum of squared residuals* or *sum of squared error* (SSE; good
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 63 </td>
    <td style="text-align:center;"> 52 </td>
    <td style="text-align:center;"> 11 </td>
    <td style="text-align:center;"> 121 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> 44 </td>
    <td style="text-align:center;"> 36 </td>
    <td style="text-align:center;"> 8 </td>
    <td style="text-align:center;"> 64 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 40 </td>
    <td style="text-align:center;"> 52 </td>
    <td style="text-align:center;"> -12 </td>
    <td style="text-align:center;"> 144 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 50 </td>
    <td style="text-align:center;"> 68 </td>
    <td style="text-align:center;"> 68 </td>
    <td style="text-align:center;"> 0 </td>
    <td style="text-align:center;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 20 </td>
    <td style="text-align:center;"> 25 </td>
    <td style="text-align:center;"> 44 </td>
    <td style="text-align:center;"> -19 </td>
@@ -264,7 +264,7 @@ This is called a *sum of squared residuals* or *sum of squared error* (SSE; good
 </table>
 
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
-<caption>(\#tab:unnamed-chunk-8)Observed values, predicted values, residuals, and squared residuals for Model B.</caption>
+<caption>Observed values, predicted values, residuals, and squared residuals for Model B.</caption>
  <thead>
   <tr>
    <th style="text-align:center;text-align: center;"> $X_i$ </th>
@@ -276,35 +276,35 @@ This is called a *sum of squared residuals* or *sum of squared error* (SSE; good
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 63 </td>
    <td style="text-align:center;"> 50 </td>
    <td style="text-align:center;"> 13 </td>
    <td style="text-align:center;"> 169 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> 44 </td>
    <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 14 </td>
    <td style="text-align:center;"> 196 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 40 </td>
    <td style="text-align:center;"> 50 </td>
    <td style="text-align:center;"> -10 </td>
    <td style="text-align:center;"> 100 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 50 </td>
    <td style="text-align:center;"> 68 </td>
    <td style="text-align:center;"> 70 </td>
    <td style="text-align:center;"> -2 </td>
    <td style="text-align:center;"> 4 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 20 </td>
    <td style="text-align:center;"> 25 </td>
    <td style="text-align:center;"> 40 </td>
    <td style="text-align:center;"> -15 </td>
@@ -320,6 +320,26 @@ Summing these squared values for each model we obtain:
 
 Once we have quantified the model misfit, we can choose the model that has the least amount of error. Since Model A has a lower SSE than Model B, we would conclude that Model A is the better fitting model to the data.
 
+<br />
+
+
+### Visualizing the SSE
+
+To further understand the sum of squared error, we can examine a visual representation of the SSE for Model A. Recall that visually, the residual is the vertical distance between an observation and the fitted value (which lie on the fitted line). The residual indicates how different these two quantities are on the *Y*-metric. In the formula we squared each of the residuals. Visually, this is equivalent to producing the area of a square that has side length equal to the absolute value of the residual.
+
+<div class="figure" style="text-align: center">
+<img src="05-ols-estimation_files/figure-html/unnamed-chunk-9-1.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." width="45%" /><img src="05-ols-estimation_files/figure-html/unnamed-chunk-9-2.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." width="45%" />
+<p class="caption">Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.</p>
+</div>
+
+The SSE is simply the total area encompassed by all of the squares. Note that the observation that is directly on the line has a residual of 0 and thus does not contribute an quantity to the SSE. If you computed the SSE for a line with different intercept or slope values, the SSE will be different. The plot below shows what this might look like for the flat line produced by $~~\hat{Y_i} = 50$.
+
+<div class="figure" style="text-align: center">
+<img src="05-ols-estimation_files/figure-html/unnamed-chunk-10-1.png" alt="Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." width="50%" />
+<p class="caption">Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.</p>
+</div>
+
+@Powell:2015 created an [interactive website](http://setosa.io/ev/ordinary-least-squares-regression/) to help understand how the SSE is impacted by changing the intercept or slope of a line. You can also see how indicidual observations impact the SSE value.
 
 <br />
 
@@ -340,7 +360,7 @@ $$
 This model gives the following predicted values and residuals:
 
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
-<caption>(\#tab:unnamed-chunk-9)Observed values, predicted values, residuals, and squared residuals for the 'best' fitting model.</caption>
+<caption>Observed values, predicted values, residuals, and squared residuals for the 'best' fitting model.</caption>
  <thead>
   <tr>
    <th style="text-align:center;text-align: center;"> $X_i$ </th>
@@ -585,8 +605,8 @@ $$
 Graphically, the fitted line is a flat line crossing the $y$-axis at 53.742 (see plot below).
 
 <div class="figure" style="text-align: center">
-<img src="05-ols-estimation_files/figure-html/unnamed-chunk-12-1.png" alt="Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed." width="50%" />
-<p class="caption">(\#fig:unnamed-chunk-12)Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed.</p>
+<img src="05-ols-estimation_files/figure-html/unnamed-chunk-14-1.png" alt="Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed." width="50%" />
+<p class="caption">Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed.</p>
 </div>
 
 Does the estimate for $\beta_0$, 53.742, seem familiar? If not, go back to the exploration of the response variable in the [Simple Linear Regression---Description](#sldr) chapter. The estimated intercept in the intercept-only model is the marginal mean value of the response variable. This is not a coincidence. 
@@ -602,8 +622,8 @@ $$
 Plotting this we get,
 
 <div class="figure" style="text-align: center">
-<img src="05-ols-estimation_files/figure-html/unnamed-chunk-13-1.png" alt="Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown." width="50%" />
-<p class="caption">(\#fig:unnamed-chunk-13)Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown.</p>
+<img src="05-ols-estimation_files/figure-html/unnamed-chunk-15-1.png" alt="Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown." width="50%" />
+<p class="caption">Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown.</p>
 </div>
 
 The model itself does not consider any predictors, so on the plot, the $X$ variable is superfluous; we could just collapse it to its margin. This is why the mean of all the $Y$ values is sometimes referred to as the *marginal mean*.

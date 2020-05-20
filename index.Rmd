@@ -13,7 +13,7 @@ output:
     split_bib: yes
     css: ['style/style.css', 'style/table-styles.css', 'style/syntax.css', 'style/navbar.css']
 documentclass: book
-bibliography: [book.bib, packages.bib, comparing-groups.bib]
+bibliography: [book.bib, packages.bib, comparing-groups.bib, modeling.bib]
 csl: 'style/apa-single-spaced.csl'
 link-citations: yes
 github-repo: zief0002/modeling

@@ -9,7 +9,7 @@ rmd_files: [
     #"acknowledgments.Rmd",
     "04-simple-regression-description.Rmd",
     "05-ols-estimation.Rmd",
-    #"06-exploration-multivariate.Rmd",
+    "06-correlation.Rmd",
     #"07-randomization-tests.Rmd",
     "99-references.Rmd"
     ]
