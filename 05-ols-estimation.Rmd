@@ -33,7 +33,7 @@ opts_chunk$set(
 ```
 
 
-In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the *riverview.csv* data to examine whether education level is related to income (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/riverview.html)). To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.1`.
+In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv) data to examine whether education level is related to income (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/riverview.html)). To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.1`.
 
 ```{r warning=FALSE, message=FALSE}
 # Load libraries
@@ -42,7 +42,7 @@ library(ggplot2)
 library(readr)
 
 # Read in data
-city = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8251/master/data/riverview.csv")
+city = read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv")
 head(city)
 
 # Fit regression model

@@ -3,7 +3,7 @@
 
 
 
-In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the *riverview.csv* data to examine whether education level is related to income (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/riverview.html)). To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.1`.
+In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv) data to examine whether education level is related to income (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/riverview.html)). To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.1`.
 
 
 ```r
@@ -13,7 +13,7 @@ library(ggplot2)
 library(readr)
 
 # Read in data
-city = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8251/master/data/riverview.csv")
+city = read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv")
 head(city)
 ```
 
@@ -61,7 +61,7 @@ How does R determine the coefficient values of $\hat{\beta}_0=11.321$ and $\hat{
 
 
 <table style="width:40%; margin-left: auto; margin-right: auto;" class="table">
-<caption>Toy data set with predictor (X) and outcome (Y) for five observations.</caption>
+<caption>(\#tab:unnamed-chunk-3)Toy data set with predictor (X) and outcome (Y) for five observations.</caption>
  <thead>
   <tr>
    <th style="text-align:center;text-align: center;"> $X_i$ </th>
@@ -101,7 +101,7 @@ We could plot the data and both lines and try to determine which seems to fit be
 
 <div class="figure" style="text-align: center">
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-4-1.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for two models." width="45%" /><img src="05-ols-estimation_files/figure-html/unnamed-chunk-4-2.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for two models." width="45%" />
-<p class="caption">Scatterplot of the observed toy data and the OLS fitted regression line for two models.</p>
+<p class="caption">(\#fig:unnamed-chunk-4)Scatterplot of the observed toy data and the OLS fitted regression line for two models.</p>
 </div>
 
 <br />
@@ -115,7 +115,7 @@ Remember, to compute the residuals, we will first need to  compute the predicted
 
 
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
-<caption>Observed values, predicted values and residuals for Model A.</caption>
+<caption>(\#tab:unnamed-chunk-5)Observed values, predicted values and residuals for Model A.</caption>
  <thead>
   <tr>
    <th style="text-align:center;text-align: center;"> $X_i$ </th>
@@ -159,7 +159,7 @@ Remember, to compute the residuals, we will first need to  compute the predicted
 </table>
 
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
-<caption>Observed values, predicted values and residuals for Model B.</caption>
+<caption>(\#tab:unnamed-chunk-6)Observed values, predicted values and residuals for Model B.</caption>
  <thead>
   <tr>
    <th style="text-align:center;text-align: center;"> $X_i$ </th>
@@ -214,7 +214,7 @@ $$
 This is called a *sum of squared residuals* or *sum of squared error* (SSE; good name, isn't it). Computing the squared residuals for Model A and Model B we get:
 
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
-<caption>Observed values, predicted values, residuals, and squared residuals for Model A.</caption>
+<caption>(\#tab:unnamed-chunk-7)Observed values, predicted values, residuals, and squared residuals for Model A.</caption>
  <thead>
   <tr>
    <th style="text-align:center;text-align: center;"> $X_i$ </th>
@@ -264,7 +264,7 @@ This is called a *sum of squared residuals* or *sum of squared error* (SSE; good
 </table>
 
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
-<caption>Observed values, predicted values, residuals, and squared residuals for Model B.</caption>
+<caption>(\#tab:unnamed-chunk-8)Observed values, predicted values, residuals, and squared residuals for Model B.</caption>
  <thead>
   <tr>
    <th style="text-align:center;text-align: center;"> $X_i$ </th>
@@ -329,14 +329,14 @@ To further understand the sum of squared error, we can examine a visual represen
 
 <div class="figure" style="text-align: center">
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-9-1.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." width="45%" /><img src="05-ols-estimation_files/figure-html/unnamed-chunk-9-2.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." width="45%" />
-<p class="caption">Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.</p>
+<p class="caption">(\#fig:unnamed-chunk-9)Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.</p>
 </div>
 
 The SSE is simply the total area encompassed by all of the squares. Note that the observation that is directly on the line has a residual of 0 and thus does not contribute an quantity to the SSE. If you computed the SSE for a line with different intercept or slope values, the SSE will be different. The plot below shows what this might look like for the flat line produced by $~~\hat{Y_i} = 50$.
 
 <div class="figure" style="text-align: center">
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-10-1.png" alt="Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." width="50%" />
-<p class="caption">Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.</p>
+<p class="caption">(\#fig:unnamed-chunk-10)Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.</p>
 </div>
 
 @Powell:2015 created an [interactive website](http://setosa.io/ev/ordinary-least-squares-regression/) to help understand how the SSE is impacted by changing the intercept or slope of a line. You can also see how indicidual observations impact the SSE value.
@@ -360,7 +360,7 @@ $$
 This model gives the following predicted values and residuals:
 
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
-<caption>Observed values, predicted values, residuals, and squared residuals for the 'best' fitting model.</caption>
+<caption>(\#tab:unnamed-chunk-11)Observed values, predicted values, residuals, and squared residuals for the 'best' fitting model.</caption>
  <thead>
   <tr>
    <th style="text-align:center;text-align: center;"> $X_i$ </th>
@@ -606,7 +606,7 @@ Graphically, the fitted line is a flat line crossing the $y$-axis at 53.742 (see
 
 <div class="figure" style="text-align: center">
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-14-1.png" alt="Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed." width="50%" />
-<p class="caption">Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed.</p>
+<p class="caption">(\#fig:unnamed-chunk-14)Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed.</p>
 </div>
 
 Does the estimate for $\beta_0$, 53.742, seem familiar? If not, go back to the exploration of the response variable in the [Simple Linear Regression---Description](#sldr) chapter. The estimated intercept in the intercept-only model is the marginal mean value of the response variable. This is not a coincidence. 
@@ -623,7 +623,7 @@ Plotting this we get,
 
 <div class="figure" style="text-align: center">
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-15-1.png" alt="Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown." width="50%" />
-<p class="caption">Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown.</p>
+<p class="caption">(\#fig:unnamed-chunk-15)Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown.</p>
 </div>
 
 The model itself does not consider any predictors, so on the plot, the $X$ variable is superfluous; we could just collapse it to its margin. This is why the mean of all the $Y$ values is sometimes referred to as the *marginal mean*.

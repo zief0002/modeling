@@ -30,7 +30,7 @@ opts_chunk$set(
 ```
 
 
-In this set of notes, you will begin your foray into regression analysis. To do so, we will use the *riverview.csv* data to examine **whether education level is related to income**. The data contain five attributes collected from a random sample of $n=32$ employees working for the city of Riverview, a hypothetical midwestern city (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/riverview.html)). To begin, we will load several libraries and import the data into an object called `city`.
+In this set of notes, you will begin your foray into regression analysis. To do so, we will use the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv) data to examine **whether education level is related to income**. The data contain five attributes collected from a random sample of $n=32$ employees working for the city of Riverview, a hypothetical midwestern city (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/riverview.html)). To begin, we will load several libraries and import the data into an object called `city`.
 
 ```{r warning=FALSE, message=FALSE}
 # Load libraries
@@ -39,7 +39,7 @@ library(ggplot2)
 library(readr)
 
 # Read in data
-city = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8251/master/data/riverview.csv")
+city = read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv")
 head(city)
 ```
 

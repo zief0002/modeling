@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-05-19" />
+<meta name="date" content="2020-05-21" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -142,6 +142,7 @@ img {
 <li><a href="preface.html#preface">Preface</a></li>
 <li><a href="slrd.html#slrd">Simple Linear Regression—Description</a></li>
 <li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
+<li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
 </div>
@@ -151,14 +152,14 @@ img {
 <div class="col-sm-12">
 <div id="slrd" class="section level1">
 <h1>Simple Linear Regression—Description</h1>
-<p>In this set of notes, you will begin your foray into regression analysis. To do so, we will use the <em>riverview.csv</em> data to examine <strong>whether education level is related to income</strong>. The data contain five attributes collected from a random sample of <span class="math inline">\(n=32\)</span> employees working for the city of Riverview, a hypothetical midwestern city (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/riverview.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>city</code>.</p>
+<p>In this set of notes, you will begin your foray into regression analysis. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv">riverview.csv</a> data to examine <strong>whether education level is related to income</strong>. The data contain five attributes collected from a random sample of <span class="math inline">\(n=32\)</span> employees working for the city of Riverview, a hypothetical midwestern city (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/riverview.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>city</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Load libraries</span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(dplyr)</a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(ggplot2)</a>
 <a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(readr)</a>
 <a class="sourceLine" id="cb1-5" title="5"></a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co"># Read in data</span></a>
-<a class="sourceLine" id="cb1-7" title="7">city =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/epsy-8251/master/data/riverview.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb1-7" title="7">city =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb1-8" title="8"><span class="kw">head</span>(city)</a></code></pre></div>
 <pre><code># A tibble: 6 x 6
   education income seniority gender  male party      

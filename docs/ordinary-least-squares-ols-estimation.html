@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-05-19" />
+<meta name="date" content="2020-05-21" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -142,6 +142,7 @@ img {
 <li><a href="preface.html#preface">Preface</a></li>
 <li><a href="slrd.html#slrd">Simple Linear Regression—Description</a></li>
 <li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
+<li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
 </div>
@@ -151,15 +152,15 @@ img {
 <div class="col-sm-12">
 <div id="ordinary-least-squares-ols-estimation" class="section level1">
 <h1>Ordinary Least Squares (OLS) Estimation</h1>
-<p>In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the <em>riverview.csv</em> data to examine whether education level is related to income (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/riverview.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>city</code>. We will also fit a model by regressing income on education level and storing those results in an object called <code>lm.1</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(readr)</a>
-<a class="sourceLine" id="cb1-5" title="5"></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="co"># Read in data</span></a>
-<a class="sourceLine" id="cb1-7" title="7">city =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/epsy-8251/master/data/riverview.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">head</span>(city)</a></code></pre></div>
+<p>In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv">riverview.csv</a> data to examine whether education level is related to income (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/riverview.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>city</code>. We will also fit a model by regressing income on education level and storing those results in an object called <code>lm.1</code>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># Load libraries</span></a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb18-4" title="4"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb18-5" title="5"></a>
+<a class="sourceLine" id="cb18-6" title="6"><span class="co"># Read in data</span></a>
+<a class="sourceLine" id="cb18-7" title="7">city =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb18-8" title="8"><span class="kw">head</span>(city)</a></code></pre></div>
 <pre><code># A tibble: 6 x 6
   education income seniority gender  male party      
       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;      
@@ -169,9 +170,9 @@ img {
 4        10   34.2        16 female     0 Independent
 5        10   25.5         1 female     0 Republican 
 6        12   46.5        11 female     0 Democrat   </code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Fit regression model</span></a>
-<a class="sourceLine" id="cb3-2" title="2">lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</a>
-<a class="sourceLine" id="cb3-3" title="3">lm<span class="fl">.1</span></a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># Fit regression model</span></a>
+<a class="sourceLine" id="cb20-2" title="2">lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</a>
+<a class="sourceLine" id="cb20-3" title="3">lm<span class="fl">.1</span></a></code></pre></div>
 <pre><code>
 Call:
 lm(formula = income ~ 1 + education, data = city)
@@ -189,7 +190,7 @@ Coefficients:
 <p>How does R determine the coefficient values of <span class="math inline">\(\hat{\beta}_0=11.321\)</span> and <span class="math inline">\(\hat{\beta}_1=2.651\)</span>? These values are estimated from the data using a method called <em>Ordinary Least Squares</em> (OLS). To understand how OLS works, consider the following toy data set of five observations:</p>
 <table style="width:40%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-Toy data set with predictor (X) and outcome (Y) for five observations.
+<span id="tab:unnamed-chunk-3">Table 1: </span>Toy data set with predictor (X) and outcome (Y) for five observations.
 </caption>
 <thead>
 <tr>
@@ -250,10 +251,10 @@ Toy data set with predictor (X) and outcome (Y) for five observations.
 <li><strong>Model B:</strong> <span class="math inline">\(~~\hat{Y_i} = 20 + 1(X_i)\)</span></li>
 </ul>
 <p>We could plot the data and both lines and try to determine which seems to fit better.</p>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-4-1.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for two models." width="45%" /><img src="05-ols-estimation_files/figure-html/unnamed-chunk-4-2.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for two models." width="45%" />
 <p class="caption">
-Scatterplot of the observed toy data and the OLS fitted regression line for two models.
+Figure 9: Scatterplot of the observed toy data and the OLS fitted regression line for two models.
 </p>
 </div>
 <p><br /></p>
@@ -264,7 +265,7 @@ Scatterplot of the observed toy data and the OLS fitted regression line for two 
 <p>Remember, to compute the residuals, we will first need to compute the predicted value (<span class="math inline">\(\hat{Y}_i\)</span>) for each of the five observations for both models.</p>
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-Observed values, predicted values and residuals for Model A.
+<span id="tab:unnamed-chunk-5">Table 2: </span>Observed values, predicted values and residuals for Model A.
 </caption>
 <thead>
 <tr>
@@ -357,7 +358,7 @@ Observed values, predicted values and residuals for Model A.
 </table>
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-Observed values, predicted values and residuals for Model B.
+<span id="tab:unnamed-chunk-6">Table 3: </span>Observed values, predicted values and residuals for Model B.
 </caption>
 <thead>
 <tr>
@@ -458,7 +459,7 @@ Observed values, predicted values and residuals for Model B.
 <p>This is called a <em>sum of squared residuals</em> or <em>sum of squared error</em> (SSE; good name, isn’t it). Computing the squared residuals for Model A and Model B we get:</p>
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-Observed values, predicted values, residuals, and squared residuals for Model A.
+<span id="tab:unnamed-chunk-7">Table 4: </span>Observed values, predicted values, residuals, and squared residuals for Model A.
 </caption>
 <thead>
 <tr>
@@ -569,7 +570,7 @@ Observed values, predicted values, residuals, and squared residuals for Model A.
 </table>
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-Observed values, predicted values, residuals, and squared residuals for Model B.
+<span id="tab:unnamed-chunk-8">Table 5: </span>Observed values, predicted values, residuals, and squared residuals for Model B.
 </caption>
 <thead>
 <tr>
@@ -688,20 +689,20 @@ Observed values, predicted values, residuals, and squared residuals for Model B.
 <div id="visualizing-the-sse" class="section level3">
 <h3>Visualizing the SSE</h3>
 <p>To further understand the sum of squared error, we can examine a visual representation of the SSE for Model A. Recall that visually, the residual is the vertical distance between an observation and the fitted value (which lie on the fitted line). The residual indicates how different these two quantities are on the <em>Y</em>-metric. In the formula we squared each of the residuals. Visually, this is equivalent to producing the area of a square that has side length equal to the absolute value of the residual.</p>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-9-1.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." width="45%" /><img src="05-ols-estimation_files/figure-html/unnamed-chunk-9-2.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." width="45%" />
 <p class="caption">
-Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.
+Figure 5: Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.
 </p>
 </div>
 <p>The SSE is simply the total area encompassed by all of the squares. Note that the observation that is directly on the line has a residual of 0 and thus does not contribute an quantity to the SSE. If you computed the SSE for a line with different intercept or slope values, the SSE will be different. The plot below shows what this might look like for the flat line produced by <span class="math inline">\(~~\hat{Y_i} = 50\)</span>.</p>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-10-1.png" alt="Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." width="50%" />
 <p class="caption">
-Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.
+Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.
 </p>
 </div>
-<p><span class="citation">(<span class="citeproc-not-found" data-reference-id="Powell:2015"><strong>???</strong></span>)</span> created an <a href="http://setosa.io/ev/ordinary-least-squares-regression/">interactive website</a> to help understand how the SSE is impacted by changing the intercept or slope of a line. You can also see how indicidual observations impact the SSE value.</p>
+<p><span class="citation">Powell &amp; Lehe (<a href="#ref-Powell:2015">2015</a>)</span> created an <a href="http://setosa.io/ev/ordinary-least-squares-regression/">interactive website</a> to help understand how the SSE is impacted by changing the intercept or slope of a line. You can also see how indicidual observations impact the SSE value.</p>
 <p><br /></p>
 </div>
 </div>
@@ -719,7 +720,7 @@ Scatterplot of the observed toy data and the fitted flat line with Y-intercept o
 <p>This model gives the following predicted values and residuals:</p>
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-Observed values, predicted values, residuals, and squared residuals for the ‘best’ fitting model.
+<span id="tab:unnamed-chunk-11">Table 6: </span>Observed values, predicted values, residuals, and squared residuals for the ‘best’ fitting model.
 </caption>
 <thead>
 <tr>
@@ -851,11 +852,11 @@ Observed values, predicted values, residuals, and squared residuals for the ‘b
 <li>Sum of the squared residuals (<span class="math inline">\(\sum e_i^2\)</span>).</li>
 </ol>
 <p>From the Riverview data set we have the observed <span class="math inline">\(X\)</span> (education level) and <span class="math inline">\(Y\)</span> (income) values, and from the fitted <code>lm()</code> we have the intercept and slope estimates for the ‘best’ fitting regression model.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Step 1: Compute the predicted values of Y</span></a>
-<a class="sourceLine" id="cb5-2" title="2">city <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb5-4" title="4">    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education</a>
-<a class="sourceLine" id="cb5-5" title="5">    )</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># Step 1: Compute the predicted values of Y</span></a>
+<a class="sourceLine" id="cb22-2" title="2">city <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb22-4" title="4">    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education</a>
+<a class="sourceLine" id="cb22-5" title="5">    )</a></code></pre></div>
 <pre><code># A tibble: 32 x 7
    education income seniority gender  male party       y_hat
        &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
@@ -870,12 +871,12 @@ Observed values, predicted values, residuals, and squared residuals for the ‘b
  9        12   52.5        16 female     0 Independent  43.1
 10        14   32.6         5 female     0 Independent  48.4
 # … with 22 more rows</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Step 2: Compute the residuals</span></a>
-<a class="sourceLine" id="cb7-2" title="2">city <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb7-4" title="4">    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education,</a>
-<a class="sourceLine" id="cb7-5" title="5">    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat</a>
-<a class="sourceLine" id="cb7-6" title="6">    )</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># Step 2: Compute the residuals</span></a>
+<a class="sourceLine" id="cb24-2" title="2">city <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb24-4" title="4">    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education,</a>
+<a class="sourceLine" id="cb24-5" title="5">    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat</a>
+<a class="sourceLine" id="cb24-6" title="6">    )</a></code></pre></div>
 <pre><code># A tibble: 32 x 8
    education income seniority gender  male party       y_hat errors
        &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;
@@ -890,13 +891,13 @@ Observed values, predicted values, residuals, and squared residuals for the ‘b
  9        12   52.5        16 female     0 Independent  43.1   9.35
 10        14   32.6         5 female     0 Independent  48.4 -15.8 
 # … with 22 more rows</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Step 3: Compute the squared residuals</span></a>
-<a class="sourceLine" id="cb9-2" title="2">city <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb9-4" title="4">    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education,</a>
-<a class="sourceLine" id="cb9-5" title="5">    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat,</a>
-<a class="sourceLine" id="cb9-6" title="6">    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb9-7" title="7">  )</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Step 3: Compute the squared residuals</span></a>
+<a class="sourceLine" id="cb26-2" title="2">city <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb26-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb26-4" title="4">    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education,</a>
+<a class="sourceLine" id="cb26-5" title="5">    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat,</a>
+<a class="sourceLine" id="cb26-6" title="6">    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb26-7" title="7">  )</a></code></pre></div>
 <pre><code># A tibble: 32 x 9
    education income seniority gender  male party       y_hat errors sq_errors
        &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
@@ -911,16 +912,16 @@ Observed values, predicted values, residuals, and squared residuals for the ‘b
  9        12   52.5        16 female     0 Independent  43.1   9.35      87.4
 10        14   32.6         5 female     0 Independent  48.4 -15.8      250. 
 # … with 22 more rows</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># Step 4: Compute the sum of the squared residuals</span></a>
-<a class="sourceLine" id="cb11-2" title="2">city <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb11-4" title="4">    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education,</a>
-<a class="sourceLine" id="cb11-5" title="5">    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat,</a>
-<a class="sourceLine" id="cb11-6" title="6">    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb11-7" title="7">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-8" title="8"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb11-9" title="9">    <span class="dt">SSE =</span> <span class="kw">sum</span>(sq_errors)</a>
-<a class="sourceLine" id="cb11-10" title="10">  )</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Step 4: Compute the sum of the squared residuals</span></a>
+<a class="sourceLine" id="cb28-2" title="2">city <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb28-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb28-4" title="4">    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education,</a>
+<a class="sourceLine" id="cb28-5" title="5">    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat,</a>
+<a class="sourceLine" id="cb28-6" title="6">    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb28-7" title="7">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb28-8" title="8"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb28-9" title="9">    <span class="dt">SSE =</span> <span class="kw">sum</span>(sq_errors)</a>
+<a class="sourceLine" id="cb28-10" title="10">  )</a></code></pre></div>
 <pre><code># A tibble: 1 x 1
     SSE
   &lt;dbl&gt;
@@ -951,8 +952,8 @@ Y_i &amp;= \beta_0 + \epsilon_i
 <div id="fitting-the-intercept-only-model" class="section level3">
 <h3>Fitting the Intercept-Only Model</h3>
 <p>To fit the intercept-only model, we just omit the prediter term on the right-hand side of the <code>lm()</code> formula.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">lm<span class="fl">.0</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> city)</a>
-<a class="sourceLine" id="cb13-2" title="2">lm<span class="fl">.0</span></a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">lm<span class="fl">.0</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> city)</a>
+<a class="sourceLine" id="cb30-2" title="2">lm<span class="fl">.0</span></a></code></pre></div>
 <pre><code>
 Call:
 lm(formula = income ~ 1, data = city)
@@ -965,10 +966,10 @@ Coefficients:
 \hat{\mathrm{Income}_i} = 53.742
 \]</span></p>
 <p>Graphically, the fitted line is a flat line crossing the <span class="math inline">\(y\)</span>-axis at 53.742 (see plot below).</p>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-14-1.png" alt="Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed." width="50%" />
 <p class="caption">
-Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed.
+Figure 11: Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed.
 </p>
 </div>
 <p>Does the estimate for <span class="math inline">\(\beta_0\)</span>, 53.742, seem familiar? If not, go back to the exploration of the response variable in the <a href="#sldr">Simple Linear Regression—Description</a> chapter. The estimated intercept in the intercept-only model is the marginal mean value of the response variable. This is not a coincidence.</p>
@@ -979,10 +980,10 @@ Scatterplot of employee incomes versus education levels. The OLS fitted regressi
 \end{split}
 \]</span></p>
 <p>Plotting this we get,</p>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-15-1.png" alt="Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown." width="50%" />
 <p class="caption">
-Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown.
+Figure 12: Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown.
 </p>
 </div>
 <p>The model itself does not consider any predictors, so on the plot, the <span class="math inline">\(X\)</span> variable is superfluous; we could just collapse it to its margin. This is why the mean of all the <span class="math inline">\(Y\)</span> values is sometimes referred to as the <em>marginal mean</em>.</p>
@@ -992,15 +993,15 @@ Plot displaying the OLS fitted regression line for the intercept-only model. His
 <div id="sse-for-the-intercept-only-model" class="section level3">
 <h3>SSE for the Intercept-Only Model</h3>
 <p>Since the intercept-only model does not include any predictors, the SSE for this model is a quantification of the total variation in the outcome variable. It can be used as baseline measure of the error variation in the data. Below we compute the SSE for the intercept-only model (if you need to go through the steps one-at-a-time, do so.)</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">city <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb15-3" title="3">    <span class="dt">y_hat =</span> <span class="fl">53.742</span>,</a>
-<a class="sourceLine" id="cb15-4" title="4">    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat,</a>
-<a class="sourceLine" id="cb15-5" title="5">    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb15-6" title="6">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-7" title="7"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb15-8" title="8">    <span class="dt">SSE =</span> <span class="kw">sum</span>(sq_errors)</a>
-<a class="sourceLine" id="cb15-9" title="9">  )</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">city <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb32-3" title="3">    <span class="dt">y_hat =</span> <span class="fl">53.742</span>,</a>
+<a class="sourceLine" id="cb32-4" title="4">    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat,</a>
+<a class="sourceLine" id="cb32-5" title="5">    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb32-6" title="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-7" title="7"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb32-8" title="8">    <span class="dt">SSE =</span> <span class="kw">sum</span>(sq_errors)</a>
+<a class="sourceLine" id="cb32-9" title="9">  )</a></code></pre></div>
 <pre><code># A tibble: 1 x 1
     SSE
   &lt;dbl&gt;
@@ -1073,16 +1074,16 @@ Plot displaying the OLS fitted regression line for the intercept-only model. His
 <div id="r-squared" class="section level3">
 <h3>R-Squared</h3>
 <p>Another way to think about measuring the quality of a model is that ‘good’ models should reproduce the observed outcomes, after all they explain variation in the outcome. How well do the fitted (predicted) values from our model match wih the outcome values? To find out, we can compute the correlation between the model fitted values and the observed outcome values. To compute a correlation, we will use the <code>correlate()</code> function from the **corrr* package.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Load library</span></a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="kw">library</span>(corrr)</a>
-<a class="sourceLine" id="cb17-3" title="3"></a>
-<a class="sourceLine" id="cb17-4" title="4"><span class="co"># Create fitted values and correlate them with the outcome</span></a>
-<a class="sourceLine" id="cb17-5" title="5">city <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb17-7" title="7">    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span><span class="op">*</span>education</a>
-<a class="sourceLine" id="cb17-8" title="8">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-9" title="9"><span class="st">  </span><span class="kw">select</span>(y_hat, income) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-10" title="10"><span class="st">  </span><span class="kw">correlate</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># Load library</span></a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="kw">library</span>(corrr)</a>
+<a class="sourceLine" id="cb34-3" title="3"></a>
+<a class="sourceLine" id="cb34-4" title="4"><span class="co"># Create fitted values and correlate them with the outcome</span></a>
+<a class="sourceLine" id="cb34-5" title="5">city <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb34-7" title="7">    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span><span class="op">*</span>education</a>
+<a class="sourceLine" id="cb34-8" title="8">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-9" title="9"><span class="st">  </span><span class="kw">select</span>(y_hat, income) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-10" title="10"><span class="st">  </span><span class="kw">correlate</span>()</a></code></pre></div>
 <pre><code># A tibble: 2 x 3
   rowname  y_hat income
   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
@@ -1126,9 +1127,15 @@ R^2 = 0.795^2 = 0.632
 </div>
 </div>
 </div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Powell:2015">
+<p>Powell, V., &amp; Lehe, L. (2015). <em>Ordicary least squares regression: Explained visually</em>. Explained Visually: A Setosa Project. <a href="https://setosa.io/ev/ordinary-least-squares-regression/">https://setosa.io/ev/ordinary-least-squares-regression/</a></p>
+</div>
+</div>
 <p style="text-align: center;">
 <a href="slrd.html"><button class="btn btn-default">Previous</button></a>
-<a href="references.html"><button class="btn btn-default">Next</button></a>
+<a href="cor.html"><button class="btn btn-default">Next</button></a>
 </p>
 </div>
 </div>

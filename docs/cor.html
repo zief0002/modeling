@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-05-19" />
+<meta name="date" content="2020-05-21" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -152,16 +152,16 @@ img {
 <div class="col-sm-12">
 <div id="cor" class="section level1">
 <h1>Correlation and Standardized Regression</h1>
-<p>In this chapter, you will learn about correlation and its role in regression. To do so, we will use the <em>keith-gpa.csv</em> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(corrr)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">library</span>(readr)</a>
-<a class="sourceLine" id="cb1-6" title="6"></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="co"># Read in data</span></a>
-<a class="sourceLine" id="cb1-8" title="8">keith =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/epsy-8251/master/data/keith-gpa.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="kw">head</span>(keith)</a></code></pre></div>
+<p>In this chapter, you will learn about correlation and its role in regression. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># Load libraries</span></a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="kw">library</span>(corrr)</a>
+<a class="sourceLine" id="cb36-3" title="3"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb36-5" title="5"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb36-6" title="6"></a>
+<a class="sourceLine" id="cb36-7" title="7"><span class="co"># Read in data</span></a>
+<a class="sourceLine" id="cb36-8" title="8">keith =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb36-9" title="9"><span class="kw">head</span>(keith)</a></code></pre></div>
 <pre><code># A tibble: 6 x 3
     gpa homework parent_ed
   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -175,23 +175,23 @@ img {
 <div id="data-exploration-1" class="section level2">
 <h2>Data Exploration</h2>
 <p>We begin by looking at the marginal distributions of both time spent on homework and GPA. We will also examine summary statistics of these variables (output presented in table). Finally, we also examine a scatterplot of GPA versus time spent on homework.</p>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
 <img src="06-correlation_files/figure-html/unnamed-chunk-3-1.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="31%" /><img src="06-correlation_files/figure-html/unnamed-chunk-3-2.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="31%" /><img src="06-correlation_files/figure-html/unnamed-chunk-3-3.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="31%" />
 <p class="caption">
-Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown.
+Figure 1: Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown.
 </p>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Summary statistics</span></a>
-<a class="sourceLine" id="cb3-2" title="2">keith <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb3-4" title="4">    <span class="dt">M_gpa  =</span> <span class="kw">mean</span>(gpa),</a>
-<a class="sourceLine" id="cb3-5" title="5">    <span class="dt">SD_gpa =</span> <span class="kw">sd</span>(gpa),</a>
-<a class="sourceLine" id="cb3-6" title="6">    <span class="dt">M_hw   =</span> <span class="kw">mean</span>(homework),</a>
-<a class="sourceLine" id="cb3-7" title="7">    <span class="dt">SD_hw  =</span> <span class="kw">sd</span>(homework)</a>
-<a class="sourceLine" id="cb3-8" title="8">    )</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># Summary statistics</span></a>
+<a class="sourceLine" id="cb38-2" title="2">keith <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb38-4" title="4">    <span class="dt">M_gpa  =</span> <span class="kw">mean</span>(gpa),</a>
+<a class="sourceLine" id="cb38-5" title="5">    <span class="dt">SD_gpa =</span> <span class="kw">sd</span>(gpa),</a>
+<a class="sourceLine" id="cb38-6" title="6">    <span class="dt">M_hw   =</span> <span class="kw">mean</span>(homework),</a>
+<a class="sourceLine" id="cb38-7" title="7">    <span class="dt">SD_hw  =</span> <span class="kw">sd</span>(homework)</a>
+<a class="sourceLine" id="cb38-8" title="8">    )</a></code></pre></div>
 <table style="width:40%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-Summary measures for 8th-Grade students’ GPA and time spent on homework
+<span id="tab:unnamed-chunk-5">Table 2: </span>Summary measures for 8th-Grade students’ GPA and time spent on homework
 </caption>
 <thead>
 <tr>
@@ -241,31 +241,288 @@ Time spent on homework
 <h2>Correlation</h2>
 <p>To numerically summarize the <em>linear relationship</em> between variables, we typically compute correlation coefficients. The correlation coefficient is a quantification of the direction and strength of the relationship. (It is important to note that the correlation coefficient is only an appropriate summarization of the relationship if the functional form of the relationship is linear.)</p>
 <p>To compute the correlation coefficient, we use the <code>correlate()</code> function from the <strong>corrr</strong> package. We can use the dplyr-type syntax to select the variables we want correlations between, and then pipe that into the <code>correlate()</code> function. Typically the response (or outcome) variable is the first variable provided in the <code>select()</code> function, followed by the predictor.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">keith <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">select</span>(gpa, homework) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">correlate</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">keith <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-2" title="2"><span class="st">  </span><span class="kw">select</span>(gpa, homework) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-3" title="3"><span class="st">  </span><span class="kw">correlate</span>()</a></code></pre></div>
 <pre><code># A tibble: 2 x 3
   rowname     gpa homework
   &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 1 gpa      NA        0.327
 2 homework  0.327   NA    </code></pre>
-<p>When reporting the correlation coefficient is is conventional to use a lower-case <span class="math inline">\(r\)</span> and report the value to two decimal places. Subscripts are also generally used to indicate the variables. For example,</p>
+<p>When reporting the correlation coefficient between variables it is conventional to use a lower-case <span class="math inline">\(r\)</span> and report the value to two decimal places.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Subscripts are also generally used to indicate the variables. For example,</p>
 <p><span class="math display">\[
 r_{\mathrm{GPA,~Homework}} = 0.33
 \]</span></p>
 <p>It is important to keep in mind this value is only useful as a measure of the strength of the relationship when the relationship between variables is linear. Here is an example where the correlation coefficient would be misleading about the strength of the relationship.</p>
-<div class="figure" style="text-align: center">
-<img src="06-correlation_files/figure-html/unnamed-chunk-7-1.png" alt="Hours of daylight versus day of the year for $n=75$ days in Minneapolis." width="3in" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<img src="06-correlation_files/figure-html/unnamed-chunk-7-1.png" alt="Hours of daylight versus day of the year for $n=75$ days in Minneapolis." width="50%" />
 <p class="caption">
-Hours of daylight versus day of the year for <span class="math inline">\(n=75\)</span> days in Minneapolis.
+Figure 3: Hours of daylight versus day of the year for <span class="math inline">\(n=75\)</span> days in Minneapolis.
 </p>
 </div>
 <p>Here there is a perfect relationship between day of the year and hours of daylight. If you fitted a nonlinear model here, your “line” would match the data exactly (no residual error!). But the correlation coefficient does not reflect that (<span class="math inline">\(r=-0.34\)</span>).</p>
-<div class="note">
+<div class="protip">
 <p>You should always create a scatterplot to examine the relationship graphically before computing a correlation coefficient to numerically summarize it.</p>
 </div>
+<p>Another situation in which correlation can mislead is when you have subpopulations in your data. Here is an example of that.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<img src="06-correlation_files/figure-html/unnamed-chunk-8-1.png" alt="Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company. The second plot shows the same data colored by education level." width="45%" /><img src="06-correlation_files/figure-html/unnamed-chunk-8-2.png" alt="Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company. The second plot shows the same data colored by education level." width="45%" />
+<p class="caption">
+Figure 4: Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for <span class="math inline">\(n=1000\)</span> employees from a Fortune 500 company. The second plot shows the same data colored by education level.
+</p>
+</div>
+<p>If we treat these data as one population (an assumption for using the correlation) the relationship between neurotocism and salary is positive; employees who are more neurotocic tend to have higher salaries, on average. However, if we account for education level, the relatinship between neurotocism and salary is negative for each of the education levels; once we account for education level, employees who are more neurotocic tend to have lower salaries, on average. This reversal of the direction of the relationship once we account for other variables is quite common (so common it has a name, <a href="https://en.wikipedia.org/wiki/Simpson%27s_paradox">Simpson’s Paradox</a>) and makes it difficult to be sure about the “true” relationship between variables in observational data.</p>
+<p><br /></p>
+</div>
+<div id="understanding-correlation" class="section level2">
+<h2>Understanding Correlation</h2>
+<p>There are many equivalent computational formulas for calculating the correlation coefficient. Each of these were useful in the days when we needed to hand-calculate the correlation. In practice, we now just use the computer to calculate the value of the correlation coefficient. That being said, some of these formulas are useful in helping us better understand what the correlation coefficient is measuring. Below is one such expression:</p>
+<p><span class="math display">\[
+r_{xy} = \frac{1}{n-1}\sum_{i=1}^n\bigg(\frac{x_i - \bar{x}}{s_x}\bigg)\bigg(\frac{y_i - \bar{y}}{s_y}\bigg)
+\]</span></p>
+<p>where, <span class="math inline">\(n\)</span> is the sample size; <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span> are the values for observation <span class="math inline">\(i\)</span> of the variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, respectively; <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\bar{y}\)</span> are the mean values for the variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, respectively; and <span class="math inline">\(s_x\)</span> and <span class="math inline">\(s_y\)</span> are the standard deviations for the variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, respectively.</p>
+<p>Note that the terms in the parentheses are the <em>z</em>-scores for the <span class="math inline">\(x\)</span>- and <span class="math inline">\(y\)</span>-values for a particular observation. Thus, this formula can be re-written as:</p>
+<p><span class="math display">\[
+r_{xy} = \frac{1}{n-1}\sum_{i=1}^n\bigg(z_{xi}\bigg)\bigg(z_{yi}\bigg)
+\]</span></p>
+<p>This formula essentially says, multiply the <em>z</em>-scores of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> together for each observation; add them together, and divide by the sample size.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> Adding things together and dividing by the sample size is the way we calculate an average. The correlation coefficient is an average of sorts! It is essentially the average product of the <em>z</em>-scores.</p>
+<p>As we consider the product of the <em>z</em>-scores for <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, recall that the <em>z</em>-score gives us information about how many standard deviations an observation is from the mean. Moreover, it gives us information about whether the observation is above (positive <em>z</em>-score) or below (negative <em>z</em>-score the mean). Consider an observation that has both an <em>x</em>-value and <em>y</em>-value above the mean. That observation’s product would be positive.</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{\scriptsize +} z_{x_i} &amp;\times \mathrm{\scriptsize +} z_{y_i} \\
+\mathrm{positive~number} &amp;\times \mathrm{positive~number}
+\end{split}
+\]</span></p>
+<p>This would also be true for an observation that has both an <em>x</em>-value and <em>y</em>-value below the mean.</p>
+<p><span class="math display">\[
+\begin{split}
+-z_{x_i} &amp;\times -z_{y_i} \\
+\mathrm{negative~number} &amp;\times \mathrm{negative~number}
+\end{split}
+\]</span></p>
+<p>Observations the are above the mean on one variable and below the mean on the other would have a negative product. Here is a plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<img src="06-correlation_files/figure-html/unnamed-chunk-9-1.png" alt="Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed." width="50%" />
+<p class="caption">
+Figure 5: Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed.
+</p>
+</div>
+<p>In this case there more observations having a positive product of <em>z</em>-scores than a negative product of <em>z</em>-scores. This suggests that the sum of all of these products will be positive; the correlation coefficient will be positive.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<p>Conceptually, that sum of products of <em>z</em>-scores in the formula for the correlation coefficient gives us an indication of the patterns of deviation from the mean values of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> for the propensity of the data. The division by <span class="math inline">\(n-1\)</span> serves to give us an indication of the magnitude of the “average” product. This is why we interpret positive and negative reltionships the way we do; a positive relationship suggests that higher values of <span class="math inline">\(x\)</span> are typically associated with higher values of <span class="math inline">\(y\)</span> and that lower values of <span class="math inline">\(x\)</span> are typically associated with lower values of <span class="math inline">\(y\)</span>. (Note that the words “higher” and “lower” in that interpretation could more accurately be replaced with “values above the mean” and “values below the mean”, respectively.)</p>
+<p>When we say the direction of the relationship is positive, we statistically mean that the average product of <em>z</em>-scores is positive, which means that the propensity of the data has values of both variables either above or below the mean.</p>
+<p>Of course, we don’t have to use <em>z</em>-scores to see this pattern, afterall we typically look at a scatterplot of the unstandardized values to make this interpretation.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
+<img src="06-correlation_files/figure-html/unnamed-chunk-10-1.png" alt="Plot of GPA versus the time spent on homework (both unstandardized) for the 100 observations. The mean values are also displayed." width="50%" />
+<p class="caption">
+Figure 10: Plot of GPA versus the time spent on homework (both unstandardized) for the 100 observations. The mean values are also displayed.
+</p>
+</div>
+<p>Converting to <em>z</em>-scores is only useful to remove the metrics from the unstandardized values and place them on a common scale. This way values of the correlation coefficient are not dependent on the scales used in the data. This is why we do not put a metric on the correlation coefficient (e.g., it is just 0.30, not 0.30 feet).</p>
+<p><br /></p>
+</div>
+<div id="correlations-relationship-to-regression" class="section level2">
+<h2>Correlation’s Relationship to Regression</h2>
+<p>The correlation coefficient and the slope of the regression line are directly related to one another. Mathematically, the estimated slope of the simple regression line can be computed as:</p>
+<p><span class="math display">\[
+\hat\beta_1 = r_{xy} \times \frac{s_y}{s_x}
+\]</span></p>
+<p>where, <span class="math inline">\(s_x\)</span> and <span class="math inline">\(s_y\)</span> are the standard deviations for the variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, respectively, and <span class="math inline">\(r_{xy}\)</span> is the correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. If we are carrying out a regression analysis, there must be variation in both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, which imples that both <span class="math inline">\(s_x\)</span> and <span class="math inline">\(s_y\)</span> are greater than 0. This in turn implies that the ratio of the standard deviations (the second term on the right-hand side of the equation) is also a positive number. This means the sign of the slope is completely dependent on the sign of the correlation coefficient. If <span class="math inline">\(r_{xy}&gt;0\)</span> then <span class="math inline">\(\hat\beta_1&gt;0\)</span>. If <span class="math inline">\(r_{xy}&lt;0\)</span> then <span class="math inline">\(\hat\beta_1&lt;0\)</span>.</p>
+<p>The magnitude of the regression slope (sometimes referred to as the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>) is impacted by three factors: the magnitude of the correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, the amount of variation in <span class="math inline">\(y\)</span>, and the amount of variation in <span class="math inline">\(x\)</span>. In general, there is a larger effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> when:</p>
+<ul>
+<li>There is a stronger relationship (higher correlation; positive or negative) between <em>x</em> and <em>y</em>;</li>
+<li>There is more variation in the outcome; or</li>
+<li>There is less variation in the predictor.</li>
+</ul>
+<p><br /></p>
+</div>
+<div id="standardized-regression" class="section level2">
+<h2>Standardized Regression</h2>
+<p>In standardized regression, the correlation plays a more obvious role. Standardized regression is simply regression performed on the standardized variables (<em>z</em>-scores) rather than on the unstandardized variables. To carry out a standardized regression:</p>
+<ol style="list-style-type: decimal">
+<li>Standardize the outcome and predictor(s)</li>
+<li>Fit a model by regressing <span class="math inline">\(z_y\)</span> on <span class="math inline">\(z_x\)</span></li>
+</ol>
+<p>Here we will perform a standardized regression on the Keith data.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># Standardize the outcome and predictor</span></a>
+<a class="sourceLine" id="cb41-2" title="2">keith =<span class="st"> </span>keith <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb41-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb41-4" title="4">    <span class="dt">z_gpa =</span> (gpa <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(gpa)) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(gpa),</a>
+<a class="sourceLine" id="cb41-5" title="5">    <span class="dt">z_homework =</span> (homework <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(homework)) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(homework),</a>
+<a class="sourceLine" id="cb41-6" title="6">  )</a>
+<a class="sourceLine" id="cb41-7" title="7"></a>
+<a class="sourceLine" id="cb41-8" title="8"><span class="co"># View updated data</span></a>
+<a class="sourceLine" id="cb41-9" title="9"><span class="kw">head</span>(keith)</a></code></pre></div>
+<pre><code># A tibble: 6 x 5
+    gpa homework parent_ed  z_gpa z_homework
+  &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+1    78        2        13 -0.324    -1.50  
+2    79        6        14 -0.193     0.443 
+3    79        1        13 -0.193    -1.99  
+4    89        5        13  1.12     -0.0438
+5    82        3        16  0.201    -1.02  
+6    77        4        13 -0.455    -0.530 </code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># Fit standardized regression</span></a>
+<a class="sourceLine" id="cb43-2" title="2">lm.z =<span class="st"> </span><span class="kw">lm</span>(z_gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>z_homework, <span class="dt">data =</span> keith)</a>
+<a class="sourceLine" id="cb43-3" title="3">lm.z</a></code></pre></div>
+<pre><code>
+Call:
+lm(formula = z_gpa ~ 1 + z_homework, data = keith)
+
+Coefficients:
+(Intercept)   z_homework  
+  7.627e-17    3.274e-01  </code></pre>
+<p>The fitted regression equation is:</p>
+<p><span class="math display">\[
+\hat{z}_{\mathrm{GPA}_i} = 0 + 0.327(z_{\mathrm{Homework}_i})
+\]</span></p>
+<p>The intercept in a standardized regression is always 0.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> Notice that the slope of the standardized regression is the correlation between the unstandardized variables. If we interpret these coefficients:</p>
+<ul>
+<li>The predicted mean standardized GPA for all students who have a standardized value of homework of 0 is 0.</li>
+<li>Each one-unit difference in the standardized value of homework is associated with a 0.327-unit difference in predicted standardized GPA.</li>
+</ul>
+<p>Remember that standardized variables have a mean equal to 0 and a standard deviation equal to 1. Using that, these interpretations can be revised to:</p>
+<ul>
+<li>The predicted mean GPA for all students who spend the mean amount of time on homework is the mean GPA.</li>
+<li>Each one-standard deviation difference in time spent on homework is associated with a 0.327-standard deviation difference in predicted GPA.</li>
+</ul>
+<p>Here is a scatterplot of the standardized variables along with the fitted standardized regression line. This will help you visually see the results of the standardized regression analysis.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> z_homework, <span class="dt">y =</span> z_gpa)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-3" title="3"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Time spent on homework (standardized)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-5" title="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;GPA (standardized)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-6" title="6"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-7" title="7"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-8" title="8"><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="fl">0.327</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
+<img src="06-correlation_files/figure-html/unnamed-chunk-12-1.png" alt="Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed (dashed lines) along with the fitted regression line (solid line)." width="50%" />
+<p class="caption">
+Figure 7: Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed (dashed lines) along with the fitted regression line (solid line).
+</p>
+</div>
+<p>Using standardized regression results allows us to talk about the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> in a standard metric (standard deviation difference). This can be quite helpful when the unstandardized metric is less meaningful. This is also why some researchers refer to correlation as an effect, even though the value of <span class="math inline">\(R^2\)</span> is more useful in summarizing the usefulness of the model. Standardized regression also makes the intercept interpretable, since the mean value of <span class="math inline">\(x\)</span> is not extrapolated.</p>
+<p><br /></p>
+<div id="a-slick-property-of-the-regression-line" class="section level3">
+<h3>A Slick Property of the Regression Line</h3>
+<p>Notice from the previous scatterplot of the standardized regression results that the standardized regression line goes through the point <span class="math inline">\((0,0)\)</span>. Since the variables are standardized, this is the point <span class="math inline">\((\bar{x}, \bar{y})\)</span>. The regression line will always go through the point <span class="math inline">\((\bar{x}, \bar{y})\)</span> even if the variables are unstandardized. This is an important property of the regression line.</p>
+<p>We can show this property mathematically by predicting <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> is at its mean. The predicted value when <span class="math inline">\(x=\bar{x}\)</span> is then</p>
+<p><span class="math display">\[
+\hat{Y}_i = \hat\beta_0 + \hat\beta_1(\bar{x})
+\]</span></p>
+<p>Using a common formula for the regression intercept,</p>
+<p><span class="math display">\[
+\hat\beta_0 = \bar{y} - \hat\beta_1(\bar{x}),
+\]</span></p>
+<p>and substituting this into the prediction equation:</p>
+<p><span class="math display">\[
+\begin{split}
+\hat{Y}_i &amp;= \hat\beta_0 + \hat\beta_1(\bar{x}) \\
+&amp;= \bar{y} - \hat\beta_1(\bar{x}) + \hat\beta_1(\bar{x}) \\
+&amp;= \bar{y}
+\end{split}
+\]</span></p>
+<p>This implies that <span class="math inline">\((\bar{x}, \bar{y})\)</span> is always on the regression line and that the predicted value of <span class="math inline">\(y\)</span> for <span class="math inline">\(x\)</span>-values at the mean is always the mean of <span class="math inline">\(y\)</span>.</p>
+<p><br /></p>
+</div>
+<div id="variance-accounted-for-in-a-standardized-regression" class="section level3">
+<h3>Variance Accounted For in a Standardized Regression</h3>
+<p>The <span class="math inline">\(R^2\)</span> value for the standardized and unstandardized regression models are identical. That is because the correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> and that between <span class="math inline">\(z_x\)</span> and <span class="math inline">\(z_y\)</span> are identical (see below). Thus the squared correlation will also be the same, in this case <span class="math inline">\(R^2 = 0.327^2 = 0.107\)</span>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">keith <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-2" title="2"><span class="st">  </span><span class="kw">select</span>(z_gpa, z_homework) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-3" title="3"><span class="st">  </span><span class="kw">correlate</span>()</a></code></pre></div>
+<pre><code># A tibble: 2 x 3
+  rowname     z_gpa z_homework
+  &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+1 z_gpa      NA          0.327
+2 z_homework  0.327     NA    </code></pre>
+<p>We can also compute <span class="math inline">\(R^2\)</span> as the proportion reduction in error variation (PRE) from the intercept-only model. To do so we again compute the sum of squared error (SSE) for the standardized models (intercept-only and intercept-slope) and determine how much variation was explained by including the standardized amount of time spent on homework as a predictor.</p>
+<p>Remember that the intercept-only model is referred to as the marginal mean model—it predicts the marginal mean of <span class="math inline">\(y\)</span> regardless of the value of <span class="math inline">\(x\)</span>. Since the variables are standardized, the marginal mean of <span class="math inline">\(y\)</span> is 0. Thus the equation for the intercept-only model when the variables are standardized is:</p>
+<p><span class="math display">\[
+\hat{z}_{\mathrm{GPA}} = 0
+\]</span></p>
+<p>You could also fit the intercept-only model to obtain this result, <code>lm(z_gpa ~ 1, data = keith)</code>. We can now compute the SSE based on the intercept-only model.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Compute the SSE for the standardized intercept-only model</span></a>
+<a class="sourceLine" id="cb48-2" title="2">keith <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb48-4" title="4">    <span class="dt">y_hat =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb48-5" title="5">    <span class="dt">errors =</span> z_gpa <span class="op">-</span><span class="st"> </span>y_hat,</a>
+<a class="sourceLine" id="cb48-6" title="6">    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb48-7" title="7">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-8" title="8"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb48-9" title="9">    <span class="dt">SSE =</span> <span class="kw">sum</span>(sq_errors)</a>
+<a class="sourceLine" id="cb48-10" title="10">  )</a></code></pre></div>
+<pre><code># A tibble: 1 x 1
+    SSE
+  &lt;dbl&gt;
+1    99</code></pre>
+<p>We also compute the SSE for the standardized model that includes the standardized predictor of time spent on homework.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co"># Compute the SSE for the standardized slope-intercept model</span></a>
+<a class="sourceLine" id="cb50-2" title="2">keith <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb50-4" title="4">    <span class="dt">y_hat =</span> <span class="dv">0</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.327</span> <span class="op">*</span><span class="st"> </span>z_homework,</a>
+<a class="sourceLine" id="cb50-5" title="5">    <span class="dt">errors =</span> z_gpa <span class="op">-</span><span class="st"> </span>y_hat,</a>
+<a class="sourceLine" id="cb50-6" title="6">    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb50-7" title="7">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-8" title="8"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb50-9" title="9">    <span class="dt">SSE =</span> <span class="kw">sum</span>(sq_errors)</a>
+<a class="sourceLine" id="cb50-10" title="10">  )</a></code></pre></div>
+<pre><code># A tibble: 1 x 1
+    SSE
+  &lt;dbl&gt;
+1  88.4</code></pre>
+<p>The proportion reduction in SSE is:</p>
+<p><span class="math display">\[
+R^2 = \frac{99 - 88.39}{99} = 0.107
+\]</span></p>
+<p>We can say that differences in time spent on homework explains 10.7% of the variation in GPAs, and that 89.3% of the varition in GPAs remains unexplained. Note that if we compute the SSEs for the unstandardized models, they will be different than the SSEs for the standardized models (afterall they are in a different metric), but they will be in the same proportion, which produces the same <span class="math inline">\(R^2\)</span> value.</p>
+<p><br /></p>
+</div>
+</div>
+<div id="correlation-between-observed-values-fitted-values-and-residuals" class="section level2">
+<h2>Correlation Between Observed Values, Fitted Values, and Residuals</h2>
+<p>Here we examine a correlation matrix displaying the correlations between:</p>
+<ul>
+<li>The observed values (<span class="math inline">\(y_i\)</span>) and the fitted values (<span class="math inline">\(\hat{y}_i\)</span>),</li>
+<li>The observed values (<span class="math inline">\(y_i\)</span>) and the residuals (<span class="math inline">\(e_i\)</span>), and</li>
+<li>The fitted values and the residuals.</li>
+</ul>
+<p>It doesn’t matter whether you use the unstandardized or standardized regression model here, but to illustrate, we will use the unstandardized model.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">keith <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb52-3" title="3">    <span class="dt">y_hat =</span> <span class="fl">74.290</span> <span class="op">+</span><span class="st"> </span><span class="fl">1.214</span> <span class="op">*</span><span class="st"> </span>homework,</a>
+<a class="sourceLine" id="cb52-4" title="4">    <span class="dt">errors =</span> gpa <span class="op">-</span><span class="st"> </span>y_hat</a>
+<a class="sourceLine" id="cb52-5" title="5">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-6" title="6"><span class="st">  </span><span class="kw">select</span>(gpa, y_hat, errors) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-7" title="7"><span class="st">  </span><span class="kw">correlate</span>()</a></code></pre></div>
+<pre><code># A tibble: 3 x 4
+  rowname    gpa      y_hat     errors
+  &lt;chr&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1 gpa     NA      0.327      0.945    
+2 y_hat    0.327 NA          0.0000596
+3 errors   0.945  0.0000596 NA        </code></pre>
+<p>The first correlation between the observed values and the fitted values is 0.327. This is the same as the correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. This is because the fitted values are just a linear transformation of <span class="math inline">\(x\)</span>. In other words, the fitted values have the same relationship with <span class="math inline">\(y\)</span> as <span class="math inline">\(x\)</span> has with <span class="math inline">\(y\)</span>. Note that if we square this value we get the <span class="math inline">\(R^2\)</span> value for the model. So another way of computing <span class="math inline">\(R^2\)</span> is to square the correlation between <span class="math inline">\(y\)</span> and <span class="math inline">\(\hat{y}\)</span>.</p>
+<p><span class="math display">\[
+R^2 = (r_{y,\hat{y}})^2
+\]</span></p>
+<p>The second correlation between the observed values and the residuals is 0.945. This is the value you get if you take the unexplained amount of variation from the model (0.893) and take its square root. Thus it gives us an indication of the unexplained variation in the model.</p>
+<p><span class="math display">\[
+1 - R^2 = (r_{y,e})^2
+\]</span></p>
+<p>The last correlation between the fitted values and the residuals is 0. That is because the regression model assumes that the errors are independent of the fitted values. We have pulled out all of the information related to <span class="math inline">\(x\)</span> out of the observed <span class="math inline">\(y\)</span>-values (the fitted values) and what is left over is completely unrelated to <span class="math inline">\(x\)</span> (the residuals). When a correlation is 0, statisticians say they two variables are <em>independent</em> of one another. Thus the fitted values and the residuals are said to be independent of one another.</p>
+<p><span class="math display">\[
+r_{\hat{y},e} = 0
+\]</span></p>
 
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>The correlation coefficient between observed outcome values and model predicted values uses an upper-case <span class="math inline">\(R\)</span> rather than the lower-case <span class="math inline">\(r\)</span>.<a href="cor.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>Technically divide by the total degrees of freedom, but for large values of <span class="math inline">\(n\)</span> this difference is minor.<a href="cor.html#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>The sum also depends on the magnitude of the products. For example, if the magnitude of each the negative products is much higher than that for each of the positive products, the sum will be negative despite more positive products.<a href="cor.html#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>R or other statistical software might round this to a very small number. The intercept should always be reported as zero, or dropped from the fitted equation.<a href="cor.html#fnref6" class="footnote-back">↩</a></p></li>
+</ol>
 </div>
 <p style="text-align: center;">
 <a href="ordinary-least-squares-ols-estimation.html"><button class="btn btn-default">Previous</button></a>
