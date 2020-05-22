@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Crimson+Text|Open+Sans|Raleway:800&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Sue+Ellen+Francisco&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 body {
   /*background-color: #273043;*/
@@ -81,21 +82,11 @@ blockquote p {
 }
 
 
-/* Style actualquotes*/
-p.actualquote{
-  padding-left: 80px;
-  padding-top: 18px;
-  padding-bottom: 18px;
-  padding-right: 10px;
-  margin: 5px;
-  background-image: url(../figs/openquote4.png);
-  background-position: left top;
-  background-repeat: no-repeat;
-}
+
 
 
 /* -----------div tips------------- */
-div.note {
+.note {
   padding: 1em;
   margin: 1em 0;
   padding-left: 100px;
@@ -110,7 +101,7 @@ div.note {
   }
   
   
-div.protip {
+.protip {
   padding: 1em;
   margin: 1em 0;
   padding-left: 100px;
@@ -202,6 +193,25 @@ div.protip {
   margin-top: 20px;
 }
 
+/* Style actualquotes*/
+.actualquote {
+  position: relative;
+  border-left: 0.3em solid #c62f4b;
+  background-image: url("../figs/quotes.png");
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: 5px 0;
+}
+
+.actualquote p {
+  margin: 8px 10px 24px 45px;
+  font-family: 'Roboto', serif;
+  font-size: 14px;
+}
+
+
+
+
 .chapterquote{
   font-style: italic;
   color: black;
@@ -221,7 +231,7 @@ div.protip {
 
 .btn-default {
   color: #fff;
-  background-color: #002B3C;
+  background-color: #20a2a3;
   border-color: #000;
 }
 
@@ -243,7 +253,7 @@ div.protip {
 }
 
 .btn-default:hover {
-  background-color: #0677A3;
+  background-color: #ca054d;
   color: white;
 }
 

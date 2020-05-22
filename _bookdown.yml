@@ -10,7 +10,7 @@ rmd_files: [
     "04-simple-regression-description.Rmd",
     "05-ols-estimation.Rmd",
     "06-correlation.Rmd",
-    #"07-randomization-tests.Rmd",
+    "07-coefficient-level-inference.Rmd",
     "99-references.Rmd"
     ]
 clean: [packages.bib, bookdown.bbl]
