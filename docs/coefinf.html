@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-05-22" />
+<meta name="date" content="2020-06-01" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -39,9 +39,9 @@ MathJax.Hub.Config({
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -51,14 +51,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -68,7 +70,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -144,6 +146,7 @@ img {
 <li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
 <li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
 <li><a href="coefinf.html#coefinf">Coefficient-Level Inference</a></li>
+<li><a href="modinf.html#modinf">Model-Level Inference</a></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
 </div>
@@ -154,16 +157,16 @@ img {
 <div id="coefinf" class="section level1">
 <h1>Coefficient-Level Inference</h1>
 <p>In this chapter, you will learn about statistical inference at the coefficient-level for regression models. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb54-2" title="2"><span class="kw">library</span>(broom)</a>
-<a class="sourceLine" id="cb54-3" title="3"><span class="kw">library</span>(corrr)</a>
-<a class="sourceLine" id="cb54-4" title="4"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb54-5" title="5"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb54-6" title="6"><span class="kw">library</span>(readr)</a>
-<a class="sourceLine" id="cb54-7" title="7"></a>
-<a class="sourceLine" id="cb54-8" title="8"><span class="co"># Read in data</span></a>
-<a class="sourceLine" id="cb54-9" title="9">keith =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb54-10" title="10"><span class="kw">head</span>(keith)</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="coefinf.html#cb54-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb54-2"><a href="coefinf.html#cb54-2"></a><span class="kw">library</span>(broom)</span>
+<span id="cb54-3"><a href="coefinf.html#cb54-3"></a><span class="kw">library</span>(corrr)</span>
+<span id="cb54-4"><a href="coefinf.html#cb54-4"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb54-5"><a href="coefinf.html#cb54-5"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb54-6"><a href="coefinf.html#cb54-6"></a><span class="kw">library</span>(readr)</span>
+<span id="cb54-7"><a href="coefinf.html#cb54-7"></a></span>
+<span id="cb54-8"><a href="coefinf.html#cb54-8"></a><span class="co"># Read in data</span></span>
+<span id="cb54-9"><a href="coefinf.html#cb54-9"></a>keith =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv&quot;</span>)</span>
+<span id="cb54-10"><a href="coefinf.html#cb54-10"></a><span class="kw">head</span>(keith)</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
     gpa homework parent_ed
   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -174,18 +177,18 @@ img {
 5    82        3        16
 6    77        4        13</code></pre>
 <p>In the <a href="slrd.html#slrd">previous chapters</a>, we examined the marginal distributions of the outcome (<code>gpa</code>) and predictor (<code>homework</code>), as well as statistics summarizing the mean and variation in these distributions. We also examine a scatterplot of the outcome versus each of the predictors and the bivariate correlations (<a href="cor.html#cor">see here</a>). Here we use the <code>ggMarginal()</code> function from the <a href="https://cran.r-project.org/web/packages/ggExtra/vignettes/ggExtra.html">ggExtra</a> package to include the marginal density plots directly on the scatterplot.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co"># Scatterplot</span></a>
-<a class="sourceLine" id="cb56-2" title="2">p1 =<span class="st"> </span><span class="kw">ggplot</span>( <span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> gpa) ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb56-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb56-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb56-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Time spent on homework per week (in hours)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb56-6" title="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;GPA (on a 100-pt. scale)&quot;</span>)</a>
-<a class="sourceLine" id="cb56-7" title="7"></a>
-<a class="sourceLine" id="cb56-8" title="8"><span class="co"># Load ggExtra package</span></a>
-<a class="sourceLine" id="cb56-9" title="9"><span class="kw">library</span>(ggExtra)</a>
-<a class="sourceLine" id="cb56-10" title="10"></a>
-<a class="sourceLine" id="cb56-11" title="11"><span class="co"># Plot scatterplot and density plots on single graph</span></a>
-<a class="sourceLine" id="cb56-12" title="12"><span class="kw">ggMarginal</span>(p1, <span class="dt">margins =</span> <span class="st">&quot;both&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;density&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="coefinf.html#cb56-1"></a><span class="co"># Scatterplot</span></span>
+<span id="cb56-2"><a href="coefinf.html#cb56-2"></a>p1 =<span class="st"> </span><span class="kw">ggplot</span>( <span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> gpa) ) <span class="op">+</span></span>
+<span id="cb56-3"><a href="coefinf.html#cb56-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb56-4"><a href="coefinf.html#cb56-4"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb56-5"><a href="coefinf.html#cb56-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Time spent on homework per week (in hours)&quot;</span>) <span class="op">+</span></span>
+<span id="cb56-6"><a href="coefinf.html#cb56-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;GPA (on a 100-pt. scale)&quot;</span>)</span>
+<span id="cb56-7"><a href="coefinf.html#cb56-7"></a></span>
+<span id="cb56-8"><a href="coefinf.html#cb56-8"></a><span class="co"># Load ggExtra package</span></span>
+<span id="cb56-9"><a href="coefinf.html#cb56-9"></a><span class="kw">library</span>(ggExtra)</span>
+<span id="cb56-10"><a href="coefinf.html#cb56-10"></a></span>
+<span id="cb56-11"><a href="coefinf.html#cb56-11"></a><span class="co"># Plot scatterplot and density plots on single graph</span></span>
+<span id="cb56-12"><a href="coefinf.html#cb56-12"></a><span class="kw">ggMarginal</span>(p1, <span class="dt">margins =</span> <span class="st">&quot;both&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;density&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
 <img src="07-coefficient-level-inference_files/figure-html/unnamed-chunk-3-1.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="50%" />
 <p class="caption">
@@ -239,9 +242,9 @@ Measure
 </ol></li>
 </ol>
 <p>We will also fitted a model by regressing GPA on time spent on homework and storing those results in an object called <code>lm.1</code>.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># Fit regression model</span></a>
-<a class="sourceLine" id="cb57-2" title="2">lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework, <span class="dt">data =</span> keith)</a>
-<a class="sourceLine" id="cb57-3" title="3">lm<span class="fl">.1</span></a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="coefinf.html#cb57-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb57-2"><a href="coefinf.html#cb57-2"></a>lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework, <span class="dt">data =</span> keith)</span>
+<span id="cb57-3"><a href="coefinf.html#cb57-3"></a>lm<span class="fl">.1</span></span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = gpa ~ 1 + homework, data = keith)
@@ -262,7 +265,7 @@ Coefficients:
 <h2>Statistical Inference</h2>
 <p>What if we want to understand the relationship between time spent on homework and GPA for a larger population of 8th-grade students, say all of them in the district? The problem is that if we had drawn a different sample of <span class="math inline">\(n=100\)</span> 8th-grade students, all the regression estimates (<span class="math inline">\(\hat\beta_0, \hat\beta_1,\)</span> and <span class="math inline">\(R^2\)</span>) would be different than the ones we obtained from our sample. This makes it difficult to say, for example, how does the conditional mean GPA differs for students with differing amounts of time spent on homework. In our observed sample, <span class="math inline">\(\hat\beta_1\)</span> was 1.21. But, had we sampled different students, we might have found that <span class="math inline">\(\hat\beta_1\)</span> was 2.03. And a different random sample of employees we might have produced a <span class="math inline">\(\hat\beta_1\)</span> of 0.96.</p>
 <p>This variation in the estimates arises because of the random nature of the sampling. One of the key findings in statistical theory is that the amount of variation in estimates under random sampling is completely predictable (this variation is called <a href="https://en.wikipedia.org/wiki/Sampling_error">sampling error</a>). Being able to quantify the sampling error allows us to provide a more informative answer to the research question. For example, it turns out that based on the quantification of sampling error in our example, we believe that the actual <span class="math inline">\(\beta_1\)</span> is between 0.51 and 1.92.</p>
-<p>Statistical inference allows us to learn from incomplete or imperfect data <span class="citation">Gelman &amp; Hill (<a href="#ref-Gelman:2007">2007</a>)</span>. In many studies, the primary interest is to learn about one or more characteristics about a population. These characteristics must be estimated from sample data. This is the situation in our example, where we have only a sample of 8th-grade students and we want to understand the relationship between time spent on homework and GPA for ALL 8th-grade students in the district.</p>
+<p>Statistical inference allows us to learn from incomplete or imperfect data <span class="citation">Gelman &amp; Hill (<a href="#ref-Gelman:2007" role="doc-biblioref">2007</a>)</span>. In many studies, the primary interest is to learn about one or more characteristics about a population. These characteristics must be estimated from sample data. This is the situation in our example, where we have only a sample of 8th-grade students and we want to understand the relationship between time spent on homework and GPA for ALL 8th-grade students in the district.</p>
 <p>In the example, the variation in estimates arises because of sampling variation. It is also possible to have variation because of imperfect measurement. This is called <a href="https://en.wikipedia.org/wiki/Observational_error">measurement error</a>. Despite these being very different sources of variation, in practice they are often combined (e.g., we measure imperfectly and we want to make generalizations).</p>
 <p>Regardless of the sources of variation, the goals in most regression analyses are two-fold:</p>
 <ol style="list-style-type: decimal">
@@ -312,8 +315,8 @@ Figure 3: Thought experiment for sampling samples of size n from the population 
 <div id="obtaining-ses-for-the-regression-coefficients" class="section level3">
 <h3>Obtaining SEs for the Regression Coefficients</h3>
 <p>To obtain the standard errors for the regression coefficients, we will use the <code>tidy()</code> function from the <strong>broom</strong> package to display the fitted regression output. We provide the fitted regression object as the input to this function.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># Display the coefficient-level output</span></a>
-<a class="sourceLine" id="cb59-2" title="2"><span class="kw">tidy</span>(lm<span class="fl">.1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="coefinf.html#cb59-1"></a><span class="co"># Display the coefficient-level output</span></span>
+<span id="cb59-2"><a href="coefinf.html#cb59-2"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code># A tibble: 2 x 5
   term        estimate std.error statistic  p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -339,7 +342,7 @@ Figure 5: Sampling distribution of the slope coefficient. The distribution is ap
 <p>The average GPA for all 8th-grade students in the district who spend zero hopurs per week on homework is between 70.41 and 78.17.</p>
 </blockquote>
 <p>We can use the <code>conf.int=TRUE</code> argument in the <code>tidy()</code> function to obtain these limits directly. By default this will compute a 95% CI. This can be changed using the <code>conf.level=</code> argument.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="kw">tidy</span>(lm<span class="fl">.1</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="coefinf.html#cb61-1"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code># A tibble: 2 x 7
   term        estimate std.error statistic  p.value conf.low conf.high
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -441,7 +444,7 @@ Figure 14: Plot of the probability curve for the t(98) distribution. The shaded 
 <div id="testing-the-intercept" class="section level3">
 <h3>Testing the Intercept</h3>
 <p>The hypothesis being tested for the intercept is <span class="math inline">\(H_0:\beta_0=0\)</span>. The <code>tidy()</code> output also provides information about this test:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw">tidy</span>(lm<span class="fl">.1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="coefinf.html#cb63-1"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code># A tibble: 2 x 5
   term        estimate std.error statistic  p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -460,13 +463,13 @@ t = \frac{74.28 - 0}{1.94} = 38.26
 <p>You may have read papers or taken statistics courses that emphasized the language “statistically significant”. This adjective was typically used when the empirical evidence was inconsistent with a hypothesized model, and the researcher subsequently “rejected the null hypothesis”. In the social sciences this occurred when the <span class="math inline">\(p\)</span>-value was less than or equal to 0.05.</p>
 <p>In 2019, the American Statistical Association put out a special issue in one of their premier journals, stating,</p>
 <div class="actualquote">
-<p>…it is time to stop using the term ‘statistically significant’ entirely. Nor should variants such as ‘significantly different,’ ‘p &lt; 0.05,’ and ‘nonsignificant’ survive, whether expressed in words, by asterisks in a table, or in some other way. Regardless of whether it was ever useful, a declaration of ‘statistical significance’ has today become meaningless. <span class="citation">(Wasserstein &amp; Schirm, <a href="#ref-Wasserstein:2019">2019</a>, p. 2)</span></p>
+<p>…it is time to stop using the term ‘statistically significant’ entirely. Nor should variants such as ‘significantly different,’ ‘p &lt; 0.05,’ and ‘nonsignificant’ survive, whether expressed in words, by asterisks in a table, or in some other way. Regardless of whether it was ever useful, a declaration of ‘statistical significance’ has today become meaningless. <span class="citation">(Wasserstein &amp; Schirm, <a href="#ref-Wasserstein:2019" role="doc-biblioref">2019</a>, p. 2)</span></p>
 </div>
 <p>They went on to say,</p>
 <div class="actualquote">
-<p>…no p-value can reveal the plausibility, presence, truth, or importance of an association or effect. Therefore, a label of statistical significance does not mean or imply that an association or effect is highly probable, real, true, or important. Nor does a label of statistical nonsignificance lead to the association or effect being improbable, absent, false, or unimportant. <span class="citation">(Wasserstein &amp; Schirm, <a href="#ref-Wasserstein:2019">2019</a>, p. 2)</span></p>
+<p>…no p-value can reveal the plausibility, presence, truth, or importance of an association or effect. Therefore, a label of statistical significance does not mean or imply that an association or effect is highly probable, real, true, or important. Nor does a label of statistical nonsignificance lead to the association or effect being improbable, absent, false, or unimportant. <span class="citation">(Wasserstein &amp; Schirm, <a href="#ref-Wasserstein:2019" role="doc-biblioref">2019</a>, p. 2)</span></p>
 </div>
-<p>This is not to say that <em>p</em>-values should not be reported; they should. But rather that we should not arbitrarily dichotomize a continuous measure into two categories whose labels are at best meaningless and at worst misleading. The goal of scientific inference (which is much broader than statistical inference for a single study) is replicability and empirically generalizable results and findings. And, as <span class="citation">Hubbard et al. (<a href="#ref-Hubbard:2019">2019</a>)</span> point out, declaring findings as ‘significant’ or ‘not significant’ works in direct opposition to the broader culmination of knowledge and evidence in a field.</p>
+<p>This is not to say that <em>p</em>-values should not be reported; they should. But rather that we should not arbitrarily dichotomize a continuous measure into two categories whose labels are at best meaningless and at worst misleading. The goal of scientific inference (which is much broader than statistical inference for a single study) is replicability and empirically generalizable results and findings. And, as <span class="citation">Hubbard et al. (<a href="#ref-Hubbard:2019" role="doc-biblioref">2019</a>)</span> point out, declaring findings as ‘significant’ or ‘not significant’ works in direct opposition to the broader culmination of knowledge and evidence in a field.</p>
 <p>Instead, we want to begin to see the <em>p</em>-value as a measure of incompatibility between the empirical data and a very specific model, one in which a certain set of assumptions are true. Both the empirical data (which are unique to the specific study) and the model’s set of assumptions often make the <em>p</em>-value unique to the specific study carried out and less useful in the broader goal of scientific inference. As such we need to come to view the <em>p</em>-value for what it is, one measure of evidence, for one very particular model, in one very localized study. As Ron Wasserstein reminds us,</p>
 <div class="actualquote">
 <p>Small p-values are like a right-swipe in Tinder. It means you have an interest. It doesn’t mean you’re ready to book the wedding venue.</p>
@@ -477,7 +480,7 @@ t = \frac{74.28 - 0}{1.94} = 38.26
 <div id="confidence-intervals-as-compatibility-intervals" class="section level2">
 <h2>Confidence Intervals as Compatibility Intervals</h2>
 <p>To build on this, let’s return to the reporting and interpretation of confidence intervals. In our example, the 95% CI was:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">tidy</span>(lm<span class="fl">.1</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="coefinf.html#cb65-1"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code># A tibble: 2 x 7
   term        estimate std.error statistic  p.value conf.low conf.high
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -485,7 +488,7 @@ t = \frac{74.28 - 0}{1.94} = 38.26
 2 homework        1.21     0.354      3.43 8.85e- 4    0.512      1.92</code></pre>
 <p>One way of interpreting this interval is that every value in the interval is a parameter value that is reasonably compatible with the empirical data. For example, in considering the CI for the slope parameter, population slope <span class="math inline">\((\beta_1)\)</span> values between 0.51 and 1.92 are all reasonably compatible with the empirical data (with the caveat that, again, all the assumptions used to create the interval are satisfied). As applied researchers, we should describe the practical implications of all values inside the interval, especially the observed effect (or point estimate) and the limits.</p>
 <p>For us this means describing the practical implications of the true slope being 1.21, as low as 0.51, and as high as 1.92. Are these meaningful differences in GPA (measure on a 100-pt. scale)? Given that the SD for GPA was 7.62, a one-hour difference in time spent on homework is associated with at most a 0.25 SD difference in GPA or as little as a 0.07 SD difference in GPA. This is not a large difference, however whether it is meaningful depends on previous research about GPA.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
-<p>Confidence intervals help us keep an open-mind about uncertainty, after all they suggest several values that are compatible with the empirical data. However, they can also be mislading. <span class="citation">Amrhein et al. (<a href="#ref-Amrhein:2019">2019</a>)</span> point out four key points fo us to remember as we use CIs:</p>
+<p>Confidence intervals help us keep an open-mind about uncertainty, after all they suggest several values that are compatible with the empirical data. However, they can also be mislading. <span class="citation">Amrhein et al. (<a href="#ref-Amrhein:2019" role="doc-biblioref">2019</a>)</span> point out four key points fo us to remember as we use CIs:</p>
 <ul>
 <li>Just because the interval gives the values most compatible with the data, given the assumptions, it does not mean values outside it are incompatible; they are just less compatible.</li>
 <li>Not all values inside are equally compatible with the data, given the assumptions. The point estimate is the most compatible, and values near it are more compatible than those near the limits.</li>
@@ -495,7 +498,7 @@ t = \frac{74.28 - 0}{1.94} = 38.26
 <p><br /></p>
 <div id="coefficient-plot" class="section level3">
 <h3>Coefficient Plot</h3>
-<p>One plot that helps visualize the estimates of the regression coefficients and the associated uncertainty is a <em>coefficient plot</em>. This plot, recommended by <span class="citation">Gelman &amp; Hill (<a href="#ref-Gelman:2007">2007</a>)</span>, is a graphical representation of the information provided in the <code>tidy()</code> output.</p>
+<p>One plot that helps visualize the estimates of the regression coefficients and the associated uncertainty is a <em>coefficient plot</em>. This plot, recommended by <span class="citation">Gelman &amp; Hill (<a href="#ref-Gelman:2007" role="doc-biblioref">2007</a>)</span>, is a graphical representation of the information provided in the <code>tidy()</code> output.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-17"></span>
 <img src="07-coefficient-level-inference_files/figure-html/unnamed-chunk-17-1.png" alt="Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95\% confidence intervals are displayed." width="70%" />
 <p class="caption">
@@ -504,31 +507,31 @@ Figure 15: Coefficient plot for the model regressing GPA on time spent on homewo
 </div>
 <p>The coefficient plot shows the estimates of the regression coefficients (dots) and the uncertainty in those estimates via the confidence intervals (blue shading). Notice that darker shading is associated with parameter values that are more probable given the empirical data; the sample estimates are the most likely values for the regression parameters.</p>
 <p>To create a coefficient plot, we will use the <code>dwplot()</code> function from the <a href="https://cran.r-project.org/web/packages/dotwhisker/vignettes/dotwhisker-vignette.html">dotwhisker</a> package. This function takes the ouput of <code>tidy()</code> as input. Since the function will identify the model, we also mutate a column called <code>model</code> into the tidy output giving the name of the model. Since <code>dwplot()</code> is based on <code>ggplot()</code> syntax, we can add layers to customize the plot in the same manner as if we were building a ggplot. The syntax I used to create the coefficient plot above is:</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co"># Load library</span></a>
-<a class="sourceLine" id="cb67-2" title="2"><span class="kw">library</span>(dotwhisker)</a>
-<a class="sourceLine" id="cb67-3" title="3"></a>
-<a class="sourceLine" id="cb67-4" title="4"><span class="co"># Store output from tidy</span></a>
-<a class="sourceLine" id="cb67-5" title="5">mod_<span class="dv">1</span> =<span class="st"> </span><span class="kw">tidy</span>(lm<span class="fl">.1</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model A&quot;</span>)</a>
-<a class="sourceLine" id="cb67-7" title="7"></a>
-<a class="sourceLine" id="cb67-8" title="8"><span class="co"># Create plot</span></a>
-<a class="sourceLine" id="cb67-9" title="9"><span class="kw">dwplot</span>(mod_<span class="dv">1</span>, <span class="dt">show_intercept =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb67-10" title="10"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb67-11" title="11"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Model&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#c62f4b&quot;</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb67-12" title="12"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Estimate&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb67-13" title="13"><span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Coefficients&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Time spent</span><span class="ch">\n</span><span class="st">on homework&quot;</span>, <span class="st">&quot;Intercept&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="coefinf.html#cb67-1"></a><span class="co"># Load library</span></span>
+<span id="cb67-2"><a href="coefinf.html#cb67-2"></a><span class="kw">library</span>(dotwhisker)</span>
+<span id="cb67-3"><a href="coefinf.html#cb67-3"></a></span>
+<span id="cb67-4"><a href="coefinf.html#cb67-4"></a><span class="co"># Store output from tidy</span></span>
+<span id="cb67-5"><a href="coefinf.html#cb67-5"></a>mod_<span class="dv">1</span> =<span class="st"> </span><span class="kw">tidy</span>(lm<span class="fl">.1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb67-6"><a href="coefinf.html#cb67-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model A&quot;</span>)</span>
+<span id="cb67-7"><a href="coefinf.html#cb67-7"></a></span>
+<span id="cb67-8"><a href="coefinf.html#cb67-8"></a><span class="co"># Create plot</span></span>
+<span id="cb67-9"><a href="coefinf.html#cb67-9"></a><span class="kw">dwplot</span>(mod_<span class="dv">1</span>, <span class="dt">show_intercept =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb67-10"><a href="coefinf.html#cb67-10"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb67-11"><a href="coefinf.html#cb67-11"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Model&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#c62f4b&quot;</span>)) <span class="op">+</span></span>
+<span id="cb67-12"><a href="coefinf.html#cb67-12"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Estimate&quot;</span>) <span class="op">+</span></span>
+<span id="cb67-13"><a href="coefinf.html#cb67-13"></a><span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Coefficients&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Time spent</span><span class="ch">\n</span><span class="st">on homework&quot;</span>, <span class="st">&quot;Intercept&quot;</span>))</span></code></pre></div>
 <p>By default, the plot will display 95% CI. To display a different level of confidence, specify <code>conf.level=</code> argument in <code>tidy()</code>. There are several variations of this plot. For example, below I omit the intercept from this plot. To do this, I use the <code>filter()</code> function to omit the row in the <code>tidy()</code> output that includes the intercept.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> I also change the limits on the <em>x</em>-axis to better fit the homework interval.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="co"># Omit intercept</span></a>
-<a class="sourceLine" id="cb68-2" title="2">mod_<span class="dv">1</span> =<span class="st"> </span><span class="kw">tidy</span>(lm<span class="fl">.1</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb68-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model A&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb68-4" title="4"><span class="st">  </span><span class="kw">filter</span>(term <span class="op">==</span><span class="st"> &quot;homework&quot;</span>)</a>
-<a class="sourceLine" id="cb68-5" title="5"></a>
-<a class="sourceLine" id="cb68-6" title="6"><span class="co"># Create plot</span></a>
-<a class="sourceLine" id="cb68-7" title="7"><span class="kw">dwplot</span>(mod_<span class="dv">1</span>, <span class="dt">show_intercept =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-8" title="8"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-9" title="9"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Model&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#c62f4b&quot;</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-10" title="10"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Estimate&quot;</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-11" title="11"><span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Coefficients&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Time spent</span><span class="ch">\n</span><span class="st">on homework&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="coefinf.html#cb68-1"></a><span class="co"># Omit intercept</span></span>
+<span id="cb68-2"><a href="coefinf.html#cb68-2"></a>mod_<span class="dv">1</span> =<span class="st"> </span><span class="kw">tidy</span>(lm<span class="fl">.1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb68-3"><a href="coefinf.html#cb68-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model A&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb68-4"><a href="coefinf.html#cb68-4"></a><span class="st">  </span><span class="kw">filter</span>(term <span class="op">==</span><span class="st"> &quot;homework&quot;</span>)</span>
+<span id="cb68-5"><a href="coefinf.html#cb68-5"></a></span>
+<span id="cb68-6"><a href="coefinf.html#cb68-6"></a><span class="co"># Create plot</span></span>
+<span id="cb68-7"><a href="coefinf.html#cb68-7"></a><span class="kw">dwplot</span>(mod_<span class="dv">1</span>, <span class="dt">show_intercept =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb68-8"><a href="coefinf.html#cb68-8"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb68-9"><a href="coefinf.html#cb68-9"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Model&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#c62f4b&quot;</span>)) <span class="op">+</span></span>
+<span id="cb68-10"><a href="coefinf.html#cb68-10"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Estimate&quot;</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>)) <span class="op">+</span></span>
+<span id="cb68-11"><a href="coefinf.html#cb68-11"></a><span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Coefficients&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Time spent</span><span class="ch">\n</span><span class="st">on homework&quot;</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-19"></span>
 <img src="07-coefficient-level-inference_files/figure-html/unnamed-chunk-19-1.png" alt="Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95\% confidence interval is displayed. Note that the intercept has been omitted." width="80%" />
 <p class="caption">
@@ -558,15 +561,15 @@ Figure 16: Coefficient plot for the model regressing GPA on time spent on homewo
 <div class="footnotes">
 <hr />
 <ol start="7">
-<li id="fn7"><p>The actual limits from the 95% CI are computed using a multiplier that is slightly different than two; thus the discrepancy between our off-the-cuff computation earlier and the result from <code>tidy()</code>. Using a multiplier of two is often close enough for practical purposes, especially when the sample size is large.<a href="coefinf.html#fnref7" class="footnote-back">↩</a></p></li>
-<li id="fn8"><p>We actually compute the area under the probability curve that is greater than or equal to 3.42 AND that is less than or equal to <span class="math inline">\(-3.42\)</span>.<a href="coefinf.html#fnref8" class="footnote-back">↩</a></p></li>
-<li id="fn9"><p>It turns out this is quite a complicated question and the effects of homework depend on a variety of student factors, including age, culture, household income, etc. Many studies have also found a non-linear effect of homework, indicating there may be an optimum amount for some groups of students.<a href="coefinf.html#fnref9" class="footnote-back">↩</a></p></li>
-<li id="fn10"><p>The intercept could also be dropped using <code>show.intercept=FALSE</code> which is the default for <code>dwplot()</code>. The <code>filter()</code> method, however, allows you to drop or select different predictors for display as well as the intercept.<a href="coefinf.html#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>The actual limits from the 95% CI are computed using a multiplier that is slightly different than two; thus the discrepancy between our off-the-cuff computation earlier and the result from <code>tidy()</code>. Using a multiplier of two is often close enough for practical purposes, especially when the sample size is large.<a href="coefinf.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>We actually compute the area under the probability curve that is greater than or equal to 3.42 AND that is less than or equal to <span class="math inline">\(-3.42\)</span>.<a href="coefinf.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>It turns out this is quite a complicated question and the effects of homework depend on a variety of student factors, including age, culture, household income, etc. Many studies have also found a non-linear effect of homework, indicating there may be an optimum amount for some groups of students.<a href="coefinf.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>The intercept could also be dropped using <code>show.intercept=FALSE</code> which is the default for <code>dwplot()</code>. The <code>filter()</code> method, however, allows you to drop or select different predictors for display as well as the intercept.<a href="coefinf.html#fnref10" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">
 <a href="cor.html"><button class="btn btn-default">Previous</button></a>
-<a href="references.html"><button class="btn btn-default">Next</button></a>
+<a href="modinf.html"><button class="btn btn-default">Next</button></a>
 </p>
 </div>
 </div>

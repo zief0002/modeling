@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-05-22" />
+<meta name="date" content="2020-06-01" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -39,9 +39,9 @@ MathJax.Hub.Config({
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -51,14 +51,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -68,7 +70,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -144,6 +146,7 @@ img {
 <li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
 <li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
 <li><a href="coefinf.html#coefinf">Coefficient-Level Inference</a></li>
+<li><a href="modinf.html#modinf">Model-Level Inference</a></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
 </div>
@@ -154,14 +157,14 @@ img {
 <div id="slrd" class="section level1">
 <h1>Simple Linear Regression—Description</h1>
 <p>In this set of notes, you will begin your foray into regression analysis. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv">riverview.csv</a> data to examine <strong>whether education level is related to income</strong>. The data contain five attributes collected from a random sample of <span class="math inline">\(n=32\)</span> employees working for the city of Riverview, a hypothetical midwestern city (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/riverview.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>city</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(readr)</a>
-<a class="sourceLine" id="cb1-5" title="5"></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="co"># Read in data</span></a>
-<a class="sourceLine" id="cb1-7" title="7">city =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">head</span>(city)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="slrd.html#cb1-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="slrd.html#cb1-2"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="slrd.html#cb1-3"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="slrd.html#cb1-4"></a><span class="kw">library</span>(readr)</span>
+<span id="cb1-5"><a href="slrd.html#cb1-5"></a></span>
+<span id="cb1-6"><a href="slrd.html#cb1-6"></a><span class="co"># Read in data</span></span>
+<span id="cb1-7"><a href="slrd.html#cb1-7"></a>city =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv&quot;</span>)</span>
+<span id="cb1-8"><a href="slrd.html#cb1-8"></a><span class="kw">head</span>(city)</span></code></pre></div>
 <pre><code># A tibble: 6 x 6
   education income seniority gender  male party      
       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;      
@@ -180,11 +183,11 @@ img {
 <div id="marginal-distribution-of-income" class="section level3">
 <h3>Marginal Distribution of Income</h3>
 <p>To begin this exploration, we will examine the marginal distribution of employee incomes. We can plot a marginal distribution using functionality from the <strong>ggplot2</strong> package.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> city, <span class="kw">aes</span>(<span class="dt">x =</span> income)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Income (in thousands of dollars)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="slrd.html#cb3-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> city, <span class="kw">aes</span>(<span class="dt">x =</span> income)) <span class="op">+</span></span>
+<span id="cb3-2"><a href="slrd.html#cb3-2"></a><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="op">+</span></span>
+<span id="cb3-3"><a href="slrd.html#cb3-3"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb3-4"><a href="slrd.html#cb3-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Income (in thousands of dollars)&quot;</span>) <span class="op">+</span></span>
+<span id="cb3-5"><a href="slrd.html#cb3-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
 <img src="04-simple-regression-description_files/figure-html/unnamed-chunk-3-1.png" alt="Density plot of employee incomes." width="50%" />
 <p class="caption">
@@ -193,11 +196,11 @@ Figure 1: Density plot of employee incomes.
 </div>
 <p>This plot suggests that the distribution of employee incomes is unimodal and most of the incomes are between roughly $50,000 and $70,000. The smallest income in the sample is about $25,000 and the largest income is over $80,000. This indicates there is a fair amount of variation in the data.</p>
 <p>To further summarize the distribution, it is typical to compute and report summary statistics such as the mean and standard deviation. One way to compute these values is to use functions from the <strong>dplyr</strong> library.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">city <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb4-3" title="3">    <span class="dt">M =</span> <span class="kw">mean</span>(income),</a>
-<a class="sourceLine" id="cb4-4" title="4">    <span class="dt">SD =</span> <span class="kw">sd</span>(income)</a>
-<a class="sourceLine" id="cb4-5" title="5">    )</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="slrd.html#cb4-1"></a>city <span class="op">%&gt;%</span></span>
+<span id="cb4-2"><a href="slrd.html#cb4-2"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb4-3"><a href="slrd.html#cb4-3"></a>    <span class="dt">M =</span> <span class="kw">mean</span>(income),</span>
+<span id="cb4-4"><a href="slrd.html#cb4-4"></a>    <span class="dt">SD =</span> <span class="kw">sd</span>(income)</span>
+<span id="cb4-5"><a href="slrd.html#cb4-5"></a>    )</span></code></pre></div>
 <pre><code># A tibble: 1 x 2
       M    SD
   &lt;dbl&gt; &lt;dbl&gt;
@@ -211,24 +214,24 @@ Figure 1: Density plot of employee incomes.
 <div id="marginal-distribution-of-education-level" class="section level3">
 <h3>Marginal Distribution of Education Level</h3>
 <p>We will also examine the marginal distribution of the education level variable.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Plot</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> city, <span class="kw">aes</span>(<span class="dt">x =</span> education)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Education level&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="slrd.html#cb6-1"></a><span class="co"># Plot</span></span>
+<span id="cb6-2"><a href="slrd.html#cb6-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> city, <span class="kw">aes</span>(<span class="dt">x =</span> education)) <span class="op">+</span></span>
+<span id="cb6-3"><a href="slrd.html#cb6-3"></a><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="op">+</span></span>
+<span id="cb6-4"><a href="slrd.html#cb6-4"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb6-5"><a href="slrd.html#cb6-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Education level&quot;</span>) <span class="op">+</span></span>
+<span id="cb6-6"><a href="slrd.html#cb6-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
 <img src="04-simple-regression-description_files/figure-html/unnamed-chunk-5-1.png" alt="Density plot of employee education levels." width="50%" />
 <p class="caption">
 Figure 2: Density plot of employee education levels.
 </p>
 </div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Summary statistics</span></a>
-<a class="sourceLine" id="cb7-2" title="2">city <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb7-4" title="4">    <span class="dt">M =</span> <span class="kw">mean</span>(education),</a>
-<a class="sourceLine" id="cb7-5" title="5">    <span class="dt">SD =</span> <span class="kw">sd</span>(education)</a>
-<a class="sourceLine" id="cb7-6" title="6">    )</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="slrd.html#cb7-1"></a><span class="co"># Summary statistics</span></span>
+<span id="cb7-2"><a href="slrd.html#cb7-2"></a>city <span class="op">%&gt;%</span></span>
+<span id="cb7-3"><a href="slrd.html#cb7-3"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb7-4"><a href="slrd.html#cb7-4"></a>    <span class="dt">M =</span> <span class="kw">mean</span>(education),</span>
+<span id="cb7-5"><a href="slrd.html#cb7-5"></a>    <span class="dt">SD =</span> <span class="kw">sd</span>(education)</span>
+<span id="cb7-6"><a href="slrd.html#cb7-6"></a>    )</span></code></pre></div>
 <pre><code># A tibble: 1 x 2
       M    SD
   &lt;dbl&gt; &lt;dbl&gt;
@@ -242,11 +245,11 @@ Figure 2: Density plot of employee education levels.
 <div id="relationship-between-variables" class="section level3">
 <h3>Relationship Between Variables</h3>
 <p>Although examining the marginal distributions is an important first step, those descriptions do not help us directly answer our research question. To better understand any relationship between income and education level we need to explore how the distribution of income differs as a function of education. To do this, we will create a scatterplot of incomes versus education.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> city, <span class="kw">aes</span>(<span class="dt">x =</span> education, <span class="dt">y =</span> income)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Education (in years)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Income (in U.S. dollars)&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="slrd.html#cb9-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> city, <span class="kw">aes</span>(<span class="dt">x =</span> education, <span class="dt">y =</span> income)) <span class="op">+</span></span>
+<span id="cb9-2"><a href="slrd.html#cb9-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb9-3"><a href="slrd.html#cb9-3"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb9-4"><a href="slrd.html#cb9-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Education (in years)&quot;</span>) <span class="op">+</span></span>
+<span id="cb9-5"><a href="slrd.html#cb9-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Income (in U.S. dollars)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
 <img src="04-simple-regression-description_files/figure-html/unnamed-chunk-7-1.png" alt="Scatterplot displaying the relationship between employee education levels and incomes." width="50%" />
 <p class="caption">
@@ -384,11 +387,11 @@ Figure 5: Scatterplot displaying the relationship between employee education lev
 <p><code>lm(</code><strong>outcome</strong> ~ <code>1 +</code> <strong>predictor</strong>, <code>data =</code> <strong>dataframe</strong><code>)</code></p>
 </blockquote>
 <p>where <strong>outcome</strong> is the name of the outcome/response variable, <strong>predictor</strong> is the name of the predictor variable, and <strong>dataframe</strong> is the name of the data frame. (The <code>1</code> on the right side of the tilde tells R to include the intercept in its computation.) When we fit a regression model in R, we will also assign the output to a new object in R. Below, we fit the model using education level to predict income. Here the output is assigned to an object called <code>lm.1</code>. We can print the regression parameter estimates by typing the <code>lm()</code> object name and hitting enter.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># Fit regression model</span></a>
-<a class="sourceLine" id="cb10-2" title="2">lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</a>
-<a class="sourceLine" id="cb10-3" title="3"></a>
-<a class="sourceLine" id="cb10-4" title="4"><span class="co"># Print regression coefficients</span></a>
-<a class="sourceLine" id="cb10-5" title="5">lm<span class="fl">.1</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="slrd.html#cb10-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb10-2"><a href="slrd.html#cb10-2"></a>lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</span>
+<span id="cb10-3"><a href="slrd.html#cb10-3"></a></span>
+<span id="cb10-4"><a href="slrd.html#cb10-4"></a><span class="co"># Print regression coefficients</span></span>
+<span id="cb10-5"><a href="slrd.html#cb10-5"></a>lm<span class="fl">.1</span></span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = income ~ 1 + education, data = city)
@@ -470,15 +473,15 @@ Figure 7: Plot displaying conditional distribution of <span class="math inline">
 <div id="estimating-residuals-1" class="section level3">
 <h3>Estimating Residuals</h3>
 <p>Consider the 25th case in the data frame.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">city <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>() <span class="op">==</span><span class="st"> </span><span class="dv">25</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="slrd.html#cb12-1"></a>city <span class="op">%&gt;%</span></span>
+<span id="cb12-2"><a href="slrd.html#cb12-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>() <span class="op">==</span><span class="st"> </span><span class="dv">25</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 x 6
   education income seniority gender  male party      
       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;      
 1        20   54.7        12 female     0 Independent</code></pre>
 <p>This employee (Employee 25) has an education level of 20 years (<span class="math inline">\(X_{25}=20\)</span>). Her income is 54.672 thousand dollars (<span class="math inline">\(Y_{25}=54.672\)</span>). Using the fitted regression equation, we can compute the model predicted mean income for employees with 20 years of education as,</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Y_hat = b0 + b1 * X</span></a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span><span class="dv">20</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="slrd.html#cb14-1"></a><span class="co"># Y_hat = b0 + b1 * X</span></span>
+<span id="cb14-2"><a href="slrd.html#cb14-2"></a><span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span><span class="dv">20</span></span></code></pre></div>
 <pre><code>[1] 64.341</code></pre>
 <p><span class="math display">\[
 \hat{Y}_{25} = 64.341
@@ -488,8 +491,8 @@ Figure 7: Plot displaying conditional distribution of <span class="math inline">
 \hat\mu_{Y \vert X=20} = 64.341
 \]</span></p>
 <p>Now we can use the estimated conditional mean to also compute Employee 25’s residual.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># e = Y - Y_hat</span></a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="fl">54.672</span> <span class="op">-</span><span class="st"> </span><span class="fl">64.341</span></a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="slrd.html#cb16-1"></a><span class="co"># e = Y - Y_hat</span></span>
+<span id="cb16-2"><a href="slrd.html#cb16-2"></a><span class="fl">54.672</span> <span class="op">-</span><span class="st"> </span><span class="fl">64.341</span></span></code></pre></div>
 <pre><code>[1] -9.669</code></pre>
 <p>Using mathematical notation,</p>
 <p><span class="math display">\[
@@ -518,8 +521,8 @@ Figure 8: Plot displaying the OLS fitted regression line (blue) between employee
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>Technically there are many unknown residuals, one for each case, but the assumptions we put on the linear model make it so that we only care about the variance of the residuals, hence a single unknown.<a href="slrd.html#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Sometimes people use Roman letters when referring to sample estimates rather than hatting the Greek letters. For example, the sample-based equation might be denoted: <span class="math inline">\(\hat{Y}_i = b_0 + b_1(X_i) + e_i\)</span>.<a href="slrd.html#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Technically there are many unknown residuals, one for each case, but the assumptions we put on the linear model make it so that we only care about the variance of the residuals, hence a single unknown.<a href="slrd.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Sometimes people use Roman letters when referring to sample estimates rather than hatting the Greek letters. For example, the sample-based equation might be denoted: <span class="math inline">\(\hat{Y}_i = b_0 + b_1(X_i) + e_i\)</span>.<a href="slrd.html#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

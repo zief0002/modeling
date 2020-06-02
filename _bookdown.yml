@@ -11,6 +11,7 @@ rmd_files: [
     "05-ols-estimation.Rmd",
     "06-correlation.Rmd",
     "07-coefficient-level-inference.Rmd",
+    "08-model-level-inference.Rmd",
     "99-references.Rmd"
     ]
 clean: [packages.bib, bookdown.bbl]

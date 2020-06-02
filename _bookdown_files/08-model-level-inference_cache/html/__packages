@@ -1,0 +1,9 @@
+base
+knitr
+kableExtra
+patchwork
+broom
+corrr
+dplyr
+ggplot2
+readr

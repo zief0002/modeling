@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Model-Level Inference | Statistical Modeling and Computation for Educational Scientists" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="EPsy 8251 and 8252 Notes" />
+<meta name="github-repo" content="zief0002/modeling" />
+
+<meta name="author" content="Andrew Zieffler" />
+
+<meta name="date" content="2020-06-01" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="EPsy 8251 and 8252 Notes">
+
+<title>Model-Level Inference | Statistical Modeling and Computation for Educational Scientists</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+<link rel="stylesheet" href="style/table-styles.css" type="text/css" />
+<link rel="stylesheet" href="style/syntax.css" type="text/css" />
+<link rel="stylesheet" href="style/navbar.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#foreword">Foreword</a></li>
+<li><a href="preface.html#preface">Preface</a></li>
+<li><a href="slrd.html#slrd">Simple Linear Regression—Description</a></li>
+<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
+<li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
+<li><a href="coefinf.html#coefinf">Coefficient-Level Inference</a></li>
+<li><a href="modinf.html#modinf">Model-Level Inference</a></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="modinf" class="section level1">
+<h1>Model-Level Inference</h1>
+<p>In this chapter, you will learn about statistical inference at the model-level for regression models. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="modinf.html#cb69-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb69-2"><a href="modinf.html#cb69-2"></a><span class="kw">library</span>(broom)</span>
+<span id="cb69-3"><a href="modinf.html#cb69-3"></a><span class="kw">library</span>(corrr)</span>
+<span id="cb69-4"><a href="modinf.html#cb69-4"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb69-5"><a href="modinf.html#cb69-5"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb69-6"><a href="modinf.html#cb69-6"></a><span class="kw">library</span>(readr)</span>
+<span id="cb69-7"><a href="modinf.html#cb69-7"></a></span>
+<span id="cb69-8"><a href="modinf.html#cb69-8"></a><span class="co"># Read in data</span></span>
+<span id="cb69-9"><a href="modinf.html#cb69-9"></a>keith =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv&quot;</span>)</span>
+<span id="cb69-10"><a href="modinf.html#cb69-10"></a><span class="kw">head</span>(keith)</span></code></pre></div>
+<pre><code># A tibble: 6 x 3
+    gpa homework parent_ed
+  &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1    78        2        13
+2    79        6        14
+3    79        1        13
+4    89        5        13
+5    82        3        16
+6    77        4        13</code></pre>
+<p><br /></p>
+<div id="model-level-inference" class="section level2">
+<h2>Model-Level Inference</h2>
+<p>In the <a href="coefinf.html#coefinf">previous chapter</a>, we looked at how to carry out statistical tests of hypotheses and quantify uncertainty associated with the coefficients in the simple regression model. Sometimes you are interested in the model as a whole, rather than the individual parameters. For example, you may be interested in whether a set of predictors <em>together</em> explains variation in the outcome. Model-level information is displayed using the <code>glance()</code> output from the <strong>broom</strong> package. Below we fit a model by regressing GPA on time spent on homework, store those results in an object called <code>lm.1</code>, and then print the model-level output.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="modinf.html#cb71-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb71-2"><a href="modinf.html#cb71-2"></a>lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework, <span class="dt">data =</span> keith)</span>
+<span id="cb71-3"><a href="modinf.html#cb71-3"></a></span>
+<span id="cb71-4"><a href="modinf.html#cb71-4"></a><span class="co"># Model-level output</span></span>
+<span id="cb71-5"><a href="modinf.html#cb71-5"></a><span class="kw">glance</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<pre><code># A tibble: 1 x 11
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.107        0.0981  7.24      11.8 8.85e-4     2  -339.  684.  691.
+# … with 2 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+<p>The <code>r.squared</code> column indicates the proportion of variation in the outcome explained by differences in the predictor <em>in the sample</em>. Here, differences in time spent on homework explains 10.7% of the variation in students’ GPAs for the 100 students in the sample. The inferential question at the model-level is: <em>Does the model explain variation in the outcome, in the population?</em> This can formally be expressed in a statistical hypothesis as,</p>
+<p><span class="math display">\[
+H_0: \rho^2 = 0
+\]</span></p>
+<p>To test this, we need to be able to obtain the sampling distribution of <span class="math inline">\(R^2\)</span> to estimate the uncertainty in the sample estimate. The thought experiment for this goes something like this: Imagine you have a population that is infinitely large. The observations in this population have two attributes, call them <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. There is NO relationship between these two attributes; <span class="math inline">\(\rho^2 = 0\)</span>. Randomly sample <span class="math inline">\(n\)</span> observations from the population. Fit the regression and compute the <span class="math inline">\(R^2\)</span> value. Repeat the process an infinite number of times.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="figs/notes-07-thought-experiment-r2.png" alt="Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared." width="80%" />
+<p class="caption">
+Figure 9: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared.
+</p>
+</div>
+<p>Below is a density plot of the sampling distribution for <span class="math inline">\(R^2\)</span> based on 1,000 random samples of size 32 drawn from a population where <span class="math inline">\(\rho^2=0\)</span>. (Not an infinite number of draws, but large enough that we should have an idea of what the distribution might look like.)</p>
+<div class="figure" style="text-align: center">
+<img src="08-model-level-inference_files/figure-html/unnamed-chunk-5-1.png" alt="Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\rho^2=0$." width="60%" />
+<p class="caption">
+Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where <span class="math inline">\(\rho^2=0\)</span>.
+</p>
+</div>
+<p>Most of the <span class="math inline">\(R^2\)</span> values are near 0, although there is some variability that is due to sampling error. This sampling distribution is right-skewed. (WHY???) This means that we cannot use a <span class="math inline">\(t\)</span>-distribution to model this distribution—remember the <span class="math inline">\(t\)</span>-distribution is symmetric around zero. It turns out that this sampling distribution is better modeled using an <span class="math inline">\(F\)</span>-distribution.</p>
+<p><br /></p>
+<div id="the-f-distribution" class="section level3">
+<h3>The <em>F</em>-Distribution</h3>
+<p>In theoretical statistics the <em>F</em>-distribution is the ratio of two chi-squared statistics,</p>
+<p><span class="math display">\[
+F = \frac{\chi^2_1 / \mathit{df}_1}{\chi^2_2 / \mathit{df}_2}
+\]</span></p>
+<p>where <span class="math inline">\(\mathit{df}_1\)</span> and <span class="math inline">\(\mathit{df}_2\)</span> are the degrees of freedom associated with each of the chi-squared statistics, respectively. For our purposes, we don’t need to pay much attention to this other than to the fact that an <em>F</em>-distribution is defined using TWO parameters: <span class="math inline">\(\mathit{df}_1\)</span> and <span class="math inline">\(\mathit{df}_2\)</span>. Knowing these two values completely parameterize the <em>F</em>-distribution (they give the shape, expected value, and variation).</p>
+<p>In regression analysis, the <em>F</em>-distribution associated with model-level inference is based on the following degrees of freedom:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathit{df}_1 &amp;= p \\
+\mathit{df}_2 &amp;= \mathit{df}_{\mathrm{Total}}-p
+\end{split}
+\]</span></p>
+<p>where <em>p</em> is the number of predictors used in the model and <span class="math inline">\(\mathrm{Total}\)</span> is the total degrees of freedom in the data used in the regression model (<span class="math inline">\(\mathrm{Total}=n-1\)</span>). In our example, <span class="math inline">\(\mathit{df}_1=1\)</span> and <span class="math inline">\(\mathit{df}_2=99-1=98\)</span>. Using these values, we have defined the <span class="math inline">\(F(1,98)\)</span>-distribution.</p>
+<p>The <em>F</em>-distribution is the sampling distribution of <em>F</em>-values (not <span class="math inline">\(R^2\)</span>-values). But, it turns out that we can easily convert an <span class="math inline">\(R^2\)</span>-value to an <em>F</em>-value using,</p>
+<p><span class="math display">\[
+F = \frac{R^2}{1 - R^2} \times \frac{\mathit{df}_2}{\mathit{df}_1}
+\]</span></p>
+<p>In our example,</p>
+<p><span class="math display">\[
+\begin{split}
+F &amp;= \frac{0.107}{1 - 0.107} \times \frac{98}{1} \\[1em]
+&amp;= 0.1198 \times 98 \\[1em]
+&amp;= 11.74
+\end{split}
+\]</span></p>
+<p>Thus, our observed <em>F</em>-value is: <span class="math inline">\(F(1,98)=11.74\)</span>. To evaluate this under the null hypothesis, we find the area under the <span class="math inline">\(F(1,98)\)</span> density curve that corresponds to <em>F</em>-values <em>at least as extreme</em> as our observed <em>F</em>-value of 11.74.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
+<img src="08-model-level-inference_files/figure-html/unnamed-chunk-6-1.png" alt="Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74." width="50%" />
+<p class="caption">
+Figure 13: Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the <em>p</em>-value for a test evaluating whether the population rho-squared is zero using an observed <em>F</em>-value of 11.74.
+</p>
+</div>
+<p>This area (which is one-sided in the <span class="math inline">\(F\)</span>-distribution) corresponds to the <span class="math inline">\(p\)</span>-value. In our case this <span class="math inline">\(p\)</span>-value is 0.000885. The probability of observing an <span class="math inline">\(F\)</span>-value at least as extreme as we the one we observed (<span class="math inline">\(F=11.74\)</span>) under the assumption that the null hypothesis is true is 0.000885. This suggests that the empirical data are inconsistent with the hypothesis that <span class="math inline">\(\rho^2=0\)</span>, and it is unlikely that the model explains no variation in students’ GPAs.</p>
+<p><br /></p>
+</div>
+<div id="using-the-f-distribution-in-practice" class="section level3">
+<h3>Using the <em>F</em>-distribution in Practice</h3>
+<p>In practice, all of this information is provided in the output of the <code>glance()</code> function.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="modinf.html#cb73-1"></a><span class="kw">glance</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<pre><code># A tibble: 1 x 11
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.107        0.0981  7.24      11.8 8.85e-4     2  -339.  684.  691.
+# … with 2 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+<p>The observed <em>F</em>-value is given in the <code>statistic</code> column and the associated degrees of freedom are provided in the <code>df</code> and <code>df.residual</code> columns. Note that the value in the <code>df</code> column is one unit higher than it should be; the correct value for <span class="math inline">\(\textit{df}_1\)</span> is <span class="math inline">\(2-1 = 1\)</span>.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> Lastly, the <em>p</em>-value is given in the <code>p.value</code> column.</p>
+<p><br /></p>
+</div>
+<div id="anova-decomposition" class="section level3">
+<h3>ANOVA Decomposition</h3>
+<p>We can also get the model-level inferential information from the <code>anova()</code> output. This gives us the ANOVA decomposition for the model.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="modinf.html#cb75-1"></a><span class="kw">anova</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: gpa
+          Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+homework   1  616.5  616.54  11.763 0.0008854 ***
+Residuals 98 5136.4   52.41                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Note that the two <em>df</em> values for the model-level <em>F</em>-statistic correspond to the <em>df</em> in each row of the ANOVA table. The first <em>df</em> (in this case, 1) is the model degrees-of-freedom, and the second <em>df</em> (in this case, 98) is the residual degrees-of-freedom. Note the <em>p</em>-value is the same as that from the <code>glance()</code> function.</p>
+<p>This ANOVA decomposition also breaks out the sum of squared values into the variation explained by the model (616.5) and that which is unexplained by the model (residual variation; 5136.4). Summing these two values will give the total amount of variation which can be used to compute <span class="math inline">\(R^2\)</span>; <span class="math inline">\(R^2 = \mathrm{SS}_{\mathrm{Model}}/\mathrm{SS}_{\mathrm{Total}}\)</span>.</p>
+<p>This decomposition also gives us another way to consider the <em>F</em>-statistic. Recall that the <em>F</em>-statistic had a direct relationship to <span class="math inline">\(R^2\)</span></p>
+<p><span class="math display">\[
+F = \frac{R^2}{1 - R^2} \times \frac{\mathit{df}_2}{\mathit{df}_1}
+\]</span></p>
+<!-- Using algebra, we could also express this as a ratio of two fractions: -->
+<!-- $$ -->
+<!-- F = \frac{\frac{R^2}{\mathit{df}_1}}{\frac{1 - R^2}{\mathit{df}_2}} -->
+<!-- $$ -->
+<p>Since <span class="math inline">\(R^2 = \mathrm{SS}_{\mathrm{Model}}/\mathrm{SS}_{\mathrm{Total}}\)</span> we can rewrite this as:</p>
+<p><span class="math display">\[
+F = \frac{\frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{SS}_{\mathrm{Total}}}}{1 - \frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{SS}_{\mathrm{Total}}}} \times \frac{\mathit{df}_2}{\mathit{df}_1}
+\]</span></p>
+<p>Using algebra,</p>
+<p><span class="math display">\[
+\begin{split}
+F &amp;= \frac{\frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{SS}_{\mathrm{Total}}}}{\frac{\mathrm{SS}_{\mathrm{Total}}}{\mathrm{SS}_{\mathrm{Total}}} - \frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{SS}_{\mathrm{Total}}}} \times \frac{\mathit{df}_2}{\mathit{df}_1} \\[2ex]
+&amp;= \frac{\frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{SS}_{\mathrm{Total}}}}{\frac{\mathrm{SS}_{\mathrm{Total}} - \mathrm{SS}_{\mathrm{Model}}}{\mathrm{SS}_{\mathrm{Total}}}} \times \frac{\mathit{df}_2}{\mathit{df}_1} \\[2ex]
+&amp;= \frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{SS}_{\mathrm{Total}} - \mathrm{SS}_{\mathrm{Model}}} \times \frac{\mathit{df}_2}{\mathit{df}_1} \\[2ex]
+&amp;= \frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{SS}_{\mathrm{Error}}} \times \frac{\mathit{df}_2}{\mathit{df}_1} \\[2ex]
+\end{split}
+\]</span></p>
+<p>This expression of the <em>F</em>-statistic helps us see that the <em>F</em>-statistic is proportional to the ratio of the explained and unexplained variation. So long as the degrees of freedom remain the same, if the model explains more variation, the numerator of the <em>F</em>-statistic gets larger and the denominator will be smaller. Thus, larger <em>F</em>-values are associated with more explained variation by the model. We could also have seen this in the earlier expression of the <em>F</em>-statistic using <span class="math inline">\(R^2\)</span>.</p>
+<p><br /></p>
+</div>
+<div id="the-f-statistic-as-the-ratio-of-two-variance-estimates" class="section level3">
+<h3>The <em>F</em>-Statistic as the Ratio of Two Variance Estimates</h3>
+<p>In statistical theory, a sum of squares divided by a degrees of freedom is referred to as a <em>mean squared</em> value—the <em>average</em> amount of variation per degree of freedom. Since <span class="math inline">\(\mathit{df}_1\)</span> is the model degrees of freedom and <span class="math inline">\(\mathit{df}_2\)</span> is the residual (or error) degrees of freedom we could also express the <em>F</em>-statistic as:</p>
+<p><span class="math display">\[
+\begin{split}
+F &amp;= \frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{SS}_{\mathrm{Error}}} \times \frac{\mathit{df}_{\mathrm{Error}}}{\mathit{df}_{\mathrm{Model}}} \\[2ex]
+&amp;= \frac{\frac{\mathrm{SS}_{\mathrm{Model}}}{\mathit{df}_{\mathrm{Model}}}}{\frac{\mathrm{SS}_{\mathrm{Error}}}{\mathit{df}_{\mathrm{Error}}}} \\[2ex]
+&amp;= \frac{\mathrm{MS}_{\mathrm{Model}}}{\mathrm{MS}_{\mathrm{Error}}}
+\end{split}
+\]</span></p>
+<p>Thus the <em>F</em>-value is the ratio of the average variation explained by the model and the average variation that remains unexplained. In our example</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{MS}_{\mathrm{Model}} &amp;= \frac{616.5}{1} = 616.5 \\[2ex]
+\mathrm{MS}_{\mathrm{Error}} &amp;= \frac{5136.4}{98} = 52.41 \\
+\end{split}
+\]</span></p>
+<p>These values are also printed in the <code>anova()</code> output.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="modinf.html#cb77-1"></a><span class="kw">anova</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: gpa
+          Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+homework   1  616.5  616.54  11.763 0.0008854 ***
+Residuals 98 5136.4   52.41                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><span class="math display">\[
+F = \frac{616.5}{52.41} = 11.76
+\]</span></p>
+<p>The observed <em>F</em>-value of 11.76 indicates that the average explained variation is 11.76 times that of the average unexplained variation. There is an awful lot more explained variation than unexplained variation, on average. Another name for a mean squared value is a <em>variance estimate</em>. A variance estimate is literally the average amount of variation (in the squared metric) per degree of freedom. For example, go back to the introductory statistics formula for using sample data to estimate a variance:</p>
+<p><span class="math display">\[
+\hat\sigma^2_Y = \frac{\sum(Y_i - \bar{Y})^2}{n-1}
+\]</span></p>
+<p>This numerator is a sum of squares; namely the <span class="math inline">\(\mathrm{SS}_{\mathrm{Total}}\)</span>. The denominator is the total degrees of freedom. We could have also referred to this as a mean square</p>
+<p><span class="math display">\[
+\begin{split}
+\hat\sigma^2_Y &amp;= \frac{\mathrm{SS}_{\mathrm{Total}}}{\mathit{df}_{\mathrm{Total}}} \\[2ex]
+&amp;= \mathrm{MS}_{\mathrm{Total}}
+\end{split}
+\]</span></p>
+<p>Note that the <span class="math inline">\(\mathrm{MS}_{\mathrm{Total}}\)</span> is not printed in the <code>anova()</code> output. However, it can be computed from the values that are printed. The <span class="math inline">\(\mathrm{SS}_{\mathrm{Total}}\)</span> is just the sum of the printed sum of squares, and likewise the <span class="math display">\[\mathit{df}_{\mathrm{Total}}\]</span> is the sum of the <em>df</em> values.</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{SS}_{\mathrm{Total}} &amp;= 616.5 + 5136.4 = 5752.9 \\[2ex]
+\mathit{df}_{\mathrm{Total}} &amp;= 1 + 98 = 99
+\end{split}
+\]</span></p>
+<p>Then the <span class="math inline">\(\mathrm{MS}_{\mathrm{Total}}\)</span> is the ratio of these values,</p>
+<p><span class="math display">\[
+\mathrm{MS}_{\mathrm{Total}} = \frac{5752.9}{99} = 58.11
+\]</span></p>
+<p>Since this is a estimate of the outcome variable’s variance, we could also have computes the sample variance of the outcome variable, <code>gpa</code>, using the <code>var()</code> function.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="modinf.html#cb79-1"></a>keith <span class="op">%&gt;%</span></span>
+<span id="cb79-2"><a href="modinf.html#cb79-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">V_gpa =</span> <span class="kw">var</span>(gpa))</span></code></pre></div>
+<pre><code># A tibble: 1 x 1
+  V_gpa
+  &lt;dbl&gt;
+1  58.1</code></pre>
+<p>The total mean square, or variance estimate, is also the mean square estimate of the residuals from the intercept-only model.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="modinf.html#cb81-1"></a><span class="co"># Fit intercept-only model</span></span>
+<span id="cb81-2"><a href="modinf.html#cb81-2"></a>lm<span class="fl">.0</span> =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> keith)</span>
+<span id="cb81-3"><a href="modinf.html#cb81-3"></a></span>
+<span id="cb81-4"><a href="modinf.html#cb81-4"></a><span class="co"># ANOVA decomposition</span></span>
+<span id="cb81-5"><a href="modinf.html#cb81-5"></a><span class="kw">anova</span>(lm<span class="fl">.0</span>)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: gpa
+          Df Sum Sq Mean Sq F value Pr(&gt;F)
+Residuals 99 5752.9   58.11               </code></pre>
+<p>Remember the sum of squared residuals is <span class="math inline">\((Y_i - \hat{Y_i})^2\)</span>, but in the intercept-only model <span class="math inline">\(\hat{Y_i}\)</span> is the marginal mean, i.e., <span class="math inline">\(\hat{Y_i} = \bar{Y}\)</span>. This is the numerator of the sample variance estimate and is why the mean square error from the intercept-only model and the sample variance for GPA are equivalent!</p>
+<p><br /></p>
+<!-- ### The F-Distribution is the Ratio of Two Chi-Squared Distributions -->
+<!-- Because mean square values are variance estimates, the *F*-statistic can also be expressed as: -->
+<!-- $$ -->
+<!-- F = \frac{\hat\sigma^2_{\mathrm{Model}}}{\hat\sigma^2_{\mathrm{Error}}} -->
+<!-- $$ -->
+<!-- Stat theory tells us that the sampling distribution for a variance is $\chi^2$-distributed with a particular *df*. The model explained variance estimate ($\hat\sigma^2_{\mathrm{Model}}$) is $\chi^2$-distributed with *p* degrees of freedom (where *p* is the number of predictors in the model) and the unexplained variance estimate ($\hat\sigma^2_{\mathrm{Error}}$) is $\chi^2$-distributed with $\mathit{df}_{\mathrm{Total}} - p$ degrees of freedom. -->
+<!-- <br /> -->
+</div>
+<div id="relationship-between-coefficient-level-and-model-level-inference" class="section level3">
+<h3>Relationship Between Coefficient-Level and Model-Level Inference</h3>
+<p>Lastly, we point out that in simple regression models (models with only one predictor), the results of the model-level inference (i.e., the <em>p</em>-value) is exactly the same as that for the coefficient-level inference for the slope.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="modinf.html#cb83-1"></a><span class="co"># Model-level inference</span></span>
+<span id="cb83-2"><a href="modinf.html#cb83-2"></a><span class="kw">glance</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<pre><code># A tibble: 1 x 11
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.107        0.0981  7.24      11.8 8.85e-4     2  -339.  684.  691.
+# … with 2 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="modinf.html#cb85-1"></a><span class="co"># Coefficient-level inference</span></span>
+<span id="cb85-2"><a href="modinf.html#cb85-2"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<pre><code># A tibble: 2 x 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)    74.3      1.94      38.3  1.01e-60
+2 homework        1.21     0.354      3.43 8.85e- 4</code></pre>
+<p>That is because the model is composed of a single predictor, so asking whether the model accounts for variation in GPA <strong>is the same as</strong> asking whether GPA is different, on average, for students who spend a one-hour difference in time on homework. <em>Once we have multiple predictors in the model, the model-level results and predictor-level results will not be the same.</em></p>
+<p><br /></p>
+</div>
+</div>
+<div id="confidence-envelope-for-the-model" class="section level2">
+<h2>Confidence Envelope for the Model</h2>
+<p>Re-consider our thought experiment. Again, imagine you have a population that is infinitely large. The observations in this population have two attributes, call them <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The relationship between these two attributes can be expressed via a regression equation as: <span class="math inline">\(\hat{Y}=\beta_0 + \beta_1(X)\)</span>. Randomly sample <span class="math inline">\(n\)</span> observations from the population, and compute the fitted regression equation, this time plotting the line (rather than only paying attention to the numerical estimates of the slope or intercept). Continue sampling from this population, each time drawing the fitted regression equation.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
+<img src="figs/notes-07-thought-experiment-confidence-envelope.png" alt="Thought experiment for sampling samples of size *n* from the population to obtain the fitted regression line." width="80%" />
+<p class="caption">
+Figure 14: Thought experiment for sampling samples of size <em>n</em> from the population to obtain the fitted regression line.
+</p>
+</div>
+<p>Now, imagine superimposing all of these lines on the same plot.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
+<img src="figs/notes-07-superimposed-lines.png" alt="Plot showing the fitted regression lines for many, many random samples of size *n*." width="50%" />
+<p class="caption">
+Figure 11: Plot showing the fitted regression lines for many, many random samples of size <em>n</em>.
+</p>
+</div>
+<p>Examining where the sampled lines fall gives a visual interpretation of the uncertainty in the model. This two-dimensional display of uncertainty is referred to as a <em>confidence envelope</em>. In practice we estimate the uncertainty from the sample data and plot it around the fitted line from the sample.</p>
+<p>For simple regression models, we can plot this directly by including the the <code>geom_smooth()</code> layer in our plot. This adds a smoother to the plot. To add the fitted simple regression line, we use the argument <code>method="lm"</code>. This will add the fitted regression line and confidence envelope to the plot based on fitting a linear model to the variables included in the <code>x=</code> and <code>y=</code> arguments in the aesthetic mapping defined in <code>aes()</code>.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> The color of the fitted line and of the confidence envelope can be set using <code>color=</code> and <code>fill=</code> respectively.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="modinf.html#cb87-1"></a><span class="co"># Create plot</span></span>
+<span id="cb87-2"><a href="modinf.html#cb87-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> gpa)) <span class="op">+</span></span>
+<span id="cb87-3"><a href="modinf.html#cb87-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;#c62f4b&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;#696969&quot;</span>) <span class="op">+</span></span>
+<span id="cb87-4"><a href="modinf.html#cb87-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="op">+</span></span>
+<span id="cb87-5"><a href="modinf.html#cb87-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;GPA (on a 100-pt. scale)&quot;</span>) <span class="op">+</span></span>
+<span id="cb87-6"><a href="modinf.html#cb87-6"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
+<img src="08-model-level-inference_files/figure-html/unnamed-chunk-15-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed." width="50%" />
+<p class="caption">
+Figure 12: GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed.
+</p>
+</div>
+<p>Note that we want to indicate the confidence envelope or make reference to the uncertainty in the figure caption. We pointed out that the confidence envelope indicates uncertainty by displaying the sampling variation associated with the location of the fitted regression line.</p>
+<p>We can also use this plot to make inferences about the mean <span class="math inline">\(Y\)</span>-value conditioned on <span class="math inline">\(X\)</span>. For example, using the fitted regression equation, the model predicts that the mean GPA for students who spend 6 hours each week on homework is 81.6. Graphically this is the point on the fitted regression line associated with <span class="math inline">\(X=6\)</span>.</p>
+<p>However, we also now understand that there is uncertainty associated with estimates obtained from sample data. How much uncertainty is there in that estimate of 81.6? We can use the bounds of the confidence envelope at <span class="math inline">\(X=6\)</span> to answer this question. The lower bound of the confidence envelope at <span class="math inline">\(X=6\)</span> is approximately 80 and the upper bound is approximately 83. This tells, based on the sample data, we think the mean GPA for students who spend 6 hours each week on homework is between 80 and 83. Graphically, we can see these values in the plot.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-16"></span>
+<img src="08-model-level-inference_files/figure-html/unnamed-chunk-16-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar." width="50%" />
+<p class="caption">
+Figure 8: GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at <em>X</em>=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar.
+</p>
+</div>
+<p>This uncertainty estimate is technically a 95% confidence interval for the mean GPA for students who spend 6 hours each week on homework. As such, a more formal interpretation is:</p>
+<blockquote>
+<p>With 95% confidence, the mean GPA for students who spend 6 hours each week on homework is between 80 and 83.</p>
+</blockquote>
+<p>Notice that there is more uncertainty for the mean GPA for some values of <span class="math inline">\(X\)</span> than for others. This is because of the amount of information at each <span class="math inline">\(X\)</span>. We have more information in the data around the mean <span class="math inline">\(X\)</span>-value and less information at extreme <span class="math inline">\(X\)</span>-values. That implies that we have more certainty in the estimates we make for the mean GPA for students who spend around 5 hours of homework each week than we do in students who only spend 1 hour aweek or those who spend 11 hours a week on homework.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="11">
+<li id="fn11"><p>The <code>df</code> value given in <code>glance()</code> corresponds to the overall number of coefficients being estimated in the model, which includes the intercept, and not the number of predictors.<a href="modinf.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>The confidence envelope can be omitted by using the argument <code>se=FALSE</code>.<a href="modinf.html#fnref12" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="coefinf.html"><button class="btn btn-default">Previous</button></a>
+<a href="references.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

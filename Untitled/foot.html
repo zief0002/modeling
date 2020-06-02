@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<script>
+var MyDate = new Date();
+var MyDateString;
+
+MyDate.setDate(MyDate.getDate());
+
+MyDateString = MyDate.getFullYear() + '-'
+             + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
+             + ('0' + MyDate.getDate()).slice(-2);
+</script>
+
+<div class="foot">
+	<hr> 
+	<p style="text-align: center;"> <span style="color: #808080; display: inline-block; width: 58%;"> 	This document was updated <script>document.write(MyDateString);</script>. 
+ </span></p>
+	<p style="text-align: center;">
+	</p>
+</div>

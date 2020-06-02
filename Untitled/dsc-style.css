@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald&display=swap');
+
+
+
+/*------------NAVBAR-------------*/
+.navbar-default {
+    background-color: #22222270;
+    border: none;
+}
+
+
+/*------------Main Document-------------*/
+
+body {
+	font-size: 16px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+p {
+  margin: 1em 0 1em 0 !important;
+}
+
+ul {
+  margin-bottom: 1em;
+}
+
+/*------------Heading Text-------------*/
+h1, h2, h3, h4, h5, h6 {
+  color: #03315d;
+  font-family: 'Oswald', sans-serif;
+  padding-top: 2em !important;
+  margin-top: -1em !important;
+}
+
+.container-fluid {  /* margin: 0 Left-aligns container; margin: auto to "center" (Default)*/
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+
+
+ /* unvisited link */
+a:link {
+  color: #ef3054;
+  text-decoration: underline;
+}
+
+/* visited link */
+a:visited {
+  color: #ef3054;
+  text-decoration: underline;
+}
+
+/* mouse over link */
+a:hover {
+  color: #ef3054;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* selected link */
+a:active {
+  color: #ef3054;
+  text-decoration: underline;
+}
+
+
+.row-fluid{
+  display: flex;
+  position: relative;
+}
+
+.col-xs-12.col-sm-4.col-md-3{
+  width: 35%; /* should agree with body width aka toc-content, overriding default 25% from cosmo theme */
+  position: relative;
+}
+
+/* TOC */
+
+#TOC::before {
+  content: "";
+  display: block; /*change from block to none for landing page */
+  height: 150px;
+  margin: 10px auto 0 40px; /*top right bottom left */
+  background-image: url("img/dsc-wav-medallion-small.png");
+  background-size: 120px;
+  background-position: left center;
+  background-repeat: no-repeat;
+}
+
+.nsf {
+  margin-top: 0;
+  margin-bottom: 50px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10pt;
+}
+
+.nsf-logo {
+  padding: 0 5px 5px 0; /*top right bottom left */
+  vertical-align: middle;
+  width: 45px;
+
+}
+
+div.tocify {
+    width: 100% !important;
+    max-width: 260px;
+    max-height: 85%;
+    font-size: 16px;
+}
+
+.tocify {
+  border: none;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  width: 100%;
+}
+
+#TOC {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  margin-left: auto !important;
+  margin-right: auto !important; /* to center the TOC within it's col-xs-12, etc. container */
+}
+
+.toc-content { /*actually, the body content*/
+  width: 65%
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: white;
+    border: none;
+    color: #2c4251;
+}
+
+.list-group-item:hover {
+    z-index: 2;
+    color: #a4243b;
+    background-color: white;
+    border: none;
+}
+
+.list-group-item.active{
+    z-index: 2;
+    color: #03315d;
+    font-weight: bold;
+    background-color: white;
+    border: none;
+}
+
+.list-group-item.active:focus {
+    z-index: 2;
+    color: #03315d;
+    background-color: white;
+    border: none;
+}
+
+.list-group-item.active:hover {
+  z-index: 2;
+  color: #03315d;
+  background-color: white;
+  border: none;
+}
+
+
+/*---------FOOTER-----------*/
+.foot_image {
+  width: 50px;
+  filter: grayscale(0%);
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.foot {
+  font-size: .75em;
+  text-transform: uppercase;
+  color: #5a5766;
+  text-align: center;
+}
+
+.foot hr{
+  width: 90%;
+}
+
+
+.tocify-extend-page {
+  height: 0px !important; /* Gets rid of extra space after footer*/
+}
+

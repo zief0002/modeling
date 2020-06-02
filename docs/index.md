@@ -1,7 +1,7 @@
 --- 
 title: "Statistical Modeling and Computation for Educational Scientists"
 author: "Andrew Zieffler"
-date: "2020-05-22"
+date: "2020-06-01"
 site: bookdown::bookdown_site
 output: 
   bookdown::html_book:
@@ -46,6 +46,7 @@ zief0002@umn.edu
 ## Colophon
 
 Artwork by [&commat;allison_horst](https://twitter.com/allison_horst)
+
 Icon and note ideas and prototypes by [Desirée De Leon](http://desiree.rbind.io/).
 
 The book is typeset using [Crimson Text](https://fonts.google.com/specimen/Crimson+Text) for the body font, [Raleway](https://fonts.google.com/specimen/Raleway) for the headings and [Sue Ellen Francisco](https://fonts.google.com/specimen/Sue+Ellen+Francisco) for the title. The color palette was generated using [coolors.co](https://coolors.co/).
