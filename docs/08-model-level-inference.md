@@ -47,12 +47,15 @@ lm.1 = lm(gpa ~ 1 + homework, data = keith)
 glance(lm.1)
 ```
 
+
 ```
-# A tibble: 1 x 11
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      <dbl>         <dbl> <dbl>     <dbl>   <dbl> <int>  <dbl> <dbl> <dbl>
-1     0.107        0.0981  7.24      11.8 8.85e-4     2  -339.  684.  691.
-# … with 2 more variables: deviance <dbl>, df.residual <int>
+# A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
+1     0.107        0.0981  7.24      11.8 0.000885     1  -339.  684.  691.
+  deviance df.residual  nobs
+     <dbl>       <int> <int>
+1    5136.          98   100
 ```
 
 The `r.squared` column indicates the proportion of variation in the outcome explained by differences in the predictor *in the sample*. Here, differences in time spent on homework explains 10.7\% of the variation in students' GPAs for the 100 students in the sample. The inferential question at the model-level is: *Does the model explain variation in the outcome, in the population?* This can formally be expressed in a statistical hypothesis as,
@@ -66,14 +69,14 @@ To test this, we need to be able to obtain the sampling distribution of $R^2$ to
 
 <div class="figure" style="text-align: center">
 <img src="figs/notes-07-thought-experiment-r2.png" alt="Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared." width="80%" />
-<p class="caption">(\#fig:unnamed-chunk-4)Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared.</p>
+<p class="caption">(\#fig:unnamed-chunk-5)Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared.</p>
 </div>
 
 Below is a density plot of the sampling distribution for $R^2$ based on 1,000 random samples of size 32 drawn from a population where $\rho^2=0$. (Not an infinite number of draws, but large enough that we should have an idea of what the distribution might look like.) 
 
 <div class="figure" style="text-align: center">
-<img src="08-model-level-inference_files/figure-html/unnamed-chunk-5-1.png" alt="Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\rho^2=0$." width="60%" />
-<p class="caption">Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\rho^2=0$.</p>
+<img src="08-model-level-inference_files/figure-html/unnamed-chunk-6-1.png" alt="Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\rho^2=0$." width="60%" />
+<p class="caption">(\#fig:unnamed-chunk-6)Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\rho^2=0$.</p>
 </div>
 
 Most of the $R^2$ values are near 0, although there is some variability that is due to sampling error. This sampling distribution is right-skewed. (WHY???) This means that we cannot use a $t$-distribution to model this distribution---remember the $t$-distribution is symmetric around zero. It turns out that this sampling distribution is better modeled using an $F$-distribution.
@@ -121,8 +124,8 @@ $$
 Thus, our observed *F*-value is: $F(1,98)=11.74$. To evaluate this under the null hypothesis, we find the area under the $F(1,98)$ density curve that corresponds to *F*-values *at least as extreme* as our observed *F*-value of 11.74.
 
 <div class="figure" style="text-align: center">
-<img src="08-model-level-inference_files/figure-html/unnamed-chunk-6-1.png" alt="Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74." width="50%" />
-<p class="caption">(\#fig:unnamed-chunk-6)Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74.</p>
+<img src="08-model-level-inference_files/figure-html/unnamed-chunk-7-1.png" alt="Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74." width="50%" />
+<p class="caption">(\#fig:unnamed-chunk-7)Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74.</p>
 </div>
 
 This area (which is one-sided in the $F$-distribution) corresponds to the $p$-value. In our case this $p$-value is 0.000885. The probability of observing an $F$-value at least as extreme as we the one we observed ($F=11.74$) under the assumption that the null hypothesis is true is 0.000885. This suggests that the empirical data are inconsistent with the hypothesis that $\rho^2=0$, and it is unlikely that the model explains no variation in students' GPAs. 
@@ -139,15 +142,20 @@ In practice, all of this information is provided in the output of the `glance()`
 glance(lm.1)
 ```
 
+
 ```
-# A tibble: 1 x 11
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      <dbl>         <dbl> <dbl>     <dbl>   <dbl> <int>  <dbl> <dbl> <dbl>
-1     0.107        0.0981  7.24      11.8 8.85e-4     2  -339.  684.  691.
-# … with 2 more variables: deviance <dbl>, df.residual <int>
+# A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
+1     0.107        0.0981  7.24      11.8 0.000885     1  -339.  684.  691.
+  deviance df.residual  nobs
+     <dbl>       <int> <int>
+1    5136.          98   100
 ```
 
-The observed *F*-value is given in the `statistic` column and the associated degrees of freedom are provided in the `df` and `df.residual` columns. Note that the value in the `df` column is one unit higher than it should be; the correct value for $\textit{df}_1$ is $2-1 = 1$.^[The `df` value given in `glance()` corresponds to the overall number of coefficients being estimated in the model, which includes the intercept, and not the number of predictors.] Lastly, the *p*-value is given in the `p.value` column.
+The observed *F*-value is given in the `statistic` column and the associated degrees of freedom are provided in the `df` and `df.residual` columns. Lastly, the *p*-value is given in the `p.value` column. When we report results from an *F*-test, we need to report the values for both degrees of freedom, the *F*-value, and the *p*-value. 
+
+> The model-level test suggested that the empirical data are not consistent with the null hypothesis that the model explains no variation in GPAs; $F(1,98)=11.8$, $p<0.001$.
 
 <br />
 
@@ -348,13 +356,17 @@ Lastly, we point out that in simple regression models (models with only one pred
 glance(lm.1)
 ```
 
+
 ```
-# A tibble: 1 x 11
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      <dbl>         <dbl> <dbl>     <dbl>   <dbl> <int>  <dbl> <dbl> <dbl>
-1     0.107        0.0981  7.24      11.8 8.85e-4     2  -339.  684.  691.
-# … with 2 more variables: deviance <dbl>, df.residual <int>
+# A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
+1     0.107        0.0981  7.24      11.8 0.000885     1  -339.  684.  691.
+  deviance df.residual  nobs
+     <dbl>       <int> <int>
+1    5136.          98   100
 ```
+
 
 ```r
 # Coefficient-level inference
@@ -381,14 +393,14 @@ Re-consider our thought experiment. Again, imagine you have a population that is
 
 <div class="figure" style="text-align: center">
 <img src="figs/notes-07-thought-experiment-confidence-envelope.png" alt="Thought experiment for sampling samples of size *n* from the population to obtain the fitted regression line." width="80%" />
-<p class="caption">(\#fig:unnamed-chunk-13)Thought experiment for sampling samples of size *n* from the population to obtain the fitted regression line.</p>
+<p class="caption">(\#fig:unnamed-chunk-17)Thought experiment for sampling samples of size *n* from the population to obtain the fitted regression line.</p>
 </div>
 
 Now, imagine superimposing all of these lines on the same plot. 
 
 <div class="figure" style="text-align: center">
 <img src="figs/notes-07-superimposed-lines.png" alt="Plot showing the fitted regression lines for many, many random samples of size *n*." width="50%" />
-<p class="caption">(\#fig:unnamed-chunk-14)Plot showing the fitted regression lines for many, many random samples of size *n*.</p>
+<p class="caption">(\#fig:unnamed-chunk-18)Plot showing the fitted regression lines for many, many random samples of size *n*.</p>
 </div>
 
 Examining where the sampled lines fall gives a visual interpretation of the uncertainty in the model. This two-dimensional display of uncertainty is referred to as a *confidence envelope*. In practice we estimate the uncertainty from the sample data and plot it around the fitted line from the sample.
@@ -406,8 +418,8 @@ ggplot(data = keith, aes(x = homework, y = gpa)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-model-level-inference_files/figure-html/unnamed-chunk-15-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed." width="50%" />
-<p class="caption">(\#fig:unnamed-chunk-15)GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed.</p>
+<img src="08-model-level-inference_files/figure-html/unnamed-chunk-19-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed." width="50%" />
+<p class="caption">(\#fig:unnamed-chunk-19)GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed.</p>
 </div>
 
 Note that we want to indicate the confidence envelope or make reference to the uncertainty in the figure caption. We pointed out that the confidence envelope indicates uncertainty by displaying the sampling variation associated with the location of the fitted regression line. 
@@ -417,8 +429,8 @@ We can also use this plot to make inferences about the mean $Y$-value conditione
 However, we also now understand that there is uncertainty associated with estimates obtained from sample data. How much uncertainty is there in that estimate of 81.6? We can use the bounds of the confidence envelope at $X=6$ to answer this question. The lower bound of the confidence envelope at $X=6$ is approximately 80 and the upper bound is approximately 83. This tells, based on the sample data, we think the mean GPA for students who spend 6 hours each week on homework is between 80 and 83. Graphically, we can see these values in the plot.
 
 <div class="figure" style="text-align: center">
-<img src="08-model-level-inference_files/figure-html/unnamed-chunk-16-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar." width="50%" />
-<p class="caption">(\#fig:unnamed-chunk-16)GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar.</p>
+<img src="08-model-level-inference_files/figure-html/unnamed-chunk-20-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar." width="50%" />
+<p class="caption">(\#fig:unnamed-chunk-20)GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar.</p>
 </div>
 
 This uncertainty estimate is technically a 95% confidence interval for the mean GPA for students who spend 6 hours each week on homework. As such, a more formal interpretation is:

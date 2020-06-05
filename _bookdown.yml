@@ -12,6 +12,7 @@ rmd_files: [
     "06-correlation.Rmd",
     "07-coefficient-level-inference.Rmd",
     "08-model-level-inference.Rmd",
+    "09-intro-to-multiple-regression.Rmd",
     "99-references.Rmd"
     ]
 clean: [packages.bib, bookdown.bbl]

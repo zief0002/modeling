@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-06-01" />
+<meta name="date" content="2020-06-05" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -113,6 +113,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <link rel="stylesheet" href="style/table-styles.css" type="text/css" />
 <link rel="stylesheet" href="style/syntax.css" type="text/css" />
 <link rel="stylesheet" href="style/navbar.css" type="text/css" />
+<link rel="stylesheet" href="style/notes.css" type="text/css" />
 
 <style type = "text/css">
 .main-container {
@@ -147,6 +148,7 @@ img {
 <li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
 <li><a href="coefinf.html#coefinf">Coefficient-Level Inference</a></li>
 <li><a href="modinf.html#modinf">Model-Level Inference</a></li>
+<li><a href="multreg.html#multreg">Introduction to Multiple Regression</a></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
 </div>
@@ -1049,14 +1051,14 @@ Figure 12: Plot displaying the OLS fitted regression line for the intercept-only
 \]</span></p>
 <div id="variation-accounted-for" class="section level3">
 <h3>Variation Accounted For</h3>
-<p>It is often convienient to express these values as proportions of the total variation. To do this we can divide each term in the partitioning by the totl sum of squares.</p>
+<p>It is often convienient to express these values as proportions of the total variation. To do this we can divide each term in the partitioning by the total sum of squares.</p>
 <p><span class="math display">\[
 \frac{\mathrm{SS_{\mathrm{Total}}}}{\mathrm{SS_{\mathrm{Total}}}} = \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}}
 \]</span></p>
 <p>Using the values from our example,</p>
 <p><span class="math display">\[
 \begin{split}
-\frac{6566}{6566} &amp;= \frac{4148}{6566} + \frac{2418}{6566} \\[1ex]
+\frac{6566}{6566} &amp;= \frac{4148}{6566} + \frac{2418}{6566} \\[2ex]
 1 &amp;= 0.632 + 0.368
 \end{split}
 \]</span></p>
@@ -1115,8 +1117,8 @@ R^2 = 0.795^2 = 0.632
 <p>Using the fact that <span class="math inline">\(R^2 = \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}}\)</span>, we can substitute this into the partitioning equation from earlier.</p>
 <p><span class="math display">\[
 \begin{split}
-\frac{\mathrm{SS_{\mathrm{Total}}}}{\mathrm{SS_{\mathrm{Total}}}} &amp;= \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[1ex]
-1 &amp;= R^2 + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[1ex]
+\frac{\mathrm{SS_{\mathrm{Total}}}}{\mathrm{SS_{\mathrm{Total}}}} &amp;= \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[2ex]
+1 &amp;= R^2 + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[2ex]
 1 - R^2 &amp;= \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} 
 \end{split}
 \]</span></p>

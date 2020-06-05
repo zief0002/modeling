@@ -70,13 +70,16 @@ We also create a table to present the correlation coefficients. This table could
 ```{r echo=FALSE}
 # Correlation
 table_01 = keith %>%
-  select(gpa, homework) %>%
-  correlate() %>%
-  shave(upper = TRUE) %>%
-  fashion(decimals = 2, na_print = "—") %>%
+  dplyr::select(gpa, homework) %>%
+  corrr::correlate() %>%
+  corrr::fashion(decimals = 2, na_print = "—") %>%
+  #shave(upper = TRUE) %>%
+  data.frame() %>%
   mutate(
     rowname = c("1. GPA", "2. Time spent on homework")
   )
+
+  
 
 table_01[1, 2] = "80.47 (7.62)"
 table_01[1, 3] = ""

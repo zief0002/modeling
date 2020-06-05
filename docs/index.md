@@ -1,7 +1,7 @@
 --- 
 title: "Statistical Modeling and Computation for Educational Scientists"
 author: "Andrew Zieffler"
-date: "2020-06-01"
+date: "2020-06-05"
 site: bookdown::bookdown_site
 output: 
   bookdown::html_book:
@@ -11,7 +11,8 @@ output:
     number_sections: FALSE
     split_by: chapter
     split_bib: yes
-    css: ['style/style.css', 'style/table-styles.css', 'style/syntax.css', 'style/navbar.css']
+    css: ['style/style.css', 'style/table-styles.css', 'style/syntax.css', 'style/navbar.css', 
+          'style/notes.css']
 documentclass: book
 bibliography: [book.bib, packages.bib, comparing-groups.bib, modeling.bib]
 csl: 'style/apa-single-spaced.csl'

@@ -509,7 +509,7 @@ $$
 
 ### Variation Accounted For
 
-It is often convienient to express these values as proportions of the total variation. To do this we can divide each term in the partitioning by the totl sum of squares.
+It is often convienient to express these values as proportions of the total variation. To do this we can divide each term in the partitioning by the total sum of squares.
 
 $$
 \frac{\mathrm{SS_{\mathrm{Total}}}}{\mathrm{SS_{\mathrm{Total}}}} = \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}}
@@ -519,7 +519,7 @@ Using the values from our example,
 
 $$
 \begin{split}
-\frac{6566}{6566} &= \frac{4148}{6566} + \frac{2418}{6566} \\[1ex]
+\frac{6566}{6566} &= \frac{4148}{6566} + \frac{2418}{6566} \\[2ex]
 1 &= 0.632 + 0.368
 \end{split}
 $$
@@ -590,8 +590,8 @@ Using the fact that $R^2 = \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\math
 
 $$
 \begin{split}
-\frac{\mathrm{SS_{\mathrm{Total}}}}{\mathrm{SS_{\mathrm{Total}}}} &= \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[1ex]
-1 &= R^2 + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[1ex]
+\frac{\mathrm{SS_{\mathrm{Total}}}}{\mathrm{SS_{\mathrm{Total}}}} &= \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[2ex]
+1 &= R^2 + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[2ex]
 1 - R^2 &= \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} 
 \end{split}
 $$

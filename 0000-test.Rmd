@@ -1,0 +1,24 @@
+# Test
+
+
+<table>
+<caption><strong>Regression Models Fitted to City Employee Data (n=32) Using Education Level and Seniority to Predict Income</strong></caption>
+<tr>
+  <th style="text-align:left"></td>
+  <th>Model 1</th>
+  <th>Model 2</th>
+  <th>Model 3</th>
+</tr>
+<tr><td style="text-align:left">Education level</td><td>2.651</td><td></td><td>2.252</td></tr>
+<tr><td style="text-align:left"></td><td>(0.370)</td><td></td><td>(0.335)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Seniority level</td><td></td><td>1.219</td><td>0.739</td></tr>
+<tr><td style="text-align:left"></td><td></td><td>(0.311)</td><td>(0.210)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td>11.321</td><td>35.690</td><td>6.769</td></tr>
+<tr><td style="text-align:left"></td><td>(6.123)</td><td>(5.073)</td><td>(5.373)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">R<sup>2</sup></td><td>0.632</td><td>0.339</td><td>0.742</td></tr>
+<tr><td style="text-align:left">Residual Std. Error</td><td>8.978 (df = 30)</td><td>12.031 (df = 30)</td><td>7.646 (df = 29)</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr>
+</table>

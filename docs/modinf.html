@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-06-01" />
+<meta name="date" content="2020-06-05" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -113,6 +113,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <link rel="stylesheet" href="style/table-styles.css" type="text/css" />
 <link rel="stylesheet" href="style/syntax.css" type="text/css" />
 <link rel="stylesheet" href="style/navbar.css" type="text/css" />
+<link rel="stylesheet" href="style/notes.css" type="text/css" />
 
 <style type = "text/css">
 .main-container {
@@ -147,6 +148,7 @@ img {
 <li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
 <li><a href="coefinf.html#coefinf">Coefficient-Level Inference</a></li>
 <li><a href="modinf.html#modinf">Model-Level Inference</a></li>
+<li><a href="multreg.html#multreg">Introduction to Multiple Regression</a></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
 </div>
@@ -185,27 +187,29 @@ img {
 <span id="cb71-3"><a href="modinf.html#cb71-3"></a></span>
 <span id="cb71-4"><a href="modinf.html#cb71-4"></a><span class="co"># Model-level output</span></span>
 <span id="cb71-5"><a href="modinf.html#cb71-5"></a><span class="kw">glance</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
-<pre><code># A tibble: 1 x 11
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     0.107        0.0981  7.24      11.8 8.85e-4     2  -339.  684.  691.
-# … with 2 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.107        0.0981  7.24      11.8 0.000885     1  -339.  684.  691.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    5136.          98   100</code></pre>
 <p>The <code>r.squared</code> column indicates the proportion of variation in the outcome explained by differences in the predictor <em>in the sample</em>. Here, differences in time spent on homework explains 10.7% of the variation in students’ GPAs for the 100 students in the sample. The inferential question at the model-level is: <em>Does the model explain variation in the outcome, in the population?</em> This can formally be expressed in a statistical hypothesis as,</p>
 <p><span class="math display">\[
 H_0: \rho^2 = 0
 \]</span></p>
 <p>To test this, we need to be able to obtain the sampling distribution of <span class="math inline">\(R^2\)</span> to estimate the uncertainty in the sample estimate. The thought experiment for this goes something like this: Imagine you have a population that is infinitely large. The observations in this population have two attributes, call them <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. There is NO relationship between these two attributes; <span class="math inline">\(\rho^2 = 0\)</span>. Randomly sample <span class="math inline">\(n\)</span> observations from the population. Fit the regression and compute the <span class="math inline">\(R^2\)</span> value. Repeat the process an infinite number of times.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
 <img src="figs/notes-07-thought-experiment-r2.png" alt="Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared." width="80%" />
 <p class="caption">
-Figure 9: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared.
+Figure 2: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared.
 </p>
 </div>
 <p>Below is a density plot of the sampling distribution for <span class="math inline">\(R^2\)</span> based on 1,000 random samples of size 32 drawn from a population where <span class="math inline">\(\rho^2=0\)</span>. (Not an infinite number of draws, but large enough that we should have an idea of what the distribution might look like.)</p>
-<div class="figure" style="text-align: center">
-<img src="08-model-level-inference_files/figure-html/unnamed-chunk-5-1.png" alt="Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\rho^2=0$." width="60%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
+<img src="08-model-level-inference_files/figure-html/unnamed-chunk-6-1.png" alt="Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\rho^2=0$." width="60%" />
 <p class="caption">
-Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where <span class="math inline">\(\rho^2=0\)</span>.
+Figure 13: Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where <span class="math inline">\(\rho^2=0\)</span>.
 </p>
 </div>
 <p>Most of the <span class="math inline">\(R^2\)</span> values are near 0, although there is some variability that is due to sampling error. This sampling distribution is right-skewed. (WHY???) This means that we cannot use a <span class="math inline">\(t\)</span>-distribution to model this distribution—remember the <span class="math inline">\(t\)</span>-distribution is symmetric around zero. It turns out that this sampling distribution is better modeled using an <span class="math inline">\(F\)</span>-distribution.</p>
@@ -238,10 +242,10 @@ F &amp;= \frac{0.107}{1 - 0.107} \times \frac{98}{1} \\[1em]
 \end{split}
 \]</span></p>
 <p>Thus, our observed <em>F</em>-value is: <span class="math inline">\(F(1,98)=11.74\)</span>. To evaluate this under the null hypothesis, we find the area under the <span class="math inline">\(F(1,98)\)</span> density curve that corresponds to <em>F</em>-values <em>at least as extreme</em> as our observed <em>F</em>-value of 11.74.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
-<img src="08-model-level-inference_files/figure-html/unnamed-chunk-6-1.png" alt="Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74." width="50%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<img src="08-model-level-inference_files/figure-html/unnamed-chunk-7-1.png" alt="Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74." width="50%" />
 <p class="caption">
-Figure 13: Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the <em>p</em>-value for a test evaluating whether the population rho-squared is zero using an observed <em>F</em>-value of 11.74.
+Figure 3: Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the <em>p</em>-value for a test evaluating whether the population rho-squared is zero using an observed <em>F</em>-value of 11.74.
 </p>
 </div>
 <p>This area (which is one-sided in the <span class="math inline">\(F\)</span>-distribution) corresponds to the <span class="math inline">\(p\)</span>-value. In our case this <span class="math inline">\(p\)</span>-value is 0.000885. The probability of observing an <span class="math inline">\(F\)</span>-value at least as extreme as we the one we observed (<span class="math inline">\(F=11.74\)</span>) under the assumption that the null hypothesis is true is 0.000885. This suggests that the empirical data are inconsistent with the hypothesis that <span class="math inline">\(\rho^2=0\)</span>, and it is unlikely that the model explains no variation in students’ GPAs.</p>
@@ -251,12 +255,17 @@ Figure 13: Plot of the probability curve for the F(1,98) distribution. The shade
 <h3>Using the <em>F</em>-distribution in Practice</h3>
 <p>In practice, all of this information is provided in the output of the <code>glance()</code> function.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="modinf.html#cb73-1"></a><span class="kw">glance</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
-<pre><code># A tibble: 1 x 11
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     0.107        0.0981  7.24      11.8 8.85e-4     2  -339.  684.  691.
-# … with 2 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
-<p>The observed <em>F</em>-value is given in the <code>statistic</code> column and the associated degrees of freedom are provided in the <code>df</code> and <code>df.residual</code> columns. Note that the value in the <code>df</code> column is one unit higher than it should be; the correct value for <span class="math inline">\(\textit{df}_1\)</span> is <span class="math inline">\(2-1 = 1\)</span>.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> Lastly, the <em>p</em>-value is given in the <code>p.value</code> column.</p>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.107        0.0981  7.24      11.8 0.000885     1  -339.  684.  691.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    5136.          98   100</code></pre>
+<p>The observed <em>F</em>-value is given in the <code>statistic</code> column and the associated degrees of freedom are provided in the <code>df</code> and <code>df.residual</code> columns. Lastly, the <em>p</em>-value is given in the <code>p.value</code> column. When we report results from an <em>F</em>-test, we need to report the values for both degrees of freedom, the <em>F</em>-value, and the <em>p</em>-value.</p>
+<blockquote>
+<p>The model-level test suggested that the empirical data are not consistent with the null hypothesis that the model explains no variation in GPAs; <span class="math inline">\(F(1,98)=11.8\)</span>, <span class="math inline">\(p&lt;0.001\)</span>.</p>
+</blockquote>
 <p><br /></p>
 </div>
 <div id="anova-decomposition" class="section level3">
@@ -382,11 +391,13 @@ Residuals 99 5752.9   58.11               </code></pre>
 <p>Lastly, we point out that in simple regression models (models with only one predictor), the results of the model-level inference (i.e., the <em>p</em>-value) is exactly the same as that for the coefficient-level inference for the slope.</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="modinf.html#cb83-1"></a><span class="co"># Model-level inference</span></span>
 <span id="cb83-2"><a href="modinf.html#cb83-2"></a><span class="kw">glance</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
-<pre><code># A tibble: 1 x 11
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     0.107        0.0981  7.24      11.8 8.85e-4     2  -339.  684.  691.
-# … with 2 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.107        0.0981  7.24      11.8 0.000885     1  -339.  684.  691.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    5136.          98   100</code></pre>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="modinf.html#cb85-1"></a><span class="co"># Coefficient-level inference</span></span>
 <span id="cb85-2"><a href="modinf.html#cb85-2"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code># A tibble: 2 x 5
@@ -401,40 +412,40 @@ Residuals 99 5752.9   58.11               </code></pre>
 <div id="confidence-envelope-for-the-model" class="section level2">
 <h2>Confidence Envelope for the Model</h2>
 <p>Re-consider our thought experiment. Again, imagine you have a population that is infinitely large. The observations in this population have two attributes, call them <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The relationship between these two attributes can be expressed via a regression equation as: <span class="math inline">\(\hat{Y}=\beta_0 + \beta_1(X)\)</span>. Randomly sample <span class="math inline">\(n\)</span> observations from the population, and compute the fitted regression equation, this time plotting the line (rather than only paying attention to the numerical estimates of the slope or intercept). Continue sampling from this population, each time drawing the fitted regression equation.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-17"></span>
 <img src="figs/notes-07-thought-experiment-confidence-envelope.png" alt="Thought experiment for sampling samples of size *n* from the population to obtain the fitted regression line." width="80%" />
 <p class="caption">
-Figure 14: Thought experiment for sampling samples of size <em>n</em> from the population to obtain the fitted regression line.
+Figure 15: Thought experiment for sampling samples of size <em>n</em> from the population to obtain the fitted regression line.
 </p>
 </div>
 <p>Now, imagine superimposing all of these lines on the same plot.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-18"></span>
 <img src="figs/notes-07-superimposed-lines.png" alt="Plot showing the fitted regression lines for many, many random samples of size *n*." width="50%" />
 <p class="caption">
-Figure 11: Plot showing the fitted regression lines for many, many random samples of size <em>n</em>.
+Figure 17: Plot showing the fitted regression lines for many, many random samples of size <em>n</em>.
 </p>
 </div>
 <p>Examining where the sampled lines fall gives a visual interpretation of the uncertainty in the model. This two-dimensional display of uncertainty is referred to as a <em>confidence envelope</em>. In practice we estimate the uncertainty from the sample data and plot it around the fitted line from the sample.</p>
-<p>For simple regression models, we can plot this directly by including the the <code>geom_smooth()</code> layer in our plot. This adds a smoother to the plot. To add the fitted simple regression line, we use the argument <code>method="lm"</code>. This will add the fitted regression line and confidence envelope to the plot based on fitting a linear model to the variables included in the <code>x=</code> and <code>y=</code> arguments in the aesthetic mapping defined in <code>aes()</code>.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> The color of the fitted line and of the confidence envelope can be set using <code>color=</code> and <code>fill=</code> respectively.</p>
+<p>For simple regression models, we can plot this directly by including the the <code>geom_smooth()</code> layer in our plot. This adds a smoother to the plot. To add the fitted simple regression line, we use the argument <code>method="lm"</code>. This will add the fitted regression line and confidence envelope to the plot based on fitting a linear model to the variables included in the <code>x=</code> and <code>y=</code> arguments in the aesthetic mapping defined in <code>aes()</code>.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> The color of the fitted line and of the confidence envelope can be set using <code>color=</code> and <code>fill=</code> respectively.</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="modinf.html#cb87-1"></a><span class="co"># Create plot</span></span>
 <span id="cb87-2"><a href="modinf.html#cb87-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> gpa)) <span class="op">+</span></span>
 <span id="cb87-3"><a href="modinf.html#cb87-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;#c62f4b&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;#696969&quot;</span>) <span class="op">+</span></span>
 <span id="cb87-4"><a href="modinf.html#cb87-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="op">+</span></span>
 <span id="cb87-5"><a href="modinf.html#cb87-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;GPA (on a 100-pt. scale)&quot;</span>) <span class="op">+</span></span>
 <span id="cb87-6"><a href="modinf.html#cb87-6"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
-<img src="08-model-level-inference_files/figure-html/unnamed-chunk-15-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed." width="50%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-19"></span>
+<img src="08-model-level-inference_files/figure-html/unnamed-chunk-19-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed." width="50%" />
 <p class="caption">
-Figure 12: GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed.
+Figure 16: GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed.
 </p>
 </div>
 <p>Note that we want to indicate the confidence envelope or make reference to the uncertainty in the figure caption. We pointed out that the confidence envelope indicates uncertainty by displaying the sampling variation associated with the location of the fitted regression line.</p>
 <p>We can also use this plot to make inferences about the mean <span class="math inline">\(Y\)</span>-value conditioned on <span class="math inline">\(X\)</span>. For example, using the fitted regression equation, the model predicts that the mean GPA for students who spend 6 hours each week on homework is 81.6. Graphically this is the point on the fitted regression line associated with <span class="math inline">\(X=6\)</span>.</p>
 <p>However, we also now understand that there is uncertainty associated with estimates obtained from sample data. How much uncertainty is there in that estimate of 81.6? We can use the bounds of the confidence envelope at <span class="math inline">\(X=6\)</span> to answer this question. The lower bound of the confidence envelope at <span class="math inline">\(X=6\)</span> is approximately 80 and the upper bound is approximately 83. This tells, based on the sample data, we think the mean GPA for students who spend 6 hours each week on homework is between 80 and 83. Graphically, we can see these values in the plot.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-16"></span>
-<img src="08-model-level-inference_files/figure-html/unnamed-chunk-16-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar." width="50%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-20"></span>
+<img src="08-model-level-inference_files/figure-html/unnamed-chunk-20-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar." width="50%" />
 <p class="caption">
-Figure 8: GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at <em>X</em>=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar.
+Figure 18: GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at <em>X</em>=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar.
 </p>
 </div>
 <p>This uncertainty estimate is technically a 95% confidence interval for the mean GPA for students who spend 6 hours each week on homework. As such, a more formal interpretation is:</p>
@@ -448,13 +459,12 @@ Figure 8: GPA plotted as a function of time spent on homework. The OLS regressio
 <div class="footnotes">
 <hr />
 <ol start="11">
-<li id="fn11"><p>The <code>df</code> value given in <code>glance()</code> corresponds to the overall number of coefficients being estimated in the model, which includes the intercept, and not the number of predictors.<a href="modinf.html#fnref11" class="footnote-back">↩︎</a></p></li>
-<li id="fn12"><p>The confidence envelope can be omitted by using the argument <code>se=FALSE</code>.<a href="modinf.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>The confidence envelope can be omitted by using the argument <code>se=FALSE</code>.<a href="modinf.html#fnref11" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">
 <a href="coefinf.html"><button class="btn btn-default">Previous</button></a>
-<a href="references.html"><button class="btn btn-default">Next</button></a>
+<a href="multreg.html"><button class="btn btn-default">Next</button></a>
 </p>
 </div>
 </div>

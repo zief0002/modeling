@@ -53,12 +53,20 @@ head(keith)
 
 In the [previous chapter](#coefinf), we looked at how to carry out statistical tests of hypotheses and quantify uncertainty associated with the coefficients in the simple regression model. Sometimes you are interested in the model as a whole, rather than the individual parameters. For example, you may be interested in whether a set of predictors *together* explains variation in the outcome. Model-level information is displayed using the `glance()` output from the **broom** package. Below we fit a model by regressing GPA on time spent on homework, store those results in an object called `lm.1`, and then print the model-level output.
 
-```{r}
+```{r eval=FALSE}
 # Fit regression model
 lm.1 = lm(gpa ~ 1 + homework, data = keith)
 
 # Model-level output
 glance(lm.1)
+```
+
+```{r echo=FALSE}
+# Fit regression model
+lm.1 = lm(gpa ~ 1 + homework, data = keith)
+
+# Model-level output
+print(glance(lm.1), width = Inf)
 ```
 
 The `r.squared` column indicates the proportion of variation in the outcome explained by differences in the predictor *in the sample*. Here, differences in time spent on homework explains 10.7\% of the variation in students' GPAs for the 100 students in the sample. The inferential question at the model-level is: *Does the model explain variation in the outcome, in the population?* This can formally be expressed in a statistical hypothesis as,
@@ -166,11 +174,17 @@ This area (which is one-sided in the $F$-distribution) corresponds to the $p$-va
 
 In practice, all of this information is provided in the output of the `glance()` function.
 
-```{r}
+```{r eval=FALSE}
 glance(lm.1)
 ```
 
-The observed *F*-value is given in the `statistic` column and the associated degrees of freedom are provided in the `df` and `df.residual` columns. Note that the value in the `df` column is one unit higher than it should be; the correct value for $\textit{df}_1$ is $2-1 = 1$.^[The `df` value given in `glance()` corresponds to the overall number of coefficients being estimated in the model, which includes the intercept, and not the number of predictors.] Lastly, the *p*-value is given in the `p.value` column.
+```{r echo=FALSE}
+print(glance(lm.1), width = Inf)
+```
+
+The observed *F*-value is given in the `statistic` column and the associated degrees of freedom are provided in the `df` and `df.residual` columns. Lastly, the *p*-value is given in the `p.value` column. When we report results from an *F*-test, we need to report the values for both degrees of freedom, the *F*-value, and the *p*-value. 
+
+> The model-level test suggested that the empirical data are not consistent with the null hypothesis that the model explains no variation in GPAs; $F(1,98)=11.8$, $p<0.001$.
 
 <br />
 
@@ -325,10 +339,17 @@ Remember the sum of squared residuals is $(Y_i - \hat{Y_i})^2$, but in the inter
 
 Lastly, we point out that in simple regression models (models with only one predictor), the results of the model-level inference (i.e., the *p*-value) is exactly the same as that for the coefficient-level inference for the slope. 
 
-```{r}
+```{r eval=FALSE}
 # Model-level inference
 glance(lm.1)
+```
 
+```{r echo=FALSE}
+# Model-level inference
+print(glance(lm.1), width = Inf)
+```
+
+```{r}
 # Coefficient-level inference
 tidy(lm.1)
 ```
