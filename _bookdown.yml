@@ -13,6 +13,7 @@ rmd_files: [
     "07-coefficient-level-inference.Rmd",
     "08-model-level-inference.Rmd",
     "09-intro-to-multiple-regression.Rmd",
+    "10-understanding-statistical-control.Rmd",
     "99-references.Rmd"
     ]
 clean: [packages.bib, bookdown.bbl]
