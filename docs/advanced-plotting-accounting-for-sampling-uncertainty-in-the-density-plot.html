@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Advanced Plotting: Accounting for Sampling Uncertainty in the Density Plot | Statistical Modeling and Computation for Educational Scientists" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="EPsy 8251 and 8252 Notes" />
+<meta name="github-repo" content="zief0002/modeling" />
+
+<meta name="author" content="Andrew Zieffler" />
+
+<meta name="date" content="2020-06-08" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="EPsy 8251 and 8252 Notes">
+
+<title>Advanced Plotting: Accounting for Sampling Uncertainty in the Density Plot | Statistical Modeling and Computation for Educational Scientists</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+<link rel="stylesheet" href="style/table-styles.css" type="text/css" />
+<link rel="stylesheet" href="style/syntax.css" type="text/css" />
+<link rel="stylesheet" href="style/navbar.css" type="text/css" />
+<link rel="stylesheet" href="style/notes.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#foreword">Foreword</a></li>
+<li><a href="preface.html#preface">Preface</a></li>
+<li><a href="slrd.html#slrd">Simple Linear Regression—Description</a></li>
+<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
+<li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
+<li><a href="coefinf.html#coefinf">Coefficient-Level Inference</a></li>
+<li><a href="modinf.html#modinf">Model-Level Inference</a></li>
+<li><a href="multreg.html#multreg">Introduction to Multiple Regression</a></li>
+<li><a href="statcontrol.html#statcontrol">Understanding Statistical Control</a></li>
+<li><a href="assumptions.html#assumptions">Assumptions Underlying the Regression Model</a></li>
+<li><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot">Advanced Plotting: Accounting for Sampling Uncertainty in the Density Plot</a></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot" class="section level1">
+<h1>Advanced Plotting: Accounting for Sampling Uncertainty in the Density Plot</h1>
+<p>So far, when we have evaluated the normality assumption we have relied on our intuition (and experience) about whether the density plot of the marginal distribution of residuals was close to (or at least close enough to) normal. One thing we could do to help with this evaluation is to include a reference line showing normality as a basis of comparison. For example, here we again plot the marginal distribution of the standardized residuals from the fitted multiple regression. But this time, we also include the normal reference density.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb13-1"></a><span class="co"># Density plot of the standardized residuals</span></span>
+<span id="cb13-2"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb13-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> out_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
+<span id="cb13-3"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb13-3"></a><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;#c62f4b&quot;</span>) <span class="op">+</span></span>
+<span id="cb13-4"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb13-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
+<span id="cb13-5"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb13-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb13-6"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb13-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Standardized residual&quot;</span>) <span class="op">+</span></span>
+<span id="cb13-7"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb13-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="11-assumptions_files/figure-html/unnamed-chunk-18-1.png" alt="Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry, solid line). The density for a ~N(0,1) distribution (black, dashed line) have been included as a comparative reference." width="50%" />
+<p class="caption">
+Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry, solid line). The density for a ~N(0,1) distribution (black, dashed line) have been included as a comparative reference.
+</p>
+</div>
+<p>The <code>stat_function()</code> layer uses the <code>dnorm()</code> function to plot the normal density. Since this is for the standardized residuals, we assume a mean of 0 and a standard deviation of 1 for this normal distribution. These parameters are included in the <code>args=list()</code> argument. The density of the standardized residuals is close to that for the normal distribution, although it is not perfect (e.g., flatter peak than normal). The big question is whether this deviation is more than we would expect because of sampling error?</p>
+<p>To answer this question, we need to be able to visualize the uncertainty that is due to sampling error. To include</p>
+<div class="figure" style="text-align: center">
+<img src="11-assumptions_files/figure-html/unnamed-chunk-19-1.png" alt="The density for a ~N(0,1) distribution (black, dashed line) and the sampling uncertainty associated with that normal distribution (blue shaded area)." width="50%" />
+<p class="caption">
+The density for a ~N(0,1) distribution (black, dashed line) and the sampling uncertainty associated with that normal distribution (blue shaded area).
+</p>
+</div>
+<p>In this plot, the black, dashed line corresponds to where the density curve would lie if the distribution was normally distributed. The blue shaded area is the confidence envelope for the normal distribution. In other words, it shows the area we would expect a density curve to lie in if it came from the normal distribution.</p>
+<p>To create this confidence envelope, we will use the <code>stat_density_confidence()</code> layer from the <strong>educate</strong> package (see below for instructions on how to install the <strong>educate</strong> package).</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb14-1"></a><span class="co"># Load library</span></span>
+<span id="cb14-2"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb14-2"></a><span class="kw">library</span>(educate)</span>
+<span id="cb14-3"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb14-3"></a></span>
+<span id="cb14-4"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb14-4"></a><span class="co"># Density plot of the studentized residuals</span></span>
+<span id="cb14-5"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb14-5"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> out_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
+<span id="cb14-6"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb14-6"></a><span class="st">  </span><span class="kw">stat_density_confidence</span>() <span class="op">+</span></span>
+<span id="cb14-7"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb14-7"></a><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;#c62f4b&quot;</span>) <span class="op">+</span></span>
+<span id="cb14-8"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb14-8"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb14-9"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb14-9"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Standardized residual&quot;</span>) <span class="op">+</span></span>
+<span id="cb14-10"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb14-10"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="11-assumptions_files/figure-html/unnamed-chunk-20-1.png" alt="Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area)." width="50%" />
+<p class="caption">
+Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area).
+</p>
+</div>
+<p>The raspberry line depicting the density of the marginal distribution of standardized residuals lies completely within the blue area. This suggests that the deviation we saw earlier from the normal distribution is consistent with just being sampling error. Thus we conclude that the normality assumption is tenable.</p>
+<p><br /></p>
+<div id="installing-the-educate-package" class="section level3">
+<h3>Installing the educate Package</h3>
+<p>The <strong>educate</strong> package is not available on CRAN, thus you cannot install it using the <code>Install</code> button in RStudio. To install this package, we need to use the <code>install_github()</code> function from the <strong>remotes</strong> package.</p>
+<ol style="list-style-type: decimal">
+<li>Use the <code>Install</code> button in RStudio to install the <strong>remotes</strong> package.</li>
+<li>Once the <strong>remotes</strong> package has successfully installed, use the following syntax to install the <strong>educate</strong> package:</li>
+</ol>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="advanced-plotting-accounting-for-sampling-uncertainty-in-the-density-plot.html#cb15-1"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;zief0002/educate&quot;</span>)</span></code></pre></div>
+
+</div>
+</div>
+<p style="text-align: center;">
+<a href="assumptions.html"><button class="btn btn-default">Previous</button></a>
+<a href="references.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

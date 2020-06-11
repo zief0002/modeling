@@ -1,7 +1,7 @@
 --- 
 title: "Statistical Modeling and Computation for Educational Scientists"
 author: "Andrew Zieffler"
-date: "2020-06-08"
+date: "2020-06-10"
 site: bookdown::bookdown_site
 output: 
   bookdown::html_book:
@@ -53,6 +53,13 @@ Icon and note ideas and prototypes by [Desirée De Leon](http://desiree.rbind.io
 The book is typeset using [Crimson Text](https://fonts.google.com/specimen/Crimson+Text) for the body font, [Raleway](https://fonts.google.com/specimen/Raleway) for the headings and [Sue Ellen Francisco](https://fonts.google.com/specimen/Sue+Ellen+Francisco) for the title. The color palette was generated using [coolors.co](https://coolors.co/).
 
 <br /><br />
+
+## Acknowledgments
+
+Many thanks to all the students in my courses who have been through previous iterations of this material. Your feedback has been invaluable, and you are the world's greatest copyeditors. In particular, I would like to thank the following students who have gone above and beyond in the feedback they have provided: Jonathan Brown, Amaniel Mrutu, Corrisa Rohloff, and Mireya Smith.
+
+<br /><br />
+
 
 
 

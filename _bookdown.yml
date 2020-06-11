@@ -14,6 +14,7 @@ rmd_files: [
     "08-model-level-inference.Rmd",
     "09-intro-to-multiple-regression.Rmd",
     "10-understanding-statistical-control.Rmd",
+    "11-assumptions.Rmd",
     "99-references.Rmd"
     ]
 clean: [packages.bib, bookdown.bbl]
