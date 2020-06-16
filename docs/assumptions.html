@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-06-10" />
+<meta name="date" content="2020-06-16" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -151,6 +151,7 @@ img {
 <li><a href="multreg.html#multreg">Introduction to Multiple Regression</a></li>
 <li><a href="statcontrol.html#statcontrol">Understanding Statistical Control</a></li>
 <li><a href="assumptions.html#assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
+<li><a href="dummy.html#dummy">Dummy Coding Categorical Predictors</a></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
 </div>
@@ -313,15 +314,15 @@ Figure 10: The left-hand plot shows conditional distributions of normally distri
 </div>
 <div id="empirically-evaluating-the-distributional-assumptions" class="section level2">
 <h2>Empirically Evaluating the Distributional Assumptions</h2>
-<p>We can use the residuals computed from the empirical data to evaluate the distributional assumptions of linearity, normality, and equal variances. (The assumption of independence is difficult to evaluate using the data, and is better left to a logical argument that refers to the study design.) Recall that the assumptions are about the residuals. To compute the residuals, we will use the <code>augment()</code> function from the <strong>broom</strong> package. We will also write those results into an object, <code>out_1</code>, so we can compute on it later.</p>
+<p>We can use the residuals computed from the empirical data to evaluate the distributional assumptions of linearity, normality, and equal variances. (The assumption of independence is difficult to evaluate using the data, and is better left to a logical argument that refers to the study design.) Recall that the assumptions are about the residuals. To compute the residuals, we will use the <code>augment()</code> function from the <strong>broom</strong> package. We will also write those results into an object, <code>aug_1</code>, so we can compute on it later.</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="assumptions.html#cb128-1"></a><span class="co"># Load library</span></span>
 <span id="cb128-2"><a href="assumptions.html#cb128-2"></a><span class="kw">library</span>(broom)</span>
 <span id="cb128-3"><a href="assumptions.html#cb128-3"></a></span>
 <span id="cb128-4"><a href="assumptions.html#cb128-4"></a><span class="co"># Augment the model to get residuals</span></span>
-<span id="cb128-5"><a href="assumptions.html#cb128-5"></a>out_<span class="dv">1</span> =<span class="st"> </span><span class="kw">augment</span>(lm<span class="fl">.1</span>)</span>
+<span id="cb128-5"><a href="assumptions.html#cb128-5"></a>aug_<span class="dv">1</span> =<span class="st"> </span><span class="kw">augment</span>(lm<span class="fl">.1</span>)</span>
 <span id="cb128-6"><a href="assumptions.html#cb128-6"></a></span>
 <span id="cb128-7"><a href="assumptions.html#cb128-7"></a><span class="co"># View augmented data</span></span>
-<span id="cb128-8"><a href="assumptions.html#cb128-8"></a><span class="kw">head</span>(out_<span class="dv">1</span>)</span></code></pre></div>
+<span id="cb128-8"><a href="assumptions.html#cb128-8"></a><span class="kw">head</span>(aug_<span class="dv">1</span>)</span></code></pre></div>
 <pre><code># A tibble: 6 x 8
     gpa homework .fitted .resid .std.resid   .hat .sigma  .cooksd
   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
@@ -334,14 +335,14 @@ Figure 10: The left-hand plot shows conditional distributions of normally distri
 <p>The cases in the augmented data frame are in the same order as the cases in the <code>keith</code> data frame. For example, the first case had a GPA of 78 and spent 2 hours a week on homework. The augmented data also includes several other useful measures for evaluating regression models. For now, we will focus on the <code>.fitted</code> column and the <code>.resid</code> column. Those columns contain the fitted values (<span class="math inline">\(\hat{Y_i}\)</span>) and the residuals for each case based on the model fitted in <code>lm.1</code>.</p>
 <p>We will examine two residual plots to help us evaluate the tenability of the assumptions: (1) a density plot of the marginal distribution of residuals, and (2) a scatterplot of the residuals versus the <em>X</em>-values. The density plot will allow us to eval;uate the normality assumption, and the scatterplot will allow us to evaluate the linearity and equal variances assumption. As we make these evaluations, remember that we do not have the entire population of residuals (we obtained our residuals by fitting a regression to a sample of data), so we do not expect that our residuals will actually meet the assumptions perfectly (remember, sampling error). Examining the sample residuals, is however, a reasonable way to evaluate the tenability of assumptions in practice. We just have to keep in mind that the sample residuals may deviate a bit from these assumptions.</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="assumptions.html#cb130-1"></a><span class="co"># Density plot of the residuals</span></span>
-<span id="cb130-2"><a href="assumptions.html#cb130-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> out_<span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .resid)) <span class="op">+</span></span>
+<span id="cb130-2"><a href="assumptions.html#cb130-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .resid)) <span class="op">+</span></span>
 <span id="cb130-3"><a href="assumptions.html#cb130-3"></a><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="op">+</span></span>
 <span id="cb130-4"><a href="assumptions.html#cb130-4"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
 <span id="cb130-5"><a href="assumptions.html#cb130-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Residual&quot;</span>) <span class="op">+</span></span>
 <span id="cb130-6"><a href="assumptions.html#cb130-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span>
 <span id="cb130-7"><a href="assumptions.html#cb130-7"></a></span>
 <span id="cb130-8"><a href="assumptions.html#cb130-8"></a><span class="co"># Scatterplot of the residuals versus X</span></span>
-<span id="cb130-9"><a href="assumptions.html#cb130-9"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> out_<span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> .resid)) <span class="op">+</span></span>
+<span id="cb130-9"><a href="assumptions.html#cb130-9"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> .resid)) <span class="op">+</span></span>
 <span id="cb130-10"><a href="assumptions.html#cb130-10"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb130-11"><a href="assumptions.html#cb130-11"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
 <span id="cb130-12"><a href="assumptions.html#cb130-12"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
@@ -369,14 +370,14 @@ t_{\epsilon} = \frac{\epsilon - 0}{\mathrm{\hat\sigma}_{\epsilon}}
 \]</span></p>
 <p>Since the <em>t</em>-distribution is also referred to as <em>Student’s distribution</em>, standardized residuals are also sometimes referred to as <em>studentized residuals</em>.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> What standardizing does for us is to put the residuals on a scale that uses the standard error. This allows us to judge whether particular residuals that look extreme (either highly positive or negative) are actually extreme or not. The standardized residuals are given in the augmented output in the <code>.std.resid</code> column.</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="assumptions.html#cb131-1"></a><span class="co"># Density plot of the residuals</span></span>
-<span id="cb131-2"><a href="assumptions.html#cb131-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> out_<span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
+<span id="cb131-2"><a href="assumptions.html#cb131-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
 <span id="cb131-3"><a href="assumptions.html#cb131-3"></a><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="op">+</span></span>
 <span id="cb131-4"><a href="assumptions.html#cb131-4"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
 <span id="cb131-5"><a href="assumptions.html#cb131-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Standardized residual&quot;</span>) <span class="op">+</span></span>
 <span id="cb131-6"><a href="assumptions.html#cb131-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span>
 <span id="cb131-7"><a href="assumptions.html#cb131-7"></a></span>
 <span id="cb131-8"><a href="assumptions.html#cb131-8"></a><span class="co"># Scatterplot of the residuals versus X</span></span>
-<span id="cb131-9"><a href="assumptions.html#cb131-9"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> out_<span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> .std.resid)) <span class="op">+</span></span>
+<span id="cb131-9"><a href="assumptions.html#cb131-9"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> .std.resid)) <span class="op">+</span></span>
 <span id="cb131-10"><a href="assumptions.html#cb131-10"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb131-11"><a href="assumptions.html#cb131-11"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
 <span id="cb131-12"><a href="assumptions.html#cb131-12"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
@@ -390,7 +391,7 @@ Figure 11: LEFT: Density plot of the marginal distribution of standardized resid
 </div>
 <p>The only thing that has changed between these plots and the previous plots of the unstandardized residuals is the scale. However, now we can identify observations with extreme residuals, because we can make use of the fact that most of the residuals (~95%) should fall within two standard errors from the mean of 0. There are four students who have residuals of more than two standard errors. Given that we have <span class="math inline">\(N=100\)</span> observations, it is not surprising to see four observations more extreme than two standard errors; remember we expect to see 5% just by random chance. If observations have really extreme residuals (e.g., <span class="math inline">\(|t_{\epsilon}|&gt;3.5\)</span>), it is often worth a second look since these extreme observations are interesting and may point to something going on in the data.</p>
 <p>We can also <code>filter()</code> the augmented data to find these observations and to determine the exact value of the standardized residuals. Recall that the vertical line (<code>|</code>) means “OR”.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="assumptions.html#cb132-1"></a>out_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="assumptions.html#cb132-1"></a>aug_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb132-2"><a href="assumptions.html#cb132-2"></a><span class="st">  </span><span class="kw">filter</span>(.std.resid <span class="op">&lt;=</span><span class="st"> </span><span class="dv">-2</span> <span class="op">|</span><span class="st"> </span>.std.resid <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code># A tibble: 4 x 8
     gpa homework .fitted .resid .std.resid   .hat .sigma .cooksd
@@ -423,8 +424,8 @@ Figure 8: A visual depiction of the multiple regression model’s assumptions.
 <span id="cb134-2"><a href="assumptions.html#cb134-2"></a>lm<span class="fl">.2</span> =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework <span class="op">+</span><span class="st"> </span>parent_ed, <span class="dt">data =</span> keith)</span>
 <span id="cb134-3"><a href="assumptions.html#cb134-3"></a></span>
 <span id="cb134-4"><a href="assumptions.html#cb134-4"></a><span class="co"># Augment the model to obtain the fitted values and residuals</span></span>
-<span id="cb134-5"><a href="assumptions.html#cb134-5"></a>out_<span class="dv">2</span> =<span class="st"> </span><span class="kw">augment</span>(lm<span class="fl">.2</span>)</span>
-<span id="cb134-6"><a href="assumptions.html#cb134-6"></a><span class="kw">head</span>(out_<span class="dv">2</span>)</span></code></pre></div>
+<span id="cb134-5"><a href="assumptions.html#cb134-5"></a>aug_<span class="dv">2</span> =<span class="st"> </span><span class="kw">augment</span>(lm<span class="fl">.2</span>)</span>
+<span id="cb134-6"><a href="assumptions.html#cb134-6"></a><span class="kw">head</span>(aug_<span class="dv">2</span>)</span></code></pre></div>
 <pre><code># A tibble: 6 x 9
     gpa homework parent_ed .fitted .resid .std.resid   .hat .sigma  .cooksd
   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
@@ -434,15 +435,15 @@ Figure 8: A visual depiction of the multiple regression model’s assumptions.
 4    89        5        13    79.5  -9.52      1.35  0.0130   7.06 0.00801 
 5    82        3        16    80.1  -1.88      0.270 0.0390   7.13 0.000988
 6    77        4        13    78.5   1.50     -0.213 0.0145   7.13 0.000221</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="assumptions.html#cb136-1"></a><span class="co"># Density plot of the studentized residuals</span></span>
-<span id="cb136-2"><a href="assumptions.html#cb136-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> out_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="assumptions.html#cb136-1"></a><span class="co"># Density plot of the standardized residuals</span></span>
+<span id="cb136-2"><a href="assumptions.html#cb136-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
 <span id="cb136-3"><a href="assumptions.html#cb136-3"></a><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;#c62f4b&quot;</span>) <span class="op">+</span></span>
 <span id="cb136-4"><a href="assumptions.html#cb136-4"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
 <span id="cb136-5"><a href="assumptions.html#cb136-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Standardized residual&quot;</span>) <span class="op">+</span></span>
 <span id="cb136-6"><a href="assumptions.html#cb136-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span>
 <span id="cb136-7"><a href="assumptions.html#cb136-7"></a></span>
 <span id="cb136-8"><a href="assumptions.html#cb136-8"></a><span class="co"># Plot the standardized residuals versus the fitted values</span></span>
-<span id="cb136-9"><a href="assumptions.html#cb136-9"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> out_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .std.resid)) <span class="op">+</span></span>
+<span id="cb136-9"><a href="assumptions.html#cb136-9"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .std.resid)) <span class="op">+</span></span>
 <span id="cb136-10"><a href="assumptions.html#cb136-10"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb136-11"><a href="assumptions.html#cb136-11"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
 <span id="cb136-12"><a href="assumptions.html#cb136-12"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
@@ -479,7 +480,7 @@ Y_i = \beta_0 + \beta_1(X_{1i}) + \beta_2(X_{2i}) + \ldots + \beta_k(X_{ki}) + \
 <h2>Advanced Plotting: Accounting for Sampling Uncertainty in the Density Plot</h2>
 <p>So far, when we have evaluated the normality assumption we have relied on our intuition (and experience) about whether the density plot of the marginal distribution of residuals was close to (or at least close enough to) normal. One thing we could do to help with this evaluation is to include a reference line showing normality as a basis of comparison. For example, here we again plot the marginal distribution of the standardized residuals from the fitted multiple regression. But this time, we also include the normal reference density.</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="assumptions.html#cb137-1"></a><span class="co"># Density plot of the standardized residuals</span></span>
-<span id="cb137-2"><a href="assumptions.html#cb137-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> out_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
+<span id="cb137-2"><a href="assumptions.html#cb137-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
 <span id="cb137-3"><a href="assumptions.html#cb137-3"></a><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;#c62f4b&quot;</span>) <span class="op">+</span></span>
 <span id="cb137-4"><a href="assumptions.html#cb137-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
 <span id="cb137-5"><a href="assumptions.html#cb137-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
@@ -500,13 +501,13 @@ Figure 16: The density for a ~N(0,1) distribution (black, dashed line) and the s
 </p>
 </div>
 <p>In this plot, the black, dashed line corresponds to where the density curve would lie if the distribution was normally distributed. The blue shaded area is the confidence envelope for the normal distribution. In other words, it shows the area we would expect a density curve to lie in if it came from the normal distribution.</p>
-<p>To create this confidence envelope, we will use the <code>stat_density_confidence()</code> layer from the <strong>educate</strong> package (see below for instructions on how to install the <strong>educate</strong> package).</p>
+<p>To create this confidence envelope, we will use the <code>stat_density_confidence()</code> layer from the <strong>educate</strong> package (see below for instructions on how to install the <strong>educate</strong> package). We provide this layer the argument <code>model = "normal"</code>.</p>
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="assumptions.html#cb138-1"></a><span class="co"># Load library</span></span>
 <span id="cb138-2"><a href="assumptions.html#cb138-2"></a><span class="kw">library</span>(educate)</span>
 <span id="cb138-3"><a href="assumptions.html#cb138-3"></a></span>
-<span id="cb138-4"><a href="assumptions.html#cb138-4"></a><span class="co"># Density plot of the studentized residuals</span></span>
-<span id="cb138-5"><a href="assumptions.html#cb138-5"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> out_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
-<span id="cb138-6"><a href="assumptions.html#cb138-6"></a><span class="st">  </span><span class="kw">stat_density_confidence</span>() <span class="op">+</span></span>
+<span id="cb138-4"><a href="assumptions.html#cb138-4"></a><span class="co"># Density plot of the standardized residuals</span></span>
+<span id="cb138-5"><a href="assumptions.html#cb138-5"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
+<span id="cb138-6"><a href="assumptions.html#cb138-6"></a><span class="st">  </span><span class="kw">stat_density_confidence</span>(<span class="dt">model =</span> <span class="st">&quot;normal&quot;</span>) <span class="op">+</span></span>
 <span id="cb138-7"><a href="assumptions.html#cb138-7"></a><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;#c62f4b&quot;</span>) <span class="op">+</span></span>
 <span id="cb138-8"><a href="assumptions.html#cb138-8"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
 <span id="cb138-9"><a href="assumptions.html#cb138-9"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Standardized residual&quot;</span>) <span class="op">+</span></span>
@@ -534,7 +535,7 @@ Figure 18: Density plot of the marginal distribution of standardized residuals f
 <h2>Advanced Plotting: Loess Smooth to Help Evaluate Linearity</h2>
 <p>In the scatterplot of the standardized residuals versus the fitted values, we would expect that the average value of the residual at a given fitted value would be 0. The loess smoother helps us visualize the mean pattern in the actual data. We can then compare this to what would be expected (a constant mean pattern of 0) to evaluate the linearity assumption.</p>
 <p>To add a loess smoother, we use the <code>geom_smooth()</code> function with the argument <code>method="loess"</code>. This will plot the loess line and also the confidence envelope around that loess line. This gives us an indication of the mean pattern in the data and its uncertainty. We would hope to see the line <span class="math inline">\(Y=0\)</span> (our expected pattern under linearity) encompassed in the uncertainty.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="assumptions.html#cb140-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> out_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .std.resid)) <span class="op">+</span></span>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="assumptions.html#cb140-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .std.resid)) <span class="op">+</span></span>
 <span id="cb140-2"><a href="assumptions.html#cb140-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb140-3"><a href="assumptions.html#cb140-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>) <span class="op">+</span></span>
 <span id="cb140-4"><a href="assumptions.html#cb140-4"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
@@ -559,11 +560,11 @@ Figure 21: Scatterplot of the standardized residuals versus the fitted values fr
 </ol>
 <p>Since the original data set does not include an ID variable (e.g., names), we will use the row number from the original data as the ID. In other words the student in the first row will have an ID of 1, the student in the second row will have an ID of 2, etc.</p>
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="assumptions.html#cb141-1"></a><span class="co"># Create ID variable in the augmented data</span></span>
-<span id="cb141-2"><a href="assumptions.html#cb141-2"></a>out_<span class="dv">2</span> =<span class="st"> </span>out_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb141-2"><a href="assumptions.html#cb141-2"></a>aug_<span class="dv">2</span> =<span class="st"> </span>aug_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb141-3"><a href="assumptions.html#cb141-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">row.names</span>(keith))</span>
 <span id="cb141-4"><a href="assumptions.html#cb141-4"></a></span>
 <span id="cb141-5"><a href="assumptions.html#cb141-5"></a><span class="co"># View new data</span></span>
-<span id="cb141-6"><a href="assumptions.html#cb141-6"></a><span class="kw">head</span>(out_<span class="dv">2</span>)</span></code></pre></div>
+<span id="cb141-6"><a href="assumptions.html#cb141-6"></a><span class="kw">head</span>(aug_<span class="dv">2</span>)</span></code></pre></div>
 <pre><code># A tibble: 6 x 10
     gpa homework parent_ed .fitted .resid .std.resid   .hat .sigma .cooksd id   
   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;
@@ -574,7 +575,7 @@ Figure 21: Scatterplot of the standardized residuals versus the fitted values fr
 5    82        3        16    80.1  -1.88      0.270 0.0390   7.13 9.88e-4 5    
 6    77        4        13    78.5   1.50     -0.213 0.0145   7.13 2.21e-4 6    </code></pre>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="assumptions.html#cb143-1"></a><span class="co"># Plot the id variable as text rather than points in the scatterplot</span></span>
-<span id="cb143-2"><a href="assumptions.html#cb143-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> out_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .std.resid)) <span class="op">+</span></span>
+<span id="cb143-2"><a href="assumptions.html#cb143-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .std.resid)) <span class="op">+</span></span>
 <span id="cb143-3"><a href="assumptions.html#cb143-3"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> id), <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></span>
 <span id="cb143-4"><a href="assumptions.html#cb143-4"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
 <span id="cb143-5"><a href="assumptions.html#cb143-5"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
@@ -590,10 +591,10 @@ Figure 22: Scatterplot of the standardized residuals versus the fitted values fr
 </div>
 <p>We can also plot points for some students and ID label for other students. For example, suppose we wanted to give the ID number for only those students with a standardized residual that was less than <span class="math inline">\(-2\)</span> or greater than 2, and plot a point otherwise. To do this, we would create the ID variable in the augmented data (which we have already done), then split the data frame into two data frames: one for those students with extreme residuals and one for those that have a non-extreme residual. Then we will call <code>geom_point()</code> for those in the non-extreme data set, and <code>geom_text()</code> for those in the extreme set. We do this by including a <code>data=</code> argument in one of those functions to reference a different data frame.</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="assumptions.html#cb144-1"></a><span class="co"># Create different data sets for the extreme and non-extreme observations</span></span>
-<span id="cb144-2"><a href="assumptions.html#cb144-2"></a>extreme =<span class="st"> </span>out_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb144-2"><a href="assumptions.html#cb144-2"></a>extreme =<span class="st"> </span>aug_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb144-3"><a href="assumptions.html#cb144-3"></a><span class="st">  </span><span class="kw">filter</span>(.std.resid <span class="op">&lt;=</span><span class="st"> </span><span class="dv">-2</span> <span class="op">|</span><span class="st"> </span>.std.resid <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span>)</span>
 <span id="cb144-4"><a href="assumptions.html#cb144-4"></a></span>
-<span id="cb144-5"><a href="assumptions.html#cb144-5"></a>nonextreme =<span class="st"> </span>out_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb144-5"><a href="assumptions.html#cb144-5"></a>nonextreme =<span class="st"> </span>aug_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb144-6"><a href="assumptions.html#cb144-6"></a><span class="st">  </span><span class="kw">filter</span>(.std.resid <span class="op">&gt;</span><span class="st"> </span><span class="dv">-2</span> <span class="op">&amp;</span><span class="st"> </span>.std.resid <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</span>
 <span id="cb144-7"><a href="assumptions.html#cb144-7"></a></span>
 <span id="cb144-8"><a href="assumptions.html#cb144-8"></a><span class="co"># Plot using text for the extreme observations and points for the non-extreme</span></span>
@@ -625,7 +626,7 @@ Figure 23: Scatterplot of the standardized residuals versus the fitted values fr
 </div>
 <p style="text-align: center;">
 <a href="statcontrol.html"><button class="btn btn-default">Previous</button></a>
-<a href="references.html"><button class="btn btn-default">Next</button></a>
+<a href="dummy.html"><button class="btn btn-default">Next</button></a>
 </p>
 </div>
 </div>
