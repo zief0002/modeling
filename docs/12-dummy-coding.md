@@ -200,6 +200,10 @@ tidy(lm.1)
 2 indicator       2.85      1.18      2.41 0.0222 
 ```
 
+:::fyi
+Chaining the `glance()` output in the `print()` function allows us to include the argument `width=Inf`. This argument prints ALL the columns from the `glance()` output instead of truncating the output. This hack can also be used to print all of the columns from a data frame that gets truncated as well.
+:::
+
 Differences in these indicator values (i.e., educational sector) explain 15.75\% of the variation in graduation rates. This is statistically reliable, $F(1, 31) = 5.80$, $p=0.022$. Interpreting the coefficients,
 
 - The average graduation rate for schools coded as 0 on the indicator variable is 36.8\% ($t(31)=3.54$, $p = 0.001$). Since the mapping we used (5 and 10) did not include 0, the intercept and inferential information related to the intercept are meaningless.

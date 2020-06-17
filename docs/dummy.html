@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-06-16" />
+<meta name="date" content="2020-06-17" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -152,6 +152,7 @@ img {
 <li><a href="statcontrol.html#statcontrol">Understanding Statistical Control</a></li>
 <li><a href="assumptions.html#assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
 <li><a href="dummy.html#dummy">Dummy Coding Categorical Predictors</a></li>
+<li><a href="polychotomous.html#polychotomous">Polychotomous Categorical Predictors</a></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
 </div>
@@ -325,6 +326,9 @@ Public
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 1 (Intercept)    36.8      10.4       3.54 0.00129
 2 indicator       2.85      1.18      2.41 0.0222 </code></pre>
+<div class="fyi">
+<p>Chaining the <code>glance()</code> output in the <code>print()</code> function allows us to include the argument <code>width=Inf</code>. This argument prints ALL the columns from the <code>glance()</code> output instead of truncating the output. This hack can also be used to print all of the columns from a data frame that gets truncated as well.</p>
+</div>
 <p>Differences in these indicator values (i.e., educational sector) explain 15.75% of the variation in graduation rates. This is statistically reliable, <span class="math inline">\(F(1, 31) = 5.80\)</span>, <span class="math inline">\(p=0.022\)</span>. Interpreting the coefficients,</p>
 <ul>
 <li>The average graduation rate for schools coded as 0 on the indicator variable is 36.8% (<span class="math inline">\(t(31)=3.54\)</span>, <span class="math inline">\(p = 0.001\)</span>). Since the mapping we used (5 and 10) did not include 0, the intercept and inferential information related to the intercept are meaningless.</li>
@@ -1009,7 +1013,7 @@ Figure 25: Predicted graduation rate as a function of median SAT scores for publ
 </div>
 <p style="text-align: center;">
 <a href="assumptions.html"><button class="btn btn-default">Previous</button></a>
-<a href="references.html"><button class="btn btn-default">Next</button></a>
+<a href="polychotomous.html"><button class="btn btn-default">Next</button></a>
 </p>
 </div>
 </div>
