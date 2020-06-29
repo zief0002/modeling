@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-06-17" />
+<meta name="date" content="2020-06-29" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -153,6 +153,7 @@ img {
 <li><a href="assumptions.html#assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
 <li><a href="dummy.html#dummy">Dummy Coding Categorical Predictors</a></li>
 <li><a href="polychotomous.html#polychotomous">Polychotomous Categorical Predictors</a></li>
+<li><a href="interaction-01.html#interaction-01">Introduction to Interaction Effects</a></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
 </div>
@@ -162,7 +163,7 @@ img {
 <div class="col-sm-12">
 <div id="polychotomous" class="section level1">
 <h1>Polychotomous Categorical Predictors</h1>
-<p>In this chapter, you will learn about how to include categorical predictors with more than two categories in the regression model. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/substance-family.csv">substance-family.csv</a> data to examine whether family structure affects adolescents’ use of illegal substances (cigarettes, alcohol, and marijuana; see the <a href="http://zief0002.github.io/epsy-8251/codebooks/substance-family.html">data codebook</a>). In particular we will evaluate whether adolescents from intact families use differeing amounts of substances than adolescents from non-intact families.</p>
+<p>In this chapter, you will learn about how to include categorical predictors with more than two categories in the regression model. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/substance-family.csv">substance-family.csv</a> data to examine whether family structure affects adolescents’ use of illegal substances (cigarettes, alcohol, and marijuana; see the <a href="http://zief0002.github.io/epsy-8251/codebooks/substance-family.html">data codebook</a>). In particular we will evaluate whether adolescents from intact families use differing amounts of substances than adolescents from non-intact families.</p>
 <p>To begin, we will load several libraries and import the data into an object called <code>family</code>.</p>
 <div class="fyi">
 <p>The <strong>tidyverse</strong> library is a meta-package that includes <strong>dplyr</strong>, <strong>forcats</strong>, <strong>ggplot2</strong>, <strong>purrr</strong>, <strong>readr</strong>, <strong>stringr</strong>, <strong>tibble</strong>, and <strong>tidyr</strong>. Loading <strong>tidyverse</strong> allows you to use all of the functionality in these other packages without having to load eight different packages.</p>
@@ -1001,7 +1002,7 @@ p_{\mathrm{adjusted}} = \frac{k \times p_{\mathrm{unadjusted}}}{\mathrm{Rank}}
 </div>
 <p style="text-align: center;">
 <a href="dummy.html"><button class="btn btn-default">Previous</button></a>
-<a href="references.html"><button class="btn btn-default">Next</button></a>
+<a href="interaction-01.html"><button class="btn btn-default">Next</button></a>
 </p>
 </div>
 </div>

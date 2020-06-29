@@ -31,7 +31,7 @@ opts_chunk$set(
 ```
 
 
-In this chapter, you will learn about how to include categorical predictors with more than two categories in the regression model. To do so, we will use the [substance-family.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/substance-family.csv) data to examine whether family structure affects adolescents' use of illegal substances (cigarettes, alcohol, and marijuana; see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/substance-family.html)). In particular we will evaluate whether adolescents from intact families use differeing amounts of substances than adolescents from non-intact families.
+In this chapter, you will learn about how to include categorical predictors with more than two categories in the regression model. To do so, we will use the [substance-family.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/substance-family.csv) data to examine whether family structure affects adolescents' use of illegal substances (cigarettes, alcohol, and marijuana; see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/substance-family.html)). In particular we will evaluate whether adolescents from intact families use differing amounts of substances than adolescents from non-intact families.
 
 To begin, we will load several libraries and import the data into an object called `family`.
 
