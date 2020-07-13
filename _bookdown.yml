@@ -18,6 +18,7 @@ rmd_files: [
     "12-dummy-coding.Rmd",
     "13-polychotomous.Rmd",
     "14-interaction-effects.Rmd",
+    "15-more-interaction-effects.Rmd",
     "99-references.Rmd"
     ]
 clean: [packages.bib, bookdown.bbl]

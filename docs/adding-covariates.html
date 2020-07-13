@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Adding Covariates | Statistical Modeling and Computation for Educational Scientists" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="EPsy 8251 and 8252 Notes" />
+<meta name="github-repo" content="zief0002/modeling" />
+
+<meta name="author" content="Andrew Zieffler" />
+
+<meta name="date" content="2020-06-29" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="EPsy 8251 and 8252 Notes">
+
+<title>Adding Covariates | Statistical Modeling and Computation for Educational Scientists</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+<link rel="stylesheet" href="style/table-styles.css" type="text/css" />
+<link rel="stylesheet" href="style/syntax.css" type="text/css" />
+<link rel="stylesheet" href="style/navbar.css" type="text/css" />
+<link rel="stylesheet" href="style/notes.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#foreword">Foreword</a></li>
+<li><a href="preface.html#preface">Preface</a></li>
+<li><a href="slrd.html#slrd">Simple Linear Regression—Description</a></li>
+<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
+<li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
+<li><a href="coefinf.html#coefinf">Coefficient-Level Inference</a></li>
+<li><a href="modinf.html#modinf">Model-Level Inference</a></li>
+<li><a href="multreg.html#multreg">Introduction to Multiple Regression</a></li>
+<li><a href="statcontrol.html#statcontrol">Understanding Statistical Control</a></li>
+<li><a href="assumptions.html#assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
+<li><a href="dummy.html#dummy">Dummy Coding Categorical Predictors</a></li>
+<li><a href="polychotomous.html#polychotomous">Polychotomous Categorical Predictors</a></li>
+<li><a href="interaction-01.html#interaction-01">Introduction to Interaction Effects</a></li>
+<li><a href="interaction-02.html#interaction-02">More Interaction Effects</a></li>
+<li><a href="adding-covariates.html#adding-covariates">Adding Covariates</a></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="adding-covariates" class="section level1">
+<h1>Adding Covariates</h1>
+<p>Is there an interaction between contraception use and female education level on fertility rates after we control for differences in infant mortality rate?</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="adding-covariates.html#cb13-1"></a><span class="co"># Fit model</span></span>
+<span id="cb13-2"><a href="adding-covariates.html#cb13-2"></a>lm.b =<span class="st"> </span><span class="kw">lm</span>(fertility_rate <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>educ_female <span class="op">+</span><span class="st"> </span>contraceptive <span class="op">+</span><span class="st"> </span>infant_mortality <span class="op">+</span><span class="st"> </span>educ_female<span class="op">:</span>contraceptive, <span class="dt">data =</span> fert)</span>
+<span id="cb13-3"><a href="adding-covariates.html#cb13-3"></a></span>
+<span id="cb13-4"><a href="adding-covariates.html#cb13-4"></a><span class="co"># Model-level output</span></span>
+<span id="cb13-5"><a href="adding-covariates.html#cb13-5"></a><span class="kw">glance</span>(lm.b)</span></code></pre></div>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.748         0.739 0.708      88.2 1.18e-34     4  -131.  273.  290.
+# … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="adding-covariates.html#cb15-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb15-2"><a href="adding-covariates.html#cb15-2"></a><span class="kw">tidy</span>(lm.b)</span></code></pre></div>
+<pre><code># A tibble: 5 x 5
+  term                      estimate std.error statistic  p.value
+  &lt;chr&gt;                        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)                4.82     0.574         8.41 1.05e-13
+2 educ_female               -0.271    0.0629       -4.31 3.45e- 5
+3 contraceptive             -0.0317   0.00811      -3.91 1.55e- 4
+4 infant_mortality           0.0212   0.00494       4.30 3.55e- 5
+5 educ_female:contraceptive  0.00246  0.000966      2.55 1.20e- 2</code></pre>
+<p>Model B explains 74.8% of the variation in fertility rates which is inconsistent with the null hypothesis that the model explains no variation; <span class="math inline">\(F(4,119)=88.16\)</span>, <span class="math inline">\(p&lt;.001\)</span>.</p>
+<p>To examine whether there is an interaction effect, after controlling for differences in infant mortality rates, we again evaluate the evidence from the coefficient-level output. Based on the <em>p</em>-value associated with the interaction term (<span class="math inline">\(p=.012\)</span>), the empirical evidence is consistent with there being an interaction effect between contraceptive use and female level of education, after controlling for differences in countries’ infant mortality rates.</p>
+<p>How would we interpret the effects in the model?</p>
+<ul>
+<li><strong>Female education level:</strong> Since this effect is part of an interaction term, we would interpret the interaction, namely, controlling for differences in infant mortality rates, the effect of female education level on fertility rates depends on contraceptive use.</li>
+<li><strong>Contraceptive use:</strong> Since this effect is part of an interaction term, we would only interpret the interaction, namely, controlling for differences in infant mortality rates, the effect of contraceptive use on fertility rates depends on female education level.</li>
+<li><strong>Infant mortality:</strong> Since this is not part of any interaction term, we interpret this as we would any other effect included in a multiple regression model, namely, controlling for differences in female education level and contraceptive use, each one-percentage point difference in infant mortality rate is associated with a 0.02-unit difference in fertility rates, on average.</li>
+</ul>
+<p>To better understand the nature of the effects, especially the interaction, we will plot the fitted model. We choose female education values of 5, and 10 (the nearest integer values to the 25th and 75th percentile values) to create my plot. We also choose infant mortality values of 7 and 41 (the nearest integer values to the 25th and 75th percentile values) to show the effect of infant mortality rate.</p>
+<p><br /></p>
+<div id="female-education-level-of-5-infant-mortality-rate-of-7" class="section level4">
+<h4>Female education level of 5; Infant mortality rate of 7</h4>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(5) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(7) + 0.002(5)(\mathrm{Contraceptive~use}_i)\\
+&amp;= 3.61 - 0.02(\mathrm{Contraceptive~use}_i)
+\end{split}
+\]</span></p>
+<p><br /></p>
+</div>
+<div id="female-education-level-of-5-infant-mortality-rate-of-41" class="section level4">
+<h4>Female education level of 5; Infant mortality rate of 41</h4>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(5) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(41) + 0.002(5)(\mathrm{Contraceptive~use}_i)\\
+&amp;= 4.29 - 0.02(\mathrm{Contraceptive~use}_i)
+\end{split}
+\]</span></p>
+<p><br /></p>
+</div>
+<div id="female-education-level-of-10-infant-mortality-rate-of-7" class="section level4">
+<h4>Female education level of 10; Infant mortality rate of 7</h4>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(10) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(7) + 0.002(10)(\mathrm{Contraceptive~use}_i)\\
+&amp;= 2.25 - 0.01(\mathrm{Contraceptive~use}_i)
+\end{split}
+\]</span></p>
+<p><br /></p>
+</div>
+<div id="female-education-level-of-10-infant-mortality-rate-of-41" class="section level4">
+<h4>Female education level of 10; Infant mortality rate of 41</h4>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(10) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(41) + 0.002(10)(\mathrm{Contraceptive~use}_i)\\
+&amp;= 2.93 - 0.01(\mathrm{Contraceptive~use}_i)
+\end{split}
+\]</span></p>
+<p>Now we can create out plot of fertility rates versus contraception use and add the four partial regression lines.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="adding-covariates.html#cb17-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 7)</span></span>
+<span id="cb17-2"><a href="adding-covariates.html#cb17-2"></a>p1 =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> fert, <span class="kw">aes</span>(<span class="dt">x =</span> contraceptive, <span class="dt">y =</span> fertility_rate)) <span class="op">+</span></span>
+<span id="cb17-3"><a href="adding-covariates.html#cb17-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb17-4"><a href="adding-covariates.html#cb17-4"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">3.61</span>, <span class="dt">slope =</span> <span class="fl">-0.02</span>, <span class="dt">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>) <span class="op">+</span></span>
+<span id="cb17-5"><a href="adding-covariates.html#cb17-5"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">2.25</span>, <span class="dt">slope =</span> <span class="fl">-0.01</span>, <span class="dt">color =</span> <span class="st">&quot;#022f40&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
+<span id="cb17-6"><a href="adding-covariates.html#cb17-6"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb17-7"><a href="adding-covariates.html#cb17-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Contraceptive use&quot;</span>) <span class="op">+</span></span>
+<span id="cb17-8"><a href="adding-covariates.html#cb17-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fertility rate&quot;</span>) <span class="op">+</span></span>
+<span id="cb17-9"><a href="adding-covariates.html#cb17-9"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Infant mortality rate at the first quartile (7%)&quot;</span>)</span>
+<span id="cb17-10"><a href="adding-covariates.html#cb17-10"></a></span>
+<span id="cb17-11"><a href="adding-covariates.html#cb17-11"></a><span class="co"># Plot the fitted model (infant mortality rate = 41)</span></span>
+<span id="cb17-12"><a href="adding-covariates.html#cb17-12"></a>p2 =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> fert, <span class="kw">aes</span>(<span class="dt">x =</span> contraceptive, <span class="dt">y =</span> fertility_rate)) <span class="op">+</span></span>
+<span id="cb17-13"><a href="adding-covariates.html#cb17-13"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb17-14"><a href="adding-covariates.html#cb17-14"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">4.29</span>, <span class="dt">slope =</span> <span class="fl">-0.02</span>, <span class="dt">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>) <span class="op">+</span></span>
+<span id="cb17-15"><a href="adding-covariates.html#cb17-15"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">2.93</span>, <span class="dt">slope =</span> <span class="fl">-0.01</span>, <span class="dt">color =</span> <span class="st">&quot;#022f40&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
+<span id="cb17-16"><a href="adding-covariates.html#cb17-16"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb17-17"><a href="adding-covariates.html#cb17-17"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Contraceptive use&quot;</span>) <span class="op">+</span></span>
+<span id="cb17-18"><a href="adding-covariates.html#cb17-18"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fertility rate&quot;</span>) <span class="op">+</span></span>
+<span id="cb17-19"><a href="adding-covariates.html#cb17-19"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Infant mortality rate at the third quartile (41%)&quot;</span>)</span>
+<span id="cb17-20"><a href="adding-covariates.html#cb17-20"></a></span>
+<span id="cb17-21"><a href="adding-covariates.html#cb17-21"></a><span class="co"># Layout side-by-side plot</span></span>
+<span id="cb17-22"><a href="adding-covariates.html#cb17-22"></a>p1 <span class="op">|</span><span class="st"> </span>p2</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="15-more-interaction-effects_files/figure-html/unnamed-chunk-9-1.png" alt="Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values." width="80%" />
+<p class="caption">
+Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values.
+</p>
+</div>
+<p><br /></p>
+</div>
+<div id="higher-order-interactions" class="section level2">
+<h2>Higher Order Interactions</h2>
+
+</div>
+</div>
+<p style="text-align: center;">
+<a href="interaction-02.html"><button class="btn btn-default">Previous</button></a>
+<a href="references.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="More Interaction Effects | Statistical Modeling and Computation for Educational Scientists" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="EPsy 8251 and 8252 Notes" />
+<meta name="github-repo" content="zief0002/modeling" />
+
+<meta name="author" content="Andrew Zieffler" />
+
+<meta name="date" content="2020-07-12" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="EPsy 8251 and 8252 Notes">
+
+<title>More Interaction Effects | Statistical Modeling and Computation for Educational Scientists</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+<link rel="stylesheet" href="style/table-styles.css" type="text/css" />
+<link rel="stylesheet" href="style/syntax.css" type="text/css" />
+<link rel="stylesheet" href="style/navbar.css" type="text/css" />
+<link rel="stylesheet" href="style/notes.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#foreword">Foreword</a></li>
+<li><a href="preface.html#preface">Preface</a></li>
+<li><a href="slrd.html#slrd">Simple Linear Regression—Description</a></li>
+<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
+<li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
+<li><a href="coefinf.html#coefinf">Coefficient-Level Inference</a></li>
+<li><a href="modinf.html#modinf">Model-Level Inference</a></li>
+<li><a href="multreg.html#multreg">Introduction to Multiple Regression</a></li>
+<li><a href="statcontrol.html#statcontrol">Understanding Statistical Control</a></li>
+<li><a href="assumptions.html#assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
+<li><a href="dummy.html#dummy">Dummy Coding Categorical Predictors</a></li>
+<li><a href="polychotomous.html#polychotomous">Polychotomous Categorical Predictors</a></li>
+<li><a href="interaction-01.html#interaction-01">Introduction to Interaction Effects</a></li>
+<li><a href="interaction-02.html#interaction-02">More Interaction Effects</a></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="interaction-02" class="section level1">
+<h1>More Interaction Effects</h1>
+<p>In this chapter, you will continue to learn about how to include and interpret interaction effects in the regression model. Here we will emphasize interactions between two continuous predictors. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/fertility.csv">fertility.csv</a> data to examine predictors of fertility rates; see the <a href="https://zief0002.github.io/epsy-8251/codebooks/fertility.html">data codebook</a>). In particular we will evaluate whether the effect of contraception on fertility rates is a function of females’ education level.</p>
+<p>To begin, we will load several libraries and import the data into an object called <code>fert</code>.</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="interaction-02.html#cb260-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb260-2"><a href="interaction-02.html#cb260-2"></a><span class="kw">library</span>(broom)</span>
+<span id="cb260-3"><a href="interaction-02.html#cb260-3"></a><span class="kw">library</span>(corrr)</span>
+<span id="cb260-4"><a href="interaction-02.html#cb260-4"></a><span class="kw">library</span>(educate)</span>
+<span id="cb260-5"><a href="interaction-02.html#cb260-5"></a><span class="kw">library</span>(ggridges)</span>
+<span id="cb260-6"><a href="interaction-02.html#cb260-6"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb260-7"><a href="interaction-02.html#cb260-7"></a></span>
+<span id="cb260-8"><a href="interaction-02.html#cb260-8"></a><span class="co"># Read in data</span></span>
+<span id="cb260-9"><a href="interaction-02.html#cb260-9"></a>fert =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/fertility.csv&quot;</span>)</span>
+<span id="cb260-10"><a href="interaction-02.html#cb260-10"></a><span class="kw">head</span>(fert)</span></code></pre></div>
+<pre><code># A tibble: 6 x 8
+  country region fertility_rate educ_female infant_mortality contraceptive
+  &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;
+1 Albania Europ…           1.49         9.1             15              46
+2 Algeria Middl…           2.78         5.9             17.2            57
+3 Armenia Europ…           1.39        10.8             14.7            57
+4 Austria Europ…           1.42         8.9              3.3            66
+5 Azerba… Europ…           1.92        10.5             30.8            55
+6 Bahama… Latin…           1.97        11.1             13.9            45
+# … with 2 more variables: gni_class &lt;chr&gt;, high_gni &lt;dbl&gt;</code></pre>
+<p><br /></p>
+<div id="data-exploration-5" class="section level2">
+<h2>Data Exploration</h2>
+<p>To begin, as always, we would typically plot the marginal distributions of fertility rate and any predictors. Since you have already done this for Assignment 05, we will skip this exploration here. Ideally, we would only include an interaction effect in the model if there is support for this in the theoretical/substantive literature. However, barring this support, we might explore the sample data for empirical evidence of the interaction (generally via plots of the data). Exploring an interaction effect between two quantitative variables poses some unique challenges.</p>
+<p>To understand those challenges consider how we explored the interaction between sex and boundary-spanning work on guilt in a previous set of notes. We created a separate scatterplot of the effect of boundary-spanning work on guilt for males and females, and evaluated whether the fitted line for males and females were parallel. In other words, we need to examine the relationship between <em>X1</em> and <em>Y</em> for different levels of <em>X2</em>.</p>
+<p>In this chapter, we are evaluating whether there is an interaction between contraception use and female education level on fertility rates. As such, we need to examine the effect of contraception use on fertility rates at different levels of female education. But, since female education is continuous, there are a lot of levels in the data! Rather than look at all of these levels, we generally choose a small number of levels of female education. Another challenge is that in continuous variables, there are typically very few observations at a specific value of that variable, so instead of selecting specific values, we typically cut the variable into distinct ranges of values.</p>
+<p>Here we empirically identify distinct ranges for female education by examining the <code>summary()</code> output associated with that variable.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="interaction-02.html#cb262-1"></a>fert <span class="op">%&gt;%</span></span>
+<span id="cb262-2"><a href="interaction-02.html#cb262-2"></a><span class="st">  </span><span class="kw">select</span>(educ_female) <span class="op">%&gt;%</span></span>
+<span id="cb262-3"><a href="interaction-02.html#cb262-3"></a><span class="st">  </span><span class="kw">summary</span>()</span></code></pre></div>
+<pre><code>  educ_female    
+ Min.   : 0.600  
+ 1st Qu.: 4.800  
+ Median : 8.000  
+ Mean   : 7.494  
+ 3rd Qu.:10.250  
+ Max.   :13.000  </code></pre>
+<p>Based on the quartiles, we might choose four distinct ranges of female education:</p>
+<ul>
+<li>Female education level <span class="math inline">\(&lt; 4.8\)</span></li>
+<li><span class="math inline">\(4.8 \leq\)</span> Female education level <span class="math inline">\(&lt; 8\)</span></li>
+<li><span class="math inline">\(8 \leq\)</span> Female education level <span class="math inline">\(&lt; 10.25\)</span></li>
+<li><span class="math inline">\(10.25 \leq\)</span> Female education level</li>
+</ul>
+<div class="protip">
+<p>Note that you will want to use the entire range of data to explore effects, otherwise, you might see a spurious relationship. Also, and this is VERY IMPORTANT, <em><strong>This discretizing is ONLY carried out to create the plot. When we fit the actual interaction in the regression model, we use the continuous predictor.</strong></em></p>
+</div>
+<p>There are several R functions that can be employed to discretize a continuous variable. We will use the <code>case_when()</code> function from <strong>dplyr</strong> (or <strong>tidyverse</strong>) to create a new variable that has four different categories, one for each distinct range. (Read more about using <code>case_when()</code> <a href="https://dplyr.tidyverse.org/reference/case_when.html">here</a>.)</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="interaction-02.html#cb264-1"></a><span class="co"># Discretize female education level</span></span>
+<span id="cb264-2"><a href="interaction-02.html#cb264-2"></a>fert =<span class="st"> </span>fert <span class="op">%&gt;%</span></span>
+<span id="cb264-3"><a href="interaction-02.html#cb264-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb264-4"><a href="interaction-02.html#cb264-4"></a>    <span class="dt">female_educ_discrete =</span> <span class="kw">case_when</span>(</span>
+<span id="cb264-5"><a href="interaction-02.html#cb264-5"></a>      educ_female <span class="op">&lt;</span><span class="st"> </span><span class="fl">4.8</span> <span class="op">~</span><span class="st"> &quot;Quartile 1&quot;</span>,</span>
+<span id="cb264-6"><a href="interaction-02.html#cb264-6"></a>      educ_female <span class="op">&gt;=</span><span class="st"> </span><span class="fl">4.8</span> <span class="op">&amp;</span><span class="st"> </span>educ_female <span class="op">&lt;</span><span class="st"> </span><span class="dv">8</span> <span class="op">~</span><span class="st"> &quot;Quartile 2&quot;</span>,</span>
+<span id="cb264-7"><a href="interaction-02.html#cb264-7"></a>      educ_female <span class="op">&gt;=</span><span class="st"> </span><span class="dv">8</span> <span class="op">&amp;</span><span class="st"> </span>educ_female <span class="op">&lt;</span><span class="st"> </span><span class="fl">10.25</span> <span class="op">~</span><span class="st"> &quot;Quartile 3&quot;</span>,</span>
+<span id="cb264-8"><a href="interaction-02.html#cb264-8"></a>      educ_female <span class="op">&gt;=</span><span class="st"> </span><span class="fl">10.25</span> <span class="op">~</span><span class="st"> &quot;Quartile 4&quot;</span></span>
+<span id="cb264-9"><a href="interaction-02.html#cb264-9"></a>      )</span>
+<span id="cb264-10"><a href="interaction-02.html#cb264-10"></a>  )</span>
+<span id="cb264-11"><a href="interaction-02.html#cb264-11"></a></span>
+<span id="cb264-12"><a href="interaction-02.html#cb264-12"></a><span class="co"># View data</span></span>
+<span id="cb264-13"><a href="interaction-02.html#cb264-13"></a><span class="kw">head</span>(fert)</span></code></pre></div>
+<pre><code># A tibble: 6 x 9
+  country region fertility_rate educ_female infant_mortality contraceptive
+  &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;
+1 Albania Europ…           1.49         9.1             15              46
+2 Algeria Middl…           2.78         5.9             17.2            57
+3 Armenia Europ…           1.39        10.8             14.7            57
+4 Austria Europ…           1.42         8.9              3.3            66
+5 Azerba… Europ…           1.92        10.5             30.8            55
+6 Bahama… Latin…           1.97        11.1             13.9            45
+# … with 3 more variables: gni_class &lt;chr&gt;, high_gni &lt;dbl&gt;,
+#   female_educ_discrete &lt;chr&gt;</code></pre>
+<p>Now we have discretized female education level, we can use our new discretized variable to examine the potential interaction with contraception use.</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="interaction-02.html#cb266-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> fert, <span class="kw">aes</span>(<span class="dt">x =</span> contraceptive, <span class="dt">y =</span> fertility_rate, <span class="dt">color =</span> female_educ_discrete)) <span class="op">+</span></span>
+<span id="cb266-2"><a href="interaction-02.html#cb266-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
+<span id="cb266-3"><a href="interaction-02.html#cb266-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb266-4"><a href="interaction-02.html#cb266-4"></a><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb266-5"><a href="interaction-02.html#cb266-5"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Contraception use&quot;</span>) <span class="op">+</span></span>
+<span id="cb266-6"><a href="interaction-02.html#cb266-6"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Fertility rate&quot;</span>) <span class="op">+</span></span>
+<span id="cb266-7"><a href="interaction-02.html#cb266-7"></a><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="op">+</span></span>
+<span id="cb266-8"><a href="interaction-02.html#cb266-8"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>female_educ_discrete, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb266-9"><a href="interaction-02.html#cb266-9"></a><span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="15-more-interaction-effects_files/figure-html/unnamed-chunk-5-1.png" alt="Scatterplot displaying the relationship between contraception use and fertility rate conditioned on female education level. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender." width="90%" />
+<p class="caption">
+Figure 2: Scatterplot displaying the relationship between contraception use and fertility rate conditioned on female education level. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender.
+</p>
+</div>
+<p>The empirical evidence is consistent with there being an interaction effect between contraception use and female education level on fertility rate <em>in the sample</em>; the effect of contraception use on fertility rate differs depending on the level of female education. It looks like the absolute magnitude of the effect of contraception use on fertility rate decreases for higher levels of female education.</p>
+<p><br /></p>
+</div>
+<div id="fit-the-interaction-model" class="section level2">
+<h2>Fit the Interaction Model</h2>
+<p>To fit the interaction model, use the constituent main effects and the interaction term to predict fertility rates. VERY IMPORTANT—Use the original quantitative female education level predictor, not the discretized variable in the model. We will also use the colon (<code>:</code>) notation to include the interaction term in the model. The colon implicitly creates the product term and includes it in the model (without having to initially create a product term).</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="interaction-02.html#cb267-1"></a><span class="co"># Fit model</span></span>
+<span id="cb267-2"><a href="interaction-02.html#cb267-2"></a>lm.a =<span class="st"> </span><span class="kw">lm</span>(fertility_rate <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>educ_female <span class="op">+</span><span class="st"> </span>contraceptive <span class="op">+</span><span class="st"> </span>educ_female<span class="op">:</span>contraceptive, <span class="dt">data =</span> fert)</span>
+<span id="cb267-3"><a href="interaction-02.html#cb267-3"></a></span>
+<span id="cb267-4"><a href="interaction-02.html#cb267-4"></a><span class="co"># Model-level output</span></span>
+<span id="cb267-5"><a href="interaction-02.html#cb267-5"></a><span class="kw">glance</span>(lm.a)</span></code></pre></div>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.709         0.701 0.758      97.2 5.59e-32     3  -139.  289.  303.
+# … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="interaction-02.html#cb269-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb269-2"><a href="interaction-02.html#cb269-2"></a><span class="kw">tidy</span>(lm.a)</span></code></pre></div>
+<pre><code># A tibble: 4 x 5
+  term                      estimate std.error statistic  p.value
+  &lt;chr&gt;                        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)                6.84      0.354       19.3  1.27e-38
+2 educ_female               -0.408     0.0580      -7.04 1.29e-10
+3 contraceptive             -0.0479    0.00768     -6.23 7.16e- 9
+4 educ_female:contraceptive  0.00350   0.00100      3.50 6.63e- 4</code></pre>
+<p>Model A explains 70.9% of the variation in fertility rates which is not very consistent with the null hypothesis that the model explains no variation; <span class="math inline">\(F(3,120)=97.23\)</span>, <span class="math inline">\(p&lt;.001\)</span>.</p>
+<p>To examine whether there is an interaction effect in the population, we evaluate the evidence from the coefficient-level output. The <em>p</em>-value associated with the interaction term (<span class="math inline">\(p=.0007\)</span>) suggests that the empirical evidence is inconsistent with the hypothesis of no interaction effect. We do believe that there is an interaction between contraceptive use and female level of education. Because the interaction effect is statistically relevant, we do not interpret any of the constituent main-effects in the model.</p>
+<p><br /></p>
+<div id="plot-of-the-interaction-model" class="section level3">
+<h3>Plot of the Interaction Model</h3>
+<p>To further understand the nature of the interaction, we will create a plot of the effect of contraception use on fertility rates for different levels of female education. (Or, you could create a plot of the effect of female education level on fertility rates for different values of contraception use.) Here we will choose female education values of 5, 8, and 10 (the nearest integer values to the 25th, 50th, and 75th percentile values) to create the plot. First we will substitute these values into the fitted equation to find the partial equation for each selected female education level:</p>
+<p><span class="math display">\[
+\hat{\mathrm{Fertility~rate}_i} = 6.84 - 0.41(\mathrm{Education~level}_i) - 0.05(\mathrm{Contraceptive~use}_i) + 0.004(\mathrm{Contraceptive~use}_i)(\mathrm{Education~level}_i)
+\]</span>
+<br /></p>
+<div id="female-education-level-of-5" class="section level4">
+<h4>Female education level of 5</h4>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} &amp;= 6.84 - 0.41(5) - 0.05(\mathrm{Contraceptive~use}_i) + 0.004(5)(\mathrm{Contraceptive~use}_i)\\
+&amp;= 6.84 - 2.05 - 0.05(\mathrm{Contraceptive~use}_i) + 0.02(\mathrm{Contraceptive~use}_i) \\
+&amp;= 4.79 - 0.03(\mathrm{Contraceptive~use}_i)
+\end{split}
+\]</span></p>
+<p><br /></p>
+</div>
+<div id="female-education-level-of-8" class="section level4">
+<h4>Female education level of 8</h4>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} &amp;= 6.84 - 0.41(8) - 0.05(\mathrm{Contraceptive~use}_i) + 0.004(8)(\mathrm{Contraceptive~use}_i)\\
+&amp;= 6.84 - 3.28 - 0.05(\mathrm{Contraceptive~use}_i) + 0.032(\mathrm{Contraceptive~use}_i) \\
+&amp;= 3.56 - 0.018(\mathrm{Contraceptive~use}_i)
+\end{split}
+\]</span></p>
+<p><br /></p>
+</div>
+<div id="female-education-level-of-10" class="section level4">
+<h4>Female education level of 10</h4>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} &amp;= 6.84 - 0.41(10) - 0.05(\mathrm{Contraceptive~use}_i) + 0.004(10)(\mathrm{Contraceptive~use}_i)\\
+&amp;= 6.84 - 4.1 - 0.05(\mathrm{Contraceptive~use}_i) + 0.04(\mathrm{Contraceptive~use}_i) \\
+&amp;= 2.74 - 0.01(\mathrm{Contraceptive~use}_i)
+\end{split}
+\]</span></p>
+<p>Now we can create out plot of fertility rates versus contraception use and add the three partial regression lines.</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="interaction-02.html#cb271-1"></a><span class="co"># Plot the fitted model</span></span>
+<span id="cb271-2"><a href="interaction-02.html#cb271-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> fert, <span class="kw">aes</span>(<span class="dt">x =</span> contraceptive, <span class="dt">y =</span> fertility_rate)) <span class="op">+</span></span>
+<span id="cb271-3"><a href="interaction-02.html#cb271-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb271-4"><a href="interaction-02.html#cb271-4"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">4.79</span>, <span class="dt">slope =</span> <span class="fl">-0.03</span>, <span class="dt">color =</span> <span class="st">&quot;#022f40&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></span>
+<span id="cb271-5"><a href="interaction-02.html#cb271-5"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">3.56</span>, <span class="dt">slope =</span> <span class="fl">-0.018</span>, <span class="dt">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
+<span id="cb271-6"><a href="interaction-02.html#cb271-6"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">2.74</span>, <span class="dt">slope =</span> <span class="fl">-0.01</span>, <span class="dt">color =</span> <span class="st">&quot;#758e4f&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>) <span class="op">+</span></span>
+<span id="cb271-7"><a href="interaction-02.html#cb271-7"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb271-8"><a href="interaction-02.html#cb271-8"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Contraceptive use&quot;</span>) <span class="op">+</span></span>
+<span id="cb271-9"><a href="interaction-02.html#cb271-9"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fertility rate&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<img src="15-more-interaction-effects_files/figure-html/unnamed-chunk-7-1.png" alt="Plot of fertility rate as a function of contraceptive use and female education level. Partial regression lines are displayed for female education levels of 5th grade (blue, dotted line), 8th grade (orange, dashed line) and 10th grade (green, solid line)." width="50%" />
+<p class="caption">
+Figure 3: Plot of fertility rate as a function of contraceptive use and female education level. Partial regression lines are displayed for female education levels of 5th grade (blue, dotted line), 8th grade (orange, dashed line) and 10th grade (green, solid line).
+</p>
+</div>
+<p>Based on the plot, we can see there is an <em>ordinal interaction</em> between contraceptive use and female education level (the lines do not cross in our plot). The effect of contraceptive use on fertility rate varies by level of female education. The largest effect of contraceptive use on fertility rate (highest absolute slope) is for countries that have the lowest female education level. This effect diminishes for countries with higher levels of female education (the magnitude of the slopes get smaller).</p>
+<p>Remember that every interaction effect has two interpretations. We can also focus on the the effect of female education level. In our data, the effect of female education level on fertility rate varies for different levels of contraceptive use. For countries with low rates of contraceptive use, there are large differences between the predicted average fertility rates by female education level (the distance between the lines is large). These differences diminish for countries with higher levels of contraceptive use.</p>
+<p><br /></p>
+</div>
+</div>
+</div>
+<div id="interpreting-the-individual-effects-from-the-tidy-output" class="section level2">
+<h2>Interpreting the Individual Effects from the tidy() Output</h2>
+<p>In practice, it is enough to say there is an interaction, and to use the plot of the results to interpret the nature of the interaction effects rather than to interpret the actual coefficient values estimated by the <code>lm()</code> function. This being said, in simple models, we can actually interpret the coefficients more directly. To do this, write out the fitted equations for countries that differ in female education level by 1 year. We will write the fitted equations for countries that have a female education level of 0 years and those with a female education level of 1 year. (Do the substitution yourself to verify these equations.)</p>
+<p><span class="math display">\[
+\begin{split}
+\mathbf{0~years:~}\hat{\mathrm{Fertility~rate}_i} &amp;= 6.84 - 0.048(\mathrm{Contraceptive~use}_i) \\
+\mathbf{1~year:~}\hat{\mathrm{Fertility~rate}_i} &amp;= \left[6.84 -0.408 \right] + \left[ -0.0479 + 0.00350 \right](\mathrm{Contraceptive~use}_i)\\
+\end{split}
+\]</span></p>
+<ul>
+<li>The intercept (<span class="math inline">\(\hat{\beta_0}=6.84\)</span>) is the average fertility rate for countries with a female education level of 0 years and contraception use of 0. (extrapolation).</li>
+<li>The coefficient associated with contraceptive use (<span class="math inline">\(\hat{\beta_1}=-0.048\)</span>) is the effect of contraceptive use on fertility rate for countries with a female education level of 0 years.</li>
+<li>The coefficient associated with female education (<span class="math inline">\(\hat{\beta_2}=-0.408\)</span>) is the difference in average fertility rates between countries with contraceptive use = 0 and countries with contraceptive use = 1. Alternatively, it is the difference in intercepts between countries whose female education level differs by one year.</li>
+<li>The coefficient associated with the interaction term (<span class="math inline">\(\hat{\beta_3}=0.00350\)</span>) is the difference in slopes (effect of contraceptive use on fertility rate) between countries whose female education level differs by one year.</li>
+</ul>
+<p>It cannot be iterated enough that although we can interpret the coefficients directly, in practice, the plot of the interaction model is much more informative and far less complicated for readers to understand.</p>
+<p><br /></p>
+</div>
+<div id="adding-covariates" class="section level2">
+<h2>Adding Covariates</h2>
+<p>Is there an interaction between contraception use and female education level on fertility rates after we control for differences in infant mortality rate?</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="interaction-02.html#cb272-1"></a><span class="co"># Fit model</span></span>
+<span id="cb272-2"><a href="interaction-02.html#cb272-2"></a>lm.b =<span class="st"> </span><span class="kw">lm</span>(fertility_rate <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>educ_female <span class="op">+</span><span class="st"> </span>contraceptive <span class="op">+</span><span class="st"> </span>infant_mortality <span class="op">+</span><span class="st"> </span>educ_female<span class="op">:</span>contraceptive, <span class="dt">data =</span> fert)</span>
+<span id="cb272-3"><a href="interaction-02.html#cb272-3"></a></span>
+<span id="cb272-4"><a href="interaction-02.html#cb272-4"></a><span class="co"># Model-level output</span></span>
+<span id="cb272-5"><a href="interaction-02.html#cb272-5"></a><span class="kw">glance</span>(lm.b)</span></code></pre></div>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.748         0.739 0.708      88.2 1.18e-34     4  -131.  273.  290.
+# … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="interaction-02.html#cb274-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb274-2"><a href="interaction-02.html#cb274-2"></a><span class="kw">tidy</span>(lm.b)</span></code></pre></div>
+<pre><code># A tibble: 5 x 5
+  term                      estimate std.error statistic  p.value
+  &lt;chr&gt;                        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)                4.82     0.574         8.41 1.05e-13
+2 educ_female               -0.271    0.0629       -4.31 3.45e- 5
+3 contraceptive             -0.0317   0.00811      -3.91 1.55e- 4
+4 infant_mortality           0.0212   0.00494       4.30 3.55e- 5
+5 educ_female:contraceptive  0.00246  0.000966      2.55 1.20e- 2</code></pre>
+<p>Model B explains 74.8% of the variation in fertility rates which is inconsistent with the null hypothesis that the model explains no variation; <span class="math inline">\(F(4,119)=88.16\)</span>, <span class="math inline">\(p&lt;.001\)</span>.</p>
+<p>To examine whether there is an interaction effect, after controlling for differences in infant mortality rates, we again evaluate the evidence from the coefficient-level output. Based on the <em>p</em>-value associated with the interaction term (<span class="math inline">\(p=.012\)</span>), the empirical evidence is consistent with there being an interaction effect between contraceptive use and female level of education, after controlling for differences in countries’ infant mortality rates.</p>
+<p>How would we interpret the effects in the model?</p>
+<ul>
+<li><strong>Female education level:</strong> Since this effect is part of an interaction term, we would interpret the interaction, namely, controlling for differences in infant mortality rates, the effect of female education level on fertility rates depends on contraceptive use.</li>
+<li><strong>Contraceptive use:</strong> Since this effect is part of an interaction term, we would only interpret the interaction, namely, controlling for differences in infant mortality rates, the effect of contraceptive use on fertility rates depends on female education level.</li>
+<li><strong>Infant mortality:</strong> Since this is not part of any interaction term, we interpret this as we would any other effect included in a multiple regression model, namely, controlling for differences in female education level and contraceptive use, each one-percentage point difference in infant mortality rate is associated with a 0.02-unit difference in fertility rates, on average.</li>
+</ul>
+<p>To better understand the nature of the effects, especially the interaction, we will plot the fitted model. We choose female education values of 5, and 10 (the nearest integer values to the 25th and 75th percentile values) to create my plot. We also choose infant mortality values of 7 and 41 (the nearest integer values to the 25th and 75th percentile values) to show the effect of infant mortality rate.</p>
+<p><br /></p>
+<div id="female-education-level-of-5-infant-mortality-rate-of-7" class="section level4">
+<h4>Female education level of 5; Infant mortality rate of 7</h4>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(5) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(7) + 0.002(5)(\mathrm{Contraceptive~use}_i)\\
+&amp;= 3.61 - 0.02(\mathrm{Contraceptive~use}_i)
+\end{split}
+\]</span></p>
+<p><br /></p>
+</div>
+<div id="female-education-level-of-5-infant-mortality-rate-of-41" class="section level4">
+<h4>Female education level of 5; Infant mortality rate of 41</h4>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(5) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(41) + 0.002(5)(\mathrm{Contraceptive~use}_i)\\
+&amp;= 4.29 - 0.02(\mathrm{Contraceptive~use}_i)
+\end{split}
+\]</span></p>
+<p><br /></p>
+</div>
+<div id="female-education-level-of-10-infant-mortality-rate-of-7" class="section level4">
+<h4>Female education level of 10; Infant mortality rate of 7</h4>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(10) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(7) + 0.002(10)(\mathrm{Contraceptive~use}_i)\\
+&amp;= 2.25 - 0.01(\mathrm{Contraceptive~use}_i)
+\end{split}
+\]</span></p>
+<p><br /></p>
+</div>
+<div id="female-education-level-of-10-infant-mortality-rate-of-41" class="section level4">
+<h4>Female education level of 10; Infant mortality rate of 41</h4>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(10) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(41) + 0.002(10)(\mathrm{Contraceptive~use}_i)\\
+&amp;= 2.93 - 0.01(\mathrm{Contraceptive~use}_i)
+\end{split}
+\]</span></p>
+<p>Now we can create out plot of fertility rates versus contraception use and add the four partial regression lines.</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="interaction-02.html#cb276-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 7)</span></span>
+<span id="cb276-2"><a href="interaction-02.html#cb276-2"></a>p1 =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> fert, <span class="kw">aes</span>(<span class="dt">x =</span> contraceptive, <span class="dt">y =</span> fertility_rate)) <span class="op">+</span></span>
+<span id="cb276-3"><a href="interaction-02.html#cb276-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb276-4"><a href="interaction-02.html#cb276-4"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">3.61</span>, <span class="dt">slope =</span> <span class="fl">-0.02</span>, <span class="dt">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>) <span class="op">+</span></span>
+<span id="cb276-5"><a href="interaction-02.html#cb276-5"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">2.25</span>, <span class="dt">slope =</span> <span class="fl">-0.01</span>, <span class="dt">color =</span> <span class="st">&quot;#022f40&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
+<span id="cb276-6"><a href="interaction-02.html#cb276-6"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb276-7"><a href="interaction-02.html#cb276-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Contraceptive use&quot;</span>) <span class="op">+</span></span>
+<span id="cb276-8"><a href="interaction-02.html#cb276-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fertility rate&quot;</span>) <span class="op">+</span></span>
+<span id="cb276-9"><a href="interaction-02.html#cb276-9"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Infant mortality rate at the first quartile (7%)&quot;</span>)</span>
+<span id="cb276-10"><a href="interaction-02.html#cb276-10"></a></span>
+<span id="cb276-11"><a href="interaction-02.html#cb276-11"></a><span class="co"># Plot the fitted model (infant mortality rate = 41)</span></span>
+<span id="cb276-12"><a href="interaction-02.html#cb276-12"></a>p2 =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> fert, <span class="kw">aes</span>(<span class="dt">x =</span> contraceptive, <span class="dt">y =</span> fertility_rate)) <span class="op">+</span></span>
+<span id="cb276-13"><a href="interaction-02.html#cb276-13"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb276-14"><a href="interaction-02.html#cb276-14"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">4.29</span>, <span class="dt">slope =</span> <span class="fl">-0.02</span>, <span class="dt">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>) <span class="op">+</span></span>
+<span id="cb276-15"><a href="interaction-02.html#cb276-15"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">2.93</span>, <span class="dt">slope =</span> <span class="fl">-0.01</span>, <span class="dt">color =</span> <span class="st">&quot;#022f40&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
+<span id="cb276-16"><a href="interaction-02.html#cb276-16"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb276-17"><a href="interaction-02.html#cb276-17"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Contraceptive use&quot;</span>) <span class="op">+</span></span>
+<span id="cb276-18"><a href="interaction-02.html#cb276-18"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fertility rate&quot;</span>) <span class="op">+</span></span>
+<span id="cb276-19"><a href="interaction-02.html#cb276-19"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Infant mortality rate at the third quartile (41%)&quot;</span>)</span>
+<span id="cb276-20"><a href="interaction-02.html#cb276-20"></a></span>
+<span id="cb276-21"><a href="interaction-02.html#cb276-21"></a><span class="co"># Layout side-by-side plot</span></span>
+<span id="cb276-22"><a href="interaction-02.html#cb276-22"></a>p1 <span class="op">|</span><span class="st"> </span>p2</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<img src="15-more-interaction-effects_files/figure-html/unnamed-chunk-9-1.png" alt="Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values." width="80%" />
+<p class="caption">
+Figure 5: Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values.
+</p>
+</div>
+<p><br /></p>
+</div>
+</div>
+<div id="higher-order-interactions" class="section level2">
+<h2>Higher Order Interactions</h2>
+<p>Interactions between two predictors (e.g., female education level and contraceptive use) are referred to as <em>first order</em> interactions. In the previous section, the model we fitted included a main-effect of infant mortality rate and a first order interaction between female education level and contraceptive use. The main-effect of infant mortality rate in this model suggested that the first order interaction between female education level and contraceptive use was THE SAME for every level of infant mortality rate.</p>
+<p>We could also fit a model that posits that the first order interaction between female education level and contraceptive use IS DIFFERENT for different levels of infant mortality rate. This is technically an interaction between infant mortality rate and the first order interaction between female education level and contraceptive use. It is an interaction of an interaction. This is called a <em>second order</em> interaction.</p>
+<p>To fit such a model, we would need to include the second order interaction between infant mortality rate, female education level and contraceptive use; the product of the three main effects. Since we are including an interaction, we need to include all three constituent main effects AND since it is a higher order interaction, we need to include all constituent lower order interactions; in this case all constituent first order interactions. As such the predictors would include:</p>
+<ul>
+<li><strong>Main-Effects:</strong>
+<ul>
+<li><code>educ_female</code></li>
+<li><code>contraceptive</code></li>
+<li><code>infant_mortality</code></li>
+</ul></li>
+<li><strong>First Order Interactions:</strong>
+<ul>
+<li><code>educ_female:contraceptive</code></li>
+<li><code>educ_female:infant_mortality</code></li>
+<li><code>contraceptive:infant_mortality</code></li>
+</ul></li>
+<li><strong>Second Order Interaction:</strong>
+<ul>
+<li><code>educ_female:contraceptive:infant_mortality</code></li>
+</ul></li>
+</ul>
+<p>We fit the model below.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="interaction-02.html#cb277-1"></a><span class="co"># Fit model</span></span>
+<span id="cb277-2"><a href="interaction-02.html#cb277-2"></a>lm.c =<span class="st"> </span><span class="kw">lm</span>(fertility_rate <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>educ_female <span class="op">+</span><span class="st"> </span>contraceptive <span class="op">+</span><span class="st"> </span>infant_mortality <span class="op">+</span><span class="st"> </span></span>
+<span id="cb277-3"><a href="interaction-02.html#cb277-3"></a><span class="st">            </span>educ_female<span class="op">:</span>contraceptive <span class="op">+</span><span class="st"> </span>infant_mortality<span class="op">:</span>contraceptive <span class="op">+</span><span class="st"> </span>educ_female<span class="op">:</span>infant_mortality <span class="op">+</span></span>
+<span id="cb277-4"><a href="interaction-02.html#cb277-4"></a><span class="st">            </span>educ_female<span class="op">:</span>contraceptive<span class="op">:</span>infant_mortality, <span class="dt">data =</span> fert)</span>
+<span id="cb277-5"><a href="interaction-02.html#cb277-5"></a></span>
+<span id="cb277-6"><a href="interaction-02.html#cb277-6"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb277-7"><a href="interaction-02.html#cb277-7"></a><span class="kw">tidy</span>(lm.c)</span></code></pre></div>
+<pre><code># A tibble: 8 x 5
+  term                                     estimate std.error statistic  p.value
+  &lt;chr&gt;                                       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)                               7.02e+0 1.02           6.86 3.52e-10
+2 educ_female                              -5.12e-1 0.124         -4.14 6.51e- 5
+3 contraceptive                            -7.54e-2 0.0168        -4.47 1.80e- 5
+4 infant_mortality                         -1.82e-2 0.0138        -1.32 1.90e- 1
+5 educ_female:contraceptive                 7.06e-3 0.00185        3.81 2.21e- 4
+6 contraceptive:infant_mortality            9.62e-4 0.000325       2.96 3.74e- 3
+7 educ_female:infant_mortality              4.55e-3 0.00285        1.59 1.14e- 1
+8 educ_female:contraceptive:infant_mortal… -1.04e-4 0.0000516     -2.01 4.69e- 2</code></pre>
+<p>The fitted equation is:</p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} &amp;= 7.02 - 0.512(\mathrm{Female~education}_i) - 0.08(\mathrm{Contraceptive~use}_i) - 0.02(\mathrm{Infant~mortality}_i) + \\
+&amp; 0.007(\mathrm{Female~education}_i)(\mathrm{Contraceptive~use}_i) + 0.001(\mathrm{Contraceptive~use}_i)(\mathrm{Infant~mortality}_i) + \\
+&amp; 0.005(\mathrm{Female~education}_i)(\mathrm{Infant~mortality}_i) \\
+&amp;- 0.0001(\mathrm{Female~education}_i)(\mathrm{Contraceptive~use}_i)(\mathrm{Infant~mortality}_i)
+\end{split}
+\]</span>
+The <em>p</em>-value associated with the second order interaction term (<span class="math inline">\(p=.0469\)</span>) suggests that there is a second order interaction effect between female education level, contraceptive use, and infant mortality rate on fertility rates. To interpret this, plot the model results. Again, pick values for female education level and infant mortality rate, substitute them into the fitted equation, and reduce it. I again used 5 and 10 for female education level and 7 and 41 for infant mortality rate. (Note: Algebra not shown.)</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="interaction-02.html#cb279-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 7)</span></span>
+<span id="cb279-2"><a href="interaction-02.html#cb279-2"></a>p1 =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> fert, <span class="kw">aes</span>(<span class="dt">x =</span> contraceptive, <span class="dt">y =</span> fertility_rate)) <span class="op">+</span></span>
+<span id="cb279-3"><a href="interaction-02.html#cb279-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb279-4"><a href="interaction-02.html#cb279-4"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">4.49</span>, <span class="dt">slope =</span> <span class="fl">-0.04</span>, <span class="dt">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>) <span class="op">+</span></span>
+<span id="cb279-5"><a href="interaction-02.html#cb279-5"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">2.09</span>, <span class="dt">slope =</span> <span class="fl">-0.005</span>, <span class="dt">color =</span> <span class="st">&quot;#022f40&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
+<span id="cb279-6"><a href="interaction-02.html#cb279-6"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb279-7"><a href="interaction-02.html#cb279-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Contraceptive use&quot;</span>) <span class="op">+</span></span>
+<span id="cb279-8"><a href="interaction-02.html#cb279-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fertility rate&quot;</span>) <span class="op">+</span></span>
+<span id="cb279-9"><a href="interaction-02.html#cb279-9"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Infant mortality rate at the first quartile (7%)&quot;</span>)</span>
+<span id="cb279-10"><a href="interaction-02.html#cb279-10"></a></span>
+<span id="cb279-11"><a href="interaction-02.html#cb279-11"></a><span class="co"># Plot the fitted model (infant mortality rate = 41)</span></span>
+<span id="cb279-12"><a href="interaction-02.html#cb279-12"></a>p2 =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> fert, <span class="kw">aes</span>(<span class="dt">x =</span> contraceptive, <span class="dt">y =</span> fertility_rate)) <span class="op">+</span></span>
+<span id="cb279-13"><a href="interaction-02.html#cb279-13"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb279-14"><a href="interaction-02.html#cb279-14"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">4.65</span>, <span class="dt">slope =</span> <span class="fl">-0.02</span>, <span class="dt">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>) <span class="op">+</span></span>
+<span id="cb279-15"><a href="interaction-02.html#cb279-15"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">3.02</span>, <span class="dt">slope =</span> <span class="fl">-0.008</span>, <span class="dt">color =</span> <span class="st">&quot;#022f40&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
+<span id="cb279-16"><a href="interaction-02.html#cb279-16"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb279-17"><a href="interaction-02.html#cb279-17"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Contraceptive use&quot;</span>) <span class="op">+</span></span>
+<span id="cb279-18"><a href="interaction-02.html#cb279-18"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fertility rate&quot;</span>) <span class="op">+</span></span>
+<span id="cb279-19"><a href="interaction-02.html#cb279-19"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Infant mortality rate at the third quartile (41%)&quot;</span>)</span>
+<span id="cb279-20"><a href="interaction-02.html#cb279-20"></a></span>
+<span id="cb279-21"><a href="interaction-02.html#cb279-21"></a><span class="co"># Layout side-by-side plot</span></span>
+<span id="cb279-22"><a href="interaction-02.html#cb279-22"></a>p1 <span class="op">|</span><span class="st"> </span>p2</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
+<img src="15-more-interaction-effects_files/figure-html/unnamed-chunk-12-1.png" alt="Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values." width="80%" />
+<p class="caption">
+Figure 7: Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values.
+</p>
+</div>
+<ul>
+<li>The plots show that the interaction between contraceptive use and female education level on fertility rates DIFFERS by infant mortality rate.</li>
+<li>This also suggests that the interaction between contraceptive use and infant mortality rate on fertility rates DIFFERS by level of female education.</li>
+<li>Finally, it also implies that the interaction between female education level and infant mortality rate on fertility rates DIFFERS by level of contraceptive use.</li>
+</ul>
+<p><br /></p>
+</div>
+<div id="some-advice-for-fitting-interaction-models" class="section level2">
+<h2>Some Advice for Fitting Interaction Models</h2>
+<p>In general, only fit interaction terms that include focal predictors that are germane to your research question. Do not fit interaction terms that are composed of all control predictors. This has the implication that if you do not have a focal predictor (i.e., the analysis is purely exploratory) you should probably not fit interaction terms.</p>
+<p>A second piece of advice is that unless there is specific theoretical reason to fit higher order interactions with your focal predictors, avoid them. This also is good advice for first order interaction terms as well. This is because adding higher-order interactions tends to overfit the model to the sample data. Subsequently, these interactions do not tend to hold up when fitted on future data in future analysis; the model is too specific to the data it was fitted on and does not generalize.</p>
+
+</div>
+</div>
+<p style="text-align: center;">
+<a href="interaction-01.html"><button class="btn btn-default">Previous</button></a>
+<a href="references.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>
