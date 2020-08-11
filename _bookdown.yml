@@ -15,7 +15,7 @@ rmd_files: [
     "09-intro-to-multiple-regression.Rmd",
     "10-understanding-statistical-control.Rmd",
     "11-assumptions.Rmd",
-    "12-dummy-coding.Rmd",
+    "12-dichotomous.Rmd",
     "13-polychotomous.Rmd",
     "14-interaction-effects.Rmd",
     "15-more-interaction-effects.Rmd",

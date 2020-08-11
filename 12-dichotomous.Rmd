@@ -1,4 +1,4 @@
-# Dummy Coding Categorical Predictors {#dummy}
+# Dichotomous Categorical Predictors {#dummy}
 
 ```{r echo=FALSE, message=FALSE}
 # Load libraries
@@ -31,7 +31,7 @@ opts_chunk$set(
 ```
 
 
-In this chapter, you will learn about how to include categorical predictors in the regression model. To do so, we will use the [mn-schools.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/mn-schools.csv) data to examine whether there are differences in graduation rate between public and private colleges and universities (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/mn-schools.html)). To begin, we will load several libraries and import the data into an object called `mn`. 
+In this chapter, you will learn about how to include dichotomous categorical predictors (i.e., predictors with two levels) in the regression model. To do so, we will use the [mn-schools.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/mn-schools.csv) data to examine whether there are differences in graduation rate between public and private colleges and universities (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/mn-schools.html)). To begin, we will load several libraries and import the data into an object called `mn`. 
 
 
 ```{r warning=FALSE, message=FALSE}
