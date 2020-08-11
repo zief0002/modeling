@@ -326,15 +326,15 @@ To fit the regression model to data using R, we will use the `lm()` function. Th
 
 > `lm(`**outcome** ~ `1 + ` **predictor**, `data =` **dataframe**`)`
 
-where **outcome** is the name of the outcome/response variable, **predictor** is the name of the predictor variable, and **dataframe** is the name of the data frame. (The `1` on the right side of the tilde tells R to include the intercept in its computation.) When we fit a regression model in R, we will also assign the output to a new object in R. Below, we fit the model using education level to predict income. Here the output is assigned to an object called `lm.1`. We can print the regression parameter estimates by typing the `lm()` object name and hitting enter.
+where **outcome** is the name of the outcome/response variable, **predictor** is the name of the predictor variable, and **dataframe** is the name of the data frame. (The `1` on the right side of the tilde tells R to include the intercept in its computation.) When we fit a regression model in R, we will also assign the output to a new object in R. Below, we fit the model using education level to predict income. Here the output is assigned to an object called `lm.a`. We can print the regression parameter estimates by typing the `lm()` object name and hitting enter.
 
 
 ```r
 # Fit regression model
-lm.1 = lm(income ~ 1 + education, data = city)
+lm.a = lm(income ~ 1 + education, data = city)
 
 # Print regression coefficients
-lm.1
+lm.a
 ```
 
 ```

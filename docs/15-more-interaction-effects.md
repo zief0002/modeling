@@ -15,6 +15,7 @@ library(broom)
 library(corrr)
 library(educate)
 library(ggridges)
+library(patchwork)
 library(tidyverse)
 
 # Read in data

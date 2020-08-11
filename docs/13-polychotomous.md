@@ -255,10 +255,10 @@ To examine the effect of family structure, we will fit the regression using any 
 
 ```r
 # Two-parent households is reference group
-lm.1 = lm(substance_use ~ 1 + parent_guardian + one_parent, data = family)
+lm.a = lm(substance_use ~ 1 + parent_guardian + one_parent, data = family)
 
 # Model-level info
-glance(lm.1)
+glance(lm.a)
 ```
 
 ```
@@ -274,7 +274,7 @@ At the model-level, differences in family structure explain 1.06% of the variati
 
 ```r
 # Coefficient-level info
-tidy(lm.1)
+tidy(lm.a)
 ```
 
 ```
@@ -349,10 +349,10 @@ The first regression model we fitted allowed us to evaluate the difference in su
 
 ```r
 # Single-parent households is reference group
-lm.2 = lm(substance_use ~ 1 + parent_guardian + two_parent, data = family)
+lm.b = lm(substance_use ~ 1 + parent_guardian + two_parent, data = family)
 
 # Model-level info
-glance(lm.2)
+glance(lm.b)
 ```
 
 ```
@@ -368,7 +368,7 @@ Note that the model-level output for this fitted model is exactly the same as th
 
 ```r
 # Coefficient-level info
-tidy(lm.2)
+tidy(lm.b)
 ```
 
 ```
@@ -618,10 +618,10 @@ One question we may have is whether the differences we saw in adolescents' avera
 
 ```r
 # Two-parent households is reference group
-lm.3 = lm(substance_use ~ 1 + female + gpa + parent_guardian + one_parent, data = family)
+lm.c = lm(substance_use ~ 1 + female + gpa + parent_guardian + one_parent, data = family)
 
 # Model-level output
-glance(lm.3)
+glance(lm.c)
 ```
 
 ```
@@ -636,7 +636,7 @@ At the model-level, differences in family structure, sex of the adolescent, and 
 
 
 ```r
-tidy(lm.3)
+tidy(lm.c)
 ```
 
 ```
@@ -666,9 +666,9 @@ To determine whether there are differences in the average substance use between 
 
 ```r
 # One-parent households is reference group
-lm.4 = lm(substance_use ~ 1 + female + gpa + parent_guardian + two_parent, data = family)
+lm.d = lm(substance_use ~ 1 + female + gpa + parent_guardian + two_parent, data = family)
 
-tidy(lm.4)
+tidy(lm.d)
 ```
 
 ```

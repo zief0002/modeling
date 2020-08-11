@@ -51,22 +51,22 @@ head(keith)
 
 ## Model-Level Inference
 
-In the [previous chapter](#coefinf), we looked at how to carry out statistical tests of hypotheses and quantify uncertainty associated with the coefficients in the simple regression model. Sometimes you are interested in the model as a whole, rather than the individual parameters. For example, you may be interested in whether a set of predictors *together* explains variation in the outcome. Model-level information is displayed using the `glance()` output from the **broom** package. Below we fit a model by regressing GPA on time spent on homework, store those results in an object called `lm.1`, and then print the model-level output.
+In the [previous chapter](#coefinf), we looked at how to carry out statistical tests of hypotheses and quantify uncertainty associated with the coefficients in the simple regression model. Sometimes you are interested in the model as a whole, rather than the individual parameters. For example, you may be interested in whether a set of predictors *together* explains variation in the outcome. Model-level information is displayed using the `glance()` output from the **broom** package. Below we fit a model by regressing GPA on time spent on homework, store those results in an object called `lm.a`, and then print the model-level output.
 
 ```{r eval=FALSE}
 # Fit regression model
-lm.1 = lm(gpa ~ 1 + homework, data = keith)
+lm.a = lm(gpa ~ 1 + homework, data = keith)
 
 # Model-level output
-glance(lm.1)
+glance(lm.a)
 ```
 
 ```{r echo=FALSE}
 # Fit regression model
-lm.1 = lm(gpa ~ 1 + homework, data = keith)
+lm.a = lm(gpa ~ 1 + homework, data = keith)
 
 # Model-level output
-print(glance(lm.1), width = Inf)
+print(glance(lm.a), width = Inf)
 ```
 
 The `r.squared` column indicates the proportion of variation in the outcome explained by differences in the predictor *in the sample*. Here, differences in time spent on homework explains 10.7\% of the variation in students' GPAs for the 100 students in the sample. The inferential question at the model-level is: *Does the model explain variation in the outcome, in the population?* This can formally be expressed in a statistical hypothesis as,
@@ -175,11 +175,11 @@ This area (which is one-sided in the $F$-distribution) corresponds to the $p$-va
 In practice, all of this information is provided in the output of the `glance()` function.
 
 ```{r eval=FALSE}
-glance(lm.1)
+glance(lm.a)
 ```
 
 ```{r echo=FALSE}
-print(glance(lm.1), width = Inf)
+print(glance(lm.a), width = Inf)
 ```
 
 The observed *F*-value is given in the `statistic` column and the associated degrees of freedom are provided in the `df` and `df.residual` columns. Lastly, the *p*-value is given in the `p.value` column. When we report results from an *F*-test, we need to report the values for both degrees of freedom, the *F*-value, and the *p*-value. 
@@ -194,7 +194,7 @@ The observed *F*-value is given in the `statistic` column and the associated deg
 We can also get the model-level inferential information from the `anova()` output. This gives us the ANOVA decomposition for the model.
 
 ```{r}
-anova(lm.1)
+anova(lm.a)
 ```
 
 Note that the two *df* values for the model-level *F*-statistic correspond to the *df* in each row of the ANOVA table. The first *df* (in this case, 1) is the model degrees-of-freedom, and the second *df* (in this case, 98) is the residual degrees-of-freedom. Note the *p*-value is the same as that from the `glance()` function.
@@ -261,7 +261,7 @@ $$
 These values are also printed in the `anova()` output.
 
 ```{r}
-anova(lm.1)
+anova(lm.a)
 ```
 
 $$
@@ -341,17 +341,17 @@ Lastly, we point out that in simple regression models (models with only one pred
 
 ```{r eval=FALSE}
 # Model-level inference
-glance(lm.1)
+glance(lm.a)
 ```
 
 ```{r echo=FALSE}
 # Model-level inference
-print(glance(lm.1), width = Inf)
+print(glance(lm.a), width = Inf)
 ```
 
 ```{r}
 # Coefficient-level inference
-tidy(lm.1)
+tidy(lm.a)
 ```
 
 

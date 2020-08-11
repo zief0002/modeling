@@ -185,17 +185,17 @@ To examine the effect of family structure, we will fit the regression using any 
 
 ```{r}
 # Two-parent households is reference group
-lm.1 = lm(substance_use ~ 1 + parent_guardian + one_parent, data = family)
+lm.a = lm(substance_use ~ 1 + parent_guardian + one_parent, data = family)
 
 # Model-level info
-glance(lm.1)
+glance(lm.a)
 ```
 
 At the model-level, differences in family structure explain 1.06% of the variation in adolescents' substance use. The empirical data are not consistent with the hypothesis that family structure does not explain variation in adolescents' substance use, $F(2,907)=4.89$, $p = .008$.
 
 ```{r}
 # Coefficient-level info
-tidy(lm.1)
+tidy(lm.a)
 ```
 
 The fitted regression equation is
@@ -260,17 +260,17 @@ The first regression model we fitted allowed us to evaluate the difference in su
 
 ```{r}
 # Single-parent households is reference group
-lm.2 = lm(substance_use ~ 1 + parent_guardian + two_parent, data = family)
+lm.b = lm(substance_use ~ 1 + parent_guardian + two_parent, data = family)
 
 # Model-level info
-glance(lm.2)
+glance(lm.b)
 ```
 
 Note that the model-level output for this fitted model is exactly the same as that for the model in which two-parent households was the reference group. This is because we are fitting the exact same omnibus model (to examine whether the three sets of pairwise differences explain variation in substance use). The results suggest that at least one of the pairwise differences is statistically reliable; that is there are differences in the average amount of substance use between at least two of the groups.
 
 ```{r}
 # Coefficient-level info
-tidy(lm.2)
+tidy(lm.b)
 ```
 
 The fitted regression equation, which is different than the previous fitted equation, is:
@@ -453,16 +453,16 @@ One question we may have is whether the differences we saw in adolescents' avera
 
 ```{r}
 # Two-parent households is reference group
-lm.3 = lm(substance_use ~ 1 + female + gpa + parent_guardian + one_parent, data = family)
+lm.c = lm(substance_use ~ 1 + female + gpa + parent_guardian + one_parent, data = family)
 
 # Model-level output
-glance(lm.3)
+glance(lm.c)
 ```
 
 At the model-level, differences in family structure, sex of the adolescent, and composite GPA explain 2.26% of the variation in adolescents' substance use. The empirical data are not consistent with the model explaining no variation in adolescents' substance use, $F(4,905)=5.24$, $p < .001$.
 
 ```{r}
-tidy(lm.3)
+tidy(lm.c)
 ```
 
 The fitted regression equation, which is different than the previous fitted equation, is:
@@ -480,9 +480,9 @@ To determine whether there are differences in the average substance use between 
 
 ```{r}
 # One-parent households is reference group
-lm.4 = lm(substance_use ~ 1 + female + gpa + parent_guardian + two_parent, data = family)
+lm.d = lm(substance_use ~ 1 + female + gpa + parent_guardian + two_parent, data = family)
 
-tidy(lm.4)
+tidy(lm.d)
 ```
 
 - Adolescents from households with one parent/one guardian have a lower substance use, by 0.05 on average, than adolescents from one-parent households, after controlling for differences in adolescents' sex and GPA. 

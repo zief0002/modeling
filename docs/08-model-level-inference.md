@@ -36,15 +36,15 @@ head(keith)
 
 ## Model-Level Inference
 
-In the [previous chapter](#coefinf), we looked at how to carry out statistical tests of hypotheses and quantify uncertainty associated with the coefficients in the simple regression model. Sometimes you are interested in the model as a whole, rather than the individual parameters. For example, you may be interested in whether a set of predictors *together* explains variation in the outcome. Model-level information is displayed using the `glance()` output from the **broom** package. Below we fit a model by regressing GPA on time spent on homework, store those results in an object called `lm.1`, and then print the model-level output.
+In the [previous chapter](#coefinf), we looked at how to carry out statistical tests of hypotheses and quantify uncertainty associated with the coefficients in the simple regression model. Sometimes you are interested in the model as a whole, rather than the individual parameters. For example, you may be interested in whether a set of predictors *together* explains variation in the outcome. Model-level information is displayed using the `glance()` output from the **broom** package. Below we fit a model by regressing GPA on time spent on homework, store those results in an object called `lm.a`, and then print the model-level output.
 
 
 ```r
 # Fit regression model
-lm.1 = lm(gpa ~ 1 + homework, data = keith)
+lm.a = lm(gpa ~ 1 + homework, data = keith)
 
 # Model-level output
-glance(lm.1)
+glance(lm.a)
 ```
 
 
@@ -139,7 +139,7 @@ In practice, all of this information is provided in the output of the `glance()`
 
 
 ```r
-glance(lm.1)
+glance(lm.a)
 ```
 
 
@@ -166,7 +166,7 @@ We can also get the model-level inferential information from the `anova()` outpu
 
 
 ```r
-anova(lm.1)
+anova(lm.a)
 ```
 
 ```
@@ -245,7 +245,7 @@ These values are also printed in the `anova()` output.
 
 
 ```r
-anova(lm.1)
+anova(lm.a)
 ```
 
 ```
@@ -353,7 +353,7 @@ Lastly, we point out that in simple regression models (models with only one pred
 
 ```r
 # Model-level inference
-glance(lm.1)
+glance(lm.a)
 ```
 
 
@@ -370,7 +370,7 @@ glance(lm.1)
 
 ```r
 # Coefficient-level inference
-tidy(lm.1)
+tidy(lm.a)
 ```
 
 ```

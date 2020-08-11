@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-07-12" />
+<meta name="date" content="2020-08-11" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -249,10 +249,10 @@ Measure
 </table></li>
 </ol></li>
 </ol>
-<p>We will also fitted a model by regressing GPA on time spent on homework and storing those results in an object called <code>lm.1</code>.</p>
+<p>We will also fitted a model by regressing GPA on time spent on homework and storing those results in an object called <code>lm.a</code>.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="coefinf.html#cb57-1"></a><span class="co"># Fit regression model</span></span>
-<span id="cb57-2"><a href="coefinf.html#cb57-2"></a>lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework, <span class="dt">data =</span> keith)</span>
-<span id="cb57-3"><a href="coefinf.html#cb57-3"></a>lm<span class="fl">.1</span></span></code></pre></div>
+<span id="cb57-2"><a href="coefinf.html#cb57-2"></a>lm.a =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework, <span class="dt">data =</span> keith)</span>
+<span id="cb57-3"><a href="coefinf.html#cb57-3"></a>lm.a</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = gpa ~ 1 + homework, data = keith)
@@ -324,7 +324,7 @@ Figure 3: Thought experiment for sampling samples of size n from the population 
 <h3>Obtaining SEs for the Regression Coefficients</h3>
 <p>To obtain the standard errors for the regression coefficients, we will use the <code>tidy()</code> function from the <strong>broom</strong> package to display the fitted regression output. We provide the fitted regression object as the input to this function.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="coefinf.html#cb59-1"></a><span class="co"># Display the coefficient-level output</span></span>
-<span id="cb59-2"><a href="coefinf.html#cb59-2"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<span id="cb59-2"><a href="coefinf.html#cb59-2"></a><span class="kw">tidy</span>(lm.a)</span></code></pre></div>
 <pre><code># A tibble: 2 x 5
   term        estimate std.error statistic  p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -350,7 +350,7 @@ Figure 5: Sampling distribution of the slope coefficient. The distribution is ap
 <p>The average GPA for all 8th-grade students in the district who spend zero hopurs per week on homework is between 70.41 and 78.17.</p>
 </blockquote>
 <p>We can use the <code>conf.int=TRUE</code> argument in the <code>tidy()</code> function to obtain these limits directly. By default this will compute a 95% CI. This can be changed using the <code>conf.level=</code> argument.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="coefinf.html#cb61-1"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="coefinf.html#cb61-1"></a><span class="kw">tidy</span>(lm.a, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code># A tibble: 2 x 7
   term        estimate std.error statistic  p.value conf.low conf.high
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -452,7 +452,7 @@ Figure 14: Plot of the probability curve for the t(98) distribution. The shaded 
 <div id="testing-the-intercept" class="section level3">
 <h3>Testing the Intercept</h3>
 <p>The hypothesis being tested for the intercept is <span class="math inline">\(H_0:\beta_0=0\)</span>. The <code>tidy()</code> output also provides information about this test:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="coefinf.html#cb63-1"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="coefinf.html#cb63-1"></a><span class="kw">tidy</span>(lm.a)</span></code></pre></div>
 <pre><code># A tibble: 2 x 5
   term        estimate std.error statistic  p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -488,7 +488,7 @@ t = \frac{74.28 - 0}{1.94} = 38.26
 <div id="confidence-intervals-as-compatibility-intervals" class="section level2">
 <h2>Confidence Intervals as Compatibility Intervals</h2>
 <p>To build on this, let’s return to the reporting and interpretation of confidence intervals. In our example, the 95% CI was:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="coefinf.html#cb65-1"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="coefinf.html#cb65-1"></a><span class="kw">tidy</span>(lm.a, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code># A tibble: 2 x 7
   term        estimate std.error statistic  p.value conf.low conf.high
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -519,7 +519,7 @@ Figure 15: Coefficient plot for the model regressing GPA on time spent on homewo
 <span id="cb67-2"><a href="coefinf.html#cb67-2"></a><span class="kw">library</span>(dotwhisker)</span>
 <span id="cb67-3"><a href="coefinf.html#cb67-3"></a></span>
 <span id="cb67-4"><a href="coefinf.html#cb67-4"></a><span class="co"># Store output from tidy</span></span>
-<span id="cb67-5"><a href="coefinf.html#cb67-5"></a>mod_<span class="dv">1</span> =<span class="st"> </span><span class="kw">tidy</span>(lm<span class="fl">.1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb67-5"><a href="coefinf.html#cb67-5"></a>mod_<span class="dv">1</span> =<span class="st"> </span><span class="kw">tidy</span>(lm.a) <span class="op">%&gt;%</span></span>
 <span id="cb67-6"><a href="coefinf.html#cb67-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model A&quot;</span>)</span>
 <span id="cb67-7"><a href="coefinf.html#cb67-7"></a></span>
 <span id="cb67-8"><a href="coefinf.html#cb67-8"></a><span class="co"># Create plot</span></span>
@@ -530,7 +530,7 @@ Figure 15: Coefficient plot for the model regressing GPA on time spent on homewo
 <span id="cb67-13"><a href="coefinf.html#cb67-13"></a><span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Coefficients&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Time spent</span><span class="ch">\n</span><span class="st">on homework&quot;</span>, <span class="st">&quot;Intercept&quot;</span>))</span></code></pre></div>
 <p>By default, the plot will display 95% CI. To display a different level of confidence, specify <code>conf.level=</code> argument in <code>tidy()</code>. There are several variations of this plot. For example, below I omit the intercept from this plot. To do this, I use the <code>filter()</code> function to omit the row in the <code>tidy()</code> output that includes the intercept.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> I also change the limits on the <em>x</em>-axis to better fit the homework interval.</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="coefinf.html#cb68-1"></a><span class="co"># Omit intercept</span></span>
-<span id="cb68-2"><a href="coefinf.html#cb68-2"></a>mod_<span class="dv">1</span> =<span class="st"> </span><span class="kw">tidy</span>(lm<span class="fl">.1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb68-2"><a href="coefinf.html#cb68-2"></a>mod_<span class="dv">1</span> =<span class="st"> </span><span class="kw">tidy</span>(lm.a) <span class="op">%&gt;%</span></span>
 <span id="cb68-3"><a href="coefinf.html#cb68-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model A&quot;</span>) <span class="op">%&gt;%</span></span>
 <span id="cb68-4"><a href="coefinf.html#cb68-4"></a><span class="st">  </span><span class="kw">filter</span>(term <span class="op">==</span><span class="st"> &quot;homework&quot;</span>)</span>
 <span id="cb68-5"><a href="coefinf.html#cb68-5"></a></span>

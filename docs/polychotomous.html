@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-07-12" />
+<meta name="date" content="2020-08-11" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -424,10 +424,10 @@ Two-parent family
 <p>We don’t need to know the values on the <code>one_parent</code> indicator to identify the adolescents from one-parent families, so long as we have the other two indicators.</p>
 <p>To examine the effect of family structure, we will fit the regression using any two of the three dummy-coded indicator variables you created. The indicator you leave out of the model will correspond to the reference category. For example, in the model fitted below, we include the predictors <code>parent_guardian</code>, and <code>one_parent</code> as predictors in the model; we did not include the <code>two_parent</code> predictor. As such, adolescents from two-parent households is our reference group.</p>
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="polychotomous.html#cb218-1"></a><span class="co"># Two-parent households is reference group</span></span>
-<span id="cb218-2"><a href="polychotomous.html#cb218-2"></a>lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(substance_use <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>parent_guardian <span class="op">+</span><span class="st"> </span>one_parent, <span class="dt">data =</span> family)</span>
+<span id="cb218-2"><a href="polychotomous.html#cb218-2"></a>lm.a =<span class="st"> </span><span class="kw">lm</span>(substance_use <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>parent_guardian <span class="op">+</span><span class="st"> </span>one_parent, <span class="dt">data =</span> family)</span>
 <span id="cb218-3"><a href="polychotomous.html#cb218-3"></a></span>
 <span id="cb218-4"><a href="polychotomous.html#cb218-4"></a><span class="co"># Model-level info</span></span>
-<span id="cb218-5"><a href="polychotomous.html#cb218-5"></a><span class="kw">glance</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<span id="cb218-5"><a href="polychotomous.html#cb218-5"></a><span class="kw">glance</span>(lm.a)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -435,7 +435,7 @@ Two-parent family
 # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>At the model-level, differences in family structure explain 1.06% of the variation in adolescents’ substance use. The empirical data are not consistent with the hypothesis that family structure does not explain variation in adolescents’ substance use, <span class="math inline">\(F(2,907)=4.89\)</span>, <span class="math inline">\(p = .008\)</span>.</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="polychotomous.html#cb220-1"></a><span class="co"># Coefficient-level info</span></span>
-<span id="cb220-2"><a href="polychotomous.html#cb220-2"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<span id="cb220-2"><a href="polychotomous.html#cb220-2"></a><span class="kw">tidy</span>(lm.a)</span></code></pre></div>
 <pre><code># A tibble: 3 x 5
   term            estimate std.error statistic p.value
   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -491,10 +491,10 @@ H_0: \bigg(\mu_{\mathrm{Parent/Guardian}} - \mu_{\mathrm{Two\mbox{-}Parent}}\big
 <h2>Evaluate Substance Use Bewteen Adolescents from Single-Parent Households and Those from Houeholds with One Parent/One Guardian</h2>
 <p>The first regression model we fitted allowed us to evaluate the difference in substance use between adolescents from two-parent households and those from one parent/one guardian households, as well as that between two-parent and one-parent households. In order to examine the remaining pairwise difference, we need to fit an additional regression model that allows us to evaluate any substance use differences between adolescents from single-parent households and those from households with one parent/one guardian. Below, we fit a second model (using single-parent households as the reference group) to predict variation in substance use.</p>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="polychotomous.html#cb222-1"></a><span class="co"># Single-parent households is reference group</span></span>
-<span id="cb222-2"><a href="polychotomous.html#cb222-2"></a>lm<span class="fl">.2</span> =<span class="st"> </span><span class="kw">lm</span>(substance_use <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>parent_guardian <span class="op">+</span><span class="st"> </span>two_parent, <span class="dt">data =</span> family)</span>
+<span id="cb222-2"><a href="polychotomous.html#cb222-2"></a>lm.b =<span class="st"> </span><span class="kw">lm</span>(substance_use <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>parent_guardian <span class="op">+</span><span class="st"> </span>two_parent, <span class="dt">data =</span> family)</span>
 <span id="cb222-3"><a href="polychotomous.html#cb222-3"></a></span>
 <span id="cb222-4"><a href="polychotomous.html#cb222-4"></a><span class="co"># Model-level info</span></span>
-<span id="cb222-5"><a href="polychotomous.html#cb222-5"></a><span class="kw">glance</span>(lm<span class="fl">.2</span>)</span></code></pre></div>
+<span id="cb222-5"><a href="polychotomous.html#cb222-5"></a><span class="kw">glance</span>(lm.b)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -502,7 +502,7 @@ H_0: \bigg(\mu_{\mathrm{Parent/Guardian}} - \mu_{\mathrm{Two\mbox{-}Parent}}\big
 # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>Note that the model-level output for this fitted model is exactly the same as that for the model in which two-parent households was the reference group. This is because we are fitting the exact same omnibus model (to examine whether the three sets of pairwise differences explain variation in substance use). The results suggest that at least one of the pairwise differences is statistically reliable; that is there are differences in the average amount of substance use between at least two of the groups.</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="polychotomous.html#cb224-1"></a><span class="co"># Coefficient-level info</span></span>
-<span id="cb224-2"><a href="polychotomous.html#cb224-2"></a><span class="kw">tidy</span>(lm<span class="fl">.2</span>)</span></code></pre></div>
+<span id="cb224-2"><a href="polychotomous.html#cb224-2"></a><span class="kw">tidy</span>(lm.b)</span></code></pre></div>
 <pre><code># A tibble: 3 x 5
   term            estimate std.error statistic p.value
   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -783,17 +783,17 @@ Parent/guardian vs. Single-parent
 <h2>Does Family Structure Predict Variation in Adolescent Substance Use After Accounting for Other Covariates?</h2>
 <p>One question we may have is whether the differences we saw in adolescents’ average substance use persist after we account for other covariates that also explain differences in substance use (e.g., sex, academic achievement). To evaluate this, we will fit a regression model that includes the <code>female</code> and <code>gpa</code> covariates, along with two of the dummy-coded family structure predictors to explain variability in substance use.</p>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="polychotomous.html#cb232-1"></a><span class="co"># Two-parent households is reference group</span></span>
-<span id="cb232-2"><a href="polychotomous.html#cb232-2"></a>lm<span class="fl">.3</span> =<span class="st"> </span><span class="kw">lm</span>(substance_use <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>female <span class="op">+</span><span class="st"> </span>gpa <span class="op">+</span><span class="st"> </span>parent_guardian <span class="op">+</span><span class="st"> </span>one_parent, <span class="dt">data =</span> family)</span>
+<span id="cb232-2"><a href="polychotomous.html#cb232-2"></a>lm.c =<span class="st"> </span><span class="kw">lm</span>(substance_use <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>female <span class="op">+</span><span class="st"> </span>gpa <span class="op">+</span><span class="st"> </span>parent_guardian <span class="op">+</span><span class="st"> </span>one_parent, <span class="dt">data =</span> family)</span>
 <span id="cb232-3"><a href="polychotomous.html#cb232-3"></a></span>
 <span id="cb232-4"><a href="polychotomous.html#cb232-4"></a><span class="co"># Model-level output</span></span>
-<span id="cb232-5"><a href="polychotomous.html#cb232-5"></a><span class="kw">glance</span>(lm<span class="fl">.3</span>)</span></code></pre></div>
+<span id="cb232-5"><a href="polychotomous.html#cb232-5"></a><span class="kw">glance</span>(lm.c)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 1    0.0226        0.0183 0.882      5.24 3.56e-4     4 -1175. 2361. 2390.
 # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>At the model-level, differences in family structure, sex of the adolescent, and composite GPA explain 2.26% of the variation in adolescents’ substance use. The empirical data are not consistent with the model explaining no variation in adolescents’ substance use, <span class="math inline">\(F(4,905)=5.24\)</span>, <span class="math inline">\(p &lt; .001\)</span>.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="polychotomous.html#cb234-1"></a><span class="kw">tidy</span>(lm<span class="fl">.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="polychotomous.html#cb234-1"></a><span class="kw">tidy</span>(lm.c)</span></code></pre></div>
 <pre><code># A tibble: 5 x 5
   term            estimate std.error statistic  p.value
   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -813,9 +813,9 @@ Parent/guardian vs. Single-parent
 </ul>
 <p>To determine whether there are differences in the average substance use between adolescents from one-parent households and those from households with one parent/one guardian, we need to fit an additional model with one of these groups as the reference group.</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="polychotomous.html#cb236-1"></a><span class="co"># One-parent households is reference group</span></span>
-<span id="cb236-2"><a href="polychotomous.html#cb236-2"></a>lm<span class="fl">.4</span> =<span class="st"> </span><span class="kw">lm</span>(substance_use <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>female <span class="op">+</span><span class="st"> </span>gpa <span class="op">+</span><span class="st"> </span>parent_guardian <span class="op">+</span><span class="st"> </span>two_parent, <span class="dt">data =</span> family)</span>
+<span id="cb236-2"><a href="polychotomous.html#cb236-2"></a>lm.d =<span class="st"> </span><span class="kw">lm</span>(substance_use <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>female <span class="op">+</span><span class="st"> </span>gpa <span class="op">+</span><span class="st"> </span>parent_guardian <span class="op">+</span><span class="st"> </span>two_parent, <span class="dt">data =</span> family)</span>
 <span id="cb236-3"><a href="polychotomous.html#cb236-3"></a></span>
-<span id="cb236-4"><a href="polychotomous.html#cb236-4"></a><span class="kw">tidy</span>(lm<span class="fl">.4</span>)</span></code></pre></div>
+<span id="cb236-4"><a href="polychotomous.html#cb236-4"></a><span class="kw">tidy</span>(lm.d)</span></code></pre></div>
 <pre><code># A tibble: 5 x 5
   term            estimate std.error statistic  p.value
   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;

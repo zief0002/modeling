@@ -82,13 +82,13 @@ We also create a table to present the correlation coefficients. This table could
 </table>
 
 
-We will also fitted a model by regressing GPA on time spent on homework and storing those results in an object called `lm.1`.
+We will also fitted a model by regressing GPA on time spent on homework and storing those results in an object called `lm.a`.
 
 
 ```r
 # Fit regression model
-lm.1 = lm(gpa ~ 1 + homework, data = keith)
-lm.1
+lm.a = lm(gpa ~ 1 + homework, data = keith)
+lm.a
 ```
 
 ```
@@ -191,7 +191,7 @@ To obtain the standard errors for the regression coefficients, we will use the `
 
 ```r
 # Display the coefficient-level output
-tidy(lm.1)
+tidy(lm.a)
 ```
 
 ```
@@ -229,7 +229,7 @@ We can use the `conf.int=TRUE` argument in the `tidy()` function to obtain these
 
 
 ```r
-tidy(lm.1, conf.int = TRUE, conf.level = 0.95)
+tidy(lm.a, conf.int = TRUE, conf.level = 0.95)
 ```
 
 ```
@@ -365,7 +365,7 @@ The hypothesis being tested for the intercept is $H_0:\beta_0=0$. The `tidy()` o
 
 
 ```r
-tidy(lm.1)
+tidy(lm.a)
 ```
 
 ```
@@ -422,7 +422,7 @@ To build on this, let's return to the reporting and interpretation of confidence
 
 
 ```r
-tidy(lm.1, conf.int = TRUE, conf.level = 0.95)
+tidy(lm.a, conf.int = TRUE, conf.level = 0.95)
 ```
 
 ```
@@ -466,7 +466,7 @@ To create a coefficient plot, we will use the `dwplot()` function from the [dotw
 library(dotwhisker)
 
 # Store output from tidy
-mod_1 = tidy(lm.1) %>%
+mod_1 = tidy(lm.a) %>%
   mutate(model = "Model A")
 
 # Create plot
@@ -483,7 +483,7 @@ By default, the plot will display 95% CI. To display a different level of confid
 
 ```r
 # Omit intercept
-mod_1 = tidy(lm.1) %>%
+mod_1 = tidy(lm.a) %>%
   mutate(model = "Model A") %>%
   filter(term == "homework")
 

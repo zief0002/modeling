@@ -97,12 +97,12 @@ kable(table_01,
 ```
 
 
-We will also fitted a model by regressing GPA on time spent on homework and storing those results in an object called `lm.1`.
+We will also fitted a model by regressing GPA on time spent on homework and storing those results in an object called `lm.a`.
 
 ```{r}
 # Fit regression model
-lm.1 = lm(gpa ~ 1 + homework, data = keith)
-lm.1
+lm.a = lm(gpa ~ 1 + homework, data = keith)
+lm.a
 ```
 
 The fitted equation is:
@@ -192,7 +192,7 @@ To obtain the standard errors for the regression coefficients, we will use the `
 
 ```{r}
 # Display the coefficient-level output
-tidy(lm.1)
+tidy(lm.a)
 ```
 
 In the displayed output, we now obtain the estimates for the standard errors in addition to the coefficient estimates. We can use these values to quantify the amount of uncertainty due to sampling error. For example, the estimate for the slope, 1.21, has a standard error of 0.35. One way to envision this is as a distribution. Our best guess (mean) for the slope parameter is 1.21. The standard deviation of this distribution is 0.35, which indicates the precision (uncertainty) of our estimate.
@@ -232,7 +232,7 @@ Interpreting this, we might say,
 We can use the `conf.int=TRUE` argument in the `tidy()` function to obtain these limits directly. By default this will compute a 95% CI. This can be changed using the `conf.level=` argument.^[The actual limits from the 95% CI are computed using a multiplier that is slightly different than two; thus the discrepancy between our off-the-cuff computation earlier and the result from `tidy()`. Using a multiplier of two is often close enough for practical purposes, especially when the sample size is large.]
 
 ```{r}
-tidy(lm.1, conf.int = TRUE, conf.level = 0.95)
+tidy(lm.a, conf.int = TRUE, conf.level = 0.95)
 ```
 
 <br />
@@ -403,7 +403,7 @@ This is quite unlikely, and indicates that the empirical data are inconsistent w
 The hypothesis being tested for the intercept is $H_0:\beta_0=0$. The `tidy()` output also provides information about this test:
 
 ```{r}
-tidy(lm.1)
+tidy(lm.a)
 ```
 
 
@@ -453,7 +453,7 @@ include_graphics("figs/pvalue-and-tinder.jpg")
 To build on this, let's return to the reporting and interpretation of confidence intervals. In our example, the 95\% CI was:
 
 ```{r}
-tidy(lm.1, conf.int = TRUE, conf.level = 0.95)
+tidy(lm.a, conf.int = TRUE, conf.level = 0.95)
 ```
 
 One way of interpreting this interval is that every value in the interval is a parameter value that is reasonably compatible with the empirical data. For example, in considering the CI for the slope parameter, population slope $(\beta_1)$ values between 0.51 and 1.92 are all reasonably compatible with the empirical data (with the caveat that, again, all the assumptions used to create the interval are satisfied). As applied researchers, we should describe the practical implications of all values inside the interval, especially the observed effect (or point estimate) and the limits. 
@@ -479,7 +479,7 @@ One plot that helps visualize the estimates of the regression coefficients and t
 library(dotwhisker)
 
 # Store output from tidy
-mod_1 = tidy(lm.1) %>%
+mod_1 = tidy(lm.a) %>%
   mutate(model = "Model A")
 
 # Create plot
@@ -499,7 +499,7 @@ To create a coefficient plot, we will use the `dwplot()` function from the [dotw
 library(dotwhisker)
 
 # Store output from tidy
-mod_1 = tidy(lm.1) %>%
+mod_1 = tidy(lm.a) %>%
   mutate(model = "Model A")
 
 # Create plot
@@ -515,7 +515,7 @@ By default, the plot will display 95% CI. To display a different level of confid
 
 ```{r fig.width=6, fig.height = 2, out.width='80%', fig.cap='Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95\\% confidence interval is displayed. Note that the intercept has been omitted.'}
 # Omit intercept
-mod_1 = tidy(lm.1) %>%
+mod_1 = tidy(lm.a) %>%
   mutate(model = "Model A") %>%
   filter(term == "homework")
 

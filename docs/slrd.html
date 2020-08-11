@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-07-12" />
+<meta name="date" content="2020-08-11" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -394,12 +394,12 @@ Figure 5: Scatterplot displaying the relationship between employee education lev
 <blockquote>
 <p><code>lm(</code><strong>outcome</strong> ~ <code>1 +</code> <strong>predictor</strong>, <code>data =</code> <strong>dataframe</strong><code>)</code></p>
 </blockquote>
-<p>where <strong>outcome</strong> is the name of the outcome/response variable, <strong>predictor</strong> is the name of the predictor variable, and <strong>dataframe</strong> is the name of the data frame. (The <code>1</code> on the right side of the tilde tells R to include the intercept in its computation.) When we fit a regression model in R, we will also assign the output to a new object in R. Below, we fit the model using education level to predict income. Here the output is assigned to an object called <code>lm.1</code>. We can print the regression parameter estimates by typing the <code>lm()</code> object name and hitting enter.</p>
+<p>where <strong>outcome</strong> is the name of the outcome/response variable, <strong>predictor</strong> is the name of the predictor variable, and <strong>dataframe</strong> is the name of the data frame. (The <code>1</code> on the right side of the tilde tells R to include the intercept in its computation.) When we fit a regression model in R, we will also assign the output to a new object in R. Below, we fit the model using education level to predict income. Here the output is assigned to an object called <code>lm.a</code>. We can print the regression parameter estimates by typing the <code>lm()</code> object name and hitting enter.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="slrd.html#cb10-1"></a><span class="co"># Fit regression model</span></span>
-<span id="cb10-2"><a href="slrd.html#cb10-2"></a>lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</span>
+<span id="cb10-2"><a href="slrd.html#cb10-2"></a>lm.a =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</span>
 <span id="cb10-3"><a href="slrd.html#cb10-3"></a></span>
 <span id="cb10-4"><a href="slrd.html#cb10-4"></a><span class="co"># Print regression coefficients</span></span>
-<span id="cb10-5"><a href="slrd.html#cb10-5"></a>lm<span class="fl">.1</span></span></code></pre></div>
+<span id="cb10-5"><a href="slrd.html#cb10-5"></a>lm.a</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = income ~ 1 + education, data = city)

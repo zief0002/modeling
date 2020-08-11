@@ -42,10 +42,10 @@ In a [previous chapter](#slrd), we fitted a model regressing employees' incomes 
 
 ```r
 # Fit regression model
-lm.1 = lm(income ~ 1 + education, data = city)
+lm.a = lm(income ~ 1 + education, data = city)
 
 # Obtain model-level results
-glance(lm.1)
+glance(lm.a)
 ```
 
 
@@ -62,7 +62,7 @@ glance(lm.1)
 
 ```r
 # Obtain coefficient-level results
-tidy(lm.1)
+tidy(lm.a)
 ```
 
 ```
@@ -174,10 +174,10 @@ It is also instructive to fit and examine the results from the simple regression
 
 
 ```r
-lm.2 = lm(income ~ 1 + seniority, data = city)
+lm.b = lm(income ~ 1 + seniority, data = city)
 
 # Model-level results
-glance(lm.2)
+glance(lm.b)
 ```
 
 
@@ -194,7 +194,7 @@ glance(lm.2)
 
 ```r
 # Coefficient-level results
-tidy(lm.2)
+tidy(lm.b)
 ```
 
 ```
@@ -228,7 +228,7 @@ To fit the multiple regression model, we will just add (literally) additional pr
 
 
 ```r
-lm.3 = lm(income ~ 1 + education + seniority, data = city)
+lm.c = lm(income ~ 1 + education + seniority, data = city)
 ```
 
 <br />
@@ -241,7 +241,7 @@ To interpret multiple regression results, begin with the model-level information
 
 ```r
 # Model-level results
-glance(lm.3)
+glance(lm.c)
 ```
 
 
@@ -289,7 +289,7 @@ Now we turn to the coefficient-level results produced in the `tidy()` output.
 
 ```r
 # Coefficient-level results
-tidy(lm.3)
+tidy(lm.c)
 ```
 
 ```
@@ -398,7 +398,7 @@ The residual sum of squares can be obtained using the `anova()` function.
 
 
 ```r
-anova(lm.3)
+anova(lm.c)
 ```
 
 ```
@@ -491,10 +491,10 @@ Let's re-fit the model, but this time we will include seniority-level in the mod
 
 ```r
 # Fit model with different predictor order
-lm.4 = lm(income ~ 1 + seniority + education, data = city)
+lm.d = lm(income ~ 1 + seniority + education, data = city)
 
 # ANOVA decomposition
-anova(lm.4)
+anova(lm.d)
 ```
 
 ```
@@ -530,7 +530,7 @@ This is the same model-level $R^2$ value we obtained earlier. Thus the results g
 
 ```r
 # Model-level output
-glance(lm.4)
+glance(lm.d)
 ```
 
 ```
@@ -558,7 +558,7 @@ The *F*-test examines whether this fraction (or proportion) is statistically dif
 
 ```r
 # Coefficient-level output
-tidy(lm.4)
+tidy(lm.d)
 ```
 
 ```
@@ -616,13 +616,13 @@ To create a coefficient plot for a multiple regression, we will again use the `d
 library(dotwhisker)
 
 # Create tidy() data frames with model names
-mod_1 = tidy(lm.1) %>%
+mod_1 = tidy(lm.a) %>%
   mutate(model = "Model A")
 
-mod_2 = tidy(lm.2) %>%
+mod_2 = tidy(lm.b) %>%
   mutate(model = "Model B")
 
-mod_3 = tidy(lm.3) %>%
+mod_3 = tidy(lm.c) %>%
   mutate(model = "Model C")
 
 # Combine into single data frame

@@ -153,13 +153,13 @@ The correlation between  educational sector and graduation rate is small and pos
 
 ```{r}
 # Fit regression model
-lm.1 = lm(grad ~ 1 + indicator, data = mn)
+lm.a = lm(grad ~ 1 + indicator, data = mn)
 
 # Model-level output
-print(glance(lm.1), width = Inf)
+print(glance(lm.a), width = Inf)
 
 # Coefficient-level output
-tidy(lm.1)
+tidy(lm.a)
 ```
 
 :::fyi
@@ -213,13 +213,13 @@ mn %>%
   fashion(decimals = 3)
 
 # Fit regression model
-lm.2 = lm(grad ~ 1 + indicator_2, data = mn)
+lm.b = lm(grad ~ 1 + indicator_2, data = mn)
 
 # Model-level output
-print(glance(lm.2), width = Inf)
+print(glance(lm.b), width = Inf)
 
 # Coefficient-level output
-tidy(lm.2)
+tidy(lm.b)
 ```
 The correlation between  educational sector and graduation rate and the model-level output is exactly the same. Institutions with higher graduation rates tend to have higher values on the indicator variable (private institutions). Differences in these indicator values (i.e., educational sector) explain 15.75\% of the variation in graduation rates. This is statistically reliable, $F(1, 31) = 5.80$, $p=0.022$.
 
@@ -272,13 +272,13 @@ mn %>%
   fashion(decimals = 3)
 
 # Fit regression model
-lm.3 = lm(grad ~ 1 + private, data = mn)
+lm.c = lm(grad ~ 1 + private, data = mn)
 
 # Model-level output
-print(glance(lm.3), width = Inf)
+print(glance(lm.c), width = Inf)
 
 # Coefficient-level output
-tidy(lm.3)
+tidy(lm.c)
 ```
 The correlation between  educational sector and graduation rate and the model-level output is exactly the same. Institutions with higher graduation rates tend to have higher values on the indicator variable (private institutions). Differences in these indicator values (i.e., educational sector) explain 15.75\% of the variation in graduation rates. This is statistically reliable, $F(1, 31) = 5.80$, $p=0.022$.
 
@@ -330,13 +330,13 @@ mn %>%
   fashion(decimals = 3)
 
 # Fit regression model
-lm.4 = lm(grad ~ 1 + public, data = mn)
+lm.d = lm(grad ~ 1 + public, data = mn)
 
 # Model-level output
-print(glance(lm.4), width = Inf)
+print(glance(lm.d), width = Inf)
 
 # Coefficient-level output
-tidy(lm.4)
+tidy(lm.d)
 ```
 
 The correlations and model-level output are exactly the same, except that the sign on the correlation is now negative since we switched the order of the coding so that private schools were mapped to a lower value (0) and public school were mapped to a higher value (1). The fitted equation is:
@@ -362,13 +362,13 @@ Like any other regression model, we need to examine whether or not the model's a
 
 ```{r out.width='45%', fig.show='hold', fig.cap="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed."}
 # Obtain the fitted values and residuals
-aug_4 = augment(lm.4)
+aug_d = augment(lm.d)
 
 # View augmented data frame
-head(aug_4)
+head(aug_d)
 
 # Density plot of the marginal standardized residuals
-ggplot(data = aug_4, aes(x = .std.resid)) +
+ggplot(data = aug_d, aes(x = .std.resid)) +
   stat_density_confidence(model ="normal") +
   stat_density(geom = "line", color = "#c62f4b") +
   theme_bw() +
@@ -376,7 +376,7 @@ ggplot(data = aug_4, aes(x = .std.resid)) +
   ylab("Probability density")
 
 # Scatterplot of the standardized residuals versus the fitted values
-ggplot(data = aug_4, aes(x = .fitted, y = .std.resid)) +
+ggplot(data = aug_d, aes(x = .fitted, y = .std.resid)) +
   geom_point() +
   geom_hline(yintercept = 0) +
   theme_bw() +
@@ -390,11 +390,11 @@ The *marginal* distribution of the residuals does not show evidence of mis-fit w
 
 ```{r out.width='45%', fig.show='hold', fig.cap="Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for  private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools."}
 # Get private schools
-aug_private = aug_4 %>% 
+aug_private = aug_d %>% 
   filter(public == 0)
 
 # Get public schools
-aug_public = aug_4 %>% 
+aug_public = aug_d %>% 
   filter(public == 1)
 
 # Density plot of the private schools' standardized residuals
@@ -443,17 +443,17 @@ Fitting the regeression model
 
 
 ```{r}
-lm.5 = lm(grad ~ 1 + sat + private, data = mn)
+lm.e = lm(grad ~ 1 + sat + private, data = mn)
 
 # Model-level output
-print(glance(lm.5), width = Inf)
+print(glance(lm.e), width = Inf)
 ```
 
 Differences in educational sector and median SAT score explain 84.26\% of the variation in graduation rates. This is statistically reliable, $F(2, 30) = 80.27$, $p<0.001$.
 
 ```{r}
 # Coefficient-level output
-tidy(lm.5)
+tidy(lm.e)
 ```
 
 The fitted equation is:
@@ -552,10 +552,10 @@ From the correlation matrix we see:
 Fitting the regression model:
 
 ```{r}
-lm.6 = lm(grad ~ 1 + sat + tuition + private, data = mn)
+lm.f = lm(grad ~ 1 + sat + tuition + private, data = mn)
 
 # Model-level info
-glance(lm.6)
+glance(lm.f)
 ```
 
 Differences in median SAT scores, tuition rates, and educational sector explain 86.07\% of the variation in graduation rates. This is statistically reliable, $F(3, 29) = 59.73$, $p<0.001$.
@@ -563,7 +563,7 @@ Differences in median SAT scores, tuition rates, and educational sector explain 
 
 ```{r}
 # Coefficient-level info
-tidy(lm.6)
+tidy(lm.f)
 ```
 
 Here we will not interpret all of the coefficients, but instead focus on only the `private` coefficient, as that is germain to our research question.
@@ -581,13 +581,13 @@ It is important to check the assumptions of any adopted model. Since we have add
 
 ```{r out.width='45%', fig.show='hold', fig.cap="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed."}
 # Obtain the fitted values and residuals
-aug_6 = augment(lm.6)
+aug_f = augment(lm.f)
 
 # View augmented data frame
-head(aug_6)
+head(aug_f)
 
 # Density plot of the marginal standardized residuals
-ggplot(data = aug_6, aes(x = .std.resid)) +
+ggplot(data = aug_f, aes(x = .std.resid)) +
   stat_density_confidence(model ="normal") +
   stat_density(geom = "line", color = "#c62f4b") +
   theme_bw() +
@@ -595,7 +595,7 @@ ggplot(data = aug_6, aes(x = .std.resid)) +
   ylab("Probability density")
 
 # Scatterplot of the standardized residuals versus the fitted values
-ggplot(data = aug_6, aes(x = .fitted, y = .std.resid)) +
+ggplot(data = aug_f, aes(x = .fitted, y = .std.resid)) +
   geom_point() +
   geom_hline(yintercept = 0) +
   theme_bw() +
@@ -613,7 +613,7 @@ Below we present pertinent results from the three models that we fitted.
 
 ```{r message=FALSE, results='asis', echo=FALSE, eval=FALSE}
 library(stargazer)
-stargazer(lm.3, lm.5, lm.6, dep.var.labels = "Six-year graduation rate", covariate.labels = c("Median SAT score", "Tuition", "Educational Sector"), keep.stat = c("rsq", "ser", "f"), notes = "Educational Sector: 0 = Private; 1 = Public", notes.align = "l", notes.append = TRUE, header = FALSE, type="html")
+stargazer(lm.c, lm.e, lm.f, dep.var.labels = "Six-year graduation rate", covariate.labels = c("Median SAT score", "Tuition", "Educational Sector"), keep.stat = c("rsq", "ser", "f"), notes = "Educational Sector: 0 = Private; 1 = Public", notes.align = "l", notes.append = TRUE, header = FALSE, type="html")
 ```
 
 <table class="table" style="width:70%; margin-left: auto; margin-right: auto; text-align:center">
@@ -654,9 +654,9 @@ There are two plots we may want to consider creating to accompany the data narra
 library(dotwhisker)
 
 # Create tidy() objects and identify each with a model column
-m1 = tidy(lm.3) %>% mutate(model = "Model A")
-m2 = tidy(lm.5) %>% mutate(model = "Model B")
-m3 = tidy(lm.6) %>% mutate(model = "Model C")
+m1 = tidy(lm.c) %>% mutate(model = "Model A")
+m2 = tidy(lm.e) %>% mutate(model = "Model B")
+m3 = tidy(lm.f) %>% mutate(model = "Model C")
 
 # Combine all three tidy() outputs, filter out intercepts, and drop missing values
 all_models = rbind(m1, m2, m3)

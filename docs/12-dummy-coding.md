@@ -171,10 +171,10 @@ The correlation between  educational sector and graduation rate is small and pos
 
 ```r
 # Fit regression model
-lm.1 = lm(grad ~ 1 + indicator, data = mn)
+lm.a = lm(grad ~ 1 + indicator, data = mn)
 
 # Model-level output
-print(glance(lm.1), width = Inf)
+print(glance(lm.a), width = Inf)
 ```
 
 ```
@@ -189,7 +189,7 @@ print(glance(lm.1), width = Inf)
 
 ```r
 # Coefficient-level output
-tidy(lm.1)
+tidy(lm.a)
 ```
 
 ```
@@ -273,10 +273,10 @@ mn %>%
 
 ```r
 # Fit regression model
-lm.2 = lm(grad ~ 1 + indicator_2, data = mn)
+lm.b = lm(grad ~ 1 + indicator_2, data = mn)
 
 # Model-level output
-print(glance(lm.2), width = Inf)
+print(glance(lm.b), width = Inf)
 ```
 
 ```
@@ -291,7 +291,7 @@ print(glance(lm.2), width = Inf)
 
 ```r
 # Coefficient-level output
-tidy(lm.2)
+tidy(lm.b)
 ```
 
 ```
@@ -374,10 +374,10 @@ mn %>%
 
 ```r
 # Fit regression model
-lm.3 = lm(grad ~ 1 + private, data = mn)
+lm.c = lm(grad ~ 1 + private, data = mn)
 
 # Model-level output
-print(glance(lm.3), width = Inf)
+print(glance(lm.c), width = Inf)
 ```
 
 ```
@@ -392,7 +392,7 @@ print(glance(lm.3), width = Inf)
 
 ```r
 # Coefficient-level output
-tidy(lm.3)
+tidy(lm.c)
 ```
 
 ```
@@ -463,10 +463,10 @@ mn %>%
 
 ```r
 # Fit regression model
-lm.4 = lm(grad ~ 1 + public, data = mn)
+lm.d = lm(grad ~ 1 + public, data = mn)
 
 # Model-level output
-print(glance(lm.4), width = Inf)
+print(glance(lm.d), width = Inf)
 ```
 
 ```
@@ -481,7 +481,7 @@ print(glance(lm.4), width = Inf)
 
 ```r
 # Coefficient-level output
-tidy(lm.4)
+tidy(lm.d)
 ```
 
 ```
@@ -516,10 +516,10 @@ Like any other regression model, we need to examine whether or not the model's a
 
 ```r
 # Obtain the fitted values and residuals
-aug_4 = augment(lm.4)
+aug_d = augment(lm.d)
 
 # View augmented data frame
-head(aug_4)
+head(aug_d)
 ```
 
 ```
@@ -536,7 +536,7 @@ head(aug_4)
 
 ```r
 # Density plot of the marginal standardized residuals
-ggplot(data = aug_4, aes(x = .std.resid)) +
+ggplot(data = aug_d, aes(x = .std.resid)) +
   stat_density_confidence(model ="normal") +
   stat_density(geom = "line", color = "#c62f4b") +
   theme_bw() +
@@ -544,7 +544,7 @@ ggplot(data = aug_4, aes(x = .std.resid)) +
   ylab("Probability density")
 
 # Scatterplot of the standardized residuals versus the fitted values
-ggplot(data = aug_4, aes(x = .fitted, y = .std.resid)) +
+ggplot(data = aug_d, aes(x = .fitted, y = .std.resid)) +
   geom_point() +
   geom_hline(yintercept = 0) +
   theme_bw() +
@@ -564,11 +564,11 @@ The *marginal* distribution of the residuals does not show evidence of mis-fit w
 
 ```r
 # Get private schools
-aug_private = aug_4 %>% 
+aug_private = aug_d %>% 
   filter(public == 0)
 
 # Get public schools
-aug_public = aug_4 %>% 
+aug_public = aug_d %>% 
   filter(public == 1)
 
 # Density plot of the private schools' standardized residuals
@@ -631,10 +631,10 @@ Fitting the regeression model
 
 
 ```r
-lm.5 = lm(grad ~ 1 + sat + private, data = mn)
+lm.e = lm(grad ~ 1 + sat + private, data = mn)
 
 # Model-level output
-print(glance(lm.5), width = Inf)
+print(glance(lm.e), width = Inf)
 ```
 
 ```
@@ -652,7 +652,7 @@ Differences in educational sector and median SAT score explain 84.26\% of the va
 
 ```r
 # Coefficient-level output
-tidy(lm.5)
+tidy(lm.e)
 ```
 
 ```
@@ -806,10 +806,10 @@ Fitting the regression model:
 
 
 ```r
-lm.6 = lm(grad ~ 1 + sat + tuition + private, data = mn)
+lm.f = lm(grad ~ 1 + sat + tuition + private, data = mn)
 
 # Model-level info
-glance(lm.6)
+glance(lm.f)
 ```
 
 ```
@@ -826,7 +826,7 @@ Differences in median SAT scores, tuition rates, and educational sector explain 
 
 ```r
 # Coefficient-level info
-tidy(lm.6)
+tidy(lm.f)
 ```
 
 ```
@@ -855,10 +855,10 @@ It is important to check the assumptions of any adopted model. Since we have add
 
 ```r
 # Obtain the fitted values and residuals
-aug_6 = augment(lm.6)
+aug_f = augment(lm.f)
 
 # View augmented data frame
-head(aug_6)
+head(aug_f)
 ```
 
 ```
@@ -875,7 +875,7 @@ head(aug_6)
 
 ```r
 # Density plot of the marginal standardized residuals
-ggplot(data = aug_6, aes(x = .std.resid)) +
+ggplot(data = aug_f, aes(x = .std.resid)) +
   stat_density_confidence(model ="normal") +
   stat_density(geom = "line", color = "#c62f4b") +
   theme_bw() +
@@ -883,7 +883,7 @@ ggplot(data = aug_6, aes(x = .std.resid)) +
   ylab("Probability density")
 
 # Scatterplot of the standardized residuals versus the fitted values
-ggplot(data = aug_6, aes(x = .fitted, y = .std.resid)) +
+ggplot(data = aug_f, aes(x = .fitted, y = .std.resid)) +
   geom_point() +
   geom_hline(yintercept = 0) +
   theme_bw() +
@@ -945,9 +945,9 @@ There are two plots we may want to consider creating to accompany the data narra
 library(dotwhisker)
 
 # Create tidy() objects and identify each with a model column
-m1 = tidy(lm.3) %>% mutate(model = "Model A")
-m2 = tidy(lm.5) %>% mutate(model = "Model B")
-m3 = tidy(lm.6) %>% mutate(model = "Model C")
+m1 = tidy(lm.c) %>% mutate(model = "Model A")
+m2 = tidy(lm.e) %>% mutate(model = "Model B")
+m3 = tidy(lm.f) %>% mutate(model = "Model C")
 
 # Combine all three tidy() outputs, filter out intercepts, and drop missing values
 all_models = rbind(m1, m2, m3)

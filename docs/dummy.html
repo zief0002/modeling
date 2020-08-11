@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-07-12" />
+<meta name="date" content="2020-08-11" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -310,10 +310,10 @@ Public
 2 indicator  .397          </code></pre>
 <p>The correlation between educational sector and graduation rate is small and positive, indicating that institutions with higher graduation rates tend to have higher values on the indicator variable. Since there are only two values mapped to the <code>sector</code> variable, this implies that institutions with higher graduation rates tend to be private institutions.</p>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="dummy.html#cb153-1"></a><span class="co"># Fit regression model</span></span>
-<span id="cb153-2"><a href="dummy.html#cb153-2"></a>lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(grad <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>indicator, <span class="dt">data =</span> mn)</span>
+<span id="cb153-2"><a href="dummy.html#cb153-2"></a>lm.a =<span class="st"> </span><span class="kw">lm</span>(grad <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>indicator, <span class="dt">data =</span> mn)</span>
 <span id="cb153-3"><a href="dummy.html#cb153-3"></a></span>
 <span id="cb153-4"><a href="dummy.html#cb153-4"></a><span class="co"># Model-level output</span></span>
-<span id="cb153-5"><a href="dummy.html#cb153-5"></a><span class="kw">print</span>(<span class="kw">glance</span>(lm<span class="fl">.1</span>), <span class="dt">width =</span> <span class="ot">Inf</span>)</span></code></pre></div>
+<span id="cb153-5"><a href="dummy.html#cb153-5"></a><span class="kw">print</span>(<span class="kw">glance</span>(lm.a), <span class="dt">width =</span> <span class="ot">Inf</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -322,7 +322,7 @@ Public
      &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
 1    7552.          31    33</code></pre>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="dummy.html#cb155-1"></a><span class="co"># Coefficient-level output</span></span>
-<span id="cb155-2"><a href="dummy.html#cb155-2"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<span id="cb155-2"><a href="dummy.html#cb155-2"></a><span class="kw">tidy</span>(lm.a)</span></code></pre></div>
 <pre><code># A tibble: 2 x 5
   term        estimate std.error statistic p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -380,10 +380,10 @@ The difference in these average graduation rates comes out to 14.3. The <em>p</e
 1        grad              .397
 2 indicator_2  .397            </code></pre>
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="dummy.html#cb161-1"></a><span class="co"># Fit regression model</span></span>
-<span id="cb161-2"><a href="dummy.html#cb161-2"></a>lm<span class="fl">.2</span> =<span class="st"> </span><span class="kw">lm</span>(grad <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>indicator_<span class="dv">2</span>, <span class="dt">data =</span> mn)</span>
+<span id="cb161-2"><a href="dummy.html#cb161-2"></a>lm.b =<span class="st"> </span><span class="kw">lm</span>(grad <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>indicator_<span class="dv">2</span>, <span class="dt">data =</span> mn)</span>
 <span id="cb161-3"><a href="dummy.html#cb161-3"></a></span>
 <span id="cb161-4"><a href="dummy.html#cb161-4"></a><span class="co"># Model-level output</span></span>
-<span id="cb161-5"><a href="dummy.html#cb161-5"></a><span class="kw">print</span>(<span class="kw">glance</span>(lm<span class="fl">.2</span>), <span class="dt">width =</span> <span class="ot">Inf</span>)</span></code></pre></div>
+<span id="cb161-5"><a href="dummy.html#cb161-5"></a><span class="kw">print</span>(<span class="kw">glance</span>(lm.b), <span class="dt">width =</span> <span class="ot">Inf</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -392,7 +392,7 @@ The difference in these average graduation rates comes out to 14.3. The <em>p</e
      &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
 1    7552.          31    33</code></pre>
 <div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="dummy.html#cb163-1"></a><span class="co"># Coefficient-level output</span></span>
-<span id="cb163-2"><a href="dummy.html#cb163-2"></a><span class="kw">tidy</span>(lm<span class="fl">.2</span>)</span></code></pre></div>
+<span id="cb163-2"><a href="dummy.html#cb163-2"></a><span class="kw">tidy</span>(lm.b)</span></code></pre></div>
 <pre><code># A tibble: 2 x 5
   term        estimate std.error statistic     p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
@@ -445,10 +445,10 @@ The difference in these average graduation rates comes out to 14.3. The <em>p</e
 1    grad          .397
 2 private  .397        </code></pre>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="dummy.html#cb169-1"></a><span class="co"># Fit regression model</span></span>
-<span id="cb169-2"><a href="dummy.html#cb169-2"></a>lm<span class="fl">.3</span> =<span class="st"> </span><span class="kw">lm</span>(grad <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>private, <span class="dt">data =</span> mn)</span>
+<span id="cb169-2"><a href="dummy.html#cb169-2"></a>lm.c =<span class="st"> </span><span class="kw">lm</span>(grad <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>private, <span class="dt">data =</span> mn)</span>
 <span id="cb169-3"><a href="dummy.html#cb169-3"></a></span>
 <span id="cb169-4"><a href="dummy.html#cb169-4"></a><span class="co"># Model-level output</span></span>
-<span id="cb169-5"><a href="dummy.html#cb169-5"></a><span class="kw">print</span>(<span class="kw">glance</span>(lm<span class="fl">.3</span>), <span class="dt">width =</span> <span class="ot">Inf</span>)</span></code></pre></div>
+<span id="cb169-5"><a href="dummy.html#cb169-5"></a><span class="kw">print</span>(<span class="kw">glance</span>(lm.c), <span class="dt">width =</span> <span class="ot">Inf</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -457,7 +457,7 @@ The difference in these average graduation rates comes out to 14.3. The <em>p</e
      &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
 1    7552.          31    33</code></pre>
 <div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="dummy.html#cb171-1"></a><span class="co"># Coefficient-level output</span></span>
-<span id="cb171-2"><a href="dummy.html#cb171-2"></a><span class="kw">tidy</span>(lm<span class="fl">.3</span>)</span></code></pre></div>
+<span id="cb171-2"><a href="dummy.html#cb171-2"></a><span class="kw">tidy</span>(lm.c)</span></code></pre></div>
 <pre><code># A tibble: 2 x 5
   term        estimate std.error statistic  p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -504,10 +504,10 @@ The difference in these average graduation rates comes out to 14.3. The <em>p</e
 1    grad        -.397
 2  public -.397       </code></pre>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="dummy.html#cb176-1"></a><span class="co"># Fit regression model</span></span>
-<span id="cb176-2"><a href="dummy.html#cb176-2"></a>lm<span class="fl">.4</span> =<span class="st"> </span><span class="kw">lm</span>(grad <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>public, <span class="dt">data =</span> mn)</span>
+<span id="cb176-2"><a href="dummy.html#cb176-2"></a>lm.d =<span class="st"> </span><span class="kw">lm</span>(grad <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>public, <span class="dt">data =</span> mn)</span>
 <span id="cb176-3"><a href="dummy.html#cb176-3"></a></span>
 <span id="cb176-4"><a href="dummy.html#cb176-4"></a><span class="co"># Model-level output</span></span>
-<span id="cb176-5"><a href="dummy.html#cb176-5"></a><span class="kw">print</span>(<span class="kw">glance</span>(lm<span class="fl">.4</span>), <span class="dt">width =</span> <span class="ot">Inf</span>)</span></code></pre></div>
+<span id="cb176-5"><a href="dummy.html#cb176-5"></a><span class="kw">print</span>(<span class="kw">glance</span>(lm.d), <span class="dt">width =</span> <span class="ot">Inf</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -516,7 +516,7 @@ The difference in these average graduation rates comes out to 14.3. The <em>p</e
      &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
 1    7552.          31    33</code></pre>
 <div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="dummy.html#cb178-1"></a><span class="co"># Coefficient-level output</span></span>
-<span id="cb178-2"><a href="dummy.html#cb178-2"></a><span class="kw">tidy</span>(lm<span class="fl">.4</span>)</span></code></pre></div>
+<span id="cb178-2"><a href="dummy.html#cb178-2"></a><span class="kw">tidy</span>(lm.d)</span></code></pre></div>
 <pre><code># A tibble: 2 x 5
   term        estimate std.error statistic  p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -539,10 +539,10 @@ The difference in these average graduation rates comes out to 14.3. The <em>p</e
 <h2>Assumption Checking</h2>
 <p>Like any other regression model, we need to examine whether or not the model’s assumptions are tenable. We look at (1) the marginal distribution of the standardized residuals, and (2) the scatterplot of the standardized residuals versus the model’s fitted values. The only difference is that <em>with only categorical predictors in the model, we do not have to worry about the linearity assumption</em>. Since there is no ordinal quality to the predictor space, the average residual will always be zero when there are only categorical predictors in the model. (Once we add any quantitative covariates we will again have to evaluate this assumption.)</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="dummy.html#cb180-1"></a><span class="co"># Obtain the fitted values and residuals</span></span>
-<span id="cb180-2"><a href="dummy.html#cb180-2"></a>aug_<span class="dv">4</span> =<span class="st"> </span><span class="kw">augment</span>(lm<span class="fl">.4</span>)</span>
+<span id="cb180-2"><a href="dummy.html#cb180-2"></a>aug_d =<span class="st"> </span><span class="kw">augment</span>(lm.d)</span>
 <span id="cb180-3"><a href="dummy.html#cb180-3"></a></span>
 <span id="cb180-4"><a href="dummy.html#cb180-4"></a><span class="co"># View augmented data frame</span></span>
-<span id="cb180-5"><a href="dummy.html#cb180-5"></a><span class="kw">head</span>(aug_<span class="dv">4</span>)</span></code></pre></div>
+<span id="cb180-5"><a href="dummy.html#cb180-5"></a><span class="kw">head</span>(aug_d)</span></code></pre></div>
 <pre><code># A tibble: 6 x 8
    grad public .fitted   .resid .std.resid   .hat .sigma     .cooksd
   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;
@@ -553,7 +553,7 @@ The difference in these average graduation rates comes out to 14.3. The <em>p</e
 5  81.1      0    65.3 -15.8       1.04    0.0435   15.6 0.0245     
 6  69.4      0    65.3  -4.13      0.271   0.0435   15.8 0.00167    </code></pre>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="dummy.html#cb182-1"></a><span class="co"># Density plot of the marginal standardized residuals</span></span>
-<span id="cb182-2"><a href="dummy.html#cb182-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">4</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
+<span id="cb182-2"><a href="dummy.html#cb182-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_d, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
 <span id="cb182-3"><a href="dummy.html#cb182-3"></a><span class="st">  </span><span class="kw">stat_density_confidence</span>(<span class="dt">model =</span><span class="st">&quot;normal&quot;</span>) <span class="op">+</span></span>
 <span id="cb182-4"><a href="dummy.html#cb182-4"></a><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;#c62f4b&quot;</span>) <span class="op">+</span></span>
 <span id="cb182-5"><a href="dummy.html#cb182-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
@@ -561,7 +561,7 @@ The difference in these average graduation rates comes out to 14.3. The <em>p</e
 <span id="cb182-7"><a href="dummy.html#cb182-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span>
 <span id="cb182-8"><a href="dummy.html#cb182-8"></a></span>
 <span id="cb182-9"><a href="dummy.html#cb182-9"></a><span class="co"># Scatterplot of the standardized residuals versus the fitted values</span></span>
-<span id="cb182-10"><a href="dummy.html#cb182-10"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">4</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .std.resid)) <span class="op">+</span></span>
+<span id="cb182-10"><a href="dummy.html#cb182-10"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_d, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .std.resid)) <span class="op">+</span></span>
 <span id="cb182-11"><a href="dummy.html#cb182-11"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb182-12"><a href="dummy.html#cb182-12"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
 <span id="cb182-13"><a href="dummy.html#cb182-13"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
@@ -576,11 +576,11 @@ Figure 12: LEFT: Density plot of the marginal distribution of standardized resid
 <p>From the scatterplot, we see that there is some question about the tenability of the equal variances assumption. The variation in the private schools’ residuals seems greater than the variation in the public schools’ residuals. (This was foreshadowed earlier when we examined the standard deviations of the two distributions.) This difference in variation, however, might be due to the extreme private school that has a residual that is less than <span class="math inline">\(-2\)</span>. Additionally, this assumption violation might not be a problem once we add other predictors to the model. So, for now, we will move on, but will re-check this assumption after fitting additional models.</p>
 <p>The <em>marginal</em> distribution of the residuals does not show evidence of mis-fit with the normality assumption. Since the predictor has only two levels, we could actually examine the distribution of residuals for each sector. Here we do so as a pedagogical example, but note that once other non-categorical predictors are included, this can no longer be done. To examine the conditional distributions, we will filter the augmented data by sector and then plot each sector’s residuals separately.</p>
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="dummy.html#cb183-1"></a><span class="co"># Get private schools</span></span>
-<span id="cb183-2"><a href="dummy.html#cb183-2"></a>aug_private =<span class="st"> </span>aug_<span class="dv">4</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb183-2"><a href="dummy.html#cb183-2"></a>aug_private =<span class="st"> </span>aug_d <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb183-3"><a href="dummy.html#cb183-3"></a><span class="st">  </span><span class="kw">filter</span>(public <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</span>
 <span id="cb183-4"><a href="dummy.html#cb183-4"></a></span>
 <span id="cb183-5"><a href="dummy.html#cb183-5"></a><span class="co"># Get public schools</span></span>
-<span id="cb183-6"><a href="dummy.html#cb183-6"></a>aug_public =<span class="st"> </span>aug_<span class="dv">4</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb183-6"><a href="dummy.html#cb183-6"></a>aug_public =<span class="st"> </span>aug_d <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb183-7"><a href="dummy.html#cb183-7"></a><span class="st">  </span><span class="kw">filter</span>(public <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span>
 <span id="cb183-8"><a href="dummy.html#cb183-8"></a></span>
 <span id="cb183-9"><a href="dummy.html#cb183-9"></a><span class="co"># Density plot of the private schools&#39; standardized residuals</span></span>
@@ -626,10 +626,10 @@ Figure 8: Density plot of the standardized residuals from the regression model u
 <li>Private institutions tend to have higher median SAT scores than public institutions (<span class="math inline">\(r = 0.194\)</span>).</li>
 </ul>
 <p>Fitting the regeression model</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="dummy.html#cb186-1"></a>lm<span class="fl">.5</span> =<span class="st"> </span><span class="kw">lm</span>(grad <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>sat <span class="op">+</span><span class="st"> </span>private, <span class="dt">data =</span> mn)</span>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="dummy.html#cb186-1"></a>lm.e =<span class="st"> </span><span class="kw">lm</span>(grad <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>sat <span class="op">+</span><span class="st"> </span>private, <span class="dt">data =</span> mn)</span>
 <span id="cb186-2"><a href="dummy.html#cb186-2"></a></span>
 <span id="cb186-3"><a href="dummy.html#cb186-3"></a><span class="co"># Model-level output</span></span>
-<span id="cb186-4"><a href="dummy.html#cb186-4"></a><span class="kw">print</span>(<span class="kw">glance</span>(lm<span class="fl">.5</span>), <span class="dt">width =</span> <span class="ot">Inf</span>)</span></code></pre></div>
+<span id="cb186-4"><a href="dummy.html#cb186-4"></a><span class="kw">print</span>(<span class="kw">glance</span>(lm.e), <span class="dt">width =</span> <span class="ot">Inf</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -639,7 +639,7 @@ Figure 8: Density plot of the standardized residuals from the regression model u
 1    1411.          30    33</code></pre>
 <p>Differences in educational sector and median SAT score explain 84.26% of the variation in graduation rates. This is statistically reliable, <span class="math inline">\(F(2, 30) = 80.27\)</span>, <span class="math inline">\(p&lt;0.001\)</span>.</p>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="dummy.html#cb188-1"></a><span class="co"># Coefficient-level output</span></span>
-<span id="cb188-2"><a href="dummy.html#cb188-2"></a><span class="kw">tidy</span>(lm<span class="fl">.5</span>)</span></code></pre></div>
+<span id="cb188-2"><a href="dummy.html#cb188-2"></a><span class="kw">tidy</span>(lm.e)</span></code></pre></div>
 <pre><code># A tibble: 3 x 5
   term        estimate std.error statistic  p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -770,10 +770,10 @@ Difference
 <li>Institutions with higher tuition costs tend to have higher median SAT scores (<span class="math inline">\(r=0.613\)</span>).</li>
 </ul>
 <p>Fitting the regression model:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="dummy.html#cb200-1"></a>lm<span class="fl">.6</span> =<span class="st"> </span><span class="kw">lm</span>(grad <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>sat <span class="op">+</span><span class="st"> </span>tuition <span class="op">+</span><span class="st"> </span>private, <span class="dt">data =</span> mn)</span>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="dummy.html#cb200-1"></a>lm.f =<span class="st"> </span><span class="kw">lm</span>(grad <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>sat <span class="op">+</span><span class="st"> </span>tuition <span class="op">+</span><span class="st"> </span>private, <span class="dt">data =</span> mn)</span>
 <span id="cb200-2"><a href="dummy.html#cb200-2"></a></span>
 <span id="cb200-3"><a href="dummy.html#cb200-3"></a><span class="co"># Model-level info</span></span>
-<span id="cb200-4"><a href="dummy.html#cb200-4"></a><span class="kw">glance</span>(lm<span class="fl">.6</span>)</span></code></pre></div>
+<span id="cb200-4"><a href="dummy.html#cb200-4"></a><span class="kw">glance</span>(lm.f)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -781,7 +781,7 @@ Difference
 # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>Differences in median SAT scores, tuition rates, and educational sector explain 86.07% of the variation in graduation rates. This is statistically reliable, <span class="math inline">\(F(3, 29) = 59.73\)</span>, <span class="math inline">\(p&lt;0.001\)</span>.</p>
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="dummy.html#cb202-1"></a><span class="co"># Coefficient-level info</span></span>
-<span id="cb202-2"><a href="dummy.html#cb202-2"></a><span class="kw">tidy</span>(lm<span class="fl">.6</span>)</span></code></pre></div>
+<span id="cb202-2"><a href="dummy.html#cb202-2"></a><span class="kw">tidy</span>(lm.f)</span></code></pre></div>
 <pre><code># A tibble: 4 x 5
   term        estimate std.error statistic     p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
@@ -800,10 +800,10 @@ Difference
 <h2>Assumption Checking for the Final Model</h2>
 <p>It is important to check the assumptions of any adopted model. Since we have added non-categorical covariates into the model we need to evaluate all four major assumptions (LINE).</p>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="dummy.html#cb204-1"></a><span class="co"># Obtain the fitted values and residuals</span></span>
-<span id="cb204-2"><a href="dummy.html#cb204-2"></a>aug_<span class="dv">6</span> =<span class="st"> </span><span class="kw">augment</span>(lm<span class="fl">.6</span>)</span>
+<span id="cb204-2"><a href="dummy.html#cb204-2"></a>aug_f =<span class="st"> </span><span class="kw">augment</span>(lm.f)</span>
 <span id="cb204-3"><a href="dummy.html#cb204-3"></a></span>
 <span id="cb204-4"><a href="dummy.html#cb204-4"></a><span class="co"># View augmented data frame</span></span>
-<span id="cb204-5"><a href="dummy.html#cb204-5"></a><span class="kw">head</span>(aug_<span class="dv">6</span>)</span></code></pre></div>
+<span id="cb204-5"><a href="dummy.html#cb204-5"></a><span class="kw">head</span>(aug_f)</span></code></pre></div>
 <pre><code># A tibble: 6 x 10
    grad   sat tuition private .fitted .resid .std.resid   .hat .sigma .cooksd
   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
@@ -814,7 +814,7 @@ Difference
 5  81.1  1185    43.2       1    75.0  -6.12      0.962 0.0609   6.57 0.0150 
 6  69.4  1145    36.6       1    67.7  -1.67      0.262 0.0563   6.67 0.00103</code></pre>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="dummy.html#cb206-1"></a><span class="co"># Density plot of the marginal standardized residuals</span></span>
-<span id="cb206-2"><a href="dummy.html#cb206-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">6</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
+<span id="cb206-2"><a href="dummy.html#cb206-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_f, <span class="kw">aes</span>(<span class="dt">x =</span> .std.resid)) <span class="op">+</span></span>
 <span id="cb206-3"><a href="dummy.html#cb206-3"></a><span class="st">  </span><span class="kw">stat_density_confidence</span>(<span class="dt">model =</span><span class="st">&quot;normal&quot;</span>) <span class="op">+</span></span>
 <span id="cb206-4"><a href="dummy.html#cb206-4"></a><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;#c62f4b&quot;</span>) <span class="op">+</span></span>
 <span id="cb206-5"><a href="dummy.html#cb206-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
@@ -822,7 +822,7 @@ Difference
 <span id="cb206-7"><a href="dummy.html#cb206-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span>
 <span id="cb206-8"><a href="dummy.html#cb206-8"></a></span>
 <span id="cb206-9"><a href="dummy.html#cb206-9"></a><span class="co"># Scatterplot of the standardized residuals versus the fitted values</span></span>
-<span id="cb206-10"><a href="dummy.html#cb206-10"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_<span class="dv">6</span>, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .std.resid)) <span class="op">+</span></span>
+<span id="cb206-10"><a href="dummy.html#cb206-10"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> aug_f, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .std.resid)) <span class="op">+</span></span>
 <span id="cb206-11"><a href="dummy.html#cb206-11"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb206-12"><a href="dummy.html#cb206-12"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
 <span id="cb206-13"><a href="dummy.html#cb206-13"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
@@ -962,9 +962,9 @@ RMSE
 <span id="cb207-2"><a href="dummy.html#cb207-2"></a><span class="kw">library</span>(dotwhisker)</span>
 <span id="cb207-3"><a href="dummy.html#cb207-3"></a></span>
 <span id="cb207-4"><a href="dummy.html#cb207-4"></a><span class="co"># Create tidy() objects and identify each with a model column</span></span>
-<span id="cb207-5"><a href="dummy.html#cb207-5"></a>m1 =<span class="st"> </span><span class="kw">tidy</span>(lm<span class="fl">.3</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model A&quot;</span>)</span>
-<span id="cb207-6"><a href="dummy.html#cb207-6"></a>m2 =<span class="st"> </span><span class="kw">tidy</span>(lm<span class="fl">.5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model B&quot;</span>)</span>
-<span id="cb207-7"><a href="dummy.html#cb207-7"></a>m3 =<span class="st"> </span><span class="kw">tidy</span>(lm<span class="fl">.6</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model C&quot;</span>)</span>
+<span id="cb207-5"><a href="dummy.html#cb207-5"></a>m1 =<span class="st"> </span><span class="kw">tidy</span>(lm.c) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model A&quot;</span>)</span>
+<span id="cb207-6"><a href="dummy.html#cb207-6"></a>m2 =<span class="st"> </span><span class="kw">tidy</span>(lm.e) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model B&quot;</span>)</span>
+<span id="cb207-7"><a href="dummy.html#cb207-7"></a>m3 =<span class="st"> </span><span class="kw">tidy</span>(lm.f) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model C&quot;</span>)</span>
 <span id="cb207-8"><a href="dummy.html#cb207-8"></a></span>
 <span id="cb207-9"><a href="dummy.html#cb207-9"></a><span class="co"># Combine all three tidy() outputs, filter out intercepts, and drop missing values</span></span>
 <span id="cb207-10"><a href="dummy.html#cb207-10"></a>all_models =<span class="st"> </span><span class="kw">rbind</span>(m1, m2, m3)</span>

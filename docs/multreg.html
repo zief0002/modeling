@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-07-12" />
+<meta name="date" content="2020-08-11" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -189,10 +189,10 @@ img {
 <h2>Observational Data and Alternative Explanations</h2>
 <p>In a <a href="slrd.html#slrd">previous chapter</a>, we fitted a model regressing employees’ incomes on education level. We will do that again, but now we will also evaluate the inferential evidence around the effect of education on inclomes.</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="multreg.html#cb90-1"></a><span class="co"># Fit regression model</span></span>
-<span id="cb90-2"><a href="multreg.html#cb90-2"></a>lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</span>
+<span id="cb90-2"><a href="multreg.html#cb90-2"></a>lm.a =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</span>
 <span id="cb90-3"><a href="multreg.html#cb90-3"></a></span>
 <span id="cb90-4"><a href="multreg.html#cb90-4"></a><span class="co"># Obtain model-level results</span></span>
-<span id="cb90-5"><a href="multreg.html#cb90-5"></a><span class="kw">glance</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<span id="cb90-5"><a href="multreg.html#cb90-5"></a><span class="kw">glance</span>(lm.a)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -201,7 +201,7 @@ img {
      &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
 1    2418.          30    32</code></pre>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="multreg.html#cb92-1"></a><span class="co"># Obtain coefficient-level results</span></span>
-<span id="cb92-2"><a href="multreg.html#cb92-2"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<span id="cb92-2"><a href="multreg.html#cb92-2"></a><span class="kw">tidy</span>(lm.a)</span></code></pre></div>
 <pre><code># A tibble: 2 x 5
   term        estimate std.error statistic      p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
@@ -273,10 +273,10 @@ Figure 4: Scatterplot showing the relationship between seniority level and incom
 <div id="simple-regression-model-seniority-as-a-predictor-of-income" class="section level3">
 <h3>Simple Regression Model: Seniority as a Predictor of Income</h3>
 <p>It is also instructive to fit and examine the results from the simple regression model using seniority as a predictor of variation in income.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="multreg.html#cb99-1"></a>lm<span class="fl">.2</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>seniority, <span class="dt">data =</span> city)</span>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="multreg.html#cb99-1"></a>lm.b =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>seniority, <span class="dt">data =</span> city)</span>
 <span id="cb99-2"><a href="multreg.html#cb99-2"></a></span>
 <span id="cb99-3"><a href="multreg.html#cb99-3"></a><span class="co"># Model-level results</span></span>
-<span id="cb99-4"><a href="multreg.html#cb99-4"></a><span class="kw">glance</span>(lm<span class="fl">.2</span>)</span></code></pre></div>
+<span id="cb99-4"><a href="multreg.html#cb99-4"></a><span class="kw">glance</span>(lm.b)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -285,7 +285,7 @@ Figure 4: Scatterplot showing the relationship between seniority level and incom
      &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
 1    4342.          30    32</code></pre>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="multreg.html#cb101-1"></a><span class="co"># Coefficient-level results</span></span>
-<span id="cb101-2"><a href="multreg.html#cb101-2"></a><span class="kw">tidy</span>(lm<span class="fl">.2</span>)</span></code></pre></div>
+<span id="cb101-2"><a href="multreg.html#cb101-2"></a><span class="kw">tidy</span>(lm.b)</span></code></pre></div>
 <pre><code># A tibble: 2 x 5
   term        estimate std.error statistic      p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
@@ -304,13 +304,13 @@ Figure 4: Scatterplot showing the relationship between seniority level and incom
 <div id="multiple-regression-model-education-level-and-seniority-as-a-predictors-of-income" class="section level2">
 <h2>Multiple Regression Model: Education Level and Seniority as a Predictors of Income</h2>
 <p>To fit the multiple regression model, we will just add (literally) additional predictors to the right-hand side of the <code>lm()</code> formula.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="multreg.html#cb103-1"></a>lm<span class="fl">.3</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education <span class="op">+</span><span class="st"> </span>seniority, <span class="dt">data =</span> city)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="multreg.html#cb103-1"></a>lm.c =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education <span class="op">+</span><span class="st"> </span>seniority, <span class="dt">data =</span> city)</span></code></pre></div>
 <p><br /></p>
 <div id="model-level-results" class="section level3">
 <h3>Model-Level Results</h3>
 <p>To interpret multiple regression results, begin with the model-level information.</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="multreg.html#cb104-1"></a><span class="co"># Model-level results</span></span>
-<span id="cb104-2"><a href="multreg.html#cb104-2"></a><span class="kw">glance</span>(lm<span class="fl">.3</span>)</span></code></pre></div>
+<span id="cb104-2"><a href="multreg.html#cb104-2"></a><span class="kw">glance</span>(lm.c)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic       p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -339,7 +339,7 @@ H_0:\beta_{\mathrm{Education~Level}} = \beta_{\mathrm{Seniority}} = 0.
 <h3>Coefficient-Level Results</h3>
 <p>Now we turn to the coefficient-level results produced in the <code>tidy()</code> output.</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="multreg.html#cb106-1"></a><span class="co"># Coefficient-level results</span></span>
-<span id="cb106-2"><a href="multreg.html#cb106-2"></a><span class="kw">tidy</span>(lm<span class="fl">.3</span>)</span></code></pre></div>
+<span id="cb106-2"><a href="multreg.html#cb106-2"></a><span class="kw">tidy</span>(lm.c)</span></code></pre></div>
 <pre><code># A tibble: 3 x 5
   term        estimate std.error statistic     p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
@@ -416,7 +416,7 @@ Figure 15: Three-dimensional scatterplot showing the relationship between educat
 \mathrm{SS}_{\mathrm{Residuals}} = \sum \hat{\epsilon_i}^2
 \]</span></p>
 <p>The residual sum of squares can be obtained using the <code>anova()</code> function.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="multreg.html#cb108-1"></a><span class="kw">anova</span>(lm<span class="fl">.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="multreg.html#cb108-1"></a><span class="kw">anova</span>(lm.c)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: income
@@ -480,10 +480,10 @@ The <em>F</em>-test examines whether this fraction (or proportion) is statistica
 <h3>Changing the Order of the Predictors</h3>
 <p>Let’s re-fit the model, but this time we will include seniority-level in the model first and education-level second.</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="multreg.html#cb110-1"></a><span class="co"># Fit model with different predictor order</span></span>
-<span id="cb110-2"><a href="multreg.html#cb110-2"></a>lm<span class="fl">.4</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>seniority <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</span>
+<span id="cb110-2"><a href="multreg.html#cb110-2"></a>lm.d =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>seniority <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</span>
 <span id="cb110-3"><a href="multreg.html#cb110-3"></a></span>
 <span id="cb110-4"><a href="multreg.html#cb110-4"></a><span class="co"># ANOVA decomposition</span></span>
-<span id="cb110-5"><a href="multreg.html#cb110-5"></a><span class="kw">anova</span>(lm<span class="fl">.4</span>)</span></code></pre></div>
+<span id="cb110-5"><a href="multreg.html#cb110-5"></a><span class="kw">anova</span>(lm.d)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: income
@@ -509,7 +509,7 @@ R^2_{\mathrm{Model}} &amp;= \frac{2223 + 2647}{6566} \\[2ex]
 \]</span>
 This is the same model-level <span class="math inline">\(R^2\)</span> value we obtained earlier. Thus the results given in <code>glance()</code>, namely, <span class="math inline">\(F(2,29)=41.65\)</span>, <span class="math inline">\(p&lt;.001\)</span> are identical regardless of the order the predictors are included in the model.</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="multreg.html#cb112-1"></a><span class="co"># Model-level output</span></span>
-<span id="cb112-2"><a href="multreg.html#cb112-2"></a><span class="kw">glance</span>(lm<span class="fl">.4</span>)</span></code></pre></div>
+<span id="cb112-2"><a href="multreg.html#cb112-2"></a><span class="kw">glance</span>(lm.d)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -526,7 +526,7 @@ R^2_{\mathrm{Education\mbox{-}Level} \vert \mathrm{Seniority\mbox{-}Level}} = \f
 \]</span>
 The <em>F</em>-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the second line of the <code>anova()</code> output, namely, <span class="math inline">\(F(1,29)=45.28\)</span>, <span class="math inline">\(p&lt;.001\)</span>. This test is asking whether there is an effect of education-level <em>after accounting for</em> seniority-level. The <em>p</em>-value from this test is equivalent to the <em>p</em>-value associated with the education-level effect in the <code>tidy()</code> output.</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="multreg.html#cb114-1"></a><span class="co"># Coefficient-level output</span></span>
-<span id="cb114-2"><a href="multreg.html#cb114-2"></a><span class="kw">tidy</span>(lm<span class="fl">.4</span>)</span></code></pre></div>
+<span id="cb114-2"><a href="multreg.html#cb114-2"></a><span class="kw">tidy</span>(lm.d)</span></code></pre></div>
 <pre><code># A tibble: 3 x 5
   term        estimate std.error statistic     p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
@@ -641,13 +641,13 @@ RMSE
 <span id="cb116-2"><a href="multreg.html#cb116-2"></a><span class="kw">library</span>(dotwhisker)</span>
 <span id="cb116-3"><a href="multreg.html#cb116-3"></a></span>
 <span id="cb116-4"><a href="multreg.html#cb116-4"></a><span class="co"># Create tidy() data frames with model names</span></span>
-<span id="cb116-5"><a href="multreg.html#cb116-5"></a>mod_<span class="dv">1</span> =<span class="st"> </span><span class="kw">tidy</span>(lm<span class="fl">.1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb116-5"><a href="multreg.html#cb116-5"></a>mod_<span class="dv">1</span> =<span class="st"> </span><span class="kw">tidy</span>(lm.a) <span class="op">%&gt;%</span></span>
 <span id="cb116-6"><a href="multreg.html#cb116-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model A&quot;</span>)</span>
 <span id="cb116-7"><a href="multreg.html#cb116-7"></a></span>
-<span id="cb116-8"><a href="multreg.html#cb116-8"></a>mod_<span class="dv">2</span> =<span class="st"> </span><span class="kw">tidy</span>(lm<span class="fl">.2</span>) <span class="op">%&gt;%</span></span>
+<span id="cb116-8"><a href="multreg.html#cb116-8"></a>mod_<span class="dv">2</span> =<span class="st"> </span><span class="kw">tidy</span>(lm.b) <span class="op">%&gt;%</span></span>
 <span id="cb116-9"><a href="multreg.html#cb116-9"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model B&quot;</span>)</span>
 <span id="cb116-10"><a href="multreg.html#cb116-10"></a></span>
-<span id="cb116-11"><a href="multreg.html#cb116-11"></a>mod_<span class="dv">3</span> =<span class="st"> </span><span class="kw">tidy</span>(lm<span class="fl">.3</span>) <span class="op">%&gt;%</span></span>
+<span id="cb116-11"><a href="multreg.html#cb116-11"></a>mod_<span class="dv">3</span> =<span class="st"> </span><span class="kw">tidy</span>(lm.c) <span class="op">%&gt;%</span></span>
 <span id="cb116-12"><a href="multreg.html#cb116-12"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">model =</span> <span class="st">&quot;Model C&quot;</span>)</span>
 <span id="cb116-13"><a href="multreg.html#cb116-13"></a></span>
 <span id="cb116-14"><a href="multreg.html#cb116-14"></a><span class="co"># Combine into single data frame</span></span>

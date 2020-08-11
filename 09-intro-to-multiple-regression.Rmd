@@ -56,23 +56,23 @@ In a [previous chapter](#slrd), we fitted a model regressing employees' incomes 
 
 ```{r eval=FALSE}
 # Fit regression model
-lm.1 = lm(income ~ 1 + education, data = city)
+lm.a = lm(income ~ 1 + education, data = city)
 
 # Obtain model-level results
-glance(lm.1)
+glance(lm.a)
 ```
 
 ```{r echo=FALSE}
 # Fit regression model
-lm.1 = lm(income ~ 1 + education, data = city)
+lm.a = lm(income ~ 1 + education, data = city)
 
 # Obtain model-level results
-print(glance(lm.1), width = Inf)
+print(glance(lm.a), width = Inf)
 ```
 
 ```{r}
 # Obtain coefficient-level results
-tidy(lm.1)
+tidy(lm.a)
 ```
 
 
@@ -152,22 +152,22 @@ Because there is a positive correlation between seniority and income in the samp
 It is also instructive to fit and examine the results from the simple regression model using seniority as a predictor of variation in income.
 
 ```{r eval=FALSE}
-lm.2 = lm(income ~ 1 + seniority, data = city)
+lm.b = lm(income ~ 1 + seniority, data = city)
 
 # Model-level results
-glance(lm.2)
+glance(lm.b)
 ```
 
 ```{r echo=FALSE}
-lm.2 = lm(income ~ 1 + seniority, data = city)
+lm.b = lm(income ~ 1 + seniority, data = city)
 
 # Model-level results
-print(glance(lm.2), width = Inf)
+print(glance(lm.b), width = Inf)
 ```
 
 ```{r}
 # Coefficient-level results
-tidy(lm.2)
+tidy(lm.b)
 ```
 
 
@@ -192,7 +192,7 @@ What we need to know in order to determine the effect of education on incomes is
 To fit the multiple regression model, we will just add (literally) additional predictors to the right-hand side of the `lm()` formula.
 
 ```{r}
-lm.3 = lm(income ~ 1 + education + seniority, data = city)
+lm.c = lm(income ~ 1 + education + seniority, data = city)
 ```
 
 <br />
@@ -204,12 +204,12 @@ To interpret multiple regression results, begin with the model-level information
 
 ```{r eval=FALSE}
 # Model-level results
-glance(lm.3)
+glance(lm.c)
 ```
 
 ```{r echo=FALSE}
 # Model-level results
-print(glance(lm.3), width = Inf)
+print(glance(lm.c), width = Inf)
 ```
 
 In a multiple regression model there are multiple predictors that are being used to explain variation in the outcome variable. We can begin by examining the $R^2$ value from the output. Interpreting this value, we say:
@@ -245,7 +245,7 @@ Now we turn to the coefficient-level results produced in the `tidy()` output.
 
 ```{r}
 # Coefficient-level results
-tidy(lm.3)
+tidy(lm.c)
 ```
 
 First we will write the fitted multiple regression equation,
@@ -325,7 +325,7 @@ The data and regression plane defined by the education level, seniority level, a
 
 ```{r message=FALSE, echo=FALSE, out.width='60%', fig.cap='Three-dimensional scatterplot showing the relationship between education level, seniority, and income. The fitted regression plane is also shown. Blue observations have a positive residual and yellow observations have a negative residual.'}
 # library("scatterplot3d")
-# city$resid = ifelse(residuals(lm.3) < 0, "#F39D4177", "steelblue")
+# city$resid = ifelse(residuals(lm.c) < 0, "#F39D4177", "steelblue")
 # s3d = scatterplot3d(x = city$education, y = city$seniority, z = city$income, type = "p", color = city$resid,
 #   angle = 60, pch = 16, box = FALSE,
 #   xlab = "Education level", ylab = "Seniority level", zlab = "Income",
@@ -353,7 +353,7 @@ $$
 The residual sum of squares can be obtained using the `anova()` function.
 
 ```{r}
-anova(lm.3)
+anova(lm.c)
 ```
 
 Here the $\mathrm{SS}_{\mathrm{Residuals}} = 1695$. Because the model was fitted  with OLS, any other plane defined with the predictors of education and seniority level; (i.e., different coefficient values for the intercept and predictors) would produce a higher sum of squared residuals value. Comparing the squared sum of residual from this model to that from the intercept-only model ($\mathrm{SS}_{\mathrm{Residuals}} = 6566$), we find that there is less unexplained variation after including education and seniority level in the model. Here is the partitioning of the variation in income.
@@ -432,10 +432,10 @@ Let's re-fit the model, but this time we will include seniority-level in the mod
 
 ```{r}
 # Fit model with different predictor order
-lm.4 = lm(income ~ 1 + seniority + education, data = city)
+lm.d = lm(income ~ 1 + seniority + education, data = city)
 
 # ANOVA decomposition
-anova(lm.4)
+anova(lm.d)
 ```
 
 Examining the ANOVA decomposition, we see that some of the values in the table are the same and others are different. To understand why, we will again compose the partitioning diagram.
@@ -457,7 +457,7 @@ This is the same model-level $R^2$ value we obtained earlier. Thus the results g
 
 ```{r}
 # Model-level output
-glance(lm.4)
+glance(lm.d)
 ```
 
 The *F*-test in the first line of this output is associated with the seniority-level predictor. This is testing whether seniority-level (by itself) explains variation in the outcome. Mathematically,
@@ -476,7 +476,7 @@ The *F*-test examines whether this fraction (or proportion) is statistically dif
 
 ```{r}
 # Coefficient-level output
-tidy(lm.4)
+tidy(lm.d)
 ```
 
 Note that the output from `tidy()` is also the same, regardless of predictor order. This means that whichever order you include the predictors in the model, the tests of the partial effects (does a predictor explain variation AFTER all other predictors have already explained a much variation as they can) will be the the same. Additionally, the fitted equation will be the same.
@@ -494,7 +494,7 @@ Note that we **DO NOT INCLUDE stars to indicate "statistical significance"** as 
 ```{r, results='asis', echo=FALSE, eval=FALSE}
 library(stargazer)
 
-stargazer(lm.1, lm.2, lm.3,
+stargazer(lm.a, lm.b, lm.c,
   column.labels = c("Model 1", "Model 2", "Model 3"),
   covariate.labels = c("Education level", "Seniority level"),
   dep.var.caption = "Outcome variable: Income (in thousands of dollars)",
@@ -540,13 +540,13 @@ To create a coefficient plot for a multiple regression, we will again use the `d
 library(dotwhisker)
 
 # Create tidy() data frames with model names
-mod_1 = tidy(lm.1) %>%
+mod_1 = tidy(lm.a) %>%
   mutate(model = "Model A")
 
-mod_2 = tidy(lm.2) %>%
+mod_2 = tidy(lm.b) %>%
   mutate(model = "Model B")
 
-mod_3 = tidy(lm.3) %>%
+mod_3 = tidy(lm.c) %>%
   mutate(model = "Model C")
 
 # Combine into single data frame

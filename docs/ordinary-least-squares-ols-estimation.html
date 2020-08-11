@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-07-12" />
+<meta name="date" content="2020-08-11" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -164,7 +164,7 @@ img {
 <div class="col-sm-12">
 <div id="ordinary-least-squares-ols-estimation" class="section level1">
 <h1>Ordinary Least Squares (OLS) Estimation</h1>
-<p>In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv">riverview.csv</a> data to examine whether education level is related to income (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/riverview.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>city</code>. We will also fit a model by regressing income on education level and storing those results in an object called <code>lm.1</code>.</p>
+<p>In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv">riverview.csv</a> data to examine whether education level is related to income (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/riverview.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>city</code>. We will also fit a model by regressing income on education level and storing those results in an object called <code>lm.a</code>.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ordinary-least-squares-ols-estimation.html#cb18-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb18-2"><a href="ordinary-least-squares-ols-estimation.html#cb18-2"></a><span class="kw">library</span>(dplyr)</span>
 <span id="cb18-3"><a href="ordinary-least-squares-ols-estimation.html#cb18-3"></a><span class="kw">library</span>(ggplot2)</span>
@@ -183,8 +183,8 @@ img {
 5        10   25.5         1 female     0 Republican 
 6        12   46.5        11 female     0 Democrat   </code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ordinary-least-squares-ols-estimation.html#cb20-1"></a><span class="co"># Fit regression model</span></span>
-<span id="cb20-2"><a href="ordinary-least-squares-ols-estimation.html#cb20-2"></a>lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</span>
-<span id="cb20-3"><a href="ordinary-least-squares-ols-estimation.html#cb20-3"></a>lm<span class="fl">.1</span></span></code></pre></div>
+<span id="cb20-2"><a href="ordinary-least-squares-ols-estimation.html#cb20-2"></a>lm.a =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</span>
+<span id="cb20-3"><a href="ordinary-least-squares-ols-estimation.html#cb20-3"></a>lm.a</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = income ~ 1 + education, data = city)
@@ -959,7 +959,7 @@ Y_i &amp;= \beta_0 + \epsilon_i
 \hat{Y}_i = \hat{\beta}_0
 \]</span></p>
 <p>indicates that the predicted <span class="math inline">\(Y\)</span> would be the same (constant) regardless of what <span class="math inline">\(X\)</span> is. In our example, this would be equivalent to saying that the mean income is the same, regardless ofemployee education level.</p>
-<p>&lt; br /&gt;</p>
+<p><br /></p>
 </div>
 <div id="fitting-the-intercept-only-model" class="section level3">
 <h3>Fitting the Intercept-Only Model</h3>

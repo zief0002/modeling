@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-07-12" />
+<meta name="date" content="2020-08-11" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -268,14 +268,14 @@ Attribute
 <h2>Regression Analysis</h2>
 <p>Table 2 shows the results from fitting a series of models to examine the effect of time spent on homework on student GPA.</p>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="statcontrol.html#cb119-1"></a><span class="co"># Simple regression model to examine effect of time spent on homework</span></span>
-<span id="cb119-2"><a href="statcontrol.html#cb119-2"></a>lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework, <span class="dt">data =</span> keith)</span>
-<span id="cb119-3"><a href="statcontrol.html#cb119-3"></a><span class="co">#glance(lm.1)</span></span>
-<span id="cb119-4"><a href="statcontrol.html#cb119-4"></a><span class="co">#tidy(lm.1)</span></span>
+<span id="cb119-2"><a href="statcontrol.html#cb119-2"></a>lm.a =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework, <span class="dt">data =</span> keith)</span>
+<span id="cb119-3"><a href="statcontrol.html#cb119-3"></a><span class="co">#glance(lm.a)</span></span>
+<span id="cb119-4"><a href="statcontrol.html#cb119-4"></a><span class="co">#tidy(lm.a)</span></span>
 <span id="cb119-5"><a href="statcontrol.html#cb119-5"></a></span>
 <span id="cb119-6"><a href="statcontrol.html#cb119-6"></a><span class="co"># Control for parent education level</span></span>
-<span id="cb119-7"><a href="statcontrol.html#cb119-7"></a>lm<span class="fl">.2</span> =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework <span class="op">+</span><span class="st"> </span>parent_ed, <span class="dt">data =</span> keith)</span>
-<span id="cb119-8"><a href="statcontrol.html#cb119-8"></a><span class="co">#glance(lm.2)</span></span>
-<span id="cb119-9"><a href="statcontrol.html#cb119-9"></a><span class="co">#tidy(lm.2)</span></span></code></pre></div>
+<span id="cb119-7"><a href="statcontrol.html#cb119-7"></a>lm.b =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework <span class="op">+</span><span class="st"> </span>parent_ed, <span class="dt">data =</span> keith)</span>
+<span id="cb119-8"><a href="statcontrol.html#cb119-8"></a><span class="co">#glance(lm.b)</span></span>
+<span id="cb119-9"><a href="statcontrol.html#cb119-9"></a><span class="co">#tidy(lm.b)</span></span></code></pre></div>
 <table class="table" style="width:70%; margin-left: auto; margin-right: auto;">
 <caption>
 Unstandardized coefficients (standard errors) for a taxonomy of OLS regression models fitted to explore the effect of time spent on homework on GPA. All models were fitted with <em>n</em>=100 observations.

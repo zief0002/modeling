@@ -3,7 +3,7 @@
 
 
 
-In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv) data to examine whether education level is related to income (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/riverview.html)). To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.1`.
+In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv) data to examine whether education level is related to income (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/riverview.html)). To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.a`.
 
 
 ```r
@@ -31,8 +31,8 @@ head(city)
 
 ```r
 # Fit regression model
-lm.1 = lm(income ~ 1 + education, data = city)
-lm.1
+lm.a = lm(income ~ 1 + education, data = city)
+lm.a
 ```
 
 ```
@@ -572,7 +572,7 @@ $$
 
 indicates that the predicted $Y$ would be the same (constant) regardless of what $X$ is. In our example, this would be equivalent to saying that the mean income is the same, regardless ofemployee education level.
 
-< br />
+<br />
 
 
 ### Fitting the Intercept-Only Model

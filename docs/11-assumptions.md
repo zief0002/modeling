@@ -37,7 +37,7 @@ We will also fit a simple regression model that uses time spent on homework to p
 
 ```r
 # Fit simple regression model
-lm.1 = lm(gpa ~ 1 + homework, data = keith)
+lm.a = lm(gpa ~ 1 + homework, data = keith)
 ```
 
 <br />
@@ -205,7 +205,7 @@ When evaluating the assumption of equal variances, we want to see that the range
 
 ## Empirically Evaluating the Distributional Assumptions
 
-We can use the residuals computed from the empirical data to evaluate the distributional assumptions of linearity, normality, and equal variances. (The assumption of independence is difficult to evaluate using the data, and is better left to a logical argument that refers to the study design.) Recall that the assumptions are about the residuals. To compute the residuals, we will use the `augment()` function from the **broom** package. We will also write those results into an object, `aug_1`, so we can compute on it later.
+We can use the residuals computed from the empirical data to evaluate the distributional assumptions of linearity, normality, and equal variances. (The assumption of independence is difficult to evaluate using the data, and is better left to a logical argument that refers to the study design.) Recall that the assumptions are about the residuals. To compute the residuals, we will use the `augment()` function from the **broom** package. We will also write those results into an object, `aug_a`, so we can compute on it later.
 
 
 ```r
@@ -213,10 +213,10 @@ We can use the residuals computed from the empirical data to evaluate the distri
 library(broom)
 
 # Augment the model to get residuals
-aug_1 = augment(lm.1)
+aug_a = augment(lm.a)
 
 # View augmented data
-head(aug_1)
+head(aug_a)
 ```
 
 
@@ -232,21 +232,21 @@ head(aug_1)
 6    77        4    79.1   2.15     -0.298 0.0128   7.27 0.000579
 ```
 
-The cases in the augmented data frame are in the same order as the cases in the `keith` data frame. For example, the first case had a GPA of 78 and spent 2 hours a week on homework. The augmented data also includes several other useful measures for evaluating regression models. For now, we will focus on the `.fitted` column and the `.resid` column. Those columns contain the fitted values ($\hat{Y_i}$) and the residuals for each case based on the model fitted in `lm.1`.
+The cases in the augmented data frame are in the same order as the cases in the `keith` data frame. For example, the first case had a GPA of 78 and spent 2 hours a week on homework. The augmented data also includes several other useful measures for evaluating regression models. For now, we will focus on the `.fitted` column and the `.resid` column. Those columns contain the fitted values ($\hat{Y_i}$) and the residuals for each case based on the model fitted in `lm.a`.
 
 We will examine two residual plots to help us evaluate the tenability of the assumptions: (1) a density plot of the marginal distribution of residuals, and (2) a scatterplot of the residuals versus the *X*-values. The density plot will allow us to eval;uate the normality assumption, and the scatterplot will allow us to evaluate the linearity and equal variances assumption. As we make these evaluations, remember that we do not have the entire population of residuals (we obtained our residuals by fitting a regression to a sample of data), so we do not expect that our residuals will actually meet the assumptions perfectly (remember, sampling error). Examining the sample residuals, is however, a reasonable way to evaluate the tenability of assumptions in practice. We just have to keep in mind that the sample residuals may deviate a bit from these assumptions.
 
 
 ```r
 # Density plot of the residuals
-ggplot(data = aug_1, aes(x = .resid)) +
+ggplot(data = aug_a, aes(x = .resid)) +
   stat_density(geom = "line") +
   theme_bw() +
   xlab("Residual") +
   ylab("Probability density")
 
 # Scatterplot of the residuals versus X
-ggplot(data = aug_1, aes(x = homework, y = .resid)) +
+ggplot(data = aug_a, aes(x = homework, y = .resid)) +
   geom_point() +
   geom_hline(yintercept = 0) +
   theme_bw() +
@@ -285,14 +285,14 @@ Since the *t*-distribution is also referred to as *Student's distribution*, stan
 
 ```r
 # Density plot of the residuals
-ggplot(data = aug_1, aes(x = .std.resid)) +
+ggplot(data = aug_a, aes(x = .std.resid)) +
   stat_density(geom = "line") +
   theme_bw() +
   xlab("Standardized residual") +
   ylab("Probability density")
 
 # Scatterplot of the residuals versus X
-ggplot(data = aug_1, aes(x = homework, y = .std.resid)) +
+ggplot(data = aug_a, aes(x = homework, y = .std.resid)) +
   geom_point() +
   geom_hline(yintercept = 0) +
   theme_bw() +
@@ -311,7 +311,7 @@ We can also `filter()` the augmented data to find these observations and to dete
 
 
 ```r
-aug_1 %>% 
+aug_a %>% 
   filter(.std.resid <= -2 | .std.resid >= 2)
 ```
 
@@ -351,11 +351,11 @@ As an example, we will regress student GPAs on both time spent on homework and p
 
 ```r
 # Fit the multiple regression model
-lm.2 = lm(gpa ~ 1 + homework + parent_ed, data = keith)
+lm.b = lm(gpa ~ 1 + homework + parent_ed, data = keith)
 
 # Augment the model to obtain the fitted values and residuals
-aug_2 = augment(lm.2)
-head(aug_2)
+aug_b = augment(lm.b)
+head(aug_b)
 ```
 
 ```
@@ -372,14 +372,14 @@ head(aug_2)
 
 ```r
 # Density plot of the standardized residuals
-ggplot(data = aug_2, aes(x = .std.resid)) +
+ggplot(data = aug_b, aes(x = .std.resid)) +
   stat_density(geom = "line", color = "#c62f4b") +
   theme_bw() +
   xlab("Standardized residual") +
   ylab("Probability density")
 
 # Plot the standardized residuals versus the fitted values
-ggplot(data = aug_2, aes(x = .fitted, y = .std.resid)) +
+ggplot(data = aug_b, aes(x = .fitted, y = .std.resid)) +
   geom_point() +
   theme_bw() +
   geom_hline(yintercept = 0) +
@@ -429,7 +429,7 @@ So far, when we have evaluated the normality assumption we have relied on our in
 
 ```r
 # Density plot of the standardized residuals
-ggplot(data = aug_2, aes(x = .std.resid)) +
+ggplot(data = aug_b, aes(x = .std.resid)) +
   stat_density(geom = "line", color = "#c62f4b") +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), color = "black", linetype = "dashed") +
   theme_bw() +
@@ -461,7 +461,7 @@ To create this confidence envelope, we will use the `stat_density_confidence()` 
 library(educate)
 
 # Density plot of the standardized residuals
-ggplot(data = aug_2, aes(x = .std.resid)) +
+ggplot(data = aug_b, aes(x = .std.resid)) +
   stat_density_confidence(model = "normal") +
   stat_density(geom = "line", color = "#c62f4b") +
   theme_bw() +
@@ -501,7 +501,7 @@ To add a loess smoother, we use the `geom_smooth()` function with the argument `
 
 
 ```r
-ggplot(data = aug_2, aes(x = .fitted, y = .std.resid)) +
+ggplot(data = aug_b, aes(x = .fitted, y = .std.resid)) +
   geom_point() +
   geom_smooth(method = "loess") +
   theme_bw() +
@@ -532,11 +532,11 @@ Since the original data set does not include an ID variable (e.g., names), we wi
 
 ```r
 # Create ID variable in the augmented data
-aug_2 = aug_2 %>% 
+aug_b = aug_b %>% 
   mutate(id = row.names(keith))
 
 # View new data
-head(aug_2)
+head(aug_b)
 ```
 
 ```
@@ -553,7 +553,7 @@ head(aug_2)
 
 ```r
 # Plot the id variable as text rather than points in the scatterplot
-ggplot(data = aug_2, aes(x = .fitted, y = .std.resid)) +
+ggplot(data = aug_b, aes(x = .fitted, y = .std.resid)) +
   geom_text(aes(label = id), size = 4) +
   theme_bw() +
   geom_hline(yintercept = 0) +
@@ -573,10 +573,10 @@ We can also plot points for some students and ID label for other students. For e
 
 ```r
 # Create different data sets for the extreme and non-extreme observations
-extreme = aug_2 %>% 
+extreme = aug_b %>% 
   filter(.std.resid <= -2 | .std.resid >= 2)
 
-nonextreme = aug_2 %>% 
+nonextreme = aug_b %>% 
   filter(.std.resid > -2 & .std.resid < 2)
 
 # Plot using text for the extreme observations and points for the non-extreme

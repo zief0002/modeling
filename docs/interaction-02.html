@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-07-12" />
+<meta name="date" content="2020-08-11" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -171,11 +171,12 @@ img {
 <span id="cb260-3"><a href="interaction-02.html#cb260-3"></a><span class="kw">library</span>(corrr)</span>
 <span id="cb260-4"><a href="interaction-02.html#cb260-4"></a><span class="kw">library</span>(educate)</span>
 <span id="cb260-5"><a href="interaction-02.html#cb260-5"></a><span class="kw">library</span>(ggridges)</span>
-<span id="cb260-6"><a href="interaction-02.html#cb260-6"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb260-7"><a href="interaction-02.html#cb260-7"></a></span>
-<span id="cb260-8"><a href="interaction-02.html#cb260-8"></a><span class="co"># Read in data</span></span>
-<span id="cb260-9"><a href="interaction-02.html#cb260-9"></a>fert =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/fertility.csv&quot;</span>)</span>
-<span id="cb260-10"><a href="interaction-02.html#cb260-10"></a><span class="kw">head</span>(fert)</span></code></pre></div>
+<span id="cb260-6"><a href="interaction-02.html#cb260-6"></a><span class="kw">library</span>(patchwork)</span>
+<span id="cb260-7"><a href="interaction-02.html#cb260-7"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb260-8"><a href="interaction-02.html#cb260-8"></a></span>
+<span id="cb260-9"><a href="interaction-02.html#cb260-9"></a><span class="co"># Read in data</span></span>
+<span id="cb260-10"><a href="interaction-02.html#cb260-10"></a>fert =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/fertility.csv&quot;</span>)</span>
+<span id="cb260-11"><a href="interaction-02.html#cb260-11"></a><span class="kw">head</span>(fert)</span></code></pre></div>
 <pre><code># A tibble: 6 x 8
   country region fertility_rate educ_female infant_mortality contraceptive
   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;

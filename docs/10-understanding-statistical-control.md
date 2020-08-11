@@ -87,14 +87,14 @@ Table 2 shows the results from fitting a series of models to examine the effect 
 
 ```r
 # Simple regression model to examine effect of time spent on homework
-lm.1 = lm(gpa ~ 1 + homework, data = keith)
-#glance(lm.1)
-#tidy(lm.1)
+lm.a = lm(gpa ~ 1 + homework, data = keith)
+#glance(lm.a)
+#tidy(lm.a)
 
 # Control for parent education level
-lm.2 = lm(gpa ~ 1 + homework + parent_ed, data = keith)
-#glance(lm.2)
-#tidy(lm.2)
+lm.b = lm(gpa ~ 1 + homework + parent_ed, data = keith)
+#glance(lm.b)
+#tidy(lm.b)
 ```
 
 

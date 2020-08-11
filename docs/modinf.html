@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-07-12" />
+<meta name="date" content="2020-08-11" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -187,12 +187,12 @@ img {
 <p><br /></p>
 <div id="model-level-inference" class="section level2">
 <h2>Model-Level Inference</h2>
-<p>In the <a href="coefinf.html#coefinf">previous chapter</a>, we looked at how to carry out statistical tests of hypotheses and quantify uncertainty associated with the coefficients in the simple regression model. Sometimes you are interested in the model as a whole, rather than the individual parameters. For example, you may be interested in whether a set of predictors <em>together</em> explains variation in the outcome. Model-level information is displayed using the <code>glance()</code> output from the <strong>broom</strong> package. Below we fit a model by regressing GPA on time spent on homework, store those results in an object called <code>lm.1</code>, and then print the model-level output.</p>
+<p>In the <a href="coefinf.html#coefinf">previous chapter</a>, we looked at how to carry out statistical tests of hypotheses and quantify uncertainty associated with the coefficients in the simple regression model. Sometimes you are interested in the model as a whole, rather than the individual parameters. For example, you may be interested in whether a set of predictors <em>together</em> explains variation in the outcome. Model-level information is displayed using the <code>glance()</code> output from the <strong>broom</strong> package. Below we fit a model by regressing GPA on time spent on homework, store those results in an object called <code>lm.a</code>, and then print the model-level output.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="modinf.html#cb71-1"></a><span class="co"># Fit regression model</span></span>
-<span id="cb71-2"><a href="modinf.html#cb71-2"></a>lm<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework, <span class="dt">data =</span> keith)</span>
+<span id="cb71-2"><a href="modinf.html#cb71-2"></a>lm.a =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework, <span class="dt">data =</span> keith)</span>
 <span id="cb71-3"><a href="modinf.html#cb71-3"></a></span>
 <span id="cb71-4"><a href="modinf.html#cb71-4"></a><span class="co"># Model-level output</span></span>
-<span id="cb71-5"><a href="modinf.html#cb71-5"></a><span class="kw">glance</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<span id="cb71-5"><a href="modinf.html#cb71-5"></a><span class="kw">glance</span>(lm.a)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -260,7 +260,7 @@ Figure 3: Plot of the probability curve for the F(1,98) distribution. The shaded
 <div id="using-the-f-distribution-in-practice" class="section level3">
 <h3>Using the <em>F</em>-distribution in Practice</h3>
 <p>In practice, all of this information is provided in the output of the <code>glance()</code> function.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="modinf.html#cb73-1"></a><span class="kw">glance</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="modinf.html#cb73-1"></a><span class="kw">glance</span>(lm.a)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -277,7 +277,7 @@ Figure 3: Plot of the probability curve for the F(1,98) distribution. The shaded
 <div id="anova-decomposition" class="section level3">
 <h3>ANOVA Decomposition</h3>
 <p>We can also get the model-level inferential information from the <code>anova()</code> output. This gives us the ANOVA decomposition for the model.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="modinf.html#cb75-1"></a><span class="kw">anova</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="modinf.html#cb75-1"></a><span class="kw">anova</span>(lm.a)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: gpa
@@ -330,7 +330,7 @@ F &amp;= \frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{SS}_{\mathrm{Error}}} \time
 \end{split}
 \]</span></p>
 <p>These values are also printed in the <code>anova()</code> output.</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="modinf.html#cb77-1"></a><span class="kw">anova</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="modinf.html#cb77-1"></a><span class="kw">anova</span>(lm.a)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: gpa
@@ -396,7 +396,7 @@ Residuals 99 5752.9   58.11               </code></pre>
 <h3>Relationship Between Coefficient-Level and Model-Level Inference</h3>
 <p>Lastly, we point out that in simple regression models (models with only one predictor), the results of the model-level inference (i.e., the <em>p</em>-value) is exactly the same as that for the coefficient-level inference for the slope.</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="modinf.html#cb83-1"></a><span class="co"># Model-level inference</span></span>
-<span id="cb83-2"><a href="modinf.html#cb83-2"></a><span class="kw">glance</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<span id="cb83-2"><a href="modinf.html#cb83-2"></a><span class="kw">glance</span>(lm.a)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -405,7 +405,7 @@ Residuals 99 5752.9   58.11               </code></pre>
      &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
 1    5136.          98   100</code></pre>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="modinf.html#cb85-1"></a><span class="co"># Coefficient-level inference</span></span>
-<span id="cb85-2"><a href="modinf.html#cb85-2"></a><span class="kw">tidy</span>(lm<span class="fl">.1</span>)</span></code></pre></div>
+<span id="cb85-2"><a href="modinf.html#cb85-2"></a><span class="kw">tidy</span>(lm.a)</span></code></pre></div>
 <pre><code># A tibble: 2 x 5
   term        estimate std.error statistic  p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
