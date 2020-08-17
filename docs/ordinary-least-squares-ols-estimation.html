@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-08-11" />
+<meta name="date" content="2020-08-17" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -173,15 +173,15 @@ img {
 <span id="cb18-6"><a href="ordinary-least-squares-ols-estimation.html#cb18-6"></a><span class="co"># Read in data</span></span>
 <span id="cb18-7"><a href="ordinary-least-squares-ols-estimation.html#cb18-7"></a>city =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv&quot;</span>)</span>
 <span id="cb18-8"><a href="ordinary-least-squares-ols-estimation.html#cb18-8"></a><span class="kw">head</span>(city)</span></code></pre></div>
-<pre><code># A tibble: 6 x 6
-  education income seniority gender  male party      
-      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;      
-1         8   37.4         7 male       1 Democrat   
-2         8   26.4         9 female     0 Independent
-3        10   47.0        14 male       1 Democrat   
-4        10   34.2        16 female     0 Independent
-5        10   25.5         1 female     0 Republican 
-6        12   46.5        11 female     0 Democrat   </code></pre>
+<pre><code># A tibble: 6 x 5
+  education income seniority gender     party      
+      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
+1         8   26.4         9 female     Independent
+2         8   37.4         7 Not female Democrat   
+3        10   34.2        16 female     Independent
+4        10   25.5         1 female     Republican 
+5        10   47.0        14 Not female Democrat   
+6        12   46.5        11 female     Democrat   </code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ordinary-least-squares-ols-estimation.html#cb20-1"></a><span class="co"># Fit regression model</span></span>
 <span id="cb20-2"><a href="ordinary-least-squares-ols-estimation.html#cb20-2"></a>lm.a =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</span>
 <span id="cb20-3"><a href="ordinary-least-squares-ols-estimation.html#cb20-3"></a>lm.a</span></code></pre></div>
@@ -846,7 +846,7 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
 <div id="mathematical-optimization" class="section level3">
 <h3>Mathematical Optimization</h3>
 <p>Finding the intercept and slope that give the lowest SSE is referred to as an optimization problem in the field of mathematics. Optimization is such an important (and sometimes difficult) probelm that there have been several mathematical and computational optimization methods that have been developed over the years. You can <a href="https://en.wikipedia.org/wiki/Mathematical_optimization">read more about mathematical optimization on Wikipedia</a> if you are interested.</p>
-<p>One common mathematical method to find the minimum SSE involves calculus. We would write the SSE as a function of<span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, compute the partial derivatives (w.r.t. each of the coefficients), set these equal to zero, and solve to find the values of the coefficients. You can read <a href="https://isites.harvard.edu/fs/docs/icb.topic515975.files/OLSDerivation.pdf">here</a>. The <code>lm()</code> function actually uses an optimization method called <a href="https://en.wikipedia.org/wiki/QR_decomposition">QR decomposition</a> to obtain the regression coefficients. The actual mechanics and computation of these methods are beyond the scope of this course. We will just trust that the <code>lm()</code> function is doing things correctly in this course.</p>
+<p>One common mathematical method to find the minimum SSE involves calculus. We would write the SSE as a function of<span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, compute the partial derivatives (w.r.t. each of the coefficients), set these equal to zero, and solve to find the values of the coefficients. <!--You can read [here](https://isites.harvard.edu/fs/docs/icb.topic515975.files/OLSDerivation.pdf).--> The <code>lm()</code> function actually uses an optimization method called <a href="https://en.wikipedia.org/wiki/QR_decomposition">QR decomposition</a> to obtain the regression coefficients. The actual mechanics and computation of these methods are beyond the scope of this course. We will just trust that the <code>lm()</code> function is doing things correctly in this course.</p>
 <p><br /></p>
 </div>
 </div>
@@ -869,19 +869,19 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
 <span id="cb22-3"><a href="ordinary-least-squares-ols-estimation.html#cb22-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
 <span id="cb22-4"><a href="ordinary-least-squares-ols-estimation.html#cb22-4"></a>    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education</span>
 <span id="cb22-5"><a href="ordinary-least-squares-ols-estimation.html#cb22-5"></a>    )</span></code></pre></div>
-<pre><code># A tibble: 32 x 7
-   education income seniority gender  male party       y_hat
-       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
- 1         8   37.4         7 male       1 Democrat     32.5
- 2         8   26.4         9 female     0 Independent  32.5
- 3        10   47.0        14 male       1 Democrat     37.8
- 4        10   34.2        16 female     0 Independent  37.8
- 5        10   25.5         1 female     0 Republican   37.8
- 6        12   46.5        11 female     0 Democrat     43.1
- 7        12   37.7        14 male       1 Democrat     43.1
- 8        12   50.3        24 male       1 Democrat     43.1
- 9        12   52.5        16 female     0 Independent  43.1
-10        14   32.6         5 female     0 Independent  48.4
+<pre><code># A tibble: 32 x 6
+   education income seniority gender     party       y_hat
+       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;
+ 1         8   26.4         9 female     Independent  32.5
+ 2         8   37.4         7 Not female Democrat     32.5
+ 3        10   34.2        16 female     Independent  37.8
+ 4        10   25.5         1 female     Republican   37.8
+ 5        10   47.0        14 Not female Democrat     37.8
+ 6        12   46.5        11 female     Democrat     43.1
+ 7        12   52.5        16 female     Independent  43.1
+ 8        12   37.7        14 Not female Democrat     43.1
+ 9        12   50.3        24 Not female Democrat     43.1
+10        14   32.6         5 female     Independent  48.4
 # … with 22 more rows</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ordinary-least-squares-ols-estimation.html#cb24-1"></a><span class="co"># Step 2: Compute the residuals</span></span>
 <span id="cb24-2"><a href="ordinary-least-squares-ols-estimation.html#cb24-2"></a>city <span class="op">%&gt;%</span></span>
@@ -889,19 +889,19 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
 <span id="cb24-4"><a href="ordinary-least-squares-ols-estimation.html#cb24-4"></a>    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education,</span>
 <span id="cb24-5"><a href="ordinary-least-squares-ols-estimation.html#cb24-5"></a>    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat</span>
 <span id="cb24-6"><a href="ordinary-least-squares-ols-estimation.html#cb24-6"></a>    )</span></code></pre></div>
-<pre><code># A tibble: 32 x 8
-   education income seniority gender  male party       y_hat errors
-       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;
- 1         8   37.4         7 male       1 Democrat     32.5   4.92
- 2         8   26.4         9 female     0 Independent  32.5  -6.10
- 3        10   47.0        14 male       1 Democrat     37.8   9.20
- 4        10   34.2        16 female     0 Independent  37.8  -3.65
- 5        10   25.5         1 female     0 Republican   37.8 -12.4 
- 6        12   46.5        11 female     0 Democrat     43.1   3.36
- 7        12   37.7        14 male       1 Democrat     43.1  -5.48
- 8        12   50.3        24 male       1 Democrat     43.1   7.13
- 9        12   52.5        16 female     0 Independent  43.1   9.35
-10        14   32.6         5 female     0 Independent  48.4 -15.8 
+<pre><code># A tibble: 32 x 7
+   education income seniority gender     party       y_hat errors
+       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;
+ 1         8   26.4         9 female     Independent  32.5  -6.10
+ 2         8   37.4         7 Not female Democrat     32.5   4.92
+ 3        10   34.2        16 female     Independent  37.8  -3.65
+ 4        10   25.5         1 female     Republican   37.8 -12.4 
+ 5        10   47.0        14 Not female Democrat     37.8   9.20
+ 6        12   46.5        11 female     Democrat     43.1   3.36
+ 7        12   52.5        16 female     Independent  43.1   9.35
+ 8        12   37.7        14 Not female Democrat     43.1  -5.48
+ 9        12   50.3        24 Not female Democrat     43.1   7.13
+10        14   32.6         5 female     Independent  48.4 -15.8 
 # … with 22 more rows</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="ordinary-least-squares-ols-estimation.html#cb26-1"></a><span class="co"># Step 3: Compute the squared residuals</span></span>
 <span id="cb26-2"><a href="ordinary-least-squares-ols-estimation.html#cb26-2"></a>city <span class="op">%&gt;%</span></span>
@@ -910,19 +910,19 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
 <span id="cb26-5"><a href="ordinary-least-squares-ols-estimation.html#cb26-5"></a>    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat,</span>
 <span id="cb26-6"><a href="ordinary-least-squares-ols-estimation.html#cb26-6"></a>    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></span>
 <span id="cb26-7"><a href="ordinary-least-squares-ols-estimation.html#cb26-7"></a>  )</span></code></pre></div>
-<pre><code># A tibble: 32 x 9
-   education income seniority gender  male party       y_hat errors sq_errors
-       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
- 1         8   37.4         7 male       1 Democrat     32.5   4.92      24.2
- 2         8   26.4         9 female     0 Independent  32.5  -6.10      37.2
- 3        10   47.0        14 male       1 Democrat     37.8   9.20      84.7
- 4        10   34.2        16 female     0 Independent  37.8  -3.65      13.3
- 5        10   25.5         1 female     0 Republican   37.8 -12.4      153. 
- 6        12   46.5        11 female     0 Democrat     43.1   3.36      11.3
- 7        12   37.7        14 male       1 Democrat     43.1  -5.48      30.0
- 8        12   50.3        24 male       1 Democrat     43.1   7.13      50.9
- 9        12   52.5        16 female     0 Independent  43.1   9.35      87.4
-10        14   32.6         5 female     0 Independent  48.4 -15.8      250. 
+<pre><code># A tibble: 32 x 8
+   education income seniority gender     party       y_hat errors sq_errors
+       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+ 1         8   26.4         9 female     Independent  32.5  -6.10      37.2
+ 2         8   37.4         7 Not female Democrat     32.5   4.92      24.2
+ 3        10   34.2        16 female     Independent  37.8  -3.65      13.3
+ 4        10   25.5         1 female     Republican   37.8 -12.4      153. 
+ 5        10   47.0        14 Not female Democrat     37.8   9.20      84.7
+ 6        12   46.5        11 female     Democrat     43.1   3.36      11.3
+ 7        12   52.5        16 female     Independent  43.1   9.35      87.4
+ 8        12   37.7        14 Not female Democrat     43.1  -5.48      30.0
+ 9        12   50.3        24 Not female Democrat     43.1   7.13      50.9
+10        14   32.6         5 female     Independent  48.4 -15.8      250. 
 # … with 22 more rows</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="ordinary-least-squares-ols-estimation.html#cb28-1"></a><span class="co"># Step 4: Compute the sum of the squared residuals</span></span>
 <span id="cb28-2"><a href="ordinary-least-squares-ols-estimation.html#cb28-2"></a>city <span class="op">%&gt;%</span></span>

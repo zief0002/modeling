@@ -5,7 +5,7 @@
 
 Remember that in a [previous chapter](#coefinf) we had found that time spent on homework was positively related to student GPA. Because the data are observational (we did not assign students to different levels of time on homework), it is difficult to make a causal inference about this relationship; there may be an alternative explanation. One possible explanation is that parent level of education explains the positive relationship between time spent on homework and student GPA.
 
-In this chapter, you will learn about how including multiple predictors into the regression model helps us evaluate these alternative explanations by providing a measure of *statistical control*. To do so, we will return to the [keith-gpa.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/keith.csv) data to examine whether time spent on homework is related to GPA (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html)). However this time, we will control for parent education level. To begin, we will load several libraries and import the data into an object called `keith`.
+In this chapter, you will learn about how including multiple predictors into the regression model helps us evaluate these alternative explanations by providing a measure of *statistical control*. To do so, we will return to the [keith-gpa.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv) data to examine whether time spent on homework is related to GPA (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html)). However this time, we will control for parent education level. To begin, we will load several libraries and import the data into an object called `keith`.
 
 
 

@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-08-11" />
+<meta name="date" content="2020-08-17" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -165,7 +165,7 @@ img {
 <div id="statcontrol" class="section level1">
 <h1>Understanding Statistical Control</h1>
 <p>Remember that in a <a href="coefinf.html#coefinf">previous chapter</a> we had found that time spent on homework was positively related to student GPA. Because the data are observational (we did not assign students to different levels of time on homework), it is difficult to make a causal inference about this relationship; there may be an alternative explanation. One possible explanation is that parent level of education explains the positive relationship between time spent on homework and student GPA.</p>
-<p>In this chapter, you will learn about how including multiple predictors into the regression model helps us evaluate these alternative explanations by providing a measure of <em>statistical control</em>. To do so, we will return to the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/keith.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html">data codebook</a>). However this time, we will control for parent education level. To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
+<p>In this chapter, you will learn about how including multiple predictors into the regression model helps us evaluate these alternative explanations by providing a measure of <em>statistical control</em>. To do so, we will return to the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html">data codebook</a>). However this time, we will control for parent education level. To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="statcontrol.html#cb117-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb117-2"><a href="statcontrol.html#cb117-2"></a><span class="kw">library</span>(broom)</span>
 <span id="cb117-3"><a href="statcontrol.html#cb117-3"></a><span class="kw">library</span>(corrr)</span>

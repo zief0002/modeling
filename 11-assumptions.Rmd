@@ -31,7 +31,7 @@ opts_chunk$set(
 ```
 
 
-In this chapter, you will learn about the various distributional assumptions underlying the regression model. To do so, we will return to the [keith-gpa.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/keith.csv) data to examine whether time spent on homework is related to GPA (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html)). To begin, we will load several libraries and import the data into an object called `keith`. 
+In this chapter, you will learn about the various distributional assumptions underlying the regression model. To do so, we will return to the [keith-gpa.csv](https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv) data to examine whether time spent on homework is related to GPA (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html)). To begin, we will load several libraries and import the data into an object called `keith`. 
 
 
 ```{r warning=FALSE, message=FALSE}

@@ -21,15 +21,15 @@ head(city)
 ```
 
 ```
-# A tibble: 6 x 6
-  education income seniority gender  male party      
-      <dbl>  <dbl>     <dbl> <chr>  <dbl> <chr>      
-1         8   37.4         7 male       1 Democrat   
-2         8   26.4         9 female     0 Independent
-3        10   47.0        14 male       1 Democrat   
-4        10   34.2        16 female     0 Independent
-5        10   25.5         1 female     0 Republican 
-6        12   46.5        11 female     0 Democrat   
+# A tibble: 6 x 5
+  education income seniority gender     party      
+      <dbl>  <dbl>     <dbl> <chr>      <chr>      
+1         8   26.4         9 female     Independent
+2         8   37.4         7 Not female Democrat   
+3        10   34.2        16 female     Independent
+4        10   25.5         1 female     Republican 
+5        10   47.0        14 Not female Democrat   
+6        12   46.5        11 female     Democrat   
 ```
 
 <br />

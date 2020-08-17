@@ -14,7 +14,7 @@
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-08-11" />
+<meta name="date" content="2020-08-17" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -175,15 +175,15 @@ img {
 <span id="cb88-8"><a href="multreg.html#cb88-8"></a><span class="co"># Read in data</span></span>
 <span id="cb88-9"><a href="multreg.html#cb88-9"></a>city =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv&quot;</span>)</span>
 <span id="cb88-10"><a href="multreg.html#cb88-10"></a><span class="kw">head</span>(city)</span></code></pre></div>
-<pre><code># A tibble: 6 x 6
-  education income seniority gender  male party      
-      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;      
-1         8   37.4         7 male       1 Democrat   
-2         8   26.4         9 female     0 Independent
-3        10   47.0        14 male       1 Democrat   
-4        10   34.2        16 female     0 Independent
-5        10   25.5         1 female     0 Republican 
-6        12   46.5        11 female     0 Democrat   </code></pre>
+<pre><code># A tibble: 6 x 5
+  education income seniority gender     party      
+      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
+1         8   26.4         9 female     Independent
+2         8   37.4         7 Not female Democrat   
+3        10   34.2        16 female     Independent
+4        10   25.5         1 female     Republican 
+5        10   47.0        14 Not female Democrat   
+6        12   46.5        11 female     Democrat   </code></pre>
 <p><br /></p>
 <div id="observational-data-and-alternative-explanations" class="section level2">
 <h2>Observational Data and Alternative Explanations</h2>

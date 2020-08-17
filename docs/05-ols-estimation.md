@@ -18,15 +18,15 @@ head(city)
 ```
 
 ```
-# A tibble: 6 x 6
-  education income seniority gender  male party      
-      <dbl>  <dbl>     <dbl> <chr>  <dbl> <chr>      
-1         8   37.4         7 male       1 Democrat   
-2         8   26.4         9 female     0 Independent
-3        10   47.0        14 male       1 Democrat   
-4        10   34.2        16 female     0 Independent
-5        10   25.5         1 female     0 Republican 
-6        12   46.5        11 female     0 Democrat   
+# A tibble: 6 x 5
+  education income seniority gender     party      
+      <dbl>  <dbl>     <dbl> <chr>      <chr>      
+1         8   26.4         9 female     Independent
+2         8   37.4         7 Not female Democrat   
+3        10   34.2        16 female     Independent
+4        10   25.5         1 female     Republican 
+5        10   47.0        14 Not female Democrat   
+6        12   46.5        11 female     Democrat   
 ```
 
 ```r
@@ -418,7 +418,7 @@ The SSE is 661.16. This is the smallest SSE possible for a linear model. Any oth
 
 Finding the intercept and slope that give the lowest SSE is referred to as an optimization problem in the field of mathematics. Optimization is such an important (and sometimes difficult) probelm that there have been several mathematical and computational optimization methods that have been developed over the years. You can [read more about mathematical optimization on Wikipedia](https://en.wikipedia.org/wiki/Mathematical_optimization) if you are interested.
 
-One common mathematical method to find the minimum SSE involves calculus. We would write the SSE as a function of$\beta_0$ and $\beta_1$, compute the partial derivatives (w.r.t. each of the coefficients), set these equal to zero, and solve to find the values of the coefficients. You can read [here](https://isites.harvard.edu/fs/docs/icb.topic515975.files/OLSDerivation.pdf). The `lm()` function actually uses an optimization method called [QR decomposition](https://en.wikipedia.org/wiki/QR_decomposition) to obtain the regression coefficients. The actual mechanics and computation of these methods are beyond the scope of this course. We will just trust that the `lm()` function is doing things correctly in this course.
+One common mathematical method to find the minimum SSE involves calculus. We would write the SSE as a function of$\beta_0$ and $\beta_1$, compute the partial derivatives (w.r.t. each of the coefficients), set these equal to zero, and solve to find the values of the coefficients. <!--You can read [here](https://isites.harvard.edu/fs/docs/icb.topic515975.files/OLSDerivation.pdf).--> The `lm()` function actually uses an optimization method called [QR decomposition](https://en.wikipedia.org/wiki/QR_decomposition) to obtain the regression coefficients. The actual mechanics and computation of these methods are beyond the scope of this course. We will just trust that the `lm()` function is doing things correctly in this course.
 
 <br />
 
@@ -450,19 +450,19 @@ city %>%
 ```
 
 ```
-# A tibble: 32 x 7
-   education income seniority gender  male party       y_hat
-       <dbl>  <dbl>     <dbl> <chr>  <dbl> <chr>       <dbl>
- 1         8   37.4         7 male       1 Democrat     32.5
- 2         8   26.4         9 female     0 Independent  32.5
- 3        10   47.0        14 male       1 Democrat     37.8
- 4        10   34.2        16 female     0 Independent  37.8
- 5        10   25.5         1 female     0 Republican   37.8
- 6        12   46.5        11 female     0 Democrat     43.1
- 7        12   37.7        14 male       1 Democrat     43.1
- 8        12   50.3        24 male       1 Democrat     43.1
- 9        12   52.5        16 female     0 Independent  43.1
-10        14   32.6         5 female     0 Independent  48.4
+# A tibble: 32 x 6
+   education income seniority gender     party       y_hat
+       <dbl>  <dbl>     <dbl> <chr>      <chr>       <dbl>
+ 1         8   26.4         9 female     Independent  32.5
+ 2         8   37.4         7 Not female Democrat     32.5
+ 3        10   34.2        16 female     Independent  37.8
+ 4        10   25.5         1 female     Republican   37.8
+ 5        10   47.0        14 Not female Democrat     37.8
+ 6        12   46.5        11 female     Democrat     43.1
+ 7        12   52.5        16 female     Independent  43.1
+ 8        12   37.7        14 Not female Democrat     43.1
+ 9        12   50.3        24 Not female Democrat     43.1
+10        14   32.6         5 female     Independent  48.4
 # … with 22 more rows
 ```
 
@@ -476,19 +476,19 @@ city %>%
 ```
 
 ```
-# A tibble: 32 x 8
-   education income seniority gender  male party       y_hat errors
-       <dbl>  <dbl>     <dbl> <chr>  <dbl> <chr>       <dbl>  <dbl>
- 1         8   37.4         7 male       1 Democrat     32.5   4.92
- 2         8   26.4         9 female     0 Independent  32.5  -6.10
- 3        10   47.0        14 male       1 Democrat     37.8   9.20
- 4        10   34.2        16 female     0 Independent  37.8  -3.65
- 5        10   25.5         1 female     0 Republican   37.8 -12.4 
- 6        12   46.5        11 female     0 Democrat     43.1   3.36
- 7        12   37.7        14 male       1 Democrat     43.1  -5.48
- 8        12   50.3        24 male       1 Democrat     43.1   7.13
- 9        12   52.5        16 female     0 Independent  43.1   9.35
-10        14   32.6         5 female     0 Independent  48.4 -15.8 
+# A tibble: 32 x 7
+   education income seniority gender     party       y_hat errors
+       <dbl>  <dbl>     <dbl> <chr>      <chr>       <dbl>  <dbl>
+ 1         8   26.4         9 female     Independent  32.5  -6.10
+ 2         8   37.4         7 Not female Democrat     32.5   4.92
+ 3        10   34.2        16 female     Independent  37.8  -3.65
+ 4        10   25.5         1 female     Republican   37.8 -12.4 
+ 5        10   47.0        14 Not female Democrat     37.8   9.20
+ 6        12   46.5        11 female     Democrat     43.1   3.36
+ 7        12   52.5        16 female     Independent  43.1   9.35
+ 8        12   37.7        14 Not female Democrat     43.1  -5.48
+ 9        12   50.3        24 Not female Democrat     43.1   7.13
+10        14   32.6         5 female     Independent  48.4 -15.8 
 # … with 22 more rows
 ```
 
@@ -503,19 +503,19 @@ city %>%
 ```
 
 ```
-# A tibble: 32 x 9
-   education income seniority gender  male party       y_hat errors sq_errors
-       <dbl>  <dbl>     <dbl> <chr>  <dbl> <chr>       <dbl>  <dbl>     <dbl>
- 1         8   37.4         7 male       1 Democrat     32.5   4.92      24.2
- 2         8   26.4         9 female     0 Independent  32.5  -6.10      37.2
- 3        10   47.0        14 male       1 Democrat     37.8   9.20      84.7
- 4        10   34.2        16 female     0 Independent  37.8  -3.65      13.3
- 5        10   25.5         1 female     0 Republican   37.8 -12.4      153. 
- 6        12   46.5        11 female     0 Democrat     43.1   3.36      11.3
- 7        12   37.7        14 male       1 Democrat     43.1  -5.48      30.0
- 8        12   50.3        24 male       1 Democrat     43.1   7.13      50.9
- 9        12   52.5        16 female     0 Independent  43.1   9.35      87.4
-10        14   32.6         5 female     0 Independent  48.4 -15.8      250. 
+# A tibble: 32 x 8
+   education income seniority gender     party       y_hat errors sq_errors
+       <dbl>  <dbl>     <dbl> <chr>      <chr>       <dbl>  <dbl>     <dbl>
+ 1         8   26.4         9 female     Independent  32.5  -6.10      37.2
+ 2         8   37.4         7 Not female Democrat     32.5   4.92      24.2
+ 3        10   34.2        16 female     Independent  37.8  -3.65      13.3
+ 4        10   25.5         1 female     Republican   37.8 -12.4      153. 
+ 5        10   47.0        14 Not female Democrat     37.8   9.20      84.7
+ 6        12   46.5        11 female     Democrat     43.1   3.36      11.3
+ 7        12   52.5        16 female     Independent  43.1   9.35      87.4
+ 8        12   37.7        14 Not female Democrat     43.1  -5.48      30.0
+ 9        12   50.3        24 Not female Democrat     43.1   7.13      50.9
+10        14   32.6         5 female     Independent  48.4 -15.8      250. 
 # … with 22 more rows
 ```
 

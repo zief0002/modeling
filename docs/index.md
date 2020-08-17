@@ -1,7 +1,7 @@
 --- 
 title: "Statistical Modeling and Computation for Educational Scientists"
 author: "Andrew Zieffler"
-date: "2020-08-11"
+date: "2020-08-17"
 site: bookdown::bookdown_site
 output: 
   bookdown::html_book:
@@ -56,7 +56,7 @@ The book is typeset using [Crimson Text](https://fonts.google.com/specimen/Crims
 
 ## Acknowledgments
 
-Many thanks to all the students in my courses who have been through previous iterations of this material. Your feedback has been invaluable, and you are the world's greatest copyeditors. In particular, I would like to thank the following students who have gone above and beyond in the feedback they have provided: Jonathan Brown, Amaniel Mrutu, Corrisa Rohloff, and Mireya Smith.
+Many thanks to all the students in my courses who have been through previous iterations of this material. Your feedback has been invaluable, and you are the world's greatest copyeditors. In particular, I would like to thank the following students who have gone above and beyond in the feedback they have provided: Jonathan Brown, Amaniel Mrutu, Corissa Rohloff, and Mireya Smith.
 
 <br /><br />
 
