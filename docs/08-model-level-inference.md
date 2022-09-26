@@ -20,7 +20,7 @@ head(keith)
 ```
 
 ```
-# A tibble: 6 x 3
+# A tibble: 6 × 3
     gpa homework parent_ed
   <dbl>    <dbl>     <dbl>
 1    78        2        13
@@ -49,7 +49,7 @@ glance(lm.a)
 
 
 ```
-# A tibble: 1 x 12
+# A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
 1     0.107        0.0981  7.24      11.8 0.000885     1  -339.  684.  691.
@@ -144,7 +144,7 @@ glance(lm.a)
 
 
 ```
-# A tibble: 1 x 12
+# A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
 1     0.107        0.0981  7.24      11.8 0.000885     1  -339.  684.  691.
@@ -303,7 +303,7 @@ keith %>%
 ```
 
 ```
-# A tibble: 1 x 1
+# A tibble: 1 × 1
   V_gpa
   <dbl>
 1  58.1
@@ -358,7 +358,7 @@ glance(lm.a)
 
 
 ```
-# A tibble: 1 x 12
+# A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
 1     0.107        0.0981  7.24      11.8 0.000885     1  -339.  684.  691.
@@ -374,7 +374,7 @@ tidy(lm.a)
 ```
 
 ```
-# A tibble: 2 x 5
+# A tibble: 2 × 5
   term        estimate std.error statistic  p.value
   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 1 (Intercept)    74.3      1.94      38.3  1.01e-60

@@ -18,7 +18,7 @@ head(city)
 ```
 
 ```
-# A tibble: 6 x 5
+# A tibble: 6 × 5
   education income seniority gender     party      
       <dbl>  <dbl>     <dbl> <chr>      <chr>      
 1         8   26.4         9 female     Independent
@@ -372,35 +372,35 @@ This model gives the following predicted values and residuals:
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 63 </td>
    <td style="text-align:center;"> 49.61364 </td>
    <td style="text-align:center;"> 13.386364 </td>
    <td style="text-align:center;"> 179.1947 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> 44 </td>
    <td style="text-align:center;"> 33.47727 </td>
    <td style="text-align:center;"> 10.522727 </td>
    <td style="text-align:center;"> 110.7278 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 30 </td>
    <td style="text-align:center;"> 40 </td>
    <td style="text-align:center;"> 49.61364 </td>
    <td style="text-align:center;"> -9.613636 </td>
    <td style="text-align:center;"> 92.4220 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 50 </td>
    <td style="text-align:center;"> 68 </td>
    <td style="text-align:center;"> 65.75000 </td>
    <td style="text-align:center;"> 2.250000 </td>
    <td style="text-align:center;"> 5.0625 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 20 </td>
    <td style="text-align:center;"> 25 </td>
    <td style="text-align:center;"> 41.54545 </td>
    <td style="text-align:center;"> -16.545455 </td>
@@ -450,7 +450,7 @@ city %>%
 ```
 
 ```
-# A tibble: 32 x 6
+# A tibble: 32 × 6
    education income seniority gender     party       y_hat
        <dbl>  <dbl>     <dbl> <chr>      <chr>       <dbl>
  1         8   26.4         9 female     Independent  32.5
@@ -464,6 +464,7 @@ city %>%
  9        12   50.3        24 Not female Democrat     43.1
 10        14   32.6         5 female     Independent  48.4
 # … with 22 more rows
+# ℹ Use `print(n = ...)` to see more rows
 ```
 
 ```r
@@ -476,7 +477,7 @@ city %>%
 ```
 
 ```
-# A tibble: 32 x 7
+# A tibble: 32 × 7
    education income seniority gender     party       y_hat errors
        <dbl>  <dbl>     <dbl> <chr>      <chr>       <dbl>  <dbl>
  1         8   26.4         9 female     Independent  32.5  -6.10
@@ -490,6 +491,7 @@ city %>%
  9        12   50.3        24 Not female Democrat     43.1   7.13
 10        14   32.6         5 female     Independent  48.4 -15.8 
 # … with 22 more rows
+# ℹ Use `print(n = ...)` to see more rows
 ```
 
 ```r
@@ -503,7 +505,7 @@ city %>%
 ```
 
 ```
-# A tibble: 32 x 8
+# A tibble: 32 × 8
    education income seniority gender     party       y_hat errors sq_errors
        <dbl>  <dbl>     <dbl> <chr>      <chr>       <dbl>  <dbl>     <dbl>
  1         8   26.4         9 female     Independent  32.5  -6.10      37.2
@@ -517,6 +519,7 @@ city %>%
  9        12   50.3        24 Not female Democrat     43.1   7.13      50.9
 10        14   32.6         5 female     Independent  48.4 -15.8      250. 
 # … with 22 more rows
+# ℹ Use `print(n = ...)` to see more rows
 ```
 
 ```r
@@ -533,7 +536,7 @@ city %>%
 ```
 
 ```
-# A tibble: 1 x 1
+# A tibble: 1 × 1
     SSE
   <dbl>
 1 2418.
@@ -650,7 +653,7 @@ city %>%
 ```
 
 ```
-# A tibble: 1 x 1
+# A tibble: 1 × 1
     SSE
   <dbl>
 1 6566.
@@ -762,11 +765,11 @@ city %>%
 ```
 
 ```
-# A tibble: 2 x 3
-  rowname  y_hat income
-  <chr>    <dbl>  <dbl>
-1 y_hat   NA      0.795
-2 income   0.795 NA    
+# A tibble: 2 × 3
+  term    y_hat income
+  <chr>   <dbl>  <dbl>
+1 y_hat  NA      0.795
+2 income  0.795 NA    
 ```
 
 The correlation between the observed and fitted values is 0.795. This is a high correlation indicating that the model fitted values and the observed values are similar. We denote this value using the uppercase Roman letter $R$.

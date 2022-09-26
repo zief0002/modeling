@@ -18,7 +18,7 @@ head(city)
 ```
 
 ```
-# A tibble: 6 x 5
+# A tibble: 6 × 5
   education income seniority gender     party      
       <dbl>  <dbl>     <dbl> <chr>      <chr>      
 1         8   26.4         9 female     Independent
@@ -73,7 +73,7 @@ city %>%
 ```
 
 ```
-# A tibble: 1 x 2
+# A tibble: 1 × 2
       M    SD
   <dbl> <dbl>
 1  53.7  14.6
@@ -119,7 +119,7 @@ city %>%
 ```
 
 ```
-# A tibble: 1 x 2
+# A tibble: 1 × 2
       M    SD
   <dbl> <dbl>
 1    16  4.36
@@ -452,7 +452,7 @@ city %>%
 ```
 
 ```
-# A tibble: 1 x 5
+# A tibble: 1 × 5
   education income seniority gender party      
       <dbl>  <dbl>     <dbl> <chr>  <chr>      
 1        20   54.7        12 female Independent

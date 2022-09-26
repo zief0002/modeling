@@ -8,50 +8,59 @@
 <meta property="og:title" content="References | Statistical Modeling and Computation for Educational Scientists" />
 <meta property="og:type" content="book" />
 
-
 <meta property="og:description" content="EPsy 8251 and 8252 Notes" />
 <meta name="github-repo" content="zief0002/modeling" />
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-08-17" />
+<meta name="date" content="2022-09-26" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: { equationNumbers: { autoNumber: "AMS" } }
 });
 </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta name="description" content="EPsy 8251 and 8252 Notes">
 
 <title>References | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="libs/navigation-1.1/tabsets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -70,7 +79,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -109,6 +118,29 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 </style>
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style/style.css" type="text/css" />
 <link rel="stylesheet" href="style/table-styles.css" type="text/css" />
 <link rel="stylesheet" href="style/syntax.css" type="text/css" />
@@ -129,6 +161,12 @@ img {
   max-width:100%;
   height: auto;
 }
+/* show arrow before summary tag as in bootstrap
+TODO: remove if boostrap in updated in html_document (rmarkdown#1485) */
+details > summary {
+  display: list-item;
+  cursor: pointer;
+}
 </style>
 </head>
 
@@ -141,21 +179,21 @@ img {
 <div class="col-sm-12">
 <div id="TOC">
 <ul>
-<li><a href="index.html#foreword">Foreword</a></li>
-<li><a href="preface.html#preface">Preface</a></li>
-<li><a href="slrd.html#slrd">Simple Linear Regression—Description</a></li>
-<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
-<li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
-<li><a href="coefinf.html#coefinf">Coefficient-Level Inference</a></li>
-<li><a href="modinf.html#modinf">Model-Level Inference</a></li>
-<li><a href="multreg.html#multreg">Introduction to Multiple Regression</a></li>
-<li><a href="statcontrol.html#statcontrol">Understanding Statistical Control</a></li>
-<li><a href="assumptions.html#assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
-<li><a href="dummy.html#dummy">Dichotomous Categorical Predictors</a></li>
-<li><a href="polychotomous.html#polychotomous">Polychotomous Categorical Predictors</a></li>
-<li><a href="interaction-01.html#interaction-01">Introduction to Interaction Effects</a></li>
-<li><a href="interaction-02.html#interaction-02">More Interaction Effects</a></li>
-<li><a href="references.html#references">References</a></li>
+<li><a href="index.html#foreword" id="toc-foreword">Foreword</a></li>
+<li><a href="preface.html#preface" id="toc-preface">Preface</a></li>
+<li><a href="slrd.html#slrd" id="toc-slrd">Simple Linear Regression—Description</a></li>
+<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation" id="toc-ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
+<li><a href="cor.html#cor" id="toc-cor">Correlation and Standardized Regression</a></li>
+<li><a href="coefinf.html#coefinf" id="toc-coefinf">Coefficient-Level Inference</a></li>
+<li><a href="modinf.html#modinf" id="toc-modinf">Model-Level Inference</a></li>
+<li><a href="multreg.html#multreg" id="toc-multreg">Introduction to Multiple Regression</a></li>
+<li><a href="statcontrol.html#statcontrol" id="toc-statcontrol">Understanding Statistical Control</a></li>
+<li><a href="assumptions.html#assumptions" id="toc-assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
+<li><a href="dummy.html#dummy" id="toc-dummy">Dichotomous Categorical Predictors</a></li>
+<li><a href="polychotomous.html#polychotomous" id="toc-polychotomous">Polychotomous Categorical Predictors</a></li>
+<li><a href="interaction-01.html#interaction-01" id="toc-interaction-01">Introduction to Interaction Effects</a></li>
+<li><a href="interaction-02.html#interaction-02" id="toc-interaction-02">More Interaction Effects</a></li>
+<li><a href="references.html#references" id="toc-references">References</a></li>
 </ul>
 </div>
 </div>
@@ -165,45 +203,45 @@ img {
 <div id="references" class="section level1">
 <h1>References</h1>
 
-<div id="refs" class="references">
-<div>
-<p>Amrhein, V., Greenland, S., &amp; McShane, B. (2019). Retire statistical significance. <em>Nature</em>, <em>567</em>, 305–307.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Amrhein, V., Greenland, S., &amp; McShane, B. (2019). Retire statistical significance. <em>Nature</em>, <em>567</em>, 305–307.
 </div>
-<div>
-<p>Benjamini, Y., &amp; Hochberg, Y. (1995). Controlling the false discovery rate: A practical and powerful approach to multiple testing. <em>Journal of the Royal Statistical Society, Series B</em>, <em>57</em>(1), 289—300.</p>
+<div class="csl-entry">
+Benjamini, Y., &amp; Hochberg, Y. (1995). Controlling the false discovery rate: A practical and powerful approach to multiple testing. <em>Journal of the Royal Statistical Society, Series B</em>, <em>57</em>(1), 289—300.
 </div>
-<div>
-<p>Dunn, O. J. (1961). Multiple comparisons among means. <em>Journal of the American Statistical Association</em>, <em>56</em>(293), 52–64.</p>
+<div class="csl-entry">
+Dunn, O. J. (1961). Multiple comparisons among means. <em>Journal of the American Statistical Association</em>, <em>56</em>(293), 52–64.
 </div>
-<div>
-<p>Gelman, A., &amp; Hill, J. (2007). <em>Data analysis using regression and multilevel/hierarchical models</em>. Cambridge University Press.</p>
+<div class="csl-entry">
+Gelman, A., &amp; Hill, J. (2007). <em>Data analysis using regression and multilevel/hierarchical models</em>. Cambridge University Press.
 </div>
-<div>
-<p>Glavin, P., Schieman, S., &amp; Reid, S. (2011). Boundary-spanning work demands and their consequences for guilt and psychological distress. <em>Journal of Health and Social Behavior</em>, <em>52</em>(1), 43–57.</p>
+<div class="csl-entry">
+Glavin, P., Schieman, S., &amp; Reid, S. (2011). Boundary-spanning work demands and their consequences for guilt and psychological distress. <em>Journal of Health and Social Behavior</em>, <em>52</em>(1), 43–57.
 </div>
-<div>
-<p>Hubbard, R., Haig, B. D., &amp; Parsa, R. A. (2019). The limited role of formal statistical inference in scientific inference. <em>The American Statistician</em>, <em>73</em>, 91–98. <a href="https://doi.org/10.1080/00031305.2018.1464947">https://doi.org/10.1080/00031305.2018.1464947</a></p>
+<div class="csl-entry">
+Hubbard, R., Haig, B. D., &amp; Parsa, R. A. (2019). The limited role of formal statistical inference in scientific inference. <em>The American Statistician</em>, <em>73</em>, 91–98. <a href="https://doi.org/10.1080/00031305.2018.1464947">https://doi.org/10.1080/00031305.2018.1464947</a>
 </div>
-<div>
-<p>McElreath, R. (2016). <em>Statistical rethinking: A Bayesian course with examples in R and Stan</em>. CRC Press.</p>
+<div class="csl-entry">
+McElreath, R. (2016). <em>Statistical rethinking: A <span>B</span>ayesian course with examples in <span>R</span> and <span>S</span>tan</em>. CRC Press.
 </div>
-<div>
-<p>Powell, V., &amp; Lehe, L. (2015). <em>Ordicary least squares regression: Explained visually</em>. Explained Visually: A Setosa Project. <a href="https://setosa.io/ev/ordinary-least-squares-regression/">https://setosa.io/ev/ordinary-least-squares-regression/</a></p>
+<div class="csl-entry">
+Powell, V., &amp; Lehe, L. (2015). <em>Ordinary least squares regression: Explained visually</em>. Explained Visually: A Setosa Project. <a href="https://setosa.io/ev/ordinary-least-squares-regression/">https://setosa.io/ev/ordinary-least-squares-regression/</a>
 </div>
-<div>
-<p>Schochet, P. Z. (2008). <em>Technical methods report: Guidelines for multiple testing in impact evaluations</em> (NCEE 2008-4018). National Center for Education Evaluation; Regional Assistance, Institute of Education Sciences, U.S. Department of Education. <a href="http://ncee.ed.gov">http://ncee.ed.gov</a></p>
+<div class="csl-entry">
+Schochet, P. Z. (2008). <em>Technical methods report: Guidelines for multiple testing in impact evaluations</em> (NCEE 2008-4018). National Center for Education Evaluation; Regional Assistance, Institute of Education Sciences, U.S. Department of Education. <a href="http://ncee.ed.gov">http://ncee.ed.gov</a>
 </div>
-<div>
-<p>Thisted, R. A., &amp; Velleman, P. F. (1992). Computers and modern statistics. In D. C. Hoaglin &amp; D. S. Moore (Eds.), <em>Perspectives on contemporary statistics, MAA notes no. 21</em> (pp. 41–53). Mathematical Association of America.</p>
+<div class="csl-entry">
+Thisted, R. A., &amp; Velleman, P. F. (1992). Computers and modern statistics. In D. C. Hoaglin &amp; D. S. Moore (Eds.), <em>Perspectives on contemporary statistics, <span>MAA</span> notes no. 21</em> (pp. 41–53). Mathematical Association of America.
 </div>
-<div>
-<p>Wasserstein, R., &amp; Schirm, A. (2019). <em>Moving to a world beyond <span class="math inline">\(p &lt; .05\)</span></em>. Keynote presentation at the United States Conference on Teaching Statistics.</p>
+<div class="csl-entry">
+Wasserstein, R., &amp; Schirm, A. (2019). <em>Moving to a world beyond <span class="math inline">\(p &lt; .05\)</span></em>. Keynote presentation at the <span>U</span>nited <span>S</span>tates <span>C</span>onference on <span>T</span>eaching <span>S</span>tatistics.
 </div>
-<div>
-<p>What Works Clearinghouse. (2020). <em>Procedures handbook, version 4.1</em> (Nos. ED602035). National Center for Education Evaluation; Regional Assistance, Institute of Education Sciences, U.S. Department of Education. <a href="http://ies.ed.gov/ncee/wwc/Handbooks">http://ies.ed.gov/ncee/wwc/Handbooks</a></p>
+<div class="csl-entry">
+What Works Clearinghouse. (2020). <em>Procedures handbook, version 4.1</em> (No. ED602035). National Center for Education Evaluation; Regional Assistance, Institute of Education Sciences, U.S. Department of Education. <a href="http://ies.ed.gov/ncee/wwc/Handbooks">http://ies.ed.gov/ncee/wwc/Handbooks</a>
 </div>
-<div>
-<p>Williams, V. S. L., Jones, L. V., &amp; Tukey, J. W. (1999). Controlling error in multiple comparisons, with examples from state-to-state differences in educational achievement. <em>Journal of Educational and Behavioral Statistics</em>, <em>24</em>(1), 42–69.</p>
+<div class="csl-entry">
+Williams, V. S. L., Jones, L. V., &amp; Tukey, J. W. (1999). Controlling error in multiple comparisons, with examples from state-to-state differences in educational achievement. <em>Journal of Educational and Behavioral Statistics</em>, <em>24</em>(1), 42–69.
 </div>
 </div>
 </div>

@@ -77,7 +77,8 @@ table_01 = keith %>%
   data.frame() %>%
   mutate(
     rowname = c("1. GPA", "2. Time spent on homework")
-  )
+  ) %>%
+  select(rowname, gpa, homework)
 
   
 

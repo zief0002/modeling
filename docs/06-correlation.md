@@ -19,7 +19,7 @@ head(keith)
 ```
 
 ```
-# A tibble: 6 x 3
+# A tibble: 6 × 3
     gpa homework parent_ed
   <dbl>    <dbl>     <dbl>
 1    78        2        13
@@ -100,8 +100,8 @@ keith %>%
 ```
 
 ```
-# A tibble: 2 x 3
-  rowname     gpa homework
+# A tibble: 2 × 3
+  term        gpa homework
   <chr>     <dbl>    <dbl>
 1 gpa      NA        0.327
 2 homework  0.327   NA    
@@ -242,7 +242,7 @@ head(keith)
 ```
 
 ```
-# A tibble: 6 x 5
+# A tibble: 6 × 5
     gpa homework parent_ed  z_gpa z_homework
   <dbl>    <dbl>     <dbl>  <dbl>      <dbl>
 1    78        2        13 -0.324    -1.50  
@@ -353,8 +353,8 @@ keith %>%
 ```
 
 ```
-# A tibble: 2 x 3
-  rowname     z_gpa z_homework
+# A tibble: 2 × 3
+  term        z_gpa z_homework
   <chr>       <dbl>      <dbl>
 1 z_gpa      NA          0.327
 2 z_homework  0.327     NA    
@@ -385,7 +385,7 @@ keith %>%
 ```
 
 ```
-# A tibble: 1 x 1
+# A tibble: 1 × 1
     SSE
   <dbl>
 1    99
@@ -408,7 +408,7 @@ keith %>%
 ```
 
 ```
-# A tibble: 1 x 1
+# A tibble: 1 × 1
     SSE
   <dbl>
 1  88.4
@@ -447,12 +447,12 @@ keith %>%
 ```
 
 ```
-# A tibble: 3 x 4
-  rowname    gpa      y_hat     errors
-  <chr>    <dbl>      <dbl>      <dbl>
-1 gpa     NA      0.327      0.945    
-2 y_hat    0.327 NA          0.0000596
-3 errors   0.945  0.0000596 NA        
+# A tibble: 3 × 4
+  term      gpa      y_hat     errors
+  <chr>   <dbl>      <dbl>      <dbl>
+1 gpa    NA      0.327      0.945    
+2 y_hat   0.327 NA          0.0000596
+3 errors  0.945  0.0000596 NA        
 ```
 
 The first correlation between the observed values and the fitted values is 0.327. This is the same as the correlation between $x$ and $y$. This is because the fitted values are just a linear transformation of $x$. In other words, the fitted values have the same relationship with $y$ as $x$ has with $y$. Note that if we square this value we get the $R^2$ value for the model. So another way of computing $R^2$ is to square the correlation between $y$ and $\hat{y}$.

@@ -23,7 +23,7 @@ head(keith)
 ```
 
 ```
-# A tibble: 6 x 3
+# A tibble: 6 × 3
     gpa homework parent_ed
   <dbl>    <dbl>     <dbl>
 1    78        2        13

@@ -21,7 +21,7 @@ head(city)
 ```
 
 ```
-# A tibble: 6 x 5
+# A tibble: 6 × 5
   education income seniority gender     party      
       <dbl>  <dbl>     <dbl> <chr>      <chr>      
 1         8   26.4         9 female     Independent
@@ -50,7 +50,7 @@ glance(lm.a)
 
 
 ```
-# A tibble: 1 x 12
+# A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
       <dbl>         <dbl> <dbl>     <dbl>        <dbl> <dbl>  <dbl> <dbl> <dbl>
 1     0.632         0.619  8.98      51.5 0.0000000556     1  -115.  235.  240.
@@ -66,7 +66,7 @@ tidy(lm.a)
 ```
 
 ```
-# A tibble: 2 x 5
+# A tibble: 2 × 5
   term        estimate std.error statistic      p.value
   <chr>          <dbl>     <dbl>     <dbl>        <dbl>
 1 (Intercept)    11.3      6.12       1.85 0.0743      
@@ -152,8 +152,8 @@ city %>%
 ```
 
 ```
-# A tibble: 3 x 4
-  rowname   income education seniority
+# A tibble: 3 × 4
+  term      income education seniority
   <chr>      <dbl>     <dbl>     <dbl>
 1 income    NA         0.795     0.582
 2 education  0.795    NA         0.339
@@ -182,7 +182,7 @@ glance(lm.b)
 
 
 ```
-# A tibble: 1 x 12
+# A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
 1     0.339         0.317  12.0      15.4 0.000477     1  -124.  254.  258.
@@ -198,7 +198,7 @@ tidy(lm.b)
 ```
 
 ```
-# A tibble: 2 x 5
+# A tibble: 2 × 5
   term        estimate std.error statistic      p.value
   <chr>          <dbl>     <dbl>     <dbl>        <dbl>
 1 (Intercept)    35.7      5.07       7.03 0.0000000807
@@ -246,7 +246,7 @@ glance(lm.c)
 
 
 ```
-# A tibble: 1 x 12
+# A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic       p.value    df logLik   AIC   BIC
       <dbl>         <dbl> <dbl>     <dbl>         <dbl> <dbl>  <dbl> <dbl> <dbl>
 1     0.742         0.724  7.65      41.7 0.00000000298     2  -109.  226.  232.
@@ -293,7 +293,7 @@ tidy(lm.c)
 ```
 
 ```
-# A tibble: 3 x 5
+# A tibble: 3 × 5
   term        estimate std.error statistic     p.value
   <chr>          <dbl>     <dbl>     <dbl>       <dbl>
 1 (Intercept)    6.77      5.37       1.26 0.218      
@@ -462,24 +462,30 @@ R^2_{\mathrm{Model}} &= \frac{4147 + 723}{6566} \\[2ex]
 &= \frac{4879}{6566}
 \end{split}
 $$
-The *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in `glance()`, namely, $F(2,29)=41.65$, $p<.001$.
+This *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in `glance()`, namely, $F(2,29)=41.65$, $p<.001$.
 
 
-In the `anova()` output, results from two different *F*-tests are presented. The *F*-test in the first line of this output is associated with the education-level predictor. This is testing whether education-level (by itself) explains variation in the outcome. In the diagram, the explained variation for the education-level $R^2$ is the blue circles associated with adding education to the model first. The denominator is the baseline unexplained variation since the first predictor included in the model is allowed to explain all of the unexplained variation. Mathematically,
+In the `anova()` output, results from two different *F*-tests are presented. The *F*-test in the first line of this output is associated with the education-level predictor. This is testing whether education-level (by itself) explains variation in the outcome *given the model fitted*. In the diagram, the explained variation for the education-level $R^2$ is the blue circles associated with adding education to the model first. The denominator is the  unexplained variation if we only consider the education and residual variation. Mathematically,
 
 $$
-R^2_{\mathrm{Education\mbox{-}Level}} = \frac{4147}{6566}
+\begin{split}
+R^2_{\mathrm{Education\mbox{-}Level}} &= \frac{4147}{4147 + 1695} \\[2ex]
+&= 0.710
+\end{split}
 $$
 The *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the first line of the `anova()` output, namely, $F(1,29)=70.94$, $p<.001$. The numerator *df* for the *F*-test is given in the `Df` column of the `anova()` output and the denominator *df* is the model's residual *df*.
 
 The *F*-test in the second line of this output is associated with the seniority-level predictor. This is testing whether seniority-level explains variation in the outcome AFTER education-level has already been allowed to explain any unexplained variation. In the diagram, the explained variation for the seniority-level $R^2$ is the blue circle associated with adding seniority-level to the model. The denominator is the unexplained variation that remains after education-level has explained all the variation it can (this is no longer the baseline unexplained variation). Mathematically,
 
 $$
-R^2_{\mathrm{Seniority\mbox{-}Level} \vert \mathrm{Education\mbox{-}Level}} = \frac{723}{2419}
+\begin{split}
+R^2_{\mathrm{Seniority\mbox{-}Level} \vert \mathrm{Education\mbox{-}Level}} &= \frac{723}{723 + 1695} \\[2ex]
+&= 0.299
+\end{split}
 $$
-The *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the second line of the `anova()` output, namely, $F(1,29)=12.37$, $p=.001$.
+This *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the second line of the `anova()` output, namely, $F(1,29)=12.37$, $p=.001$.
 
-This second test is asking whether there is an effect of seniority-level *after accounting for* education-level. This is equivalent to the hypothesis we tested for seniority-level in the coefficient-level output. In fact, the *p*-value from the `tidy()` output for the seniority-level effect is equivalent to the *p*-value associated with the seniority-level in the second line of the `anova()` output.
+This second test is asking whether there is an effect of seniority-level *after accounting for* education-level given the model fitted. This is equivalent to the hypothesis we tested for seniority-level in the coefficient-level output. In fact, the *p*-value from the `tidy()` output for the seniority-level effect is equivalent to the *p*-value associated with the seniority-level in the second line of the `anova()` output.
 
 <br />
 
@@ -534,24 +540,32 @@ glance(lm.d)
 ```
 
 ```
-# A tibble: 1 x 12
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>
-1     0.742         0.724  7.65      41.7 2.98e-9     2  -109.  226.  232.
-# … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+# A tibble: 1 × 12
+  r.squ…¹ adj.r…² sigma stati…³ p.value    df logLik   AIC   BIC devia…⁴ df.re…⁵
+    <dbl>   <dbl> <dbl>   <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>   <dbl>   <int>
+1   0.742   0.724  7.65    41.7 2.98e-9     2  -109.  226.  232.   1695.      29
+# … with 1 more variable: nobs <int>, and abbreviated variable names
+#   ¹​r.squared, ²​adj.r.squared, ³​statistic, ⁴​deviance, ⁵​df.residual
+# ℹ Use `colnames()` to see all variable names
 ```
 
-The *F*-test in the first line of this output is associated with the seniority-level predictor. This is testing whether seniority-level (by itself) explains variation in the outcome. Mathematically,
+The *F*-test in the first line of this output is associated with the seniority-level predictor. This is testing whether seniority-level (by itself) explains variation in the outcome given the model. Mathematically,
 
 $$
-R^2_{\mathrm{Seniority\mbox{-}Level}} = \frac{2223}{6566}
+\begin{split}
+R^2_{\mathrm{Seniority\mbox{-}Level}} =& \frac{2223}{2223+1695} \\[2ex]
+&= 0.567
+\end{split}
 $$
 The *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the first line of the `anova()` output, namely, $F(1,29)=38.03$, $p<.001$.
 
-The *F*-test in the second line of this output is testing whether education-level explains variation in the outcome AFTER seniority-level has already been allowed to explain any unexplained variation. Mathematically,
+The *F*-test in the second line of this output is testing whether education-level explains variation in the outcome AFTER seniority-level has already been allowed to explain any unexplained variation, given the model. Mathematically,
 
 $$
-R^2_{\mathrm{Education\mbox{-}Level} \vert \mathrm{Seniority\mbox{-}Level}} = \frac{2647}{4343}
+\begin{split}
+R^2_{\mathrm{Education\mbox{-}Level} \vert \mathrm{Seniority\mbox{-}Level}} &= \frac{2647}{2647 + 1695} \\[2ex]
+&= 0.610
+\end{split}
 $$
 The *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the second line of the `anova()` output, namely, $F(1,29)=45.28$, $p<.001$. This test is asking whether there is an effect of education-level *after accounting for* seniority-level. The *p*-value from this test is equivalent to the *p*-value associated with the education-level effect in the `tidy()` output.
 
@@ -562,7 +576,7 @@ tidy(lm.d)
 ```
 
 ```
-# A tibble: 3 x 5
+# A tibble: 3 × 5
   term        estimate std.error statistic     p.value
   <chr>          <dbl>     <dbl>     <dbl>       <dbl>
 1 (Intercept)    6.77      5.37       1.26 0.218      
@@ -571,6 +585,27 @@ tidy(lm.d)
 ```
 
 Note that the output from `tidy()` is also the same, regardless of predictor order. This means that whichever order you include the predictors in the model, the tests of the partial effects (does a predictor explain variation AFTER all other predictors have already explained a much variation as they can) will be the the same. Additionally, the fitted equation will be the same.
+
+<br />
+
+
+## Argh! Which Set of Results Should I Use?
+
+
+From all these different *F*-tests and $R^2$ values, we see that there are different ways of computing the amount of "variation accounted for" for any given predictor. The sum of squares for a particular predictor depends on whether we are considering it in isolation, or whether it is being considered in conjunction with other predictors. Not only that, but it also depends on the order that the predictor is included in the model! Similarly the amount of total unexplained variation depends on whether we consider all the unexplained variation in a variable, or whether we condition on a particular model.
+
+In a regression analysis, we typically want to understand the amount of variation explained by a predictor after accounting for all the other predictors. That means, that when computing an $R^2$ value, the numerator will be based on the sum of squares if that predictor is last in the model. Similarly, the denominator will be based on the total variation available to explain after accounting for all the other predictors. To determine this, we include the predictor of interest last in the `lm()` and then examine the `anova()` output to obtain the sums of squares for the predictor and residuals. The $R^2$ value can then be computed based on those two values.
+
+To evaluate whether that proportion of explained variation is more than we expect because of chance, we can evaluate the *p*-value for that predictorfrom the `tidy()` output. This is equivalent to asking: Is a particular predictor statistically important after controlling for the other predictors in the model? Again, this is the same *p*-value you get from the `anova()` output if the predictor is last in thr `lm()`.
+
+
+
+:::fyi
+Some statisticians and quantitative methodologists have attempted to capture some of the differences in the various ways to compute "variance accounted for" by referring to different types of sums of squares. For example, the sums of squares in the `anova()` output is sometimes referred to as *Type 1 Sums of Squares* or *Sequential Sums of Squares*. While these terms can be helpful, they are not universally adopted and as a result often add more confusion than they solve. It is probably best to view them as different ways of partitioning and accounting for variation, and understand that how you decide to do this has an impact on your how much variation a particular predictor explains and subsequently the *p*-value associated with it.
+:::
+
+
+
 
 <br />
 

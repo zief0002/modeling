@@ -24,16 +24,17 @@ head(fert)
 ```
 
 ```
-# A tibble: 6 x 8
-  country region fertility_rate educ_female infant_mortality contraceptive
-  <chr>   <chr>           <dbl>       <dbl>            <dbl>         <dbl>
-1 Albania Europ…           1.49         9.1             15              46
-2 Algeria Middl…           2.78         5.9             17.2            57
-3 Armenia Europ…           1.39        10.8             14.7            57
-4 Austria Europ…           1.42         8.9              3.3            66
-5 Azerba… Europ…           1.92        10.5             30.8            55
-6 Bahama… Latin…           1.97        11.1             13.9            45
-# … with 2 more variables: gni_class <chr>, high_gni <dbl>
+# A tibble: 6 × 8
+  country      region            ferti…¹ educ_…² infan…³ contr…⁴ gni_c…⁵ high_…⁶
+  <chr>        <chr>               <dbl>   <dbl>   <dbl>   <dbl> <chr>     <dbl>
+1 Albania      Europe and Centr…    1.49     9.1    15        46 Upper/…       1
+2 Algeria      Middle East and …    2.78     5.9    17.2      57 Upper/…       1
+3 Armenia      Europe and Centr…    1.39    10.8    14.7      57 Upper/…       1
+4 Austria      Europe and Centr…    1.42     8.9     3.3      66 Upper         1
+5 Azerbaijan   Europe and Centr…    1.92    10.5    30.8      55 Upper/…       1
+6 Bahamas, The Latin America an…    1.97    11.1    13.9      45 Upper         1
+# … with abbreviated variable names ¹​fertility_rate, ²​educ_female,
+#   ³​infant_mortality, ⁴​contraceptive, ⁵​gni_class, ⁶​high_gni
 ```
 
 <br />
@@ -97,17 +98,18 @@ head(fert)
 ```
 
 ```
-# A tibble: 6 x 9
-  country region fertility_rate educ_female infant_mortality contraceptive
-  <chr>   <chr>           <dbl>       <dbl>            <dbl>         <dbl>
-1 Albania Europ…           1.49         9.1             15              46
-2 Algeria Middl…           2.78         5.9             17.2            57
-3 Armenia Europ…           1.39        10.8             14.7            57
-4 Austria Europ…           1.42         8.9              3.3            66
-5 Azerba… Europ…           1.92        10.5             30.8            55
-6 Bahama… Latin…           1.97        11.1             13.9            45
-# … with 3 more variables: gni_class <chr>, high_gni <dbl>,
-#   female_educ_discrete <chr>
+# A tibble: 6 × 9
+  country      region    ferti…¹ educ_…² infan…³ contr…⁴ gni_c…⁵ high_…⁶ femal…⁷
+  <chr>        <chr>       <dbl>   <dbl>   <dbl>   <dbl> <chr>     <dbl> <chr>  
+1 Albania      Europe a…    1.49     9.1    15        46 Upper/…       1 Quarti…
+2 Algeria      Middle E…    2.78     5.9    17.2      57 Upper/…       1 Quarti…
+3 Armenia      Europe a…    1.39    10.8    14.7      57 Upper/…       1 Quarti…
+4 Austria      Europe a…    1.42     8.9     3.3      66 Upper         1 Quarti…
+5 Azerbaijan   Europe a…    1.92    10.5    30.8      55 Upper/…       1 Quarti…
+6 Bahamas, The Latin Am…    1.97    11.1    13.9      45 Upper         1 Quarti…
+# … with abbreviated variable names ¹​fertility_rate, ²​educ_female,
+#   ³​infant_mortality, ⁴​contraceptive, ⁵​gni_class, ⁶​high_gni,
+#   ⁷​female_educ_discrete
 ```
 
 Now we have discretized female education level, we can use our new discretized variable to examine the potential interaction with contraception use.
@@ -150,11 +152,13 @@ glance(lm.a)
 ```
 
 ```
-# A tibble: 1 x 12
-  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
-      <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
-1     0.709         0.701 0.758      97.2 5.59e-32     3  -139.  289.  303.
-# … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+# A tibble: 1 × 12
+  r.squared adj.r.squa…¹ sigma stati…²  p.value    df logLik   AIC   BIC devia…³
+      <dbl>        <dbl> <dbl>   <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>   <dbl>
+1     0.709        0.701 0.758    97.2 5.59e-32     3  -139.  289.  303.    68.9
+# … with 2 more variables: df.residual <int>, nobs <int>, and abbreviated
+#   variable names ¹​adj.r.squared, ²​statistic, ³​deviance
+# ℹ Use `colnames()` to see all variable names
 ```
 
 ```r
@@ -163,7 +167,7 @@ tidy(lm.a)
 ```
 
 ```
-# A tibble: 4 x 5
+# A tibble: 4 × 5
   term                      estimate std.error statistic  p.value
   <chr>                        <dbl>     <dbl>     <dbl>    <dbl>
 1 (Intercept)                6.84      0.354       19.3  1.27e-38
@@ -288,11 +292,13 @@ glance(lm.b)
 ```
 
 ```
-# A tibble: 1 x 12
-  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
-      <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
-1     0.748         0.739 0.708      88.2 1.18e-34     4  -131.  273.  290.
-# … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+# A tibble: 1 × 12
+  r.squared adj.r.squa…¹ sigma stati…²  p.value    df logLik   AIC   BIC devia…³
+      <dbl>        <dbl> <dbl>   <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>   <dbl>
+1     0.748        0.739 0.708    88.2 1.18e-34     4  -131.  273.  290.    59.6
+# … with 2 more variables: df.residual <int>, nobs <int>, and abbreviated
+#   variable names ¹​adj.r.squared, ²​statistic, ³​deviance
+# ℹ Use `colnames()` to see all variable names
 ```
 
 ```r
@@ -301,7 +307,7 @@ tidy(lm.b)
 ```
 
 ```
-# A tibble: 5 x 5
+# A tibble: 5 × 5
   term                      estimate std.error statistic  p.value
   <chr>                        <dbl>     <dbl>     <dbl>    <dbl>
 1 (Intercept)                4.82     0.574         8.41 1.05e-13
@@ -442,17 +448,18 @@ tidy(lm.c)
 ```
 
 ```
-# A tibble: 8 x 5
-  term                                     estimate std.error statistic  p.value
-  <chr>                                       <dbl>     <dbl>     <dbl>    <dbl>
-1 (Intercept)                               7.02e+0 1.02           6.86 3.52e-10
-2 educ_female                              -5.12e-1 0.124         -4.14 6.51e- 5
-3 contraceptive                            -7.54e-2 0.0168        -4.47 1.80e- 5
-4 infant_mortality                         -1.82e-2 0.0138        -1.32 1.90e- 1
-5 educ_female:contraceptive                 7.06e-3 0.00185        3.81 2.21e- 4
-6 contraceptive:infant_mortality            9.62e-4 0.000325       2.96 3.74e- 3
-7 educ_female:infant_mortality              4.55e-3 0.00285        1.59 1.14e- 1
-8 educ_female:contraceptive:infant_mortal… -1.04e-4 0.0000516     -2.01 4.69e- 2
+# A tibble: 8 × 5
+  term                                        estimate std.er…¹ stati…²  p.value
+  <chr>                                          <dbl>    <dbl>   <dbl>    <dbl>
+1 (Intercept)                                 7.02      1.02e+0    6.86 3.52e-10
+2 educ_female                                -0.512     1.24e-1   -4.14 6.51e- 5
+3 contraceptive                              -0.0754    1.68e-2   -4.47 1.80e- 5
+4 infant_mortality                           -0.0182    1.38e-2   -1.32 1.90e- 1
+5 educ_female:contraceptive                   0.00706   1.85e-3    3.81 2.21e- 4
+6 contraceptive:infant_mortality              0.000962  3.25e-4    2.96 3.74e- 3
+7 educ_female:infant_mortality                0.00455   2.85e-3    1.59 1.14e- 1
+8 educ_female:contraceptive:infant_mortality -0.000104  5.16e-5   -2.01 4.69e- 2
+# … with abbreviated variable names ¹​std.error, ²​statistic
 ```
 
 The fitted equation is:

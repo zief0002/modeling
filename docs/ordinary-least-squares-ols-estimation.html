@@ -8,50 +8,59 @@
 <meta property="og:title" content="Ordinary Least Squares (OLS) Estimation | Statistical Modeling and Computation for Educational Scientists" />
 <meta property="og:type" content="book" />
 
-
 <meta property="og:description" content="EPsy 8251 and 8252 Notes" />
 <meta name="github-repo" content="zief0002/modeling" />
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-08-17" />
+<meta name="date" content="2022-09-26" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: { equationNumbers: { autoNumber: "AMS" } }
 });
 </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta name="description" content="EPsy 8251 and 8252 Notes">
 
 <title>Ordinary Least Squares (OLS) Estimation | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="libs/navigation-1.1/tabsets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -70,7 +79,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -109,6 +118,29 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 </style>
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style/style.css" type="text/css" />
 <link rel="stylesheet" href="style/table-styles.css" type="text/css" />
 <link rel="stylesheet" href="style/syntax.css" type="text/css" />
@@ -129,6 +161,12 @@ img {
   max-width:100%;
   height: auto;
 }
+/* show arrow before summary tag as in bootstrap
+TODO: remove if boostrap in updated in html_document (rmarkdown#1485) */
+details > summary {
+  display: list-item;
+  cursor: pointer;
+}
 </style>
 </head>
 
@@ -141,21 +179,21 @@ img {
 <div class="col-sm-12">
 <div id="TOC">
 <ul>
-<li><a href="index.html#foreword">Foreword</a></li>
-<li><a href="preface.html#preface">Preface</a></li>
-<li><a href="slrd.html#slrd">Simple Linear Regression—Description</a></li>
-<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
-<li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
-<li><a href="coefinf.html#coefinf">Coefficient-Level Inference</a></li>
-<li><a href="modinf.html#modinf">Model-Level Inference</a></li>
-<li><a href="multreg.html#multreg">Introduction to Multiple Regression</a></li>
-<li><a href="statcontrol.html#statcontrol">Understanding Statistical Control</a></li>
-<li><a href="assumptions.html#assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
-<li><a href="dummy.html#dummy">Dichotomous Categorical Predictors</a></li>
-<li><a href="polychotomous.html#polychotomous">Polychotomous Categorical Predictors</a></li>
-<li><a href="interaction-01.html#interaction-01">Introduction to Interaction Effects</a></li>
-<li><a href="interaction-02.html#interaction-02">More Interaction Effects</a></li>
-<li><a href="references.html#references">References</a></li>
+<li><a href="index.html#foreword" id="toc-foreword">Foreword</a></li>
+<li><a href="preface.html#preface" id="toc-preface">Preface</a></li>
+<li><a href="slrd.html#slrd" id="toc-slrd">Simple Linear Regression—Description</a></li>
+<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation" id="toc-ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
+<li><a href="cor.html#cor" id="toc-cor">Correlation and Standardized Regression</a></li>
+<li><a href="coefinf.html#coefinf" id="toc-coefinf">Coefficient-Level Inference</a></li>
+<li><a href="modinf.html#modinf" id="toc-modinf">Model-Level Inference</a></li>
+<li><a href="multreg.html#multreg" id="toc-multreg">Introduction to Multiple Regression</a></li>
+<li><a href="statcontrol.html#statcontrol" id="toc-statcontrol">Understanding Statistical Control</a></li>
+<li><a href="assumptions.html#assumptions" id="toc-assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
+<li><a href="dummy.html#dummy" id="toc-dummy">Dichotomous Categorical Predictors</a></li>
+<li><a href="polychotomous.html#polychotomous" id="toc-polychotomous">Polychotomous Categorical Predictors</a></li>
+<li><a href="interaction-01.html#interaction-01" id="toc-interaction-01">Introduction to Interaction Effects</a></li>
+<li><a href="interaction-02.html#interaction-02" id="toc-interaction-02">More Interaction Effects</a></li>
+<li><a href="references.html#references" id="toc-references">References</a></li>
 </ul>
 </div>
 </div>
@@ -165,15 +203,15 @@ img {
 <div id="ordinary-least-squares-ols-estimation" class="section level1">
 <h1>Ordinary Least Squares (OLS) Estimation</h1>
 <p>In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv">riverview.csv</a> data to examine whether education level is related to income (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/riverview.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>city</code>. We will also fit a model by regressing income on education level and storing those results in an object called <code>lm.a</code>.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ordinary-least-squares-ols-estimation.html#cb18-1"></a><span class="co"># Load libraries</span></span>
-<span id="cb18-2"><a href="ordinary-least-squares-ols-estimation.html#cb18-2"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb18-3"><a href="ordinary-least-squares-ols-estimation.html#cb18-3"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb18-4"><a href="ordinary-least-squares-ols-estimation.html#cb18-4"></a><span class="kw">library</span>(readr)</span>
-<span id="cb18-5"><a href="ordinary-least-squares-ols-estimation.html#cb18-5"></a></span>
-<span id="cb18-6"><a href="ordinary-least-squares-ols-estimation.html#cb18-6"></a><span class="co"># Read in data</span></span>
-<span id="cb18-7"><a href="ordinary-least-squares-ols-estimation.html#cb18-7"></a>city =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv&quot;</span>)</span>
-<span id="cb18-8"><a href="ordinary-least-squares-ols-estimation.html#cb18-8"></a><span class="kw">head</span>(city)</span></code></pre></div>
-<pre><code># A tibble: 6 x 5
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ordinary-least-squares-ols-estimation.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb18-2"><a href="ordinary-least-squares-ols-estimation.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb18-3"><a href="ordinary-least-squares-ols-estimation.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-4"><a href="ordinary-least-squares-ols-estimation.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb18-5"><a href="ordinary-least-squares-ols-estimation.html#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="ordinary-least-squares-ols-estimation.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb18-7"><a href="ordinary-least-squares-ols-estimation.html#cb18-7" aria-hidden="true" tabindex="-1"></a>city <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv&quot;</span>)</span>
+<span id="cb18-8"><a href="ordinary-least-squares-ols-estimation.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(city)</span></code></pre></div>
+<pre><code># A tibble: 6 × 5
   education income seniority gender     party      
       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
 1         8   26.4         9 female     Independent
@@ -182,9 +220,9 @@ img {
 4        10   25.5         1 female     Republican 
 5        10   47.0        14 Not female Democrat   
 6        12   46.5        11 female     Democrat   </code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ordinary-least-squares-ols-estimation.html#cb20-1"></a><span class="co"># Fit regression model</span></span>
-<span id="cb20-2"><a href="ordinary-least-squares-ols-estimation.html#cb20-2"></a>lm.a =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>education, <span class="dt">data =</span> city)</span>
-<span id="cb20-3"><a href="ordinary-least-squares-ols-estimation.html#cb20-3"></a>lm.a</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ordinary-least-squares-ols-estimation.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb20-2"><a href="ordinary-least-squares-ols-estimation.html#cb20-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(income <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> education, <span class="at">data =</span> city)</span>
+<span id="cb20-3"><a href="ordinary-least-squares-ols-estimation.html#cb20-3" aria-hidden="true" tabindex="-1"></a>lm.a</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = income ~ 1 + education, data = city)
@@ -263,7 +301,7 @@ Coefficients:
 <li><strong>Model B:</strong> <span class="math inline">\(~~\hat{Y_i} = 20 + 1(X_i)\)</span></li>
 </ul>
 <p>We could plot the data and both lines and try to determine which seems to fit better.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-4-1.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for two models." width="45%" /><img src="05-ols-estimation_files/figure-html/unnamed-chunk-4-2.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for two models." width="45%" />
 <p class="caption">
 Figure 9: Scatterplot of the observed toy data and the OLS fitted regression line for two models.
@@ -701,14 +739,14 @@ Figure 9: Scatterplot of the observed toy data and the OLS fitted regression lin
 <div id="visualizing-the-sse" class="section level3">
 <h3>Visualizing the SSE</h3>
 <p>To further understand the sum of squared error, we can examine a visual representation of the SSE for Model A. Recall that visually, the residual is the vertical distance between an observation and the fitted value (which lie on the fitted line). The residual indicates how different these two quantities are on the <em>Y</em>-metric. In the formula we squared each of the residuals. Visually, this is equivalent to producing the area of a square that has side length equal to the absolute value of the residual.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-9-1.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." width="45%" /><img src="05-ols-estimation_files/figure-html/unnamed-chunk-9-2.png" alt="Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." width="45%" />
 <p class="caption">
 Figure 5: Scatterplot of the observed toy data and the OLS fitted regression line for Model A. The left-hand plot visually displays the residual values as line segments with negative residuals shown as dashed lines. The right-hand plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.
 </p>
 </div>
 <p>The SSE is simply the total area encompassed by all of the squares. Note that the observation that is directly on the line has a residual of 0 and thus does not contribute an quantity to the SSE. If you computed the SSE for a line with different intercept or slope values, the SSE will be different. The plot below shows what this might look like for the flat line produced by <span class="math inline">\(~~\hat{Y_i} = 50\)</span>.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-10-1.png" alt="Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." width="50%" />
 <p class="caption">
 Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.
@@ -756,7 +794,7 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
 <tbody>
 <tr>
 <td style="text-align:center;">
-3
+30
 </td>
 <td style="text-align:center;">
 63
@@ -773,7 +811,7 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
 </tr>
 <tr>
 <td style="text-align:center;">
-1
+10
 </td>
 <td style="text-align:center;">
 44
@@ -790,7 +828,7 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
 </tr>
 <tr>
 <td style="text-align:center;">
-3
+30
 </td>
 <td style="text-align:center;">
 40
@@ -807,7 +845,7 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
 </tr>
 <tr>
 <td style="text-align:center;">
-5
+50
 </td>
 <td style="text-align:center;">
 68
@@ -824,7 +862,7 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
 </tr>
 <tr>
 <td style="text-align:center;">
-2
+20
 </td>
 <td style="text-align:center;">
 25
@@ -864,12 +902,12 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
 <li>Sum of the squared residuals (<span class="math inline">\(\sum e_i^2\)</span>).</li>
 </ol>
 <p>From the Riverview data set we have the observed <span class="math inline">\(X\)</span> (education level) and <span class="math inline">\(Y\)</span> (income) values, and from the fitted <code>lm()</code> we have the intercept and slope estimates for the ‘best’ fitting regression model.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="ordinary-least-squares-ols-estimation.html#cb22-1"></a><span class="co"># Step 1: Compute the predicted values of Y</span></span>
-<span id="cb22-2"><a href="ordinary-least-squares-ols-estimation.html#cb22-2"></a>city <span class="op">%&gt;%</span></span>
-<span id="cb22-3"><a href="ordinary-least-squares-ols-estimation.html#cb22-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb22-4"><a href="ordinary-least-squares-ols-estimation.html#cb22-4"></a>    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education</span>
-<span id="cb22-5"><a href="ordinary-least-squares-ols-estimation.html#cb22-5"></a>    )</span></code></pre></div>
-<pre><code># A tibble: 32 x 6
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="ordinary-least-squares-ols-estimation.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Compute the predicted values of Y</span></span>
+<span id="cb22-2"><a href="ordinary-least-squares-ols-estimation.html#cb22-2" aria-hidden="true" tabindex="-1"></a>city <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="ordinary-least-squares-ols-estimation.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-4"><a href="ordinary-least-squares-ols-estimation.html#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_hat =</span> <span class="fl">11.321</span> <span class="sc">+</span> <span class="fl">2.651</span> <span class="sc">*</span> education</span>
+<span id="cb22-5"><a href="ordinary-least-squares-ols-estimation.html#cb22-5" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<pre><code># A tibble: 32 × 6
    education income seniority gender     party       y_hat
        &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;
  1         8   26.4         9 female     Independent  32.5
@@ -882,14 +920,15 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
  8        12   37.7        14 Not female Democrat     43.1
  9        12   50.3        24 Not female Democrat     43.1
 10        14   32.6         5 female     Independent  48.4
-# … with 22 more rows</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ordinary-least-squares-ols-estimation.html#cb24-1"></a><span class="co"># Step 2: Compute the residuals</span></span>
-<span id="cb24-2"><a href="ordinary-least-squares-ols-estimation.html#cb24-2"></a>city <span class="op">%&gt;%</span></span>
-<span id="cb24-3"><a href="ordinary-least-squares-ols-estimation.html#cb24-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb24-4"><a href="ordinary-least-squares-ols-estimation.html#cb24-4"></a>    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education,</span>
-<span id="cb24-5"><a href="ordinary-least-squares-ols-estimation.html#cb24-5"></a>    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat</span>
-<span id="cb24-6"><a href="ordinary-least-squares-ols-estimation.html#cb24-6"></a>    )</span></code></pre></div>
-<pre><code># A tibble: 32 x 7
+# … with 22 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ordinary-least-squares-ols-estimation.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Compute the residuals</span></span>
+<span id="cb24-2"><a href="ordinary-least-squares-ols-estimation.html#cb24-2" aria-hidden="true" tabindex="-1"></a>city <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="ordinary-least-squares-ols-estimation.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-4"><a href="ordinary-least-squares-ols-estimation.html#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_hat =</span> <span class="fl">11.321</span> <span class="sc">+</span> <span class="fl">2.651</span> <span class="sc">*</span> education,</span>
+<span id="cb24-5"><a href="ordinary-least-squares-ols-estimation.html#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">errors =</span> income <span class="sc">-</span> y_hat</span>
+<span id="cb24-6"><a href="ordinary-least-squares-ols-estimation.html#cb24-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<pre><code># A tibble: 32 × 7
    education income seniority gender     party       y_hat errors
        &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;
  1         8   26.4         9 female     Independent  32.5  -6.10
@@ -902,15 +941,16 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
  8        12   37.7        14 Not female Democrat     43.1  -5.48
  9        12   50.3        24 Not female Democrat     43.1   7.13
 10        14   32.6         5 female     Independent  48.4 -15.8 
-# … with 22 more rows</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="ordinary-least-squares-ols-estimation.html#cb26-1"></a><span class="co"># Step 3: Compute the squared residuals</span></span>
-<span id="cb26-2"><a href="ordinary-least-squares-ols-estimation.html#cb26-2"></a>city <span class="op">%&gt;%</span></span>
-<span id="cb26-3"><a href="ordinary-least-squares-ols-estimation.html#cb26-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb26-4"><a href="ordinary-least-squares-ols-estimation.html#cb26-4"></a>    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education,</span>
-<span id="cb26-5"><a href="ordinary-least-squares-ols-estimation.html#cb26-5"></a>    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat,</span>
-<span id="cb26-6"><a href="ordinary-least-squares-ols-estimation.html#cb26-6"></a>    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb26-7"><a href="ordinary-least-squares-ols-estimation.html#cb26-7"></a>  )</span></code></pre></div>
-<pre><code># A tibble: 32 x 8
+# … with 22 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="ordinary-least-squares-ols-estimation.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Compute the squared residuals</span></span>
+<span id="cb26-2"><a href="ordinary-least-squares-ols-estimation.html#cb26-2" aria-hidden="true" tabindex="-1"></a>city <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="ordinary-least-squares-ols-estimation.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb26-4"><a href="ordinary-least-squares-ols-estimation.html#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_hat =</span> <span class="fl">11.321</span> <span class="sc">+</span> <span class="fl">2.651</span> <span class="sc">*</span> education,</span>
+<span id="cb26-5"><a href="ordinary-least-squares-ols-estimation.html#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">errors =</span> income <span class="sc">-</span> y_hat,</span>
+<span id="cb26-6"><a href="ordinary-least-squares-ols-estimation.html#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sq_errors =</span> errors <span class="sc">^</span> <span class="dv">2</span></span>
+<span id="cb26-7"><a href="ordinary-least-squares-ols-estimation.html#cb26-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code># A tibble: 32 × 8
    education income seniority gender     party       y_hat errors sq_errors
        &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
  1         8   26.4         9 female     Independent  32.5  -6.10      37.2
@@ -923,18 +963,19 @@ Figure 10: Scatterplot of the observed toy data and the fitted flat line with Y-
  8        12   37.7        14 Not female Democrat     43.1  -5.48      30.0
  9        12   50.3        24 Not female Democrat     43.1   7.13      50.9
 10        14   32.6         5 female     Independent  48.4 -15.8      250. 
-# … with 22 more rows</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="ordinary-least-squares-ols-estimation.html#cb28-1"></a><span class="co"># Step 4: Compute the sum of the squared residuals</span></span>
-<span id="cb28-2"><a href="ordinary-least-squares-ols-estimation.html#cb28-2"></a>city <span class="op">%&gt;%</span></span>
-<span id="cb28-3"><a href="ordinary-least-squares-ols-estimation.html#cb28-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb28-4"><a href="ordinary-least-squares-ols-estimation.html#cb28-4"></a>    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span> <span class="op">*</span><span class="st"> </span>education,</span>
-<span id="cb28-5"><a href="ordinary-least-squares-ols-estimation.html#cb28-5"></a>    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat,</span>
-<span id="cb28-6"><a href="ordinary-least-squares-ols-estimation.html#cb28-6"></a>    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb28-7"><a href="ordinary-least-squares-ols-estimation.html#cb28-7"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb28-8"><a href="ordinary-least-squares-ols-estimation.html#cb28-8"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb28-9"><a href="ordinary-least-squares-ols-estimation.html#cb28-9"></a>    <span class="dt">SSE =</span> <span class="kw">sum</span>(sq_errors)</span>
-<span id="cb28-10"><a href="ordinary-least-squares-ols-estimation.html#cb28-10"></a>  )</span></code></pre></div>
-<pre><code># A tibble: 1 x 1
+# … with 22 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="ordinary-least-squares-ols-estimation.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Compute the sum of the squared residuals</span></span>
+<span id="cb28-2"><a href="ordinary-least-squares-ols-estimation.html#cb28-2" aria-hidden="true" tabindex="-1"></a>city <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="ordinary-least-squares-ols-estimation.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb28-4"><a href="ordinary-least-squares-ols-estimation.html#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_hat =</span> <span class="fl">11.321</span> <span class="sc">+</span> <span class="fl">2.651</span> <span class="sc">*</span> education,</span>
+<span id="cb28-5"><a href="ordinary-least-squares-ols-estimation.html#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">errors =</span> income <span class="sc">-</span> y_hat,</span>
+<span id="cb28-6"><a href="ordinary-least-squares-ols-estimation.html#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sq_errors =</span> errors <span class="sc">^</span> <span class="dv">2</span></span>
+<span id="cb28-7"><a href="ordinary-least-squares-ols-estimation.html#cb28-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb28-8"><a href="ordinary-least-squares-ols-estimation.html#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb28-9"><a href="ordinary-least-squares-ols-estimation.html#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">SSE =</span> <span class="fu">sum</span>(sq_errors)</span>
+<span id="cb28-10"><a href="ordinary-least-squares-ols-estimation.html#cb28-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code># A tibble: 1 × 1
     SSE
   &lt;dbl&gt;
 1 2418.</code></pre>
@@ -964,8 +1005,8 @@ Y_i &amp;= \beta_0 + \epsilon_i
 <div id="fitting-the-intercept-only-model" class="section level3">
 <h3>Fitting the Intercept-Only Model</h3>
 <p>To fit the intercept-only model, we just omit the prediter term on the right-hand side of the <code>lm()</code> formula.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="ordinary-least-squares-ols-estimation.html#cb30-1"></a>lm<span class="fl">.0</span> =<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> city)</span>
-<span id="cb30-2"><a href="ordinary-least-squares-ols-estimation.html#cb30-2"></a>lm<span class="fl">.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="ordinary-least-squares-ols-estimation.html#cb30-1" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.0</span> <span class="ot">=</span> <span class="fu">lm</span>(income <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> city)</span>
+<span id="cb30-2"><a href="ordinary-least-squares-ols-estimation.html#cb30-2" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.0</span></span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = income ~ 1, data = city)
@@ -978,7 +1019,7 @@ Coefficients:
 \hat{\mathrm{Income}_i} = 53.742
 \]</span></p>
 <p>Graphically, the fitted line is a flat line crossing the <span class="math inline">\(y\)</span>-axis at 53.742 (see plot below).</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-14-1.png" alt="Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed." width="50%" />
 <p class="caption">
 Figure 11: Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed.
@@ -992,7 +1033,7 @@ Figure 11: Scatterplot of employee incomes versus education levels. The OLS fitt
 \end{split}
 \]</span></p>
 <p>Plotting this we get,</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
 <img src="05-ols-estimation_files/figure-html/unnamed-chunk-15-1.png" alt="Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown." width="50%" />
 <p class="caption">
 Figure 12: Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown.
@@ -1005,16 +1046,16 @@ Figure 12: Plot displaying the OLS fitted regression line for the intercept-only
 <div id="sse-for-the-intercept-only-model" class="section level3">
 <h3>SSE for the Intercept-Only Model</h3>
 <p>Since the intercept-only model does not include any predictors, the SSE for this model is a quantification of the total variation in the outcome variable. It can be used as baseline measure of the error variation in the data. Below we compute the SSE for the intercept-only model (if you need to go through the steps one-at-a-time, do so.)</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="ordinary-least-squares-ols-estimation.html#cb32-1"></a>city <span class="op">%&gt;%</span></span>
-<span id="cb32-2"><a href="ordinary-least-squares-ols-estimation.html#cb32-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb32-3"><a href="ordinary-least-squares-ols-estimation.html#cb32-3"></a>    <span class="dt">y_hat =</span> <span class="fl">53.742</span>,</span>
-<span id="cb32-4"><a href="ordinary-least-squares-ols-estimation.html#cb32-4"></a>    <span class="dt">errors =</span> income <span class="op">-</span><span class="st"> </span>y_hat,</span>
-<span id="cb32-5"><a href="ordinary-least-squares-ols-estimation.html#cb32-5"></a>    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb32-6"><a href="ordinary-least-squares-ols-estimation.html#cb32-6"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb32-7"><a href="ordinary-least-squares-ols-estimation.html#cb32-7"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb32-8"><a href="ordinary-least-squares-ols-estimation.html#cb32-8"></a>    <span class="dt">SSE =</span> <span class="kw">sum</span>(sq_errors)</span>
-<span id="cb32-9"><a href="ordinary-least-squares-ols-estimation.html#cb32-9"></a>  )</span></code></pre></div>
-<pre><code># A tibble: 1 x 1
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="ordinary-least-squares-ols-estimation.html#cb32-1" aria-hidden="true" tabindex="-1"></a>city <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="ordinary-least-squares-ols-estimation.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb32-3"><a href="ordinary-least-squares-ols-estimation.html#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_hat =</span> <span class="fl">53.742</span>,</span>
+<span id="cb32-4"><a href="ordinary-least-squares-ols-estimation.html#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">errors =</span> income <span class="sc">-</span> y_hat,</span>
+<span id="cb32-5"><a href="ordinary-least-squares-ols-estimation.html#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sq_errors =</span> errors <span class="sc">^</span> <span class="dv">2</span></span>
+<span id="cb32-6"><a href="ordinary-least-squares-ols-estimation.html#cb32-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb32-7"><a href="ordinary-least-squares-ols-estimation.html#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb32-8"><a href="ordinary-least-squares-ols-estimation.html#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">SSE =</span> <span class="fu">sum</span>(sq_errors)</span>
+<span id="cb32-9"><a href="ordinary-least-squares-ols-estimation.html#cb32-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code># A tibble: 1 × 1
     SSE
   &lt;dbl&gt;
 1 6566.</code></pre>
@@ -1086,21 +1127,21 @@ Figure 12: Plot displaying the OLS fitted regression line for the intercept-only
 <div id="r-squared" class="section level3">
 <h3>R-Squared</h3>
 <p>Another way to think about measuring the quality of a model is that ‘good’ models should reproduce the observed outcomes, after all they explain variation in the outcome. How well do the fitted (predicted) values from our model match wih the outcome values? To find out, we can compute the correlation between the model fitted values and the observed outcome values. To compute a correlation, we will use the <code>correlate()</code> function from the **corrr* package.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="ordinary-least-squares-ols-estimation.html#cb34-1"></a><span class="co"># Load library</span></span>
-<span id="cb34-2"><a href="ordinary-least-squares-ols-estimation.html#cb34-2"></a><span class="kw">library</span>(corrr)</span>
-<span id="cb34-3"><a href="ordinary-least-squares-ols-estimation.html#cb34-3"></a></span>
-<span id="cb34-4"><a href="ordinary-least-squares-ols-estimation.html#cb34-4"></a><span class="co"># Create fitted values and correlate them with the outcome</span></span>
-<span id="cb34-5"><a href="ordinary-least-squares-ols-estimation.html#cb34-5"></a>city <span class="op">%&gt;%</span></span>
-<span id="cb34-6"><a href="ordinary-least-squares-ols-estimation.html#cb34-6"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb34-7"><a href="ordinary-least-squares-ols-estimation.html#cb34-7"></a>    <span class="dt">y_hat =</span> <span class="fl">11.321</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.651</span><span class="op">*</span>education</span>
-<span id="cb34-8"><a href="ordinary-least-squares-ols-estimation.html#cb34-8"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb34-9"><a href="ordinary-least-squares-ols-estimation.html#cb34-9"></a><span class="st">  </span><span class="kw">select</span>(y_hat, income) <span class="op">%&gt;%</span></span>
-<span id="cb34-10"><a href="ordinary-least-squares-ols-estimation.html#cb34-10"></a><span class="st">  </span><span class="kw">correlate</span>()</span></code></pre></div>
-<pre><code># A tibble: 2 x 3
-  rowname  y_hat income
-  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-1 y_hat   NA      0.795
-2 income   0.795 NA    </code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="ordinary-least-squares-ols-estimation.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library</span></span>
+<span id="cb34-2"><a href="ordinary-least-squares-ols-estimation.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb34-3"><a href="ordinary-least-squares-ols-estimation.html#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="ordinary-least-squares-ols-estimation.html#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create fitted values and correlate them with the outcome</span></span>
+<span id="cb34-5"><a href="ordinary-least-squares-ols-estimation.html#cb34-5" aria-hidden="true" tabindex="-1"></a>city <span class="sc">%&gt;%</span></span>
+<span id="cb34-6"><a href="ordinary-least-squares-ols-estimation.html#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb34-7"><a href="ordinary-least-squares-ols-estimation.html#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_hat =</span> <span class="fl">11.321</span> <span class="sc">+</span> <span class="fl">2.651</span><span class="sc">*</span>education</span>
+<span id="cb34-8"><a href="ordinary-least-squares-ols-estimation.html#cb34-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb34-9"><a href="ordinary-least-squares-ols-estimation.html#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(y_hat, income) <span class="sc">%&gt;%</span></span>
+<span id="cb34-10"><a href="ordinary-least-squares-ols-estimation.html#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>()</span></code></pre></div>
+<pre><code># A tibble: 2 × 3
+  term    y_hat income
+  &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1 y_hat  NA      0.795
+2 income  0.795 NA    </code></pre>
 <p>The correlation between the observed and fitted values is 0.795. This is a high correlation indicating that the model fitted values and the observed values are similar. We denote this value using the uppercase Roman letter <span class="math inline">\(R\)</span>.</p>
 <p><span class="math display">\[
 R = 0.795
@@ -1125,7 +1166,7 @@ R^2 = 0.795^2 = 0.632
 \begin{split}
 \frac{\mathrm{SS_{\mathrm{Total}}}}{\mathrm{SS_{\mathrm{Total}}}} &amp;= \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[2ex]
 1 &amp;= R^2 + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[2ex]
-1 - R^2 &amp;= \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} 
+1 - R^2 &amp;= \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}}
 \end{split}
 \]</span></p>
 <p>This suggests that the last term in the partititoning, <span class="math inline">\(\frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}}\)</span> is simply the difference between 1 and <span class="math inline">\(R^2\)</span>. In our example,</p>
@@ -1140,9 +1181,9 @@ R^2 = 0.795^2 = 0.632
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-Powell:2015">
-<p>Powell, V., &amp; Lehe, L. (2015). <em>Ordicary least squares regression: Explained visually</em>. Explained Visually: A Setosa Project. <a href="https://setosa.io/ev/ordinary-least-squares-regression/">https://setosa.io/ev/ordinary-least-squares-regression/</a></p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Powell:2015" class="csl-entry">
+Powell, V., &amp; Lehe, L. (2015). <em>Ordinary least squares regression: Explained visually</em>. Explained Visually: A Setosa Project. <a href="https://setosa.io/ev/ordinary-least-squares-regression/">https://setosa.io/ev/ordinary-least-squares-regression/</a>
 </div>
 </div>
 <p style="text-align: center;">

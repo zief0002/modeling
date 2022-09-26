@@ -20,7 +20,7 @@ head(keith)
 ```
 
 ```
-# A tibble: 6 x 3
+# A tibble: 6 × 3
     gpa homework parent_ed
   <dbl>    <dbl>     <dbl>
 1    78        2        13
@@ -195,7 +195,7 @@ tidy(lm.a)
 ```
 
 ```
-# A tibble: 2 x 5
+# A tibble: 2 × 5
   term        estimate std.error statistic  p.value
   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 1 (Intercept)    74.3      1.94      38.3  1.01e-60
@@ -233,7 +233,7 @@ tidy(lm.a, conf.int = TRUE, conf.level = 0.95)
 ```
 
 ```
-# A tibble: 2 x 7
+# A tibble: 2 × 7
   term        estimate std.error statistic  p.value conf.low conf.high
   <chr>          <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
 1 (Intercept)    74.3      1.94      38.3  1.01e-60   70.4       78.1 
@@ -369,7 +369,7 @@ tidy(lm.a)
 ```
 
 ```
-# A tibble: 2 x 5
+# A tibble: 2 × 5
   term        estimate std.error statistic  p.value
   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 1 (Intercept)    74.3      1.94      38.3  1.01e-60
@@ -426,7 +426,7 @@ tidy(lm.a, conf.int = TRUE, conf.level = 0.95)
 ```
 
 ```
-# A tibble: 2 x 7
+# A tibble: 2 × 7
   term        estimate std.error statistic  p.value conf.low conf.high
   <chr>          <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
 1 (Intercept)    74.3      1.94      38.3  1.01e-60   70.4       78.1 

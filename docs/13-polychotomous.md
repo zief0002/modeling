@@ -25,7 +25,7 @@ head(family)
 ```
 
 ```
-# A tibble: 6 x 4
+# A tibble: 6 × 4
   substance_use family_structure     female   gpa
           <dbl> <chr>                 <dbl> <dbl>
 1       -0.129  Two-parent family         1   3.8
@@ -97,7 +97,7 @@ family %>%
 ```
 
 ```
-# A tibble: 3 x 4
+# A tibble: 3 × 4
   family_structure               M    SD     N
   <chr>                      <dbl> <dbl> <int>
 1 One-parent, one guardian  0.0991 0.950   105
@@ -152,7 +152,7 @@ print(head(family), width = Inf)
 ```
 
 ```
-# A tibble: 6 x 7
+# A tibble: 6 × 7
   substance_use family_structure     female   gpa two_parent parent_guardian
           <dbl> <chr>                 <dbl> <dbl>      <dbl>           <dbl>
 1       -0.129  Two-parent family         1   3.8          1               0
@@ -182,7 +182,7 @@ family %>%
 ```
 
 ```
-# A tibble: 3 x 1
+# A tibble: 3 × 1
   family_structure        
   <chr>                   
 1 Two-parent family       
@@ -262,11 +262,13 @@ glance(lm.a)
 ```
 
 ```
-# A tibble: 1 x 12
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>
-1    0.0107       0.00849 0.887      4.89 0.00771     2 -1180. 2369. 2388.
-# … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+# A tibble: 1 × 12
+  r.squ…¹ adj.r…² sigma stati…³ p.value    df logLik   AIC   BIC devia…⁴ df.re…⁵
+    <dbl>   <dbl> <dbl>   <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>   <dbl>   <int>
+1  0.0107 0.00849 0.887    4.89 0.00771     2 -1180. 2369. 2388.    713.     907
+# … with 1 more variable: nobs <int>, and abbreviated variable names
+#   ¹​r.squared, ²​adj.r.squared, ³​statistic, ⁴​deviance, ⁵​df.residual
+# ℹ Use `colnames()` to see all variable names
 ```
 
 At the model-level, differences in family structure explain 1.06% of the variation in adolescents' substance use. The empirical data are not consistent with the hypothesis that family structure does not explain variation in adolescents' substance use, $F(2,907)=4.89$, $p = .008$.
@@ -278,7 +280,7 @@ tidy(lm.a)
 ```
 
 ```
-# A tibble: 3 x 5
+# A tibble: 3 × 5
   term            estimate std.error statistic p.value
   <chr>              <dbl>     <dbl>     <dbl>   <dbl>
 1 (Intercept)      -0.0653    0.0350     -1.87 0.0623 
@@ -356,11 +358,13 @@ glance(lm.b)
 ```
 
 ```
-# A tibble: 1 x 12
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>
-1    0.0107       0.00849 0.887      4.89 0.00771     2 -1180. 2369. 2388.
-# … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+# A tibble: 1 × 12
+  r.squ…¹ adj.r…² sigma stati…³ p.value    df logLik   AIC   BIC devia…⁴ df.re…⁵
+    <dbl>   <dbl> <dbl>   <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>   <dbl>   <int>
+1  0.0107 0.00849 0.887    4.89 0.00771     2 -1180. 2369. 2388.    713.     907
+# … with 1 more variable: nobs <int>, and abbreviated variable names
+#   ¹​r.squared, ²​adj.r.squared, ³​statistic, ⁴​deviance, ⁵​df.residual
+# ℹ Use `colnames()` to see all variable names
 ```
 
 Note that the model-level output for this fitted model is exactly the same as that for the model in which two-parent households was the reference group. This is because we are fitting the exact same omnibus model (to examine whether the three sets of pairwise differences explain variation in substance use). The results suggest that at least one of the pairwise differences is statistically reliable; that is there are differences in the average amount of substance use between at least two of the groups.
@@ -372,7 +376,7 @@ tidy(lm.b)
 ```
 
 ```
-# A tibble: 3 x 5
+# A tibble: 3 × 5
   term            estimate std.error statistic p.value
   <chr>              <dbl>     <dbl>     <dbl>   <dbl>
 1 (Intercept)       0.156     0.0694     2.24  0.0250 
@@ -625,11 +629,13 @@ glance(lm.c)
 ```
 
 ```
-# A tibble: 1 x 12
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>
-1    0.0226        0.0183 0.882      5.24 3.56e-4     4 -1175. 2361. 2390.
-# … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+# A tibble: 1 × 12
+  r.squ…¹ adj.r…² sigma stati…³ p.value    df logLik   AIC   BIC devia…⁴ df.re…⁵
+    <dbl>   <dbl> <dbl>   <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>   <dbl>   <int>
+1  0.0226  0.0183 0.882    5.24 3.56e-4     4 -1175. 2361. 2390.    704.     905
+# … with 1 more variable: nobs <int>, and abbreviated variable names
+#   ¹​r.squared, ²​adj.r.squared, ³​statistic, ⁴​deviance, ⁵​df.residual
+# ℹ Use `colnames()` to see all variable names
 ```
 
 At the model-level, differences in family structure, sex of the adolescent, and composite GPA explain 2.26% of the variation in adolescents' substance use. The empirical data are not consistent with the model explaining no variation in adolescents' substance use, $F(4,905)=5.24$, $p < .001$.
@@ -640,7 +646,7 @@ tidy(lm.c)
 ```
 
 ```
-# A tibble: 5 x 5
+# A tibble: 5 × 5
   term            estimate std.error statistic  p.value
   <chr>              <dbl>     <dbl>     <dbl>    <dbl>
 1 (Intercept)      0.0170     0.0945     0.180 0.857   
@@ -672,7 +678,7 @@ tidy(lm.d)
 ```
 
 ```
-# A tibble: 5 x 5
+# A tibble: 5 × 5
   term            estimate std.error statistic  p.value
   <chr>              <dbl>     <dbl>     <dbl>    <dbl>
 1 (Intercept)      0.227      0.108      2.11  0.0347  
@@ -721,8 +727,8 @@ In the language of Analysis of Covariance (ANCOVA), the controlled mean differen
 <caption>(\#tab:unnamed-chunk-22)Unadjusted and adjusted mean differences of adolescent substance use between three family structures. The adjusted mean differences were obtained by controlling for adolescent sex and GPA.</caption>
  <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1"></th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Mean Difference</div></th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Mean Difference</div></th>
 </tr>
   <tr>
    <th style="text-align:left;text-align: center;"> Comparison </th>

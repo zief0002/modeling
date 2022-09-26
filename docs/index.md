@@ -1,7 +1,7 @@
 --- 
 title: "Statistical Modeling and Computation for Educational Scientists"
 author: "Andrew Zieffler"
-date: "2020-08-17"
+date: "2022-09-26"
 site: bookdown::bookdown_site
 output: 
   bookdown::html_book:

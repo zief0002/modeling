@@ -23,7 +23,7 @@ head(work)
 ```
 
 ```
-# A tibble: 6 x 5
+# A tibble: 6 × 5
     guilt bound_span_work female authority married
     <dbl>           <dbl>  <dbl>     <dbl>   <dbl>
 1 -1.64           -1.13        1     2.65        1
@@ -80,7 +80,7 @@ work %>%
 ```
 
 ```
-# A tibble: 2 x 6
+# A tibble: 2 × 6
   female M_guilt SD_guilt M_bound SD_bound     N
    <dbl>   <dbl>    <dbl>   <dbl>    <dbl> <int>
 1      0  -0.210    0.948   0.206    0.947   120
@@ -104,7 +104,7 @@ work %>%
 ```
 
 ```
-          rowname guilt bound_span_work female authority married
+             term guilt bound_span_work female authority married
 1           guilt                   .61    .17      -.60     .11
 2 bound_span_work   .61                   -.17       .06    -.02
 3          female   .17            -.17             -.11     .16
@@ -246,7 +246,7 @@ head(work)
 ```
 
 ```
-# A tibble: 6 x 6
+# A tibble: 6 × 6
     guilt bound_span_work female authority married bound_work_female
     <dbl>           <dbl>  <dbl>     <dbl>   <dbl>             <dbl>
 1 -1.64           -1.13        1     2.65        1           -1.13  
@@ -264,7 +264,7 @@ tidy(lm.d)
 ```
 
 ```
-# A tibble: 4 x 5
+# A tibble: 4 × 5
   term              estimate std.error statistic  p.value
   <chr>                <dbl>     <dbl>     <dbl>    <dbl>
 1 (Intercept)         -0.325    0.0693     -4.68 4.29e- 6
@@ -436,7 +436,7 @@ tidy(lm.e)
 ```
 
 ```
-# A tibble: 6 x 5
+# A tibble: 6 × 5
   term              estimate std.error statistic  p.value
   <chr>                <dbl>     <dbl>     <dbl>    <dbl>
 1 (Intercept)         0.0505    0.0528     0.955 3.40e- 1

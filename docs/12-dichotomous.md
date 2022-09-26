@@ -23,7 +23,7 @@ head(mn)
 ```
 
 ```
-# A tibble: 6 x 5
+# A tibble: 6 × 5
   name                               grad sector    sat tuition
   <chr>                             <dbl> <chr>   <dbl>   <dbl>
 1 Augsburg College                   65.2 Private  1030    39.3
@@ -136,7 +136,7 @@ head(mn)
 ```
 
 ```
-# A tibble: 6 x 6
+# A tibble: 6 × 6
   name                               grad sector    sat tuition indicator
   <chr>                             <dbl> <chr>   <dbl>   <dbl>     <dbl>
 1 Augsburg College                   65.2 Private  1030    39.3        10
@@ -161,7 +161,7 @@ mn %>%
 ```
 
 ```
-    rowname  grad indicator
+       term  grad indicator
 1      grad            .397
 2 indicator  .397          
 ```
@@ -178,7 +178,7 @@ print(glance(lm.a), width = Inf)
 ```
 
 ```
-# A tibble: 1 x 12
+# A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>
 1     0.158         0.130  15.6      5.80  0.0222     1  -136.  279.  283.
@@ -193,7 +193,7 @@ tidy(lm.a)
 ```
 
 ```
-# A tibble: 2 x 5
+# A tibble: 2 × 5
   term        estimate std.error statistic p.value
   <chr>          <dbl>     <dbl>     <dbl>   <dbl>
 1 (Intercept)    36.8      10.4       3.54 0.00129
@@ -243,15 +243,16 @@ head(mn)
 ```
 
 ```
-# A tibble: 6 x 7
-  name                           grad sector   sat tuition indicator indicator_2
-  <chr>                         <dbl> <chr>  <dbl>   <dbl>     <dbl>       <dbl>
-1 Augsburg College               65.2 Priva…  1030    39.3        10           7
-2 Bethany Lutheran College       52.6 Priva…  1065    30.5        10           7
-3 Bethel University, Saint Pau…  73.3 Priva…  1145    39.4        10           7
-4 Carleton College               92.6 Priva…  1400    54.3        10           7
-5 College of Saint Benedict      81.1 Priva…  1185    43.2        10           7
-6 Concordia College at Moorhead  69.4 Priva…  1145    36.6        10           7
+# A tibble: 6 × 7
+  name                               grad sector    sat tuition indica…¹ indic…²
+  <chr>                             <dbl> <chr>   <dbl>   <dbl>    <dbl>   <dbl>
+1 Augsburg College                   65.2 Private  1030    39.3       10       7
+2 Bethany Lutheran College           52.6 Private  1065    30.5       10       7
+3 Bethel University, Saint Paul, MN  73.3 Private  1145    39.4       10       7
+4 Carleton College                   92.6 Private  1400    54.3       10       7
+5 College of Saint Benedict          81.1 Private  1185    43.2       10       7
+6 Concordia College at Moorhead      69.4 Private  1145    36.6       10       7
+# … with abbreviated variable names ¹​indicator, ²​indicator_2
 ```
 
 Using this second indicator to compute correlations and in the regression model, we find:
@@ -266,7 +267,7 @@ mn %>%
 ```
 
 ```
-      rowname  grad indicator_2
+         term  grad indicator_2
 1        grad              .397
 2 indicator_2  .397            
 ```
@@ -280,7 +281,7 @@ print(glance(lm.b), width = Inf)
 ```
 
 ```
-# A tibble: 1 x 12
+# A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>
 1     0.158         0.130  15.6      5.80  0.0222     1  -136.  279.  283.
@@ -295,7 +296,7 @@ tidy(lm.b)
 ```
 
 ```
-# A tibble: 2 x 5
+# A tibble: 2 × 5
   term        estimate std.error statistic     p.value
   <chr>          <dbl>     <dbl>     <dbl>       <dbl>
 1 (Intercept)    45.3       7.03      6.45 0.000000346
@@ -342,15 +343,16 @@ head(mn)
 ```
 
 ```
-# A tibble: 6 x 8
-  name                   grad sector   sat tuition indicator indicator_2 private
-  <chr>                 <dbl> <chr>  <dbl>   <dbl>     <dbl>       <dbl>   <dbl>
-1 Augsburg College       65.2 Priva…  1030    39.3        10           7       1
-2 Bethany Lutheran Col…  52.6 Priva…  1065    30.5        10           7       1
-3 Bethel University, S…  73.3 Priva…  1145    39.4        10           7       1
-4 Carleton College       92.6 Priva…  1400    54.3        10           7       1
-5 College of Saint Ben…  81.1 Priva…  1185    43.2        10           7       1
-6 Concordia College at…  69.4 Priva…  1145    36.6        10           7       1
+# A tibble: 6 × 8
+  name                         grad sector   sat tuition indic…¹ indic…² private
+  <chr>                       <dbl> <chr>  <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+1 Augsburg College             65.2 Priva…  1030    39.3      10       7       1
+2 Bethany Lutheran College     52.6 Priva…  1065    30.5      10       7       1
+3 Bethel University, Saint P…  73.3 Priva…  1145    39.4      10       7       1
+4 Carleton College             92.6 Priva…  1400    54.3      10       7       1
+5 College of Saint Benedict    81.1 Priva…  1185    43.2      10       7       1
+6 Concordia College at Moorh…  69.4 Priva…  1145    36.6      10       7       1
+# … with abbreviated variable names ¹​indicator, ²​indicator_2
 ```
 
 Using a 0, and 1 coding for an indicator variable is referred to as *dummy coding*. Conventionally, we name an indicator variable that employs dummy coding with the category that is mapped to 1. In the syntax, private schools are mapped to 1, and hence the indicator variable is named `private`. The category mapped to 0 is known as the *reference category*, or *reference group*. Here public schools are the reference group.
@@ -367,7 +369,7 @@ mn %>%
 ```
 
 ```
-  rowname  grad private
+     term  grad private
 1    grad          .397
 2 private  .397        
 ```
@@ -381,7 +383,7 @@ print(glance(lm.c), width = Inf)
 ```
 
 ```
-# A tibble: 1 x 12
+# A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>
 1     0.158         0.130  15.6      5.80  0.0222     1  -136.  279.  283.
@@ -396,7 +398,7 @@ tidy(lm.c)
 ```
 
 ```
-# A tibble: 2 x 5
+# A tibble: 2 × 5
   term        estimate std.error statistic  p.value
   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 1 (Intercept)     51.0      4.94     10.3  1.44e-11
@@ -433,15 +435,16 @@ What happens if we had coded the predictor so that private schools were the refe
 
 
 ```
-# A tibble: 6 x 9
-  name            grad sector   sat tuition indicator indicator_2 private public
-  <chr>          <dbl> <chr>  <dbl>   <dbl>     <dbl>       <dbl>   <dbl>  <dbl>
-1 Augsburg Coll…  65.2 Priva…  1030    39.3        10           7       1      0
-2 Bethany Luthe…  52.6 Priva…  1065    30.5        10           7       1      0
-3 Bethel Univer…  73.3 Priva…  1145    39.4        10           7       1      0
-4 Carleton Coll…  92.6 Priva…  1400    54.3        10           7       1      0
-5 College of Sa…  81.1 Priva…  1185    43.2        10           7       1      0
-6 Concordia Col…  69.4 Priva…  1145    36.6        10           7       1      0
+# A tibble: 6 × 9
+  name                  grad sector   sat tuition indic…¹ indic…² private public
+  <chr>                <dbl> <chr>  <dbl>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl>
+1 Augsburg College      65.2 Priva…  1030    39.3      10       7       1      0
+2 Bethany Lutheran Co…  52.6 Priva…  1065    30.5      10       7       1      0
+3 Bethel University, …  73.3 Priva…  1145    39.4      10       7       1      0
+4 Carleton College      92.6 Priva…  1400    54.3      10       7       1      0
+5 College of Saint Be…  81.1 Priva…  1185    43.2      10       7       1      0
+6 Concordia College a…  69.4 Priva…  1145    36.6      10       7       1      0
+# … with abbreviated variable names ¹​indicator, ²​indicator_2
 ```
 
 Using the dummy coded indicator to compute correlations and fit the regression model, we find:
@@ -456,9 +459,9 @@ mn %>%
 ```
 
 ```
-  rowname  grad public
-1    grad        -.397
-2  public -.397       
+    term  grad public
+1   grad        -.397
+2 public -.397       
 ```
 
 ```r
@@ -470,7 +473,7 @@ print(glance(lm.d), width = Inf)
 ```
 
 ```
-# A tibble: 1 x 12
+# A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>
 1     0.158         0.130  15.6      5.80  0.0222     1  -136.  279.  283.
@@ -485,7 +488,7 @@ tidy(lm.d)
 ```
 
 ```
-# A tibble: 2 x 5
+# A tibble: 2 × 5
   term        estimate std.error statistic  p.value
   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 1 (Intercept)     65.3      3.25     20.1  2.61e-19
@@ -523,15 +526,15 @@ head(aug_d)
 ```
 
 ```
-# A tibble: 6 x 8
-   grad public .fitted   .resid .std.resid   .hat .sigma     .cooksd
-  <dbl>  <dbl>   <dbl>    <dbl>      <dbl>  <dbl>  <dbl>       <dbl>
-1  65.2      0    65.3   0.0652   -0.00427 0.0435   15.9 0.000000415
-2  52.6      0    65.3  12.7      -0.830   0.0435   15.7 0.0156     
-3  73.3      0    65.3  -8.03      0.526   0.0435   15.8 0.00630    
-4  92.6      0    65.3 -27.3       1.79    0.0435   15.0 0.0729     
-5  81.1      0    65.3 -15.8       1.04    0.0435   15.6 0.0245     
-6  69.4      0    65.3  -4.13      0.271   0.0435   15.8 0.00167    
+# A tibble: 6 × 8
+   grad public .fitted   .resid   .hat .sigma     .cooksd .std.resid
+  <dbl>  <dbl>   <dbl>    <dbl>  <dbl>  <dbl>       <dbl>      <dbl>
+1  65.2      0    65.3  -0.0652 0.0435   15.9 0.000000415   -0.00427
+2  52.6      0    65.3 -12.7    0.0435   15.7 0.0156        -0.830  
+3  73.3      0    65.3   8.03   0.0435   15.8 0.00630        0.526  
+4  92.6      0    65.3  27.3    0.0435   15.0 0.0729         1.79   
+5  81.1      0    65.3  15.8    0.0435   15.6 0.0245         1.04   
+6  69.4      0    65.3   4.13   0.0435   15.8 0.00167        0.271  
 ```
 
 ```r
@@ -614,7 +617,7 @@ mn %>%
 ```
 
 ```
-  rowname  grad private   sat
+     term  grad private   sat
 1    grad          .397  .889
 2 private  .397          .194
 3     sat  .889    .194      
@@ -638,7 +641,7 @@ print(glance(lm.e), width = Inf)
 ```
 
 ```
-# A tibble: 1 x 12
+# A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
 1     0.843         0.832  6.86      80.3 9.05e-13     2  -109.  226.  232.
@@ -656,7 +659,7 @@ tidy(lm.e)
 ```
 
 ```
-# A tibble: 3 x 5
+# A tibble: 3 × 5
   term        estimate std.error statistic  p.value
   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 1 (Intercept)  -84.4     12.1        -7.00 8.76e- 8
@@ -704,7 +707,7 @@ mn %>%
 ```
 
 ```
-# A tibble: 1 x 1
+# A tibble: 1 × 1
       M
   <dbl>
 1 1101.
@@ -738,7 +741,7 @@ mn %>%
 ```
 Note that the adjusted mean difference is the value of the partial regression coefficient for `private` from the ANCOVA model. These values are typically presented in a table along with the unadjusted values.
 
-<table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
+<table style="width:60%; margin-left: auto; margin-right: auto;border-bottom: 0;" class="table">
 <caption>(\#tab:unnamed-chunk-21)Unadjusted and adjusted mean six-year graduation rates for private and public colleges and universities in Minnesota.</caption>
  <thead>
   <tr>
@@ -764,7 +767,7 @@ Note that the adjusted mean difference is the value of the partial regression co
    <td style="text-align:center;"> 8.4 </td>
   </tr>
 </tbody>
-<tfoot><tr><td style="padding: 0; border: 0;" colspan="100%">
+<tfoot><tr><td style="padding: 0; " colspan="100%">
 <sup>a</sup> Model controlled for median SAT scores</td></tr></tfoot>
 </table>
 
@@ -786,7 +789,7 @@ mn %>%
 ```
 
 ```
-  rowname  grad private   sat tuition
+     term  grad private   sat tuition
 1    grad          .397  .889    .755
 2 private  .397          .194    .773
 3     sat  .889    .194          .613
@@ -813,11 +816,13 @@ glance(lm.f)
 ```
 
 ```
-# A tibble: 1 x 12
-  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
-      <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
-1     0.861         0.846  6.56      59.7 1.59e-12     3  -107.  224.  231.
-# … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+# A tibble: 1 × 12
+  r.squared adj.r.squa…¹ sigma stati…²  p.value    df logLik   AIC   BIC devia…³
+      <dbl>        <dbl> <dbl>   <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>   <dbl>
+1     0.861        0.846  6.56    59.7 1.59e-12     3  -107.  224.  231.   1249.
+# … with 2 more variables: df.residual <int>, nobs <int>, and abbreviated
+#   variable names ¹​adj.r.squared, ²​statistic, ³​deviance
+# ℹ Use `colnames()` to see all variable names
 ```
 
 Differences in median SAT scores, tuition rates, and educational sector explain 86.07\% of the variation in graduation rates. This is statistically reliable, $F(3, 29) = 59.73$, $p<0.001$.
@@ -830,7 +835,7 @@ tidy(lm.f)
 ```
 
 ```
-# A tibble: 4 x 5
+# A tibble: 4 × 5
   term        estimate std.error statistic     p.value
   <chr>          <dbl>     <dbl>     <dbl>       <dbl>
 1 (Intercept)  -68.9     14.0       -4.92  0.0000318  
@@ -862,15 +867,15 @@ head(aug_f)
 ```
 
 ```
-# A tibble: 6 x 10
-   grad   sat tuition private .fitted .resid .std.resid   .hat .sigma .cooksd
-  <dbl> <dbl>   <dbl>   <dbl>   <dbl>  <dbl>      <dbl>  <dbl>  <dbl>   <dbl>
-1  65.2  1030    39.3       1    57.1  -8.14      1.31  0.104    6.48 0.0497 
-2  52.6  1065    30.5       1    56.6   3.96     -0.630 0.0839   6.63 0.00908
-3  73.3  1145    39.4       1    69.0  -4.25      0.663 0.0458   6.63 0.00528
-4  92.6  1400    54.3       1   102.    9.90     -1.76  0.264    6.31 0.276  
-5  81.1  1185    43.2       1    75.0  -6.12      0.962 0.0609   6.57 0.0150 
-6  69.4  1145    36.6       1    67.7  -1.67      0.262 0.0563   6.67 0.00103
+# A tibble: 6 × 10
+   grad   sat tuition private .fitted .resid   .hat .sigma .cooksd .std.resid
+  <dbl> <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>  <dbl>   <dbl>      <dbl>
+1  65.2  1030    39.3       1    57.1   8.14 0.104    6.48 0.0497       1.31 
+2  52.6  1065    30.5       1    56.6  -3.96 0.0839   6.63 0.00908     -0.630
+3  73.3  1145    39.4       1    69.0   4.25 0.0458   6.63 0.00528      0.663
+4  92.6  1400    54.3       1   102.   -9.90 0.264    6.31 0.276       -1.76 
+5  81.1  1185    43.2       1    75.0   6.12 0.0609   6.57 0.0150       0.962
+6  69.4  1145    36.6       1    67.7   1.67 0.0563   6.67 0.00103      0.262
 ```
 
 ```r

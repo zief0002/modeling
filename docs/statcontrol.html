@@ -8,50 +8,59 @@
 <meta property="og:title" content="Understanding Statistical Control | Statistical Modeling and Computation for Educational Scientists" />
 <meta property="og:type" content="book" />
 
-
 <meta property="og:description" content="EPsy 8251 and 8252 Notes" />
 <meta name="github-repo" content="zief0002/modeling" />
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-08-17" />
+<meta name="date" content="2022-09-26" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: { equationNumbers: { autoNumber: "AMS" } }
 });
 </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta name="description" content="EPsy 8251 and 8252 Notes">
 
 <title>Understanding Statistical Control | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="libs/navigation-1.1/tabsets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -70,7 +79,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -109,6 +118,29 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 </style>
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style/style.css" type="text/css" />
 <link rel="stylesheet" href="style/table-styles.css" type="text/css" />
 <link rel="stylesheet" href="style/syntax.css" type="text/css" />
@@ -129,6 +161,12 @@ img {
   max-width:100%;
   height: auto;
 }
+/* show arrow before summary tag as in bootstrap
+TODO: remove if boostrap in updated in html_document (rmarkdown#1485) */
+details > summary {
+  display: list-item;
+  cursor: pointer;
+}
 </style>
 </head>
 
@@ -141,21 +179,21 @@ img {
 <div class="col-sm-12">
 <div id="TOC">
 <ul>
-<li><a href="index.html#foreword">Foreword</a></li>
-<li><a href="preface.html#preface">Preface</a></li>
-<li><a href="slrd.html#slrd">Simple Linear Regression—Description</a></li>
-<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
-<li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
-<li><a href="coefinf.html#coefinf">Coefficient-Level Inference</a></li>
-<li><a href="modinf.html#modinf">Model-Level Inference</a></li>
-<li><a href="multreg.html#multreg">Introduction to Multiple Regression</a></li>
-<li><a href="statcontrol.html#statcontrol">Understanding Statistical Control</a></li>
-<li><a href="assumptions.html#assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
-<li><a href="dummy.html#dummy">Dichotomous Categorical Predictors</a></li>
-<li><a href="polychotomous.html#polychotomous">Polychotomous Categorical Predictors</a></li>
-<li><a href="interaction-01.html#interaction-01">Introduction to Interaction Effects</a></li>
-<li><a href="interaction-02.html#interaction-02">More Interaction Effects</a></li>
-<li><a href="references.html#references">References</a></li>
+<li><a href="index.html#foreword" id="toc-foreword">Foreword</a></li>
+<li><a href="preface.html#preface" id="toc-preface">Preface</a></li>
+<li><a href="slrd.html#slrd" id="toc-slrd">Simple Linear Regression—Description</a></li>
+<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation" id="toc-ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
+<li><a href="cor.html#cor" id="toc-cor">Correlation and Standardized Regression</a></li>
+<li><a href="coefinf.html#coefinf" id="toc-coefinf">Coefficient-Level Inference</a></li>
+<li><a href="modinf.html#modinf" id="toc-modinf">Model-Level Inference</a></li>
+<li><a href="multreg.html#multreg" id="toc-multreg">Introduction to Multiple Regression</a></li>
+<li><a href="statcontrol.html#statcontrol" id="toc-statcontrol">Understanding Statistical Control</a></li>
+<li><a href="assumptions.html#assumptions" id="toc-assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
+<li><a href="dummy.html#dummy" id="toc-dummy">Dichotomous Categorical Predictors</a></li>
+<li><a href="polychotomous.html#polychotomous" id="toc-polychotomous">Polychotomous Categorical Predictors</a></li>
+<li><a href="interaction-01.html#interaction-01" id="toc-interaction-01">Introduction to Interaction Effects</a></li>
+<li><a href="interaction-02.html#interaction-02" id="toc-interaction-02">More Interaction Effects</a></li>
+<li><a href="references.html#references" id="toc-references">References</a></li>
 </ul>
 </div>
 </div>
@@ -166,17 +204,17 @@ img {
 <h1>Understanding Statistical Control</h1>
 <p>Remember that in a <a href="coefinf.html#coefinf">previous chapter</a> we had found that time spent on homework was positively related to student GPA. Because the data are observational (we did not assign students to different levels of time on homework), it is difficult to make a causal inference about this relationship; there may be an alternative explanation. One possible explanation is that parent level of education explains the positive relationship between time spent on homework and student GPA.</p>
 <p>In this chapter, you will learn about how including multiple predictors into the regression model helps us evaluate these alternative explanations by providing a measure of <em>statistical control</em>. To do so, we will return to the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html">data codebook</a>). However this time, we will control for parent education level. To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="statcontrol.html#cb117-1"></a><span class="co"># Load libraries</span></span>
-<span id="cb117-2"><a href="statcontrol.html#cb117-2"></a><span class="kw">library</span>(broom)</span>
-<span id="cb117-3"><a href="statcontrol.html#cb117-3"></a><span class="kw">library</span>(corrr)</span>
-<span id="cb117-4"><a href="statcontrol.html#cb117-4"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb117-5"><a href="statcontrol.html#cb117-5"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb117-6"><a href="statcontrol.html#cb117-6"></a><span class="kw">library</span>(readr)</span>
-<span id="cb117-7"><a href="statcontrol.html#cb117-7"></a></span>
-<span id="cb117-8"><a href="statcontrol.html#cb117-8"></a><span class="co"># Read in data</span></span>
-<span id="cb117-9"><a href="statcontrol.html#cb117-9"></a>keith =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv&quot;</span>)</span>
-<span id="cb117-10"><a href="statcontrol.html#cb117-10"></a><span class="kw">head</span>(keith)</span></code></pre></div>
-<pre><code># A tibble: 6 x 3
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="statcontrol.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb117-2"><a href="statcontrol.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb117-3"><a href="statcontrol.html#cb117-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb117-4"><a href="statcontrol.html#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb117-5"><a href="statcontrol.html#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb117-6"><a href="statcontrol.html#cb117-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb117-7"><a href="statcontrol.html#cb117-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-8"><a href="statcontrol.html#cb117-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb117-9"><a href="statcontrol.html#cb117-9" aria-hidden="true" tabindex="-1"></a>keith <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv&quot;</span>)</span>
+<span id="cb117-10"><a href="statcontrol.html#cb117-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(keith)</span></code></pre></div>
+<pre><code># A tibble: 6 × 3
     gpa homework parent_ed
   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
 1    78        2        13
@@ -267,15 +305,15 @@ Attribute
 <div id="regression-analysis" class="section level2">
 <h2>Regression Analysis</h2>
 <p>Table 2 shows the results from fitting a series of models to examine the effect of time spent on homework on student GPA.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="statcontrol.html#cb119-1"></a><span class="co"># Simple regression model to examine effect of time spent on homework</span></span>
-<span id="cb119-2"><a href="statcontrol.html#cb119-2"></a>lm.a =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework, <span class="dt">data =</span> keith)</span>
-<span id="cb119-3"><a href="statcontrol.html#cb119-3"></a><span class="co">#glance(lm.a)</span></span>
-<span id="cb119-4"><a href="statcontrol.html#cb119-4"></a><span class="co">#tidy(lm.a)</span></span>
-<span id="cb119-5"><a href="statcontrol.html#cb119-5"></a></span>
-<span id="cb119-6"><a href="statcontrol.html#cb119-6"></a><span class="co"># Control for parent education level</span></span>
-<span id="cb119-7"><a href="statcontrol.html#cb119-7"></a>lm.b =<span class="st"> </span><span class="kw">lm</span>(gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>homework <span class="op">+</span><span class="st"> </span>parent_ed, <span class="dt">data =</span> keith)</span>
-<span id="cb119-8"><a href="statcontrol.html#cb119-8"></a><span class="co">#glance(lm.b)</span></span>
-<span id="cb119-9"><a href="statcontrol.html#cb119-9"></a><span class="co">#tidy(lm.b)</span></span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="statcontrol.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple regression model to examine effect of time spent on homework</span></span>
+<span id="cb119-2"><a href="statcontrol.html#cb119-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> homework, <span class="at">data =</span> keith)</span>
+<span id="cb119-3"><a href="statcontrol.html#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="co">#glance(lm.a)</span></span>
+<span id="cb119-4"><a href="statcontrol.html#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="co">#tidy(lm.a)</span></span>
+<span id="cb119-5"><a href="statcontrol.html#cb119-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-6"><a href="statcontrol.html#cb119-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Control for parent education level</span></span>
+<span id="cb119-7"><a href="statcontrol.html#cb119-7" aria-hidden="true" tabindex="-1"></a>lm.b <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> homework <span class="sc">+</span> parent_ed, <span class="at">data =</span> keith)</span>
+<span id="cb119-8"><a href="statcontrol.html#cb119-8" aria-hidden="true" tabindex="-1"></a><span class="co">#glance(lm.b)</span></span>
+<span id="cb119-9"><a href="statcontrol.html#cb119-9" aria-hidden="true" tabindex="-1"></a><span class="co">#tidy(lm.b)</span></span></code></pre></div>
 <table class="table" style="width:70%; margin-left: auto; margin-right: auto;">
 <caption>
 Unstandardized coefficients (standard errors) for a taxonomy of OLS regression models fitted to explore the effect of time spent on homework on GPA. All models were fitted with <em>n</em>=100 observations.
@@ -494,7 +532,7 @@ Model Predicted GPA
 \begin{split}
 \hat{\mathrm{GPA}_i} &amp;= 63.22 + 0.99(\mathrm{Homework}_i) + 0.87(\mathrm{12}) \\[2ex]
 &amp;= 63.22 + 0.99(\mathrm{Homework}_i) + 10.44 \\[2ex]
-&amp;= 73.66 + 0.99(\mathrm{Homework}_i) 
+&amp;= 73.66 + 0.99(\mathrm{Homework}_i)
 \end{split}
 \]</span></p>
 <p>By substituting in a constant value for parent education level, we can write the model so that GPA is a function of time spent on homework. Interpreting the coefficients,</p>
@@ -543,15 +581,15 @@ Model Predicted GPA
 \end{split}
 \]</span></p>
 <p>Now I will create a plot of the outcome versus the predictor we left as a variable in the three equations (time spent on homework) and use <code>geom_abline()</code> to include the line for each of the three rewritten equations. Note that since I have three different equations (one for each of the three parent education levels), I will need to include three layers of <code>geom_abline()</code> in the plot syntax.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="statcontrol.html#cb120-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> gpa)) <span class="op">+</span></span>
-<span id="cb120-2"><a href="statcontrol.html#cb120-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb120-3"><a href="statcontrol.html#cb120-3"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb120-4"><a href="statcontrol.html#cb120-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="op">+</span></span>
-<span id="cb120-5"><a href="statcontrol.html#cb120-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="op">+</span></span>
-<span id="cb120-6"><a href="statcontrol.html#cb120-6"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">70.18</span>, <span class="dt">slope =</span> <span class="fl">0.99</span>, <span class="dt">color =</span> <span class="st">&quot;#003f5c&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotdash&quot;</span>) <span class="op">+</span></span>
-<span id="cb120-7"><a href="statcontrol.html#cb120-7"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">73.66</span>, <span class="dt">slope =</span> <span class="fl">0.99</span>, <span class="dt">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>) <span class="op">+</span></span>
-<span id="cb120-8"><a href="statcontrol.html#cb120-8"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">77.14</span>, <span class="dt">slope =</span> <span class="fl">0.99</span>, <span class="dt">color =</span> <span class="st">&quot;#b40f20&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) </span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="statcontrol.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> homework, <span class="at">y =</span> gpa)) <span class="sc">+</span></span>
+<span id="cb120-2"><a href="statcontrol.html#cb120-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb120-3"><a href="statcontrol.html#cb120-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb120-4"><a href="statcontrol.html#cb120-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="sc">+</span></span>
+<span id="cb120-5"><a href="statcontrol.html#cb120-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="sc">+</span></span>
+<span id="cb120-6"><a href="statcontrol.html#cb120-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">70.18</span>, <span class="at">slope =</span> <span class="fl">0.99</span>, <span class="at">color =</span> <span class="st">&quot;#003f5c&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dotdash&quot;</span>) <span class="sc">+</span></span>
+<span id="cb120-7"><a href="statcontrol.html#cb120-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">73.66</span>, <span class="at">slope =</span> <span class="fl">0.99</span>, <span class="at">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>) <span class="sc">+</span></span>
+<span id="cb120-8"><a href="statcontrol.html#cb120-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">77.14</span>, <span class="at">slope =</span> <span class="fl">0.99</span>, <span class="at">color =</span> <span class="st">&quot;#b40f20&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) </span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
 <img src="10-understanding-statistical-control_files/figure-html/unnamed-chunk-9-1.png" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line)." width="60%" />
 <p class="caption">
 Figure 5: Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line).
@@ -559,18 +597,18 @@ Figure 5: Model predicted GPA as a function of time spent on homework for studen
 </div>
 <p>From the plot we can see the effect of time spent on homework in the slopes of the fitted lines. Regardless of the level of parent education (8, 12, or 16), the slope of the line is 0.99, which means the three lines are parallel. The intercepts of these three lines vary reflecting the different level of parent education.</p>
 <p>We can interpret the effect of parent level of education by fixing time spent on homework to a particular value on the same plot. For example, fixing time spent on homework to 6, we see that the average GPA varies for the three levels of parent education displayed in the plot.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="statcontrol.html#cb121-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> gpa)) <span class="op">+</span></span>
-<span id="cb121-2"><a href="statcontrol.html#cb121-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb121-3"><a href="statcontrol.html#cb121-3"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb121-4"><a href="statcontrol.html#cb121-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="op">+</span></span>
-<span id="cb121-5"><a href="statcontrol.html#cb121-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="op">+</span></span>
-<span id="cb121-6"><a href="statcontrol.html#cb121-6"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">70.18</span>, <span class="dt">slope =</span> <span class="fl">0.99</span>, <span class="dt">color =</span> <span class="st">&quot;#003f5c&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotdash&quot;</span>) <span class="op">+</span></span>
-<span id="cb121-7"><a href="statcontrol.html#cb121-7"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">73.66</span>, <span class="dt">slope =</span> <span class="fl">0.99</span>, <span class="dt">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>) <span class="op">+</span></span>
-<span id="cb121-8"><a href="statcontrol.html#cb121-8"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">77.14</span>, <span class="dt">slope =</span> <span class="fl">0.99</span>, <span class="dt">color =</span> <span class="st">&quot;#b40f20&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
-<span id="cb121-9"><a href="statcontrol.html#cb121-9"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">x =</span> <span class="dv">6</span>, <span class="dt">y =</span> <span class="fl">76.11908</span>, <span class="dt">color =</span> <span class="st">&quot;#003f5c&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb121-10"><a href="statcontrol.html#cb121-10"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">x =</span> <span class="dv">6</span>, <span class="dt">y =</span> <span class="fl">79.60157</span>, <span class="dt">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb121-11"><a href="statcontrol.html#cb121-11"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">x =</span> <span class="dv">6</span>, <span class="dt">y =</span> <span class="fl">83.08407</span>, <span class="dt">color =</span> <span class="st">&quot;#b40f20&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="statcontrol.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> homework, <span class="at">y =</span> gpa)) <span class="sc">+</span></span>
+<span id="cb121-2"><a href="statcontrol.html#cb121-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb121-3"><a href="statcontrol.html#cb121-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb121-4"><a href="statcontrol.html#cb121-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="sc">+</span></span>
+<span id="cb121-5"><a href="statcontrol.html#cb121-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="sc">+</span></span>
+<span id="cb121-6"><a href="statcontrol.html#cb121-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">70.18</span>, <span class="at">slope =</span> <span class="fl">0.99</span>, <span class="at">color =</span> <span class="st">&quot;#003f5c&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dotdash&quot;</span>) <span class="sc">+</span></span>
+<span id="cb121-7"><a href="statcontrol.html#cb121-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">73.66</span>, <span class="at">slope =</span> <span class="fl">0.99</span>, <span class="at">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>) <span class="sc">+</span></span>
+<span id="cb121-8"><a href="statcontrol.html#cb121-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">77.14</span>, <span class="at">slope =</span> <span class="fl">0.99</span>, <span class="at">color =</span> <span class="st">&quot;#b40f20&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb121-9"><a href="statcontrol.html#cb121-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">y =</span> <span class="fl">76.11908</span>, <span class="at">color =</span> <span class="st">&quot;#003f5c&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb121-10"><a href="statcontrol.html#cb121-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">y =</span> <span class="fl">79.60157</span>, <span class="at">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb121-11"><a href="statcontrol.html#cb121-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">y =</span> <span class="fl">83.08407</span>, <span class="at">color =</span> <span class="st">&quot;#b40f20&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
 <img src="10-understanding-statistical-control_files/figure-html/unnamed-chunk-10-1.png" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line). The model predicted GPAs for students who spend six hours a week on homework are also displayed." width="60%" />
 <p class="caption">
 Figure 10: Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line). The model predicted GPAs for students who spend six hours a week on homework are also displayed.
@@ -703,39 +741,39 @@ Model Predicted GPA
 \end{split}
 \]</span></p>
 <p>The plot we created earlier put all three fitted lines on the same plot. An alternative plot is to show each line in a different plot, and to place this plots side-by-side in a “triptych”. (I borrow this terminology from <span class="citation">McElreath (<a href="#ref-McElreath:2016" role="doc-biblioref">2016</a>)</span> who coined this in his <em>Statistical Rethinking</em> book.) To do this we save each plot into an object and then use functionality from the <a href="https://patchwork.data-imaginist.com/">patchwork package</a> to put the plots side-by-side.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="statcontrol.html#cb122-1"></a><span class="co"># Load package</span></span>
-<span id="cb122-2"><a href="statcontrol.html#cb122-2"></a><span class="kw">library</span>(patchwork)</span>
-<span id="cb122-3"><a href="statcontrol.html#cb122-3"></a></span>
-<span id="cb122-4"><a href="statcontrol.html#cb122-4"></a><span class="co"># Create plot 1</span></span>
-<span id="cb122-5"><a href="statcontrol.html#cb122-5"></a>p1 =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> gpa)) <span class="op">+</span></span>
-<span id="cb122-6"><a href="statcontrol.html#cb122-6"></a><span class="st">      </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb122-7"><a href="statcontrol.html#cb122-7"></a><span class="st">      </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">70.18</span>, <span class="dt">slope =</span> <span class="fl">0.99</span>) <span class="op">+</span></span>
-<span id="cb122-8"><a href="statcontrol.html#cb122-8"></a><span class="st">      </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb122-9"><a href="statcontrol.html#cb122-9"></a><span class="st">      </span><span class="kw">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="op">+</span></span>
-<span id="cb122-10"><a href="statcontrol.html#cb122-10"></a><span class="st">      </span><span class="kw">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="op">+</span></span>
-<span id="cb122-11"><a href="statcontrol.html#cb122-11"></a><span class="st">      </span><span class="kw">ggtitle</span>(<span class="st">&quot;Parent Education = 8 Years&quot;</span>)</span>
-<span id="cb122-12"><a href="statcontrol.html#cb122-12"></a></span>
-<span id="cb122-13"><a href="statcontrol.html#cb122-13"></a><span class="co"># Create plot 2</span></span>
-<span id="cb122-14"><a href="statcontrol.html#cb122-14"></a>p2 =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> gpa)) <span class="op">+</span></span>
-<span id="cb122-15"><a href="statcontrol.html#cb122-15"></a><span class="st">      </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb122-16"><a href="statcontrol.html#cb122-16"></a><span class="st">      </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">73.66</span>, <span class="dt">slope =</span> <span class="fl">0.99</span>) <span class="op">+</span></span>
-<span id="cb122-17"><a href="statcontrol.html#cb122-17"></a><span class="st">      </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb122-18"><a href="statcontrol.html#cb122-18"></a><span class="st">      </span><span class="kw">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="op">+</span></span>
-<span id="cb122-19"><a href="statcontrol.html#cb122-19"></a><span class="st">      </span><span class="kw">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="op">+</span></span>
-<span id="cb122-20"><a href="statcontrol.html#cb122-20"></a><span class="st">      </span><span class="kw">ggtitle</span>(<span class="st">&quot;Parent Education = 12 Years&quot;</span>)</span>
-<span id="cb122-21"><a href="statcontrol.html#cb122-21"></a></span>
-<span id="cb122-22"><a href="statcontrol.html#cb122-22"></a><span class="co"># Create plot 3</span></span>
-<span id="cb122-23"><a href="statcontrol.html#cb122-23"></a>p3 =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> gpa)) <span class="op">+</span></span>
-<span id="cb122-24"><a href="statcontrol.html#cb122-24"></a><span class="st">      </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb122-25"><a href="statcontrol.html#cb122-25"></a><span class="st">      </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">77.14</span>, <span class="dt">slope =</span> <span class="fl">0.99</span>) <span class="op">+</span></span>
-<span id="cb122-26"><a href="statcontrol.html#cb122-26"></a><span class="st">      </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb122-27"><a href="statcontrol.html#cb122-27"></a><span class="st">      </span><span class="kw">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="op">+</span></span>
-<span id="cb122-28"><a href="statcontrol.html#cb122-28"></a><span class="st">      </span><span class="kw">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="op">+</span></span>
-<span id="cb122-29"><a href="statcontrol.html#cb122-29"></a><span class="st">      </span><span class="kw">ggtitle</span>(<span class="st">&quot;Parent Education = 16 Years&quot;</span>)</span>
-<span id="cb122-30"><a href="statcontrol.html#cb122-30"></a></span>
-<span id="cb122-31"><a href="statcontrol.html#cb122-31"></a><span class="co"># Put plots side-by-side</span></span>
-<span id="cb122-32"><a href="statcontrol.html#cb122-32"></a>p1 <span class="op">|</span><span class="st"> </span>p2 <span class="op">|</span><span class="st"> </span>p3</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="statcontrol.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load package</span></span>
+<span id="cb122-2"><a href="statcontrol.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb122-3"><a href="statcontrol.html#cb122-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-4"><a href="statcontrol.html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot 1</span></span>
+<span id="cb122-5"><a href="statcontrol.html#cb122-5" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> homework, <span class="at">y =</span> gpa)) <span class="sc">+</span></span>
+<span id="cb122-6"><a href="statcontrol.html#cb122-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb122-7"><a href="statcontrol.html#cb122-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">70.18</span>, <span class="at">slope =</span> <span class="fl">0.99</span>) <span class="sc">+</span></span>
+<span id="cb122-8"><a href="statcontrol.html#cb122-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb122-9"><a href="statcontrol.html#cb122-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="sc">+</span></span>
+<span id="cb122-10"><a href="statcontrol.html#cb122-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="sc">+</span></span>
+<span id="cb122-11"><a href="statcontrol.html#cb122-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="st">&quot;Parent Education = 8 Years&quot;</span>)</span>
+<span id="cb122-12"><a href="statcontrol.html#cb122-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-13"><a href="statcontrol.html#cb122-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot 2</span></span>
+<span id="cb122-14"><a href="statcontrol.html#cb122-14" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> homework, <span class="at">y =</span> gpa)) <span class="sc">+</span></span>
+<span id="cb122-15"><a href="statcontrol.html#cb122-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb122-16"><a href="statcontrol.html#cb122-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">73.66</span>, <span class="at">slope =</span> <span class="fl">0.99</span>) <span class="sc">+</span></span>
+<span id="cb122-17"><a href="statcontrol.html#cb122-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb122-18"><a href="statcontrol.html#cb122-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="sc">+</span></span>
+<span id="cb122-19"><a href="statcontrol.html#cb122-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="sc">+</span></span>
+<span id="cb122-20"><a href="statcontrol.html#cb122-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="st">&quot;Parent Education = 12 Years&quot;</span>)</span>
+<span id="cb122-21"><a href="statcontrol.html#cb122-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-22"><a href="statcontrol.html#cb122-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot 3</span></span>
+<span id="cb122-23"><a href="statcontrol.html#cb122-23" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> homework, <span class="at">y =</span> gpa)) <span class="sc">+</span></span>
+<span id="cb122-24"><a href="statcontrol.html#cb122-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb122-25"><a href="statcontrol.html#cb122-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">77.14</span>, <span class="at">slope =</span> <span class="fl">0.99</span>) <span class="sc">+</span></span>
+<span id="cb122-26"><a href="statcontrol.html#cb122-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb122-27"><a href="statcontrol.html#cb122-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="sc">+</span></span>
+<span id="cb122-28"><a href="statcontrol.html#cb122-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="sc">+</span></span>
+<span id="cb122-29"><a href="statcontrol.html#cb122-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="st">&quot;Parent Education = 16 Years&quot;</span>)</span>
+<span id="cb122-30"><a href="statcontrol.html#cb122-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-31"><a href="statcontrol.html#cb122-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Put plots side-by-side</span></span>
+<span id="cb122-32"><a href="statcontrol.html#cb122-32" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2 <span class="sc">|</span> p3</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
 <img src="10-understanding-statistical-control_files/figure-html/unnamed-chunk-13-1.png" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8, 12, and 16 years." width="90%" />
 <p class="caption">
 Figure 14: Model predicted GPA as a function of time spent on homework for students with a parent education level of 8, 12, and 16 years.
@@ -755,36 +793,36 @@ Figure 14: Model predicted GPA as a function of time spent on homework for stude
 \end{split}
 \]</span></p>
 <p>Then we create the triptych plot showing the resulting equations:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="statcontrol.html#cb123-1"></a><span class="co"># Create plot 1</span></span>
-<span id="cb123-2"><a href="statcontrol.html#cb123-2"></a>p4 =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> parent_ed, <span class="dt">y =</span> gpa)) <span class="op">+</span></span>
-<span id="cb123-3"><a href="statcontrol.html#cb123-3"></a><span class="st">      </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb123-4"><a href="statcontrol.html#cb123-4"></a><span class="st">      </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">65.18</span>, <span class="dt">slope =</span> <span class="fl">0.87</span>) <span class="op">+</span></span>
-<span id="cb123-5"><a href="statcontrol.html#cb123-5"></a><span class="st">      </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb123-6"><a href="statcontrol.html#cb123-6"></a><span class="st">      </span><span class="kw">xlab</span>(<span class="st">&quot;Parent education (in years)&quot;</span>) <span class="op">+</span></span>
-<span id="cb123-7"><a href="statcontrol.html#cb123-7"></a><span class="st">      </span><span class="kw">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="op">+</span></span>
-<span id="cb123-8"><a href="statcontrol.html#cb123-8"></a><span class="st">      </span><span class="kw">ggtitle</span>(<span class="st">&quot;Time Spent on Homework = 2 Hours&quot;</span>)</span>
-<span id="cb123-9"><a href="statcontrol.html#cb123-9"></a></span>
-<span id="cb123-10"><a href="statcontrol.html#cb123-10"></a><span class="co"># Create plot 2</span></span>
-<span id="cb123-11"><a href="statcontrol.html#cb123-11"></a>p5 =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> parent_ed, <span class="dt">y =</span> gpa)) <span class="op">+</span></span>
-<span id="cb123-12"><a href="statcontrol.html#cb123-12"></a><span class="st">      </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb123-13"><a href="statcontrol.html#cb123-13"></a><span class="st">      </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">68.14</span>, <span class="dt">slope =</span> <span class="fl">0.87</span>) <span class="op">+</span></span>
-<span id="cb123-14"><a href="statcontrol.html#cb123-14"></a><span class="st">      </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb123-15"><a href="statcontrol.html#cb123-15"></a><span class="st">      </span><span class="kw">xlab</span>(<span class="st">&quot;Parent education (in years)&quot;</span>) <span class="op">+</span></span>
-<span id="cb123-16"><a href="statcontrol.html#cb123-16"></a><span class="st">      </span><span class="kw">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="op">+</span></span>
-<span id="cb123-17"><a href="statcontrol.html#cb123-17"></a><span class="st">      </span><span class="kw">ggtitle</span>(<span class="st">&quot;Time Spent on Homework = 5 Hours&quot;</span>)</span>
-<span id="cb123-18"><a href="statcontrol.html#cb123-18"></a></span>
-<span id="cb123-19"><a href="statcontrol.html#cb123-19"></a><span class="co"># Create plot 3</span></span>
-<span id="cb123-20"><a href="statcontrol.html#cb123-20"></a>p6 =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> parent_ed, <span class="dt">y =</span> gpa)) <span class="op">+</span></span>
-<span id="cb123-21"><a href="statcontrol.html#cb123-21"></a><span class="st">      </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb123-22"><a href="statcontrol.html#cb123-22"></a><span class="st">      </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">73.08</span>, <span class="dt">slope =</span> <span class="fl">0.87</span>) <span class="op">+</span></span>
-<span id="cb123-23"><a href="statcontrol.html#cb123-23"></a><span class="st">      </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb123-24"><a href="statcontrol.html#cb123-24"></a><span class="st">      </span><span class="kw">xlab</span>(<span class="st">&quot;Parent education (in years)&quot;</span>) <span class="op">+</span></span>
-<span id="cb123-25"><a href="statcontrol.html#cb123-25"></a><span class="st">      </span><span class="kw">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="op">+</span></span>
-<span id="cb123-26"><a href="statcontrol.html#cb123-26"></a><span class="st">      </span><span class="kw">ggtitle</span>(<span class="st">&quot;Time Spent on Homework = 10 Hours&quot;</span>)</span>
-<span id="cb123-27"><a href="statcontrol.html#cb123-27"></a></span>
-<span id="cb123-28"><a href="statcontrol.html#cb123-28"></a><span class="co"># Put plots side-by-side</span></span>
-<span id="cb123-29"><a href="statcontrol.html#cb123-29"></a>p4 <span class="op">|</span><span class="st"> </span>p5 <span class="op">|</span>p6</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="statcontrol.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot 1</span></span>
+<span id="cb123-2"><a href="statcontrol.html#cb123-2" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> parent_ed, <span class="at">y =</span> gpa)) <span class="sc">+</span></span>
+<span id="cb123-3"><a href="statcontrol.html#cb123-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb123-4"><a href="statcontrol.html#cb123-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">65.18</span>, <span class="at">slope =</span> <span class="fl">0.87</span>) <span class="sc">+</span></span>
+<span id="cb123-5"><a href="statcontrol.html#cb123-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb123-6"><a href="statcontrol.html#cb123-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">xlab</span>(<span class="st">&quot;Parent education (in years)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb123-7"><a href="statcontrol.html#cb123-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="sc">+</span></span>
+<span id="cb123-8"><a href="statcontrol.html#cb123-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="st">&quot;Time Spent on Homework = 2 Hours&quot;</span>)</span>
+<span id="cb123-9"><a href="statcontrol.html#cb123-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-10"><a href="statcontrol.html#cb123-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot 2</span></span>
+<span id="cb123-11"><a href="statcontrol.html#cb123-11" aria-hidden="true" tabindex="-1"></a>p5 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> parent_ed, <span class="at">y =</span> gpa)) <span class="sc">+</span></span>
+<span id="cb123-12"><a href="statcontrol.html#cb123-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb123-13"><a href="statcontrol.html#cb123-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">68.14</span>, <span class="at">slope =</span> <span class="fl">0.87</span>) <span class="sc">+</span></span>
+<span id="cb123-14"><a href="statcontrol.html#cb123-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb123-15"><a href="statcontrol.html#cb123-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">xlab</span>(<span class="st">&quot;Parent education (in years)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb123-16"><a href="statcontrol.html#cb123-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="sc">+</span></span>
+<span id="cb123-17"><a href="statcontrol.html#cb123-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="st">&quot;Time Spent on Homework = 5 Hours&quot;</span>)</span>
+<span id="cb123-18"><a href="statcontrol.html#cb123-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-19"><a href="statcontrol.html#cb123-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot 3</span></span>
+<span id="cb123-20"><a href="statcontrol.html#cb123-20" aria-hidden="true" tabindex="-1"></a>p6 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> parent_ed, <span class="at">y =</span> gpa)) <span class="sc">+</span></span>
+<span id="cb123-21"><a href="statcontrol.html#cb123-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb123-22"><a href="statcontrol.html#cb123-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">73.08</span>, <span class="at">slope =</span> <span class="fl">0.87</span>) <span class="sc">+</span></span>
+<span id="cb123-23"><a href="statcontrol.html#cb123-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb123-24"><a href="statcontrol.html#cb123-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">xlab</span>(<span class="st">&quot;Parent education (in years)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb123-25"><a href="statcontrol.html#cb123-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>) <span class="sc">+</span></span>
+<span id="cb123-26"><a href="statcontrol.html#cb123-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="st">&quot;Time Spent on Homework = 10 Hours&quot;</span>)</span>
+<span id="cb123-27"><a href="statcontrol.html#cb123-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-28"><a href="statcontrol.html#cb123-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Put plots side-by-side</span></span>
+<span id="cb123-29"><a href="statcontrol.html#cb123-29" aria-hidden="true" tabindex="-1"></a>p4 <span class="sc">|</span> p5 <span class="sc">|</span>p6</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
 <img src="10-understanding-statistical-control_files/figure-html/unnamed-chunk-14-1.png" alt="Model predicted GPA as a function of parent education level for students who spend 2 hours, 5 hours, and 10 hours a week on homework." width="90%" />
 <p class="caption">
 Figure 11: Model predicted GPA as a function of parent education level for students who spend 2 hours, 5 hours, and 10 hours a week on homework.
@@ -801,13 +839,13 @@ Figure 11: Model predicted GPA as a function of parent education level for stude
 \hat{\mathrm{GPA}_i} = 75.43 + 0.99(\mathrm{Homework}_i)
 \]</span></p>
 <p>Plotting this we get a single line which displays the effect of time spent on homework on GPA. Even though the effect of parent education is not displayed, it is still included as the intercept value of the plotted line is based on fixing this effect to its mean.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="statcontrol.html#cb124-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> homework, <span class="dt">y =</span> gpa)) <span class="op">+</span></span>
-<span id="cb124-2"><a href="statcontrol.html#cb124-2"></a><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb124-3"><a href="statcontrol.html#cb124-3"></a><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">75.43</span>, <span class="dt">slope =</span> <span class="fl">0.99</span>) <span class="op">+</span></span>
-<span id="cb124-4"><a href="statcontrol.html#cb124-4"></a><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb124-5"><a href="statcontrol.html#cb124-5"></a><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="op">+</span></span>
-<span id="cb124-6"><a href="statcontrol.html#cb124-6"></a><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="statcontrol.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> homework, <span class="at">y =</span> gpa)) <span class="sc">+</span></span>
+<span id="cb124-2"><a href="statcontrol.html#cb124-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb124-3"><a href="statcontrol.html#cb124-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">75.43</span>, <span class="at">slope =</span> <span class="fl">0.99</span>) <span class="sc">+</span></span>
+<span id="cb124-4"><a href="statcontrol.html#cb124-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb124-5"><a href="statcontrol.html#cb124-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="sc">+</span></span>
+<span id="cb124-6"><a href="statcontrol.html#cb124-6" aria-hidden="true" tabindex="-1"></a> <span class="fu">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
 <img src="10-understanding-statistical-control_files/figure-html/unnamed-chunk-15-1.png" alt="Model predicted GPA as a function of time spent on homework for students with an average parent education level (14.03 years)." width="50%" />
 <p class="caption">
 Figure 12: Model predicted GPA as a function of time spent on homework for students with an average parent education level (14.03 years).
@@ -817,9 +855,9 @@ Figure 12: Model predicted GPA as a function of time spent on homework for stude
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-McElreath:2016">
-<p>McElreath, R. (2016). <em>Statistical rethinking: A Bayesian course with examples in R and Stan</em>. CRC Press.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-McElreath:2016" class="csl-entry">
+McElreath, R. (2016). <em>Statistical rethinking: A <span>B</span>ayesian course with examples in <span>R</span> and <span>S</span>tan</em>. CRC Press.
 </div>
 </div>
 <p style="text-align: center;">

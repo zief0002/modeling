@@ -21,7 +21,7 @@ head(keith)
 ```
 
 ```
-# A tibble: 6 x 3
+# A tibble: 6 × 3
     gpa homework parent_ed
   <dbl>    <dbl>     <dbl>
 1    78        2        13
@@ -221,15 +221,15 @@ head(aug_a)
 
 
 ```
-# A tibble: 6 x 8
-    gpa homework .fitted .resid .std.resid   .hat .sigma  .cooksd
-  <dbl>    <dbl>   <dbl>  <dbl>      <dbl>  <dbl>  <dbl>    <dbl>
-1    78        2    76.7  -1.28      0.180 0.0328   7.28 0.000550
-2    79        6    81.6   2.57     -0.358 0.0120   7.27 0.000776
-3    79        1    75.5  -3.50      0.495 0.0500   7.27 0.00646 
-4    89        5    80.4  -8.64      1.20  0.0100   7.22 0.00728 
-5    82        3    77.9  -4.07      0.568 0.0204   7.26 0.00336 
-6    77        4    79.1   2.15     -0.298 0.0128   7.27 0.000579
+# A tibble: 6 × 8
+    gpa homework .fitted .resid   .hat .sigma  .cooksd .std.resid
+  <dbl>    <dbl>   <dbl>  <dbl>  <dbl>  <dbl>    <dbl>      <dbl>
+1    78        2    76.7   1.28 0.0328   7.28 0.000550      0.180
+2    79        6    81.6  -2.57 0.0120   7.27 0.000776     -0.358
+3    79        1    75.5   3.50 0.0500   7.27 0.00646       0.495
+4    89        5    80.4   8.64 0.0100   7.22 0.00728       1.20 
+5    82        3    77.9   4.07 0.0204   7.26 0.00336       0.568
+6    77        4    79.1  -2.15 0.0128   7.27 0.000579     -0.298
 ```
 
 The cases in the augmented data frame are in the same order as the cases in the `keith` data frame. For example, the first case had a GPA of 78 and spent 2 hours a week on homework. The augmented data also includes several other useful measures for evaluating regression models. For now, we will focus on the `.fitted` column and the `.resid` column. Those columns contain the fitted values ($\hat{Y_i}$) and the residuals for each case based on the model fitted in `lm.a`.
@@ -316,13 +316,13 @@ aug_a %>%
 ```
 
 ```
-# A tibble: 4 x 8
-    gpa homework .fitted .resid .std.resid   .hat .sigma .cooksd
-  <dbl>    <dbl>   <dbl>  <dbl>      <dbl>  <dbl>  <dbl>   <dbl>
-1    64        7    82.8   18.8      -2.62 0.0187   7.02  0.0655
-2    67        7    82.8   15.8      -2.20 0.0187   7.09  0.0462
-3    64        5    80.4   16.4      -2.27 0.0100   7.08  0.0261
-4   100        7    82.8  -17.2       2.40 0.0187   7.06  0.0549
+# A tibble: 4 × 8
+    gpa homework .fitted .resid   .hat .sigma .cooksd .std.resid
+  <dbl>    <dbl>   <dbl>  <dbl>  <dbl>  <dbl>   <dbl>      <dbl>
+1    64        7    82.8  -18.8 0.0187   7.02  0.0655      -2.62
+2    67        7    82.8  -15.8 0.0187   7.09  0.0462      -2.20
+3    64        5    80.4  -16.4 0.0100   7.08  0.0261      -2.27
+4   100        7    82.8   17.2 0.0187   7.06  0.0549       2.40
 ```
 
 <br />
@@ -359,15 +359,15 @@ head(aug_b)
 ```
 
 ```
-# A tibble: 6 x 9
-    gpa homework parent_ed .fitted .resid .std.resid   .hat .sigma  .cooksd
-  <dbl>    <dbl>     <dbl>   <dbl>  <dbl>      <dbl>  <dbl>  <dbl>    <dbl>
-1    78        2        13    76.5  -1.48      0.212 0.0330   7.13 0.000512
-2    79        6        14    81.3   2.34     -0.332 0.0122   7.12 0.000454
-3    79        1        13    75.5  -3.47      0.502 0.0500   7.12 0.00441 
-4    89        5        13    79.5  -9.52      1.35  0.0130   7.06 0.00801 
-5    82        3        16    80.1  -1.88      0.270 0.0390   7.13 0.000988
-6    77        4        13    78.5   1.50     -0.213 0.0145   7.13 0.000221
+# A tibble: 6 × 9
+    gpa homework parent_ed .fitted .resid   .hat .sigma  .cooksd .std.resid
+  <dbl>    <dbl>     <dbl>   <dbl>  <dbl>  <dbl>  <dbl>    <dbl>      <dbl>
+1    78        2        13    76.5   1.48 0.0330   7.13 0.000512      0.212
+2    79        6        14    81.3  -2.34 0.0122   7.12 0.000454     -0.332
+3    79        1        13    75.5   3.47 0.0500   7.12 0.00441       0.502
+4    89        5        13    79.5   9.52 0.0130   7.06 0.00801       1.35 
+5    82        3        16    80.1   1.88 0.0390   7.13 0.000988      0.270
+6    77        4        13    78.5  -1.50 0.0145   7.13 0.000221     -0.213
 ```
 
 ```r
@@ -540,15 +540,16 @@ head(aug_b)
 ```
 
 ```
-# A tibble: 6 x 10
-    gpa homework parent_ed .fitted .resid .std.resid   .hat .sigma .cooksd id   
-  <dbl>    <dbl>     <dbl>   <dbl>  <dbl>      <dbl>  <dbl>  <dbl>   <dbl> <chr>
-1    78        2        13    76.5  -1.48      0.212 0.0330   7.13 5.12e-4 1    
-2    79        6        14    81.3   2.34     -0.332 0.0122   7.12 4.54e-4 2    
-3    79        1        13    75.5  -3.47      0.502 0.0500   7.12 4.41e-3 3    
-4    89        5        13    79.5  -9.52      1.35  0.0130   7.06 8.01e-3 4    
-5    82        3        16    80.1  -1.88      0.270 0.0390   7.13 9.88e-4 5    
-6    77        4        13    78.5   1.50     -0.213 0.0145   7.13 2.21e-4 6    
+# A tibble: 6 × 10
+    gpa homework parent_ed .fitted .resid   .hat .sigma  .cooksd .std.re…¹ id   
+  <dbl>    <dbl>     <dbl>   <dbl>  <dbl>  <dbl>  <dbl>    <dbl>     <dbl> <chr>
+1    78        2        13    76.5   1.48 0.0330   7.13 0.000512     0.212 1    
+2    79        6        14    81.3  -2.34 0.0122   7.12 0.000454    -0.332 2    
+3    79        1        13    75.5   3.47 0.0500   7.12 0.00441      0.502 3    
+4    89        5        13    79.5   9.52 0.0130   7.06 0.00801      1.35  4    
+5    82        3        16    80.1   1.88 0.0390   7.13 0.000988     0.270 5    
+6    77        4        13    78.5  -1.50 0.0145   7.13 0.000221    -0.213 6    
+# … with abbreviated variable name ¹​.std.resid
 ```
 
 ```r

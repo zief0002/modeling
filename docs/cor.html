@@ -8,50 +8,59 @@
 <meta property="og:title" content="Correlation and Standardized Regression | Statistical Modeling and Computation for Educational Scientists" />
 <meta property="og:type" content="book" />
 
-
 <meta property="og:description" content="EPsy 8251 and 8252 Notes" />
 <meta name="github-repo" content="zief0002/modeling" />
 
 <meta name="author" content="Andrew Zieffler" />
 
-<meta name="date" content="2020-08-17" />
+<meta name="date" content="2022-09-26" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: { equationNumbers: { autoNumber: "AMS" } }
 });
 </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta name="description" content="EPsy 8251 and 8252 Notes">
 
 <title>Correlation and Standardized Regression | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="libs/navigation-1.1/tabsets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -70,7 +79,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -109,6 +118,29 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 </style>
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style/style.css" type="text/css" />
 <link rel="stylesheet" href="style/table-styles.css" type="text/css" />
 <link rel="stylesheet" href="style/syntax.css" type="text/css" />
@@ -129,6 +161,12 @@ img {
   max-width:100%;
   height: auto;
 }
+/* show arrow before summary tag as in bootstrap
+TODO: remove if boostrap in updated in html_document (rmarkdown#1485) */
+details > summary {
+  display: list-item;
+  cursor: pointer;
+}
 </style>
 </head>
 
@@ -141,21 +179,21 @@ img {
 <div class="col-sm-12">
 <div id="TOC">
 <ul>
-<li><a href="index.html#foreword">Foreword</a></li>
-<li><a href="preface.html#preface">Preface</a></li>
-<li><a href="slrd.html#slrd">Simple Linear Regression—Description</a></li>
-<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
-<li><a href="cor.html#cor">Correlation and Standardized Regression</a></li>
-<li><a href="coefinf.html#coefinf">Coefficient-Level Inference</a></li>
-<li><a href="modinf.html#modinf">Model-Level Inference</a></li>
-<li><a href="multreg.html#multreg">Introduction to Multiple Regression</a></li>
-<li><a href="statcontrol.html#statcontrol">Understanding Statistical Control</a></li>
-<li><a href="assumptions.html#assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
-<li><a href="dummy.html#dummy">Dichotomous Categorical Predictors</a></li>
-<li><a href="polychotomous.html#polychotomous">Polychotomous Categorical Predictors</a></li>
-<li><a href="interaction-01.html#interaction-01">Introduction to Interaction Effects</a></li>
-<li><a href="interaction-02.html#interaction-02">More Interaction Effects</a></li>
-<li><a href="references.html#references">References</a></li>
+<li><a href="index.html#foreword" id="toc-foreword">Foreword</a></li>
+<li><a href="preface.html#preface" id="toc-preface">Preface</a></li>
+<li><a href="slrd.html#slrd" id="toc-slrd">Simple Linear Regression—Description</a></li>
+<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation" id="toc-ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
+<li><a href="cor.html#cor" id="toc-cor">Correlation and Standardized Regression</a></li>
+<li><a href="coefinf.html#coefinf" id="toc-coefinf">Coefficient-Level Inference</a></li>
+<li><a href="modinf.html#modinf" id="toc-modinf">Model-Level Inference</a></li>
+<li><a href="multreg.html#multreg" id="toc-multreg">Introduction to Multiple Regression</a></li>
+<li><a href="statcontrol.html#statcontrol" id="toc-statcontrol">Understanding Statistical Control</a></li>
+<li><a href="assumptions.html#assumptions" id="toc-assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
+<li><a href="dummy.html#dummy" id="toc-dummy">Dichotomous Categorical Predictors</a></li>
+<li><a href="polychotomous.html#polychotomous" id="toc-polychotomous">Polychotomous Categorical Predictors</a></li>
+<li><a href="interaction-01.html#interaction-01" id="toc-interaction-01">Introduction to Interaction Effects</a></li>
+<li><a href="interaction-02.html#interaction-02" id="toc-interaction-02">More Interaction Effects</a></li>
+<li><a href="references.html#references" id="toc-references">References</a></li>
 </ul>
 </div>
 </div>
@@ -165,16 +203,16 @@ img {
 <div id="cor" class="section level1">
 <h1>Correlation and Standardized Regression</h1>
 <p>In this chapter, you will learn about correlation and its role in regression. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="cor.html#cb36-1"></a><span class="co"># Load libraries</span></span>
-<span id="cb36-2"><a href="cor.html#cb36-2"></a><span class="kw">library</span>(corrr)</span>
-<span id="cb36-3"><a href="cor.html#cb36-3"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb36-4"><a href="cor.html#cb36-4"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb36-5"><a href="cor.html#cb36-5"></a><span class="kw">library</span>(readr)</span>
-<span id="cb36-6"><a href="cor.html#cb36-6"></a></span>
-<span id="cb36-7"><a href="cor.html#cb36-7"></a><span class="co"># Read in data</span></span>
-<span id="cb36-8"><a href="cor.html#cb36-8"></a>keith =<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv&quot;</span>)</span>
-<span id="cb36-9"><a href="cor.html#cb36-9"></a><span class="kw">head</span>(keith)</span></code></pre></div>
-<pre><code># A tibble: 6 x 3
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="cor.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb36-2"><a href="cor.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb36-3"><a href="cor.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb36-4"><a href="cor.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb36-5"><a href="cor.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb36-6"><a href="cor.html#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="cor.html#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb36-8"><a href="cor.html#cb36-8" aria-hidden="true" tabindex="-1"></a>keith <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/keith-gpa.csv&quot;</span>)</span>
+<span id="cb36-9"><a href="cor.html#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(keith)</span></code></pre></div>
+<pre><code># A tibble: 6 × 3
     gpa homework parent_ed
   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
 1    78        2        13
@@ -187,20 +225,20 @@ img {
 <div id="data-exploration-1" class="section level2">
 <h2>Data Exploration</h2>
 <p>We begin by looking at the marginal distributions of both time spent on homework and GPA. We will also examine summary statistics of these variables (output presented in table). Finally, we also examine a scatterplot of GPA versus time spent on homework.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
 <img src="06-correlation_files/figure-html/unnamed-chunk-3-1.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="31%" /><img src="06-correlation_files/figure-html/unnamed-chunk-3-2.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="31%" /><img src="06-correlation_files/figure-html/unnamed-chunk-3-3.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="31%" />
 <p class="caption">
 Figure 1: Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown.
 </p>
 </div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="cor.html#cb38-1"></a><span class="co"># Summary statistics</span></span>
-<span id="cb38-2"><a href="cor.html#cb38-2"></a>keith <span class="op">%&gt;%</span></span>
-<span id="cb38-3"><a href="cor.html#cb38-3"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb38-4"><a href="cor.html#cb38-4"></a>    <span class="dt">M_gpa  =</span> <span class="kw">mean</span>(gpa),</span>
-<span id="cb38-5"><a href="cor.html#cb38-5"></a>    <span class="dt">SD_gpa =</span> <span class="kw">sd</span>(gpa),</span>
-<span id="cb38-6"><a href="cor.html#cb38-6"></a>    <span class="dt">M_hw   =</span> <span class="kw">mean</span>(homework),</span>
-<span id="cb38-7"><a href="cor.html#cb38-7"></a>    <span class="dt">SD_hw  =</span> <span class="kw">sd</span>(homework)</span>
-<span id="cb38-8"><a href="cor.html#cb38-8"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="cor.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
+<span id="cb38-2"><a href="cor.html#cb38-2" aria-hidden="true" tabindex="-1"></a>keith <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="cor.html#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb38-4"><a href="cor.html#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">M_gpa  =</span> <span class="fu">mean</span>(gpa),</span>
+<span id="cb38-5"><a href="cor.html#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD_gpa =</span> <span class="fu">sd</span>(gpa),</span>
+<span id="cb38-6"><a href="cor.html#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">M_hw   =</span> <span class="fu">mean</span>(homework),</span>
+<span id="cb38-7"><a href="cor.html#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD_hw  =</span> <span class="fu">sd</span>(homework)</span>
+<span id="cb38-8"><a href="cor.html#cb38-8" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <table style="width:40%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
 <span id="tab:unnamed-chunk-5">Table 2: </span>Summary measures for 8th-Grade students’ GPA and time spent on homework
@@ -253,11 +291,11 @@ Time spent on homework
 <h2>Correlation</h2>
 <p>To numerically summarize the <em>linear relationship</em> between variables, we typically compute correlation coefficients. The correlation coefficient is a quantification of the direction and strength of the relationship. (It is important to note that the correlation coefficient is only an appropriate summarization of the relationship if the functional form of the relationship is linear.)</p>
 <p>To compute the correlation coefficient, we use the <code>correlate()</code> function from the <strong>corrr</strong> package. We can use the dplyr-type syntax to select the variables we want correlations between, and then pipe that into the <code>correlate()</code> function. Typically the response (or outcome) variable is the first variable provided in the <code>select()</code> function, followed by the predictor.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="cor.html#cb39-1"></a>keith <span class="op">%&gt;%</span></span>
-<span id="cb39-2"><a href="cor.html#cb39-2"></a><span class="st">  </span><span class="kw">select</span>(gpa, homework) <span class="op">%&gt;%</span></span>
-<span id="cb39-3"><a href="cor.html#cb39-3"></a><span class="st">  </span><span class="kw">correlate</span>()</span></code></pre></div>
-<pre><code># A tibble: 2 x 3
-  rowname     gpa homework
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="cor.html#cb39-1" aria-hidden="true" tabindex="-1"></a>keith <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="cor.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gpa, homework) <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="cor.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>()</span></code></pre></div>
+<pre><code># A tibble: 2 × 3
+  term        gpa homework
   &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 1 gpa      NA        0.327
 2 homework  0.327   NA    </code></pre>
@@ -266,7 +304,7 @@ Time spent on homework
 r_{\mathrm{GPA,~Homework}} = 0.33
 \]</span></p>
 <p>It is important to keep in mind this value is only useful as a measure of the strength of the relationship when the relationship between variables is linear. Here is an example where the correlation coefficient would be misleading about the strength of the relationship.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
 <img src="06-correlation_files/figure-html/unnamed-chunk-7-1.png" alt="Hours of daylight versus day of the year for $n=75$ days in Minneapolis." width="50%" />
 <p class="caption">
 Figure 3: Hours of daylight versus day of the year for <span class="math inline">\(n=75\)</span> days in Minneapolis.
@@ -277,7 +315,7 @@ Figure 3: Hours of daylight versus day of the year for <span class="math inline"
 <p>You should always create a scatterplot to examine the relationship graphically before computing a correlation coefficient to numerically summarize it.</p>
 </div>
 <p>Another situation in which correlation can mislead is when you have subpopulations in your data. Here is an example of that.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
 <img src="06-correlation_files/figure-html/unnamed-chunk-8-1.png" alt="Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company. The second plot shows the same data colored by education level." width="45%" /><img src="06-correlation_files/figure-html/unnamed-chunk-8-2.png" alt="Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company. The second plot shows the same data colored by education level." width="45%" />
 <p class="caption">
 Figure 4: Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for <span class="math inline">\(n=1000\)</span> employees from a Fortune 500 company. The second plot shows the same data colored by education level.
@@ -313,7 +351,7 @@ r_{xy} = \frac{1}{n-1}\sum_{i=1}^n\bigg(z_{xi}\bigg)\bigg(z_{yi}\bigg)
 \end{split}
 \]</span></p>
 <p>Observations the are above the mean on one variable and below the mean on the other would have a negative product. Here is a plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
 <img src="06-correlation_files/figure-html/unnamed-chunk-9-1.png" alt="Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed." width="50%" />
 <p class="caption">
 Figure 5: Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed.
@@ -323,7 +361,7 @@ Figure 5: Plot of the standardized GPA versus the standardized time spent on hom
 <p>Conceptually, that sum of products of <em>z</em>-scores in the formula for the correlation coefficient gives us an indication of the patterns of deviation from the mean values of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> for the propensity of the data. The division by <span class="math inline">\(n-1\)</span> serves to give us an indication of the magnitude of the “average” product. This is why we interpret positive and negative reltionships the way we do; a positive relationship suggests that higher values of <span class="math inline">\(x\)</span> are typically associated with higher values of <span class="math inline">\(y\)</span> and that lower values of <span class="math inline">\(x\)</span> are typically associated with lower values of <span class="math inline">\(y\)</span>. (Note that the words “higher” and “lower” in that interpretation could more accurately be replaced with “values above the mean” and “values below the mean”, respectively.)</p>
 <p>When we say the direction of the relationship is positive, we statistically mean that the average product of <em>z</em>-scores is positive, which means that the propensity of the data has values of both variables either above or below the mean.</p>
 <p>Of course, we don’t have to use <em>z</em>-scores to see this pattern, afterall we typically look at a scatterplot of the unstandardized values to make this interpretation.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
 <img src="06-correlation_files/figure-html/unnamed-chunk-10-1.png" alt="Plot of GPA versus the time spent on homework (both unstandardized) for the 100 observations. The mean values are also displayed." width="50%" />
 <p class="caption">
 Figure 10: Plot of GPA versus the time spent on homework (both unstandardized) for the 100 observations. The mean values are also displayed.
@@ -355,16 +393,16 @@ Figure 10: Plot of GPA versus the time spent on homework (both unstandardized) f
 <li>Fit a model by regressing <span class="math inline">\(z_y\)</span> on <span class="math inline">\(z_x\)</span></li>
 </ol>
 <p>Here we will perform a standardized regression on the Keith data.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="cor.html#cb41-1"></a><span class="co"># Standardize the outcome and predictor</span></span>
-<span id="cb41-2"><a href="cor.html#cb41-2"></a>keith =<span class="st"> </span>keith <span class="op">%&gt;%</span></span>
-<span id="cb41-3"><a href="cor.html#cb41-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb41-4"><a href="cor.html#cb41-4"></a>    <span class="dt">z_gpa =</span> (gpa <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(gpa)) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(gpa),</span>
-<span id="cb41-5"><a href="cor.html#cb41-5"></a>    <span class="dt">z_homework =</span> (homework <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(homework)) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(homework),</span>
-<span id="cb41-6"><a href="cor.html#cb41-6"></a>  )</span>
-<span id="cb41-7"><a href="cor.html#cb41-7"></a></span>
-<span id="cb41-8"><a href="cor.html#cb41-8"></a><span class="co"># View updated data</span></span>
-<span id="cb41-9"><a href="cor.html#cb41-9"></a><span class="kw">head</span>(keith)</span></code></pre></div>
-<pre><code># A tibble: 6 x 5
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="cor.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize the outcome and predictor</span></span>
+<span id="cb41-2"><a href="cor.html#cb41-2" aria-hidden="true" tabindex="-1"></a>keith <span class="ot">=</span> keith <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="cor.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-4"><a href="cor.html#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">z_gpa =</span> (gpa <span class="sc">-</span> <span class="fu">mean</span>(gpa)) <span class="sc">/</span> <span class="fu">sd</span>(gpa),</span>
+<span id="cb41-5"><a href="cor.html#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">z_homework =</span> (homework <span class="sc">-</span> <span class="fu">mean</span>(homework)) <span class="sc">/</span> <span class="fu">sd</span>(homework),</span>
+<span id="cb41-6"><a href="cor.html#cb41-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-7"><a href="cor.html#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="cor.html#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co"># View updated data</span></span>
+<span id="cb41-9"><a href="cor.html#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(keith)</span></code></pre></div>
+<pre><code># A tibble: 6 × 5
     gpa homework parent_ed  z_gpa z_homework
   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
 1    78        2        13 -0.324    -1.50  
@@ -373,9 +411,9 @@ Figure 10: Plot of GPA versus the time spent on homework (both unstandardized) f
 4    89        5        13  1.12     -0.0438
 5    82        3        16  0.201    -1.02  
 6    77        4        13 -0.455    -0.530 </code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="cor.html#cb43-1"></a><span class="co"># Fit standardized regression</span></span>
-<span id="cb43-2"><a href="cor.html#cb43-2"></a>lm.z =<span class="st"> </span><span class="kw">lm</span>(z_gpa <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>z_homework, <span class="dt">data =</span> keith)</span>
-<span id="cb43-3"><a href="cor.html#cb43-3"></a>lm.z</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="cor.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit standardized regression</span></span>
+<span id="cb43-2"><a href="cor.html#cb43-2" aria-hidden="true" tabindex="-1"></a>lm.z <span class="ot">=</span> <span class="fu">lm</span>(z_gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> z_homework, <span class="at">data =</span> keith)</span>
+<span id="cb43-3"><a href="cor.html#cb43-3" aria-hidden="true" tabindex="-1"></a>lm.z</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = z_gpa ~ 1 + z_homework, data = keith)
@@ -398,15 +436,15 @@ Coefficients:
 <li>Each one-standard deviation difference in time spent on homework is associated with a 0.327-standard deviation difference in predicted GPA.</li>
 </ul>
 <p>Here is a scatterplot of the standardized variables along with the fitted standardized regression line. This will help you visually see the results of the standardized regression analysis.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="cor.html#cb45-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> keith, <span class="kw">aes</span>(<span class="dt">x =</span> z_homework, <span class="dt">y =</span> z_gpa)) <span class="op">+</span></span>
-<span id="cb45-2"><a href="cor.html#cb45-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb45-3"><a href="cor.html#cb45-3"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb45-4"><a href="cor.html#cb45-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Time spent on homework (standardized)&quot;</span>) <span class="op">+</span></span>
-<span id="cb45-5"><a href="cor.html#cb45-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;GPA (standardized)&quot;</span>) <span class="op">+</span></span>
-<span id="cb45-6"><a href="cor.html#cb45-6"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
-<span id="cb45-7"><a href="cor.html#cb45-7"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
-<span id="cb45-8"><a href="cor.html#cb45-8"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="fl">0.327</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="cor.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> z_homework, <span class="at">y =</span> z_gpa)) <span class="sc">+</span></span>
+<span id="cb45-2"><a href="cor.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb45-3"><a href="cor.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb45-4"><a href="cor.html#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Time spent on homework (standardized)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-5"><a href="cor.html#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;GPA (standardized)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-6"><a href="cor.html#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-7"><a href="cor.html#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-8"><a href="cor.html#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="fl">0.327</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
 <img src="06-correlation_files/figure-html/unnamed-chunk-12-1.png" alt="Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed (dashed lines) along with the fitted regression line (solid line)." width="50%" />
 <p class="caption">
 Figure 7: Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed (dashed lines) along with the fitted regression line (solid line).
@@ -439,11 +477,11 @@ Figure 7: Plot of the standardized GPA versus the standardized time spent on hom
 <div id="variance-accounted-for-in-a-standardized-regression" class="section level3">
 <h3>Variance Accounted For in a Standardized Regression</h3>
 <p>The <span class="math inline">\(R^2\)</span> value for the standardized and unstandardized regression models are identical. That is because the correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> and that between <span class="math inline">\(z_x\)</span> and <span class="math inline">\(z_y\)</span> are identical (see below). Thus the squared correlation will also be the same, in this case <span class="math inline">\(R^2 = 0.327^2 = 0.107\)</span>.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="cor.html#cb46-1"></a>keith <span class="op">%&gt;%</span></span>
-<span id="cb46-2"><a href="cor.html#cb46-2"></a><span class="st">  </span><span class="kw">select</span>(z_gpa, z_homework) <span class="op">%&gt;%</span></span>
-<span id="cb46-3"><a href="cor.html#cb46-3"></a><span class="st">  </span><span class="kw">correlate</span>()</span></code></pre></div>
-<pre><code># A tibble: 2 x 3
-  rowname     z_gpa z_homework
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="cor.html#cb46-1" aria-hidden="true" tabindex="-1"></a>keith <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="cor.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(z_gpa, z_homework) <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="cor.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>()</span></code></pre></div>
+<pre><code># A tibble: 2 × 3
+  term        z_gpa z_homework
   &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
 1 z_gpa      NA          0.327
 2 z_homework  0.327     NA    </code></pre>
@@ -453,32 +491,32 @@ Figure 7: Plot of the standardized GPA versus the standardized time spent on hom
 \hat{z}_{\mathrm{GPA}} = 0
 \]</span></p>
 <p>You could also fit the intercept-only model to obtain this result, <code>lm(z_gpa ~ 1, data = keith)</code>. We can now compute the SSE based on the intercept-only model.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="cor.html#cb48-1"></a><span class="co"># Compute the SSE for the standardized intercept-only model</span></span>
-<span id="cb48-2"><a href="cor.html#cb48-2"></a>keith <span class="op">%&gt;%</span></span>
-<span id="cb48-3"><a href="cor.html#cb48-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb48-4"><a href="cor.html#cb48-4"></a>    <span class="dt">y_hat =</span> <span class="dv">0</span>,</span>
-<span id="cb48-5"><a href="cor.html#cb48-5"></a>    <span class="dt">errors =</span> z_gpa <span class="op">-</span><span class="st"> </span>y_hat,</span>
-<span id="cb48-6"><a href="cor.html#cb48-6"></a>    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb48-7"><a href="cor.html#cb48-7"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb48-8"><a href="cor.html#cb48-8"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb48-9"><a href="cor.html#cb48-9"></a>    <span class="dt">SSE =</span> <span class="kw">sum</span>(sq_errors)</span>
-<span id="cb48-10"><a href="cor.html#cb48-10"></a>  )</span></code></pre></div>
-<pre><code># A tibble: 1 x 1
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="cor.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the SSE for the standardized intercept-only model</span></span>
+<span id="cb48-2"><a href="cor.html#cb48-2" aria-hidden="true" tabindex="-1"></a>keith <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="cor.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb48-4"><a href="cor.html#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_hat =</span> <span class="dv">0</span>,</span>
+<span id="cb48-5"><a href="cor.html#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">errors =</span> z_gpa <span class="sc">-</span> y_hat,</span>
+<span id="cb48-6"><a href="cor.html#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sq_errors =</span> errors <span class="sc">^</span> <span class="dv">2</span></span>
+<span id="cb48-7"><a href="cor.html#cb48-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb48-8"><a href="cor.html#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb48-9"><a href="cor.html#cb48-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">SSE =</span> <span class="fu">sum</span>(sq_errors)</span>
+<span id="cb48-10"><a href="cor.html#cb48-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code># A tibble: 1 × 1
     SSE
   &lt;dbl&gt;
 1    99</code></pre>
 <p>We also compute the SSE for the standardized model that includes the standardized predictor of time spent on homework.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="cor.html#cb50-1"></a><span class="co"># Compute the SSE for the standardized slope-intercept model</span></span>
-<span id="cb50-2"><a href="cor.html#cb50-2"></a>keith <span class="op">%&gt;%</span></span>
-<span id="cb50-3"><a href="cor.html#cb50-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb50-4"><a href="cor.html#cb50-4"></a>    <span class="dt">y_hat =</span> <span class="dv">0</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.327</span> <span class="op">*</span><span class="st"> </span>z_homework,</span>
-<span id="cb50-5"><a href="cor.html#cb50-5"></a>    <span class="dt">errors =</span> z_gpa <span class="op">-</span><span class="st"> </span>y_hat,</span>
-<span id="cb50-6"><a href="cor.html#cb50-6"></a>    <span class="dt">sq_errors =</span> errors <span class="op">^</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb50-7"><a href="cor.html#cb50-7"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb50-8"><a href="cor.html#cb50-8"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb50-9"><a href="cor.html#cb50-9"></a>    <span class="dt">SSE =</span> <span class="kw">sum</span>(sq_errors)</span>
-<span id="cb50-10"><a href="cor.html#cb50-10"></a>  )</span></code></pre></div>
-<pre><code># A tibble: 1 x 1
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="cor.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the SSE for the standardized slope-intercept model</span></span>
+<span id="cb50-2"><a href="cor.html#cb50-2" aria-hidden="true" tabindex="-1"></a>keith <span class="sc">%&gt;%</span></span>
+<span id="cb50-3"><a href="cor.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb50-4"><a href="cor.html#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_hat =</span> <span class="dv">0</span> <span class="sc">+</span> <span class="fl">0.327</span> <span class="sc">*</span> z_homework,</span>
+<span id="cb50-5"><a href="cor.html#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">errors =</span> z_gpa <span class="sc">-</span> y_hat,</span>
+<span id="cb50-6"><a href="cor.html#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sq_errors =</span> errors <span class="sc">^</span> <span class="dv">2</span></span>
+<span id="cb50-7"><a href="cor.html#cb50-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb50-8"><a href="cor.html#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb50-9"><a href="cor.html#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">SSE =</span> <span class="fu">sum</span>(sq_errors)</span>
+<span id="cb50-10"><a href="cor.html#cb50-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code># A tibble: 1 × 1
     SSE
   &lt;dbl&gt;
 1  88.4</code></pre>
@@ -499,19 +537,19 @@ R^2 = \frac{99 - 88.39}{99} = 0.107
 <li>The fitted values and the residuals.</li>
 </ul>
 <p>It doesn’t matter whether you use the unstandardized or standardized regression model here, but to illustrate, we will use the unstandardized model.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="cor.html#cb52-1"></a>keith <span class="op">%&gt;%</span></span>
-<span id="cb52-2"><a href="cor.html#cb52-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb52-3"><a href="cor.html#cb52-3"></a>    <span class="dt">y_hat =</span> <span class="fl">74.290</span> <span class="op">+</span><span class="st"> </span><span class="fl">1.214</span> <span class="op">*</span><span class="st"> </span>homework,</span>
-<span id="cb52-4"><a href="cor.html#cb52-4"></a>    <span class="dt">errors =</span> gpa <span class="op">-</span><span class="st"> </span>y_hat</span>
-<span id="cb52-5"><a href="cor.html#cb52-5"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb52-6"><a href="cor.html#cb52-6"></a><span class="st">  </span><span class="kw">select</span>(gpa, y_hat, errors) <span class="op">%&gt;%</span></span>
-<span id="cb52-7"><a href="cor.html#cb52-7"></a><span class="st">  </span><span class="kw">correlate</span>()</span></code></pre></div>
-<pre><code># A tibble: 3 x 4
-  rowname    gpa      y_hat     errors
-  &lt;chr&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-1 gpa     NA      0.327      0.945    
-2 y_hat    0.327 NA          0.0000596
-3 errors   0.945  0.0000596 NA        </code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="cor.html#cb52-1" aria-hidden="true" tabindex="-1"></a>keith <span class="sc">%&gt;%</span></span>
+<span id="cb52-2"><a href="cor.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb52-3"><a href="cor.html#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_hat =</span> <span class="fl">74.290</span> <span class="sc">+</span> <span class="fl">1.214</span> <span class="sc">*</span> homework,</span>
+<span id="cb52-4"><a href="cor.html#cb52-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">errors =</span> gpa <span class="sc">-</span> y_hat</span>
+<span id="cb52-5"><a href="cor.html#cb52-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb52-6"><a href="cor.html#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gpa, y_hat, errors) <span class="sc">%&gt;%</span></span>
+<span id="cb52-7"><a href="cor.html#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>()</span></code></pre></div>
+<pre><code># A tibble: 3 × 4
+  term      gpa      y_hat     errors
+  &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1 gpa    NA      0.327      0.945    
+2 y_hat   0.327 NA          0.0000596
+3 errors  0.945  0.0000596 NA        </code></pre>
 <p>The first correlation between the observed values and the fitted values is 0.327. This is the same as the correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. This is because the fitted values are just a linear transformation of <span class="math inline">\(x\)</span>. In other words, the fitted values have the same relationship with <span class="math inline">\(y\)</span> as <span class="math inline">\(x\)</span> has with <span class="math inline">\(y\)</span>. Note that if we square this value we get the <span class="math inline">\(R^2\)</span> value for the model. So another way of computing <span class="math inline">\(R^2\)</span> is to square the correlation between <span class="math inline">\(y\)</span> and <span class="math inline">\(\hat{y}\)</span>.</p>
 <p><span class="math display">\[
 R^2 = (r_{y,\hat{y}})^2

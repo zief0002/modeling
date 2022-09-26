@@ -80,6 +80,7 @@ tab_01 %>%
   mutate(
     rowname = c("1. GPA", "2. Time spent on homework", "3. Parent education level")
   ) %>%
+  select(rowname, gpa, homework, parent_ed) %>%
   kable(
     format = "html",
     caption = "Correlations between three student attributes. Means (standard deviations) are displayed on the main diagonal.",
