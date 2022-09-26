@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Introduction to Multiple Regression | Statistical Modeling and Computation for Educational Scientists" />
+<meta property="og:type" content="book" />
+
+<meta property="og:description" content="EPsy 8251 and 8252 Notes" />
+<meta name="github-repo" content="zief0002/modeling" />
+
+<meta name="author" content="Andrew Zieffler" />
+
+<meta name="date" content="2022-09-26" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta name="description" content="EPsy 8251 and 8252 Notes">
+
+<title>Introduction to Multiple Regression | Statistical Modeling and Computation for Educational Scientists</title>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+<link rel="stylesheet" href="style/table-styles.css" type="text/css" />
+<link rel="stylesheet" href="style/syntax.css" type="text/css" />
+<link rel="stylesheet" href="style/navbar.css" type="text/css" />
+<link rel="stylesheet" href="style/notes.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+/* show arrow before summary tag as in bootstrap
+TODO: remove if boostrap in updated in html_document (rmarkdown#1485) */
+details > summary {
+  display: list-item;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#foreword" id="toc-foreword">Foreword</a></li>
+<li><a href="preface.html#preface" id="toc-preface">Preface</a></li>
+<li><a href="slrd.html#slrd" id="toc-slrd">Simple Linear Regression—Description</a></li>
+<li><a href="ordinary-least-squares-ols-estimation.html#ordinary-least-squares-ols-estimation" id="toc-ordinary-least-squares-ols-estimation">Ordinary Least Squares (OLS) Estimation</a></li>
+<li><a href="cor.html#cor" id="toc-cor">Correlation and Standardized Regression</a></li>
+<li><a href="coefinf.html#coefinf" id="toc-coefinf">Coefficient-Level Inference</a></li>
+<li><a href="modinf.html#modinf" id="toc-modinf">Model-Level Inference</a></li>
+<li><a href="multreg.html#multreg" id="toc-multreg">Introduction to Multiple Regression</a></li>
+<li><a href="statcontrol.html#statcontrol" id="toc-statcontrol">Understanding Statistical Control</a></li>
+<li><a href="assumptions.html#assumptions" id="toc-assumptions">Distributional Assumptions Underlying the Regression Model</a></li>
+<li><a href="dummy.html#dummy" id="toc-dummy">Dichotomous Categorical Predictors</a></li>
+<li><a href="polychotomous.html#polychotomous" id="toc-polychotomous">Polychotomous Categorical Predictors</a></li>
+<li><a href="interaction-01.html#interaction-01" id="toc-interaction-01">Introduction to Interaction Effects</a></li>
+<li><a href="interaction-02.html#interaction-02" id="toc-interaction-02">More Interaction Effects</a></li>
+<li><a href="references.html#references" id="toc-references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="multreg" class="section level1">
+<h1>Introduction to Multiple Regression</h1>
+<p>In this chapter, you will learn about including multiple predictors into the regression model. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv">riverview.csv</a> data to examine whether education level is related to income. The data contain five attributes collected from a random sample of <span class="math inline">\(n=32\)</span> employees working for the city of Riverview, a hypothetical midwestern city (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/riverview.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>city</code>.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="multreg.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb88-2"><a href="multreg.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb88-3"><a href="multreg.html#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb88-4"><a href="multreg.html#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb88-5"><a href="multreg.html#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb88-6"><a href="multreg.html#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb88-7"><a href="multreg.html#cb88-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-8"><a href="multreg.html#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb88-9"><a href="multreg.html#cb88-9" aria-hidden="true" tabindex="-1"></a>city <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/zief0002/modeling/master/data/riverview.csv&quot;</span>)</span>
+<span id="cb88-10"><a href="multreg.html#cb88-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(city)</span></code></pre></div>
+<pre><code># A tibble: 6 × 5
+  education income seniority gender     party      
+      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
+1         8   26.4         9 female     Independent
+2         8   37.4         7 Not female Democrat   
+3        10   34.2        16 female     Independent
+4        10   25.5         1 female     Republican 
+5        10   47.0        14 Not female Democrat   
+6        12   46.5        11 female     Democrat   </code></pre>
+<p><br /></p>
+<div id="observational-data-and-alternative-explanations" class="section level2">
+<h2>Observational Data and Alternative Explanations</h2>
+<p>In a <a href="slrd.html#slrd">previous chapter</a>, we fitted a model regressing employees’ incomes on education level. We will do that again, but now we will also evaluate the inferential evidence around the effect of education on inclomes.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="multreg.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb90-2"><a href="multreg.html#cb90-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(income <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> education, <span class="at">data =</span> city)</span>
+<span id="cb90-3"><a href="multreg.html#cb90-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-4"><a href="multreg.html#cb90-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain model-level results</span></span>
+<span id="cb90-5"><a href="multreg.html#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.a)</span></code></pre></div>
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.632         0.619  8.98      51.5 0.0000000556     1  -115.  235.  240.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    2418.          30    32</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="multreg.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain coefficient-level results</span></span>
+<span id="cb92-2"><a href="multreg.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.a)</span></code></pre></div>
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic      p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+1 (Intercept)    11.3      6.12       1.85 0.0743      
+2 education       2.65     0.370      7.17 0.0000000556</code></pre>
+<p>The fitted equation,</p>
+<p><span class="math display">\[
+\hat{\mathrm{Income}_i} = 11.321 + 2.651(\mathrm{Education~Level}_i),
+\]</span></p>
+<p>suggests that the estimated mean income for employees with education levels that differ by one year varies by 2.651 thousand dollars, on average. We also found that differences in education level explained 63.2% of the variation in income, and that the empirical evidence is inconsistent with the hypothesis that education level explains none of the variation in incomes (<span class="math inline">\(p&lt;.001\)</span>). All this suggests that education level is likely related to income.</p>
+<p>If the data had been collected as part of an experiment where we could have randomly assigned cases in our sample to the different levels of education (i.e., different values of <span class="math inline">\(X\)</span>), the analysis would be done and we could conclude that education has a positive effect on income. Unfortunately, the data we used in the analysis is observational—we did not assign levels of the predictor to the cases in the sample. This means there could be other variables that are correlated with the predictor that are influencing the effect we saw in the data.</p>
+<p>For example, we know that in civil service jobs, pay is influenced by seniority. So, one question is whether the distribution of seniority is similar across employees with different education levels. If not, it may be that those employees with higher education levels have higher levels of seniority. If that is the case, perhaps some (or all) of the positive effect of education on income that we observed is really just a function of higher seniority. To determine whether this is the case, we need to include seniority as another predictor in the model along with education level and see whether there is still an effect of education on income.</p>
+<p><br /></p>
+</div>
+<div id="examining-the-seniority-predictor" class="section level2">
+<h2>Examining the Seniority Predictor</h2>
+<p>Before we begin modeling, it behooves us to explore the seniority predictor. Below we examine the marginal distribution of seniority for the 32 employees in the sample.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="multreg.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine the marginal distribution</span></span>
+<span id="cb94-2"><a href="multreg.html#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> city, <span class="fu">aes</span>(<span class="at">x =</span> seniority)) <span class="sc">+</span></span>
+<span id="cb94-3"><a href="multreg.html#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="sc">+</span></span>
+<span id="cb94-4"><a href="multreg.html#cb94-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb94-5"><a href="multreg.html#cb94-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Seniority level (in years)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb94-6"><a href="multreg.html#cb94-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="09-intro-to-multiple-regression_files/figure-html/unnamed-chunk-6-1.png" alt="Density plot of the marginal distribution of seniority." width="50%" />
+<p class="caption">
+Figure 13: Density plot of the marginal distribution of seniority.
+</p>
+</div>
+<p>We aslo compute numerical summaries of the distribution.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="multreg.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute mean and standard deviation</span></span>
+<span id="cb95-2"><a href="multreg.html#cb95-2" aria-hidden="true" tabindex="-1"></a>city <span class="sc">%&gt;%</span></span>
+<span id="cb95-3"><a href="multreg.html#cb95-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb95-4"><a href="multreg.html#cb95-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">mean</span>(seniority),</span>
+<span id="cb95-5"><a href="multreg.html#cb95-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(seniority)</span>
+<span id="cb95-6"><a href="multreg.html#cb95-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<blockquote>
+<p>Seniority is symmetric with a typical employee having roughly 15 years of seniority. There is quite a lot of variation in seniority, with most employees having between 8 and 22 years of seniority.</p>
+</blockquote>
+<p>After we examine the marginal distribution, we should examine the relationships among all of three variables we are considering in the analysis. Typically researchers will examine the scatterplot between each predictor and the outcome (to evaluate the functional forms of the relationships with the outcome) and also examine the correlation matrix. Since we have already looked at the scatterplot between education-level and income, we focus here on the relationship between seniority and income.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="multreg.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Relationship between income and seniority</span></span>
+<span id="cb96-2"><a href="multreg.html#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> city, <span class="fu">aes</span>(<span class="at">x =</span> seniority, <span class="at">y =</span> income)) <span class="sc">+</span></span>
+<span id="cb96-3"><a href="multreg.html#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb96-4"><a href="multreg.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb96-5"><a href="multreg.html#cb96-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Seniority (in years)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb96-6"><a href="multreg.html#cb96-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Income (in thousands of dollars)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="09-intro-to-multiple-regression_files/figure-html/unnamed-chunk-8-1.png" alt="Scatterplot showing the relationship between seniority level and income." width="50%" />
+<p class="caption">
+Figure 4: Scatterplot showing the relationship between seniority level and income.
+</p>
+</div>
+<p>The correlation matrix between all three variables is also examined.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="multreg.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation matrix</span></span>
+<span id="cb97-2"><a href="multreg.html#cb97-2" aria-hidden="true" tabindex="-1"></a>city <span class="sc">%&gt;%</span></span>
+<span id="cb97-3"><a href="multreg.html#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(income, education, seniority) <span class="sc">%&gt;%</span></span>
+<span id="cb97-4"><a href="multreg.html#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>()</span></code></pre></div>
+<pre><code># A tibble: 3 × 4
+  term      income education seniority
+  &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 income    NA         0.795     0.582
+2 education  0.795    NA         0.339
+3 seniority  0.582     0.339    NA    </code></pre>
+<blockquote>
+<p>The relationship between seniority and income seems linear and positive (<span class="math inline">\(r=0.58\)</span>). This suggests that employees with more seniority also tend to have higher incomes. Education level and seniority are also modestly correlated (<span class="math inline">\(r=0.34\)</span>), indicating that employees with higher education levels tend to also have more seniority.</p>
+</blockquote>
+<p>Because there is a positive correlation between seniority and income in the sample, it suggests that city employees with more seniority level tend to have higher incomes. The correlation between the two predictors (education level and seniority) is also positive suggesting that city employees with higher education levels tend to have more seniority.</p>
+<p><br /></p>
+<div id="simple-regression-model-seniority-as-a-predictor-of-income" class="section level3">
+<h3>Simple Regression Model: Seniority as a Predictor of Income</h3>
+<p>It is also instructive to fit and examine the results from the simple regression model using seniority as a predictor of variation in income.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="multreg.html#cb99-1" aria-hidden="true" tabindex="-1"></a>lm.b <span class="ot">=</span> <span class="fu">lm</span>(income <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> seniority, <span class="at">data =</span> city)</span>
+<span id="cb99-2"><a href="multreg.html#cb99-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-3"><a href="multreg.html#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level results</span></span>
+<span id="cb99-4"><a href="multreg.html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.b)</span></code></pre></div>
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.339         0.317  12.0      15.4 0.000477     1  -124.  254.  258.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    4342.          30    32</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="multreg.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level results</span></span>
+<span id="cb101-2"><a href="multreg.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.b)</span></code></pre></div>
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic      p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+1 (Intercept)    35.7      5.07       7.03 0.0000000807
+2 seniority       1.22     0.311      3.92 0.000477    </code></pre>
+<p>The fitted equation,</p>
+<p><span class="math display">\[
+\hat{\mathrm{Income}_i} = 35.690 + 1.219(\mathrm{Seniority~Level}_i)
+\]</span></p>
+<p>suggests that the estimated mean income for employees with seniority levels that differ by one year varies by 1.219 thousand dollars. We also find that differences in seniority level explain 33.9% of the variation in income, and that this empirical evidence is inconsistent with the hypothesis that seniority explains none of the variation in incomes (<span class="math inline">\(p&lt;.001\)</span>).</p>
+<p>Our research question is focused on examining the relationship between education level and income. The relationships observed in this correlation matrix is consistent with the issues we were concerned about earlier, namely that the positive effect of education level on income may be due to the fact that employees with higher education levels have more seniority. And, the positive relationship between seniority and income is clouding the “real” underlying relationship between education and income.</p>
+<p>What we need to know in order to determine the effect of education on incomes is whether <strong>after we account for any distributional differences in seniority across education level</strong> is there is still a relationship between education level and income. To answer this question, we will fit a model that includes both predictors.</p>
+<p><br /></p>
+</div>
+</div>
+<div id="multiple-regression-model-education-level-and-seniority-as-a-predictors-of-income" class="section level2">
+<h2>Multiple Regression Model: Education Level and Seniority as a Predictors of Income</h2>
+<p>To fit the multiple regression model, we will just add (literally) additional predictors to the right-hand side of the <code>lm()</code> formula.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="multreg.html#cb103-1" aria-hidden="true" tabindex="-1"></a>lm.c <span class="ot">=</span> <span class="fu">lm</span>(income <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> education <span class="sc">+</span> seniority, <span class="at">data =</span> city)</span></code></pre></div>
+<p><br /></p>
+<div id="model-level-results" class="section level3">
+<h3>Model-Level Results</h3>
+<p>To interpret multiple regression results, begin with the model-level information.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="multreg.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level results</span></span>
+<span id="cb104-2"><a href="multreg.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.c)</span></code></pre></div>
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic       p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.742         0.724  7.65      41.7 0.00000000298     2  -109.  226.  232.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    1695.          29    32</code></pre>
+<p>In a multiple regression model there are multiple predictors that are being used to explain variation in the outcome variable. We can begin by examining the <span class="math inline">\(R^2\)</span> value from the output. Interpreting this value, we say:</p>
+<blockquote>
+<p>Differences in education level AND seniority explain 74.2% of the variation in income, in the sample.</p>
+</blockquote>
+<p>The model-level test allows us to evaluate whether, together, these predictors explain variation in the outcome or whether any explained variation in the sample is attributable to sampling error. The formal model-level null hypothesis that tests this can be written mathematically as,</p>
+<p><span class="math display">\[
+H_0:\rho^2 = 0.
+\]</span></p>
+<p>This is a test of whether <em>all the predictors together</em> explain variation in the outcome variable. The results of this test, <span class="math inline">\(F(2,29)=41.65\)</span>, <span class="math inline">\(p&lt;.001\)</span>, suggest that the empirical evidence is inconsistent with the null hypothesis; it is likely that together education level and seniority level do explain variation in the population.</p>
+<p>Equivalently, we can also write the model null hypothesis as a function of the predictor effects, namely,</p>
+<p><span class="math display">\[
+H_0:\beta_{\mathrm{Education~Level}} = \beta_{\mathrm{Seniority}} = 0.
+\]</span></p>
+<p>In plain English, this is akin to stating that there is NO EFFECT for every predictor included in the model. If the empirical data are inconsistent with this null hypothesis, it suggests that AT LEAST ONE of the predictor effects is likely not zero.</p>
+<p>Although the two expressions of the model-level null hypothesis look quite different, they are answering the same question, namely whether the model predicts more variation in income than is attributable to sampling variation. Based on the results of the model-level hypothesis test we believe there is an effect of education-level on income, an effect of seniority on income, OR there is an effect of both predictors on income. The model-level results, however, do not allow us to determine which of the predictors have an effect on the outcome variable. For that we need to evaluate the coefficient-level results.</p>
+<p><br /></p>
+</div>
+<div id="coefficient-level-results" class="section level3">
+<h3>Coefficient-Level Results</h3>
+<p>Now we turn to the coefficient-level results produced in the <code>tidy()</code> output.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="multreg.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level results</span></span>
+<span id="cb106-2"><a href="multreg.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.c)</span></code></pre></div>
+<pre><code># A tibble: 3 × 5
+  term        estimate std.error statistic     p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1 (Intercept)    6.77      5.37       1.26 0.218      
+2 education      2.25      0.335      6.73 0.000000220
+3 seniority      0.739     0.210      3.52 0.00146    </code></pre>
+<p>First we will write the fitted multiple regression equation,</p>
+<p><span class="math display">\[
+\hat{\mathrm{Income}_i} = 6.769 + 2.252(\mathrm{Education~Level}_i) + .739(\mathrm{Seniority~Level}_i)
+\]</span></p>
+<p>The slopes (of which there are now more than one) are referred to as <em>partial regression slopes</em> or <em>partial effects</em>. They represent the effect of the predictor <em>AFTER</em> accounting for the effects of the other predictors included in the model. For example,</p>
+<blockquote>
+<ul>
+<li>The <strong>partial effect of education level</strong> is 2.252. This indicates that a one year difference in education level is associated with a 2.252 thousand dollar difference in income (on average), after accounting for differences in seniority level.</li>
+<li>The <strong>partial effect of seniority</strong> is 0.739. This indicates that a one year difference in seniority level is associated with a 0.739 thousand dollar difference in income (on average), after accounting for differences in education level.</li>
+</ul>
+</blockquote>
+<div class="fyi">
+<p>The language “after accounting for” is not ubiquitous in interpreting partial regression coefficients. Some researchers instead use “controlling for”, “holding constant”, or “partialling out the effects of”. For example, the education effect could also be interpreted these ways:</p>
+<ul>
+<li><p>A one year difference in education level is associated with a 2.252 thousand dollar difference in income (on average), <em>after controlling for differences</em> in seniority.</p></li>
+<li><p>A one year difference in education level is associated with a 2.252 thousand dollar difference in income (on average), <em>after holding the effect</em> of seniority constant.</p></li>
+<li><p>A one year difference in education level is associated with a 2.252 thousand dollar difference in income (on average), <em>after partialling out the effect</em> of seniority.</p></li>
+</ul>
+</div>
+<p>Lastly, we can also interpret the intercept:</p>
+<blockquote>
+<p>The average income for all employees with 0 years of education AND 0 years of seniority is estimated to be 6.769 thousand dollars.</p>
+</blockquote>
+<p>This is the predicted average <span class="math inline">\(Y\)</span> value when ALL the predictors have a value of 0. As such, it is often an extrapolated prediction and is not of interest to most applied researchers. For example, in our data, education level ranges from 8 to 24 years and seniority level ranges from 1 to 27 years. We have no data that has a zero value for either predictor, let alone for both. This makes prediction of the average <span class="math inline">\(Y\)</span> value tenuous at these <span class="math inline">\(X\)</span> values.</p>
+<p><br /></p>
+</div>
+<div id="coefficient-level-inference" class="section level3">
+<h3>Coefficient-Level Inference</h3>
+<p>At the coefficient-level, the hypotheses being tested are about each individual predictor. The mathematical expression of the hypothesis is</p>
+<p><span class="math display">\[
+H_0: \beta_k = 0.
+\]</span></p>
+<p>In plain English, the statistical null hypothesis states: After accounting for ALL the other predictors included in the model, there is NO EFFECT of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span>. These hypotheses are evaluated using a <em>t</em>-test. For example, consider the test associated with the education level coefficient.</p>
+<p><span class="math display">\[
+H_0: \beta_{\mathrm{Education~Level}} = 0
+\]</span></p>
+<p>This is akin to stating there is NO EFFECT of education level on income after accounting for differences in seniority level. The empirical evidence is inconsistent with this hypothesis, <span class="math inline">\(t(29)=6.73\)</span>, <span class="math inline">\(p&lt;.001\)</span>, suggesting that there is likely an effect of education on income after controlling for differences in seniority level. (Note that the <em>df</em> for the <em>t</em>-test for all of the coefficient tests is equivalent to the error, or denominator, <em>df</em> for the model-level <em>F</em>-test.)</p>
+<p>It is important to note that the <em>p</em>-value at the model-level is different from any of the coefficient-level <em>p</em>-values. This is because when we include more than one predictor in a model, the hypotheses being tested at the model- and coefficient-levels are different. The model-level test is a simultaneous test of all the predictor effects, while the coefficient-level tests are testing the added effect of a particular predictor.</p>
+<p><br /></p>
+</div>
+</div>
+<div id="multiple-regression-statistical-model" class="section level2">
+<h2>Multiple Regression: Statistical Model</h2>
+<p>The multiple regression model says that each case’s outcome (<span class="math inline">\(Y\)</span>) is a function of two or more predictors (<span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, , <span class="math inline">\(X_k\)</span>) and some amount of error. Mathematically it can be written as</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1(X1_{i}) + \beta_2(X2_{i}) + \ldots + \beta_k(Xk_{i}) + \epsilon_i
+\]</span></p>
+<p>As with simple regression we are interested in estimating the values for each of the regression coefficients, namely, <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, <span class="math inline">\(\beta_2\)</span>, …, <span class="math inline">\(\beta_k\)</span>. To do this, we again employ least squares estimation to minimize the sum of the squared error terms.</p>
+<p>Since we have more than one <span class="math inline">\(X\)</span> term in the fitted equation, the structural part of the model no longer mathematically defines a line. For example, the fitted equation from earlier,</p>
+<p><span class="math display">\[
+\hat{Y_i} = 6.769 + 2.252(X1_i) + 0.739(X2_i),
+\]</span></p>
+<p>mathematically defines a regression plane. (Note we have three dimensions, <span class="math inline">\(Y\)</span>, <span class="math inline">\(X1\)</span>, and <span class="math inline">\(X2\)</span>. If we add predictors, we have four or more dimensions and we describe a hyperplane.)</p>
+<p>The data and regression plane defined by the education level, seniority level, and income for the Riverview employees is shown below. The regression plane is tilted up in both the education level direction (corresponding to a positive partial slope of education) and in the seniority level direction (corresponding to a positive partial slope of seniority). The blue points are above the plane (employees with a positive residual) and the yellow points are below the plane (employees with a negative residual).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<img src="figs/notes-09-3dscatterplot.png" alt="Three-dimensional scatterplot showing the relationship between education level, seniority, and income. The fitted regression plane is also shown. Blue observations have a positive residual and yellow observations have a negative residual." width="60%" />
+<p class="caption">
+Figure 15: Three-dimensional scatterplot showing the relationship between education level, seniority, and income. The fitted regression plane is also shown. Blue observations have a positive residual and yellow observations have a negative residual.
+</p>
+</div>
+<p>Graphically, the residuals from this model are the vertical distance between the observed points and the regression plane. Mathematically, they can be computed as,</p>
+<p><span class="math display">\[
+\hat{\epsilon_i} = Y_i - \hat{Y_i}
+\]</span>
+## ANOVA Decomposition</p>
+<p>As with the simple regression model, we are interested in whether the model explains any of the unexplained variation identified in the baseline intercept-only model. As a reminder, we quantify the amount of unexplained variation through the residual sum of squares,</p>
+<p><span class="math display">\[
+\mathrm{SS}_{\mathrm{Residuals}} = \sum \hat{\epsilon_i}^2
+\]</span></p>
+<p>The residual sum of squares can be obtained using the <code>anova()</code> function.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="multreg.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm.c)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: income
+          Df Sum Sq Mean Sq F value         Pr(&gt;F)    
+education  1 4147.3  4147.3  70.944 0.000000002781 ***
+seniority  1  722.9   722.9  12.366        0.00146 ** 
+Residuals 29 1695.3    58.5                           
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Here the <span class="math inline">\(\mathrm{SS}_{\mathrm{Residuals}} = 1695\)</span>. Because the model was fitted with OLS, any other plane defined with the predictors of education and seniority level; (i.e., different coefficient values for the intercept and predictors) would produce a higher sum of squared residuals value. Comparing the squared sum of residual from this model to that from the intercept-only model (<span class="math inline">\(\mathrm{SS}_{\mathrm{Residuals}} = 6566\)</span>), we find that there is less unexplained variation after including education and seniority level in the model. Here is the partitioning of the variation in income.</p>
+<p><span class="math display">\[
+\underbrace{6566}_{\substack{\text{Total} \\ \text{Variation}}} = \underbrace{4871}_{\substack{\text{Explained} \\ \text{Variation}}} + \underbrace{1695}_{\substack{\text{Unexplained} \\ \text{Variation}}}
+\]</span></p>
+<p>Dividing each term in the partitioning by the total sum of squares,</p>
+<p><span class="math display">\[
+\begin{split}
+\frac{6566}{6566} &amp;= \frac{4871}{6566} + \frac{1695}{6566} \\[2ex]
+1 &amp;= 0.742 + 0.258
+\end{split}
+\]</span>
+The proportion of variance explained by the model is the same as the <span class="math inline">\(R^2\)</span> value we obtained from the <code>glance()</code> function. We can also obtain the model sum of squares (4871) by adding the sum of squared term for the education predictor (4147) and that for the seniority predictor (723) from the <code>anova()</code> output. The total sum of squared (6566) can be computed by summing all the sum of squared terms in the <code>anova()</code> output:</p>
+<p><span class="math display">\[
+4147.3 + 722.9 + 1695.3 = 6565.5
+\]</span></p>
+<p>which is within rounding error of 6566.</p>
+<p>Note that the output from <code>anova()</code> also partitions the <em>df</em> among the predictor terms and the residuals. Each predictor has 1 <em>df</em> associated with it, which gives the model 2 <em>df</em>. The residuals have 29 <em>df</em> associated with them. The model and residual <em>df</em> are the <em>df</em> used in the <em>F</em>-test and given in the <code>glance()</code> output. The total <em>df</em> in the data are <span class="math inline">\(2+29 = 31\)</span>, which is <span class="math inline">\(n-1\)</span>. Lastly, we point out that the residual <em>df</em> value from the <code>anova()</code> output (29) is the <em>df</em> associated with the <em>t</em>-tests for the coefficient-level tests (presented earlier).</p>
+<p><br /></p>
+<div id="hypotheses-tested-in-the-anova-output" class="section level3">
+<h3>Hypotheses Tested in the ANOVA Output</h3>
+<p>The <em>F</em>-values given in the <code>anova()</code> output do not match the <em>F</em>-test given in the <code>glance()</code> output. This is because the hypotheses being tested in the <code>anova()</code> output are different than that being tested in the <code>glance()</code> output. To understand the tests that are being performed, we need to understand how the variation is being partitioned in the model we fitted. The order the predictors in the <code>anova()</code> output (which is connected to the order they were included in the <code>lm()</code> function) shows this partitioning numerically. We can also create a diagram that shows this partitioning.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<img src="figs/notes-09-partitioning-1.png" alt="Partioning of variation associated with the model in which education-level is included prior to seniority-level." width="60%" />
+<p class="caption">
+Figure 16: Partioning of variation associated with the model in which education-level is included prior to seniority-level.
+</p>
+</div>
+<p>In the diagram, the total unexplained variation is first explained by including education-level in the model (the first predictor included in the <code>lm()</code> function). This predictor explains some variation and leaves some of the variation unexplained. Then, seniority-level is allowed to explain any residual (unexplained) variation that remains.</p>
+<p>The hypothesis that is being tested by an <em>F</em>-test is whether the explained variation is more than we expect because of sampling error. The way we quantify this is to compute <span class="math inline">\(R^2\)</span> which is a ratio of the explained variation to the total variation the predictor(s) is allowed to explain. The key here is that the numerator and denominator for <span class="math inline">\(R^2\)</span> are different depending on what is being tested.</p>
+<p>Consider the <span class="math inline">\(F\)</span>-test at the model-level from the <code>glance()</code> output. This is testing whether the model-level <span class="math inline">\(R^2\)</span> is more than we expect because of sampling error. In the diagram, the explained variation in the model-level <span class="math inline">\(R^2\)</span> is the total sum of all the blue circles since the model includes both education-level and seniority-level. The denominator is the baseline unexplained variation. Mathematically,</p>
+<p><span class="math display">\[
+\begin{split}
+R^2_{\mathrm{Model}} &amp;= \frac{4147 + 723}{6566} \\[2ex]
+&amp;= \frac{4879}{6566}
+\end{split}
+\]</span>
+This <em>F</em>-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in <code>glance()</code>, namely, <span class="math inline">\(F(2,29)=41.65\)</span>, <span class="math inline">\(p&lt;.001\)</span>.</p>
+<p>In the <code>anova()</code> output, results from two different <em>F</em>-tests are presented. The <em>F</em>-test in the first line of this output is associated with the education-level predictor. This is testing whether education-level (by itself) explains variation in the outcome <em>given the model fitted</em>. In the diagram, the explained variation for the education-level <span class="math inline">\(R^2\)</span> is the blue circles associated with adding education to the model first. The denominator is the unexplained variation if we only consider the education and residual variation. Mathematically,</p>
+<p><span class="math display">\[
+\begin{split}
+R^2_{\mathrm{Education\mbox{-}Level}} &amp;= \frac{4147}{4147 + 1695} \\[2ex]
+&amp;= 0.710
+\end{split}
+\]</span>
+The <em>F</em>-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the first line of the <code>anova()</code> output, namely, <span class="math inline">\(F(1,29)=70.94\)</span>, <span class="math inline">\(p&lt;.001\)</span>. The numerator <em>df</em> for the <em>F</em>-test is given in the <code>Df</code> column of the <code>anova()</code> output and the denominator <em>df</em> is the model’s residual <em>df</em>.</p>
+<p>The <em>F</em>-test in the second line of this output is associated with the seniority-level predictor. This is testing whether seniority-level explains variation in the outcome AFTER education-level has already been allowed to explain any unexplained variation. In the diagram, the explained variation for the seniority-level <span class="math inline">\(R^2\)</span> is the blue circle associated with adding seniority-level to the model. The denominator is the unexplained variation that remains after education-level has explained all the variation it can (this is no longer the baseline unexplained variation). Mathematically,</p>
+<p><span class="math display">\[
+\begin{split}
+R^2_{\mathrm{Seniority\mbox{-}Level} \vert \mathrm{Education\mbox{-}Level}} &amp;= \frac{723}{723 + 1695} \\[2ex]
+&amp;= 0.299
+\end{split}
+\]</span>
+This <em>F</em>-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the second line of the <code>anova()</code> output, namely, <span class="math inline">\(F(1,29)=12.37\)</span>, <span class="math inline">\(p=.001\)</span>.</p>
+<p>This second test is asking whether there is an effect of seniority-level <em>after accounting for</em> education-level given the model fitted. This is equivalent to the hypothesis we tested for seniority-level in the coefficient-level output. In fact, the <em>p</em>-value from the <code>tidy()</code> output for the seniority-level effect is equivalent to the <em>p</em>-value associated with the seniority-level in the second line of the <code>anova()</code> output.</p>
+<p><br /></p>
+</div>
+<div id="changing-the-order-of-the-predictors" class="section level3">
+<h3>Changing the Order of the Predictors</h3>
+<p>Let’s re-fit the model, but this time we will include seniority-level in the model first and education-level second.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="multreg.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model with different predictor order</span></span>
+<span id="cb110-2"><a href="multreg.html#cb110-2" aria-hidden="true" tabindex="-1"></a>lm.d <span class="ot">=</span> <span class="fu">lm</span>(income <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> seniority <span class="sc">+</span> education, <span class="at">data =</span> city)</span>
+<span id="cb110-3"><a href="multreg.html#cb110-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-4"><a href="multreg.html#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA decomposition</span></span>
+<span id="cb110-5"><a href="multreg.html#cb110-5" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm.d)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: income
+          Df Sum Sq Mean Sq F value       Pr(&gt;F)    
+seniority  1 2223.2 2223.16  38.029 0.0000010089 ***
+education  1 2647.1 2647.05  45.280 0.0000002203 ***
+Residuals 29 1695.3   58.46                         
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Examining the ANOVA decomposition, we see that some of the values in the table are the same and others are different. To understand why, we will again compose the partitioning diagram.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
+<img src="figs/notes-09-partitioning-2.png" alt="Partioning of variation associated with the model in which seniority-level is included prior to education-level." width="60%" />
+<p class="caption">
+Figure 19: Partioning of variation associated with the model in which seniority-level is included prior to education-level.
+</p>
+</div>
+<p>Consider the model-level <em>F</em>-test which tests whether the model-level <span class="math inline">\(R^2\)</span> is more than we expect because of sampling error. In the diagram, the explained variation in the model-level <span class="math inline">\(R^2\)</span> is the total sum of all the blue circles since the model includes both education-level and seniority-level. The denominator is the baseline unexplained variation. Mathematically,</p>
+<p><span class="math display">\[
+\begin{split}
+R^2_{\mathrm{Model}} &amp;= \frac{2223 + 2647}{6566} \\[2ex]
+&amp;= \frac{4879}{6566}
+\end{split}
+\]</span>
+This is the same model-level <span class="math inline">\(R^2\)</span> value we obtained earlier. Thus the results given in <code>glance()</code>, namely, <span class="math inline">\(F(2,29)=41.65\)</span>, <span class="math inline">\(p&lt;.001\)</span> are identical regardless of the order the predictors are included in the model.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="multreg.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb112-2"><a href="multreg.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.d)</span></code></pre></div>
+<pre><code># A tibble: 1 × 12
+  r.squ…¹ adj.r…² sigma stati…³ p.value    df logLik   AIC   BIC devia…⁴ df.re…⁵
+    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;
+1   0.742   0.724  7.65    41.7 2.98e-9     2  -109.  226.  232.   1695.      29
+# … with 1 more variable: nobs &lt;int&gt;, and abbreviated variable names
+#   ¹​r.squared, ²​adj.r.squared, ³​statistic, ⁴​deviance, ⁵​df.residual
+# ℹ Use `colnames()` to see all variable names</code></pre>
+<p>The <em>F</em>-test in the first line of this output is associated with the seniority-level predictor. This is testing whether seniority-level (by itself) explains variation in the outcome given the model. Mathematically,</p>
+<p><span class="math display">\[
+\begin{split}
+R^2_{\mathrm{Seniority\mbox{-}Level}} =&amp; \frac{2223}{2223+1695} \\[2ex]
+&amp;= 0.567
+\end{split}
+\]</span>
+The <em>F</em>-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the first line of the <code>anova()</code> output, namely, <span class="math inline">\(F(1,29)=38.03\)</span>, <span class="math inline">\(p&lt;.001\)</span>.</p>
+<p>The <em>F</em>-test in the second line of this output is testing whether education-level explains variation in the outcome AFTER seniority-level has already been allowed to explain any unexplained variation, given the model. Mathematically,</p>
+<p><span class="math display">\[
+\begin{split}
+R^2_{\mathrm{Education\mbox{-}Level} \vert \mathrm{Seniority\mbox{-}Level}} &amp;= \frac{2647}{2647 + 1695} \\[2ex]
+&amp;= 0.610
+\end{split}
+\]</span>
+The <em>F</em>-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the second line of the <code>anova()</code> output, namely, <span class="math inline">\(F(1,29)=45.28\)</span>, <span class="math inline">\(p&lt;.001\)</span>. This test is asking whether there is an effect of education-level <em>after accounting for</em> seniority-level. The <em>p</em>-value from this test is equivalent to the <em>p</em>-value associated with the education-level effect in the <code>tidy()</code> output.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="multreg.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb114-2"><a href="multreg.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.d)</span></code></pre></div>
+<pre><code># A tibble: 3 × 5
+  term        estimate std.error statistic     p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1 (Intercept)    6.77      5.37       1.26 0.218      
+2 seniority      0.739     0.210      3.52 0.00146    
+3 education      2.25      0.335      6.73 0.000000220</code></pre>
+<p>Note that the output from <code>tidy()</code> is also the same, regardless of predictor order. This means that whichever order you include the predictors in the model, the tests of the partial effects (does a predictor explain variation AFTER all other predictors have already explained a much variation as they can) will be the the same. Additionally, the fitted equation will be the same.</p>
+<p><br /></p>
+</div>
+</div>
+<div id="argh-which-set-of-results-should-i-use" class="section level2">
+<h2>Argh! Which Set of Results Should I Use?</h2>
+<p>From all these different <em>F</em>-tests and <span class="math inline">\(R^2\)</span> values, we see that there are different ways of computing the amount of “variation accounted for” for any given predictor. The sum of squares for a particular predictor depends on whether we are considering it in isolation, or whether it is being considered in conjunction with other predictors. Not only that, but it also depends on the order that the predictor is included in the model! Similarly the amount of total unexplained variation depends on whether we consider all the unexplained variation in a variable, or whether we condition on a particular model.</p>
+<p>In a regression analysis, we typically want to understand the amount of variation explained by a predictor after accounting for all the other predictors. That means, that when computing an <span class="math inline">\(R^2\)</span> value, the numerator will be based on the sum of squares if that predictor is last in the model. Similarly, the denominator will be based on the total variation available to explain after accounting for all the other predictors. To determine this, we include the predictor of interest last in the <code>lm()</code> and then examine the <code>anova()</code> output to obtain the sums of squares for the predictor and residuals. The <span class="math inline">\(R^2\)</span> value can then be computed based on those two values.</p>
+<p>To evaluate whether that proportion of explained variation is more than we expect because of chance, we can evaluate the <em>p</em>-value for that predictorfrom the <code>tidy()</code> output. This is equivalent to asking: Is a particular predictor statistically important after controlling for the other predictors in the model? Again, this is the same <em>p</em>-value you get from the <code>anova()</code> output if the predictor is last in thr <code>lm()</code>.</p>
+<div class="fyi">
+<p>Some statisticians and quantitative methodologists have attempted to capture some of the differences in the various ways to compute “variance accounted for” by referring to different types of sums of squares. For example, the sums of squares in the <code>anova()</code> output is sometimes referred to as <em>Type 1 Sums of Squares</em> or <em>Sequential Sums of Squares</em>. While these terms can be helpful, they are not universally adopted and as a result often add more confusion than they solve. It is probably best to view them as different ways of partitioning and accounting for variation, and understand that how you decide to do this has an impact on your how much variation a particular predictor explains and subsequently the <em>p</em>-value associated with it.</p>
+</div>
+<p><br /></p>
+</div>
+<div id="presenting-results" class="section level2">
+<h2>Presenting Results</h2>
+<p>It is quite common for researchers to present the results of their regression analyses in table form. Different models are typically presented in different columns and predictors are presented in rows. (Because it is generally of less substantive value, the intercept is often presented in the last row.)</p>
+<p>Note that we <strong>DO NOT INCLUDE stars to indicate “statistical significance”</strong> as is the recommendation of the American Statistical Association. <span class="citation">(<a href="#ref-Wasserstein:2019" role="doc-biblioref">Wasserstein &amp; Schirm, 2019</a>)</span></p>
+<table class="table" style="width:70%; margin-left: auto; margin-right: auto;">
+<caption>
+Unstandardized coefficients (standard errors) for a taxonomy of OLS regression models to explain variation in Riverview city employee’s incomes. All models were fitted with <em>n</em>=32 observations.
+</caption>
+<thead>
+<tr>
+<th>
+Predictor
+</th>
+<th>
+Model A
+</th>
+<th>
+Model B
+</th>
+<th>
+Model C
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">
+Education level
+</td>
+<td style="text-align:center">
+2.651<br />(0.370)
+</td>
+<td>
+</td>
+<td style="text-align:center">
+2.252<br />(0.335)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Seniority level
+</td>
+<td>
+</td>
+<td style="text-align:center">
+1.219<br />(0.311)
+</td>
+<td style="text-align:center">
+0.739<br />(0.210)
+</td>
+</tr>
+<tr style="border-bottom: 1px solid black">
+<td style="text-align:left">
+Constant
+</td>
+<td style="text-align:center">
+11.321<br />(6.123)
+</td>
+<td style="text-align:center">
+35.690<br />(5.073)
+</td>
+<td style="text-align:center">
+6.769<br />(5.373)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td style="text-align:center">
+0.632
+</td>
+<td style="text-align:center">
+0.339
+</td>
+<td style="text-align:center">
+0.742
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+RMSE
+</td>
+<td style="text-align:center">
+8.978
+</td>
+<td style="text-align:center">
+12.031
+</td>
+<td style="text-align:center">
+7.646
+</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the results of fitting the three models, we can now go back and answer our research questions. Do differences in education level explain variation in incomes? Based on Model A, the empirical evidence suggests the answer is yes. Is this true even after accounting for differences in seniority? The empirical evidence from Model C suggests that, again, the answer is yes. (Since it is not necessary for answering the RQ, some researchers might choose to not present the results from Model B.)</p>
+</div>
+<div id="coefficient-plot-1" class="section level2">
+<h2>Coefficient Plot</h2>
+<p>To create a coefficient plot for a multiple regression, we will again use the <code>dwplot()</code> function from the <strong>dotwhisker</strong> package. To create coefficient plots for multiple models we need to create a data frame based on the <code>tidy()</code> output for each fitted model. We also need to append a column that identifies the model name in these data frames. Finally, we need to combine these data frames into a single data frame that we will use in the <code>dwplot()</code> function.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> Here we presented the coefficient plot for all three models. Another option would be to create this plot for only the “final” adopted model (e.g., Model C).</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="multreg.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library</span></span>
+<span id="cb116-2"><a href="multreg.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dotwhisker)</span>
+<span id="cb116-3"><a href="multreg.html#cb116-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-4"><a href="multreg.html#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create tidy() data frames with model names</span></span>
+<span id="cb116-5"><a href="multreg.html#cb116-5" aria-hidden="true" tabindex="-1"></a>mod_1 <span class="ot">=</span> <span class="fu">tidy</span>(lm.a) <span class="sc">%&gt;%</span></span>
+<span id="cb116-6"><a href="multreg.html#cb116-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">&quot;Model A&quot;</span>)</span>
+<span id="cb116-7"><a href="multreg.html#cb116-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-8"><a href="multreg.html#cb116-8" aria-hidden="true" tabindex="-1"></a>mod_2 <span class="ot">=</span> <span class="fu">tidy</span>(lm.b) <span class="sc">%&gt;%</span></span>
+<span id="cb116-9"><a href="multreg.html#cb116-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">&quot;Model B&quot;</span>)</span>
+<span id="cb116-10"><a href="multreg.html#cb116-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-11"><a href="multreg.html#cb116-11" aria-hidden="true" tabindex="-1"></a>mod_3 <span class="ot">=</span> <span class="fu">tidy</span>(lm.c) <span class="sc">%&gt;%</span></span>
+<span id="cb116-12"><a href="multreg.html#cb116-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">&quot;Model C&quot;</span>)</span>
+<span id="cb116-13"><a href="multreg.html#cb116-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-14"><a href="multreg.html#cb116-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine into single data frame</span></span>
+<span id="cb116-15"><a href="multreg.html#cb116-15" aria-hidden="true" tabindex="-1"></a>all_models <span class="ot">=</span> <span class="fu">rbind</span>(mod_1, mod_2, mod_3)</span>
+<span id="cb116-16"><a href="multreg.html#cb116-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-17"><a href="multreg.html#cb116-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb116-18"><a href="multreg.html#cb116-18" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(all_models, <span class="at">show_intercept =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb116-19"><a href="multreg.html#cb116-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb116-20"><a href="multreg.html#cb116-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">&quot;Model&quot;</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#c62f4b&quot;</span>, <span class="st">&quot;#c62f4b&quot;</span>, <span class="st">&quot;#c62f4b&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb116-21"><a href="multreg.html#cb116-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Estimate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb116-22"><a href="multreg.html#cb116-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Coefficients&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Seniority&quot;</span>, <span class="st">&quot;Education&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb116-23"><a href="multreg.html#cb116-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model) <span class="sc">+</span></span>
+<span id="cb116-24"><a href="multreg.html#cb116-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
+<img src="09-intro-to-multiple-regression_files/figure-html/unnamed-chunk-25-1.png" alt="Coefficient plot for the model regressing income on education. Uncertainty is displayed based on the 95% confidence intervals." width="80%" />
+<p class="caption">
+Figure 20: Coefficient plot for the model regressing income on education. Uncertainty is displayed based on the 95% confidence intervals.
+</p>
+</div>
+<p>This plot shows graphically what we observed in the numerical results. There does seem to be a positive effect of education-level on employee income. After including seniority-level in the model, the effect of education-level is somewhat tempered, but it is still positive. There is, however, some uncertainty in the exact magnitude of the size of the effect as is shown in the wide 95% confidence interval for education-level in the plot.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Wasserstein:2019" class="csl-entry">
+Wasserstein, R., &amp; Schirm, A. (2019). <em>Moving to a world beyond <span class="math inline">\(p &lt; .05\)</span></em>. Keynote presentation at the <span>U</span>nited <span>S</span>tates <span>C</span>onference on <span>T</span>eaching <span>S</span>tatistics.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="12">
+<li id="fn12"><p>It is critical when you are changing labels on the axes that you double-check the actual <code>tidy()</code> output so that you don’t erroneously mislabel the coefficients. Here for example, the <code>tidy()</code> output indicates that in Model C the coefficient for education level is 2.25 and the seniority coefficient is 0.739. This corresponds to what we see in the plot.<a href="multreg.html#fnref12" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="modinf.html"><button class="btn btn-default">Previous</button></a>
+<a href="statcontrol.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>
