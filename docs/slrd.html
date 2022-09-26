@@ -26,12 +26,12 @@ MathJax.Hub.Config({
 
 <title>Simple Linear Regression—Description | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap/shim/respond.min.js"></script>
 <style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
@@ -41,9 +41,9 @@ MathJax.Hub.Config({
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="libs/navigation-1.1/tabsets.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/navigation/tabsets.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -234,8 +234,8 @@ details > summary {
 <span id="cb3-3"><a href="slrd.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb3-4"><a href="slrd.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Income (in thousands of dollars)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb3-5"><a href="slrd.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="04-simple-regression-description_files/figure-html/unnamed-chunk-3-1.png" alt="Density plot of employee incomes." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-4-1.png" alt="Density plot of employee incomes." width="50%" />
 <p class="caption">
 Figure 1: Density plot of employee incomes.
 </p>
@@ -266,8 +266,8 @@ Figure 1: Density plot of employee incomes.
 <span id="cb6-4"><a href="slrd.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb6-5"><a href="slrd.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Education level&quot;</span>) <span class="sc">+</span></span>
 <span id="cb6-6"><a href="slrd.html#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="04-simple-regression-description_files/figure-html/unnamed-chunk-5-1.png" alt="Density plot of employee education levels." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-6-1.png" alt="Density plot of employee education levels." width="50%" />
 <p class="caption">
 Figure 2: Density plot of employee education levels.
 </p>
@@ -296,8 +296,8 @@ Figure 2: Density plot of employee education levels.
 <span id="cb9-3"><a href="slrd.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb9-4"><a href="slrd.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Education (in years)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb9-5"><a href="slrd.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Income (in U.S. dollars)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
-<img src="04-simple-regression-description_files/figure-html/unnamed-chunk-7-1.png" alt="Scatterplot displaying the relationship between employee education levels and incomes." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-8-1.png" alt="Scatterplot displaying the relationship between employee education levels and incomes." width="50%" />
 <p class="caption">
 Figure 3: Scatterplot displaying the relationship between employee education levels and incomes.
 </p>
@@ -348,7 +348,7 @@ Y_i = \underbrace{\beta_0 + \beta_1(X_i)}_{\substack{\text{Systematic} \\ \text{
 <div id="visual-representation-of-the-regression-model" class="section level3">
 <h3>Visual Representation of the Regression Model</h3>
 <p>To help better understand the model, consider the following plot:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
 <img src="figs/conditional-means.png" alt="Plot displaying conditional distribution of $Y$ at several $X$ values. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of $Y$ for each conditional distribution." width="50%" />
 <p class="caption">
 Figure 4: Plot displaying conditional distribution of <span class="math inline">\(Y\)</span> at several <span class="math inline">\(X\)</span> values. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <span class="math inline">\(Y\)</span> for each conditional distribution.
@@ -377,8 +377,8 @@ Y_i &amp;= \mu_{Y \vert X_i} + \epsilon_i
 \]</span></p>
 <p>To compute an observation’s residual, we compute the difference between the observation’s <span class="math inline">\(Y\)</span>-value and its conditional mean value. When the observed value of <span class="math inline">\(Y\)</span> is larger than the conditional mean value of <span class="math inline">\(Y\)</span> the residual term will be positive (underprediction). If the observed value of <span class="math inline">\(Y\)</span> is smaller than the conditional mean value of <span class="math inline">\(Y\)</span> the residual term will be negative (overprediction).</p>
 <p>To further understand the residual term, consider the plot below. This figure shows the relationship between education and income we plotted earlier, and also includes the regression line.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
-<img src="04-simple-regression-description_files/figure-html/unnamed-chunk-9-1.png" alt="Scatterplot displaying the relationship between employee education levels and incomes. The OLS fitted regression line is also displayed." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-10-1.png" alt="Scatterplot displaying the relationship between employee education levels and incomes. The OLS fitted regression line is also displayed." width="50%" />
 <p class="caption">
 Figure 5: Scatterplot displaying the relationship between employee education levels and incomes. The OLS fitted regression line is also displayed.
 </p>
@@ -465,7 +465,7 @@ Coefficients:
 \end{split}
 \]</span></p>
 <p>To interpret this value, remember that <span class="math inline">\(\hat{Y}_i\)</span> is a conditional mean. In this case, it represents the model predicted mean income for all employees that have an education level of 0 years. Graphically this looks like the following.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
 <img src="figs/conditional-means-intercept.png" alt="Plot displaying conditional distribution of $Y$ at $X=0$. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of $Y$ for this conditional distribution---which corresponfds to the intercept value of the regression line." width="50%" />
 <p class="caption">
 Figure 6: Plot displaying conditional distribution of <span class="math inline">\(Y\)</span> at <span class="math inline">\(X=0\)</span>. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <span class="math inline">\(Y\)</span> for this conditional distribution—which corresponfds to the intercept value of the regression line.
@@ -484,7 +484,7 @@ Figure 6: Plot displaying conditional distribution of <span class="math inline">
 \hat{\beta}_1 = \frac{\Delta\hat{Y}}{\Delta X} = \frac{2.651}{1}
 \]</span></p>
 <p>Again, because <span class="math inline">\(\hat{Y}\)</span> is a conditional mean, the slope represents the difference in predicted mean incomes for each one-year difference in education level. Graphically,</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
 <img src="figs/conditional-means-slope.png" alt="Plot displaying conditional distribution of $Y$ at $X=0$ and $X=1$. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of $Y$ for these conditional distributions---the relative change which corresponds to the slope value of the regression line." width="50%" />
 <p class="caption">
 Figure 7: Plot displaying conditional distribution of <span class="math inline">\(Y\)</span> at <span class="math inline">\(X=0\)</span> and <span class="math inline">\(X=1\)</span>. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <span class="math inline">\(Y\)</span> for these conditional distributions—the relative change which corresponds to the slope value of the regression line.
@@ -545,8 +545,8 @@ Figure 7: Plot displaying conditional distribution of <span class="math inline">
 \hat\epsilon_{25} = -9.669
 \]</span></p>
 <p>The negative residual, <span class="math inline">\(\hat\epsilon_{25} = -9.669\)</span>, suggests that this employee earns $9,669 less than the average predicted income for employees with 20 years of education. We can also represent these values graphically.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
-<img src="04-simple-regression-description_files/figure-html/unnamed-chunk-16-1.png" alt="Plot displaying the OLS fitted regression line (blue) between employee education levels and incomes. The 25th employee's observed data (black dot) is plotted, and a visual representation of the employee's residual (red line) is also displayed." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-17-1.png" alt="Plot displaying the OLS fitted regression line (blue) between employee education levels and incomes. The 25th employee's observed data (black dot) is plotted, and a visual representation of the employee's residual (red line) is also displayed." width="50%" />
 <p class="caption">
 Figure 8: Plot displaying the OLS fitted regression line (blue) between employee education levels and incomes. The 25th employee’s observed data (black dot) is plotted, and a visual representation of the employee’s residual (red line) is also displayed.
 </p>

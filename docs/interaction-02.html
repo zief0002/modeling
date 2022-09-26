@@ -26,12 +26,12 @@ MathJax.Hub.Config({
 
 <title>More Interaction Effects | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap/shim/respond.min.js"></script>
 <style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
@@ -41,9 +41,9 @@ MathJax.Hub.Config({
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="libs/navigation-1.1/tabsets.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/navigation/tabsets.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -289,10 +289,10 @@ details > summary {
 <span id="cb266-7"><a href="interaction-02.html#cb266-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb266-8"><a href="interaction-02.html#cb266-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>female_educ_discrete, <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb266-9"><a href="interaction-02.html#cb266-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="15-more-interaction-effects_files/figure-html/unnamed-chunk-5-1.png" alt="Scatterplot displaying the relationship between contraception use and fertility rate conditioned on female education level. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender." width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-223"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-223-1.png" alt="Scatterplot displaying the relationship between contraception use and fertility rate conditioned on female education level. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender." width="90%" />
 <p class="caption">
-Figure 2: Scatterplot displaying the relationship between contraception use and fertility rate conditioned on female education level. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender.
+Figure 80: Scatterplot displaying the relationship between contraception use and fertility rate conditioned on female education level. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender.
 </p>
 </div>
 <p>The empirical evidence is consistent with there being an interaction effect between contraception use and female education level on fertility rate <em>in the sample</em>; the effect of contraception use on fertility rate differs depending on the level of female education. It looks like the absolute magnitude of the effect of contraception use on fertility rate decreases for higher levels of female education.</p>
@@ -373,10 +373,10 @@ Figure 2: Scatterplot displaying the relationship between contraception use and 
 <span id="cb271-7"><a href="interaction-02.html#cb271-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb271-8"><a href="interaction-02.html#cb271-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Contraceptive use&quot;</span>) <span class="sc">+</span></span>
 <span id="cb271-9"><a href="interaction-02.html#cb271-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Fertility rate&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
-<img src="15-more-interaction-effects_files/figure-html/unnamed-chunk-7-1.png" alt="Plot of fertility rate as a function of contraceptive use and female education level. Partial regression lines are displayed for female education levels of 5th grade (blue, dotted line), 8th grade (orange, dashed line) and 10th grade (green, solid line)." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-225"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-225-1.png" alt="Plot of fertility rate as a function of contraceptive use and female education level. Partial regression lines are displayed for female education levels of 5th grade (blue, dotted line), 8th grade (orange, dashed line) and 10th grade (green, solid line)." width="50%" />
 <p class="caption">
-Figure 3: Plot of fertility rate as a function of contraceptive use and female education level. Partial regression lines are displayed for female education levels of 5th grade (blue, dotted line), 8th grade (orange, dashed line) and 10th grade (green, solid line).
+Figure 81: Plot of fertility rate as a function of contraceptive use and female education level. Partial regression lines are displayed for female education levels of 5th grade (blue, dotted line), 8th grade (orange, dashed line) and 10th grade (green, solid line).
 </p>
 </div>
 <p>Based on the plot, we can see there is an <em>ordinal interaction</em> between contraceptive use and female education level (the lines do not cross in our plot). The effect of contraceptive use on fertility rate varies by level of female education. The largest effect of contraceptive use on fertility rate (highest absolute slope) is for countries that have the lowest female education level. This effect diminishes for countries with higher levels of female education (the magnitude of the slopes get smaller).</p>
@@ -499,10 +499,10 @@ Figure 3: Plot of fertility rate as a function of contraceptive use and female e
 <span id="cb276-20"><a href="interaction-02.html#cb276-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb276-21"><a href="interaction-02.html#cb276-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout side-by-side plot</span></span>
 <span id="cb276-22"><a href="interaction-02.html#cb276-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
-<img src="15-more-interaction-effects_files/figure-html/unnamed-chunk-9-1.png" alt="Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values." width="80%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-227"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-227-1.png" alt="Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values." width="80%" />
 <p class="caption">
-Figure 5: Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values.
+Figure 82: Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values.
 </p>
 </div>
 <p><br /></p>
@@ -583,10 +583,10 @@ The <em>p</em>-value associated with the second order interaction term (<span cl
 <span id="cb279-20"><a href="interaction-02.html#cb279-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb279-21"><a href="interaction-02.html#cb279-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout side-by-side plot</span></span>
 <span id="cb279-22"><a href="interaction-02.html#cb279-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
-<img src="15-more-interaction-effects_files/figure-html/unnamed-chunk-12-1.png" alt="Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values." width="80%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-230"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-230-1.png" alt="Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values." width="80%" />
 <p class="caption">
-Figure 7: Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values.
+Figure 83: Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values.
 </p>
 </div>
 <ul>

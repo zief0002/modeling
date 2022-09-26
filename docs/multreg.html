@@ -26,12 +26,12 @@ MathJax.Hub.Config({
 
 <title>Introduction to Multiple Regression | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap/shim/respond.min.js"></script>
 <style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
@@ -41,9 +41,9 @@ MathJax.Hub.Config({
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="libs/navigation-1.1/tabsets.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/navigation/tabsets.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -263,10 +263,10 @@ details > summary {
 <span id="cb94-4"><a href="multreg.html#cb94-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb94-5"><a href="multreg.html#cb94-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Seniority level (in years)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb94-6"><a href="multreg.html#cb94-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
-<img src="09-intro-to-multiple-regression_files/figure-html/unnamed-chunk-6-1.png" alt="Density plot of the marginal distribution of seniority." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-95"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-95-1.png" alt="Density plot of the marginal distribution of seniority." width="50%" />
 <p class="caption">
-Figure 13: Density plot of the marginal distribution of seniority.
+Figure 36: Density plot of the marginal distribution of seniority.
 </p>
 </div>
 <p>We aslo compute numerical summaries of the distribution.</p>
@@ -286,10 +286,10 @@ Figure 13: Density plot of the marginal distribution of seniority.
 <span id="cb96-4"><a href="multreg.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb96-5"><a href="multreg.html#cb96-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Seniority (in years)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb96-6"><a href="multreg.html#cb96-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Income (in thousands of dollars)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
-<img src="09-intro-to-multiple-regression_files/figure-html/unnamed-chunk-8-1.png" alt="Scatterplot showing the relationship between seniority level and income." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-97"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-97-1.png" alt="Scatterplot showing the relationship between seniority level and income." width="50%" />
 <p class="caption">
-Figure 4: Scatterplot showing the relationship between seniority level and income.
+Figure 37: Scatterplot showing the relationship between seniority level and income.
 </p>
 </div>
 <p>The correlation matrix between all three variables is also examined.</p>
@@ -438,10 +438,10 @@ Y_i = \beta_0 + \beta_1(X1_{i}) + \beta_2(X2_{i}) + \ldots + \beta_k(Xk_{i}) + \
 \]</span></p>
 <p>mathematically defines a regression plane. (Note we have three dimensions, <span class="math inline">\(Y\)</span>, <span class="math inline">\(X1\)</span>, and <span class="math inline">\(X2\)</span>. If we add predictors, we have four or more dimensions and we describe a hyperplane.)</p>
 <p>The data and regression plane defined by the education level, seniority level, and income for the Riverview employees is shown below. The regression plane is tilted up in both the education level direction (corresponding to a positive partial slope of education) and in the seniority level direction (corresponding to a positive partial slope of seniority). The blue points are above the plane (employees with a positive residual) and the yellow points are below the plane (employees with a negative residual).</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-106"></span>
 <img src="figs/notes-09-3dscatterplot.png" alt="Three-dimensional scatterplot showing the relationship between education level, seniority, and income. The fitted regression plane is also shown. Blue observations have a positive residual and yellow observations have a negative residual." width="60%" />
 <p class="caption">
-Figure 15: Three-dimensional scatterplot showing the relationship between education level, seniority, and income. The fitted regression plane is also shown. Blue observations have a positive residual and yellow observations have a negative residual.
+Figure 38: Three-dimensional scatterplot showing the relationship between education level, seniority, and income. The fitted regression plane is also shown. Blue observations have a positive residual and yellow observations have a negative residual.
 </p>
 </div>
 <p>Graphically, the residuals from this model are the vertical distance between the observed points and the regression plane. Mathematically, they can be computed as,</p>
@@ -485,10 +485,10 @@ The proportion of variance explained by the model is the same as the <span class
 <div id="hypotheses-tested-in-the-anova-output" class="section level3">
 <h3>Hypotheses Tested in the ANOVA Output</h3>
 <p>The <em>F</em>-values given in the <code>anova()</code> output do not match the <em>F</em>-test given in the <code>glance()</code> output. This is because the hypotheses being tested in the <code>anova()</code> output are different than that being tested in the <code>glance()</code> output. To understand the tests that are being performed, we need to understand how the variation is being partitioned in the model we fitted. The order the predictors in the <code>anova()</code> output (which is connected to the order they were included in the <code>lm()</code> function) shows this partitioning numerically. We can also create a diagram that shows this partitioning.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-108"></span>
 <img src="figs/notes-09-partitioning-1.png" alt="Partioning of variation associated with the model in which education-level is included prior to seniority-level." width="60%" />
 <p class="caption">
-Figure 16: Partioning of variation associated with the model in which education-level is included prior to seniority-level.
+Figure 39: Partioning of variation associated with the model in which education-level is included prior to seniority-level.
 </p>
 </div>
 <p>In the diagram, the total unexplained variation is first explained by including education-level in the model (the first predictor included in the <code>lm()</code> function). This predictor explains some variation and leaves some of the variation unexplained. Then, seniority-level is allowed to explain any residual (unexplained) variation that remains.</p>
@@ -538,10 +538,10 @@ Residuals 29 1695.3   58.46
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Examining the ANOVA decomposition, we see that some of the values in the table are the same and others are different. To understand why, we will again compose the partitioning diagram.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-110"></span>
 <img src="figs/notes-09-partitioning-2.png" alt="Partioning of variation associated with the model in which seniority-level is included prior to education-level." width="60%" />
 <p class="caption">
-Figure 19: Partioning of variation associated with the model in which seniority-level is included prior to education-level.
+Figure 40: Partioning of variation associated with the model in which seniority-level is included prior to education-level.
 </p>
 </div>
 <p>Consider the model-level <em>F</em>-test which tests whether the model-level <span class="math inline">\(R^2\)</span> is more than we expect because of sampling error. In the diagram, the explained variation in the model-level <span class="math inline">\(R^2\)</span> is the total sum of all the blue circles since the model includes both education-level and seniority-level. The denominator is the baseline unexplained variation. Mathematically,</p>
@@ -723,10 +723,10 @@ RMSE
 <span id="cb116-22"><a href="multreg.html#cb116-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Coefficients&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Seniority&quot;</span>, <span class="st">&quot;Education&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb116-23"><a href="multreg.html#cb116-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model) <span class="sc">+</span></span>
 <span id="cb116-24"><a href="multreg.html#cb116-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
-<img src="09-intro-to-multiple-regression_files/figure-html/unnamed-chunk-25-1.png" alt="Coefficient plot for the model regressing income on education. Uncertainty is displayed based on the 95% confidence intervals." width="80%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-114"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-114-1.png" alt="Coefficient plot for the model regressing income on education. Uncertainty is displayed based on the 95% confidence intervals." width="80%" />
 <p class="caption">
-Figure 20: Coefficient plot for the model regressing income on education. Uncertainty is displayed based on the 95% confidence intervals.
+Figure 41: Coefficient plot for the model regressing income on education. Uncertainty is displayed based on the 95% confidence intervals.
 </p>
 </div>
 <p>This plot shows graphically what we observed in the numerical results. There does seem to be a positive effect of education-level on employee income. After including seniority-level in the model, the effect of education-level is somewhat tempered, but it is still positive. There is, however, some uncertainty in the exact magnitude of the size of the effect as is shown in the wide 95% confidence interval for education-level in the plot.</p>

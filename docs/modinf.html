@@ -26,12 +26,12 @@ MathJax.Hub.Config({
 
 <title>Model-Level Inference | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap/shim/respond.min.js"></script>
 <style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
@@ -41,9 +41,9 @@ MathJax.Hub.Config({
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="libs/navigation-1.1/tabsets.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/navigation/tabsets.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -243,17 +243,17 @@ details > summary {
 H_0: \rho^2 = 0
 \]</span></p>
 <p>To test this, we need to be able to obtain the sampling distribution of <span class="math inline">\(R^2\)</span> to estimate the uncertainty in the sample estimate. The thought experiment for this goes something like this: Imagine you have a population that is infinitely large. The observations in this population have two attributes, call them <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. There is NO relationship between these two attributes; <span class="math inline">\(\rho^2 = 0\)</span>. Randomly sample <span class="math inline">\(n\)</span> observations from the population. Fit the regression and compute the <span class="math inline">\(R^2\)</span> value. Repeat the process an infinite number of times.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-74"></span>
 <img src="figs/notes-07-thought-experiment-r2.png" alt="Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared." width="80%" />
 <p class="caption">
-Figure 2: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared.
+Figure 29: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared.
 </p>
 </div>
 <p>Below is a density plot of the sampling distribution for <span class="math inline">\(R^2\)</span> based on 1,000 random samples of size 32 drawn from a population where <span class="math inline">\(\rho^2=0\)</span>. (Not an infinite number of draws, but large enough that we should have an idea of what the distribution might look like.)</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
-<img src="08-model-level-inference_files/figure-html/unnamed-chunk-6-1.png" alt="Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\rho^2=0$." width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-75"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-75-1.png" alt="Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\rho^2=0$." width="60%" />
 <p class="caption">
-Figure 13: Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where <span class="math inline">\(\rho^2=0\)</span>.
+Figure 30: Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where <span class="math inline">\(\rho^2=0\)</span>.
 </p>
 </div>
 <p>Most of the <span class="math inline">\(R^2\)</span> values are near 0, although there is some variability that is due to sampling error. This sampling distribution is right-skewed. (WHY???) This means that we cannot use a <span class="math inline">\(t\)</span>-distribution to model this distribution—remember the <span class="math inline">\(t\)</span>-distribution is symmetric around zero. It turns out that this sampling distribution is better modeled using an <span class="math inline">\(F\)</span>-distribution.</p>
@@ -286,10 +286,10 @@ F &amp;= \frac{0.107}{1 - 0.107} \times \frac{98}{1} \\[1em]
 \end{split}
 \]</span></p>
 <p>Thus, our observed <em>F</em>-value is: <span class="math inline">\(F(1,98)=11.74\)</span>. To evaluate this under the null hypothesis, we find the area under the <span class="math inline">\(F(1,98)\)</span> density curve that corresponds to <em>F</em>-values <em>at least as extreme</em> as our observed <em>F</em>-value of 11.74.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
-<img src="08-model-level-inference_files/figure-html/unnamed-chunk-7-1.png" alt="Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-76"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-76-1.png" alt="Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74." width="50%" />
 <p class="caption">
-Figure 3: Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the <em>p</em>-value for a test evaluating whether the population rho-squared is zero using an observed <em>F</em>-value of 11.74.
+Figure 31: Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the <em>p</em>-value for a test evaluating whether the population rho-squared is zero using an observed <em>F</em>-value of 11.74.
 </p>
 </div>
 <p>This area (which is one-sided in the <span class="math inline">\(F\)</span>-distribution) corresponds to the <span class="math inline">\(p\)</span>-value. In our case this <span class="math inline">\(p\)</span>-value is 0.000885. The probability of observing an <span class="math inline">\(F\)</span>-value at least as extreme as we the one we observed (<span class="math inline">\(F=11.74\)</span>) under the assumption that the null hypothesis is true is 0.000885. This suggests that the empirical data are inconsistent with the hypothesis that <span class="math inline">\(\rho^2=0\)</span>, and it is unlikely that the model explains no variation in students’ GPAs.</p>
@@ -456,17 +456,17 @@ Residuals 99 5752.9   58.11               </code></pre>
 <div id="confidence-envelope-for-the-model" class="section level2">
 <h2>Confidence Envelope for the Model</h2>
 <p>Re-consider our thought experiment. Again, imagine you have a population that is infinitely large. The observations in this population have two attributes, call them <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The relationship between these two attributes can be expressed via a regression equation as: <span class="math inline">\(\hat{Y}=\beta_0 + \beta_1(X)\)</span>. Randomly sample <span class="math inline">\(n\)</span> observations from the population, and compute the fitted regression equation, this time plotting the line (rather than only paying attention to the numerical estimates of the slope or intercept). Continue sampling from this population, each time drawing the fitted regression equation.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-86"></span>
 <img src="figs/notes-07-thought-experiment-confidence-envelope.png" alt="Thought experiment for sampling samples of size *n* from the population to obtain the fitted regression line." width="80%" />
 <p class="caption">
-Figure 15: Thought experiment for sampling samples of size <em>n</em> from the population to obtain the fitted regression line.
+Figure 32: Thought experiment for sampling samples of size <em>n</em> from the population to obtain the fitted regression line.
 </p>
 </div>
 <p>Now, imagine superimposing all of these lines on the same plot.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-87"></span>
 <img src="figs/notes-07-superimposed-lines.png" alt="Plot showing the fitted regression lines for many, many random samples of size *n*." width="50%" />
 <p class="caption">
-Figure 17: Plot showing the fitted regression lines for many, many random samples of size <em>n</em>.
+Figure 33: Plot showing the fitted regression lines for many, many random samples of size <em>n</em>.
 </p>
 </div>
 <p>Examining where the sampled lines fall gives a visual interpretation of the uncertainty in the model. This two-dimensional display of uncertainty is referred to as a <em>confidence envelope</em>. In practice we estimate the uncertainty from the sample data and plot it around the fitted line from the sample.</p>
@@ -477,19 +477,19 @@ Figure 17: Plot showing the fitted regression lines for many, many random sample
 <span id="cb87-4"><a href="modinf.html#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="sc">+</span></span>
 <span id="cb87-5"><a href="modinf.html#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;GPA (on a 100-pt. scale)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb87-6"><a href="modinf.html#cb87-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
-<img src="08-model-level-inference_files/figure-html/unnamed-chunk-19-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-88"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-88-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed." width="50%" />
 <p class="caption">
-Figure 16: GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed.
+Figure 34: GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed.
 </p>
 </div>
 <p>Note that we want to indicate the confidence envelope or make reference to the uncertainty in the figure caption. We pointed out that the confidence envelope indicates uncertainty by displaying the sampling variation associated with the location of the fitted regression line.</p>
 <p>We can also use this plot to make inferences about the mean <span class="math inline">\(Y\)</span>-value conditioned on <span class="math inline">\(X\)</span>. For example, using the fitted regression equation, the model predicts that the mean GPA for students who spend 6 hours each week on homework is 81.6. Graphically this is the point on the fitted regression line associated with <span class="math inline">\(X=6\)</span>.</p>
 <p>However, we also now understand that there is uncertainty associated with estimates obtained from sample data. How much uncertainty is there in that estimate of 81.6? We can use the bounds of the confidence envelope at <span class="math inline">\(X=6\)</span> to answer this question. The lower bound of the confidence envelope at <span class="math inline">\(X=6\)</span> is approximately 80 and the upper bound is approximately 83. This tells, based on the sample data, we think the mean GPA for students who spend 6 hours each week on homework is between 80 and 83. Graphically, we can see these values in the plot.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
-<img src="08-model-level-inference_files/figure-html/unnamed-chunk-20-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-89"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-89-1.png" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar." width="50%" />
 <p class="caption">
-Figure 18: GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at <em>X</em>=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar.
+Figure 35: GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence ebnvelope (grey shaded area) are also displayed. The fitted value at <em>X</em>=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar.
 </p>
 </div>
 <p>This uncertainty estimate is technically a 95% confidence interval for the mean GPA for students who spend 6 hours each week on homework. As such, a more formal interpretation is:</p>

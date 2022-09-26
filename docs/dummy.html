@@ -26,12 +26,12 @@ MathJax.Hub.Config({
 
 <title>Dichotomous Categorical Predictors | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap/shim/respond.min.js"></script>
 <style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
@@ -41,9 +41,9 @@ MathJax.Hub.Config({
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="libs/navigation-1.1/tabsets.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/navigation/tabsets.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -248,10 +248,10 @@ details > summary {
 <span id="cb147-18"><a href="dummy.html#cb147-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb147-19"><a href="dummy.html#cb147-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Educational sector&quot;</span>) <span class="sc">+</span></span>
 <span id="cb147-20"><a href="dummy.html#cb147-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Six-year graduation rate&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="12-dichotomous_files/figure-html/unnamed-chunk-3-1.png" alt="LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector." width="30%" /><img src="12-dichotomous_files/figure-html/unnamed-chunk-3-2.png" alt="LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector." width="30%" /><img src="12-dichotomous_files/figure-html/unnamed-chunk-3-3.png" alt="LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector." width="30%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-156"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-156-1.png" alt="LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector." width="30%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-156-2.png" alt="LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector." width="30%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-156-3.png" alt="LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector." width="30%" />
 <p class="caption">
-Figure 1: LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector.
+Figure 64: LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector.
 </p>
 </div>
 <p>We will also compute the means, standard deviations, and sample sizes for private and public schools.</p>
@@ -264,7 +264,7 @@ Figure 1: LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of e
 <span id="cb148-7"><a href="dummy.html#cb148-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <table style="width:40%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-5">Table 2: </span>Mean (M), standard deviation (SD), and sample size (N) of the six-year graduation rates for 33 Minnesota colleges and universities conditioned on educational sector.
+<span id="tab:unnamed-chunk-158">Table 14: </span>Mean (M), standard deviation (SD), and sample size (N) of the six-year graduation rates for 33 Minnesota colleges and universities conditioned on educational sector.
 </caption>
 <thead>
 <tr>
@@ -608,10 +608,10 @@ The difference in these average graduation rates comes out to 14.3. The <em>p</e
 <span id="cb182-13"><a href="dummy.html#cb182-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb182-14"><a href="dummy.html#cb182-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Fitted value&quot;</span>) <span class="sc">+</span></span>
 <span id="cb182-15"><a href="dummy.html#cb182-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Standardized residual&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
-<img src="12-dichotomous_files/figure-html/unnamed-chunk-15-1.png" alt="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." width="45%" /><img src="12-dichotomous_files/figure-html/unnamed-chunk-15-2.png" alt="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." width="45%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-168"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-168-1.png" alt="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." width="45%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-168-2.png" alt="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." width="45%" />
 <p class="caption">
-Figure 12: LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed.
+Figure 65: LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed.
 </p>
 </div>
 <p>From the scatterplot, we see that there is some question about the tenability of the equal variances assumption. The variation in the private schools’ residuals seems greater than the variation in the public schools’ residuals. (This was foreshadowed earlier when we examined the standard deviations of the two distributions.) This difference in variation, however, might be due to the extreme private school that has a residual that is less than <span class="math inline">\(-2\)</span>. Additionally, this assumption violation might not be a problem once we add other predictors to the model. So, for now, we will move on, but will re-check this assumption after fitting additional models.</p>
@@ -639,10 +639,10 @@ Figure 12: LEFT: Density plot of the marginal distribution of standardized resid
 <span id="cb183-21"><a href="dummy.html#cb183-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb183-22"><a href="dummy.html#cb183-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Standardized residual&quot;</span>) <span class="sc">+</span></span>
 <span id="cb183-23"><a href="dummy.html#cb183-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability density&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
-<img src="12-dichotomous_files/figure-html/unnamed-chunk-16-1.png" alt="Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for  private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools." width="45%" /><img src="12-dichotomous_files/figure-html/unnamed-chunk-16-2.png" alt="Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for  private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools." width="45%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-169"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-169-1.png" alt="Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for  private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools." width="45%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-169-2.png" alt="Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for  private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools." width="45%" />
 <p class="caption">
-Figure 8: Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools.
+Figure 66: Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools.
 </p>
 </div>
 <p>The normality assumption seems tenable since neither <em>conditional</em> distribution of residuals seem to indicate more mis-fit to normality than would be expected from sampling error. Lastly, we wonder if the independence assumption is tenable. It might seem reasonable that there is some dependence among graduation rates given that multiple schools may be related to one another (e.g., University of Minnesota–Twin Cities and Duluth). Dependence also arises because of spatial proximity. Since schools are located in particular geographic areas within Minnesota, thi might also be a problem.</p>
@@ -728,7 +728,7 @@ Figure 8: Density plot of the standardized residuals from the regression model u
 <p>Note that the adjusted mean difference is the value of the partial regression coefficient for <code>private</code> from the ANCOVA model. These values are typically presented in a table along with the unadjusted values.</p>
 <table style="width:60%; margin-left: auto; margin-right: auto;border-bottom: 0;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-21">Table 9: </span>Unadjusted and adjusted mean six-year graduation rates for private and public colleges and universities in Minnesota.
+<span id="tab:unnamed-chunk-174">Table 15: </span>Unadjusted and adjusted mean six-year graduation rates for private and public colleges and universities in Minnesota.
 </caption>
 <thead>
 <tr>
@@ -871,10 +871,10 @@ Difference
 <span id="cb206-13"><a href="dummy.html#cb206-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb206-14"><a href="dummy.html#cb206-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Fitted value&quot;</span>) <span class="sc">+</span></span>
 <span id="cb206-15"><a href="dummy.html#cb206-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Standardized residual&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
-<img src="12-dichotomous_files/figure-html/unnamed-chunk-25-1.png" alt="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." width="45%" /><img src="12-dichotomous_files/figure-html/unnamed-chunk-25-2.png" alt="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." width="45%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-178"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-178-1.png" alt="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." width="45%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-178-2.png" alt="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." width="45%" />
 <p class="caption">
-Figure 20: LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed.
+Figure 67: LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed.
 </p>
 </div>
 <p>The marginal distribution of the residuals shows minor evidence of mis-fit with the normality assumption. The equal variances assumption looks tenable from this set of plots. However, the scatterplot of the standardized residuals versus the fitted values suggests problems with the tenability of the linearity assumption—at low fitted values more of the residuals are negative than we would expect (over-estimation); at moderate fitted values the residuals tend to be positive (under-estimation); and at high fitted values the residuals tend to the negative again (over-estimation). For now we will ignore this (although in practice this is a BIG problem).</p>
@@ -1023,10 +1023,10 @@ RMSE
 <span id="cb207-20"><a href="dummy.html#cb207-20" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
 <span id="cb207-21"><a href="dummy.html#cb207-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb207-22"><a href="dummy.html#cb207-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-27"></span>
-<img src="12-dichotomous_files/figure-html/unnamed-chunk-27-1.png" alt="Coefficient plot for three models regressing six-year graduation rates on educational sector. Uncertainty based on the 95% confidence intervals is displayed. (The intercept is not displayed.)" width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-180"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-180-1.png" alt="Coefficient plot for three models regressing six-year graduation rates on educational sector. Uncertainty based on the 95% confidence intervals is displayed. (The intercept is not displayed.)" width="90%" />
 <p class="caption">
-Figure 24: Coefficient plot for three models regressing six-year graduation rates on educational sector. Uncertainty based on the 95% confidence intervals is displayed. (The intercept is not displayed.)
+Figure 68: Coefficient plot for three models regressing six-year graduation rates on educational sector. Uncertainty based on the 95% confidence intervals is displayed. (The intercept is not displayed.)
 </p>
 </div>
 <p>A second plot is based on plotting the model predicted graduation rates as a function of one of the predictors. Here we will plot the model predicted graduation rates as a function of median SAT scores for both public and private institutions. We will control for tuition rate by fixing it to its mean value of 32.25. Substituting this into the fitted equation, along with the appropriate dummy-coded public value results in two equations that we can plot.</p>
@@ -1045,10 +1045,10 @@ Figure 24: Coefficient plot for three models regressing six-year graduation rate
 <span id="cb208-5"><a href="dummy.html#cb208-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb208-6"><a href="dummy.html#cb208-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Median SAT score&quot;</span>) <span class="sc">+</span></span>
 <span id="cb208-7"><a href="dummy.html#cb208-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Predicted graduation rate&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-28"></span>
-<img src="12-dichotomous_files/figure-html/unnamed-chunk-28-1.png" alt="Predicted graduation rate as a function of median SAT scores for public (orange, solid line) and private (blue, dashed line) institutions in Minnesota. Tuition rate is controlled for by fixing the value to the marginal average tuition value." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-181"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-181-1.png" alt="Predicted graduation rate as a function of median SAT scores for public (orange, solid line) and private (blue, dashed line) institutions in Minnesota. Tuition rate is controlled for by fixing the value to the marginal average tuition value." width="50%" />
 <p class="caption">
-Figure 25: Predicted graduation rate as a function of median SAT scores for public (orange, solid line) and private (blue, dashed line) institutions in Minnesota. Tuition rate is controlled for by fixing the value to the marginal average tuition value.
+Figure 69: Predicted graduation rate as a function of median SAT scores for public (orange, solid line) and private (blue, dashed line) institutions in Minnesota. Tuition rate is controlled for by fixing the value to the marginal average tuition value.
 </p>
 </div>
 <p>In my opinion, the coefficient plot corresponds better to the data narrative than the plot of the fitted model, so in a publication that is what I would present along with the table of model results.</p>

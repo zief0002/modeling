@@ -26,12 +26,12 @@ MathJax.Hub.Config({
 
 <title>Correlation and Standardized Regression | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap/shim/respond.min.js"></script>
 <style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
@@ -41,9 +41,9 @@ MathJax.Hub.Config({
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="libs/navigation-1.1/tabsets.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/navigation/tabsets.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -225,10 +225,10 @@ details > summary {
 <div id="data-exploration-1" class="section level2">
 <h2>Data Exploration</h2>
 <p>We begin by looking at the marginal distributions of both time spent on homework and GPA. We will also examine summary statistics of these variables (output presented in table). Finally, we also examine a scatterplot of GPA versus time spent on homework.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="06-correlation_files/figure-html/unnamed-chunk-3-1.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="31%" /><img src="06-correlation_files/figure-html/unnamed-chunk-3-2.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="31%" /><img src="06-correlation_files/figure-html/unnamed-chunk-3-3.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="31%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-37"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-37-1.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="31%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-37-2.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="31%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-37-3.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="31%" />
 <p class="caption">
-Figure 1: Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown.
+Figure 14: Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown.
 </p>
 </div>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="cor.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
@@ -241,7 +241,7 @@ Figure 1: Density plots of the marginal distributions of GPA and time spent on h
 <span id="cb38-8"><a href="cor.html#cb38-8" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <table style="width:40%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-5">Table 2: </span>Summary measures for 8th-Grade students’ GPA and time spent on homework
+<span id="tab:unnamed-chunk-39">Table 7: </span>Summary measures for 8th-Grade students’ GPA and time spent on homework
 </caption>
 <thead>
 <tr>
@@ -304,10 +304,10 @@ Time spent on homework
 r_{\mathrm{GPA,~Homework}} = 0.33
 \]</span></p>
 <p>It is important to keep in mind this value is only useful as a measure of the strength of the relationship when the relationship between variables is linear. Here is an example where the correlation coefficient would be misleading about the strength of the relationship.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
-<img src="06-correlation_files/figure-html/unnamed-chunk-7-1.png" alt="Hours of daylight versus day of the year for $n=75$ days in Minneapolis." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-41"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-41-1.png" alt="Hours of daylight versus day of the year for $n=75$ days in Minneapolis." width="50%" />
 <p class="caption">
-Figure 3: Hours of daylight versus day of the year for <span class="math inline">\(n=75\)</span> days in Minneapolis.
+Figure 15: Hours of daylight versus day of the year for <span class="math inline">\(n=75\)</span> days in Minneapolis.
 </p>
 </div>
 <p>Here there is a perfect relationship between day of the year and hours of daylight. If you fitted a nonlinear model here, your “line” would match the data exactly (no residual error!). But the correlation coefficient does not reflect that (<span class="math inline">\(r=-0.34\)</span>).</p>
@@ -315,10 +315,10 @@ Figure 3: Hours of daylight versus day of the year for <span class="math inline"
 <p>You should always create a scatterplot to examine the relationship graphically before computing a correlation coefficient to numerically summarize it.</p>
 </div>
 <p>Another situation in which correlation can mislead is when you have subpopulations in your data. Here is an example of that.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
-<img src="06-correlation_files/figure-html/unnamed-chunk-8-1.png" alt="Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company. The second plot shows the same data colored by education level." width="45%" /><img src="06-correlation_files/figure-html/unnamed-chunk-8-2.png" alt="Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company. The second plot shows the same data colored by education level." width="45%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-42"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-42-1.png" alt="Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company. The second plot shows the same data colored by education level." width="45%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-42-2.png" alt="Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company. The second plot shows the same data colored by education level." width="45%" />
 <p class="caption">
-Figure 4: Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for <span class="math inline">\(n=1000\)</span> employees from a Fortune 500 company. The second plot shows the same data colored by education level.
+Figure 16: Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for <span class="math inline">\(n=1000\)</span> employees from a Fortune 500 company. The second plot shows the same data colored by education level.
 </p>
 </div>
 <p>If we treat these data as one population (an assumption for using the correlation) the relationship between neurotocism and salary is positive; employees who are more neurotocic tend to have higher salaries, on average. However, if we account for education level, the relatinship between neurotocism and salary is negative for each of the education levels; once we account for education level, employees who are more neurotocic tend to have lower salaries, on average. This reversal of the direction of the relationship once we account for other variables is quite common (so common it has a name, <a href="https://en.wikipedia.org/wiki/Simpson%27s_paradox">Simpson’s Paradox</a>) and makes it difficult to be sure about the “true” relationship between variables in observational data.</p>
@@ -351,20 +351,20 @@ r_{xy} = \frac{1}{n-1}\sum_{i=1}^n\bigg(z_{xi}\bigg)\bigg(z_{yi}\bigg)
 \end{split}
 \]</span></p>
 <p>Observations the are above the mean on one variable and below the mean on the other would have a negative product. Here is a plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
-<img src="06-correlation_files/figure-html/unnamed-chunk-9-1.png" alt="Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-43"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-43-1.png" alt="Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed." width="50%" />
 <p class="caption">
-Figure 5: Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed.
+Figure 17: Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed.
 </p>
 </div>
 <p>In this case there more observations having a positive product of <em>z</em>-scores than a negative product of <em>z</em>-scores. This suggests that the sum of all of these products will be positive; the correlation coefficient will be positive.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
 <p>Conceptually, that sum of products of <em>z</em>-scores in the formula for the correlation coefficient gives us an indication of the patterns of deviation from the mean values of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> for the propensity of the data. The division by <span class="math inline">\(n-1\)</span> serves to give us an indication of the magnitude of the “average” product. This is why we interpret positive and negative reltionships the way we do; a positive relationship suggests that higher values of <span class="math inline">\(x\)</span> are typically associated with higher values of <span class="math inline">\(y\)</span> and that lower values of <span class="math inline">\(x\)</span> are typically associated with lower values of <span class="math inline">\(y\)</span>. (Note that the words “higher” and “lower” in that interpretation could more accurately be replaced with “values above the mean” and “values below the mean”, respectively.)</p>
 <p>When we say the direction of the relationship is positive, we statistically mean that the average product of <em>z</em>-scores is positive, which means that the propensity of the data has values of both variables either above or below the mean.</p>
 <p>Of course, we don’t have to use <em>z</em>-scores to see this pattern, afterall we typically look at a scatterplot of the unstandardized values to make this interpretation.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
-<img src="06-correlation_files/figure-html/unnamed-chunk-10-1.png" alt="Plot of GPA versus the time spent on homework (both unstandardized) for the 100 observations. The mean values are also displayed." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-44"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-44-1.png" alt="Plot of GPA versus the time spent on homework (both unstandardized) for the 100 observations. The mean values are also displayed." width="50%" />
 <p class="caption">
-Figure 10: Plot of GPA versus the time spent on homework (both unstandardized) for the 100 observations. The mean values are also displayed.
+Figure 18: Plot of GPA versus the time spent on homework (both unstandardized) for the 100 observations. The mean values are also displayed.
 </p>
 </div>
 <p>Converting to <em>z</em>-scores is only useful to remove the metrics from the unstandardized values and place them on a common scale. This way values of the correlation coefficient are not dependent on the scales used in the data. This is why we do not put a metric on the correlation coefficient (e.g., it is just 0.30, not 0.30 feet).</p>
@@ -444,10 +444,10 @@ Coefficients:
 <span id="cb45-6"><a href="cor.html#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
 <span id="cb45-7"><a href="cor.html#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
 <span id="cb45-8"><a href="cor.html#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="fl">0.327</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
-<img src="06-correlation_files/figure-html/unnamed-chunk-12-1.png" alt="Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed (dashed lines) along with the fitted regression line (solid line)." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-46"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-46-1.png" alt="Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed (dashed lines) along with the fitted regression line (solid line)." width="50%" />
 <p class="caption">
-Figure 7: Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed (dashed lines) along with the fitted regression line (solid line).
+Figure 19: Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed (dashed lines) along with the fitted regression line (solid line).
 </p>
 </div>
 <p>Using standardized regression results allows us to talk about the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> in a standard metric (standard deviation difference). This can be quite helpful when the unstandardized metric is less meaningful. This is also why some researchers refer to correlation as an effect, even though the value of <span class="math inline">\(R^2\)</span> is more useful in summarizing the usefulness of the model. Standardized regression also makes the intercept interpretable, since the mean value of <span class="math inline">\(x\)</span> is not extrapolated.</p>

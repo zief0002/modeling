@@ -26,12 +26,12 @@ MathJax.Hub.Config({
 
 <title>Introduction to Interaction Effects | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap/shim/respond.min.js"></script>
 <style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
@@ -41,9 +41,9 @@ MathJax.Hub.Config({
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="libs/navigation-1.1/tabsets.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/navigation/tabsets.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -266,10 +266,10 @@ details > summary {
    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
 1      0  -0.210    0.948   0.206    0.947   120
 2      1   0.140    1.01   -0.138    1.01    180</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="14-interaction-effects_files/figure-html/unnamed-chunk-3-1.png" alt="LEFT: Density plot of standardized amount of guilt associated with home-life/work balance conditioned on gender. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender." width="45%" /><img src="14-interaction-effects_files/figure-html/unnamed-chunk-3-2.png" alt="LEFT: Density plot of standardized amount of guilt associated with home-life/work balance conditioned on gender. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender." width="45%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-206"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-206-1.png" alt="LEFT: Density plot of standardized amount of guilt associated with home-life/work balance conditioned on gender. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender." width="45%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-206-2.png" alt="LEFT: Density plot of standardized amount of guilt associated with home-life/work balance conditioned on gender. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender." width="45%" />
 <p class="caption">
-Figure 1: LEFT: Density plot of standardized amount of guilt associated with home-life/work balance conditioned on gender. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender.
+Figure 72: LEFT: Density plot of standardized amount of guilt associated with home-life/work balance conditioned on gender. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender.
 </p>
 </div>
 <p>The distribution of home-life/work related guilt is unimodal and relatively symmetric for both females and non-females. The mean guilt for females is higher (by 0.35 standard deviations) than that for non-females. The female distribution also has slightly more variation than the distribution of non-females. This is pattern is similar for the distributions of boundary-spanning work except that females experience less boundary-spanning work on average, but also have more variation than their non-female peers.</p>
@@ -441,10 +441,10 @@ RMSE
 <span id="cb247-5"><a href="interaction-01.html#cb247-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Predicted home-life/work guilt&quot;</span>) <span class="sc">+</span></span>
 <span id="cb247-6"><a href="interaction-01.html#cb247-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">0.01</span>, <span class="at">slope =</span> <span class="fl">0.68</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#424651&quot;</span>) <span class="sc">+</span></span>
 <span id="cb247-7"><a href="interaction-01.html#cb247-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.40</span>, <span class="at">slope =</span> <span class="fl">0.68</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#f5853f&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
-<img src="14-interaction-effects_files/figure-html/unnamed-chunk-7-1.png" alt="Partial fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line). The effects of job authority (mean value) and marital status (non-married) have been partialed out." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-210"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-210-1.png" alt="Partial fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line). The effects of job authority (mean value) and marital status (non-married) have been partialed out." width="50%" />
 <p class="caption">
-Figure 3: Partial fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line). The effects of job authority (mean value) and marital status (non-married) have been partialed out.
+Figure 73: Partial fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line). The effects of job authority (mean value) and marital status (non-married) have been partialed out.
 </p>
 </div>
 <p>This display helps us see that the effect of boundary-spanning work (slopes of the lines) is THE SAME for both females and non-females, and is 0.68. We also see that females report more guilt than males, and that this difference in guilt is THE SAME regardless of how much boundary-spanning work is experienced.</p>
@@ -466,10 +466,10 @@ Figure 3: Partial fitted regression lines showing model-predicted home-life/work
 <span id="cb248-10"><a href="interaction-01.html#cb248-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Standardized boundary-spanning work&quot;</span>) <span class="sc">+</span></span>
 <span id="cb248-11"><a href="interaction-01.html#cb248-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Standardized home-life/work guilt&quot;</span>) <span class="sc">+</span></span>
 <span id="cb248-12"><a href="interaction-01.html#cb248-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>female)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
-<img src="14-interaction-effects_files/figure-html/unnamed-chunk-8-1.png" alt="Scatterplot of home-life/work guilt versus boundary-spanning work conditioned on gender. The fitted simple regression lines have also been included." width="80%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-211"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-211-1.png" alt="Scatterplot of home-life/work guilt versus boundary-spanning work conditioned on gender. The fitted simple regression lines have also been included." width="80%" />
 <p class="caption">
-Figure 4: Scatterplot of home-life/work guilt versus boundary-spanning work conditioned on gender. The fitted simple regression lines have also been included.
+Figure 74: Scatterplot of home-life/work guilt versus boundary-spanning work conditioned on gender. The fitted simple regression lines have also been included.
 </p>
 </div>
 <p>Differential effects of boundary-spanning work for females and non-females on home-life/work guilt imply that the slopes of the regression lines for females and non-females are not equal (i.e., the fitted regression lines are not parallel). This is in stark contrast to the main-effects model which implies parallel regression lines, or equal effects of boundary-spanning work for females and non-females. In statistical terms we describe differential effects as <strong>interaction effects</strong>. We would say there is an interaction effect between boundary-spanning work and gender on home-life/work guilt.</p>
@@ -602,10 +602,10 @@ Y_i = \beta_0 &amp;+ \beta_1(X_{1i}) + \beta_2(X_{2i}) + \epsilon_i, \quad \math
 <span id="cb253-5"><a href="interaction-01.html#cb253-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Predicted home-life/work guilt&quot;</span>) <span class="sc">+</span></span>
 <span id="cb253-6"><a href="interaction-01.html#cb253-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">0.24</span>, <span class="at">slope =</span> <span class="fl">0.72</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#424651&quot;</span>) <span class="sc">+</span></span>
 <span id="cb253-7"><a href="interaction-01.html#cb253-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.32</span>, <span class="at">slope =</span> <span class="fl">0.56</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#f5853f&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
-<img src="14-interaction-effects_files/figure-html/unnamed-chunk-10-1.png" alt="Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line)." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-213"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-213-1.png" alt="Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line)." width="50%" />
 <p class="caption">
-Figure 10: Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line).
+Figure 75: Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line).
 </p>
 </div>
 <p>In this plot, we can see some of the same effects we interpreted from the coefficients:</p>
@@ -703,10 +703,10 @@ Figure 10: Fitted regression lines showing model-predicted home-life/work guilt 
 <span id="cb256-17"><a href="interaction-01.html#cb256-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.39</span>, <span class="at">slope =</span> <span class="fl">0.61</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#f5853f&quot;</span>) <span class="sc">+</span></span>
 <span id="cb256-18"><a href="interaction-01.html#cb256-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.17</span>, <span class="at">slope =</span> <span class="fl">0.61</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#f5853f&quot;</span>) <span class="sc">+</span></span>
 <span id="cb256-19"><a href="interaction-01.html#cb256-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Non-female&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
-<img src="14-interaction-effects_files/figure-html/unnamed-chunk-12-1.png" alt="Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for married (dashed lines) and non-married (solid lines) employees conditioned on gender. Job authority is controlled for by setting this to its mean value." width="45%" /><img src="14-interaction-effects_files/figure-html/unnamed-chunk-12-2.png" alt="Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for married (dashed lines) and non-married (solid lines) employees conditioned on gender. Job authority is controlled for by setting this to its mean value." width="45%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-215"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-215-1.png" alt="Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for married (dashed lines) and non-married (solid lines) employees conditioned on gender. Job authority is controlled for by setting this to its mean value." width="45%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-215-2.png" alt="Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for married (dashed lines) and non-married (solid lines) employees conditioned on gender. Job authority is controlled for by setting this to its mean value." width="45%" />
 <p class="caption">
-Figure 7: Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for married (dashed lines) and non-married (solid lines) employees conditioned on gender. Job authority is controlled for by setting this to its mean value.
+Figure 76: Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for married (dashed lines) and non-married (solid lines) employees conditioned on gender. Job authority is controlled for by setting this to its mean value.
 </p>
 </div>
 <p>Notice that the slope of the lines represents the effect of boundary-spanning work and that this differs by gender; the lines across gender are not parallel. Across marital status, however, the slopes are the same (at least within gender); parallel lines. This is because marital status was only included in the model as a main effect, whereas gender was included as part of an interaction effect.</p>
@@ -730,10 +730,10 @@ Figure 7: Fitted regression lines showing model-predicted home-life/work guilt a
 <span id="cb257-17"><a href="interaction-01.html#cb257-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">0.24</span>, <span class="at">slope =</span> <span class="fl">0.73</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#424651&quot;</span>) <span class="sc">+</span></span>
 <span id="cb257-18"><a href="interaction-01.html#cb257-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.17</span>, <span class="at">slope =</span> <span class="fl">0.61</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#f5853f&quot;</span>) <span class="sc">+</span></span>
 <span id="cb257-19"><a href="interaction-01.html#cb257-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Married&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
-<img src="14-interaction-effects_files/figure-html/unnamed-chunk-13-1.png" alt="Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line) conditioned on marital status. Job authority is controlled for by setting this to its mean value." width="45%" /><img src="14-interaction-effects_files/figure-html/unnamed-chunk-13-2.png" alt="Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line) conditioned on marital status. Job authority is controlled for by setting this to its mean value." width="45%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-216"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-216-1.png" alt="Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line) conditioned on marital status. Job authority is controlled for by setting this to its mean value." width="45%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-216-2.png" alt="Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line) conditioned on marital status. Job authority is controlled for by setting this to its mean value." width="45%" />
 <p class="caption">
-Figure 14: Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line) conditioned on marital status. Job authority is controlled for by setting this to its mean value.
+Figure 77: Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line) conditioned on marital status. Job authority is controlled for by setting this to its mean value.
 </p>
 </div>
 <p><br /></p>
@@ -761,10 +761,10 @@ Figure 14: Fitted regression lines showing model-predicted home-life/work guilt 
 <span id="cb258-17"><a href="interaction-01.html#cb258-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb258-18"><a href="interaction-01.html#cb258-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Fitted Values&quot;</span>) <span class="sc">+</span></span>
 <span id="cb258-19"><a href="interaction-01.html#cb258-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Standardized Residuals&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
-<img src="14-interaction-effects_files/figure-html/unnamed-chunk-14-1.png" alt="LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from Model E. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." width="45%" /><img src="14-interaction-effects_files/figure-html/unnamed-chunk-14-2.png" alt="LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from Model E. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." width="45%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-217"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-217-1.png" alt="LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from Model E. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." width="45%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-217-2.png" alt="LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from Model E. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." width="45%" />
 <p class="caption">
-Figure 11: LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from Model E. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed.
+Figure 78: LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from Model E. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed.
 </p>
 </div>
 <p>Based on the density plot of the standardized residuals, the normality assumption seems tenable. The scatterplot of the model’s standardized residuals versus its fitted values suggests that the average residual is close to zero for each fitted value, indicating that the linearity assumption seems tenable. The assumption of equal variances also seems tenable given this plot. Although not seen in the plot, there may be some question of independence. For example, some these employees may work in the same division, or have the same supervisor. As such, the amount of home-life/work guilt for these employees may be more related.</p>
@@ -795,10 +795,10 @@ Figure 11: LEFT: Density plot of the marginal distribution of standardized resid
 <span id="cb259-7"><a href="interaction-01.html#cb259-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">0.01</span>, <span class="at">slope =</span> <span class="fl">0.73</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#424651&quot;</span>) <span class="sc">+</span></span>
 <span id="cb259-8"><a href="interaction-01.html#cb259-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.39</span>, <span class="at">slope =</span> <span class="fl">0.61</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#f5853f&quot;</span>) <span class="sc">+</span></span>
 <span id="cb259-9"><a href="interaction-01.html#cb259-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Non-married&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
-<img src="14-interaction-effects_files/figure-html/unnamed-chunk-15-1.png" alt="Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for non-married females (charcoal, solid line) and non-females (mango, dashed line). Job authority is controlled for by setting this to its mean value." width="45%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-218"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-218-1.png" alt="Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for non-married females (charcoal, solid line) and non-females (mango, dashed line). Job authority is controlled for by setting this to its mean value." width="45%" />
 <p class="caption">
-Figure 12: Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for non-married females (charcoal, solid line) and non-females (mango, dashed line). Job authority is controlled for by setting this to its mean value.
+Figure 79: Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for non-married females (charcoal, solid line) and non-females (mango, dashed line). Job authority is controlled for by setting this to its mean value.
 </p>
 </div>
 <p>In this plot, the effect of gender differs depending on the amount of boundary-spanning work. For low amounts of boundary-spanning work the gender effect is small, and for higher amounts of boundary-spanning work the gender effect is larger. Regardless of the amount of boundary-spanning work, females have more home-life/work guilt than non-females (within our range of data).</p>

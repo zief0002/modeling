@@ -26,12 +26,12 @@ MathJax.Hub.Config({
 
 <title>Understanding Statistical Control | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap/shim/respond.min.js"></script>
 <style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
@@ -41,9 +41,9 @@ MathJax.Hub.Config({
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="libs/navigation-1.1/tabsets.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/navigation/tabsets.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -227,10 +227,10 @@ details > summary {
 <div id="data-exploration-of-parent-education-level" class="section level2">
 <h2>Data Exploration of Parent Education Level</h2>
 <p>Figure 1 (syntax not shown) suggests that the distribution of parent education level is slightly right-skewed. The mean level of education is approximately 14 years (SD = 2 years). Parent-level of education is positively correlated with GPA and with time spent on homework.</p>
-<p><img src="10-understanding-statistical-control_files/figure-html/unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-117-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-4">Table 7: </span>Correlations between three student attributes. Means (standard deviations) are displayed on the main diagonal.
+<span id="tab:unnamed-chunk-118">Table 9: </span>Correlations between three student attributes. Means (standard deviations) are displayed on the main diagonal.
 </caption>
 <thead>
 <tr>
@@ -411,7 +411,7 @@ RMSE
 <p>Let’s also assume that these student all have parent education level of 12 years.</p>
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-7">Table 4: </span>Predicted average GPA for students who spend 1, 2, and 3 hours a week on homework with parent education level of 12 years.
+<span id="tab:unnamed-chunk-121">Table 10: </span>Predicted average GPA for students who spend 1, 2, and 3 hours a week on homework with parent education level of 12 years.
 </caption>
 <thead>
 <tr>
@@ -466,7 +466,7 @@ Model Predicted GPA
 <p>What if we had chosen a parent education level of 13 years instead?</p>
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-8">Table 5: </span>Predicted average GPA for students who spend 1, 2, and 3 hours a week on homework with parent education level of 13 years.
+<span id="tab:unnamed-chunk-122">Table 11: </span>Predicted average GPA for students who spend 1, 2, and 3 hours a week on homework with parent education level of 13 years.
 </caption>
 <thead>
 <tr>
@@ -589,10 +589,10 @@ Model Predicted GPA
 <span id="cb120-6"><a href="statcontrol.html#cb120-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">70.18</span>, <span class="at">slope =</span> <span class="fl">0.99</span>, <span class="at">color =</span> <span class="st">&quot;#003f5c&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dotdash&quot;</span>) <span class="sc">+</span></span>
 <span id="cb120-7"><a href="statcontrol.html#cb120-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">73.66</span>, <span class="at">slope =</span> <span class="fl">0.99</span>, <span class="at">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>) <span class="sc">+</span></span>
 <span id="cb120-8"><a href="statcontrol.html#cb120-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">77.14</span>, <span class="at">slope =</span> <span class="fl">0.99</span>, <span class="at">color =</span> <span class="st">&quot;#b40f20&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) </span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
-<img src="10-understanding-statistical-control_files/figure-html/unnamed-chunk-9-1.png" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line)." width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-123"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-123-1.png" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line)." width="60%" />
 <p class="caption">
-Figure 5: Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line).
+Figure 42: Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line).
 </p>
 </div>
 <p>From the plot we can see the effect of time spent on homework in the slopes of the fitted lines. Regardless of the level of parent education (8, 12, or 16), the slope of the line is 0.99, which means the three lines are parallel. The intercepts of these three lines vary reflecting the different level of parent education.</p>
@@ -608,16 +608,16 @@ Figure 5: Model predicted GPA as a function of time spent on homework for studen
 <span id="cb121-9"><a href="statcontrol.html#cb121-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">y =</span> <span class="fl">76.11908</span>, <span class="at">color =</span> <span class="st">&quot;#003f5c&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb121-10"><a href="statcontrol.html#cb121-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">y =</span> <span class="fl">79.60157</span>, <span class="at">color =</span> <span class="st">&quot;#f26419&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb121-11"><a href="statcontrol.html#cb121-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">y =</span> <span class="fl">83.08407</span>, <span class="at">color =</span> <span class="st">&quot;#b40f20&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
-<img src="10-understanding-statistical-control_files/figure-html/unnamed-chunk-10-1.png" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line). The model predicted GPAs for students who spend six hours a week on homework are also displayed." width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-124"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-124-1.png" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line). The model predicted GPAs for students who spend six hours a week on homework are also displayed." width="60%" />
 <p class="caption">
-Figure 10: Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line). The model predicted GPAs for students who spend six hours a week on homework are also displayed.
+Figure 43: Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line). The model predicted GPAs for students who spend six hours a week on homework are also displayed.
 </p>
 </div>
 <p>How much do the model predicted GPAs vary for these three parent education levels?</p>
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-11">Table 6: </span>Predicted GPA for students who spend six hours a week on homework with 8, 12, and 16 years of parent education.
+<span id="tab:unnamed-chunk-125">Table 12: </span>Predicted GPA for students who spend six hours a week on homework with 8, 12, and 16 years of parent education.
 </caption>
 <thead>
 <tr>
@@ -675,7 +675,7 @@ Model Predicted GPA
 <p>What if we would have chosen parent education levels that differed by one year rather than by four years?</p>
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-12">Table 8: </span>Predicted GPA for students who spend six hours a week on homework with with parent education of 8, 9, and 10 years
+<span id="tab:unnamed-chunk-126">Table 13: </span>Predicted GPA for students who spend six hours a week on homework with with parent education of 8, 9, and 10 years
 </caption>
 <thead>
 <tr>
@@ -773,10 +773,10 @@ Model Predicted GPA
 <span id="cb122-30"><a href="statcontrol.html#cb122-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb122-31"><a href="statcontrol.html#cb122-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Put plots side-by-side</span></span>
 <span id="cb122-32"><a href="statcontrol.html#cb122-32" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2 <span class="sc">|</span> p3</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
-<img src="10-understanding-statistical-control_files/figure-html/unnamed-chunk-13-1.png" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8, 12, and 16 years." width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-127"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-127-1.png" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8, 12, and 16 years." width="90%" />
 <p class="caption">
-Figure 14: Model predicted GPA as a function of time spent on homework for students with a parent education level of 8, 12, and 16 years.
+Figure 44: Model predicted GPA as a function of time spent on homework for students with a parent education level of 8, 12, and 16 years.
 </p>
 </div>
 <p><br /></p>
@@ -822,10 +822,10 @@ Figure 14: Model predicted GPA as a function of time spent on homework for stude
 <span id="cb123-27"><a href="statcontrol.html#cb123-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb123-28"><a href="statcontrol.html#cb123-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Put plots side-by-side</span></span>
 <span id="cb123-29"><a href="statcontrol.html#cb123-29" aria-hidden="true" tabindex="-1"></a>p4 <span class="sc">|</span> p5 <span class="sc">|</span>p6</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
-<img src="10-understanding-statistical-control_files/figure-html/unnamed-chunk-14-1.png" alt="Model predicted GPA as a function of parent education level for students who spend 2 hours, 5 hours, and 10 hours a week on homework." width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-128"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-128-1.png" alt="Model predicted GPA as a function of parent education level for students who spend 2 hours, 5 hours, and 10 hours a week on homework." width="90%" />
 <p class="caption">
-Figure 11: Model predicted GPA as a function of parent education level for students who spend 2 hours, 5 hours, and 10 hours a week on homework.
+Figure 45: Model predicted GPA as a function of parent education level for students who spend 2 hours, 5 hours, and 10 hours a week on homework.
 </p>
 </div>
 <p><br /></p>
@@ -845,10 +845,10 @@ Figure 11: Model predicted GPA as a function of parent education level for stude
 <span id="cb124-4"><a href="statcontrol.html#cb124-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb124-5"><a href="statcontrol.html#cb124-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">&quot;Time spent on homework&quot;</span>) <span class="sc">+</span></span>
 <span id="cb124-6"><a href="statcontrol.html#cb124-6" aria-hidden="true" tabindex="-1"></a> <span class="fu">ylab</span>(<span class="st">&quot;Model predicted GPA&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
-<img src="10-understanding-statistical-control_files/figure-html/unnamed-chunk-15-1.png" alt="Model predicted GPA as a function of time spent on homework for students with an average parent education level (14.03 years)." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-129"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-129-1.png" alt="Model predicted GPA as a function of time spent on homework for students with an average parent education level (14.03 years)." width="50%" />
 <p class="caption">
-Figure 12: Model predicted GPA as a function of time spent on homework for students with an average parent education level (14.03 years).
+Figure 46: Model predicted GPA as a function of time spent on homework for students with an average parent education level (14.03 years).
 </p>
 </div>
 

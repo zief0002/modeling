@@ -26,12 +26,12 @@ MathJax.Hub.Config({
 
 <title>Coefficient-Level Inference | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap/shim/respond.min.js"></script>
 <style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
@@ -41,9 +41,9 @@ MathJax.Hub.Config({
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="libs/navigation-1.1/tabsets.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/navigation/tabsets.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -235,16 +235,16 @@ details > summary {
 <span id="cb56-10"><a href="coefinf.html#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-11"><a href="coefinf.html#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scatterplot and density plots on single graph</span></span>
 <span id="cb56-12"><a href="coefinf.html#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggMarginal</span>(p1, <span class="at">margins =</span> <span class="st">&quot;both&quot;</span>, <span class="at">type =</span> <span class="st">&quot;density&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="07-coefficient-level-inference_files/figure-html/unnamed-chunk-3-1.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-53"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-53-1.png" alt="Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown." width="50%" />
 <p class="caption">
-Figure 1: Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown.
+Figure 20: Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown.
 </p>
 </div>
 <p>We also create a table to present the correlation coefficients. This table could be extended to include additional variables (which we will do in later chapters). To save creating an additional table, we also include the mean and standard deviations in the same table by placing them on the main diagonal.</p>
 <table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-4">Table 7: </span>Correlations between 8th-Grade students’ GPA and weekly time spent on homework. Means and standard deviations (in parentheses) are displayed on the main diagonal.
+<span id="tab:unnamed-chunk-54">Table 8: </span>Correlations between 8th-Grade students’ GPA and weekly time spent on homework. Means and standard deviations (in parentheses) are displayed on the main diagonal.
 </caption>
 <thead>
 <tr>
@@ -326,10 +326,10 @@ Coefficients:
 <p>Before we talk about estimating uncertainty in regression, let me bring you back in time to your <em>Stat I</em> course. In that course, you probably spent a lot of time talking about sampling variation for the mean. The idea went something like this: Imagine you have a population that is infinitely large. The observations in this population follow some probability distribution. (This distribution is typically unknown in practice, but for now, let’s pretend we know what that distribution is.) For our purposes, let’s assume the population is normally distributed with a mean of <span class="math inline">\(\mu\)</span> and a standard deviation of <span class="math inline">\(\sigma\)</span>.</p>
 <p>Sample <span class="math inline">\(n\)</span> observations from that population. Based on the <span class="math inline">\(n\)</span> sampled observations, find the mean. We will call this <span class="math inline">\(\hat\mu_1\)</span> since it is an estimate for the population mean (the subscript just says it is the first sample). In all likelihood, <span class="math inline">\(\hat\mu_1\)</span> is not the exact same value as <span class="math inline">\(\mu\)</span>. It varies from the population mean because of sampling error.</p>
 <p>Now, sample another <span class="math inline">\(n\)</span> observations from the population. Again, find the mean. We will call this estimate <span class="math inline">\(\hat\mu_2\)</span>. Again, it probably varies from <span class="math inline">\(\mu\)</span>, and may be different than <span class="math inline">\(\hat\mu_1\)</span> as well. Continue to repeat this process: randomly sample <span class="math inline">\(n\)</span> observations from the population; and find the mean.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-56"></span>
 <img src="figs/notes-06-thought-experiment-means.png" alt="Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the mean." width="80%" />
 <p class="caption">
-Figure 13: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the mean.
+Figure 21: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the mean.
 </p>
 </div>
 <p>The distribution of the sample means, it turns out, is quite predictable using statistical theory. Theory predicts that the distribution of the sample means will be normally distributed. It also predicts that the mean, or <a href="https://en.wikipedia.org/wiki/Expected_value">expected value</a>, of all the sample means will be equal to the population mean, <span class="math inline">\(\mu\)</span>. Finally, theory predicts that the standard deviation of this distribution, called the <a href="https://en.wikipedia.org/wiki/Standard_error">standard error</a>, will be equal to the population standard deviation divided by the square root of the sample size. Mathematically, we would write all this as,</p>
@@ -341,10 +341,10 @@ Figure 13: Thought experiment for sampling samples of size n from the population
 <div id="quantification-of-uncertainty-in-regression" class="section level3">
 <h3>Quantification of Uncertainty in Regression</h3>
 <p>We can extend these ideas to regression. Now the thought experiment goes something like this: Imagine you have a population that is infinitely large. The observations in this population have two attributes, call them <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The relationship between these two attributes can be expressed via a regression equation as: <span class="math inline">\(\hat{Y}=\beta_0 + \beta_1(X)\)</span>. Randomly sample <span class="math inline">\(n\)</span> observations from the population. This time, rather than computing a mean, regress the sample <span class="math inline">\(Y\)</span> values on the sample <span class="math inline">\(X\)</span> values. Since the sample regression coefficients are estimates of the population parameters, we will write this as: <span class="math inline">\(\hat{Y}=\hat{\beta}_{0,1} + \hat{\beta}_{1,1}(X)\)</span>. Repeat the process. This time the regression equation is: <span class="math inline">\(\hat{Y}=\hat{\beta}_{0,2} + \hat{\beta}_{1,2}(X)\)</span>. Continue this process an infinite number of times.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-57"></span>
 <img src="figs/notes-06-thought-experiment-coefficients.png" alt="Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the regression coefficients." width="80%" />
 <p class="caption">
-Figure 3: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the regression coefficients.
+Figure 22: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the regression coefficients.
 </p>
 </div>
 <p>Statistical theory again predicts the characteristics of the two distributions, that of <span class="math inline">\(\hat{\beta}_0\)</span> and that of <span class="math inline">\(\hat{\beta}_1\)</span>. The distribution of <span class="math inline">\(\hat{\beta}_0\)</span> can be expressed as,</p>
@@ -369,10 +369,10 @@ Figure 3: Thought experiment for sampling samples of size n from the population 
 1 (Intercept)    74.3      1.94      38.3  1.01e-60
 2 homework        1.21     0.354      3.43 8.85e- 4</code></pre>
 <p>In the displayed output, we now obtain the estimates for the standard errors in addition to the coefficient estimates. We can use these values to quantify the amount of uncertainty due to sampling error. For example, the estimate for the slope, 1.21, has a standard error of 0.35. One way to envision this is as a distribution. Our best guess (mean) for the slope parameter is 1.21. The standard deviation of this distribution is 0.35, which indicates the precision (uncertainty) of our estimate.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
-<img src="07-coefficient-level-inference_files/figure-html/unnamed-chunk-9-1.png" alt="Sampling distribution of the slope coefficient. The distribution is approximately normal with a mean of 1.21 and a standard error of 0.35." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-59"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-59-1.png" alt="Sampling distribution of the slope coefficient. The distribution is approximately normal with a mean of 1.21 and a standard error of 0.35." width="50%" />
 <p class="caption">
-Figure 5: Sampling distribution of the slope coefficient. The distribution is approximately normal with a mean of 1.21 and a standard error of 0.35.
+Figure 23: Sampling distribution of the slope coefficient. The distribution is approximately normal with a mean of 1.21 and a standard error of 0.35.
 </p>
 </div>
 <p>In the social sciences, it is typical to express uncertainty as <span class="math inline">\(\pm2(SE)\)</span>. Here we would say that becuase of sampling variation, the slope is likely between 0.51 and 1.91. Interpreting this, we might say,</p>
@@ -411,10 +411,10 @@ H_0: \beta_1 = 0
 <h2>Estimating Variation from Sample Data: No Longer Normal</h2>
 <p>In theory, the sampling distribution for two regression coefficients were both normally distributed. This is the case when we know the variation parameters in the population. For example, for the sampling distribution of the slope to be normally distributed, we would need to know <span class="math inline">\(\sigma_\epsilon\)</span> and <span class="math inline">\(\sigma_x\)</span>.</p>
 <p>In practice these values are typically unknown and are estimated from the sample data. Anytime we are estimating things we introduce additional uncertainty. In this case, the uncertainty affects the shape of the sampling distribution.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
-<img src="07-coefficient-level-inference_files/figure-html/unnamed-chunk-11-1.png" alt="Comparison of two distributions. The normal distribution (solid, blue) and one with additional uncertainty (dashed, orange)." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-61"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-61-1.png" alt="Comparison of two distributions. The normal distribution (solid, blue) and one with additional uncertainty (dashed, orange)." width="50%" />
 <p class="caption">
-Figure 6: Comparison of two distributions. The normal distribution (solid, blue) and one with additional uncertainty (dashed, orange).
+Figure 24: Comparison of two distributions. The normal distribution (solid, blue) and one with additional uncertainty (dashed, orange).
 </p>
 </div>
 <p>Compare the normal distribution (solid, blue) to the distribution with additional uncertainty (dashed, orange). From the figure you can see that the additional uncertainty slightly changed the shape of the distribution from normal.</p>
@@ -424,10 +424,10 @@ Figure 6: Comparison of two distributions. The normal distribution (solid, blue)
 <li>The additional uncertainty makes values in the middle less likely than they are in the normal distribution.</li>
 </ul>
 <p>It is important to note that the amount of uncertainty affects how closely the shape of the distribution matches the normal distribution. And, that the sample size directly affects the amount of uncertainty we have. All things being equal, we have less uncertainty when we have larger samples. The following figure illustrates this idea.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
-<img src="07-coefficient-level-inference_files/figure-html/unnamed-chunk-12-1.png" alt="The normal distribution (solid, blue) and two with additional uncertainty; one based on n=10 (dashed, orange), and the other based on n=4 (dotted, green)." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-62"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-62-1.png" alt="The normal distribution (solid, blue) and two with additional uncertainty; one based on n=10 (dashed, orange), and the other based on n=4 (dotted, green)." width="50%" />
 <p class="caption">
-Figure 7: The normal distribution (solid, blue) and two with additional uncertainty; one based on n=10 (dashed, orange), and the other based on n=4 (dotted, green).
+Figure 25: The normal distribution (solid, blue) and two with additional uncertainty; one based on n=10 (dashed, orange), and the other based on n=4 (dotted, green).
 </p>
 </div>
 <p><br /></p>
@@ -470,10 +470,10 @@ H_0: \beta_1 = 0
 \textit{df} = 100 - 2 = 98
 \]</span></p>
 <p>Based on this, we will evaluate our observed <em>t</em>-value of 3.42 using a <em>t</em>-distribution with 98 degrees of freedom. Using this distribution, we can compute the probability of obtaining a <em>t</em>-value (under random sampling) at least as extreme as the one in the data under the assumed model. This is equivalent to finding the area under the probability curve for the <em>t</em>-distribution that is greater than or equal to 3.42.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> This is called the <em>p</em>-value.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
-<img src="07-coefficient-level-inference_files/figure-html/unnamed-chunk-13-1.png" alt="Plot of the probability curve for the t(98) distribution. The shaded area under the curve represents the p-value for a two-tailed test evaluating whether the population slope is zero using an observed t-value of 73.42." width="50%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-63"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-63-1.png" alt="Plot of the probability curve for the t(98) distribution. The shaded area under the curve represents the p-value for a two-tailed test evaluating whether the population slope is zero using an observed t-value of 73.42." width="50%" />
 <p class="caption">
-Figure 14: Plot of the probability curve for the t(98) distribution. The shaded area under the curve represents the p-value for a two-tailed test evaluating whether the population slope is zero using an observed t-value of 73.42.
+Figure 26: Plot of the probability curve for the t(98) distribution. The shaded area under the curve represents the p-value for a two-tailed test evaluating whether the population slope is zero using an observed t-value of 73.42.
 </p>
 </div>
 <p>The <em>p</em>-value is computed for us and displayed in the <code>tidy()</code> output, along with the <em>t</em>-value (provided in the <code>statistic</code> column). In our example, <span class="math inline">\(p=0.000885\)</span>. (Note that the <em>p</em>-value might be printed in scientific notation. For example, it may be printed as <code>8.85e-04</code>, which is equivalent to <span class="math inline">\(8.85 \times 10^{-4}\)</span>.) To interpret this we would say,</p>
@@ -545,10 +545,10 @@ t = \frac{74.28 - 0}{1.94} = 38.26
 <div id="coefficient-plot" class="section level3">
 <h3>Coefficient Plot</h3>
 <p>One plot that helps visualize the estimates of the regression coefficients and the associated uncertainty is a <em>coefficient plot</em>. This plot, recommended by <span class="citation">Gelman &amp; Hill (<a href="#ref-Gelman:2007" role="doc-biblioref">2007</a>)</span>, is a graphical representation of the information provided in the <code>tidy()</code> output.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
-<img src="07-coefficient-level-inference_files/figure-html/unnamed-chunk-17-1.png" alt="Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95\% confidence intervals are displayed." width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-67"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-67-1.png" alt="Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95\% confidence intervals are displayed." width="70%" />
 <p class="caption">
-Figure 15: Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95% confidence intervals are displayed.
+Figure 27: Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95% confidence intervals are displayed.
 </p>
 </div>
 <p>The coefficient plot shows the estimates of the regression coefficients (dots) and the uncertainty in those estimates via the confidence intervals (blue shading). Notice that darker shading is associated with parameter values that are more probable given the empirical data; the sample estimates are the most likely values for the regression parameters.</p>
@@ -578,10 +578,10 @@ Figure 15: Coefficient plot for the model regressing GPA on time spent on homewo
 <span id="cb68-9"><a href="coefinf.html#cb68-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">&quot;Model&quot;</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#c62f4b&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb68-10"><a href="coefinf.html#cb68-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Estimate&quot;</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb68-11"><a href="coefinf.html#cb68-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Coefficients&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Time spent</span><span class="sc">\n</span><span class="st">on homework&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
-<img src="07-coefficient-level-inference_files/figure-html/unnamed-chunk-19-1.png" alt="Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95\% confidence interval is displayed. Note that the intercept has been omitted." width="80%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-69"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-69-1.png" alt="Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95\% confidence interval is displayed. Note that the intercept has been omitted." width="80%" />
 <p class="caption">
-Figure 16: Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95% confidence interval is displayed. Note that the intercept has been omitted.
+Figure 28: Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95% confidence interval is displayed. Note that the intercept has been omitted.
 </p>
 </div>
 <p><br /></p>

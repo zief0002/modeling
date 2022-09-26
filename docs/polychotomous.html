@@ -26,12 +26,12 @@ MathJax.Hub.Config({
 
 <title>Polychotomous Categorical Predictors | Statistical Modeling and Computation for Educational Scientists</title>
 
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap/shim/respond.min.js"></script>
 <style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
@@ -41,9 +41,9 @@ MathJax.Hub.Config({
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="libs/navigation-1.1/tabsets.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/navigation/tabsets.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -242,10 +242,10 @@ details > summary {
 <span id="cb211-11"><a href="polychotomous.html#cb211-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb211-12"><a href="polychotomous.html#cb211-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Family structure&quot;</span>) <span class="sc">+</span></span>
 <span id="cb211-13"><a href="polychotomous.html#cb211-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Frequency&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="13-polychotomous_files/figure-html/unnamed-chunk-3-1.png" alt="LEFT: Density plot of standardized amount of substance use. RIGHT: Bar plot of family structure." width="45%" /><img src="13-polychotomous_files/figure-html/unnamed-chunk-3-2.png" alt="LEFT: Density plot of standardized amount of substance use. RIGHT: Bar plot of family structure." width="45%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-184"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-184-1.png" alt="LEFT: Density plot of standardized amount of substance use. RIGHT: Bar plot of family structure." width="45%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-184-2.png" alt="LEFT: Density plot of standardized amount of substance use. RIGHT: Bar plot of family structure." width="45%" />
 <p class="caption">
-Figure 1: LEFT: Density plot of standardized amount of substance use. RIGHT: Bar plot of family structure.
+Figure 70: LEFT: Density plot of standardized amount of substance use. RIGHT: Bar plot of family structure.
 </p>
 </div>
 <p>The distribution of substance use is highly right-skewed with the majority of adolescents at the lower end of the distribution. The small bumps on the right-side of the distribution indicate that there are some small number of adolescents who seem to use substances at a much more than typical. The distribution of family structure indicates that the sample is quite unbalanced among the three family structures.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> The majority of the adolescents in the sample are part of two-parent families. There are about one-third as many adolescents from single-parent families and even fewer from families with one parent/one guardian.</p>
@@ -278,10 +278,10 @@ Figure 1: LEFT: Density plot of standardized amount of substance use. RIGHT: Bar
 1 One-parent, one guardian  0.0991 0.950   105
 2 Single-parent family      0.156  1.04    163
 3 Two-parent family        -0.0653 0.834   642</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="13-polychotomous_files/figure-html/unnamed-chunk-4-1.png" alt="LEFT: Scatterplot of the substance use versus family structure. RIGHT: Density plots of substance conditioned on family structure." width="45%" /><img src="13-polychotomous_files/figure-html/unnamed-chunk-4-2.png" alt="LEFT: Scatterplot of the substance use versus family structure. RIGHT: Density plots of substance conditioned on family structure." width="45%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-185"></span>
+<img src="Modeling-in-Education_files/figure-html/unnamed-chunk-185-1.png" alt="LEFT: Scatterplot of the substance use versus family structure. RIGHT: Density plots of substance conditioned on family structure." width="45%" /><img src="Modeling-in-Education_files/figure-html/unnamed-chunk-185-2.png" alt="LEFT: Scatterplot of the substance use versus family structure. RIGHT: Density plots of substance conditioned on family structure." width="45%" />
 <p class="caption">
-Figure 9: LEFT: Scatterplot of the substance use versus family structure. RIGHT: Density plots of substance conditioned on family structure.
+Figure 71: LEFT: Scatterplot of the substance use versus family structure. RIGHT: Density plots of substance conditioned on family structure.
 </p>
 </div>
 <p>After conditioning on family structure, the data suggest that adolescents from two-parent households have a lower mean substance use than other adolescents. Similarly, adolescents from households with one parent/one guardian have a lower mean substance use than adolescents from single-parent households. There is a great deal of variation in all three distributions and adolescents who use relatively more substances in all three distributions. The standard deviations seem similar in all three distributions.</p>
@@ -348,7 +348,7 @@ Figure 9: LEFT: Scatterplot of the substance use versus family structure. RIGHT:
 <p>It turns out that all three categories of the predictor are completely identified using any two of the three indicator variables. For example, consider the family structure and three dummy-coded indicators for the sample of six adolescents below.</p>
 <table style="width:75%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-7">Table 4: </span>Family structure and values on three dummy-coded indicator variables for a sample of six adolescents.
+<span id="tab:unnamed-chunk-188">Table 16: </span>Family structure and values on three dummy-coded indicator variables for a sample of six adolescents.
 </caption>
 <thead>
 <tr>
@@ -577,7 +577,7 @@ H_0: \mu_{\mathrm{Two\mbox{-}Parent}} = \mu_{\mathrm{Parent/Guardian}} = \mu_{\m
 <p>If you are only interested in if there are differences in adolescent substance use between the three family structures, you can focus on the model-level (omnibus) results. If, however, you want to go further and understand the nature of those differences, in particular whether the adolescent substance use for each family structure differs from the others, it is necessary to examine the <strong>pairwise differences</strong> between family structures. Based on the two sets of coefficient-level results, the pairwise differences are:</p>
 <table style="width:75%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-12">Table 8: </span>Pairwise comparisons of adolescent substance use between three family structures.
+<span id="tab:unnamed-chunk-193">Table 17: </span>Pairwise comparisons of adolescent substance use between three family structures.
 </caption>
 <thead>
 <tr>
@@ -651,7 +651,7 @@ p_{\mathrm{Adjusted}}=p \times k,
 <p>In practice, since <em>p</em>-values have limits of 0 and 1, any adjusted <em>p</em>-value that exceeds 1 is limited to 1.</p>
 <table style="width:75%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-14">Table 10: </span>Pairwise comparisons of adolescent substance use between three family structures.
+<span id="tab:unnamed-chunk-195">Table 18: </span>Pairwise comparisons of adolescent substance use between three family structures.
 </caption>
 <thead>
 <tr>
@@ -746,7 +746,7 @@ Parent/guardian vs. Single-parent
 3 Parent/guardian vs. Single-parent        0.609 0.6090</code></pre>
 <table style="width:75%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-17">Table 11: </span>Pairwise comparisons of adolescent substance use between three family structures.
+<span id="tab:unnamed-chunk-198">Table 19: </span>Pairwise comparisons of adolescent substance use between three family structures.
 </caption>
 <thead>
 <tr>
@@ -893,7 +893,7 @@ Parent/guardian vs. Single-parent
 <p>In the language of Analysis of Covariance (ANCOVA), the controlled mean differences are referred to as <em>Adjusted Mean Differences</em>. So, for example, the adjusted mean difference in substance use between adolescents living in two-aprent households and those living in one-parent households is 0.22 (controlling for differences in the adolescents’ sex and GPA). When the mean difference is from a model that has no covariates, it is referred to as an <em>Unadjusted Mean Difference</em>. It can be useful to present both the unadjusted and adjusted mean differences in a table.</p>
 <table style="width:75%; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-<span id="tab:unnamed-chunk-22">Table 12: </span>Unadjusted and adjusted mean differences of adolescent substance use between three family structures. The adjusted mean differences were obtained by controlling for adolescent sex and GPA.
+<span id="tab:unnamed-chunk-203">Table 20: </span>Unadjusted and adjusted mean differences of adolescent substance use between three family structures. The adjusted mean differences were obtained by controlling for adolescent sex and GPA.
 </caption>
 <thead>
 <tr>
