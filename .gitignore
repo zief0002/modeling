@@ -11,9 +11,7 @@
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
-*.md
 
-*_files/
 
 # R Environment Variables
 .Renviron
