@@ -23,4 +23,4 @@ rmd_files: [
     "99-references.Rmd"
     ]
 clean: [packages.bib, bookdown.bbl]
-#new_session: yes
+new_session: yes

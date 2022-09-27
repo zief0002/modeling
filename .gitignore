@@ -13,5 +13,7 @@
 *.knit.md
 *.md
 
+*_files/
+
 # R Environment Variables
 .Renviron
