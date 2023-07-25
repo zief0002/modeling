@@ -1,0 +1,45 @@
+project:
+  type: book
+  output-dir: docs
+  preview:
+    port: 4200
+    browser: true
+  resources: 
+    - codebooks/ #Add codebooks to docs
+
+book:
+  title: "Statistical Modeling and Computation for Educational Scientists"
+  author: "Andrew Zieffler"
+  date: "`r Sys.Date()`"
+  sidebar:
+    search: true
+    background: '#443850' #"#9f86c0"
+  # cover-image: "figs/banner.png"
+  chapters:
+    - index.qmd
+    - part: 01-00-statistical-computation.qmd
+      chapters:
+        - 01-01-r-and-rstudio-installation.qmd
+        - 01-02-getting-started-with-r.qmd
+        - 01-03-data-structures-in-r.qmd
+        - 01-04-data-wrangling-with-dplyr.qmd
+        - 01-05-visualizing-with-ggplot2.qmd
+
+bibliography: ["assets/toolkit.bib"]
+csl: 'assets/apa-single-spaced.csl'
+
+format:
+  html:
+    theme: 
+      - cosmo
+      - "assets/theme.scss"
+    css: ["assets/sticky-notes.css", "assets/table-styles.css"]
+    code-copy: true
+    highlight-style: zenburn
+    df-print: paged
+    mainfont: 'Crimson Text'
+    fontsize: '12pt'
+    linestretch: '1.5em'
+    linkcolor: '#20a2a3' #"#0099d4"
+    toc-title: "On This Page"
+editor: source

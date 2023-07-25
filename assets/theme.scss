@@ -1,0 +1,216 @@
+/*-- scss:defaults --*/
+
+// Fonts
+$font-weight-base: 400 !default;
+
+
+// Links
+$link-decoration: underline !default;
+$toc-color: #b3d3f5;  /*-- Set active link color for TOC sidebar (RIGHT) --*/
+
+
+
+/*-- scss:rules --*/
+
+
+body {
+  /*background-color: #273043;*/
+  background-image: radial-gradient(circle, #86d4bc, #c2e4c6, #20a2a3);
+  font-size: 16px;
+}
+
+.content {
+  background-color: #fff;
+  border: 1px solid #273043;
+  border-radius: 25px;
+  padding: 25px 60px 25px;
+}
+
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  color: #5F634F;
+  //color: #9f86c0;
+}
+
+.header-section-number {
+  color: #5F634F;
+  //color: #9f86c0;
+}
+
+
+// Main text
+p {
+  font-family: 'Crimson Text', serif;
+  line-height: 1.5em;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+// List elements
+li {
+  font-family: 'Crimson Text', serif;
+  line-height: 1.5em;
+}
+
+li > p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// Mouse over link
+a:hover {
+  color: #ca054d;
+  //color: darken(#31AFD4, 15%);
+}
+
+// Figure caption
+.figure-caption {
+  font-size: 11pt;
+  font-style: italic;
+  color: #595959;
+  line-height: 1.3em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#callout {
+  font-size: 12pt;
+}
+
+
+// Sidebar navigation - LEFT SIDE
+.sidebar-title {
+  color: #fff;
+}
+
+.sidebar-navigation a {
+  color: #fff;
+}
+
+.sidebar-navigation a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.sidebar-item .chapter-number {
+  color: #fff;
+}
+
+
+//Sidebar navigation - RIGHT SIDE
+#quarto-margin-sidebar {
+  background-color: #443850;
+}
+
+#TOC, #toc-title {
+  color: #fff;
+  font-size: 14pt;
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a {
+    color: #ffffff;
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a.active {
+    color: #b3d3f5;
+    border-left: 1px solid #b3d3f5;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+
+.sidebar nav[role="doc-toc"] ul > li > a:hover {
+    color: #b3d3f5;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+ 
+// .nav-link a {
+//   color: #fff;
+// }
+
+
+//nav#TOC.toc-active a {
+//  color: #fff;
+//  text-decoration: underline;
+//}
+
+// Style cover art 
+.cover {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 70px;
+  margin-bottom: 50px;
+  width: 40%;
+}
+
+
+// Style source code
+div.sourceCode {
+ border-radius: 0; 
+}
+
+/** Make the caption italic and black 
+.table caption{
+  font-style: italic;
+  color: black;
+  font-family: 'Crimson Text', serif;
+  font-size: 11px;
+}
+
+.table caption span{
+  font-style: normal;
+  font-weight: bold;
+  margin-bottom: 30px;
+}**/
+
+
+
+/** Change border color to black **/
+.table thead tr th {
+  border-color: black;
+  border-width: 1px;
+  font-family: 'Crimson Text', serif;
+  font-size: 11px;
+  font-weight: normal;
+}
+
+
+
+
+/** Add a top border to the table header row **/
+.table thead th { 
+  border-top: 1px solid black;
+  border-left: 0;
+  border-right: 0;
+}
+
+
+/** Format and remove borders within the table body **/
+.table tbody tr td {
+  border: none;
+  font-family: 'Crimson Text', serif;
+  font-size: 11px;
+}
+
+
+/** Add a bottom border to the table body **/
+.table tbody tr:last-child {
+  border-bottom: 1px solid black;
+}
+
+
+/** Format and remove borders within the table footer **/
+.table tfoot {
+  border: none;
+  font-family: 'Crimson Text', serif;
+  font-size: 11px;
+}
+
+
+#references {
+  margin-bottom: 5em;
+}

@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistical Modeling and Computation for Educational Scientists - 2&nbsp; Getting Started with R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./01-03-data-structures-in-r.html" rel="next">
+<link href="./01-01-r-and-rstudio-installation.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="assets/sticky-notes.css">
+<link rel="stylesheet" href="assets/table-styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-00-statistical-computation.html">Statistical Computation</a></li><li class="breadcrumb-item"><a href="./01-02-getting-started-with-r.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Modeling and Computation for Educational Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Front Matter</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Computation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-01-r-and-rstudio-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R and RStudio: Installation and Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-02-getting-started-with-r.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-03-data-structures-in-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structures in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-04-data-wrangling-with-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling with dplyr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-05-visualizing-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On This Page</h2>
+   
+  <ul>
+  <li><a href="#computing-in-the-console" id="toc-computing-in-the-console" class="nav-link active" data-scroll-target="#computing-in-the-console"><span class="header-section-number">2.1</span> Computing in the Console</a></li>
+  <li><a href="#functions-the-workhorse-of-r" id="toc-functions-the-workhorse-of-r" class="nav-link" data-scroll-target="#functions-the-workhorse-of-r"><span class="header-section-number">2.2</span> Functions: The Workhorse of R</a></li>
+  <li><a href="#connecting-computations" id="toc-connecting-computations" class="nav-link" data-scroll-target="#connecting-computations"><span class="header-section-number">2.3</span> Connecting Computations</a>
+  <ul class="collapse">
+  <li><a href="#chaining" id="toc-chaining" class="nav-link" data-scroll-target="#chaining"><span class="header-section-number">2.3.1</span> Chaining</a></li>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment"><span class="header-section-number">2.3.2</span> Assignment</a></li>
+  <li><a href="#objects-in-the-r-working-environment" id="toc-objects-in-the-r-working-environment" class="nav-link" data-scroll-target="#objects-in-the-r-working-environment"><span class="header-section-number">2.3.3</span> Objects in the R Working Environment</a></li>
+  </ul></li>
+  <li><a href="#script-files-recording-your-syntax" id="toc-script-files-recording-your-syntax" class="nav-link" data-scroll-target="#script-files-recording-your-syntax"><span class="header-section-number">2.4</span> Script Files: Recording Your Syntax</a>
+  <ul class="collapse">
+  <li><a href="#executing-syntax-from-a-script-file" id="toc-executing-syntax-from-a-script-file" class="nav-link" data-scroll-target="#executing-syntax-from-a-script-file"><span class="header-section-number">2.4.1</span> Executing Syntax from a Script File</a></li>
+  </ul></li>
+  <li><a href="#installing-and-loading-r-packages" id="toc-installing-and-loading-r-packages" class="nav-link" data-scroll-target="#installing-and-loading-r-packages"><span class="header-section-number">2.5</span> Installing and Loading R Packages</a>
+  <ul class="collapse">
+  <li><a href="#loading-packages-into-memory" id="toc-loading-packages-into-memory" class="nav-link" data-scroll-target="#loading-packages-into-memory"><span class="header-section-number">2.5.1</span> Loading Packages into Memory</a></li>
+  <li><a href="#adding-functionality-installing-packages" id="toc-adding-functionality-installing-packages" class="nav-link" data-scroll-target="#adding-functionality-installing-packages"><span class="header-section-number">2.5.2</span> Adding Functionality: Installing Packages</a></li>
+  <li><a href="#install-rtoolscommand-line-tools" id="toc-install-rtoolscommand-line-tools" class="nav-link" data-scroll-target="#install-rtoolscommand-line-tools"><span class="header-section-number">2.5.3</span> Install Rtools/Command Line Tools</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In this chapter, you will be get started writing and working with R syntax. The ideas introduced will be useful as you interact with statistical computation, whether it be to carry out data analysis, or to write your own R program or package. To begin,</p>
+<ul>
+<li>Open a new session in RStudio.</li>
+</ul>
+<p>A “session” is the terminology we use to describe the duration from opening RStudio to closing RStudio. You can begin a new R session by either opening the RStudio application on your computer, or, if you are already in an existing R session, by selecting <code>Session &gt; New Session</code> from the RStudio menu.</p>
+<p><br></p>
+<section id="computing-in-the-console" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="computing-in-the-console"><span class="header-section-number">2.1</span> Computing in the Console</h2>
+<p>There are a several ways to interact with R within RStudio. One of those methods is to issue commands in the RStudio console pane. Computing in the console is similar to working with a calculator: you enter syntax and R runs the syntax. The <code>&gt;</code> symbol in the console pane is called the “R prompt” and is prompting you to enter syntax. After you enter any syntax, you hit the <return> or <enter> key to execute the syntax.</enter></return></p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/08-console.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">The console pane in RStudio is one way to compute with R. Syntax is entered at the R prompt and executed by hitting the <return> or <enter> key.</enter></return></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>To get started, we will have R carry out some arithmetic. At the prompt enter each of the following lines of syntax. After each line, hit the <code>&lt;return&gt;</code> or <code>&lt;enter&gt;</code> key.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Addition</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Subtraction</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="sc">-</span> <span class="dv">10</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiplication</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">*</span> <span class="dv">5</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Division</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="dv">23</span> <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Exponents</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">^</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Executing each line of syntax returns the results of the computation in the console pane. The result, in R parlance, is referred to as a “returned value”. After executing the computation, the R prompt reappears and you can issue a new line of syntax.</p>
+<p><strong>Continuation Prompt:</strong> At some point in your computational career, you will likely encounter the continuation prompt. Symbolized by <code>+</code>, this prompt appears instead of the R prompt to indicate that you did not complete the syntax you entered prior to hitting the <enter> key. For example, suppose while entering the division syntax from above you got excited and hit the <code>&lt;enter&gt;</code> key after inputting the slash; before inputting the <code>2</code>. You would see the continuation prompt:</enter></p>
+<pre><code>&gt; 23 /
++ </code></pre>
+<p>The continuation prompt tells you that the syntax you started to enter is still active. If you now enter <code>2</code> and hit the <code>&lt;enter&gt;</code> key, the syntax will be executed as if you had not inadvertently hit <code>&lt;enter&gt;</code> in the middle of the computation. If you are in the middle of a more complex piece of syntax, you could also hit the <code>&lt;esc&gt;</code> key until the R prompt is re-shown. Then you can start the computation over.</p>
+<p><strong>Space in Syntax:</strong> For the computation in R, space is irrelevant. For example, each of the following syntactical statements is equivalent:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">*</span> <span class="dv">5</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">*</span><span class="dv">5</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>    <span class="sc">*</span>            <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That being said, well-written code includes space! Space in code makes it easier to read and debug, in the same way that including space in written prose helps us read and parse words, sentences, and paragraphs.</p>
+<p><br></p>
+</section>
+<section id="functions-the-workhorse-of-r" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="functions-the-workhorse-of-r"><span class="header-section-number">2.2</span> Functions: The Workhorse of R</h2>
+<p>Almost all commands in R are built around the use of a function. Functions carry out operations on their inputs (called <em>arguments</em>) and produce an output (called a <em>returned value</em>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/09-function-machine.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">LEFT: Arguments are inputted into a function which returns an output. RIGHT: The value 25 is inputted into the square root function which returns the value of 5.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The syntax for using most functions in R follows a simple structure: The name of the function is followed by a pair of parentheses. Argument values (inputs) are specified inside the parentheses. In general,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">function_name</span>(argument)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Below are several example of this structure for some common mathematical functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Square root</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Absolute value</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(<span class="sc">-</span><span class="dv">23</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Factorial</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 120</code></pre>
+</div>
+</div>
+<p>Functions can take multiple arguments (inputs). If there is more than one argument, the arguments are always separated by a comma.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">function_name</span>(argument_1, argument_2, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For example, the <code>seq()</code> function creates a sequence of values that have a particular start and end value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
+</div>
+<p>Note that the order of the arguments matters! Reversing the order of the arguments inputted to the <code>seq()</code> function returns different output.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 4 3 2 1</code></pre>
+</div>
+</div>
+<p>Each of the arguments actually has a name, and if those names are used to assign the values we are inputting to the function, then the order of the arguments is irrelevant.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Named arguments</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Order no longer matters</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">to =</span> <span class="dv">5</span>, <span class="at">from =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
+</div>
+<p>It is a good habit to use named arguments when you are writing your syntax. It makes the code more readable and easier to adapt if you come back to it later. Sometimes when the initial argument of a function is well-established, that first argument is left unnamed, but all other arguments used are named. A good example of this is the use of the <code>lm()</code> function in which the initial <code>formula=</code> argument is typically unnamed, but other arguments (e.g., <code>data=</code>) are named.</p>
+<p><br></p>
+</section>
+<section id="connecting-computations" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="connecting-computations"><span class="header-section-number">2.3</span> Connecting Computations</h2>
+<p>One powerful aspect of computing is that the output from a function can be used as input into another function. This is akin to calculations you may have encountered in mathematics course like algebra. For example,</p>
+<p><span class="math display">\[
+\sqrt{\log(100)}
+\]</span></p>
+<p>In carrying out this calculation, you would first compute the logarithm of 100 and then take the square root of that result. Using function notation, your algebra teacher might have written</p>
+<p><span class="math display">\[
+g(~f(x)~)
+\]</span></p>
+<p>where <span class="math inline">\(f(x)\)</span> is the logarithm function and <span class="math inline">\(g(x)\)</span> is the square root function. Regardless of how we express this,the idea is that the output of the logarithm function is used as input to the square root function. Using R, there are two primary ways to connect computations in this manner: chaining and assignment.</p>
+<p><br></p>
+<section id="chaining" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="chaining"><span class="header-section-number">2.3.1</span> Chaining</h3>
+<p>Chaining is a direct reflection of the functional notation <span class="math inline">\(g(~f(x)~)\)</span> in that you embed one computation directly in another. For example, to find the absolute value of all the integers between <span class="math inline">\(-5\)</span> and <span class="math inline">\(-1\)</span>, we can chain the <code>abs()</code> function and the <code>seq()</code> functions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>( <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 4 3 2 1</code></pre>
+</div>
+</div>
+<p>Note here that the output/returned value is not a single value, but five values. The absolute value function was applied to each of the values in the sequence. Compare this to the result from the following chained computations:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>( <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -3</code></pre>
+</div>
+</div>
+<p>Here the mean function applied to the sequence of values returns a single value as output. When a function is applied to a set of multiple values (i.e., a vector), some functions will apply their computations separately on each element/value (<em>element-wise computation</em> returns multiple values), while others will apply the computation to the set of elements as a whole (<em>vector-wise computation</em> returns a single value). Most of the time it will be clear from the function name or description whether the output returns a single value or multiple values.</p>
+<p>We can chain as many computations together as we would like. For example here we find the square root of the absolute value of all the integers between <span class="math inline">\(-5\)</span> and <span class="math inline">\(-1\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>( <span class="fu">abs</span>( <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>) ) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.236068 2.000000 1.732051 1.414214 1.000000</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="assignment" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="assignment"><span class="header-section-number">2.3.2</span> Assignment</h3>
+<p>We can also connect computations through <em>assignment</em>. With assignment, we store the output of a computation by assigning it to a named object. We can then use that named object in another computation. For example, here we first store the integers between <span class="math inline">\(-5\)</span> and <span class="math inline">\(-1\)</span> in an object called <code>chili</code>. Then we find the absolute value of each value by using <code>chili</code> as the argument in the <code>abs()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the sequence to the object chili</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>chili <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>) </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the absolute values</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(chili)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 4 3 2 1</code></pre>
+</div>
+</div>
+<p>To view the contents of an object, just print the name of the object. Below, after creating the object <code>sadie</code>, we view its contents.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign values to sadie</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>sadie <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">3</span>, <span class="at">times =</span> <span class="dv">5</span>) </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View contents of sadie</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>sadie</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 3 3 3 3</code></pre>
+</div>
+</div>
+<p>Pretty much any name can be used when you create an object, with some caveats: object names cannot begin with a digit nor include hyphens or spaces. Although they are legal object names, <code>chili</code> and <code>sadie</code> are not particularly good object names. Better object names would describe the contents of the object.</p>
+<p>In my own workflow, I tend to use all lowercase letters in my object names and I use underscores for word breaks. For example,</p>
+<ul>
+<li><code>ses</code>, <code>gpa</code>, <code>occupation</code></li>
+<li><code>act_math</code>, <code>mothers_educ</code></li>
+</ul>
+<p><br></p>
+</section>
+<section id="objects-in-the-r-working-environment" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="objects-in-the-r-working-environment"><span class="header-section-number">2.3.3</span> Objects in the R Working Environment</h3>
+<p>We can continue to use the objects you created (e.g., <code>chili</code> and <code>sadie</code>) in our computations, so long as the objects remain in our R working environment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum the pairwise elements of the two objects</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>chili <span class="sc">+</span> sadie</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2 -1  0  1  2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum all the elements in chili</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(chili)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Product of all the elements in sadie</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prod</span>(sadie)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 243</code></pre>
+</div>
+</div>
+<p>In RStudio you can see which objects are in your working environment by examining the <code>Environment</code> pane.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10-environment.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption class="figure-caption">The enivironment pane shows the objects in the R working environment. It also displays the object’s class and gives a preview of the the contents.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Not only does this pane indicate the name of the objects in the working environment, but is also displays each object’s class. In this case we can tell that <code>chili</code> is an integer vector and <code>sadie</code> is a numeric vector.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Moreover, we are told that each vector includes five elements, shown in the environment pane as <code>[1:5]</code>. Lastly, we are given a preview of each object’s contents. Since these vectors only contain five elements, we see all the values in the preview.</p>
+<p>You can also use syntax to obtain a list of objects that are in your working environment using the <code>ls()</code> function with no arguments.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List the objects in working environment</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "chili"           "has_annotations" "sadie"          </code></pre>
+</div>
+</div>
+<p>When an object name is re-used, the previous value of the object is lost.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the values 1 to 10 in chili</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>chili <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>After assigning new values to <code>chili</code>, we can see the information in the environment pane has been updated to reflect the new contents of the object.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/11-environment-chili.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption class="figure-caption">The object <code>chili</code> although still an integer vector, now includes 10 elements.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Any computations carried out with <code>chili</code> will use the new object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum all the elements in chili</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(chili)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 55</code></pre>
+</div>
+</div>
+<p>If you want the previous version of <code>chili</code> you need to re-create the object. If you close your R session all of the objects you created will be lost.</p>
+<p><br></p>
+</section>
+</section>
+<section id="script-files-recording-your-syntax" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="script-files-recording-your-syntax"><span class="header-section-number">2.4</span> Script Files: Recording Your Syntax</h2>
+<p>It is important to be able to record the syntax you use. This acts as a way of “saving” your work, and it also acts as a record of the analysis for your collaborators in the spirit of reproducible work. One way to record the R syntax you use is to employ a <em>script file</em>. You can create a new script file by selecting <code>File &gt; New File &gt; R Script</code> from the RStudio menu bar. You can also obtain a new R script by clicking the <code>New File</code> icon (document with the plus-sign) on the tool bar and selecting <code>R Script</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12-new-script-file.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">LEFT: Create a new script file using RStudio’s <code>File</code> menu. RIGHT: Create a new script file by clicking on the <code>New File</code> icon in the toolbar.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Script files should only include your R syntax and comments. Script files should NOT include:</p>
+<ul>
+<li>prompts (&gt;)</li>
+<li>output</li>
+</ul>
+<p>Comments, which are human-readable annotations or explanations of the syntax, are written using the hashtag (<code>#</code>). These can be placed on their own line in the script file, or can be placed at the end of a line with syntax. The comment continues until you hit the <enter> key. Comments help other people understand your syntax and also act as a reminder for the future you of what your code actually does. Get is the habit of including comments in your syntax. Not only is it good coding practice, but it also will help you become familiar with and learn the R syntax as you describe the purpose of the syntax you are writing.</enter></p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/13-script-file.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">Example script file with comments.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Script files can be saved and opened the same as any other document. So, no more worrying about losing your work or objects that you created when you close your R sesssion. Just open your saved script file, highlight the parts you want to re-run, and click the <code>Run</code> button!</p>
+<p><br></p>
+<section id="executing-syntax-from-a-script-file" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="executing-syntax-from-a-script-file"><span class="header-section-number">2.4.1</span> Executing Syntax from a Script File</h3>
+<p>Not only does the script file record your syntax, but it can also act as the vehicle from which you run your R syntax. Syntax in the script file can be executed by highlighting it and pressing the <code>Run</code> button in the toolbar. You can run one line at a time, or highlight multiple lines and execute all of them sequentially.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/14-run-script.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">To execute syntax from the script file, highlight the syntax you want to run and then click the <code>Run</code> button in the toolbar.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Writing syntax directly in the script file and running it is a groovy workflow for using R. Writing syntax directly in the script file also saves you from having to copy-and-paste syntax you want to save from the console. In my own work, I use this workflow almost daily.</p>
+<p><br></p>
+</section>
+</section>
+<section id="installing-and-loading-r-packages" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="installing-and-loading-r-packages"><span class="header-section-number">2.5</span> Installing and Loading R Packages</h2>
+<p>Every R function is housed in a package. To use the functions in a particular package, the package needs to be (1) installed, and (2) loaded into memory.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/07-install-vs-load.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">Packages need to be installed and loaded.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>You can see the packages (and which version of each package) are installed by examining the <code>Packages</code> tab in RStudio. Every package listed there has been installed. You will also be able to see the version number of the package that is installed. Some of those packages may be checked. These are the packages that are also loaded into memory.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/03-package-tab.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption class="figure-caption">The packages tab shows which packages are installed. The list of packages you have installed will likely be different. Checked packages are loaded into memory. In the packages seen here, only the base package is loaded into memory.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Twenty-nine packages were included when you installed R on your computer. When you start an R session by opening RStudio, some of those packages are also loaded into memory.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/04-default-packages.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">The 29 packages installed as part of R. The base, datasets, graphics, grDevices, methods, stats, and utils packages are loaded into memory when you start an R session. The other 22 packages are installed but not loaded into memory.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<section id="loading-packages-into-memory" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="loading-packages-into-memory"><span class="header-section-number">2.5.1</span> Loading Packages into Memory</h3>
+<p>To load a package that is installed, you use the <code>library()</code> function and include the name of the package you want to load in as the sole argument. For example, to load the <code>{splines}</code> package, use the following syntax:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load splines package</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(splines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Some packages requires other packages (dependencies) to work. For example, the <code>{lme4}</code> package is dependent on the <code>{Matrix}</code> package. When you load packages that have dependencies, R will also load the dependencies (assuming you have them installed). When it does this, a message will be printed after you execute <code>library()</code>. For example, here is what happens when we load the <code>{lme4}</code> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: Matrix</code></pre>
+</div>
+</div>
+<div class="protip">
+<p>Once the package is loaded, all of the functions, data sets, etc. in that package are available to you. Packages will need to be loaded every time you launch a new R session.</p>
+</div>
+<p><br></p>
+<section id="masked-objects" class="level4" data-number="2.5.1.1">
+<h4 data-number="2.5.1.1" class="anchored" data-anchor-id="masked-objects"><span class="header-section-number">2.5.1.1</span> Masked Objects</h4>
+<p>Sometimes you will get a message about objects being <em>masked</em>. This is not a problem. It is just informative and means that the package you just loaded has a function that has the <em>exact same name</em> as a previously loaded package. If you use that particular function, the most recently loaded package’s version of the function will be used. For example, after loading the <code>{dplyr}</code> library the following message is printed:</p>
+<pre><code>Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union</code></pre>
+<p>This tells me that the <code>{dplyr}</code> package includes six functions that have the same name as functions included in other packages that have already been loaded into memory (two from the <code>{stats}</code> package and four from the <code>{base}</code> package.) Since <code>{dplyr}</code> was the most recently loaded package, if you were to use the <code>filter()</code> function, R would use <code>{dplyr}</code>’s <code>filter()</code> function rather than that from the <code>{stats}</code> package<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p><br></p>
+</section>
+<section id="error-loading-a-package" class="level4" data-number="2.5.1.2">
+<h4 data-number="2.5.1.2" class="anchored" data-anchor-id="error-loading-a-package"><span class="header-section-number">2.5.1.2</span> Error Loading a Package</h4>
+<p>Once in a while, when loading a package, you may get an error. Don’t panic. There are two errors that are common. The first error you may get indicates that the package did not get installed. For example, if the <code>{ggplot2}</code> package was not installed, trying to use the <code>library()</code> function to load that package would result in an error.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Error in library(ggplot2) : there is no package called ‘ggplot2’</code></pre>
+<p>Simply install the package and then re-try loading it.</p>
+<p>The second error that you might run across when trying to load a package occurs when the installation did not include the package dependencies. For example,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(odbc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Error: package or namespace load failed for ‘odbc’ in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+there is no package called ‘Rcpp’</code></pre>
+<p>Again, don’t panic! Here the error message is saying that the <code>{Rcpp}</code> package is a dependency and it is not installed. To fix this, install the <code>{Rcpp}</code> package and then try again. (You may need to open a new R session first.) You may need to install more than one dependency, so just keep installing what is missing until it works.</p>
+<p><br></p>
+</section>
+</section>
+<section id="adding-functionality-installing-packages" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="adding-functionality-installing-packages"><span class="header-section-number">2.5.2</span> Adding Functionality: Installing Packages</h3>
+<p>You can also install other packages onto your R system. R, in fact, has a repository called CRAN<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, that includes 16,000 different packages (as of July 2020). The easiest way to install a package from CRAN onto your computer is to use the <code>Install</code> button in the `Packages tab of RStudio.</p>
+<p>This will open a pop-up window where you can type the CRAN package you want to install in a text box. Ensure that the “Install dependencies” box is checked (this will also install any package dependencies), and then click “Install”.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/05-install-package.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Pop-up window to install packages. Here we are installing the dplyr package. Note that the ‘Install dependencies’ box is checked.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>You may be prompted to choose a nearest mirror. If so, choose a mirror location. If you are successful in installing the package, you will get a message like the following:</p>
+<pre><code>Installing package into ‘/Users/zief0002/Library/R/4.0/library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.rstudio.com/bin/macosx/contrib/4.0/dplyr_1.0.0.tgz'
+Content type 'application/x-gzip' length 1209135 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+
+The downloaded binary packages are in
+    /var/folders/s3/sqlc9xw92w54166w86dgkd000000gr/T//Rtmps80Uf8/downloaded_packages</code></pre>
+<p>The message you get on Windows may be slightly different, but the key is that there is not an error. Furthermore, you should immediately be able to load the package using the <code>library()</code> function.</p>
+<p>An equivalent manner of installing a package via syntax is to use the <code>install.packages()</code> function. For example, to install the <code>{dplyr}</code> package we could have used the following syntax:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that the name of the package is included in quotation marks (it is a character string). The argument <code>dependencies=TRUE</code> installs all package dependencies, similar to checking the “Install dependencies” box in the pop-up menu.</p>
+<p><br></p>
+<section id="installing-packages-from-github" class="level4" data-number="2.5.2.1">
+<h4 data-number="2.5.2.1" class="anchored" data-anchor-id="installing-packages-from-github"><span class="header-section-number">2.5.2.1</span> Installing Packages from GitHub</h4>
+<p>CRAN is not the only place to get R packages. Many developers add packages to a website called <a href="https://github.com/">GitHub</a>. Packages hosted on GitHub can be installed using the <code>install_github()</code> function from the <code>{remotes}</code> package.</p>
+<p>First, you will need to install the <code>{remotes}</code> package from CRAN and then load it using the <code>library()</code> function. Then, you can use the <code>install_github()</code> function to actually install the package. This function is provided a character string that specifies the user name and GitHub repository for the package, separated by a slash. You can find this in the part of the URL that follows “https://github.com/” in your web browser. For example, the URL for the <code>{educate}</code> package is: “https://github.com/zief0002/educate”, so to install this we would use:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load remotes package</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(remotes)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install dplyr from GitHub</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"zief0002/educate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The message I get when installing this is</p>
+<pre><code>Installing package into ‘/Users/zief0002/Library/R/4.0/library’
+(as ‘lib’ is unspecified)
+* installing *source* package ‘educate’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (educate)</code></pre>
+<p>The “DONE” message typically signified successful installation. Note that you may be prompted to update some packages. If you get this message, choose the option to update “ALL” packages. As with packages installed from CRAN, if things worked you should be able to load the package you just installed using the <code>library()</code> function without any errors.</p>
+<p><br></p>
+</section>
+</section>
+<section id="install-rtoolscommand-line-tools" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="install-rtoolscommand-line-tools"><span class="header-section-number">2.5.3</span> Install Rtools/Command Line Tools</h3>
+<p>You may need to install some additional functionality to your system in order to get certain packages to install or load properly. On a Windows machine, you might need to install <em>Rtools</em>. Mac users might need to add the <em>Command Line Tools</em>. These tools also allow you to write and compile your own R packages. RStudio has well written instructions for adding these tools at: <a href="https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites" class="uri">https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites</a>.</p>
+<p><br></p>
+
+
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>The difference between the two classes is technical and related to how R internally stores the information in the vector.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>If you really wanted to use the <code>filter()</code> function from the <code>{stats}</code> package you could specify this in the syntax using the <code>::</code> operator, <code>stats::filter()</code>. This operator also allows you to use a function without loading the package with the <code>library()</code> function.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>“CRAN is a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R.”<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-01-r-and-rstudio-installation.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R and RStudio: Installation and Setup</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./01-03-data-structures-in-r.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structures in R</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,52 @@
+<img src="figs/banner.png" class="cover"/>
+
+
+# Front Matter {.unnumbered}
+
+```{r}
+#| include: false
+#| echo: false
+
+source("scripts/_common.R")
+```
+
+
+
+
+I am putting this out there primarily as a resource for my own students to help them through the installation and provide written instruction for the computational tools we use in the courses EPsy 8251. As such, I will initially focus on R and RStudio, but I will probably add tools (e.g., reference managers, github, make) over time as I have time. (Note: If you want to contribute to this, create a Pull Request or [send me an email](mailto: zief0002@umn.edu).) Also, feel free to offer criticism, suggestion, and feedback. You can either [open an issue](https://github.com/zief0002/modeling/issues) on the book's github page or [send me an email](mailto: zief0002@umn.edu) directly.
+
+
+<br />
+
+
+## Acknowledgments
+
+Many thanks to all the students in my courses who have been through previous iterations of this material. Your feedback has been invaluable, and you are the world's greatest copyeditors. In particular, I would like to thank the following students who have gone above and beyond in the feedback they have provided: Jonathan Brown, Pablo Vivas Corrales, Amaniel Mrutu, Corissa Rohloff, and Mireya Smith.
+
+<br />
+
+
+## Colophon
+
+Artwork by [&commat;allison_horst](https://twitter.com/allison_horst)
+
+Icon and note ideas and prototypes by [Desirée De Leon](http://desiree.rbind.io/).
+
+The book is typeset using [Crimson Text](https://fonts.google.com/specimen/Crimson+Text) for the body font, [Raleway](https://fonts.google.com/specimen/Raleway) for the headings and [Sue Ellen Francisco](https://fonts.google.com/specimen/Sue+Ellen+Francisco) for the title. The color palette was generated using [coolors.co](https://coolors.co/).
+
+**Statistical Computing**
+
+- Laptop icon made by [Tomas Knop](https://www.flaticon.com/authors/tomas-knop) from [www.flaticon.com](https://www.flaticon.com/)
+- Directory icon made by [Darius Dan](https://www.flaticon.com/authors/darius-dan) from [www.flaticon.com](https://www.flaticon.com/)
+- Brain icon made by [Aranagraphics](https://www.flaticon.com/authors/aranagraphics) from [www.flaticon.com](https://www.flaticon.com/)
+- Internet icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com/)
+
+<br />
+
+
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Creative Commons License" class="center-image" style="border-width:0"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+

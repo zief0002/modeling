@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistical Modeling and Computation for Educational Scientists - 3&nbsp; Data Structures in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./01-04-data-wrangling-with-dplyr.html" rel="next">
+<link href="./01-02-getting-started-with-r.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<link rel="stylesheet" href="assets/sticky-notes.css">
+<link rel="stylesheet" href="assets/table-styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-00-statistical-computation.html">Statistical Computation</a></li><li class="breadcrumb-item"><a href="./01-03-data-structures-in-r.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structures in R</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Modeling and Computation for Educational Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Front Matter</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Computation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-01-r-and-rstudio-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R and RStudio: Installation and Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-02-getting-started-with-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-03-data-structures-in-r.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structures in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-04-data-wrangling-with-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling with dplyr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-05-visualizing-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On This Page</h2>
+   
+  <ul>
+  <li><a href="#vectors" id="toc-vectors" class="nav-link active" data-scroll-target="#vectors"><span class="header-section-number">3.1</span> Vectors</a>
+  <ul class="collapse">
+  <li><a href="#logical-vectors" id="toc-logical-vectors" class="nav-link" data-scroll-target="#logical-vectors"><span class="header-section-number">3.1.1</span> Logical Vectors</a></li>
+  <li><a href="#character-vectors" id="toc-character-vectors" class="nav-link" data-scroll-target="#character-vectors"><span class="header-section-number">3.1.2</span> Character Vectors</a></li>
+  </ul></li>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="header-section-number">3.2</span> Data Frames</a></li>
+  <li><a href="#importing-data-from-a-csv-file" id="toc-importing-data-from-a-csv-file" class="nav-link" data-scroll-target="#importing-data-from-a-csv-file"><span class="header-section-number">3.3</span> Importing Data From a CSV File</a>
+  <ul class="collapse">
+  <li><a href="#importing-the-spice-girls-data" id="toc-importing-the-spice-girls-data" class="nav-link" data-scroll-target="#importing-the-spice-girls-data"><span class="header-section-number">3.3.1</span> Importing the Spice Girls Data</a></li>
+  <li><a href="#importing-data-using-a-script-file" id="toc-importing-data-using-a-script-file" class="nav-link" data-scroll-target="#importing-data-using-a-script-file"><span class="header-section-number">3.3.2</span> Importing Data Using a Script File</a></li>
+  </ul></li>
+  <li><a href="#validity-check-on-imported-data" id="toc-validity-check-on-imported-data" class="nav-link" data-scroll-target="#validity-check-on-imported-data"><span class="header-section-number">3.4</span> Validity Check on Imported Data</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structures in R</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In this chapter, you will be learn about two common data structures that are used in the R statistical computing environment: vectors and data frames. You will also learn about particular types (or classes) of vectors, namely numeric, character, and logical vectors.</p>
+<p>One way to think about vectors and data frames is to use the metaphor of bookcases. Vectors are single column bookcases and data frames are multi-column bookcases.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="figs/15-vector-df.png" class="img-fluid" style="width:60.0%"></p>
+</div>
+</div>
+<p>Similar to real bookcases, the bookcases in our metaphor can be used to store things. In our metaphorical bookcases, we will store data values. Note that in the picture, the color of the bookcase is constant within each column. This indicates that, unlike real bookcases, whatever type of data we store in a column of our metaphorical bookcase will have to be homogeneous. For example, we cannot store numeric values and character strings (e.g., names) within the same column without consequences.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="figs/16-vector-df-data.png" class="img-fluid" style="width:60.0%"></p>
+</div>
+</div>
+<p><br></p>
+<section id="vectors" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="vectors"><span class="header-section-number">3.1</span> Vectors</h2>
+<p>Vectors (the single-column bookcases in our metaphor) are perhaps the most common data structure you will encounter in R. In fact, even the data frame is composed of vectors; each column is a vector. There are many ways to create a vector in R, in fact you have already been introduced to a couple of them: <code>seq()</code> and <code>rep()</code>. These are useful to create sequences of values and vectors with repeated values, respectively. But what if you wanted to create the vector of the Spice Girls’ ages when the band was formed in 1994 (the values in the second column in the picture above)?</p>
+<p>To create a vector of these ages, we can use the <code>c()</code> function to input each of the five ages. Within this function, each age is separated by a comma—each input is a separate argument to the <code>c()</code> function. We will also assign this to an object called <code>age</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create age vector</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">20</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View vector</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 19 20 18 22 20</code></pre>
+</div>
+</div>
+<p>Note that once we assign create <code>age</code> it shows up in our global environment. In the technical language of R, each age is an <em>element</em> of the vector. All of the elements in the <code>age</code> vector are numeric values. This is the vector’s type.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Lastly, there are five elements in the vector.</p>
+<p>Once you have created a numeric vector, you can compute on it. For example in the syntax below we compute the mean age, the standard deviation of the ages, and count the elements in the vector.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute mean</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 19.8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute standard deviation</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.48324</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count elements</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p><br></p>
+<section id="logical-vectors" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="logical-vectors"><span class="header-section-number">3.1.1</span> Logical Vectors</h3>
+<p>Another common vector type you will encounter is the logical vector. Each element in a logical vector is either <code>TRUE</code> or <code>FALSE</code> (all uppercase letters). You could use the <code>c()</code> function to create a logical vector. For example, to create the <code>original_member</code> vector we could use the following syntax:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create logical vector</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>original_member <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View vector</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>original_member</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE FALSE  TRUE FALSE</code></pre>
+</div>
+</div>
+<p>It is more common to create logical vectors through computation using logical operators. For example we might ask which elements of the <code>age</code> object are greater than 20.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which elements of age &gt; 20</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>age <span class="sc">&gt;</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE FALSE  TRUE FALSE</code></pre>
+</div>
+</div>
+<p>The result of using the logical operator <code>&gt;</code> is a logical vector. There are several logical operators in addition to <code>&gt;</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># greater than or equal to 20</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>age <span class="sc">&gt;=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE FALSE  TRUE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># less than 20</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>age <span class="sc">&lt;</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># less than or equal to 20</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>age <span class="sc">&lt;=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE  TRUE FALSE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># equal to 20</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>age <span class="sc">==</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE FALSE FALSE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># not equal to 20</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>age <span class="sc">!=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE  TRUE FALSE</code></pre>
+</div>
+</div>
+<p>Note that the logical operator for “equal to” is two equals signs. This is because <code>=</code> (one equal sign) is what we use for assignment . If you wrote <code>age=20</code> you would be assigning the value 20 to <code>age</code>, not asking whether the elements in <code>age</code> are equal to 20!</p>
+<p>Logical elements have numeric values associated with them, namely,</p>
+<ul>
+<li><code>FALSE</code> = 0; and</li>
+<li><code>TRUE</code> = 1.</li>
+</ul>
+<p>This means we can apply computations to a logical vector. For example, we could count the number of Spice Girls that were original members by summing the logical values in the <code>original_members</code> object. (Since all <code>FALSE</code> values are 0, this amounts to counting the number of <code>TRUE</code> values.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count original members</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(original_member)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<p>We could also count the number of Spice Girls who are under the age of 20.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count members with age &lt; 20</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(age <span class="sc">&lt;</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="character-vectors" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="character-vectors"><span class="header-section-number">3.1.2</span> Character Vectors</h3>
+<p>A third type of vector you will work with is a character vector. Character vectors (a.k.a., strings, literals) are vectors in which each element is a string of characters delimited by quotation marks. For example, the Spice names column is a character vector. We can again create this vector using the <code>c()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create character vector</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>spice <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Scary"</span>, <span class="st">"Sporty"</span>, <span class="st">"Baby"</span>, <span class="st">"Ginger"</span>, <span class="st">"Posh"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View vector</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>spice</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Scary"  "Sporty" "Baby"   "Ginger" "Posh"  </code></pre>
+</div>
+</div>
+<p>Many computations that worked on numeric vectors do not work on character vectors. These will often return an error or unexpected result. In the syntax below, for example, we are told that the <code>mean()</code> function expects a numeric or logical vector, and since what we used was not either of those, the result returned was <code>NA</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find mean name</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(spice)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.default(spice): argument is not numeric or logical: returning
+NA</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+</div>
+<p>Some computations work the same way.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of elements</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(spice)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="data-frames" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="data-frames"><span class="header-section-number">3.2</span> Data Frames</h2>
+<p>Data frames (the multi-column bookcases in our metaphor) are a more complex data structures than vectors. There are again, multiple ways to create a data frame in R. We will examine two methods for creating a data frame: using the <code>data.frame()</code> function and importing data from a spreadsheet or CSV file.</p>
+<p>To create a data frame from scratch, using R, we can use the <code>data.frame()</code> function. Each argument to this function is a named vector that will correspond to a column within the data frame, and each argument (vector) is separated by commas. For example, to create the Spice Girls data frame from our example, we could use the following syntax:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data frame</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>spice_girls <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">spice =</span> <span class="fu">c</span>(<span class="st">"Scary"</span>, <span class="st">"Sporty"</span>, <span class="st">"Baby"</span>, <span class="st">"Ginger"</span>, <span class="st">"Posh"</span>),</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">20</span>),</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">original_member =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">solo_nominations =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">26</span>, <span class="dv">14</span>, <span class="dv">13</span>, <span class="dv">12</span>),</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">real_name =</span> <span class="fu">c</span>(<span class="st">"Mel B"</span>, <span class="st">"Mel C"</span>, <span class="st">"Emma"</span>, <span class="st">"Geri"</span>, <span class="st">"Victoria"</span>)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co"># View data frame</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>spice_girls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["spice"],"name":[1],"type":["chr"],"align":["left"]},{"label":["age"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["original_member"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["solo_nominations"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["real_name"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"Scary","2":"19","3":"TRUE","4":"4","5":"Mel B"},{"1":"Sporty","2":"20","3":"TRUE","4":"26","5":"Mel C"},{"1":"Baby","2":"18","3":"FALSE","4":"14","5":"Emma"},{"1":"Ginger","2":"22","3":"TRUE","4":"13","5":"Geri"},{"1":"Posh","2":"20","3":"FALSE","4":"12","5":"Victoria"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Note that we also assigned the data frame to an object called <code>spice_girls</code> so we can compute on it. You will learn how to compute on data frames in the chapters <a href="01-04-data-wrangling-with-dplyr.html">Data Wrangling with dplyr</a> and <a href="http://zief0002.github.io/epsy-8251/misc/03-plotting-with-ggplot2.html">Plotting with ggplot2</a>.</p>
+<p><br></p>
+</section>
+<section id="importing-data-from-a-csv-file" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="importing-data-from-a-csv-file"><span class="header-section-number">3.3</span> Importing Data From a CSV File</h2>
+<p>In professional practice, you will often enter data into a spreadsheet and rather than typing it into R. When you save this work, many spreadsheet programs use a proprietary format for saving the information (e.g., Excel saves as a XLSX file; Google Sheets saves as a GSHEET file). These often include extraneous information (e.g., formatting) that is irrelevant to the raw data. While R includes libraries and functions that can import data in the XLSX and GSHEETS formats, it is generally easier to save or export your data to a CSV (comma separated value) file from within your spreadsheet program prior to importing it into R.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="figs/17-save-as-csv.png" class="img-fluid" style="width:80.0%"></p>
+</div>
+</div>
+<div class="protip">
+<p>Here are some tips for entering data into a spreadsheet:</p>
+<ul>
+<li>The first row should be the variable names. Do not use spaces in variable names.</li>
+<li>Character strings should be entered without quotation marks in a spreadsheet.</li>
+<li>If you have missing data, leave the cell blank.</li>
+</ul>
+<p>For more tips on entering data, see <span class="citation" data-cites="Broman:2018">Broman &amp; Woo (<a href="#ref-Broman:2018" role="doc-biblioref">2018</a>)</span>.</p>
+</div>
+<p>Once your data are saved as a CSV file, it can be easily imported into R. To do so,</p>
+<ul>
+<li>Click the <code>Import Dataset</code> button under the <code>Environment</code> tab in RStudio and choose “From Text (readr)”.</li>
+<li>If the CSV file is a file stored on your computer, click the <code>Browse</code> button and navigate to where you saved your CSV file, select the file, and click “Open”. If the CSV file is hosted on the web, type the URL into the “File/URL” text box and click “Update”.</li>
+</ul>
+<p><br></p>
+<section id="importing-the-spice-girls-data" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="importing-the-spice-girls-data"><span class="header-section-number">3.3.1</span> Importing the Spice Girls Data</h3>
+<p>The file <em>spice-girls.csv</em> is accessible at <a href="https://raw.githubusercontent.com/zief0002/toolkit/master/data/spice_girls.csv" class="uri">https://raw.githubusercontent.com/zief0002/toolkit/master/data/spice_girls.csv</a>.</p>
+<ul>
+<li>Copy and paste that URL into the “File/URL” text box.</li>
+<li>Click the “Update” button.</li>
+</ul>
+<p>Clicking “Update” will open a preview of your data. Check to be sure the variable names are correct and that the data looks like what you entered into your spreadsheet.</p>
+<ul>
+<li>Change the text in the <code>name</code> box to correspond to the object name you want to use in R.</li>
+<li>Finally, click the <code>Import</code> button to import your data.</li>
+</ul>
+<p>After importing the data you should see the object in your global environment.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="figs/18-import-csv.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="importing-data-using-a-script-file" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="importing-data-using-a-script-file"><span class="header-section-number">3.3.2</span> Importing Data Using a Script File</h3>
+<p>Even though you used the <code>Import</code> button—a point-and-click feature in RStudio—to import the data, behind the scenes, syntax was generated that was actually used to import the data into R. When we selected “From Text (readr)”, the <code>read_csv()</code> function from the <code>{readr}</code> package was used to import the data. You can see the syntax generated in the <code>Code Preview</code> window after you selected your CSV file.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="figs/19-code-preview.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+<p>In the first line of syntax, the <code>{readr}</code> package is loaded using the <code>library()</code> function. The data is imported in the second line of syntax and assigned to an object, in this case <code>spice_girls</code>. The <code>read_csv()</code> function includes an unnamed argument providing the URL for the CSV file.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> The <code>View()</code> function in the third line of syntax simply opens the <code>spice_girls</code> object in a view tab in RStudio.</p>
+<p>It is a good idea to copy the first two lines of syntax from the <code>Code Preview</code> window into your script file. It will be faster to import the data in the future by running it from a script file rather than trying to reproduce all the steps to import your data. The third line of syntax, using <code>View()</code>, is not essential to importing your data..</p>
+<div class="protip">
+<p>Since there are better ways to actually “see” the contents of the data object (e.g., <code>print()</code>), you should not include the <code>View()</code> syntax line in your script file.</p>
+</div>
+<p>Below are the two lines I would include in the script file. I would also comment them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load readr library</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>spice_girls <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/zief0002/toolkit/master/data/spice_girls.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fyi">
+<p>The syntax <code>&lt;-</code> is another way to write the assignment operator. You can use either <code>=</code> or <code>&lt;-</code> for the assignment operator. Whichever you choose, be consistent!</p>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="validity-check-on-imported-data" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="validity-check-on-imported-data"><span class="header-section-number">3.4</span> Validity Check on Imported Data</h2>
+<p>Once you import data, you should always perform a validity check to ensure that the entire dataset was imported and that things look OK. There are several functions that are useful for this examination. Three that I use regularly are <code>print()</code>, <code>glimpse()</code> and <code>summary()</code>.</p>
+<p>The <code>print()</code> function gives us a quick look at the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(spice_girls)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  spice_name   age original_member solo_nominations real_name
+  &lt;chr&gt;      &lt;dbl&gt; &lt;lgl&gt;                      &lt;dbl&gt; &lt;chr&gt;    
+1 Scary         19 TRUE                           4 Mel B    
+2 Sporty        20 TRUE                          26 Mel C    
+3 Baby          18 FALSE                         14 Emma     
+4 Ginger        22 TRUE                          13 Geri     
+5 Posh          20 FALSE                         12 Victoria </code></pre>
+</div>
+</div>
+<p>Note that from this output we can see that the <code>read_csv()</code> function actually imports the data as a <em>tibble</em>. Tibbles are essentially the same data structure as data frames. The only difference is that when you use <code>print()</code> (and some other functions) to examine the data object, what is printed to the screen is slightly different.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> For tibbles,</p>
+<ul>
+<li>The number of rows and columns is displayed;</li>
+<li>The first 10 rows are shown;</li>
+<li>Only the columns that fit on screen are printed; and</li>
+<li>Each column type is reported</li>
+</ul>
+<p>Here the size of the data object is <code>5 x 5</code>, which indicates that there are five rows (first value) and five columns (second value). We are also informed which columns are numeric, which are logical, and which are character.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<p>The <code>summary()</code> function computes summary statistics for each column in the data object. Different measures are computed depending on the column type. For character columns, only the length of the column is computed. The count of TRUE and FALSE values are computed for logical columns, and several measures are computed for numeric columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute summary measures for each column</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(spice_girls)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  spice_name             age       original_member solo_nominations
+ Length:5           Min.   :18.0   Mode :logical   Min.   : 4.0    
+ Class :character   1st Qu.:19.0   FALSE:2         1st Qu.:12.0    
+ Mode  :character   Median :20.0   TRUE :3         Median :13.0    
+                    Mean   :19.8                   Mean   :13.8    
+                    3rd Qu.:20.0                   3rd Qu.:14.0    
+                    Max.   :22.0                   Max.   :26.0    
+  real_name        
+ Length:5          
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   </code></pre>
+</div>
+</div>
+<p>This is another good validity check to ensure that numeric columns have appropriate minimum and maximum values, etc. Here we see that the the <code>age</code> and <code>solo_nominations</code> columns have reasonable values. In practice you would undertake many more validity checks, but for now this is a good start.</p>
+<p><br></p>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Broman:2018" class="csl-entry" role="listitem">
+Broman, K. W., &amp; Woo, K. H. (2018). Data organization in spreadsheets. <em>The American Statistician</em>, <em>72</em>(1), 2–10. <a href="https://doi.org/10.1080/00031305.2017.1375989">https://doi.org/10.1080/00031305.2017.1375989</a>
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Technically, a data frame can have a single column, but in practice most data frames you encounter will have many columns.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>In this case, everything in the column would be turned into a character string.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The technical type is “double”, which is commonly referred to as numeric.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>This argument for the <code>read_csv()</code> function can also be a pathname to the location of the CSV file on your computer. If you are computing on a Mac, you may need to add <code>~/</code> to the beginning of this path name.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>For data frames only the first six rows are displayed, all the columns are printed regardless of size, and column type is not reported.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Note that just typing the name of the data frame also allows you to view the data. However, using print allows us more flexibility when the data set is larger.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-02-getting-started-with-r.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./01-04-data-wrangling-with-dplyr.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling with dplyr</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
