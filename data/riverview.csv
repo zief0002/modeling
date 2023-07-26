@@ -1,0 +1,33 @@
+education,income,seniority,gender,party
+8,26.43,9,female,Independent
+8,37.449,7,Not female,Democrat
+10,34.182,16,female,Independent
+10,25.479,1,female,Republican
+10,47.034,14,Not female,Democrat
+12,46.488,11,female,Democrat
+12,52.48,16,female,Independent
+12,37.656,14,Not female,Democrat
+12,50.265,24,Not female,Democrat
+14,32.631,5,female,Independent
+14,49.968,18,Not female,Independent
+14,64.926,26,Not female,Independent
+15,37.302,8,female,Democrat
+16,38.586,11,female,Independent
+16,55.878,22,female,Independent
+16,59.499,20,female,Independent
+16,55.782,6,Not female,Democrat
+16,63.471,10,Not female,Democrat
+17,60.068,10,female,Independent
+18,54.84,20,female,Republican
+18,62.466,16,female,Republican
+19,56.019,21,female,Independent
+19,65.142,16,Not female,Republican
+20,56.343,22,female,Independent
+20,54.672,12,female,Independent
+20,61.629,5,Not female,Republican
+20,82.726,23,Not female,Republican
+21,71.202,26,female,Democrat
+21,73.542,16,Not female,Republican
+22,56.322,8,female,Independent
+22,70.044,14,Not female,Independent
+24,79.227,27,Not female,Democrat
