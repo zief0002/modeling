@@ -27,8 +27,9 @@ book:
     - part: 02-00-regression-basics.qmd
       chapters:
         - 02-01-simple-regression-description.qmd
+        - 02-02-ols-estimation.qmd
 
-bibliography: ["assets/toolkit.bib"]
+bibliography: ["assets/modeling.bib", "assets/packages.bib"]
 csl: 'assets/apa-single-spaced.csl'
 
 format:

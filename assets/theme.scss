@@ -117,7 +117,7 @@ div.sidebar-item-container .active .chapter-number {
   color: #ffffff;
 }
 
-.header-section-number{
+.sidebar.header-section-number{
   color: #ffffff;
 }
 
@@ -139,7 +139,11 @@ div.sidebar-item-container .active .chapter-number {
     text-decoration: underline;
 }
 
- 
+
+// Bottom of the page navigation
+.nav-page .bi, span.nav-page-text {
+  color: #443850;
+}
 
 
 // Style cover art 
