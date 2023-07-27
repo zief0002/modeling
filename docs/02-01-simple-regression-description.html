@@ -208,6 +208,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Ordinary Least Squares (OLS) Estimation</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-03-correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Correlation and Standardized Regression</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -564,10 +570,10 @@ Coefficients:
 <p>To interpret this value, remember that <span class="math inline">\(\hat{Y}_i\)</span> is a conditional mean. In this case, it represents the model predicted mean income for all employees that have an education level of 0 years. Graphically this looks like the following.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-intercept" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figs/conditional-means-intercept.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Plot displaying conditional distribution of <em>Y</em> at <span class="math inline">\(X=0\)</span>. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <em>Y</em> for this conditional distribution—which corresponfds to the intercept value of the regression line.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;6.1: Plot displaying conditional distribution of <em>Y</em> at <span class="math inline">\(X=0\)</span>. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <em>Y</em> for this conditional distribution—which corresponds to the intercept value of the regression line.</figcaption>
 </figure>
 </div>
 </div>

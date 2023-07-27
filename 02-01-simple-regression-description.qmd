@@ -324,8 +324,9 @@ $$
 To interpret this value, remember that $\hat{Y}_i$ is a conditional mean. In this case, it represents the model predicted mean income for all employees that have an education level of 0 years. Graphically this looks like the following.
 
 ```{r}
+#| label: fig-intercept
 #| echo: false
-#| fig-cap: "Plot displaying conditional distribution of *Y* at $X=0$. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for this conditional distribution---which corresponfds to the intercept value of the regression line."
+#| fig-cap: "Plot displaying conditional distribution of *Y* at $X=0$. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for this conditional distribution---which corresponds to the intercept value of the regression line."
 include_graphics("figs/conditional-means-intercept.png")
 ```
 

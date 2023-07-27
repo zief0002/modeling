@@ -28,6 +28,7 @@ book:
       chapters:
         - 02-01-simple-regression-description.qmd
         - 02-02-ols-estimation.qmd
+        - 02-03-correlation.qmd
 
 bibliography: ["assets/modeling.bib", "assets/packages.bib"]
 csl: 'assets/apa-single-spaced.csl'
