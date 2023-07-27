@@ -1,4 +1,4 @@
-# Statistical Computation
+# Introduction to Statistical Computation
 
 The first set of tools we will discuss will be related to statistical computation. Although there are many computational tools for statistical analysis, the first tools we will add to your computational toolkit is R. R is a free software environment for statistical computing and graphics. It can be installed on a variety of operating systems, including the MacOS, Windows, and UNIX platforms. To really make use of the computational power of R, we are also going to introduce you to RStudio, an open-source front-end^[Specifically, RStudio is branded as an "integrated development environment (IDE) [that] includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management."] to R.
 
@@ -10,5 +10,10 @@ The initial chapters of this document will address:
 - Wrangling data using functions from the `{dplyr}` package; and
 - Visualizing data using functions from the `{ggplot2}` package.
 
+
+```{r}
+#| echo: false
+knitr::include_graphics("figs/01-00-unit-01.png")
+```
 
 <br /><br />

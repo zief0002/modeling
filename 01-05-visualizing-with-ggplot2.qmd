@@ -2,7 +2,6 @@
 
 ```{r}
 #| echo: false
-
 source("scripts/_common.R")
 ```
 

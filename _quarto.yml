@@ -24,6 +24,9 @@ book:
         - 01-03-data-structures-in-r.qmd
         - 01-04-data-wrangling-with-dplyr.qmd
         - 01-05-visualizing-with-ggplot2.qmd
+    - part: 02-00-regression-basics.qmd
+      chapters:
+        - 02-01-simple-regression-description.qmd
 
 bibliography: ["assets/toolkit.bib"]
 csl: 'assets/apa-single-spaced.csl'

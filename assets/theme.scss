@@ -97,45 +97,50 @@ a:hover {
   color: #fff;
 }
 
+div.sidebar-item-container .active .chapter-number {
+  color: #b3d3f5;
+}
 
 //Sidebar navigation - RIGHT SIDE
 #quarto-margin-sidebar {
   background-color: #443850;
 }
 
+// Title color
 #TOC, #toc-title {
   color: #fff;
   font-size: 14pt;
 }
 
+// Nonactive sidebar items
 .sidebar nav[role="doc-toc"] ul > li > a {
-    color: #ffffff;
+  color: #ffffff;
 }
 
+.header-section-number{
+  color: #ffffff;
+}
+
+// Active sidebar item
 .sidebar nav[role="doc-toc"] ul > li > a.active {
     color: #b3d3f5;
     border-left: 1px solid #b3d3f5;
     text-decoration: underline;
-    font-weight: bold;
 }
 
 
 .sidebar nav[role="doc-toc"] ul > li > a:hover {
     color: #b3d3f5;
     text-decoration: underline;
-    font-weight: bold;
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a:hover .header-section-number {
+    color: #b3d3f5;
+    text-decoration: underline;
 }
 
  
-// .nav-link a {
-//   color: #fff;
-// }
 
-
-//nav#TOC.toc-active a {
-//  color: #fff;
-//  text-decoration: underline;
-//}
 
 // Style cover art 
 .cover {
