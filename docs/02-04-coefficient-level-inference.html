@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistical Modeling and Computation for Educational Scientists - 9&nbsp; Coefficient-Level Inference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02-05-model-level-inference.html" rel="next">
+<link href="./02-03-correlation.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="assets/sticky-notes.css">
+<link rel="stylesheet" href="assets/table-styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-regression-basics.html">Regression Basics</a></li><li class="breadcrumb-item"><a href="./02-04-coefficient-level-inference.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Modeling and Computation for Educational Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Front Matter</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistical Computation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-01-r-and-rstudio-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R and RStudio: Installation and Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-02-getting-started-with-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-03-data-structures-in-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structures in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-04-data-wrangling-with-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling with dplyr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-05-visualizing-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./02-00-regression-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-01-simple-regression-description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Simple Linear Regression—Description</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02-ols-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Ordinary Least Squares (OLS) Estimation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-03-correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Correlation and Standardized Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-04-coefficient-level-inference.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-05-model-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model-Level Inference</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On This Page</h2>
+   
+  <ul>
+  <li><a href="#statistical-inference" id="toc-statistical-inference" class="nav-link active" data-scroll-target="#statistical-inference"><span class="header-section-number">9.1</span> Statistical Inference</a></li>
+  <li><a href="#quantification-of-uncertainty" id="toc-quantification-of-uncertainty" class="nav-link" data-scroll-target="#quantification-of-uncertainty"><span class="header-section-number">9.2</span> Quantification of Uncertainty</a>
+  <ul class="collapse">
+  <li><a href="#quantification-of-uncertainty-in-regression" id="toc-quantification-of-uncertainty-in-regression" class="nav-link" data-scroll-target="#quantification-of-uncertainty-in-regression"><span class="header-section-number">9.2.1</span> Quantification of Uncertainty in Regression</a></li>
+  <li><a href="#obtaining-ses-for-the-regression-coefficients" id="toc-obtaining-ses-for-the-regression-coefficients" class="nav-link" data-scroll-target="#obtaining-ses-for-the-regression-coefficients"><span class="header-section-number">9.2.2</span> Obtaining SEs for the Regression Coefficients</a></li>
+  </ul></li>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing"><span class="header-section-number">9.3</span> Hypothesis Testing</a></li>
+  <li><a href="#estimating-variation-from-sample-data-no-longer-normal" id="toc-estimating-variation-from-sample-data-no-longer-normal" class="nav-link" data-scroll-target="#estimating-variation-from-sample-data-no-longer-normal"><span class="header-section-number">9.4</span> Estimating Variation from Sample Data: No Longer Normal</a>
+  <ul class="collapse">
+  <li><a href="#the-t-distribution" id="toc-the-t-distribution" class="nav-link" data-scroll-target="#the-t-distribution"><span class="header-section-number">9.4.1</span> The t-Distribution</a></li>
+  <li><a href="#back-to-the-hypothesis-test" id="toc-back-to-the-hypothesis-test" class="nav-link" data-scroll-target="#back-to-the-hypothesis-test"><span class="header-section-number">9.4.2</span> Back to the Hypothesis Test</a></li>
+  <li><a href="#testing-the-intercept" id="toc-testing-the-intercept" class="nav-link" data-scroll-target="#testing-the-intercept"><span class="header-section-number">9.4.3</span> Testing the Intercept</a></li>
+  </ul></li>
+  <li><a href="#statistical-significance-an-outdated-idea-for-research" id="toc-statistical-significance-an-outdated-idea-for-research" class="nav-link" data-scroll-target="#statistical-significance-an-outdated-idea-for-research"><span class="header-section-number">9.5</span> ‘Statistical Significance’: An Outdated Idea for Research</a></li>
+  <li><a href="#confidence-intervals-as-compatibility-intervals" id="toc-confidence-intervals-as-compatibility-intervals" class="nav-link" data-scroll-target="#confidence-intervals-as-compatibility-intervals"><span class="header-section-number">9.6</span> Confidence Intervals as Compatibility Intervals</a>
+  <ul class="collapse">
+  <li><a href="#coefficient-plot" id="toc-coefficient-plot" class="nav-link" data-scroll-target="#coefficient-plot"><span class="header-section-number">9.6.1</span> Coefficient Plot</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="coefinf" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In this chapter, you will learn about statistical inference at the coefficient-level for regression models. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>keith <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#View data</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>keith</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["gpa"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["homework"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["parent_ed"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"78","2":"2","3":"13"},{"1":"79","2":"6","3":"14"},{"1":"79","2":"1","3":"13"},{"1":"89","2":"5","3":"13"},{"1":"82","2":"3","3":"16"},{"1":"77","2":"4","3":"13"},{"1":"88","2":"5","3":"13"},{"1":"70","2":"3","3":"13"},{"1":"86","2":"5","3":"15"},{"1":"80","2":"5","3":"14"},{"1":"76","2":"1","3":"16"},{"1":"72","2":"5","3":"13"},{"1":"66","2":"3","3":"12"},{"1":"79","2":"4","3":"14"},{"1":"76","2":"4","3":"10"},{"1":"80","2":"6","3":"20"},{"1":"91","2":"8","3":"15"},{"1":"85","2":"6","3":"16"},{"1":"79","2":"8","3":"13"},{"1":"82","2":"3","3":"14"},{"1":"94","2":"8","3":"12"},{"1":"91","2":"6","3":"12"},{"1":"80","2":"5","3":"14"},{"1":"73","2":"7","3":"14"},{"1":"77","2":"5","3":"12"},{"1":"76","2":"5","3":"16"},{"1":"84","2":"3","3":"12"},{"1":"81","2":"5","3":"16"},{"1":"97","2":"10","3":"16"},{"1":"80","2":"6","3":"15"},{"1":"74","2":"5","3":"16"},{"1":"83","2":"11","3":"15"},{"1":"78","2":"6","3":"13"},{"1":"64","2":"7","3":"17"},{"1":"82","2":"4","3":"13"},{"1":"81","2":"1","3":"17"},{"1":"73","2":"4","3":"13"},{"1":"87","2":"7","3":"13"},{"1":"81","2":"2","3":"14"},{"1":"86","2":"4","3":"11"},{"1":"92","2":"4","3":"14"},{"1":"79","2":"1","3":"13"},{"1":"69","2":"4","3":"15"},{"1":"66","2":"5","3":"14"},{"1":"67","2":"7","3":"13"},{"1":"76","2":"7","3":"13"},{"1":"83","2":"6","3":"13"},{"1":"73","2":"3","3":"15"},{"1":"85","2":"6","3":"15"},{"1":"80","2":"5","3":"17"},{"1":"83","2":"4","3":"13"},{"1":"82","2":"3","3":"15"},{"1":"90","2":"7","3":"12"},{"1":"69","2":"5","3":"12"},{"1":"95","2":"8","3":"17"},{"1":"79","2":"2","3":"13"},{"1":"72","2":"3","3":"13"},{"1":"83","2":"7","3":"16"},{"1":"81","2":"4","3":"12"},{"1":"86","2":"5","3":"15"},{"1":"78","2":"2","3":"11"},{"1":"84","2":"9","3":"13"},{"1":"81","2":"5","3":"14"},{"1":"72","2":"4","3":"12"},{"1":"64","2":"5","3":"12"},{"1":"83","2":"8","3":"14"},{"1":"94","2":"5","3":"14"},{"1":"77","2":"6","3":"13"},{"1":"80","2":"5","3":"14"},{"1":"74","2":"5","3":"18"},{"1":"89","2":"8","3":"16"},{"1":"87","2":"6","3":"15"},{"1":"82","2":"7","3":"16"},{"1":"87","2":"4","3":"15"},{"1":"71","2":"2","3":"12"},{"1":"88","2":"5","3":"17"},{"1":"80","2":"7","3":"13"},{"1":"89","2":"6","3":"16"},{"1":"87","2":"2","3":"15"},{"1":"72","2":"5","3":"10"},{"1":"79","2":"4","3":"17"},{"1":"93","2":"7","3":"14"},{"1":"100","2":"7","3":"18"},{"1":"90","2":"4","3":"13"},{"1":"69","2":"4","3":"10"},{"1":"85","2":"5","3":"14"},{"1":"75","2":"7","3":"14"},{"1":"82","2":"2","3":"12"},{"1":"72","2":"2","3":"10"},{"1":"87","2":"5","3":"14"},{"1":"81","2":"7","3":"15"},{"1":"80","2":"9","3":"15"},{"1":"79","2":"7","3":"17"},{"1":"79","2":"5","3":"14"},{"1":"94","2":"8","3":"17"},{"1":"71","2":"4","3":"11"},{"1":"77","2":"8","3":"14"},{"1":"68","2":"4","3":"15"},{"1":"87","2":"6","3":"16"},{"1":"74","2":"4","3":"12"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>In the <a href="02-01-simple-regression-description.html">previous chapters</a>, we examined the marginal distributions of the outcome (<code>gpa</code>) and predictor (<code>homework</code>), as well as statistics summarizing the mean and variation in these distributions. We also examine a scatterplot of the outcome versus each of the predictors and the bivariate correlations (<a href="02-03-correlation.html">see here</a>). Here we use the <code>ggMarginal()</code> function from the <a href="https://cran.r-project.org/web/packages/ggExtra/vignettes/ggExtra.html"><code>{ggExtra}</code></a> package to include the marginal density plots directly on the scatterplot.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> homework, <span class="at">y =</span> gpa) ) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Time spent on homework per week (in hours)"</span>) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"GPA (on a 100-pt. scale)"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load ggExtra package</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scatterplot and density plots on single graph</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggMarginal</span>(p1, <span class="at">margins =</span> <span class="st">"both"</span>, <span class="at">type =</span> <span class="st">"density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-scatter-density" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-04-coefficient-level-inference_files/figure-html/fig-scatter-density-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;9.1: Density plots of the marginal distributions of GPA and time spent on homework. The scatterplot showing the relationship between GPA and time spent on homework is also shown.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We also create a table to present the correlation coefficients. This table could be extended to include additional variables (which we will do in later chapters). To save creating an additional table, we also include the mean and standard deviations in the same table by placing them on the main diagonal.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="tbl-corr" class="anchored">
+
+<div id="xmhzbwgjea" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  
+  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: 60%; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" width="60%" bgcolor="#FFFFFF"><caption>Table&nbsp;9.1:  <p>Correlations between 8th-Grade students’ GPA and weekly time spent on
+homework. Means and standard deviations (in parentheses) are displayed
+on the main diagonal.</p> </caption>
+  <thead style="border-style: none;">
+    
+    <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="1." style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: center;" bgcolor="#FFFFFF" valign="bottom" align="center">1.</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="2." style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: center;" bgcolor="#FFFFFF" valign="bottom" align="center">2.</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
+    <tr style="border-style: none;"><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub" style="border-style: none; padding-top: 8px; padding-bottom: 8px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; text-align: left;" valign="middle" bgcolor="#FFFFFF" align="left">1. GPA</th>
+<td headers="stub_1_1 gpa" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">80.47 (7.62)</td>
+<td headers="stub_1_1 homework" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center"></td></tr>
+    <tr style="border-style: none;"><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub" style="border-style: none; padding-top: 8px; padding-bottom: 8px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; text-align: left;" valign="middle" bgcolor="#FFFFFF" align="left">2. Time spent on homework</th>
+<td headers="stub_1_2 gpa" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center"> .33</td>
+<td headers="stub_1_2 homework" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">5.09 (2.06)</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>We will also fitted a model by regressing GPA on time spent on homework and storing those results in an object called <code>lm.a</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> homework, <span class="at">data =</span> keith)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View output</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>lm.a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = gpa ~ 1 + homework, data = keith)
+
+Coefficients:
+(Intercept)     homework  
+     74.290        1.214  </code></pre>
+</div>
+</div>
+<p>The fitted equation is:</p>
+<p><span class="math display">\[
+\hat{\mathrm{GPA}_i} = 74.29 + 1.21(\mathrm{Time~spent~on~homework}_i),
+\]</span></p>
+<p>Summarizing this,</p>
+<blockquote class="blockquote">
+<p>This model estimated mean GPA for all 8th-grade students who spend 0 hours a week on homework is 74.29. Each additional hour 8th-grade students spend per week on homework is associated with a difference in GPA of 1.21, on average. Differences in time spent on homework explains 10.7% of the variation in students’ GPAs. All this suggests that time spent on homework is related to GPA for the <span class="math inline">\(n=100\)</span> 8th-graders in the sample.</p>
+</blockquote>
+<p><br></p>
+<section id="statistical-inference" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="statistical-inference"><span class="header-section-number">9.1</span> Statistical Inference</h2>
+<p>What if we want to understand the relationship between time spent on homework and GPA for a larger population of 8th-grade students, say all of them in the district? The problem is that if we had drawn a different sample of <span class="math inline">\(n=100\)</span> 8th-grade students, all the regression estimates (<span class="math inline">\(\hat\beta_0, \hat\beta_1,\)</span> and <span class="math inline">\(R^2\)</span>) would be different than the ones we obtained from our sample. This makes it difficult to say, for example, how the conditional mean GPA differs for students with differing amounts of time spent on homework. In our observed sample, <span class="math inline">\(\hat\beta_1\)</span> was 1.21. But, had we sampled different students, we might have found that <span class="math inline">\(\hat\beta_1\)</span> was 2.03. And a different random sample of employees we might have produced a <span class="math inline">\(\hat\beta_1\)</span> of 0.96.</p>
+<p>This variation in the estimates arises because of the random nature of the sampling. One of the key findings in statistical theory is that the amount of variation in estimates under random sampling is completely predictable (this variation is called <a href="https://en.wikipedia.org/wiki/Sampling_error">sampling error</a>). Being able to quantify the sampling error allows us to provide a more informative answer to the research question. For example, it turns out that based on the quantification of sampling error in our example, we believe that the actual <span class="math inline">\(\beta_1\)</span> is between 0.51 and 1.92.</p>
+<p>Statistical inference allows us to learn from incomplete or imperfect data <span class="citation" data-cites="Gelman:2007">Gelman &amp; Hill (<a href="#ref-Gelman:2007" role="doc-biblioref">2007</a>)</span>. In many studies, the primary interest is to learn about one or more characteristics about a population. These characteristics must be estimated from sample data. This is the situation in our example, where we have only a sample of 8th-grade students and we want to understand the relationship between time spent on homework and GPA for ALL 8th-grade students in the district.</p>
+<p>In the example, the variation in estimates arises because of sampling variation. It is also possible to have variation because of imperfect measurement. This is called <a href="https://en.wikipedia.org/wiki/Observational_error">measurement error</a>. Despite these being very different sources of variation, in practice they are often combined (e.g., we measure imperfectly and we want to make generalizations).</p>
+<p>Regardless of the sources of variation, the goals in most regression analyses are two-fold:</p>
+<ol type="1">
+<li>Estimate the parameters from the observed data; and</li>
+<li>Summarize the amount of uncertainty (e.g., quantify the sampling error) in those estimates.</li>
+</ol>
+<p>The first goal we addressed in the <a href="02-01-simple-regression-description.html">Simple Linear Regression—Description</a> chapter. It is the second goal that we will explore in this chapter.</p>
+<p><br></p>
+</section>
+<section id="quantification-of-uncertainty" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="quantification-of-uncertainty"><span class="header-section-number">9.2</span> Quantification of Uncertainty</h2>
+<p>Before we talk about estimating uncertainty in regression, let me bring you back in time to your <em>Stat I</em> course. In that course, you probably spent a lot of time talking about sampling variation for the mean. The idea went something like this: Imagine you have a population that is infinitely large. The observations in this population follow some probability distribution. (This distribution is typically unknown in practice, but for now, let’s pretend we know what that distribution is.) For our purposes, let’s assume the population is normally distributed with a mean of <span class="math inline">\(\mu\)</span> and a standard deviation of <span class="math inline">\(\sigma\)</span>.</p>
+<p>Sample <em>n</em> observations from that population. Based on the <em>n</em> sampled observations, find the mean. We will call this <span class="math inline">\(\hat\mu_1\)</span> since it is an estimate for the population mean (the subscript just says it is the first sample). In all likelihood, <span class="math inline">\(\hat\mu_1\)</span> is not the exact same value as <span class="math inline">\(\mu\)</span>. It varies from the population mean because of sampling error.</p>
+<p>Now, sample another <em>n</em> observations from the population. Again, find the mean. We will call this estimate <span class="math inline">\(\hat\mu_2\)</span>. Again, it probably varies from <span class="math inline">\(\mu\)</span>, and may be different than <span class="math inline">\(\hat\mu_1\)</span> as well. Continue to repeat this process: randomly sample <em>n</em> observations from the population; and find the mean.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-thought-exp-mean" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/02-04-thought-experiment-means.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;9.2: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the mean.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The distribution of the sample means, it turns out, is quite predictable using statistical theory. Theory predicts that the distribution of the sample means will be normally distributed. It also predicts that the mean, or <a href="https://en.wikipedia.org/wiki/Expected_value">expected value</a>, of all the sample means will be equal to the population mean, <span class="math inline">\(\mu\)</span>. Finally, theory predicts that the standard deviation of this distribution, called the <a href="https://en.wikipedia.org/wiki/Standard_error">standard error</a>, will be equal to the population standard deviation divided by the square root of the sample size. Mathematically, we would write all this as,</p>
+<p><span class="math display">\[
+\hat\mu_n\sim\mathcal{N}\left(\mu, \dfrac{\sigma}{\sqrt{n}}\right).
+\]</span></p>
+<p>The important thing is not that you memorize this result, but that you understand that <strong>the process of randomly sampling from a known population can lead to predictable results in the distribution of statistical summaries</strong> (e.g., the distribution of sample means). The other crucial thing is that there the sampling variation can be quantified. The standard error is the quantification of that sampling error. In this case, it gives a numerical answer to the question of how variable the sample mean will be because of random sampling.</p>
+<p><br></p>
+<section id="quantification-of-uncertainty-in-regression" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="quantification-of-uncertainty-in-regression"><span class="header-section-number">9.2.1</span> Quantification of Uncertainty in Regression</h3>
+<p>We can extend these ideas to regression. Now the thought experiment goes something like this: Imagine you have a population that is infinitely large. The observations in this population have two attributes, call them <em>X</em> and <em>Y</em>. The relationship between these two attributes can be expressed via a regression equation as: <span class="math inline">\(\hat{Y}=\beta_0 + \beta_1(X)\)</span>. Randomly sample <em>n</em> observations from the population. This time, rather than computing a mean, regress the sample <em>Y</em> values on the sample <em>X</em> values. Since the sample regression coefficients are estimates of the population parameters, we will write this as: <span class="math inline">\(\hat{Y}=\hat{\beta}_{0,1} + \hat{\beta}_{1,1}(X)\)</span>. Repeat the process. This time the regression equation is: <span class="math inline">\(\hat{Y}=\hat{\beta}_{0,2} + \hat{\beta}_{1,2}(X)\)</span>. Continue this process an infinite number of times.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-thought-exp-reg" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/02-04-thought-experiment-coefficients.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;9.3: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the regression coefficients.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Statistical theory again predicts the characteristics of the two distributions, that of <span class="math inline">\(\hat{\beta}_0\)</span> and that of <span class="math inline">\(\hat{\beta}_1\)</span>. The distribution of <span class="math inline">\(\hat{\beta}_0\)</span> can be expressed as,</p>
+<p><span class="math display">\[
+\hat\beta_0\sim\mathcal{N}\left(\beta_0,~ \sigma_\epsilon\sqrt{\dfrac{1}{n} + \dfrac{\mu_X^2}{\sum(X_i-\mu_X)^2}}\right).
+\]</span></p>
+<p>Similarly, the distribution of <span class="math inline">\(\hat{\beta}_1\)</span> can be expressed as,</p>
+<p><span class="math display">\[
+\hat\beta_1\sim\mathcal{N}\left(\beta_1,~ \dfrac{\sigma_\epsilon}{\sigma_x\sqrt{n-1}}\right).
+\]</span></p>
+<p>Again, don’t panic over the formulae. What is important is that theory allows us to quantify the variation in both <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> that is due to sampling error. In practice, our statistical software will give us the numerical estimates of the two standard errors.</p>
+<p><br></p>
+</section>
+<section id="obtaining-ses-for-the-regression-coefficients" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="obtaining-ses-for-the-regression-coefficients"><span class="header-section-number">9.2.2</span> Obtaining SEs for the Regression Coefficients</h3>
+<p>To obtain the standard errors for the regression coefficients, we will use the <code>tidy()</code> function from the <code>{broom}</code> package to display the fitted regression output. We provide the fitted regression object as the input to this function.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the coefficient-level output</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"74.289677","3":"1.9419562","4":"38.25507","5":"1.014372e-60"},{"1":"homework","2":"1.214209","3":"0.3540204","4":"3.42977","5":"8.853515e-04"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>In the displayed output, we now obtain the estimates for the standard errors in addition to the coefficient estimates. We can use these values to quantify the amount of uncertainty due to sampling error. For example, the estimate for the slope, 1.21, has a standard error of 0.35. One way to envision this is as a distribution. Our best guess (mean) for the slope parameter is 1.21. The standard deviation of this distribution is 0.35, which indicates the precision (uncertainty) of our estimate.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-samp-dist-slope" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-04-coefficient-level-inference_files/figure-html/fig-samp-dist-slope-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;9.4: Sampling distribution of the slope coefficient. The distribution is approximately normal with a mean of 1.21 and a standard error of 0.35.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In the social sciences, it is typical to express uncertainty as <span class="math inline">\(\pm2(SE)\)</span>. Here we would say that becquse of sampling variation, the slope is likely between 0.51 and 1.91. Interpreting this, we might say,</p>
+<blockquote class="blockquote">
+<p>For all 8th-graders in the district, each one-hour difference in time spent on homework per week is associated with a difference in overall GPA between 0.51 and 1.91, on average.</p>
+</blockquote>
+<p>Similarly, we could express the uncertainty in the intercept as,</p>
+<p><span class="math display">\[
+74.29 \pm 2(1.94) = \left[70.41,~78.17\right]
+\]</span></p>
+<p>Interpreting this, we might say,</p>
+<blockquote class="blockquote">
+<p>The average GPA for all 8th-grade students in the district who spend zero hopurs per week on homework is between 70.41 and 78.17.</p>
+</blockquote>
+<p>We can use the <code>conf.int=TRUE</code> argument in the <code>tidy()</code> function to obtain these limits directly. By default this will compute a 95% CI. This can be changed using the <code>conf.level=</code> argument.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include CIs in the coefficient-level output</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.a, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"74.289677","3":"1.9419562","4":"38.25507","5":"1.014372e-60","6":"70.4359280","7":"78.143426"},{"1":"homework","2":"1.214209","3":"0.3540204","4":"3.42977","5":"8.853515e-04","6":"0.5116668","7":"1.916751"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="hypothesis-testing" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="hypothesis-testing"><span class="header-section-number">9.3</span> Hypothesis Testing</h2>
+<p>Some research questions point to examining whether the value of some regression parameter differs from a specific value. For example, it may be of interest whether a particular population model (e.g., one where <span class="math inline">\(\beta_1=0\)</span>) could produce the sample result of a particular <span class="math inline">\(\hat\beta_1\)</span>. To test something like this, we state the value we want to test in a statement called a [null hypothesis](https://en.wikipedia.org/wiki/Null_hypothesis. For example,</p>
+<p><span class="math display">\[
+H_0: \beta_1 = 0
+\]</span></p>
+<p>The hypothesis is a statement about the population. Here we hypothesize <span class="math inline">\(\beta_1=0\)</span>. It would seem logical that one could just examine the estimate of the parameter from the observed sample to answer this question, but we also have to account for sampling uncertainty. The key is to quantify the sampling variation, and then see if the sample result is unlikely given the stated hypothesis.</p>
+<p>One question of interest may be: Is there evidence that the average GPA differs for different amounts of time spent on homework? In our example, we have a <span class="math inline">\(\hat\beta_1=1.21\)</span>. This is sample evidence, but does 1.21 differ from 0 more than we would expect because of random sampling? If it doesn’t, we cannot really say that the average GPA differs for different amounts of time spent on homework. To test this, we make an assumption that there is no relationship between time spent on homework and GPA, in other words, the slope of the line under this assumption would be 0. Before we talk about how to test this, we need to introduce one wrinkle into the procedure.</p>
+<p><br></p>
+</section>
+<section id="estimating-variation-from-sample-data-no-longer-normal" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="estimating-variation-from-sample-data-no-longer-normal"><span class="header-section-number">9.4</span> Estimating Variation from Sample Data: No Longer Normal</h2>
+<p>In theory, the sampling distribution for two regression coefficients were both normally distributed. This is the case when we know the variation parameters in the population. For example, for the sampling distribution of the slope to be normally distributed, we would need to know <span class="math inline">\(\sigma_\epsilon\)</span> and <span class="math inline">\(\sigma_x\)</span>.</p>
+<p>In practice these values are typically unknown and are estimated from the sample data. Anytime we are estimating things we introduce additional uncertainty. In this case, the uncertainty affects the shape of the sampling distribution.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-norm-dist-comp" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-04-coefficient-level-inference_files/figure-html/fig-norm-dist-comp-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;9.5: Comparison of two distributions. The normal distribution (solid, blue) and one with additional uncertainty (dashed, orange).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Compare the normal distribution (solid, blue) to the distribution with additional uncertainty (dashed, orange). From the figure you can see that the additional uncertainty slightly changed the shape of the distribution from normal.</p>
+<ul>
+<li>It is still symmetric and unimodal (like the normal distribution).</li>
+<li>The additional uncertainty makes more extreme values more likely than they are in the normal distribution.</li>
+<li>The additional uncertainty makes values in the middle less likely than they are in the normal distribution.</li>
+</ul>
+<p>It is important to note that the amount of uncertainty affects how closely the shape of the distribution matches the normal distribution. And, that the sample size directly affects the amount of uncertainty we have. All things being equal, we have less uncertainty when we have larger samples. The following figure illustrates this idea.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-norm-dist-comp2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-04-coefficient-level-inference_files/figure-html/fig-norm-dist-comp2-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;9.6: The normal distribution (solid, blue) and two t-distributions; one based on df=10 (dashed, orange), and the other based on df=4 (dotted, green).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<section id="the-t-distribution" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="the-t-distribution"><span class="header-section-number">9.4.1</span> The t-Distribution</h3>
+<p>As pointed out, the distributions with uncertainty introduced from using a sample of data are not normally distributed. Thus, it doesn’t make sense to use a normal distribution as a model for describing the sampling variation. Instead, we will a <em>t</em>-distribution; a family of distributions that have several advantageous properties:</p>
+<ul>
+<li>They are unimodal and symmetric.</li>
+<li>They have more variation (uncertainty) than the normal distribution resulting in a distribution that has thicker tails and is shorter in the middle than a normal distribution.</li>
+<li>How thick the tails are and how short the middle of the distribution is, is related to the sample size.</li>
+</ul>
+<p>Specifically, the <em>t</em>-distribution is unimodal and symmetric with a mean of 0. The variance of the distribution (which also specifies the exact shape), is</p>
+<p><span class="math display">\[
+\mathrm{Var} = \frac{\textit{df}}{\textit{df} - 2}
+\]</span></p>
+<p>for <span class="math inline">\(\textit{df}&gt;2\)</span> where <span class="math inline">\(\textit{df}\)</span> is referred to as the <a href="https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)">degrees of freedom</a>.</p>
+<p><br></p>
+</section>
+<section id="back-to-the-hypothesis-test" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="back-to-the-hypothesis-test"><span class="header-section-number">9.4.2</span> Back to the Hypothesis Test</h3>
+<p>Recall that we are interested in testing the following hypothesis,</p>
+<p><span class="math display">\[
+H_0: \beta_1 = 0
+\]</span></p>
+<p>To test this we compute the number of standard errors that our observed slope (<span class="math inline">\(\hat\beta_1=1.21\)</span>) is from the hypothesized value of zero (stated in the null hypothesis). Since we already obtained the standard error for the slope (<span class="math inline">\(SE=0.354\)</span>), we just use some straight-forward algebra to compute this:</p>
+<p><span class="math display">\[
+\frac{1.21 - 0}{0.354} = 3.42
+\]</span></p>
+<p>Interpreting this, we can say,</p>
+<blockquote class="blockquote">
+<p>The observed slope of 1.21 is 3.42 standard errors from the expected value of 0.</p>
+</blockquote>
+<p>This value is referred to as the observed <em>t</em>-value. (It is similar to a <em>z</em>-value in the way it is computed; it is standardizing the distance from the observed slope to the hypothesized value of zero. But, since we had to estimate the SE using the data, we introduced additional uncertainty; hence a <em>t</em>-value.)</p>
+<p>We can evaluate this <em>t</em>-value within the appropriate <em>t</em>-distribution. For regression coefficients, the <em>t</em>-distribution we will use for evaluation has degrees of freedom that are a function of the sample size and the number of coefficients being estimated in the regression model, namely,</p>
+<p><span class="math display">\[
+\textit{df} = n - (\textrm{number of coefficients}).
+\]</span></p>
+<p>In our example the sample size (<em>n</em>) is 100, and the number of coefficients being estimated in the regression model is two (<span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span>). Thus,</p>
+<p><span class="math display">\[
+\textit{df} = 100 - 2 = 98
+\]</span></p>
+<p>Based on this, we will evaluate our observed <em>t</em>-value of 3.42 using a <em>t</em>-distribution with 98 degrees of freedom. Using this distribution, we can compute the probability of obtaining a <em>t</em>-value (under random sampling) at least as extreme as the one in the data under the assumed model. This is equivalent to finding the area under the probability curve for the <em>t</em>-distribution that is greater than or equal to 3.42.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> This is called the <em>p</em>-value.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-t-98" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-04-coefficient-level-inference_files/figure-html/fig-t-98-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;9.7: Plot of the probability curve for the t(98) distribution. The shaded area under the curve represents the p-value for a two-tailed test evaluating whether the population slope is zero using an observed t-value of 73.42.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The <em>p</em>-value is computed for us and displayed in the <code>tidy()</code> output, along with the <em>t</em>-value (provided in the <code>statistic</code> column). In our example, <span class="math inline">\(p=0.000885\)</span>. (Note that the <em>p</em>-value might be printed in scientific notation. For example, it may be printed as <code>8.85e-04</code>, which is equivalent to <span class="math inline">\(8.85 \times 10^{-4}\)</span>.) To interpret this we would say,</p>
+<blockquote class="blockquote">
+<p>The probability of observing a <em>t</em>-value of 3.42, or a <em>t</em>-value that is more extreme, under the assumption that <span class="math inline">\(\beta_1=0\)</span> is 0.000885.</p>
+</blockquote>
+<p>This is equivalent to saying:</p>
+<blockquote class="blockquote">
+<p>The probability of observing a sample slope of 1.21, or a slope that is more extreme, under the assumption that <span class="math inline">\(\beta_1=0\)</span> is 0.000885.</p>
+</blockquote>
+<p>This is quite unlikely, and indicates that the empirical data are inconsistent with the hypothesis that <span class="math inline">\(\beta_1=0\)</span>. As such, it serves as <strong>evidence against the hypothesized model</strong>. In other words, it is likely that <span class="math inline">\(\beta_1\neq0\)</span>.</p>
+<p><br></p>
+</section>
+<section id="testing-the-intercept" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="testing-the-intercept"><span class="header-section-number">9.4.3</span> Testing the Intercept</h3>
+<p>The hypothesis being tested for the intercept is <span class="math inline">\(H_0:\beta_0=0\)</span>. The <code>tidy()</code> output also provides information about this test:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"74.289677","3":"1.9419562","4":"38.25507","5":"1.014372e-60"},{"1":"homework","2":"1.214209","3":"0.3540204","4":"3.42977","5":"8.853515e-04"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The results indicate that the observed intercept of 74.28 is 38.26 standard errors from the hypothesized value of 0;</p>
+<p><span class="math display">\[
+t = \frac{74.28 - 0}{1.94} = 38.26
+\]</span></p>
+<p>Assuming the null hypothesis that <span class="math inline">\(\beta_0=0\)</span> is true, the probability of observing a sample intercept of 74.28 or one that is more extreme, is <span class="math inline">\(1.01 \times 10^{-60}\)</span>. (Any <em>p</em>-value less than .001 is typically reported as <span class="math inline">\(p&lt;.001\)</span>.) This is evidence against the hypothesized model. Because of this, we would say the empirical data are inconsistent with the hypothesis that <span class="math inline">\(\beta_0=0\)</span>; it is unlikely that the intercept in the population is zero.</p>
+<p><br></p>
+</section>
+</section>
+<section id="statistical-significance-an-outdated-idea-for-research" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="statistical-significance-an-outdated-idea-for-research"><span class="header-section-number">9.5</span> ‘Statistical Significance’: An Outdated Idea for Research</h2>
+<p>You may have read papers or taken statistics courses that emphasized the language “statistically significant”. This adjective was typically used when the empirical evidence was inconsistent with a hypothesized model, and the researcher subsequently “rejected the null hypothesis”. In the social sciences this occurred when the <span class="math inline">\(p\)</span>-value was less than or equal to 0.05.</p>
+<p>In 2019, the American Statistical Association put out a special issue in one of their premier journals, stating,</p>
+<div class="actualquote">
+<p>…it is time to stop using the term ‘statistically significant’ entirely. Nor should variants such as ‘significantly different,’ ‘p &lt; 0.05,’ and ‘nonsignificant’ survive, whether expressed in words, by asterisks in a table, or in some other way. Regardless of whether it was ever useful, a declaration of ‘statistical significance’ has today become meaningless. <span class="citation" data-cites="Wasserstein:2019">(<a href="#ref-Wasserstein:2019" role="doc-biblioref">Wasserstein &amp; Schirm, 2019, p. 2</a>)</span></p>
+</div>
+<p>They went on to say,</p>
+<div class="actualquote">
+<p>…no p-value can reveal the plausibility, presence, truth, or importance of an association or effect. Therefore, a label of statistical significance does not mean or imply that an association or effect is highly probable, real, true, or important. Nor does a label of statistical nonsignificance lead to the association or effect being improbable, absent, false, or unimportant. <span class="citation" data-cites="Wasserstein:2019">(<a href="#ref-Wasserstein:2019" role="doc-biblioref">Wasserstein &amp; Schirm, 2019, p. 2</a>)</span></p>
+</div>
+<p>This is not to say that <em>p</em>-values should not be reported; they should. But rather that we should not arbitrarily dichotomize a continuous measure into two categories whose labels are at best meaningless and at worst misleading. The goal of scientific inference (which is much broader than statistical inference for a single study) is replicability and empirically generalizable results and findings. And, as <span class="citation" data-cites="Hubbard:2019">Hubbard et al. (<a href="#ref-Hubbard:2019" role="doc-biblioref">2019</a>)</span> point out, declaring findings as ‘significant’ or ‘not significant’ works in direct opposition to the broader culmination of knowledge and evidence in a field.</p>
+<p>Instead, we want to begin to see the <em>p</em>-value as a measure of incompatibility between the empirical data and a very specific model, one in which a certain set of assumptions are true. Both the empirical data (which are unique to the specific study) and the model’s set of assumptions often make the <em>p</em>-value unique to the specific study carried out and less useful in the broader goal of scientific inference. As such we need to come to view the <em>p</em>-value for what it is, one measure of evidence, for one very particular model, in one very localized study. As Ron Wasserstein reminds us,</p>
+<div class="actualquote">
+<p>Small p-values are like a right-swipe in Tinder. It means you have an interest. It doesn’t mean you’re ready to book the wedding venue.</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/02-04-pvalue-and-tinder.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="confidence-intervals-as-compatibility-intervals" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="confidence-intervals-as-compatibility-intervals"><span class="header-section-number">9.6</span> Confidence Intervals as Compatibility Intervals</h2>
+<p>To build on this, let’s return to the reporting and interpretation of confidence intervals. In our example, the 95% CI was:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output with CI</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.a, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"74.289677","3":"1.9419562","4":"38.25507","5":"1.014372e-60","6":"70.4359280","7":"78.143426"},{"1":"homework","2":"1.214209","3":"0.3540204","4":"3.42977","5":"8.853515e-04","6":"0.5116668","7":"1.916751"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>One way of interpreting this interval is that every value in the interval is a parameter value that is reasonably compatible with the empirical data. For example, in considering the CI for the slope parameter, population slope <span class="math inline">\((\beta_1)\)</span> values between 0.51 and 1.92 are all reasonably compatible with the empirical data (with the caveat that, again, all the assumptions used to create the interval are satisfied). As applied researchers, we should describe the practical implications of all values inside the interval, especially the observed effect (or point estimate) and the limits.</p>
+<p>For us this means describing the practical implications of the true slope being 1.21, as low as 0.51, and as high as 1.92. Are these meaningful differences in GPA (measure on a 100-pt.&nbsp;scale)? Given that the SD for GPA was 7.62, a one-hour difference in time spent on homework is associated with at most a 0.25 SD difference in GPA or as little as a 0.07 SD difference in GPA. This is not a large difference, however whether it is meaningful depends on previous research about GPA.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>Confidence intervals help us keep an open-mind about uncertainty, after all they suggest several values that are compatible with the empirical data. However, they can also be misleading. <span class="citation" data-cites="Amrhein:2019">Amrhein et al. (<a href="#ref-Amrhein:2019" role="doc-biblioref">2019</a>)</span> point out four key points fo us to remember as we use CIs:</p>
+<ul>
+<li>Just because the interval gives the values most compatible with the data, given the assumptions, it does not mean values outside it are incompatible; they are just less compatible.</li>
+<li>Not all values inside are equally compatible with the data, given the assumptions. The point estimate is the most compatible, and values near it are more compatible than those near the limits.</li>
+<li>Like the 0.05 threshold from which it came, the default 95% used to compute intervals is itself an arbitrary convention.</li>
+<li>Last, and most important of all, be humble: compatibility assessments hinge on the correctness of the statistical assumptions used to compute the interval. In practice, these assumptions are at best subject to considerable uncertainty.</li>
+</ul>
+<p><br></p>
+<section id="coefficient-plot" class="level3" data-number="9.6.1">
+<h3 data-number="9.6.1" class="anchored" data-anchor-id="coefficient-plot"><span class="header-section-number">9.6.1</span> Coefficient Plot</h3>
+<p>One plot that helps visualize the estimates of the regression coefficients and the associated uncertainty is a <em>coefficient plot</em>. This plot, recommended by <span class="citation" data-cites="Gelman:2007">Gelman &amp; Hill (<a href="#ref-Gelman:2007" role="doc-biblioref">2007</a>)</span>, is a graphical representation of the information provided in the <code>tidy()</code> output.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-coef-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-04-coefficient-level-inference_files/figure-html/fig-coef-plot-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;9.8: Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95% confidence intervals are displayed.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The coefficient plot shows the estimates of the regression coefficients (dots) and the uncertainty in those estimates via the confidence intervals (blue shading). Notice that darker shading is associated with parameter values that are more probable given the empirical data; the sample estimates are the most likely values for the regression parameters.</p>
+<p>To create a coefficient plot, we will use the <code>dwplot()</code> function from the <a href="https://cran.r-project.org/web/packages/dotwhisker/vignettes/dotwhisker-vignette.html"><code>{dotwhisker}</code></a> package. This function takes the ouput of <code>tidy()</code> as input. Since the function will identify the model, we also mutate a column called <code>model</code> into the tidy output giving the name of the model. Since <code>dwplot()</code> is based on <code>ggplot()</code> syntax, we can add layers to customize the plot in the same manner as if we were building a ggplot. The syntax I used to create the coefficient plot above is:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dotwhisker)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Store output from tidy</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>mod_1 <span class="ot">=</span> <span class="fu">tidy</span>(lm.a) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"Model A"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(mod_1, <span class="at">show_intercept =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">"Model"</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#c62f4b"</span>)) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Estimate"</span>) <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">name =</span> <span class="st">"Coefficients"</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Time spent</span><span class="sc">\n</span><span class="st">on homework"</span>, <span class="st">"Intercept"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>By default, the plot will display 95% CI. To display a different level of confidence, specify <code>conf.level=</code> argument in <code>tidy()</code>. There are several variations of this plot. For example, below I omit the intercept from this plot. To do this, I use the <code>filter()</code> function to omit the row in the <code>tidy()</code> output that includes the intercept.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> I also change the limits on the <em>x</em>-axis to better fit the homework interval.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-coef-plot-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-04-coefficient-level-inference_files/figure-html/fig-coef-plot-2-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;9.9: Coefficient plot for the model regressing GPA on time spent on homework. Uncertainty based on the 95% confidence interval is displayed. Note that the intercept has been omitted.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Amrhein:2019" class="csl-entry" role="listitem">
+Amrhein, V., Greenland, S., &amp; McShane, B. (2019). Retire statistical significance. <em>Nature</em>, <em>567</em>, 305–307.
+</div>
+<div id="ref-Gelman:2007" class="csl-entry" role="listitem">
+Gelman, A., &amp; Hill, J. (2007). <em>Data analysis using regression and multilevel/hierarchical models</em>. Cambridge University Press.
+</div>
+<div id="ref-Hubbard:2019" class="csl-entry" role="listitem">
+Hubbard, R., Haig, B. D., &amp; Parsa, R. A. (2019). The limited role of formal statistical inference in scientific inference. <em>The American Statistician</em>, <em>73</em>, 91–98. <a href="https://doi.org/10.1080/00031305.2018.1464947">https://doi.org/10.1080/00031305.2018.1464947</a>
+</div>
+<div id="ref-Wasserstein:2019" class="csl-entry" role="listitem">
+Wasserstein, R., &amp; Schirm, A. (2019). <em>Moving to a world beyond <span class="math inline">\(p &lt; .05\)</span></em>. Keynote presentation at the <span>U</span>nited <span>S</span>tates <span>C</span>onference on <span>T</span>eaching <span>S</span>tatistics.
+</div>
+</div>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>The actual limits from the 95% CI are computed using a multiplier that is slightly different than two; thus the discrepancy between our off-the-cuff computation earlier and the result from <code>tidy()</code>. Using a multiplier of two is often close enough for practical purposes, especially when the sample size is large.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>We actually compute the area under the probability curve that is greater than or equal to 3.42 AND that is less than or equal to <span class="math inline">\(-3.42\)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>It turns out this is quite a complicated question and the effects of homework depend on a variety of student factors, including age, culture, household income, etc. Many studies have also found a non-linear effect of homework, indicating there may be an optimum amount for some groups of students.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>The intercept could also be dropped using <code>show.intercept=FALSE</code> which is the default for <code>dwplot()</code>. The <code>filter()</code> method, however, allows you to drop or select different predictors for display as well as the intercept.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02-03-correlation.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Correlation and Standardized Regression</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02-05-model-level-inference.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model-Level Inference</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

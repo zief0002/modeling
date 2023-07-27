@@ -2,7 +2,8 @@
 # library(gt)
 # library(gtExtras)
 library(knitr)
-library(kableExtra)
+library(gt)
+library(gtExtras)
 library(patchwork)
 
 

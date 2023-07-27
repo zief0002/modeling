@@ -27,7 +27,7 @@ keith
 
 ## Data Exploration
 
-We begin by looking at the marginal distributions of both time spent on homework and GPA. We will also examine summary statistics of these variables (output presented in @tbl-02-02-1). Finally, we also examine a scatterplot of GPA versus time spent on homework. (Note that the syntax is not shown.)
+We begin by looking at the marginal distributions of both time spent on homework and GPA. We will also examine summary statistics of these variables (output presented in @tbl-02-03-1). Finally, we also examine a scatterplot of GPA versus time spent on homework. (Note that the syntax is not shown.)
 
 ::: {layout-nrow=2}
 ::: {layout-ncol=2}

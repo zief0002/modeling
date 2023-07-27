@@ -29,6 +29,8 @@ book:
         - 02-01-simple-regression-description.qmd
         - 02-02-ols-estimation.qmd
         - 02-03-correlation.qmd
+        - 02-04-coefficient-level-inference.qmd
+        - 02-05-model-level-inference.qmd
 
 bibliography: ["assets/modeling.bib", "assets/packages.bib"]
 csl: 'assets/apa-single-spaced.csl'
