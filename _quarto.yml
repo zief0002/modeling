@@ -31,6 +31,11 @@ book:
         - 02-03-correlation.qmd
         - 02-04-coefficient-level-inference.qmd
         - 02-05-model-level-inference.qmd
+    - part: 03-00-deeper-understanding.qmd
+      chapters:
+        - 03-01-intro-to-multiple-regression.qmd
+        - 03-02-understanding-statistical-control.qmd
+        - 03-03-assumptions.qmd
 
 bibliography: ["assets/modeling.bib", "assets/packages.bib"]
 csl: 'assets/apa-single-spaced.csl'
