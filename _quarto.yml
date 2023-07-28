@@ -40,6 +40,7 @@ book:
       chapters:
         - 04-01-dichotomous-predictors.qmd
         - 04-02-polychotomous-predictors.qmd
+        - 04-03-interaction-effects.qmd
 
 bibliography: ["assets/modeling.bib", "assets/packages.bib"]
 csl: 'assets/apa-single-spaced.csl'

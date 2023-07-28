@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistical Modeling and Computation for Educational Scientists - 16&nbsp; Introduction to Interaction Effects</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04-02-polychotomous-predictors.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="assets/sticky-notes.css">
+<link rel="stylesheet" href="assets/table-styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-00-extending-regression-model.html">Extending the Regression Model</a></li><li class="breadcrumb-item"><a href="./04-03-interaction-effects.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Modeling and Computation for Educational Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Front Matter</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistical Computation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-01-r-and-rstudio-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R and RStudio: Installation and Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-02-getting-started-with-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-03-data-structures-in-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structures in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-04-data-wrangling-with-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling with dplyr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-05-visualizing-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./02-00-regression-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-01-simple-regression-description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Simple Linear Regression—Description</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02-ols-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Ordinary Least Squares (OLS) Estimation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-03-correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Correlation and Standardized Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-04-coefficient-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-05-model-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model-Level Inference</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./03-00-deeper-understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deeper Understanding</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-01-intro-to-multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduction to Multiple Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-02-understanding-statistical-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Understanding Statistical Control</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-03-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Distributional Assumptions Underlying the Regression Model</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./04-00-extending-regression-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extending the Regression Model</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-01-dichotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dichotomous Categorical Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-02-polychotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-03-interaction-effects.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On This Page</h2>
+   
+  <ul>
+  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link active" data-scroll-target="#data-exploration"><span class="header-section-number">16.1</span> Data Exploration</a></li>
+  <li><a href="#main-effects-models" id="toc-main-effects-models" class="nav-link" data-scroll-target="#main-effects-models"><span class="header-section-number">16.2</span> Main-Effects Models</a></li>
+  <li><a href="#statistical-interactions-differential-effects-for-females-and-non-females" id="toc-statistical-interactions-differential-effects-for-females-and-non-females" class="nav-link" data-scroll-target="#statistical-interactions-differential-effects-for-females-and-non-females"><span class="header-section-number">16.3</span> Statistical Interactions: Differential Effects for Females and Non-Females</a>
+  <ul class="collapse">
+  <li><a href="#testing-for-an-interaction-effect" id="toc-testing-for-an-interaction-effect" class="nav-link" data-scroll-target="#testing-for-an-interaction-effect"><span class="header-section-number">16.3.1</span> Testing for an Interaction Effect</a></li>
+  <li><a href="#mathematical-expression-of-the-interaction-model" id="toc-mathematical-expression-of-the-interaction-model" class="nav-link" data-scroll-target="#mathematical-expression-of-the-interaction-model"><span class="header-section-number">16.3.2</span> Mathematical Expression of the Interaction Model</a></li>
+  <li><a href="#interpreting-the-fitted-models-coefficients" id="toc-interpreting-the-fitted-models-coefficients" class="nav-link" data-scroll-target="#interpreting-the-fitted-models-coefficients"><span class="header-section-number">16.3.3</span> Interpreting the Fitted Model’s Coefficients</a></li>
+  <li><a href="#plotting-the-fitted-equation-for-the-interaction-model" id="toc-plotting-the-fitted-equation-for-the-interaction-model" class="nav-link" data-scroll-target="#plotting-the-fitted-equation-for-the-interaction-model"><span class="header-section-number">16.3.4</span> Plotting the Fitted Equation for the Interaction Model</a></li>
+  </ul></li>
+  <li><a href="#adding-covariates-into-the-model" id="toc-adding-covariates-into-the-model" class="nav-link" data-scroll-target="#adding-covariates-into-the-model"><span class="header-section-number">16.4</span> Adding Covariates into the Model</a>
+  <ul class="collapse">
+  <li><a href="#plotting-the-results-of-the-model" id="toc-plotting-the-results-of-the-model" class="nav-link" data-scroll-target="#plotting-the-results-of-the-model"><span class="header-section-number">16.4.1</span> Plotting the Results of the Model</a></li>
+  </ul></li>
+  <li><a href="#evaluating-the-distributional-assumptions" id="toc-evaluating-the-distributional-assumptions" class="nav-link" data-scroll-target="#evaluating-the-distributional-assumptions"><span class="header-section-number">16.5</span> Evaluating the Distributional Assumptions</a></li>
+  <li><a href="#two-interpretations-of-an-interaction-effect" id="toc-two-interpretations-of-an-interaction-effect" class="nav-link" data-scroll-target="#two-interpretations-of-an-interaction-effect"><span class="header-section-number">16.6</span> Two Interpretations of an Interaction Effect</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="interaction-01" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In this chapter, you will learn about how to include and interpret interaction effects in the regression model. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/work-demands.csv">work-demands.csv</a> data to examine predictors of guilt about home-life/work balance; see the <a href="http://zief0002.github.io/epsy-8251/codebooks/work-demands.html">data codebook</a>). In particular we will evaluate whether there is an effect of boundary-spanning work (work-related matters outside normal work hours) on guilt and whether that effect differs by gender.</p>
+<p>To begin, we will load several libraries and import the data into an object called <code>work</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(educate)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>work <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/modeling/main/data/work-demands.csv"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>work</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["guilt"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["bound_span_work"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["female"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["authority"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["married"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"-1.639408491","2":"-1.126790705","3":"1","4":"2.64871229","5":"1"},{"1":"-0.027223991","2":"0.717543190","3":"1","4":"1.37652107","5":"1"},{"1":"0.276092637","2":"-0.016359196","3":"1","4":"1.13813811","5":"1"},{"1":"1.651413774","2":"1.285668728","3":"1","4":"1.12861364","5":"1"},{"1":"-0.148865532","2":"-0.153266798","3":"1","4":"0.64598698","5":"1"},{"1":"-1.469526540","2":"-2.042237595","3":"1","4":"1.22719462","5":"1"},{"1":"-2.093318945","2":"-1.175359334","3":"1","4":"3.03056022","5":"1"},{"1":"1.268916274","2":"0.204011628","3":"1","4":"0.17066560","5":"1"},{"1":"0.139777019","2":"0.015249170","3":"1","4":"1.23293529","5":"1"},{"1":"0.423261725","2":"-1.260063165","3":"1","4":"-0.90781124","5":"1"},{"1":"0.539648293","2":"0.073050441","3":"1","4":"0.83703813","5":"1"},{"1":"-0.246327113","2":"0.851194136","3":"1","4":"2.17972693","5":"1"},{"1":"0.894037780","2":"1.981437969","3":"1","4":"1.50519552","5":"1"},{"1":"-0.025799794","2":"-0.436906609","3":"1","4":"0.17013120","5":"1"},{"1":"0.043665398","2":"-0.577125761","3":"1","4":"0.20659066","5":"1"},{"1":"-0.282562658","2":"-0.445334865","3":"1","4":"1.31789608","5":"1"},{"1":"1.591640429","2":"0.307600308","3":"1","4":"-1.32371883","5":"1"},{"1":"-0.411399414","2":"0.366192494","3":"1","4":"2.40496966","5":"1"},{"1":"-0.024600580","2":"-0.782082818","3":"1","4":"-0.99868611","5":"0"},{"1":"0.371292724","2":"-0.119627842","3":"1","4":"0.73012751","5":"1"},{"1":"0.449855166","2":"0.258382284","3":"1","4":"0.56944680","5":"0"},{"1":"-0.857439931","2":"-0.930942937","3":"1","4":"1.08360216","5":"0"},{"1":"-0.247241386","2":"-0.309893147","3":"1","4":"0.68994258","5":"0"},{"1":"-0.268106401","2":"-0.983867626","3":"1","4":"0.78044514","5":"1"},{"1":"-1.341546765","2":"-1.493612573","3":"1","4":"1.05610062","5":"0"},{"1":"-0.971830125","2":"-1.386427584","3":"1","4":"0.61708960","5":"1"},{"1":"1.184131183","2":"1.884759366","3":"1","4":"-0.86991302","5":"0"},{"1":"0.746500764","2":"1.166318941","3":"1","4":"0.55691775","5":"0"},{"1":"0.289969181","2":"0.121404680","3":"1","4":"1.05454582","5":"1"},{"1":"-0.016771203","2":"-0.319619234","3":"1","4":"0.25351979","5":"0"},{"1":"1.761069798","2":"1.652034771","3":"1","4":"1.15311543","5":"1"},{"1":"2.320628401","2":"0.959564482","3":"1","4":"-0.30990139","5":"1"},{"1":"2.115440856","2":"1.454146434","3":"1","4":"-0.97958341","5":"1"},{"1":"0.793840024","2":"1.049497283","3":"1","4":"2.05522360","5":"1"},{"1":"0.289938002","2":"0.405988182","3":"1","4":"1.12598396","5":"0"},{"1":"0.117938193","2":"-0.071810808","3":"1","4":"1.33280519","5":"1"},{"1":"-0.567518709","2":"-0.670840413","3":"1","4":"0.96430160","5":"0"},{"1":"-0.383898291","2":"0.744095301","3":"1","4":"2.76348142","5":"1"},{"1":"0.443001111","2":"1.038897219","3":"1","4":"2.76659013","5":"1"},{"1":"-0.992368318","2":"-0.535193993","3":"1","4":"1.30008141","5":"1"},{"1":"0.068677282","2":"-0.504015876","3":"1","4":"0.61057338","5":"0"},{"1":"-0.253132471","2":"-1.347601031","3":"1","4":"0.08808166","5":"1"},{"1":"-0.226146024","2":"-0.872724148","3":"1","4":"0.35792662","5":"1"},{"1":"0.485122040","2":"0.244913457","3":"1","4":"0.99879587","5":"1"},{"1":"1.035892353","2":"0.327541564","3":"1","4":"0.59618845","5":"1"},{"1":"2.806080239","2":"1.627617804","3":"1","4":"-1.57000850","5":"1"},{"1":"0.791985976","2":"0.490116367","3":"1","4":"0.86348856","5":"1"},{"1":"-0.265605017","2":"0.028312806","3":"1","4":"1.54051884","5":"1"},{"1":"1.075529330","2":"0.238939612","3":"1","4":"0.26702066","5":"1"},{"1":"0.056891911","2":"-1.104680835","3":"1","4":"-0.16535113","5":"0"},{"1":"0.552661002","2":"0.844975914","3":"1","4":"1.55275282","5":"0"},{"1":"-0.739801057","2":"0.646951484","3":"1","4":"1.19319078","5":"1"},{"1":"-2.374918950","2":"-1.895986476","3":"1","4":"0.61858482","5":"0"},{"1":"2.034674508","2":"-0.368742467","3":"1","4":"-1.58439993","5":"0"},{"1":"-0.344010209","2":"-0.818022689","3":"1","4":"-0.05972166","5":"1"},{"1":"0.295822717","2":"-0.203263990","3":"1","4":"0.74534739","5":"1"},{"1":"0.254038440","2":"0.041466279","3":"1","4":"1.23107553","5":"1"},{"1":"0.280360303","2":"-0.222531357","3":"1","4":"-0.12243660","5":"1"},{"1":"-0.363870252","2":"0.888736464","3":"1","4":"1.23949633","5":"1"},{"1":"-0.873851105","2":"-0.791665466","3":"1","4":"0.71196957","5":"0"},{"1":"0.217347860","2":"-0.310125375","3":"1","4":"0.13792868","5":"1"},{"1":"1.777597154","2":"0.722685233","3":"1","4":"-1.16330547","5":"0"},{"1":"-0.566778702","2":"-0.269299959","3":"1","4":"2.63179141","5":"1"},{"1":"-1.431498008","2":"-2.296907198","3":"1","4":"1.35377173","5":"1"},{"1":"-0.372791755","2":"-0.879146911","3":"1","4":"0.51932809","5":"0"},{"1":"-0.583406706","2":"-1.841034022","3":"1","4":"0.24628118","5":"1"},{"1":"-0.760306294","2":"-0.170158745","3":"1","4":"1.91675501","5":"1"},{"1":"-1.593240044","2":"-0.654969754","3":"1","4":"2.20619944","5":"1"},{"1":"-0.065286192","2":"-0.550853013","3":"1","4":"-1.09577725","5":"1"},{"1":"-0.130636018","2":"-0.613665450","3":"1","4":"0.20865384","5":"1"},{"1":"-0.898828847","2":"-1.725591555","3":"1","4":"0.22719719","5":"1"},{"1":"-0.302551245","2":"-0.962897024","3":"1","4":"0.94004664","5":"1"},{"1":"-0.716191936","2":"-1.866888037","3":"1","4":"1.22454193","5":"1"},{"1":"0.534470001","2":"0.596893089","3":"1","4":"1.49881926","5":"0"},{"1":"2.286820065","2":"1.315372588","3":"1","4":"-1.65030146","5":"1"},{"1":"0.549407058","2":"-0.109784029","3":"1","4":"-0.37183392","5":"1"},{"1":"-0.998957462","2":"-1.713873007","3":"1","4":"1.14483057","5":"1"},{"1":"-0.025577150","2":"0.415867786","3":"1","4":"1.55542233","5":"0"},{"1":"2.289623866","2":"0.766623197","3":"1","4":"-0.39485575","5":"1"},{"1":"-0.644774266","2":"-0.676457200","3":"1","4":"2.54563619","5":"1"},{"1":"-0.288446485","2":"-1.027808950","3":"1","4":"1.19396632","5":"1"},{"1":"-1.334145970","2":"-0.996438915","3":"1","4":"1.16606536","5":"0"},{"1":"0.956742988","2":"1.987363778","3":"1","4":"1.23093131","5":"0"},{"1":"-1.610553353","2":"-2.165531162","3":"1","4":"1.64733772","5":"1"},{"1":"1.023993416","2":"-0.768917200","3":"1","4":"-0.68576184","5":"1"},{"1":"-0.304791899","2":"0.232509118","3":"1","4":"2.97190649","5":"1"},{"1":"0.676483260","2":"0.291481200","3":"1","4":"0.30341586","5":"1"},{"1":"-0.930511811","2":"-1.088615418","3":"1","4":"0.86009242","5":"0"},{"1":"2.588769876","2":"2.093657326","3":"1","4":"0.28805096","5":"1"},{"1":"-0.605413460","2":"-1.104353119","3":"1","4":"-0.15084658","5":"1"},{"1":"0.016248086","2":"-0.967389907","3":"1","4":"0.71953758","5":"1"},{"1":"0.203095558","2":"0.640772742","3":"1","4":"2.44257458","5":"0"},{"1":"-0.821897033","2":"-0.161150903","3":"1","4":"2.26109080","5":"0"},{"1":"-0.445975560","2":"0.624634868","3":"1","4":"1.32618907","5":"0"},{"1":"0.830881989","2":"-0.174941425","3":"1","4":"-1.11156265","5":"0"},{"1":"1.205107979","2":"-0.006323424","3":"1","4":"-1.80588728","5":"1"},{"1":"0.689753295","2":"0.388728190","3":"1","4":"0.75867003","5":"1"},{"1":"1.211867323","2":"0.371046954","3":"1","4":"-0.91591380","5":"1"},{"1":"0.405116750","2":"-0.005874702","3":"1","4":"1.40031563","5":"1"},{"1":"-0.395004835","2":"-1.252369303","3":"1","4":"0.42564543","5":"1"},{"1":"1.233936338","2":"0.503428201","3":"1","4":"0.76576597","5":"0"},{"1":"-0.102631956","2":"-0.243763559","3":"1","4":"0.20256869","5":"1"},{"1":"0.817666279","2":"0.488720340","3":"1","4":"1.09548441","5":"1"},{"1":"2.161417937","2":"0.841166629","3":"1","4":"-1.14633886","5":"1"},{"1":"-0.272389878","2":"-0.502415338","3":"1","4":"0.10272480","5":"1"},{"1":"1.394246326","2":"0.513098947","3":"1","4":"-0.67712465","5":"1"},{"1":"0.763330469","2":"-0.778195306","3":"1","4":"-0.96335575","5":"1"},{"1":"0.724994875","2":"0.122456470","3":"1","4":"0.63391245","5":"1"},{"1":"-1.702627226","2":"-2.026599883","3":"1","4":"1.55336251","5":"1"},{"1":"1.546894962","2":"0.990050545","3":"1","4":"-0.24305978","5":"1"},{"1":"0.505729631","2":"-0.805604638","3":"1","4":"1.04137574","5":"1"},{"1":"-0.712887039","2":"-1.532388957","3":"1","4":"0.35307281","5":"1"},{"1":"-0.577094024","2":"-0.499411927","3":"1","4":"1.17092932","5":"1"},{"1":"1.813682543","2":"2.066340220","3":"1","4":"-0.61064205","5":"1"},{"1":"1.630546501","2":"1.861581277","3":"1","4":"0.47374542","5":"1"},{"1":"0.392408369","2":"0.014670993","3":"1","4":"0.31872223","5":"0"},{"1":"-0.464822020","2":"0.046613550","3":"1","4":"3.00657503","5":"0"},{"1":"0.189659651","2":"0.657124855","3":"1","4":"1.26730493","5":"1"},{"1":"1.103525245","2":"1.652780087","3":"1","4":"1.56393150","5":"1"},{"1":"0.400538582","2":"0.183899970","3":"1","4":"1.24547209","5":"1"},{"1":"-1.153908266","2":"-1.590107147","3":"1","4":"1.73516651","5":"1"},{"1":"0.529530135","2":"0.638017238","3":"1","4":"1.23627391","5":"1"},{"1":"0.887441871","2":"0.784660107","3":"1","4":"1.65521265","5":"1"},{"1":"-0.626896918","2":"-0.609475396","3":"1","4":"1.58674106","5":"1"},{"1":"-0.310062486","2":"-0.351898977","3":"1","4":"1.46036365","5":"1"},{"1":"0.077840570","2":"-0.864737400","3":"1","4":"-0.63552113","5":"1"},{"1":"0.906500745","2":"-0.369528053","3":"1","4":"-1.13096730","5":"1"},{"1":"-0.770872239","2":"-0.577682768","3":"1","4":"0.98363492","5":"0"},{"1":"-0.585500145","2":"-0.738372340","3":"1","4":"0.45783102","5":"1"},{"1":"0.107262652","2":"0.878528774","3":"1","4":"1.69755273","5":"1"},{"1":"-0.362111525","2":"0.354973206","3":"1","4":"1.93613097","5":"1"},{"1":"-0.380024044","2":"0.994027015","3":"1","4":"3.08423085","5":"1"},{"1":"-0.432440553","2":"-0.998355471","3":"1","4":"2.02796780","5":"1"},{"1":"0.641292335","2":"-0.326052210","3":"1","4":"-0.97420522","5":"1"},{"1":"0.953052301","2":"1.042344678","3":"1","4":"0.07089695","5":"1"},{"1":"0.429122522","2":"1.755047312","3":"1","4":"2.91004448","5":"0"},{"1":"1.641115387","2":"1.644694086","3":"1","4":"0.78146551","5":"1"},{"1":"-1.428707397","2":"-1.410780698","3":"1","4":"1.09216586","5":"1"},{"1":"0.841381273","2":"2.022370422","3":"1","4":"2.33242890","5":"1"},{"1":"-0.510460678","2":"-0.423857365","3":"1","4":"0.45618928","5":"1"},{"1":"-0.597408396","2":"-1.234823253","3":"1","4":"1.53348973","5":"1"},{"1":"0.183477449","2":"-0.651080578","3":"1","4":"0.89523252","5":"1"},{"1":"0.390244824","2":"-0.651601668","3":"1","4":"-1.32140238","5":"1"},{"1":"-1.168231501","2":"-1.998342441","3":"1","4":"0.18216049","5":"0"},{"1":"-1.094704660","2":"-1.674339064","3":"1","4":"0.87284616","5":"1"},{"1":"2.246567735","2":"-0.320125185","3":"1","4":"-3.26271570","5":"1"},{"1":"0.647912847","2":"-0.445027901","3":"1","4":"-0.57902220","5":"1"},{"1":"-1.028216042","2":"-0.054044555","3":"1","4":"2.29031042","5":"0"},{"1":"-0.649081388","2":"-0.463055346","3":"1","4":"0.85096301","5":"1"},{"1":"1.351969693","2":"-0.626211274","3":"1","4":"-1.13879154","5":"1"},{"1":"-0.038730698","2":"0.539892624","3":"1","4":"0.55158864","5":"0"},{"1":"-0.194447571","2":"-1.234461403","3":"1","4":"0.60579669","5":"1"},{"1":"-0.645590703","2":"-0.074652805","3":"1","4":"1.63323782","5":"0"},{"1":"1.307256178","2":"-0.251290422","3":"1","4":"-0.74529128","5":"1"},{"1":"2.205655641","2":"0.960916414","3":"1","4":"0.03026273","5":"1"},{"1":"1.146200413","2":"-0.703350826","3":"1","4":"-1.69146481","5":"1"},{"1":"-0.658405633","2":"-1.979999402","3":"1","4":"0.06431449","5":"1"},{"1":"-0.856185673","2":"-1.266645783","3":"1","4":"2.22851626","5":"1"},{"1":"0.071450509","2":"-1.039194754","3":"1","4":"-0.04151922","5":"1"},{"1":"-1.191828479","2":"-1.135131786","3":"1","4":"1.80324674","5":"1"},{"1":"0.505516418","2":"-0.112430363","3":"1","4":"-0.63837960","5":"0"},{"1":"0.528490145","2":"1.241042135","3":"1","4":"0.92540270","5":"1"},{"1":"-2.119446817","2":"-2.925907183","3":"1","4":"1.77410375","5":"0"},{"1":"-0.635053106","2":"0.031717195","3":"1","4":"1.66896260","5":"1"},{"1":"0.503727139","2":"-0.097353354","3":"1","4":"-0.14774685","5":"0"},{"1":"0.584782019","2":"-0.418555309","3":"1","4":"-0.52083603","5":"1"},{"1":"-0.888601304","2":"-0.759829582","3":"1","4":"0.40270854","5":"0"},{"1":"0.393342569","2":"-0.240538165","3":"1","4":"0.27531604","5":"1"},{"1":"-1.385278087","2":"-1.380782552","3":"1","4":"1.18069520","5":"1"},{"1":"1.536471371","2":"1.274177772","3":"1","4":"0.61561232","5":"1"},{"1":"-0.883525241","2":"-0.599006620","3":"1","4":"1.42236556","5":"1"},{"1":"0.941569746","2":"0.600534855","3":"1","4":"0.70206889","5":"1"},{"1":"2.222187072","2":"1.343964451","3":"1","4":"-0.02786255","5":"0"},{"1":"-0.237879900","2":"-1.651396033","3":"1","4":"-0.62048361","5":"1"},{"1":"-0.291791319","2":"0.524052430","3":"1","4":"1.48220241","5":"0"},{"1":"0.808418671","2":"0.822120301","3":"1","4":"1.08334824","5":"1"},{"1":"0.433765551","2":"0.502380701","3":"1","4":"1.36815746","5":"1"},{"1":"-0.926448287","2":"-0.005916379","3":"1","4":"1.92430618","5":"1"},{"1":"0.973895447","2":"1.568951417","3":"1","4":"1.12897965","5":"1"},{"1":"-1.195236886","2":"-0.611200586","3":"1","4":"3.32980591","5":"1"},{"1":"-1.351747184","2":"-1.694205276","3":"0","4":"0.95602539","5":"0"},{"1":"0.523120605","2":"2.454835364","3":"0","4":"2.14257209","5":"0"},{"1":"-0.036236103","2":"0.704462121","3":"0","4":"1.00131898","5":"0"},{"1":"0.959006069","2":"-0.523526828","3":"0","4":"-1.13494031","5":"0"},{"1":"-0.411070444","2":"1.121047981","3":"0","4":"0.97494664","5":"0"},{"1":"-0.140446964","2":"-0.326124038","3":"0","4":"0.98437011","5":"0"},{"1":"0.925549755","2":"0.830781658","3":"0","4":"0.28171229","5":"1"},{"1":"1.070259305","2":"0.144766100","3":"0","4":"-1.80742729","5":"0"},{"1":"0.896726445","2":"1.289341603","3":"0","4":"0.78401557","5":"0"},{"1":"0.886300910","2":"1.121166901","3":"0","4":"-0.64781141","5":"0"},{"1":"-0.319932036","2":"-0.325532864","3":"0","4":"2.15217852","5":"1"},{"1":"-0.452512228","2":"-0.552543745","3":"0","4":"-0.82034502","5":"0"},{"1":"-0.817793219","2":"1.262214557","3":"0","4":"2.60337379","5":"1"},{"1":"-0.680591375","2":"0.037934222","3":"0","4":"1.52940011","5":"0"},{"1":"0.149228092","2":"1.161406457","3":"0","4":"-0.15878258","5":"0"},{"1":"0.334114636","2":"0.872360009","3":"0","4":"1.10913835","5":"1"},{"1":"-2.020393747","2":"0.635664759","3":"0","4":"3.13717662","5":"1"},{"1":"-0.823936779","2":"0.947009783","3":"0","4":"1.58378330","5":"1"},{"1":"-1.357468788","2":"-0.691049976","3":"0","4":"1.81431126","5":"1"},{"1":"0.032505244","2":"-0.211558696","3":"0","4":"1.76955575","5":"1"},{"1":"-2.261741534","2":"-0.210171918","3":"0","4":"2.37200853","5":"0"},{"1":"-0.412358223","2":"-1.299284696","3":"0","4":"-0.03240545","5":"0"},{"1":"-1.328245365","2":"-0.841813704","3":"0","4":"1.18635609","5":"0"},{"1":"-0.389149569","2":"0.955422490","3":"0","4":"0.95608570","5":"0"},{"1":"-0.663151200","2":"-0.264217290","3":"0","4":"1.48561919","5":"1"},{"1":"-0.519617893","2":"0.319564949","3":"0","4":"1.69963663","5":"1"},{"1":"0.117854370","2":"1.875070390","3":"0","4":"2.20677809","5":"1"},{"1":"-1.723942673","2":"-0.564941304","3":"0","4":"2.93194122","5":"1"},{"1":"-0.661712849","2":"-0.560407746","3":"0","4":"0.95467392","5":"1"},{"1":"0.650006837","2":"0.782189832","3":"0","4":"0.30229522","5":"1"},{"1":"-2.244814739","2":"-0.167656093","3":"0","4":"3.65721649","5":"0"},{"1":"-0.634496326","2":"-0.076702428","3":"0","4":"0.66532551","5":"1"},{"1":"0.102668149","2":"-0.495996081","3":"0","4":"-0.06910616","5":"1"},{"1":"-1.223021936","2":"0.109031613","3":"0","4":"2.55996059","5":"1"},{"1":"-0.812373501","2":"-1.025188384","3":"0","4":"0.93790552","5":"1"},{"1":"-0.207215610","2":"-0.695968845","3":"0","4":"-1.01968129","5":"0"},{"1":"-1.307645632","2":"-0.533073958","3":"0","4":"1.76221278","5":"0"},{"1":"-0.275403367","2":"0.949960030","3":"0","4":"2.43356772","5":"1"},{"1":"0.506115990","2":"-0.482544794","3":"0","4":"-0.35353599","5":"1"},{"1":"0.605783535","2":"1.011254707","3":"0","4":"0.91999334","5":"1"},{"1":"-1.318133314","2":"-1.164225263","3":"0","4":"1.27239035","5":"1"},{"1":"1.007854688","2":"1.695514642","3":"0","4":"-0.00351902","5":"1"},{"1":"-1.270554594","2":"-1.728103756","3":"0","4":"-0.06398517","5":"0"},{"1":"0.968706360","2":"1.783031436","3":"0","4":"0.43242377","5":"1"},{"1":"1.363824404","2":"2.368969855","3":"0","4":"1.75312470","5":"1"},{"1":"0.879591747","2":"1.257234905","3":"0","4":"0.56170665","5":"0"},{"1":"-0.507028751","2":"0.998056283","3":"0","4":"1.85343609","5":"1"},{"1":"-0.462919036","2":"1.728193383","3":"0","4":"3.14887994","5":"1"},{"1":"1.354462209","2":"-0.184744489","3":"0","4":"-0.68239282","5":"1"},{"1":"-0.917771692","2":"-0.830321818","3":"0","4":"1.94078008","5":"1"},{"1":"0.522389817","2":"0.921753969","3":"0","4":"0.45231376","5":"1"},{"1":"0.128419751","2":"1.166630495","3":"0","4":"0.43528418","5":"0"},{"1":"1.462743050","2":"1.725329172","3":"0","4":"0.85334467","5":"0"},{"1":"0.242603689","2":"0.257419664","3":"0","4":"0.13383564","5":"1"},{"1":"-0.597610646","2":"-1.062628018","3":"0","4":"0.13349404","5":"1"},{"1":"1.414812924","2":"2.043623843","3":"0","4":"0.30451148","5":"0"},{"1":"-0.946401436","2":"-0.517595701","3":"0","4":"0.46235455","5":"1"},{"1":"-0.082346432","2":"-0.428868593","3":"0","4":"-0.12400760","5":"1"},{"1":"-0.357709602","2":"0.062131962","3":"0","4":"2.32898429","5":"1"},{"1":"0.884163426","2":"1.512698168","3":"0","4":"0.57264656","5":"1"},{"1":"1.812520757","2":"1.973805139","3":"0","4":"-0.47355414","5":"1"},{"1":"-0.828474179","2":"-1.583808222","3":"0","4":"0.19610698","5":"0"},{"1":"-1.483872343","2":"0.305863060","3":"0","4":"3.05162233","5":"0"},{"1":"-2.137884143","2":"-1.119345546","3":"0","4":"2.76603007","5":"0"},{"1":"1.310520521","2":"1.054686933","3":"0","4":"-0.49908713","5":"0"},{"1":"-0.898225172","2":"-0.162851228","3":"0","4":"1.80331668","5":"1"},{"1":"-1.041548366","2":"-0.016720529","3":"0","4":"3.16675761","5":"1"},{"1":"-1.204749894","2":"0.178963910","3":"0","4":"2.08730392","5":"1"},{"1":"1.058326840","2":"-0.010379586","3":"0","4":"-1.09640505","5":"1"},{"1":"0.932961115","2":"1.539781235","3":"0","4":"0.45937161","5":"0"},{"1":"-1.885012585","2":"-0.473550619","3":"0","4":"2.52811792","5":"0"},{"1":"0.959851077","2":"0.034016942","3":"0","4":"-0.47518425","5":"0"},{"1":"0.190889404","2":"0.165830890","3":"0","4":"1.16599302","5":"1"},{"1":"-0.315423733","2":"0.291708673","3":"0","4":"0.87626028","5":"1"},{"1":"0.962778361","2":"0.772248945","3":"0","4":"-0.11058717","5":"0"},{"1":"0.140299980","2":"0.668820255","3":"0","4":"0.26175889","5":"1"},{"1":"-0.589177135","2":"0.173332777","3":"0","4":"1.23342165","5":"0"},{"1":"-0.117217927","2":"-0.166956345","3":"0","4":"0.19908688","5":"0"},{"1":"-0.665189082","2":"0.496617103","3":"0","4":"2.34887008","5":"0"},{"1":"-0.078438961","2":"0.153194888","3":"0","4":"0.63329899","5":"1"},{"1":"0.089554418","2":"0.245855440","3":"0","4":"0.82002859","5":"1"},{"1":"0.999103482","2":"0.444164149","3":"0","4":"-1.19589476","5":"1"},{"1":"0.362021716","2":"-1.252183233","3":"0","4":"-0.71203574","5":"1"},{"1":"-0.145978379","2":"0.096952557","3":"0","4":"1.76994087","5":"1"},{"1":"-0.324898589","2":"-0.666085862","3":"0","4":"0.91407877","5":"1"},{"1":"-1.034540394","2":"-0.100512462","3":"0","4":"1.48855110","5":"1"},{"1":"-1.243063902","2":"0.779291930","3":"0","4":"3.55807453","5":"0"},{"1":"-1.102659054","2":"-0.296500437","3":"0","4":"1.72348657","5":"1"},{"1":"-0.459267094","2":"-0.644602836","3":"0","4":"0.39184479","5":"1"},{"1":"-0.906555280","2":"-0.150892194","3":"0","4":"1.55945051","5":"1"},{"1":"-2.100966351","2":"-2.340028224","3":"0","4":"1.91606274","5":"0"},{"1":"-1.891696170","2":"-1.035998627","3":"0","4":"2.00123466","5":"1"},{"1":"1.012710071","2":"0.468321680","3":"0","4":"-0.30119102","5":"0"},{"1":"-0.799757334","2":"-0.868482647","3":"0","4":"0.52515014","5":"0"},{"1":"-1.458329964","2":"-0.009781767","3":"0","4":"2.27073383","5":"1"},{"1":"0.040870143","2":"0.421054678","3":"0","4":"0.86683760","5":"1"},{"1":"-1.110790809","2":"0.804863390","3":"0","4":"2.78830920","5":"0"},{"1":"-1.841972330","2":"-0.384146777","3":"0","4":"3.38657183","5":"1"},{"1":"0.495100378","2":"-1.184074587","3":"0","4":"-1.30643506","5":"1"},{"1":"-0.948094655","2":"-0.545844561","3":"0","4":"1.11753389","5":"1"},{"1":"0.014202761","2":"-0.763398111","3":"0","4":"-0.47056001","5":"1"},{"1":"-0.233611201","2":"1.176412877","3":"0","4":"1.12845959","5":"0"},{"1":"0.857643688","2":"0.843341819","3":"0","4":"-0.63267056","5":"1"},{"1":"0.140836145","2":"0.293513175","3":"0","4":"1.42280671","5":"1"},{"1":"0.813509998","2":"0.290694970","3":"0","4":"-0.18761162","5":"0"},{"1":"0.794953228","2":"0.770344183","3":"0","4":"-0.97352792","5":"1"},{"1":"-0.129930818","2":"0.591603606","3":"0","4":"1.89535055","5":"1"},{"1":"1.549432247","2":"1.412294574","3":"0","4":"-0.07037491","5":"1"},{"1":"-0.241051793","2":"0.917621037","3":"0","4":"1.20069139","5":"0"},{"1":"-0.006162194","2":"-0.167398626","3":"0","4":"1.58039213","5":"1"},{"1":"1.063403836","2":"-0.342104081","3":"0","4":"-0.74443616","5":"0"},{"1":"-0.036298812","2":"0.507061297","3":"0","4":"1.27253504","5":"0"},{"1":"-1.384114235","2":"-0.942779391","3":"0","4":"0.06326810","5":"0"},{"1":"-0.494350769","2":"0.922775851","3":"0","4":"2.47743220","5":"1"},{"1":"-0.921958167","2":"-0.572515302","3":"0","4":"1.82497019","5":"1"},{"1":"-0.674110311","2":"-0.364130764","3":"0","4":"2.02824475","5":"1"},{"1":"0.323056405","2":"1.790805507","3":"0","4":"1.34047583","5":"1"},{"1":"0.171908483","2":"0.385551438","3":"0","4":"1.51710022","5":"1"},{"1":"0.535701132","2":"1.900889001","3":"0","4":"2.22458277","5":"1"},{"1":"0.426940820","2":"-0.601393335","3":"0","4":"-0.92180652","5":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><br></p>
+<section id="data-exploration" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="data-exploration"><span class="header-section-number">16.1</span> Data Exploration</h2>
+<p>To begin, as always, we would plot the marginal distributions of guilt (<code>guilt</code>) and boundary-spanning work (<code>bound_span_work</code>). Since we also are interested in potential gender differences, we will also examine these distributions conditioned on the <code>female</code> predictor. Below only the syntax and plots for the conditional distributions are shown. In the syntax, the <code>factor()</code> function is used to treat <code>female</code> as a categorical variable within the <code>ggplot()</code> aesthetic mapping.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of guilt conditioned on female</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> guilt, <span class="at">color =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">""</span>, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#F5853F"</span>, <span class="st">"#424651"</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non-females"</span>, <span class="st">"Females"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Standardized guilt"</span>) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of boundary-spanning work conditioned on female</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> bound_span_work, <span class="at">color =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">""</span>, </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#F5853F"</span>, <span class="st">"#424651"</span>),</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non-females"</span>, <span class="st">"Females"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Standardized boundary-spanning work"</span>) <span class="sc">+</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute summary statistics</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>work <span class="sc">|&gt;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(female) <span class="sc">|&gt;</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">M_guilt  =</span> <span class="fu">mean</span>(guilt),</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD_guilt =</span> <span class="fu">sd</span>(guilt),</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">M_bound  =</span> <span class="fu">mean</span>(bound_span_work),</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD_bound =</span> <span class="fu">sd</span>(bound_span_work),</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>()</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-work-explore-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div data-pagedtable="false">
+
+<script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["female"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["M_guilt"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SD_guilt"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["M_bound"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["SD_bound"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["N"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"0","2":"-0.2102080","3":"0.9476541","4":"0.2062741","5":"0.947488","6":"120"},{"1":"1","2":"0.1401387","3":"1.0119255","4":"-0.1375161","5":"1.012933","6":"180"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;16.1: LEFT: Density plot of standardized amount of guilt associated with home-life/work balance conditioned on gender. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender.</figcaption>
+</figure>
+</div>
+<div class="cell-output-display">
+<div id="fig-work-explore-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-03-interaction-effects_files/figure-html/fig-work-explore-1.png" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;16.2: LEFT: Density plot of standardized amount of guilt associated with home-life/work balance conditioned on gender. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The distribution of home-life/work related guilt is unimodal and relatively symmetric for both females and non-females. The mean guilt for females is higher (by 0.35 standard deviations) than that for non-females. The female distribution also has slightly more variation than the distribution of non-females. This pattern is similar for the distributions of boundary-spanning work except that females experience less boundary-spanning work on average, but also have more variation than their non-female peers.</p>
+<p>We will also examine the correlation matrix.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>work <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fashion</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["noquote"],"align":["right"]},{"label":["guilt"],"name":[2],"type":["noquote"],"align":["right"]},{"label":["bound_span_work"],"name":[3],"type":["noquote"],"align":["right"]},{"label":["female"],"name":[4],"type":["noquote"],"align":["right"]},{"label":["authority"],"name":[5],"type":["noquote"],"align":["right"]},{"label":["married"],"name":[6],"type":["noquote"],"align":["right"]}],"data":[{"1":"guilt","2":"","3":".61","4":".17","5":"-.60","6":".11"},{"1":"bound_span_work","2":".61","3":"","4":"-.17","5":".06","6":"-.02"},{"1":"female","2":".17","3":"-.17","4":"","5":"-.11","6":".16"},{"1":"authority","2":"-.60","3":".06","4":"-.11","5":"","6":".02"},{"1":"married","2":".11","3":"-.02","4":".16","5":".02","6":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The correlations suggest that:</p>
+<ul>
+<li>Employees who experience more boundary-spanning work tend to experience more home-life/work guilt.</li>
+<li>Female employees tend to experience more home-life/work guilt than females.</li>
+<li>Employees with higher degrees of job authority tend to experience less home-life/work guilt,</li>
+<li>Married employees tend to experience more home-life/work guilt than their non-married peers.</li>
+</ul>
+<p>Furthermore,</p>
+<ul>
+<li>Female employees tend to experience less boundary-spanning work, have less job authority, and are more likely to be married than their male peers.</li>
+<li>There does not seem to be any relationship between being married and job authority.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="main-effects-models" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="main-effects-models"><span class="header-section-number">16.2</span> Main-Effects Models</h2>
+<p>We will begin the regression analysis by exploring there is an effect of boundary-spanning work on feelings of guilt about home-life/work balance. We will also control for gender in examining this effect as previous literature has suggested that culturally, men and women “continue to encounter different role meanings and obligations associated with culturally embedded ideologies about work and family life” <span class="citation" data-cites="Glavin:2011">(<a href="#ref-Glavin:2011" role="doc-biblioref">Glavin et al., 2011, p. 46</a>)</span>. Moreover, we will also fit a model controlling for differences in authority and whether or not an employee is married, as both of these covariates may explain differences in feelings of guilt about home-life/work balance.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit models</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> bound_span_work, <span class="at">data =</span> work)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>lm.b <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> bound_span_work <span class="sc">+</span> female, <span class="at">data =</span> work)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>lm.c <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> bound_span_work <span class="sc">+</span> female <span class="sc">+</span> authority <span class="sc">+</span> married, <span class="at">data =</span> work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+<table class="table" style="width:90%; margin-left: auto; margin-right: auto; text-align:center">
+<caption>
+Standardized coefficients [95% confidence intervals] for a taxonomy of OLS regression models to explain variation in home-life/work guilt for employees. All models were fitted with <em>n</em>=300 observations.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left">
+</th>
+<th>
+Model A
+</th>
+<th>
+Model B
+</th>
+<th>
+Model C
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">
+Boundary-spanning work
+</td>
+<td>
+0.61<br>[0.52, 0.70]
+</td>
+<td>
+0.66<br>[0.57, 0.74]
+</td>
+<td>
+0.68<br>[0.63, 0.73]
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Female
+</td>
+<td>
+</td>
+<td>
+0.58<br>[0.40, 0.75]
+</td>
+<td>
+0.41<br>[0.31, 0.50]
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Job authority
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-0.53<br>[-0.57, -0.49]
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Married
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.23<br>[0.12, 0.33]
+</td>
+</tr>
+<tr style="border-bottom: 1px solid black">
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.00<br>[-0.09, 0.09]
+</td>
+<td>
+-0.35<br>[-0.48, -0.21]
+</td>
+<td>
+0.04<br>[-0.07, 0.14]
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.371
+</td>
+<td>
+0.449
+</td>
+<td>
+0.836
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+RMSE
+</td>
+<td>
+0.794
+</td>
+<td>
+0.745
+</td>
+<td>
+0.408
+</td>
+</tr>
+<tr style="border-top: 1px solid black; border-bottom: 0">
+<td style="text-align:left" colspan="4">
+<em>Note: </em>Female and Married are dummy-coded indicator variables indicating gender and marital status, respectively.
+</td>
+</tr>
+</tbody>
+
+</table>
+<p>Based on Model A, there is a positive relationship between boundary-spanning work and home-life/work guilt. In Model B, we find that this relationship persists, and is of larger magnitude, after accounting for differences in gender. We also find that females have more home-life/work guilt than non-females, controlling for differences in the amount of boundary-spanning work. The results from Model C indicates that the relationship between boundary-spanning work and home-life/work guilt still persists, even after accounting for differences in gender, job authority and marital status. This model also suggests that after accounting for differences in boundary-spanning work, job authority and marital status, females continue to have more home-life/work guilt than non-females.</p>
+<p>Visually, we can display the effects of boundary-spanning work and gender (from Model C) by plotting the fitted partial regression lines. To do so, we will partial out job authority by setting it to its mean value of 0.83. We will also partial out marital status by setting its value to 0 (non-married).</p>
+<p><span class="math display">\[
+\begin{split}
+\mathbf{Females:~} \hat{\mathrm{Guilt}} &amp;= 0.04 + 0.68(\mathrm{Boundary\mbox{-}spanning~work}) + 0.41(1) - 0.53(0.83) + 0.23(0) \\[2ex]
+&amp;= 0.01 + 0.68(\mathrm{Boundary\mbox{-}spanning~work}) \\[4ex]
+\mathbf{Non\mbox{-}Females:~} \hat{\mathrm{Guilt}} &amp;= 0.04 + 0.68(\mathrm{Boundary\mbox{-}spanning~work}) + 0.41(0) - 0.53(0.83) + 0.23(0) \\[2ex]
+&amp;= -0.40 + 0.68(\mathrm{Boundary\mbox{-}spanning~work})
+\end{split}
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> bound_span_work, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of boundary-spanning work"</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted home-life/work guilt"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">0.01</span>, <span class="at">slope =</span> <span class="fl">0.68</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.40</span>, <span class="at">slope =</span> <span class="fl">0.68</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-model-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-03-interaction-effects_files/figure-html/fig-model-1-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;16.3: Partial fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line). The effects of job authority (mean value) and marital status (non-married) have been partialed out.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This display helps us see that the effect of boundary-spanning work (slopes of the lines) is THE SAME for both females and non-females, and is 0.68. We also see that females report more guilt than males, and that this difference in guilt is THE SAME regardless of how much boundary-spanning work is experienced.</p>
+<p>Remember, this type of model where the <strong>effect of a predictor is THE SAME</strong> for each level of another predictor is referred to as a <em>main-effects model</em>. All the models we have fitted in the course thus far have been main-effects models.</p>
+<p><br></p>
+</section>
+<section id="statistical-interactions-differential-effects-for-females-and-non-females" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="statistical-interactions-differential-effects-for-females-and-non-females"><span class="header-section-number">16.3</span> Statistical Interactions: Differential Effects for Females and Non-Females</h2>
+<p>One important question for researchers studying the effect of boundary-spanning work on home-life/work guilt is whether the effect of boundary-spanning work on guilt is actually the same for females and non-females. Examining the empirical data suggests that there might be a difference in this effect by gender. The scatterplots suggests that the effect of boundary-spanning work on home-life/work guilt is positive for females and non-females, but that the magnitude (slope) of this relationship may be higher for females. In other words, increased amounts of boundary-spanning work is associated with more guilt for females than for non-females.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> bound_span_work, <span class="at">y =</span> guilt, <span class="at">color =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">""</span>, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#F5853F"</span>, <span class="st">"#424651"</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non-females"</span>, <span class="st">"Females"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Standardized boundary-spanning work"</span>) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized home-life/work guilt"</span>) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>female)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-explore-cond-gender" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-03-interaction-effects_files/figure-html/fig-explore-cond-gender-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;16.4: Scatterplot of home-life/work guilt versus boundary-spanning work conditioned on gender. The fitted simple regression lines have also been included.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Differential effects of boundary-spanning work for females and non-females on home-life/work guilt imply that the slopes of the regression lines for females and non-females are not equal (i.e., the fitted regression lines are not parallel). This is in stark contrast to the main-effects model which implies parallel regression lines, or equal effects of boundary-spanning work for females and non-females. In statistical terms we describe differential effects as <strong>interaction effects</strong>. We would say there is an interaction effect between boundary-spanning work and gender on home-life/work guilt.</p>
+<p><br></p>
+<section id="testing-for-an-interaction-effect" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="testing-for-an-interaction-effect"><span class="header-section-number">16.3.1</span> Testing for an Interaction Effect</h3>
+<p>The inferential question is whether the interaction effect that we are seeing in the empirical data is “real”, or whether it is an artifact of sampling error. To examine this we need a way to test whether the slopes of the two regression lines are equal. To do this, we create another predictor that is the product of the two predictors we believe interact and include that product term in the regression model along with the original predictors we used to create it (i.e., also include the constituent main-effects). In our example, we multiply the dummy-coded female predictor by the boundary-spanning work predictor to create the interaction term. Then we fit a model that includes the dummy-coded female predictor, the boundary-spanning work predictor, and the newly created interaction term.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create interaction term</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>work <span class="ot">=</span> work <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">bound_work_female =</span> bound_span_work <span class="sc">*</span> female</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>work</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["guilt"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["bound_span_work"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["female"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["authority"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["married"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["bound_work_female"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"-1.639408491","2":"-1.126790705","3":"1","4":"2.64871229","5":"1","6":"-1.126790705"},{"1":"-0.027223991","2":"0.717543190","3":"1","4":"1.37652107","5":"1","6":"0.717543190"},{"1":"0.276092637","2":"-0.016359196","3":"1","4":"1.13813811","5":"1","6":"-0.016359196"},{"1":"1.651413774","2":"1.285668728","3":"1","4":"1.12861364","5":"1","6":"1.285668728"},{"1":"-0.148865532","2":"-0.153266798","3":"1","4":"0.64598698","5":"1","6":"-0.153266798"},{"1":"-1.469526540","2":"-2.042237595","3":"1","4":"1.22719462","5":"1","6":"-2.042237595"},{"1":"-2.093318945","2":"-1.175359334","3":"1","4":"3.03056022","5":"1","6":"-1.175359334"},{"1":"1.268916274","2":"0.204011628","3":"1","4":"0.17066560","5":"1","6":"0.204011628"},{"1":"0.139777019","2":"0.015249170","3":"1","4":"1.23293529","5":"1","6":"0.015249170"},{"1":"0.423261725","2":"-1.260063165","3":"1","4":"-0.90781124","5":"1","6":"-1.260063165"},{"1":"0.539648293","2":"0.073050441","3":"1","4":"0.83703813","5":"1","6":"0.073050441"},{"1":"-0.246327113","2":"0.851194136","3":"1","4":"2.17972693","5":"1","6":"0.851194136"},{"1":"0.894037780","2":"1.981437969","3":"1","4":"1.50519552","5":"1","6":"1.981437969"},{"1":"-0.025799794","2":"-0.436906609","3":"1","4":"0.17013120","5":"1","6":"-0.436906609"},{"1":"0.043665398","2":"-0.577125761","3":"1","4":"0.20659066","5":"1","6":"-0.577125761"},{"1":"-0.282562658","2":"-0.445334865","3":"1","4":"1.31789608","5":"1","6":"-0.445334865"},{"1":"1.591640429","2":"0.307600308","3":"1","4":"-1.32371883","5":"1","6":"0.307600308"},{"1":"-0.411399414","2":"0.366192494","3":"1","4":"2.40496966","5":"1","6":"0.366192494"},{"1":"-0.024600580","2":"-0.782082818","3":"1","4":"-0.99868611","5":"0","6":"-0.782082818"},{"1":"0.371292724","2":"-0.119627842","3":"1","4":"0.73012751","5":"1","6":"-0.119627842"},{"1":"0.449855166","2":"0.258382284","3":"1","4":"0.56944680","5":"0","6":"0.258382284"},{"1":"-0.857439931","2":"-0.930942937","3":"1","4":"1.08360216","5":"0","6":"-0.930942937"},{"1":"-0.247241386","2":"-0.309893147","3":"1","4":"0.68994258","5":"0","6":"-0.309893147"},{"1":"-0.268106401","2":"-0.983867626","3":"1","4":"0.78044514","5":"1","6":"-0.983867626"},{"1":"-1.341546765","2":"-1.493612573","3":"1","4":"1.05610062","5":"0","6":"-1.493612573"},{"1":"-0.971830125","2":"-1.386427584","3":"1","4":"0.61708960","5":"1","6":"-1.386427584"},{"1":"1.184131183","2":"1.884759366","3":"1","4":"-0.86991302","5":"0","6":"1.884759366"},{"1":"0.746500764","2":"1.166318941","3":"1","4":"0.55691775","5":"0","6":"1.166318941"},{"1":"0.289969181","2":"0.121404680","3":"1","4":"1.05454582","5":"1","6":"0.121404680"},{"1":"-0.016771203","2":"-0.319619234","3":"1","4":"0.25351979","5":"0","6":"-0.319619234"},{"1":"1.761069798","2":"1.652034771","3":"1","4":"1.15311543","5":"1","6":"1.652034771"},{"1":"2.320628401","2":"0.959564482","3":"1","4":"-0.30990139","5":"1","6":"0.959564482"},{"1":"2.115440856","2":"1.454146434","3":"1","4":"-0.97958341","5":"1","6":"1.454146434"},{"1":"0.793840024","2":"1.049497283","3":"1","4":"2.05522360","5":"1","6":"1.049497283"},{"1":"0.289938002","2":"0.405988182","3":"1","4":"1.12598396","5":"0","6":"0.405988182"},{"1":"0.117938193","2":"-0.071810808","3":"1","4":"1.33280519","5":"1","6":"-0.071810808"},{"1":"-0.567518709","2":"-0.670840413","3":"1","4":"0.96430160","5":"0","6":"-0.670840413"},{"1":"-0.383898291","2":"0.744095301","3":"1","4":"2.76348142","5":"1","6":"0.744095301"},{"1":"0.443001111","2":"1.038897219","3":"1","4":"2.76659013","5":"1","6":"1.038897219"},{"1":"-0.992368318","2":"-0.535193993","3":"1","4":"1.30008141","5":"1","6":"-0.535193993"},{"1":"0.068677282","2":"-0.504015876","3":"1","4":"0.61057338","5":"0","6":"-0.504015876"},{"1":"-0.253132471","2":"-1.347601031","3":"1","4":"0.08808166","5":"1","6":"-1.347601031"},{"1":"-0.226146024","2":"-0.872724148","3":"1","4":"0.35792662","5":"1","6":"-0.872724148"},{"1":"0.485122040","2":"0.244913457","3":"1","4":"0.99879587","5":"1","6":"0.244913457"},{"1":"1.035892353","2":"0.327541564","3":"1","4":"0.59618845","5":"1","6":"0.327541564"},{"1":"2.806080239","2":"1.627617804","3":"1","4":"-1.57000850","5":"1","6":"1.627617804"},{"1":"0.791985976","2":"0.490116367","3":"1","4":"0.86348856","5":"1","6":"0.490116367"},{"1":"-0.265605017","2":"0.028312806","3":"1","4":"1.54051884","5":"1","6":"0.028312806"},{"1":"1.075529330","2":"0.238939612","3":"1","4":"0.26702066","5":"1","6":"0.238939612"},{"1":"0.056891911","2":"-1.104680835","3":"1","4":"-0.16535113","5":"0","6":"-1.104680835"},{"1":"0.552661002","2":"0.844975914","3":"1","4":"1.55275282","5":"0","6":"0.844975914"},{"1":"-0.739801057","2":"0.646951484","3":"1","4":"1.19319078","5":"1","6":"0.646951484"},{"1":"-2.374918950","2":"-1.895986476","3":"1","4":"0.61858482","5":"0","6":"-1.895986476"},{"1":"2.034674508","2":"-0.368742467","3":"1","4":"-1.58439993","5":"0","6":"-0.368742467"},{"1":"-0.344010209","2":"-0.818022689","3":"1","4":"-0.05972166","5":"1","6":"-0.818022689"},{"1":"0.295822717","2":"-0.203263990","3":"1","4":"0.74534739","5":"1","6":"-0.203263990"},{"1":"0.254038440","2":"0.041466279","3":"1","4":"1.23107553","5":"1","6":"0.041466279"},{"1":"0.280360303","2":"-0.222531357","3":"1","4":"-0.12243660","5":"1","6":"-0.222531357"},{"1":"-0.363870252","2":"0.888736464","3":"1","4":"1.23949633","5":"1","6":"0.888736464"},{"1":"-0.873851105","2":"-0.791665466","3":"1","4":"0.71196957","5":"0","6":"-0.791665466"},{"1":"0.217347860","2":"-0.310125375","3":"1","4":"0.13792868","5":"1","6":"-0.310125375"},{"1":"1.777597154","2":"0.722685233","3":"1","4":"-1.16330547","5":"0","6":"0.722685233"},{"1":"-0.566778702","2":"-0.269299959","3":"1","4":"2.63179141","5":"1","6":"-0.269299959"},{"1":"-1.431498008","2":"-2.296907198","3":"1","4":"1.35377173","5":"1","6":"-2.296907198"},{"1":"-0.372791755","2":"-0.879146911","3":"1","4":"0.51932809","5":"0","6":"-0.879146911"},{"1":"-0.583406706","2":"-1.841034022","3":"1","4":"0.24628118","5":"1","6":"-1.841034022"},{"1":"-0.760306294","2":"-0.170158745","3":"1","4":"1.91675501","5":"1","6":"-0.170158745"},{"1":"-1.593240044","2":"-0.654969754","3":"1","4":"2.20619944","5":"1","6":"-0.654969754"},{"1":"-0.065286192","2":"-0.550853013","3":"1","4":"-1.09577725","5":"1","6":"-0.550853013"},{"1":"-0.130636018","2":"-0.613665450","3":"1","4":"0.20865384","5":"1","6":"-0.613665450"},{"1":"-0.898828847","2":"-1.725591555","3":"1","4":"0.22719719","5":"1","6":"-1.725591555"},{"1":"-0.302551245","2":"-0.962897024","3":"1","4":"0.94004664","5":"1","6":"-0.962897024"},{"1":"-0.716191936","2":"-1.866888037","3":"1","4":"1.22454193","5":"1","6":"-1.866888037"},{"1":"0.534470001","2":"0.596893089","3":"1","4":"1.49881926","5":"0","6":"0.596893089"},{"1":"2.286820065","2":"1.315372588","3":"1","4":"-1.65030146","5":"1","6":"1.315372588"},{"1":"0.549407058","2":"-0.109784029","3":"1","4":"-0.37183392","5":"1","6":"-0.109784029"},{"1":"-0.998957462","2":"-1.713873007","3":"1","4":"1.14483057","5":"1","6":"-1.713873007"},{"1":"-0.025577150","2":"0.415867786","3":"1","4":"1.55542233","5":"0","6":"0.415867786"},{"1":"2.289623866","2":"0.766623197","3":"1","4":"-0.39485575","5":"1","6":"0.766623197"},{"1":"-0.644774266","2":"-0.676457200","3":"1","4":"2.54563619","5":"1","6":"-0.676457200"},{"1":"-0.288446485","2":"-1.027808950","3":"1","4":"1.19396632","5":"1","6":"-1.027808950"},{"1":"-1.334145970","2":"-0.996438915","3":"1","4":"1.16606536","5":"0","6":"-0.996438915"},{"1":"0.956742988","2":"1.987363778","3":"1","4":"1.23093131","5":"0","6":"1.987363778"},{"1":"-1.610553353","2":"-2.165531162","3":"1","4":"1.64733772","5":"1","6":"-2.165531162"},{"1":"1.023993416","2":"-0.768917200","3":"1","4":"-0.68576184","5":"1","6":"-0.768917200"},{"1":"-0.304791899","2":"0.232509118","3":"1","4":"2.97190649","5":"1","6":"0.232509118"},{"1":"0.676483260","2":"0.291481200","3":"1","4":"0.30341586","5":"1","6":"0.291481200"},{"1":"-0.930511811","2":"-1.088615418","3":"1","4":"0.86009242","5":"0","6":"-1.088615418"},{"1":"2.588769876","2":"2.093657326","3":"1","4":"0.28805096","5":"1","6":"2.093657326"},{"1":"-0.605413460","2":"-1.104353119","3":"1","4":"-0.15084658","5":"1","6":"-1.104353119"},{"1":"0.016248086","2":"-0.967389907","3":"1","4":"0.71953758","5":"1","6":"-0.967389907"},{"1":"0.203095558","2":"0.640772742","3":"1","4":"2.44257458","5":"0","6":"0.640772742"},{"1":"-0.821897033","2":"-0.161150903","3":"1","4":"2.26109080","5":"0","6":"-0.161150903"},{"1":"-0.445975560","2":"0.624634868","3":"1","4":"1.32618907","5":"0","6":"0.624634868"},{"1":"0.830881989","2":"-0.174941425","3":"1","4":"-1.11156265","5":"0","6":"-0.174941425"},{"1":"1.205107979","2":"-0.006323424","3":"1","4":"-1.80588728","5":"1","6":"-0.006323424"},{"1":"0.689753295","2":"0.388728190","3":"1","4":"0.75867003","5":"1","6":"0.388728190"},{"1":"1.211867323","2":"0.371046954","3":"1","4":"-0.91591380","5":"1","6":"0.371046954"},{"1":"0.405116750","2":"-0.005874702","3":"1","4":"1.40031563","5":"1","6":"-0.005874702"},{"1":"-0.395004835","2":"-1.252369303","3":"1","4":"0.42564543","5":"1","6":"-1.252369303"},{"1":"1.233936338","2":"0.503428201","3":"1","4":"0.76576597","5":"0","6":"0.503428201"},{"1":"-0.102631956","2":"-0.243763559","3":"1","4":"0.20256869","5":"1","6":"-0.243763559"},{"1":"0.817666279","2":"0.488720340","3":"1","4":"1.09548441","5":"1","6":"0.488720340"},{"1":"2.161417937","2":"0.841166629","3":"1","4":"-1.14633886","5":"1","6":"0.841166629"},{"1":"-0.272389878","2":"-0.502415338","3":"1","4":"0.10272480","5":"1","6":"-0.502415338"},{"1":"1.394246326","2":"0.513098947","3":"1","4":"-0.67712465","5":"1","6":"0.513098947"},{"1":"0.763330469","2":"-0.778195306","3":"1","4":"-0.96335575","5":"1","6":"-0.778195306"},{"1":"0.724994875","2":"0.122456470","3":"1","4":"0.63391245","5":"1","6":"0.122456470"},{"1":"-1.702627226","2":"-2.026599883","3":"1","4":"1.55336251","5":"1","6":"-2.026599883"},{"1":"1.546894962","2":"0.990050545","3":"1","4":"-0.24305978","5":"1","6":"0.990050545"},{"1":"0.505729631","2":"-0.805604638","3":"1","4":"1.04137574","5":"1","6":"-0.805604638"},{"1":"-0.712887039","2":"-1.532388957","3":"1","4":"0.35307281","5":"1","6":"-1.532388957"},{"1":"-0.577094024","2":"-0.499411927","3":"1","4":"1.17092932","5":"1","6":"-0.499411927"},{"1":"1.813682543","2":"2.066340220","3":"1","4":"-0.61064205","5":"1","6":"2.066340220"},{"1":"1.630546501","2":"1.861581277","3":"1","4":"0.47374542","5":"1","6":"1.861581277"},{"1":"0.392408369","2":"0.014670993","3":"1","4":"0.31872223","5":"0","6":"0.014670993"},{"1":"-0.464822020","2":"0.046613550","3":"1","4":"3.00657503","5":"0","6":"0.046613550"},{"1":"0.189659651","2":"0.657124855","3":"1","4":"1.26730493","5":"1","6":"0.657124855"},{"1":"1.103525245","2":"1.652780087","3":"1","4":"1.56393150","5":"1","6":"1.652780087"},{"1":"0.400538582","2":"0.183899970","3":"1","4":"1.24547209","5":"1","6":"0.183899970"},{"1":"-1.153908266","2":"-1.590107147","3":"1","4":"1.73516651","5":"1","6":"-1.590107147"},{"1":"0.529530135","2":"0.638017238","3":"1","4":"1.23627391","5":"1","6":"0.638017238"},{"1":"0.887441871","2":"0.784660107","3":"1","4":"1.65521265","5":"1","6":"0.784660107"},{"1":"-0.626896918","2":"-0.609475396","3":"1","4":"1.58674106","5":"1","6":"-0.609475396"},{"1":"-0.310062486","2":"-0.351898977","3":"1","4":"1.46036365","5":"1","6":"-0.351898977"},{"1":"0.077840570","2":"-0.864737400","3":"1","4":"-0.63552113","5":"1","6":"-0.864737400"},{"1":"0.906500745","2":"-0.369528053","3":"1","4":"-1.13096730","5":"1","6":"-0.369528053"},{"1":"-0.770872239","2":"-0.577682768","3":"1","4":"0.98363492","5":"0","6":"-0.577682768"},{"1":"-0.585500145","2":"-0.738372340","3":"1","4":"0.45783102","5":"1","6":"-0.738372340"},{"1":"0.107262652","2":"0.878528774","3":"1","4":"1.69755273","5":"1","6":"0.878528774"},{"1":"-0.362111525","2":"0.354973206","3":"1","4":"1.93613097","5":"1","6":"0.354973206"},{"1":"-0.380024044","2":"0.994027015","3":"1","4":"3.08423085","5":"1","6":"0.994027015"},{"1":"-0.432440553","2":"-0.998355471","3":"1","4":"2.02796780","5":"1","6":"-0.998355471"},{"1":"0.641292335","2":"-0.326052210","3":"1","4":"-0.97420522","5":"1","6":"-0.326052210"},{"1":"0.953052301","2":"1.042344678","3":"1","4":"0.07089695","5":"1","6":"1.042344678"},{"1":"0.429122522","2":"1.755047312","3":"1","4":"2.91004448","5":"0","6":"1.755047312"},{"1":"1.641115387","2":"1.644694086","3":"1","4":"0.78146551","5":"1","6":"1.644694086"},{"1":"-1.428707397","2":"-1.410780698","3":"1","4":"1.09216586","5":"1","6":"-1.410780698"},{"1":"0.841381273","2":"2.022370422","3":"1","4":"2.33242890","5":"1","6":"2.022370422"},{"1":"-0.510460678","2":"-0.423857365","3":"1","4":"0.45618928","5":"1","6":"-0.423857365"},{"1":"-0.597408396","2":"-1.234823253","3":"1","4":"1.53348973","5":"1","6":"-1.234823253"},{"1":"0.183477449","2":"-0.651080578","3":"1","4":"0.89523252","5":"1","6":"-0.651080578"},{"1":"0.390244824","2":"-0.651601668","3":"1","4":"-1.32140238","5":"1","6":"-0.651601668"},{"1":"-1.168231501","2":"-1.998342441","3":"1","4":"0.18216049","5":"0","6":"-1.998342441"},{"1":"-1.094704660","2":"-1.674339064","3":"1","4":"0.87284616","5":"1","6":"-1.674339064"},{"1":"2.246567735","2":"-0.320125185","3":"1","4":"-3.26271570","5":"1","6":"-0.320125185"},{"1":"0.647912847","2":"-0.445027901","3":"1","4":"-0.57902220","5":"1","6":"-0.445027901"},{"1":"-1.028216042","2":"-0.054044555","3":"1","4":"2.29031042","5":"0","6":"-0.054044555"},{"1":"-0.649081388","2":"-0.463055346","3":"1","4":"0.85096301","5":"1","6":"-0.463055346"},{"1":"1.351969693","2":"-0.626211274","3":"1","4":"-1.13879154","5":"1","6":"-0.626211274"},{"1":"-0.038730698","2":"0.539892624","3":"1","4":"0.55158864","5":"0","6":"0.539892624"},{"1":"-0.194447571","2":"-1.234461403","3":"1","4":"0.60579669","5":"1","6":"-1.234461403"},{"1":"-0.645590703","2":"-0.074652805","3":"1","4":"1.63323782","5":"0","6":"-0.074652805"},{"1":"1.307256178","2":"-0.251290422","3":"1","4":"-0.74529128","5":"1","6":"-0.251290422"},{"1":"2.205655641","2":"0.960916414","3":"1","4":"0.03026273","5":"1","6":"0.960916414"},{"1":"1.146200413","2":"-0.703350826","3":"1","4":"-1.69146481","5":"1","6":"-0.703350826"},{"1":"-0.658405633","2":"-1.979999402","3":"1","4":"0.06431449","5":"1","6":"-1.979999402"},{"1":"-0.856185673","2":"-1.266645783","3":"1","4":"2.22851626","5":"1","6":"-1.266645783"},{"1":"0.071450509","2":"-1.039194754","3":"1","4":"-0.04151922","5":"1","6":"-1.039194754"},{"1":"-1.191828479","2":"-1.135131786","3":"1","4":"1.80324674","5":"1","6":"-1.135131786"},{"1":"0.505516418","2":"-0.112430363","3":"1","4":"-0.63837960","5":"0","6":"-0.112430363"},{"1":"0.528490145","2":"1.241042135","3":"1","4":"0.92540270","5":"1","6":"1.241042135"},{"1":"-2.119446817","2":"-2.925907183","3":"1","4":"1.77410375","5":"0","6":"-2.925907183"},{"1":"-0.635053106","2":"0.031717195","3":"1","4":"1.66896260","5":"1","6":"0.031717195"},{"1":"0.503727139","2":"-0.097353354","3":"1","4":"-0.14774685","5":"0","6":"-0.097353354"},{"1":"0.584782019","2":"-0.418555309","3":"1","4":"-0.52083603","5":"1","6":"-0.418555309"},{"1":"-0.888601304","2":"-0.759829582","3":"1","4":"0.40270854","5":"0","6":"-0.759829582"},{"1":"0.393342569","2":"-0.240538165","3":"1","4":"0.27531604","5":"1","6":"-0.240538165"},{"1":"-1.385278087","2":"-1.380782552","3":"1","4":"1.18069520","5":"1","6":"-1.380782552"},{"1":"1.536471371","2":"1.274177772","3":"1","4":"0.61561232","5":"1","6":"1.274177772"},{"1":"-0.883525241","2":"-0.599006620","3":"1","4":"1.42236556","5":"1","6":"-0.599006620"},{"1":"0.941569746","2":"0.600534855","3":"1","4":"0.70206889","5":"1","6":"0.600534855"},{"1":"2.222187072","2":"1.343964451","3":"1","4":"-0.02786255","5":"0","6":"1.343964451"},{"1":"-0.237879900","2":"-1.651396033","3":"1","4":"-0.62048361","5":"1","6":"-1.651396033"},{"1":"-0.291791319","2":"0.524052430","3":"1","4":"1.48220241","5":"0","6":"0.524052430"},{"1":"0.808418671","2":"0.822120301","3":"1","4":"1.08334824","5":"1","6":"0.822120301"},{"1":"0.433765551","2":"0.502380701","3":"1","4":"1.36815746","5":"1","6":"0.502380701"},{"1":"-0.926448287","2":"-0.005916379","3":"1","4":"1.92430618","5":"1","6":"-0.005916379"},{"1":"0.973895447","2":"1.568951417","3":"1","4":"1.12897965","5":"1","6":"1.568951417"},{"1":"-1.195236886","2":"-0.611200586","3":"1","4":"3.32980591","5":"1","6":"-0.611200586"},{"1":"-1.351747184","2":"-1.694205276","3":"0","4":"0.95602539","5":"0","6":"0.000000000"},{"1":"0.523120605","2":"2.454835364","3":"0","4":"2.14257209","5":"0","6":"0.000000000"},{"1":"-0.036236103","2":"0.704462121","3":"0","4":"1.00131898","5":"0","6":"0.000000000"},{"1":"0.959006069","2":"-0.523526828","3":"0","4":"-1.13494031","5":"0","6":"0.000000000"},{"1":"-0.411070444","2":"1.121047981","3":"0","4":"0.97494664","5":"0","6":"0.000000000"},{"1":"-0.140446964","2":"-0.326124038","3":"0","4":"0.98437011","5":"0","6":"0.000000000"},{"1":"0.925549755","2":"0.830781658","3":"0","4":"0.28171229","5":"1","6":"0.000000000"},{"1":"1.070259305","2":"0.144766100","3":"0","4":"-1.80742729","5":"0","6":"0.000000000"},{"1":"0.896726445","2":"1.289341603","3":"0","4":"0.78401557","5":"0","6":"0.000000000"},{"1":"0.886300910","2":"1.121166901","3":"0","4":"-0.64781141","5":"0","6":"0.000000000"},{"1":"-0.319932036","2":"-0.325532864","3":"0","4":"2.15217852","5":"1","6":"0.000000000"},{"1":"-0.452512228","2":"-0.552543745","3":"0","4":"-0.82034502","5":"0","6":"0.000000000"},{"1":"-0.817793219","2":"1.262214557","3":"0","4":"2.60337379","5":"1","6":"0.000000000"},{"1":"-0.680591375","2":"0.037934222","3":"0","4":"1.52940011","5":"0","6":"0.000000000"},{"1":"0.149228092","2":"1.161406457","3":"0","4":"-0.15878258","5":"0","6":"0.000000000"},{"1":"0.334114636","2":"0.872360009","3":"0","4":"1.10913835","5":"1","6":"0.000000000"},{"1":"-2.020393747","2":"0.635664759","3":"0","4":"3.13717662","5":"1","6":"0.000000000"},{"1":"-0.823936779","2":"0.947009783","3":"0","4":"1.58378330","5":"1","6":"0.000000000"},{"1":"-1.357468788","2":"-0.691049976","3":"0","4":"1.81431126","5":"1","6":"0.000000000"},{"1":"0.032505244","2":"-0.211558696","3":"0","4":"1.76955575","5":"1","6":"0.000000000"},{"1":"-2.261741534","2":"-0.210171918","3":"0","4":"2.37200853","5":"0","6":"0.000000000"},{"1":"-0.412358223","2":"-1.299284696","3":"0","4":"-0.03240545","5":"0","6":"0.000000000"},{"1":"-1.328245365","2":"-0.841813704","3":"0","4":"1.18635609","5":"0","6":"0.000000000"},{"1":"-0.389149569","2":"0.955422490","3":"0","4":"0.95608570","5":"0","6":"0.000000000"},{"1":"-0.663151200","2":"-0.264217290","3":"0","4":"1.48561919","5":"1","6":"0.000000000"},{"1":"-0.519617893","2":"0.319564949","3":"0","4":"1.69963663","5":"1","6":"0.000000000"},{"1":"0.117854370","2":"1.875070390","3":"0","4":"2.20677809","5":"1","6":"0.000000000"},{"1":"-1.723942673","2":"-0.564941304","3":"0","4":"2.93194122","5":"1","6":"0.000000000"},{"1":"-0.661712849","2":"-0.560407746","3":"0","4":"0.95467392","5":"1","6":"0.000000000"},{"1":"0.650006837","2":"0.782189832","3":"0","4":"0.30229522","5":"1","6":"0.000000000"},{"1":"-2.244814739","2":"-0.167656093","3":"0","4":"3.65721649","5":"0","6":"0.000000000"},{"1":"-0.634496326","2":"-0.076702428","3":"0","4":"0.66532551","5":"1","6":"0.000000000"},{"1":"0.102668149","2":"-0.495996081","3":"0","4":"-0.06910616","5":"1","6":"0.000000000"},{"1":"-1.223021936","2":"0.109031613","3":"0","4":"2.55996059","5":"1","6":"0.000000000"},{"1":"-0.812373501","2":"-1.025188384","3":"0","4":"0.93790552","5":"1","6":"0.000000000"},{"1":"-0.207215610","2":"-0.695968845","3":"0","4":"-1.01968129","5":"0","6":"0.000000000"},{"1":"-1.307645632","2":"-0.533073958","3":"0","4":"1.76221278","5":"0","6":"0.000000000"},{"1":"-0.275403367","2":"0.949960030","3":"0","4":"2.43356772","5":"1","6":"0.000000000"},{"1":"0.506115990","2":"-0.482544794","3":"0","4":"-0.35353599","5":"1","6":"0.000000000"},{"1":"0.605783535","2":"1.011254707","3":"0","4":"0.91999334","5":"1","6":"0.000000000"},{"1":"-1.318133314","2":"-1.164225263","3":"0","4":"1.27239035","5":"1","6":"0.000000000"},{"1":"1.007854688","2":"1.695514642","3":"0","4":"-0.00351902","5":"1","6":"0.000000000"},{"1":"-1.270554594","2":"-1.728103756","3":"0","4":"-0.06398517","5":"0","6":"0.000000000"},{"1":"0.968706360","2":"1.783031436","3":"0","4":"0.43242377","5":"1","6":"0.000000000"},{"1":"1.363824404","2":"2.368969855","3":"0","4":"1.75312470","5":"1","6":"0.000000000"},{"1":"0.879591747","2":"1.257234905","3":"0","4":"0.56170665","5":"0","6":"0.000000000"},{"1":"-0.507028751","2":"0.998056283","3":"0","4":"1.85343609","5":"1","6":"0.000000000"},{"1":"-0.462919036","2":"1.728193383","3":"0","4":"3.14887994","5":"1","6":"0.000000000"},{"1":"1.354462209","2":"-0.184744489","3":"0","4":"-0.68239282","5":"1","6":"0.000000000"},{"1":"-0.917771692","2":"-0.830321818","3":"0","4":"1.94078008","5":"1","6":"0.000000000"},{"1":"0.522389817","2":"0.921753969","3":"0","4":"0.45231376","5":"1","6":"0.000000000"},{"1":"0.128419751","2":"1.166630495","3":"0","4":"0.43528418","5":"0","6":"0.000000000"},{"1":"1.462743050","2":"1.725329172","3":"0","4":"0.85334467","5":"0","6":"0.000000000"},{"1":"0.242603689","2":"0.257419664","3":"0","4":"0.13383564","5":"1","6":"0.000000000"},{"1":"-0.597610646","2":"-1.062628018","3":"0","4":"0.13349404","5":"1","6":"0.000000000"},{"1":"1.414812924","2":"2.043623843","3":"0","4":"0.30451148","5":"0","6":"0.000000000"},{"1":"-0.946401436","2":"-0.517595701","3":"0","4":"0.46235455","5":"1","6":"0.000000000"},{"1":"-0.082346432","2":"-0.428868593","3":"0","4":"-0.12400760","5":"1","6":"0.000000000"},{"1":"-0.357709602","2":"0.062131962","3":"0","4":"2.32898429","5":"1","6":"0.000000000"},{"1":"0.884163426","2":"1.512698168","3":"0","4":"0.57264656","5":"1","6":"0.000000000"},{"1":"1.812520757","2":"1.973805139","3":"0","4":"-0.47355414","5":"1","6":"0.000000000"},{"1":"-0.828474179","2":"-1.583808222","3":"0","4":"0.19610698","5":"0","6":"0.000000000"},{"1":"-1.483872343","2":"0.305863060","3":"0","4":"3.05162233","5":"0","6":"0.000000000"},{"1":"-2.137884143","2":"-1.119345546","3":"0","4":"2.76603007","5":"0","6":"0.000000000"},{"1":"1.310520521","2":"1.054686933","3":"0","4":"-0.49908713","5":"0","6":"0.000000000"},{"1":"-0.898225172","2":"-0.162851228","3":"0","4":"1.80331668","5":"1","6":"0.000000000"},{"1":"-1.041548366","2":"-0.016720529","3":"0","4":"3.16675761","5":"1","6":"0.000000000"},{"1":"-1.204749894","2":"0.178963910","3":"0","4":"2.08730392","5":"1","6":"0.000000000"},{"1":"1.058326840","2":"-0.010379586","3":"0","4":"-1.09640505","5":"1","6":"0.000000000"},{"1":"0.932961115","2":"1.539781235","3":"0","4":"0.45937161","5":"0","6":"0.000000000"},{"1":"-1.885012585","2":"-0.473550619","3":"0","4":"2.52811792","5":"0","6":"0.000000000"},{"1":"0.959851077","2":"0.034016942","3":"0","4":"-0.47518425","5":"0","6":"0.000000000"},{"1":"0.190889404","2":"0.165830890","3":"0","4":"1.16599302","5":"1","6":"0.000000000"},{"1":"-0.315423733","2":"0.291708673","3":"0","4":"0.87626028","5":"1","6":"0.000000000"},{"1":"0.962778361","2":"0.772248945","3":"0","4":"-0.11058717","5":"0","6":"0.000000000"},{"1":"0.140299980","2":"0.668820255","3":"0","4":"0.26175889","5":"1","6":"0.000000000"},{"1":"-0.589177135","2":"0.173332777","3":"0","4":"1.23342165","5":"0","6":"0.000000000"},{"1":"-0.117217927","2":"-0.166956345","3":"0","4":"0.19908688","5":"0","6":"0.000000000"},{"1":"-0.665189082","2":"0.496617103","3":"0","4":"2.34887008","5":"0","6":"0.000000000"},{"1":"-0.078438961","2":"0.153194888","3":"0","4":"0.63329899","5":"1","6":"0.000000000"},{"1":"0.089554418","2":"0.245855440","3":"0","4":"0.82002859","5":"1","6":"0.000000000"},{"1":"0.999103482","2":"0.444164149","3":"0","4":"-1.19589476","5":"1","6":"0.000000000"},{"1":"0.362021716","2":"-1.252183233","3":"0","4":"-0.71203574","5":"1","6":"0.000000000"},{"1":"-0.145978379","2":"0.096952557","3":"0","4":"1.76994087","5":"1","6":"0.000000000"},{"1":"-0.324898589","2":"-0.666085862","3":"0","4":"0.91407877","5":"1","6":"0.000000000"},{"1":"-1.034540394","2":"-0.100512462","3":"0","4":"1.48855110","5":"1","6":"0.000000000"},{"1":"-1.243063902","2":"0.779291930","3":"0","4":"3.55807453","5":"0","6":"0.000000000"},{"1":"-1.102659054","2":"-0.296500437","3":"0","4":"1.72348657","5":"1","6":"0.000000000"},{"1":"-0.459267094","2":"-0.644602836","3":"0","4":"0.39184479","5":"1","6":"0.000000000"},{"1":"-0.906555280","2":"-0.150892194","3":"0","4":"1.55945051","5":"1","6":"0.000000000"},{"1":"-2.100966351","2":"-2.340028224","3":"0","4":"1.91606274","5":"0","6":"0.000000000"},{"1":"-1.891696170","2":"-1.035998627","3":"0","4":"2.00123466","5":"1","6":"0.000000000"},{"1":"1.012710071","2":"0.468321680","3":"0","4":"-0.30119102","5":"0","6":"0.000000000"},{"1":"-0.799757334","2":"-0.868482647","3":"0","4":"0.52515014","5":"0","6":"0.000000000"},{"1":"-1.458329964","2":"-0.009781767","3":"0","4":"2.27073383","5":"1","6":"0.000000000"},{"1":"0.040870143","2":"0.421054678","3":"0","4":"0.86683760","5":"1","6":"0.000000000"},{"1":"-1.110790809","2":"0.804863390","3":"0","4":"2.78830920","5":"0","6":"0.000000000"},{"1":"-1.841972330","2":"-0.384146777","3":"0","4":"3.38657183","5":"1","6":"0.000000000"},{"1":"0.495100378","2":"-1.184074587","3":"0","4":"-1.30643506","5":"1","6":"0.000000000"},{"1":"-0.948094655","2":"-0.545844561","3":"0","4":"1.11753389","5":"1","6":"0.000000000"},{"1":"0.014202761","2":"-0.763398111","3":"0","4":"-0.47056001","5":"1","6":"0.000000000"},{"1":"-0.233611201","2":"1.176412877","3":"0","4":"1.12845959","5":"0","6":"0.000000000"},{"1":"0.857643688","2":"0.843341819","3":"0","4":"-0.63267056","5":"1","6":"0.000000000"},{"1":"0.140836145","2":"0.293513175","3":"0","4":"1.42280671","5":"1","6":"0.000000000"},{"1":"0.813509998","2":"0.290694970","3":"0","4":"-0.18761162","5":"0","6":"0.000000000"},{"1":"0.794953228","2":"0.770344183","3":"0","4":"-0.97352792","5":"1","6":"0.000000000"},{"1":"-0.129930818","2":"0.591603606","3":"0","4":"1.89535055","5":"1","6":"0.000000000"},{"1":"1.549432247","2":"1.412294574","3":"0","4":"-0.07037491","5":"1","6":"0.000000000"},{"1":"-0.241051793","2":"0.917621037","3":"0","4":"1.20069139","5":"0","6":"0.000000000"},{"1":"-0.006162194","2":"-0.167398626","3":"0","4":"1.58039213","5":"1","6":"0.000000000"},{"1":"1.063403836","2":"-0.342104081","3":"0","4":"-0.74443616","5":"0","6":"0.000000000"},{"1":"-0.036298812","2":"0.507061297","3":"0","4":"1.27253504","5":"0","6":"0.000000000"},{"1":"-1.384114235","2":"-0.942779391","3":"0","4":"0.06326810","5":"0","6":"0.000000000"},{"1":"-0.494350769","2":"0.922775851","3":"0","4":"2.47743220","5":"1","6":"0.000000000"},{"1":"-0.921958167","2":"-0.572515302","3":"0","4":"1.82497019","5":"1","6":"0.000000000"},{"1":"-0.674110311","2":"-0.364130764","3":"0","4":"2.02824475","5":"1","6":"0.000000000"},{"1":"0.323056405","2":"1.790805507","3":"0","4":"1.34047583","5":"1","6":"0.000000000"},{"1":"0.171908483","2":"0.385551438","3":"0","4":"1.51710022","5":"1","6":"0.000000000"},{"1":"0.535701132","2":"1.900889001","3":"0","4":"2.22458277","5":"1","6":"0.000000000"},{"1":"0.426940820","2":"-0.601393335","3":"0","4":"-0.92180652","5":"1","6":"0.000000000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit interaction model</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>lm.d <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> bound_span_work <span class="sc">+</span> female <span class="sc">+</span> bound_work_female, <span class="at">data =</span> work)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-0.3248047","3":"0.06933931","4":"-4.684279","5":"4.287658e-06"},{"1":"bound_span_work","2":"0.5555554","3":"0.07179346","4":"7.738245","5":"1.600196e-13"},{"1":"female","2":"0.5634298","3":"0.08901529","4":"6.329585","5":"9.086064e-10"},{"1":"bound_work_female","2":"0.1606263","3":"0.09029079","4":"1.778989","5":"7.626780e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The fitted equation is:</p>
+<p><span class="math display">\[
+\hat{\mathrm{Guilt}}_i = -0.32 + 0.56(\mathrm{Boundary\mbox{-}spanning~work}_i) + 0.56(\mathrm{Female}_i) + 0.16(\mathrm{Boundary\mbox{-}spanning~work}_i)(\mathrm{Female}_i)
+\]</span></p>
+<p>If we substitute in the appropriate dummy-coding we can obtain the fitted equations for females and non-females.</p>
+<p><strong>Female Fitted Equation</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Guilt}}_i &amp;= -0.32 + 0.56(\mathrm{Boundary\mbox{-}spanning~work}_i) + 0.56(1) + 0.16(\mathrm{Boundary\mbox{-}spanning~work}_i)(1) \\[2ex]
+&amp;= 0.24 + 0.72(\mathrm{Boundary\mbox{-}spanning~work}_i)
+\end{split}
+\]</span></p>
+<p><strong>Non-female Fitted Equation</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Guilt}}_i &amp;= -0.32 + 0.56(\mathrm{Boundary\mbox{-}spanning~work}_i) + 0.56(0) + 0.16(\mathrm{Boundary\mbox{-}spanning~work}_i)(0) \\[2ex]
+&amp;= -0.32 + 0.56(\mathrm{Boundary\mbox{-}spanning~work}_i)
+\end{split}
+\]</span></p>
+<p>Notice that the inclusion of the interaction term allows the slopes in the two fitted equations to be different. Moreover, the female slope of <span class="math inline">\(B=0.72\)</span> is 0.16 units higher than the non-female slope of <span class="math inline">\(B=0.56\)</span>. This difference in slopes is expressed by the estimated coefficient for the interaction term.</p>
+<p>The hypothesis test associated with the interaction term in the <code>tidy()</code> output evaluates the null hypothesis that:</p>
+<p><span class="math display">\[
+H_0: \beta_{\mathrm{Interaction}} = 0
+\]</span></p>
+<p>This is a test of whether the slopes for females and non-females are the same; if the interaction term is 0, then the slopes are the same in the population. In our example, the inferential results suggest that there is some evidence that the empirical data may not be compatible with the hypothesis that the difference in slopes is 0; <span class="math inline">\(t(296)=1.78\)</span>, <span class="math inline">\(p=.076\)</span>. This suggests that the effect of boundary-spanning work on guilt for females may be different than that for non-females.</p>
+<p><br></p>
+</section>
+<section id="mathematical-expression-of-the-interaction-model" class="level3" data-number="16.3.2">
+<h3 data-number="16.3.2" class="anchored" data-anchor-id="mathematical-expression-of-the-interaction-model"><span class="header-section-number">16.3.2</span> Mathematical Expression of the Interaction Model</h3>
+<p>In general, the interaction model (with two predictors) can be written as,</p>
+<p><span class="math display">\[
+\begin{split}
+Y_i = \beta_0 + \beta_1(X_{1i}) &amp;+ \beta_2(X_{2i}) + \beta_3\left(X_{1i}\right)\left(X_{2i}\right) + \epsilon_i, \quad \mathrm{where}\\[2ex]
+&amp; \epsilon_i \overset{i.i.d.}{\sim} \mathcal{N}\big(0,\sigma^2_{\epsilon}\big)
+\end{split}
+\]</span></p>
+<p>First notice that if <span class="math inline">\(\beta_3\)</span>, the coefficient on the interaction term, is zero, this equation reduces to the equation for the main-effects model, namely</p>
+<p><span class="math display">\[
+\begin{split}
+Y_i = \beta_0 &amp;+ \beta_1(X_{1i}) + \beta_2(X_{2i}) + \epsilon_i, \quad \mathrm{where}\\[2ex]
+&amp; \epsilon_i \overset{i.i.d.}{\sim} \mathcal{N}\big(0,\sigma^2_{\epsilon}\big)
+\end{split}
+\]</span></p>
+<p>Because of this, in practice, if the observed data are compatible with the null hypothesis that the coefficient for the interaction term is zero, it is common to drop the interaction term from the model, and re-fit the model using the main-effects model.</p>
+<p>To further understand the terms in the interaction model, we will write out the interaction model using the context of our example. (For ease of writing, we will drop the part of the model that specifies the model’s assumptions.)</p>
+<p><span class="math display">\[
+\mathrm{Guilt}_i = \beta_0 + \beta_1(\mathrm{Boundary\mbox{-}spanning~work}_i) + \beta_2(\mathrm{Female}_i) + \beta_3(\mathrm{Boundary\mbox{-}spanning~work}_i)(\mathrm{Female}_i) + \epsilon_i
+\]</span></p>
+<p>Since the predictor <span class="math inline">\(\mathrm{Female}_i\)</span> is a dummy coded predictor (0 for non-females; 1 for females), we can use substitute those values into the model and write the regression model associated with non-females and that for females.</p>
+<p><strong>Regression Model for Non-females</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{Guilt}_i &amp;= \beta_0 + \beta_1(\mathrm{Boundary\mbox{-}spanning~work}_i) + \beta_2(0) + \beta_3(\mathrm{Boundary\mbox{-}spanning~work}_i)(0) + \epsilon_i \\[2ex]
+&amp;= \beta_0 + \beta_1(\mathrm{Boundary\mbox{-}spanning~work}_i) + \epsilon_i \\
+\end{split}
+\]</span></p>
+<p><strong>Regression Model for Females</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{Guilt}_i &amp;= \beta_0 + \beta_1(\mathrm{Boundary\mbox{-}spanning~work}_i) + \beta_2(1) + \beta_3(\mathrm{Boundary\mbox{-}spanning~work}_i)(1) + \epsilon_i \\[2ex]
+&amp;= \beta_0 + \beta_1(\mathrm{Boundary\mbox{-}spanning~work}_i) + \beta_2 + \beta_3(\mathrm{Boundary\mbox{-}spanning~work}_i) + \epsilon_i \\[2ex]
+&amp;= \bigg[\beta_0 + \beta_2\bigg] + \bigg[\beta_1 + \beta_3\bigg](\mathrm{Boundary\mbox{-}spanning~work}_i) + \epsilon_i \\
+\end{split}
+\]</span></p>
+<p>We can use these equations to understand what each term in the interaction model represents:</p>
+<ul>
+<li>The intercept term from the interaction model (<span class="math inline">\(\beta_0\)</span>) turns out to be the intercept term for the reference group (non-females in our example).</li>
+<li>The slope term associated with boundary-spanning work from the interaction model (<span class="math inline">\(\beta_1\)</span>) turns out to be the effect of boundary-spanning work for the reference group (non-females in our example).</li>
+<li>The slope term associated with the dummy-coded female predictor from the interaction model (<span class="math inline">\(\beta_2\)</span>) turns out to be the difference in intercept between the group coded 1 and the reference group (difference in the female and non-female intercepts in our example).</li>
+<li>The slope term associated with the interaction predictor from the interaction model (<span class="math inline">\(\beta_3\)</span>) turns out to be the difference in slopes between the group coded 1 and the reference group (difference in the female and non-female slopes in our example).</li>
+</ul>
+<p><br></p>
+</section>
+<section id="interpreting-the-fitted-models-coefficients" class="level3" data-number="16.3.3">
+<h3 data-number="16.3.3" class="anchored" data-anchor-id="interpreting-the-fitted-models-coefficients"><span class="header-section-number">16.3.3</span> Interpreting the Fitted Model’s Coefficients</h3>
+<p>Here we will use the interaction model we fitted earlier to understand how to interpret the different coefficients in the model. Recall that the fitted equation was,</p>
+<p><span class="math display">\[
+\hat{\mathrm{Guilt}}_i = -0.32 + 0.56(\mathrm{Boundary\mbox{-}spanning~work}_i) + 0.56(\mathrm{Female}_i) + 0.16(\mathrm{Boundary\mbox{-}spanning~work}_i)(\mathrm{Female}_i)
+\]</span></p>
+<ul>
+<li>The intercept term (<span class="math inline">\(\hat\beta_0=-0.32\)</span>) indicates that non-females who experience an average amount of boundary-spanning work (boundary-spanning work = 0) have a guilt level of -0.32 standard deviations, on average.</li>
+<li>The slope term associated with boundary-spanning work (<span class="math inline">\(\hat\beta_1=0.56\)</span>) indicates that, for non-females, each one-standard deviation difference in boundary-spanning work is associated with a 0.56-standard deviation difference in home-life/work guilt, on average.</li>
+<li>The slope term associated with the dummy-coded female predictor (<span class="math inline">\(\hat\beta_2=0.56\)</span>) indicates that females who experience an average amount of boundary-spanning work (boundary-spanning work = 0) have a guilt level that is 0.56-standard deviations higher, on average, than non-females who experience an average amount of boundary-spanning work.</li>
+<li>The slope term associated with the interaction predictor (<span class="math inline">\(\hat\beta_3=0.16\)</span>) indicates that, for females, the effect of boundary-spanning work on home-life/work guilt is 0.16-units higher, on average, than the effect of boundary-spanning work on home-life/work guilt for non-females. In other words, for females, each one-standard deviation increase in boundary-spanning work is associated with a 0.72-standard deviation difference in home-life/work guilt, on average.</li>
+</ul>
+<p>In general, the easiest way to determine how to interpret the coefficients is to actually compute the partial regression equations for both groups based on the fitted interaction equation like we did earlier. Then you can just interpret the intercept and slope terms for the groups independently.</p>
+<p><br></p>
+</section>
+<section id="plotting-the-fitted-equation-for-the-interaction-model" class="level3" data-number="16.3.4">
+<h3 data-number="16.3.4" class="anchored" data-anchor-id="plotting-the-fitted-equation-for-the-interaction-model"><span class="header-section-number">16.3.4</span> Plotting the Fitted Equation for the Interaction Model</h3>
+<p>Almost always, plotting the fitted model is a good idea once you have fitted an interaction model. To do this we use <code>geom_abline()</code> to plot the non-female and female fitted lines.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> bound_span_work, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of boundary-spanning work"</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted home-life/work guilt"</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">0.24</span>, <span class="at">slope =</span> <span class="fl">0.72</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.32</span>, <span class="at">slope =</span> <span class="fl">0.56</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fitted-lines" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-03-interaction-effects_files/figure-html/fig-fitted-lines-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;16.5: Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In this plot, we can see some of the same effects we interpreted from the coefficients:</p>
+<ul>
+<li>Females have a higher intercept than non-females,</li>
+<li>The effect of boundary-spanning work for females is higher in magnitude than that for non-females.</li>
+</ul>
+<p>The plot also allows us to see other things as well. For example,</p>
+<ul>
+<li>The lines do not cross at a boundary-spanning work value represented in the data. This implies that females are predicted to have more home-life/work guilt than non-females, on average, regardless of how much boundary-spanning work they experience. But, this differential diminishes for lower levels of boundary-spanning work.</li>
+</ul>
+<p>In the social sciences sometimes this observed pattern of one group ALWAYS having a higher predicted level of the outcome within the range of <em>X</em>-values is referred to as an <em>ordinal interaction</em>. If the lines had crossed, that would imply that for some values of <em>X</em>, one group had higher predicted levels of the outcome, while for other values of <em>X</em> the other group had higher predicted levels of the outcome. This would be referred to as a <em>disordinal interaction</em>. It is generally better to show the plot and describe the effects for both groups rather than just stating that the interaction was ordinal or disordinal in nature.</p>
+<p><br></p>
+</section>
+</section>
+<section id="adding-covariates-into-the-model" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="adding-covariates-into-the-model"><span class="header-section-number">16.4</span> Adding Covariates into the Model</h2>
+<p>Two important covariates for explaining the effect of boundary-spanning work on home-life/work guilt is an employee’s level of job authority and marital status. Like the main-effects models we have previously fitted, we can also control for effects in the interaction model. Here we include both covariates in the model to further examine whether there are differential effects of boundary-spanning work on guilt for males and females.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit interaction model</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>lm.e <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> bound_span_work <span class="sc">+</span> female <span class="sc">+</span> authority <span class="sc">+</span> married <span class="sc">+</span> bound_work_female, <span class="at">data =</span> work)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"0.05048082","3":"0.05284514","4":"0.9552596","5":"3.402312e-01"},{"1":"bound_span_work","2":"0.60573690","3":"0.03922944","4":"15.4408738","5":"8.465608e-40"},{"1":"female","2":"0.39609625","3":"0.04949851","4":"8.0021845","5":"2.848890e-14"},{"1":"authority","2":"-0.53047093","3":"0.02021489","4":"-26.2415984","5":"5.131610e-79"},{"1":"married","2":"0.22954148","3":"0.05207281","4":"4.4080867","5":"1.463704e-05"},{"1":"bound_work_female","2":"0.12038185","3":"0.04930234","4":"2.4417065","5":"1.520746e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The fitted equation is,</p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Guilt}}_i = &amp;0.05 + 0.61(\mathrm{Boundary\mbox{-}spanning~work}_i) + 0.40(\mathrm{Female}_i) - 0.53(\mathrm{Authority}_i) + 0.23(\mathrm{Married}_i) + \\
+&amp;0.12(\mathrm{Boundary\mbox{-}spanning~work}_i)(\mathrm{Female}_i)
+\end{split}
+\]</span></p>
+<p>To answer our research question, the coefficient that matters here is the interaction term. The inferential results suggest that after controlling for differences in level of job authority and marital status, there does seem to be a differential effect of boundary-spanning work by gender; <span class="math inline">\(t(294)=2.44\)</span>. <span class="math inline">\(p=0.015\)</span>. In practice, we would probably eschew any further coefficient interpretation, but for pedagogical purposes the interpretation of each coefficient is:</p>
+<ul>
+<li>The intercept term (<span class="math inline">\(\hat\beta_0=0.05\)</span>) indicates that non-married, non-females with no job authority, who experience an average amount of boundary-spanning work (boundary-spanning work = 0), have a home-life/work guilt level of 0.05 standard deviations, on average.</li>
+<li>The slope term associated with boundary-spanning work (<span class="math inline">\(\hat\beta_1=0.61\)</span>) indicates that, for non-females, each one-standard deviation difference in boundary-spanning work is associated with a 0.61-standard deviation difference in home-life/work guilt, on average, controlling for differences in amount of job authority and marital status.</li>
+<li>The slope term associated with the dummy-coded female predictor (<span class="math inline">\(\hat\beta_2=0.40\)</span>) indicates that females who experience an average amount of boundary-spanning work have a home-life/work guilt level that is 0.40-standard deviations higher, on average, than non-females who experience an average amount of boundary-spanning work, controlling for differences in amount of job authority and marital status.</li>
+<li>The slope term associated with job authority (<span class="math inline">\(\hat\beta_3=-0.53\)</span>) indicates that, controlling for differences in gender and amount of boundary-spanning work, each one-standard deviation difference in job authority is associated with a <span class="math inline">\(-0.53\)</span>-standard deviation decrease in home-life/work guilt, on average.</li>
+<li>The slope term associated with the dummy-coded marital status predictor (<span class="math inline">\(\hat\beta_4=0.40\)</span>) indicates that married employees have a home-life/work guilt level that is, on average, 0.40-standard deviations higher than their non-married peers, controlling for differences in the amount of boundary-spanning work and gender.</li>
+<li>The slope term associated with the interaction predictor (<span class="math inline">\(\hat\beta_5=0.12\)</span>) indicates that for females, the effect of boundary-spanning work on home-life/work guilt is 0.16-units higher, on average, than the effect of boundary-spanning work on home-life/work guilt for non-females, controlling for differences in amount of job authority. In other words, for females, each one-standard deviation increase in boundary-spanning work is associated with a 0.73-standard deviation difference in home-life/work guilt, on average.</li>
+</ul>
+<p><br></p>
+<section id="plotting-the-results-of-the-model" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="plotting-the-results-of-the-model"><span class="header-section-number">16.4.1</span> Plotting the Results of the Model</h3>
+<p>To further aid our understanding of the results from fitting the interaction model, we will create several plots to visualize the different effects of interest. In these plots, we will control for job authority by setting it to the mean value of 0.83. Since marital status is also a covariate, in practice you might also set it to a fixed value and partial it out of the plot. However, here we will show this effect so you can begin to visualize differences between main-effects and interaction effects. To do this we will need to obtain four different partial fitted equations and plot them.</p>
+<p><strong>Non-female, non-married</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Guilt}}_i &amp;= 0.05 + 0.61(\mathrm{Boundary\mbox{-}spanning~work}_i) + 0.40(0) - 0.53(0.83) + 0.23(0) +  0.12(\mathrm{Boundary\mbox{-}spanning~work}_i)(0) \\[2ex]
+&amp;= -0.39 + 0.61(\mathrm{Boundary\mbox{-}spanning~work}_i)
+\end{split}
+\]</span></p>
+<p><strong>Non-female, married</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Guilt}}_i &amp;= 0.05 + 0.61(\mathrm{Boundary\mbox{-}spanning~work}_i) + 0.40(0) - 0.53(0.83) + 0.23(1) +  0.12(\mathrm{Boundary\mbox{-}spanning~work}_i)(0) \\[2ex]
+&amp;= -0.17 + 0.61(\mathrm{Boundary\mbox{-}spanning~work}_i)
+\end{split}
+\]</span></p>
+<p><strong>Female, non-married</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Guilt}}_i &amp;= 0.05 + 0.61(\mathrm{Boundary\mbox{-}spanning~work}_i) + 0.40(1) - 0.53(0.83) + 0.23(0) +  0.12(\mathrm{Boundary\mbox{-}spanning~work}_i)(1) \\[2ex]
+&amp;= 0.01 + 0.73(\mathrm{Boundary\mbox{-}spanning~work}_i)
+\end{split}
+\]</span></p>
+<p><strong>Female, married</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Guilt}}_i &amp;= 0.05 + 0.61(\mathrm{Boundary\mbox{-}spanning~work}_i) + 0.40(1) - 0.53(0.83) + 0.23(1) +  0.12(\mathrm{Boundary\mbox{-}spanning~work}_i)(1) \\[2ex]
+&amp;= 0.24 + 0.73(\mathrm{Boundary\mbox{-}spanning~work}_i)
+\end{split}
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Female</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> bound_span_work, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of boundary-spanning work"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted home-life/work guilt"</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">0.24</span>, <span class="at">slope =</span> <span class="fl">0.73</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">0.01</span>, <span class="at">slope =</span> <span class="fl">0.73</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Female"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-female</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> bound_span_work, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of boundary-spanning work"</span>) <span class="sc">+</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted home-life/work guilt"</span>) <span class="sc">+</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.39</span>, <span class="at">slope =</span> <span class="fl">0.61</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.17</span>, <span class="at">slope =</span> <span class="fl">0.61</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Non-female"</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fitted-lines-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-03-interaction-effects_files/figure-html/fig-fitted-lines-2-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;16.6: Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for married (dashed lines) and non-married (solid lines) employees conditioned on gender. Job authority is controlled by setting this to its mean value.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice that the slope of the lines represents the effect of boundary-spanning work and that this differs by gender; the lines across gender are not parallel. Across marital status, however, the slopes are the same (at least within gender); parallel lines. This is because marital status was only included in the model as a main effect, whereas gender was included as part of an interaction effect.</p>
+<p>We could also have facetted on marital status rather than gender. In this plot, the partial fitted lines within each panel of the plot are not parallel, but the set of lines are parallel across panels.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-married</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> bound_span_work, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of boundary-spanning work"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted home-life/work guilt"</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">0.01</span>, <span class="at">slope =</span> <span class="fl">0.73</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.39</span>, <span class="at">slope =</span> <span class="fl">0.61</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Non-married"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Married</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> bound_span_work, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of boundary-spanning work"</span>) <span class="sc">+</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted home-life/work guilt"</span>) <span class="sc">+</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">0.24</span>, <span class="at">slope =</span> <span class="fl">0.73</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.17</span>, <span class="at">slope =</span> <span class="fl">0.61</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Married"</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fitted-lines-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-03-interaction-effects_files/figure-html/fig-fitted-lines-3-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;16.7: Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for females (charcoal, solid line) and non-females (mango, dashed line) conditioned on marital status. Job authority is controlled by setting this to its mean value.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="evaluating-the-distributional-assumptions" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="evaluating-the-distributional-assumptions"><span class="header-section-number">16.5</span> Evaluating the Distributional Assumptions</h2>
+<p>Just like main-effects models, we need to examine the distributional assumptions for any adopted interaction models. We do this in the exact same way we did for main effects models.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create augmented data</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>aug_e <span class="ot">=</span> <span class="fu">augment</span>(lm.e)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine normality assumption</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_e, <span class="fu">aes</span>(<span class="at">x =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_confidence</span>(<span class="at">model =</span> <span class="st">"normal"</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Standardized Residuals"</span>) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine other assumptions</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_e, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted Values"</span>) <span class="sc">+</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized Residuals"</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-assumptions" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-03-interaction-effects_files/figure-html/fig-assumptions-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;16.8: LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from Model E. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption and the shaded, grey region indicates the expected uncertainty. The loess line (blue) is also displayed.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Based on the density plot of the standardized residuals, the normality assumption seems tenable. The scatterplot of the model’s standardized residuals versus its fitted values suggests that the average residual is close to zero for each fitted value, indicating that the linearity assumption seems tenable. The assumption of equal variances also seems tenable given this plot. Although not seen in the plot, there may be some question of independence. For example, some these employees may work in the same division, or have the same supervisor. As such, the amount of home-life/work guilt for these employees may be more related.</p>
+<p><br></p>
+</section>
+<section id="two-interpretations-of-an-interaction-effect" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="two-interpretations-of-an-interaction-effect"><span class="header-section-number">16.6</span> Two Interpretations of an Interaction Effect</h2>
+<p>There are always two interpretations of an interaction effect.</p>
+<ol type="1">
+<li>The effect of <span class="math inline">\(X_1\)</span> on <span class="math inline">\(Y\)</span> differs depending on the level of <span class="math inline">\(X_2\)</span>.</li>
+<li>The effect of <span class="math inline">\(X_2\)</span> on <span class="math inline">\(Y\)</span> differs depending on the level of <span class="math inline">\(X_1\)</span>.</li>
+</ol>
+<p>For example, in our example, we interpreted the interaction as:</p>
+<ul>
+<li>The effect of boundary-spanning work on guilt is different for females and non-females.</li>
+</ul>
+<p>In the visual display, this interpretation focuses on the difference in slopes. We could also interpret the interaction as:</p>
+<ul>
+<li>The effect of gender on guilt is different depending on the amount of boundary-spanning work.</li>
+</ul>
+<p>In the visual display, this interpretation focuses on the vertical distance between the lines. For example, focusing on the non-married panel of the plotted results from Model E, rather than focus on the slopes of the lines, look at the vertical distance between lines; this is the effect of gender.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-married</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> bound_span_work, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of boundary-spanning work"</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted home-life/work guilt"</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">0.01</span>, <span class="at">slope =</span> <span class="fl">0.73</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">0.39</span>, <span class="at">slope =</span> <span class="fl">0.61</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Non-married"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fitted-lines-4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-03-interaction-effects_files/figure-html/fig-fitted-lines-4-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;16.9: Fitted regression lines showing model-predicted home-life/work guilt as a function of boundary-spanning work for non-married females (charcoal, solid line) and non-females (mango, dashed line). Job authority is controlled by setting this to its mean value.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In this plot, the effect of gender differs depending on the amount of boundary-spanning work. For low amounts of boundary-spanning work the gender effect is small, and for higher amounts of boundary-spanning work the gender effect is larger. Regardless of the amount of boundary-spanning work, females have more home-life/work guilt than non-females (within our range of data).</p>
+<div class="protip">
+<p>Which interpretation of the interaction effect you use is up to you. Try them both. Although they both describe the same interaction, trying the different interpretations can sometimes lead to more information about or more natural ways of describing the effects.</p>
+</div>
+<p><br></p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Glavin:2011" class="csl-entry" role="listitem">
+Glavin, P., Schieman, S., &amp; Reid, S. (2011). Boundary-spanning work demands and their consequences for guilt and psychological distress. <em>Journal of Health and Social Behavior</em>, <em>52</em>(1), 43–57.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./04-02-polychotomous-predictors.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

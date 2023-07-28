@@ -278,6 +278,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-03-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -376,7 +382,7 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 <li>[N]ormality</li>
 <li>[E]qual variances (Homoskedasticity)</li>
 </ul>
-<p>You can remember these assumptions using the mnemonic LINE. To better understand these assumptions, imagine that we had the population of <em>X</em>- and <em>Y</em>-values in which all the distributional assumptions were valid. Now imagine we plotted the ordered pairs, <span class="math inline">\((x_i,y_i)\)</span>, and we also regressed the <em>Y</em>-values on the <em>X</em>-values and plotted this regression line as well. A visual depiction of this is shown in <a href="#fig-assumptions">Figure&nbsp;<span>13.1</span></a>.</p>
+<p>You can remember these assumptions using the mnemonic LINE. To better understand these assumptions, imagine that we had the population of <em>X</em>- and <em>Y</em>-values in which all the distributional assumptions were valid. Now imagine we plotted the ordered pairs, <span class="math inline">\((x_i,y_i)\)</span>, and we also regressed the <em>Y</em>-values on the <em>X</em>-values and plotted this regression line as well. A visual depiction of this is shown in <a href="04-03-interaction-effects.html#fig-assumptions">Figure&nbsp;<span>16.8</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-assumptions" class="quarto-figure quarto-figure-center anchored">
@@ -387,8 +393,8 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 </div>
 </div>
 </div>
-<p>In <a href="#fig-assumptions">Figure&nbsp;<span>13.1</span></a>, the normal distributions depicted are the distribution of <em>Y</em>-values at each value of <em>X</em>, or what we refer to as the conditional distributions of <em>Y</em>. Although only three conditional distributions are shown in Figure 1, there is a conditional distribution for EVERY value of <em>X</em>.</p>
-<p>Although the distributional assumptions are about the model’s errors, we can also apply the assumptions to the conditional <em>Y</em>-values since they are <a href="https://en.wikipedia.org/wiki/Linear_map">linear transformations</a> of the error terms. This allows us to use <a href="#fig-assumptions">Figure&nbsp;<span>13.1</span></a> to expand upon each of the distributional assumptions listed earlier.</p>
+<p>In <a href="04-03-interaction-effects.html#fig-assumptions">Figure&nbsp;<span>16.8</span></a>, the normal distributions depicted are the distribution of <em>Y</em>-values at each value of <em>X</em>, or what we refer to as the conditional distributions of <em>Y</em>. Although only three conditional distributions are shown in Figure 1, there is a conditional distribution for EVERY value of <em>X</em>.</p>
+<p>Although the distributional assumptions are about the model’s errors, we can also apply the assumptions to the conditional <em>Y</em>-values since they are <a href="https://en.wikipedia.org/wiki/Linear_map">linear transformations</a> of the error terms. This allows us to use <a href="04-03-interaction-effects.html#fig-assumptions">Figure&nbsp;<span>16.8</span></a> to expand upon each of the distributional assumptions listed earlier.</p>
 <ul>
 <li><strong>Linearity:</strong> The linearity assumption implies that the MEAN values of <span class="math inline">\(Y\)</span> from all the conditional distributions all fall on the same line. If this is the case, we would say that the conditional mean <span class="math inline">\(Y\)</span>-values are linear.</li>
 <li><strong>Independence:</strong> This is not shown in the figure. The assumption is that each <span class="math inline">\(Y\)</span>-value in a particular conditional distribution is independent from every other <span class="math inline">\(Y\)</span>-value in that same distribution.</li>
@@ -401,11 +407,11 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 <p>Stating these distributional assumptions in terms of the conditional distributions of <em>Y</em> was useful in helping us visualize them within a typical representation of the regression model through the relationship between <em>X</em>- and <em>Y</em>-values. Technically, however, all the distributional assumptions are about the conditional distributions of the residuals.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Think about how we compute the residuals:</p>
 <p><span class="math display">\[
 \epsilon_i = Y_i - \hat{Y}_i
-\]</span> In <a href="#fig-assumptions">Figure&nbsp;<span>13.1</span></a>, the <span class="math inline">\(\hat{Y}_i\)</span> value is the <span class="math inline">\(Y\)</span>-value that corresponds to the point on the line. Within each conditional distribution of <em>Y</em>, the <span class="math inline">\(\hat{Y}_i\)</span> is constant; in other words all of the observations with the same <em>X</em>-value will have the same <span class="math inline">\(\hat{Y}_i\)</span>-value. That means within a conditional distribution, to compute the residual values, we are subtracting a constant:</p>
+\]</span> In <a href="04-03-interaction-effects.html#fig-assumptions">Figure&nbsp;<span>16.8</span></a>, the <span class="math inline">\(\hat{Y}_i\)</span> value is the <span class="math inline">\(Y\)</span>-value that corresponds to the point on the line. Within each conditional distribution of <em>Y</em>, the <span class="math inline">\(\hat{Y}_i\)</span> is constant; in other words all of the observations with the same <em>X</em>-value will have the same <span class="math inline">\(\hat{Y}_i\)</span>-value. That means within a conditional distribution, to compute the residual values, we are subtracting a constant:</p>
 <p><span class="math display">\[
 \epsilon_i = Y_i - C
 \]</span></p>
-<p>Remember from the <a href="02-03-correlation.html">chapter on standardized regression</a>, subtracting a constant from each value in a distribution shifts the center of the distribution. Pick any conditional distribution from Figure 1, which is a normal distribution centered at the <span class="math inline">\(\hat{Y}_i\)</span> value. Now subtract the <span class="math inline">\(\hat{Y}_i\)</span>-value from each <em>Y</em>-value. This will re-center the normal distribution at 0. Thus, the conditional distribution of residuals is normally distributed, has a mean of 0, and has the same variance (or standard deviation) as the conditional distribution of <em>Y</em>-values. If we transform every <em>Y</em>-value in the population, from <a href="#fig-assumptions">Figure&nbsp;<span>13.1</span></a>, to a residual value, and re-plot them, the visual depiction now looks like this.</p>
+<p>Remember from the <a href="02-03-correlation.html">chapter on standardized regression</a>, subtracting a constant from each value in a distribution shifts the center of the distribution. Pick any conditional distribution from Figure 1, which is a normal distribution centered at the <span class="math inline">\(\hat{Y}_i\)</span> value. Now subtract the <span class="math inline">\(\hat{Y}_i\)</span>-value from each <em>Y</em>-value. This will re-center the normal distribution at 0. Thus, the conditional distribution of residuals is normally distributed, has a mean of 0, and has the same variance (or standard deviation) as the conditional distribution of <em>Y</em>-values. If we transform every <em>Y</em>-value in the population, from <a href="04-03-interaction-effects.html#fig-assumptions">Figure&nbsp;<span>16.8</span></a>, to a residual value, and re-plot them, the visual depiction now looks like this.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-assumptions-residuals" class="quarto-figure quarto-figure-center anchored">
