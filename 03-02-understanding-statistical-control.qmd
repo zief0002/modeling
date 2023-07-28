@@ -223,7 +223,7 @@ data.frame(
 
 The model predicted average GPAS are higher for these students because they have a higher parent education level. But, again, when we hold parent education level constant, the predicted difference in average GPA between students who spend an additional hour on homework is 0.99. Moreover, this difference in average GPAs for any one hour difference in time spent on homework will be 0.99, regardless of the value we pick for parent level of education.
 
-By fixing the value of parent level of education to a particular value (holding it constant) we can "fairly" compare the average predicted GPA for different values of time spent on homework. This allows us to evaluate the association between time spent on homework and GPA without worrying that the GPAs we are comparing have different values for parent level of education. By holding parent level of education constant, we remove it as a potential confounding explanation of the relationship between time spent on homework and students' GPAs.
+By fixing the value of parent level of education to a particular value (holding it constant) we can "fairly" compare the average predicted GPA for different values of time spent on homework. This allows us to evaluate the association between time spent on homework and GPA without worrying that the GPAs we are comparing have different values for parent level of education. By holding parent level of education constant, we remove it as a potentially confounding explanation of the relationship between time spent on homework and students' GPAs.
 
 <br />
 
@@ -320,7 +320,7 @@ ggplot(data = keith, aes(x = homework, y = gpa)) +
 
 From the plot we can see the effect of time spent on homework in the slopes of the fitted lines. Regardless of the level of parent education (8, 12, or 16), the slope of the line is 0.99, which means the three lines are parallel. The intercepts of these three lines vary reflecting the different level of parent education. 
 
-We can interpret the effect of parent level of education by fixing time spent on homework to a particular value on the same plot. For example, fixing time spent on homework to 6, we see that the average GPA varies for the three levels of parent education displayed in the plot.
+We can interpret the effect of parent level of education by fixing time spent on homework to a particular value on the same plot. For example, by fixing time spent on homework to 6, we see that the average GPA varies for the three levels of parent education displayed in the plot.
 
 ```{r}
 #| label: fig-model-2
@@ -415,7 +415,7 @@ $$
 \end{split}
 $$
 
-The plot we created earlier put all three fitted lines on the same plot. An alternative plot is to show each line in a different plot, and to place this plots side-by-side in a "triptych". (I borrow this terminology from @McElreath:2016 who coined this in his *Statistical Rethinking* book.) To do this we save each plot into an object and then use functionality from the [patchwork package](https://patchwork.data-imaginist.com/) to put the plots side-by-side.
+The plot we created earlier put all three fitted lines on the same plot. An alternative plot is to show each line in a different plot, and to place these plots side-by-side in a "triptych". (I borrow this terminology from @McElreath:2016 who coined this in his *Statistical Rethinking* book.) To do this we save each plot into an object and then use functionality from the [patchwork package](https://patchwork.data-imaginist.com/) to put the plots side-by-side.
 
 ```{r}
 #| label: fig-triptych
@@ -522,7 +522,7 @@ p4 | p5 |p6
 
 Sometimes you only want to show the effect of a single predictor from the model. For example, in educational studies we often control for SES and mother's level of education when we fit the model, but we don't want to display those effects in our plot. There is no rule that just because you included an effect in the fitted model that you are obligated to display it. 
 
-Any effect that you do not want to display graphically can be fixed to a single value, typically the mean value. Fixing the effect to a single value will produce only one line. For example, here we set the parent education value to the its mean value of 14.03 years. After substituting this value into the fitted equation, this results in,
+Any effect that you do not want to display graphically can be fixed to a single value, typically the mean value. Fixing the effect to a single value will produce only one line. For example, here we set the parent education value to its mean value of 14.03 years. After substituting this value into the fitted equation, this results in,
 
 $$
 \hat{\mathrm{GPA}_i} = 75.43 + 0.99(\mathrm{Homework}_i)

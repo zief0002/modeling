@@ -44,9 +44,6 @@ How does R determine the coefficient values of $\hat{\beta}_0=11.321$ and $\hat{
 #| echo: false
 #| label: tbl-1
 #| tbl-cap: "Toy data set with predictor (X) and outcome (Y) for five observations."
-library(gt)
-library(gtExtras)
-
 toy = data.frame(
   x = c(30, 10, 30, 50, 20),
   y = c(63, 44, 40, 68, 25)

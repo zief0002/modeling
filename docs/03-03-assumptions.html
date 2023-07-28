@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./04-00-extending-regression-model.html" rel="next">
 <link href="./03-02-understanding-statistical-control.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -256,6 +257,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./04-00-extending-regression-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extending the Regression Model</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-01-dichotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dichotomous Categorical Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-02-polychotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -374,7 +398,7 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 <p><br></p>
 <section id="distributional-assumptions-are-really-about-the-residuals" class="level3" data-number="13.1.1">
 <h3 data-number="13.1.1" class="anchored" data-anchor-id="distributional-assumptions-are-really-about-the-residuals"><span class="header-section-number">13.1.1</span> Distributional Assumptions are Really About the Residuals</h3>
-<p>Stating these distributional assumptions in terms of the the conditional distributions of <em>Y</em> was useful in helping us visualize them within a typical representation of the regression model through the relationship between <em>X</em>- and <em>Y</em>-values. Technically, however, all the distributional assumptions are about the conditional distributions of the residuals.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Think about how we compute the residuals:</p>
+<p>Stating these distributional assumptions in terms of the conditional distributions of <em>Y</em> was useful in helping us visualize them within a typical representation of the regression model through the relationship between <em>X</em>- and <em>Y</em>-values. Technically, however, all the distributional assumptions are about the conditional distributions of the residuals.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Think about how we compute the residuals:</p>
 <p><span class="math display">\[
 \epsilon_i = Y_i - \hat{Y}_i
 \]</span> In <a href="#fig-assumptions">Figure&nbsp;<span>13.1</span></a>, the <span class="math inline">\(\hat{Y}_i\)</span> value is the <span class="math inline">\(Y\)</span>-value that corresponds to the point on the line. Within each conditional distribution of <em>Y</em>, the <span class="math inline">\(\hat{Y}_i\)</span> is constant; in other words all of the observations with the same <em>X</em>-value will have the same <span class="math inline">\(\hat{Y}_i\)</span>-value. That means within a conditional distribution, to compute the residual values, we are subtracting a constant:</p>
@@ -409,7 +433,7 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 </section>
 <section id="evaluating-the-distributional-assumptions" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="evaluating-the-distributional-assumptions"><span class="header-section-number">13.2</span> Evaluating the Distributional Assumptions</h2>
-<p>Before beginning to evaluate the distributional assumptions using our empirical data, it is important to point out that the assumptions are about the residuals <em>in the population</em>. Because in most analyses, we only have a sample of data, we can never really evaluate whether these assumptions are true. We can only offer a guess as to whether they are tenable given the data we see. The strongest arguments for justification for meeting any of the distibutional assumptions is a theoretical argument based on existing literature in the discipline.</p>
+<p>Before beginning to evaluate the distributional assumptions using our empirical data, it is important to point out that the assumptions are about the residuals <em>in the population</em>. Because in most analyses, we only have a sample of data, we can never really evaluate whether these assumptions are true. We can only offer a guess as to whether they are tenable given the data we see. The strongest argument for justifying any of the distributional assumptions is a theoretical argument based on existing literature in the discipline.</p>
 <p><br></p>
 <section id="linearity" class="level3" data-number="13.2.1">
 <h3 data-number="13.2.1" class="anchored" data-anchor-id="linearity"><span class="header-section-number">13.2.1</span> Linearity</h3>
@@ -445,9 +469,9 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 <section id="independence" class="level3" data-number="13.2.2">
 <h3 data-number="13.2.2" class="anchored" data-anchor-id="independence"><span class="header-section-number">13.2.2</span> Independence</h3>
 <p>The definition of independence relies on formal mathematics. Loosely speaking a set of observations is independent if knowing that one observation is above (or below) the mean value in a conditional distribution conveys no information about whether any other observation in the same conditional distribution is above (or below) its mean value. If observations are not independent, we say they are <em>dependent</em> or <em>correlated</em>.</p>
-<p>Independence is not an assumption we can check graphically. To evaluate this assumption we need to know something about the how the data were collected or assigned to values of <em>X</em>. Using random chance in the design of the study, to either select observations (random sampling) or assign them to levels of the predictor (random assignment) will guarantee independence of the observations. Outside of this, independence is often difficult to guarantee, and often has to be a logical argument.</p>
+<p>Independence is not an assumption we can check graphically. To evaluate this assumption we need to know something about how the data were collected or assigned to values of <em>X</em>. Using random chance in the design of the study, to either select observations (random sampling) or assign them to levels of the predictor (random assignment) will guarantee independence of the observations. Outside of this, independence is often difficult to guarantee, and often has to be a logical argument.</p>
 <p>There are a few times that we can ascertain that the independence assumption would be violated. These instances often result from aspects of the data collection process. One such instance common to social science research is when the observations (i.e., cases, subjects) are collected within a physical or spatial proximity to one another. For example, this is typically the case when a researcher gathers a convenience sample based on location, such as sampling students from the same school. Another violation of independence occurs when observations are collected over time (longitudinally), especially when the observations are repeated measures from the same subjects.</p>
-<p>One last violation of independence occurs when the observation level used to assign cases to the different predictor values (e.g., treatment or control) does not correspond to the observation level used in the analysis. For example, in educational studies whole classrooms are often assigned to treatment or control. That means that the cases used in the analysis, in order to satisfy the independence assumption, would need to be at the classroom level (e.g., the cases would need to be classroom means), not individual students. This can be deleterious for sample size.</p>
+<p>One last violation of independence occurs when the observation level used to assign cases to the different predictor values (e.g., treatment or control) does not correspond to the observation level used in the analysis. For example, in educational studies whole classrooms are often assigned to treatment or control. That means that the cases used in the analysis, in order to satisfy the independence assumption, would need to be at the classroom level (e.g., the cases would need to be classroom means), not individual students. This can be deleterious for the sample size.</p>
 <p>If the independence assumption is violated, almost every value you get in the <code>tidy()</code> and <code>glance()</code> output—the standard errors, <em>t</em>-values, <em>F</em>-values, <em>p</em>-values, and residual standard errors (RMSE)—are wrong. If you suspect that the independence assumption is violated, then you will need to use a method (not OLS regression) that accommodates non-independence.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p><br></p>
 </section>
@@ -482,7 +506,7 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 </section>
 <section id="equal-variances" class="level3" data-number="13.2.4">
 <h3 data-number="13.2.4" class="anchored" data-anchor-id="equal-variances"><span class="header-section-number">13.2.4</span> Equal Variances</h3>
-<p>Similar to the assumption about normality, the assumption of equal variances (homoskedasticity) is is less critical than the assumptions of linearity and independence, and only egregious violations of the assumption is problematic for the validity of the regression results.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Similar to the assumption about normality, the assumption of equal variances (homoskedasticity) is less critical than the assumptions of linearity and independence, and only egregious violations of the assumption is problematic for the validity of the regression results.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <div class="cell" data-layout-align="center" data-hash="03-03-assumptions_cache/html/fig-equal-var-residuals_8139e62046c80349171d4e7e7f3f1e39">
 <div class="cell-output-display">
 <div id="fig-equal-var-residuals" class="quarto-figure quarto-figure-center anchored">
@@ -524,7 +548,7 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 </div>
 </div>
 <p>The cases in the augmented data frame are in the same order as the cases in the <code>keith</code> data frame. For example, the first case had a GPA of 78 and spent 2 hours a week on homework. The augmented data also includes several other useful measures for evaluating regression models. For now, we will focus on the <code>.fitted</code> column and the <code>.resid</code> column. Those columns contain the fitted values (<span class="math inline">\(\hat{Y_i}\)</span>) and the residuals for each case based on the model fitted in <code>lm.a</code>.</p>
-<p>We will examine two residual plots to help us evaluate the tenability of the assumptions: (1) a density plot of the marginal distribution of residuals, and (2) a scatterplot of the residuals versus the <em>X</em>-values. The density plot will allow us to eval;uate the normality assumption, and the scatterplot will allow us to evaluate the linearity and equal variances assumption. As we make these evaluations, remember that we do not have the entire population of residuals (we obtained our residuals by fitting a regression to a sample of data), so we do not expect that our residuals will actually meet the assumptions perfectly (remember, sampling error). Examining the sample residuals, is however, a reasonable way to evaluate the tenability of assumptions in practice. We just have to keep in mind that the sample residuals may deviate a bit from these assumptions.</p>
+<p>We will examine two residual plots to help us evaluate the tenability of the assumptions: (1) a density plot of the marginal distribution of residuals, and (2) a scatterplot of the residuals versus the <em>X</em>-values. The density plot will allow us to evaluate the normality assumption, and the scatterplot will allow us to evaluate the linearity and equal variances assumption. As we make these evaluations, remember that we do not have the entire population of residuals (we obtained our residuals by fitting a regression to a sample of data), so we do not expect that our residuals will actually meet the assumptions perfectly (remember, sampling error). Examining the sample residuals, is however, a reasonable way to evaluate the tenability of assumptions in practice. We just have to keep in mind that the sample residuals may deviate a bit from these assumptions.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of the residuals</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_a, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
@@ -552,7 +576,7 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 </div>
 </div>
 </div>
-<p>The marginal distribution of residuals looks symmetric and bell-shaped. Based on this plot, the normality assumption seems tenable (or at least there is negligable violation of the assumption). The scatterplot of residuals versus time spent on homework shows random scatter around the line <span class="math inline">\(Y=0\)</span>. This suggests that the average residual is roughly 0 at each <em>X</em>-value, and that the linearity assumption seems tenable. The range of the residuals at each <em>X</em>-value seems similar indicating that the assumption of equal variances is also tenable. Lastly, since the observations were randomly sampled (see <a href="http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html">data codebook</a>) we believe the independence assumption is satisfied.</p>
+<p>The marginal distribution of residuals looks symmetric and bell-shaped. Based on this plot, the normality assumption seems tenable (or at least there is a negligable violation of the assumption). The scatterplot of residuals versus time spent on homework shows random scatter around the line <span class="math inline">\(Y=0\)</span>. This suggests that the average residual is roughly 0 at each <em>X</em>-value, and that the linearity assumption seems tenable. The range of the residuals at each <em>X</em>-value seems similar indicating that the assumption of equal variances is also tenable. Lastly, since the observations were randomly sampled (see <a href="http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html">data codebook</a>) we believe the independence assumption is satisfied.</p>
 <p><br></p>
 </section>
 <section id="standardized-residuals" class="level2" data-number="13.4">
@@ -678,7 +702,7 @@ t_{\epsilon} = \frac{\epsilon - 0}{\mathrm{\hat\sigma}_{\epsilon}}
 </div>
 </div>
 </div>
-<p>The density plot of the marginal distribution of standardized residuals is unimodal and roughly symmetric. There is deviation from normality, although this deviation seems minor and we note that the assumption of normality is robust to minor violations. The scatterplot shows random scatter around the <span class="math inline">\(Y=0\)</span> line which indicates that the mean residual value is close to 0 (linearity) for all fitted values. The range of the standardized residuals at each fitted value also seem roughly the same indicating that the equal variances assumption is also tenable. Lastly, since the observations were randomly sampled we believe the independence assumption is satisfied.</p>
+<p>The density plot of the marginal distribution of standardized residuals is unimodal and roughly symmetric. There is deviation from normality, although this deviation seems minor and we note that the assumption of normality is robust to minor violations. The scatterplot shows random scatter around the <span class="math inline">\(Y=0\)</span> line which indicates that the mean residual value is close to 0 (linearity) for all fitted values. The range of the standardized residuals at each fitted value also seems roughly the same indicating that the equal variances assumption is also tenable. Lastly, since the observations were randomly sampled we believe the independence assumption is satisfied.</p>
 <p>If any of the assumptions (aside from the independence assumption) do not seem reasonably satisfied, you can re-plot the residual plots based on the different simple regression models. (In this case we would look at the residuals versus time spent on homework and then the residuals versus parent education). This might help you identify if one, or both. of the predictors is the cause of the problem.</p>
 <p>The reference lines in the scatterplot at <span class="math inline">\(Y=-2\)</span> and <span class="math inline">\(Y=2\)</span> help us identify observations with extreme residuals. (For large sample sizes these reference lines can be placed at <span class="math inline">\(Y=-3\)</span> and <span class="math inline">\(Y=3\)</span>.) There are a few observations that have residuals that are more than two standard errors from the mean. This indicates students that have relatively high (positive residual) or low (negative residual) GPAs given the time they spend each week on homework and their parent education level.</p>
 <p><br></p>
@@ -713,7 +737,7 @@ Y_i = \beta_0 + \beta_1(X_{1i}) + \beta_2(X_{2i}) + \ldots + \beta_k(X_{ki}) + \
 <div id="fig-density-multreg" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="03-03-assumptions_files/figure-html/fig-density-multreg-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;13.13: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry, solid line). The density for a ~N(0,1) distribution (black, dashed line) have been included as a comparative reference.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;13.13: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry, solid line). The density for a ~N(0,1) distribution (black, dashed line) has been included as a comparative reference.</figcaption>
 </figure>
 </div>
 </div>
@@ -1136,6 +1160,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./04-00-extending-regression-model.html" class="pagination-link">
+        <span class="nav-page-text">Extending the Regression Model</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

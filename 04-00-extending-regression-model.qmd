@@ -1,0 +1,13 @@
+# Extending the Regression Model
+
+In this unit we will extend the functionality of the regression model. You will learn how we can use categorical predictors in the regression model. You will also learn about interaction effects and how they can be included in the regression model.
+
+
+```{r}
+#| echo: false
+knitr::include_graphics("figs/04-00-extending-regression-model.png")
+```
+
+
+
+<br /><br />

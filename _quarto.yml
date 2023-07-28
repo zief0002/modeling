@@ -36,6 +36,10 @@ book:
         - 03-01-intro-to-multiple-regression.qmd
         - 03-02-understanding-statistical-control.qmd
         - 03-03-assumptions.qmd
+    - part: 04-00-extending-regression-model.qmd
+      chapters:
+        - 04-01-dichotomous-predictors.qmd
+        - 04-02-polychotomous-predictors.qmd
 
 bibliography: ["assets/modeling.bib", "assets/packages.bib"]
 csl: 'assets/apa-single-spaced.csl'

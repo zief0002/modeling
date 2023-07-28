@@ -72,7 +72,7 @@ Although the distributional assumptions are about the model's errors, we can als
 
 ### Distributional Assumptions are Really About the Residuals
 
-Stating these distributional assumptions in terms of the the conditional distributions of *Y* was useful in helping us visualize them within a typical representation of the regression model through the relationship between *X*- and *Y*-values. Technically, however, all the distributional assumptions are about the conditional distributions of the residuals.^[This is true for other statistical models as well (e.g., ANOVA, *t*-test).] Think about how we compute the residuals:
+Stating these distributional assumptions in terms of the conditional distributions of *Y* was useful in helping us visualize them within a typical representation of the regression model through the relationship between *X*- and *Y*-values. Technically, however, all the distributional assumptions are about the conditional distributions of the residuals.^[This is true for other statistical models as well (e.g., ANOVA, *t*-test).] Think about how we compute the residuals:
 
 $$
 \epsilon_i = Y_i - \hat{Y}_i
@@ -112,7 +112,7 @@ The "i.i.d" stands for *independent and identically distributed*. The mathematic
 
 ## Evaluating the Distributional Assumptions
 
-Before beginning to evaluate the distributional assumptions using our empirical data, it is important to point out that the assumptions are about the residuals *in the population*. Because in most analyses, we only have a sample of data, we can never really evaluate whether these assumptions are true. We can only offer a guess as to whether they are tenable given the data we see. The strongest arguments for justification for meeting any of the distibutional assumptions is a theoretical argument based on existing literature in the discipline. 
+Before beginning to evaluate the distributional assumptions using our empirical data, it is important to point out that the assumptions are about the residuals *in the population*. Because in most analyses, we only have a sample of data, we can never really evaluate whether these assumptions are true. We can only offer a guess as to whether they are tenable given the data we see. The strongest argument for justifying any of the distributional assumptions is a theoretical argument based on existing literature in the discipline. 
 
 <br />
 
@@ -211,11 +211,11 @@ p1 | p2
 
 The definition of independence relies on formal mathematics. Loosely speaking a set of observations is independent if knowing that one observation is above (or below) the mean value in a conditional distribution conveys no information about whether any other observation in the same conditional distribution is above (or below) its mean value. If observations are not independent, we say they are *dependent* or *correlated*.
 
-Independence is not an assumption we can check graphically. To evaluate this assumption we need to know something about the how the data were collected or assigned to values of *X*. Using random chance in the design of the study, to either select observations (random sampling) or assign them to levels of the predictor (random assignment) will guarantee independence of the observations. Outside of this, independence is often difficult to guarantee, and often has to be a logical argument.
+Independence is not an assumption we can check graphically. To evaluate this assumption we need to know something about how the data were collected or assigned to values of *X*. Using random chance in the design of the study, to either select observations (random sampling) or assign them to levels of the predictor (random assignment) will guarantee independence of the observations. Outside of this, independence is often difficult to guarantee, and often has to be a logical argument.
 
 There are a few times that we can ascertain that the independence assumption would be violated. These instances often result from aspects of the data collection process. One such instance common to social science research is when the observations (i.e., cases, subjects) are collected within a physical or spatial proximity to one another. For example, this is typically the case when a researcher gathers a convenience sample based on location, such as sampling students from the same school. Another violation of independence occurs when observations are collected over time (longitudinally), especially when the observations are repeated measures from the same subjects.
 
-One last violation of independence occurs when the observation level used to assign cases to the different predictor values (e.g., treatment or control) does not correspond to the observation level used in the analysis. For example, in educational studies whole classrooms are often assigned to treatment or control. That means that the cases used in the analysis, in order to satisfy the independence assumption, would need to be at the classroom level (e.g., the cases would need to be classroom means), not individual students. This can be deleterious for sample size.
+One last violation of independence occurs when the observation level used to assign cases to the different predictor values (e.g., treatment or control) does not correspond to the observation level used in the analysis. For example, in educational studies whole classrooms are often assigned to treatment or control. That means that the cases used in the analysis, in order to satisfy the independence assumption, would need to be at the classroom level (e.g., the cases would need to be classroom means), not individual students. This can be deleterious for the sample size.
 
 If the independence assumption is violated, almost every value you get in the `tidy()` and `glance()` output---the standard errors, *t*-values, *F*-values, *p*-values, and residual standard errors (RMSE)---are wrong. If you suspect that the independence assumption is violated, then you will need to use a method (not OLS regression) that accommodates non-independence.^[We cover some of these methods in EPsy 8252.]
 
@@ -306,7 +306,7 @@ The marginal distribution in the right-hand plot clearly shows deviation from no
 
 ### Equal Variances
 
-Similar to the assumption about normality, the assumption of equal variances (homoskedasticity) is is less critical than the assumptions of linearity and independence, and only egregious violations of the assumption is problematic for the validity of the regression results.^[Again, there are many transformations of the data that can alleviate this problem.]
+Similar to the assumption about normality, the assumption of equal variances (homoskedasticity) is less critical than the assumptions of linearity and independence, and only egregious violations of the assumption is problematic for the validity of the regression results.^[Again, there are many transformations of the data that can alleviate this problem.]
 
 ```{r}
 #| label: fig-equal-var-residuals
@@ -385,7 +385,7 @@ print(head(aug_a), width = Inf)
 
 The cases in the augmented data frame are in the same order as the cases in the `keith` data frame. For example, the first case had a GPA of 78 and spent 2 hours a week on homework. The augmented data also includes several other useful measures for evaluating regression models. For now, we will focus on the `.fitted` column and the `.resid` column. Those columns contain the fitted values ($\hat{Y_i}$) and the residuals for each case based on the model fitted in `lm.a`.
 
-We will examine two residual plots to help us evaluate the tenability of the assumptions: (1) a density plot of the marginal distribution of residuals, and (2) a scatterplot of the residuals versus the *X*-values. The density plot will allow us to eval;uate the normality assumption, and the scatterplot will allow us to evaluate the linearity and equal variances assumption. As we make these evaluations, remember that we do not have the entire population of residuals (we obtained our residuals by fitting a regression to a sample of data), so we do not expect that our residuals will actually meet the assumptions perfectly (remember, sampling error). Examining the sample residuals, is however, a reasonable way to evaluate the tenability of assumptions in practice. We just have to keep in mind that the sample residuals may deviate a bit from these assumptions.
+We will examine two residual plots to help us evaluate the tenability of the assumptions: (1) a density plot of the marginal distribution of residuals, and (2) a scatterplot of the residuals versus the *X*-values. The density plot will allow us to evaluate the normality assumption, and the scatterplot will allow us to evaluate the linearity and equal variances assumption. As we make these evaluations, remember that we do not have the entire population of residuals (we obtained our residuals by fitting a regression to a sample of data), so we do not expect that our residuals will actually meet the assumptions perfectly (remember, sampling error). Examining the sample residuals, is however, a reasonable way to evaluate the tenability of assumptions in practice. We just have to keep in mind that the sample residuals may deviate a bit from these assumptions.
 
 ```{r out.width="45%", fig.cap="", fig.show='hold'}
 #| label: fig-residuals-emp
@@ -412,7 +412,7 @@ p2 = ggplot(data = aug_a, aes(x = homework, y = .resid)) +
 p1 | p2
 ```
 
-The marginal distribution of residuals looks symmetric and bell-shaped. Based on this plot, the normality assumption seems tenable (or at least there is negligable violation of the assumption). The scatterplot of residuals versus time spent on homework shows random scatter around the line $Y=0$. This suggests that the average residual is roughly 0 at each *X*-value, and that the linearity assumption seems tenable. The range of the residuals at each *X*-value seems similar indicating that the assumption of equal variances is also tenable. Lastly, since the observations were randomly sampled (see [data codebook](http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html)) we believe the independence assumption is satisfied.
+The marginal distribution of residuals looks symmetric and bell-shaped. Based on this plot, the normality assumption seems tenable (or at least there is a negligable violation of the assumption). The scatterplot of residuals versus time spent on homework shows random scatter around the line $Y=0$. This suggests that the average residual is roughly 0 at each *X*-value, and that the linearity assumption seems tenable. The range of the residuals at each *X*-value seems similar indicating that the assumption of equal variances is also tenable. Lastly, since the observations were randomly sampled (see [data codebook](http://zief0002.github.io/epsy-8251/codebooks/keith-gpa.html)) we believe the independence assumption is satisfied.
 
 <br />
 
@@ -529,7 +529,7 @@ p2 = ggplot(data = aug_b, aes(x = .fitted, y = .std.resid)) +
 p1 | p2
 ```
 
-The density plot of the marginal distribution of standardized residuals is unimodal and roughly symmetric. There is deviation from normality, although this deviation seems minor and we note that the assumption of normality is robust to minor violations. The scatterplot shows random scatter around the $Y=0$ line which indicates that the mean residual value is close to 0 (linearity) for all fitted values. The range of the standardized residuals at each fitted value also seem roughly the same indicating that the equal variances assumption is also tenable. Lastly, since the observations were randomly sampled we believe the independence assumption is satisfied.
+The density plot of the marginal distribution of standardized residuals is unimodal and roughly symmetric. There is deviation from normality, although this deviation seems minor and we note that the assumption of normality is robust to minor violations. The scatterplot shows random scatter around the $Y=0$ line which indicates that the mean residual value is close to 0 (linearity) for all fitted values. The range of the standardized residuals at each fitted value also seems roughly the same indicating that the equal variances assumption is also tenable. Lastly, since the observations were randomly sampled we believe the independence assumption is satisfied.
 
 If any of the assumptions (aside from the independence assumption) do not seem reasonably satisfied, you can re-plot the residual plots based on the different simple regression models. (In this case we would look at the residuals versus time spent on homework and then the residuals versus parent education). This might help you identify if one, or both. of the predictors is the cause of the problem.
 
@@ -564,7 +564,7 @@ So far, when we have evaluated the normality assumption we have relied on our in
 
 ```{r}
 #| label: fig-density-multreg
-#| fig-cap: "Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry, solid line). The density for a ~N(0,1) distribution (black, dashed line) have been included as a comparative reference."
+#| fig-cap: "Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry, solid line). The density for a ~N(0,1) distribution (black, dashed line) has been included as a comparative reference."
 # Density plot of the standardized residuals
 ggplot(data = aug_b, aes(x = .std.resid)) +
   stat_density(geom = "line", color = "#c62f4b") +

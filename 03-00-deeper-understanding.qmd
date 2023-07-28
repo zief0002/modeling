@@ -1,6 +1,6 @@
 # Deeper Understanding
 
-In this unit we will deepen your understanding of the regression model. You will learn about using multiplle regression model to describe and infer about the relationship between a quantitative outcome and multiple predictor variables. You will also learn about statistical control. Finally you will learn about the distributional assumption that underlie the regression model.
+In this unit we will deepen your understanding of the regression model. You will learn about using multiple regression model to describe and infer about the relationship between a quantitative outcome and multiple predictor variables. You will also learn about statistical control. Finally you will learn about the distributional assumption that underlie the regression model.
 
 
 ```{r}

@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistical Modeling and Computation for Educational Scientists - 14&nbsp; Dichotomous Categorical Predictors</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04-02-polychotomous-predictors.html" rel="next">
+<link href="./04-00-extending-regression-model.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="assets/sticky-notes.css">
+<link rel="stylesheet" href="assets/table-styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-00-extending-regression-model.html">Extending the Regression Model</a></li><li class="breadcrumb-item"><a href="./04-01-dichotomous-predictors.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dichotomous Categorical Predictors</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Modeling and Computation for Educational Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Front Matter</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistical Computation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-01-r-and-rstudio-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R and RStudio: Installation and Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-02-getting-started-with-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-03-data-structures-in-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structures in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-04-data-wrangling-with-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling with dplyr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-05-visualizing-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./02-00-regression-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-01-simple-regression-description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Simple Linear Regression—Description</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02-ols-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Ordinary Least Squares (OLS) Estimation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-03-correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Correlation and Standardized Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-04-coefficient-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-05-model-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model-Level Inference</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./03-00-deeper-understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deeper Understanding</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-01-intro-to-multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduction to Multiple Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-02-understanding-statistical-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Understanding Statistical Control</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-03-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Distributional Assumptions Underlying the Regression Model</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./04-00-extending-regression-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extending the Regression Model</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-01-dichotomous-predictors.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dichotomous Categorical Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-02-polychotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On This Page</h2>
+   
+  <ul>
+  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link active" data-scroll-target="#data-exploration"><span class="header-section-number">14.1</span> Data Exploration</a></li>
+  <li><a href="#indicator-variables" id="toc-indicator-variables" class="nav-link" data-scroll-target="#indicator-variables"><span class="header-section-number">14.2</span> Indicator Variables</a>
+  <ul class="collapse">
+  <li><a href="#dummy-coding" id="toc-dummy-coding" class="nav-link" data-scroll-target="#dummy-coding"><span class="header-section-number">14.2.1</span> Dummy Coding</a></li>
+  <li><a href="#making-private-schools-the-reference-group" id="toc-making-private-schools-the-reference-group" class="nav-link" data-scroll-target="#making-private-schools-the-reference-group"><span class="header-section-number">14.2.2</span> Making Private Schools the Reference Group</a></li>
+  </ul></li>
+  <li><a href="#assumption-checking" id="toc-assumption-checking" class="nav-link" data-scroll-target="#assumption-checking"><span class="header-section-number">14.3</span> Assumption Checking</a></li>
+  <li><a href="#including-other-predictors" id="toc-including-other-predictors" class="nav-link" data-scroll-target="#including-other-predictors"><span class="header-section-number">14.4</span> Including Other Predictors</a>
+  <ul class="collapse">
+  <li><a href="#analysis-of-covariance-ancova" id="toc-analysis-of-covariance-ancova" class="nav-link" data-scroll-target="#analysis-of-covariance-ancova"><span class="header-section-number">14.4.1</span> Analysis of Covariance (ANCOVA)</a></li>
+  <li><a href="#adjusted-means" id="toc-adjusted-means" class="nav-link" data-scroll-target="#adjusted-means"><span class="header-section-number">14.4.2</span> Adjusted Means</a></li>
+  </ul></li>
+  <li><a href="#one-last-model" id="toc-one-last-model" class="nav-link" data-scroll-target="#one-last-model"><span class="header-section-number">14.5</span> One Last Model</a></li>
+  <li><a href="#assumption-checking-for-the-final-model" id="toc-assumption-checking-for-the-final-model" class="nav-link" data-scroll-target="#assumption-checking-for-the-final-model"><span class="header-section-number">14.6</span> Assumption Checking for the Final Model</a></li>
+  <li><a href="#presenting-results" id="toc-presenting-results" class="nav-link" data-scroll-target="#presenting-results"><span class="header-section-number">14.7</span> Presenting Results</a>
+  <ul class="collapse">
+  <li><a href="#data-narrative" id="toc-data-narrative" class="nav-link" data-scroll-target="#data-narrative"><span class="header-section-number">14.7.1</span> Data Narrative</a></li>
+  <li><a href="#plots-to-display-model-results" id="toc-plots-to-display-model-results" class="nav-link" data-scroll-target="#plots-to-display-model-results"><span class="header-section-number">14.7.2</span> Plots to Display Model Results</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="dummy" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dichotomous Categorical Predictors</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In this chapter, you will learn about how to include dichotomous categorical predictors (i.e., predictors with two levels) in the regression model. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/mn-schools.csv">mn-schools.csv</a> data to examine whether there are differences in graduation rates between public and private colleges and universities (see the <a href="http://zief0002.github.io/epsy-8251/codebooks/mn-schools.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>mn</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(educate)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>mn <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/modeling/main/data/mn-schools.csv"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>mn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["grad"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sector"],"name":[3],"type":["chr"],"align":["left"]},{"label":["sat"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["tuition"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Augsburg College","2":"65.2","3":"Private","4":"1030","5":"39.294"},{"1":"Bethany Lutheran College","2":"52.6","3":"Private","4":"1065","5":"30.480"},{"1":"Bethel University, Saint Paul, MN","2":"73.3","3":"Private","4":"1145","5":"39.400"},{"1":"Carleton College","2":"92.6","3":"Private","4":"1400","5":"54.265"},{"1":"College of Saint Benedict","2":"81.1","3":"Private","4":"1185","5":"43.198"},{"1":"Concordia College at Moorhead","2":"69.4","3":"Private","4":"1145","5":"36.590"},{"1":"Concordia University-Saint Paul","2":"47.9","3":"Private","4":"990","5":"37.795"},{"1":"Crossroads College","2":"26.9","3":"Private","4":"970","5":"25.345"},{"1":"Crown College","2":"51.3","3":"Private","4":"1030","5":"33.210"},{"1":"Gustavus Adolphus College","2":"81.7","3":"Private","4":"1225","5":"43.800"},{"1":"Hamline University","2":"67.8","3":"Private","4":"1090","5":"41.085"},{"1":"Macalester College","2":"87.2","3":"Private","4":"1355","5":"50.984"},{"1":"Martin Luther College","2":"72.8","3":"Private","4":"1125","5":"19.450"},{"1":"Minneapolis College of Art and Design","2":"69.6","3":"Private","4":"1105","5":"41.420"},{"1":"North Central University","2":"40.4","3":"Private","4":"1010","5":"25.698"},{"1":"Northwestern College, Saint Paul, MN","2":"63.6","3":"Private","4":"1105","5":"35.400"},{"1":"Oak Hills Christian College","2":"27.3","3":"Private","4":"890","5":"24.805"},{"1":"Saint Johns University","2":"79.9","3":"Private","4":"1185","5":"41.920"},{"1":"Saint Mary's University of Minnesota","2":"62.4","3":"Private","4":"1070","5":"35.700"},{"1":"St Catherine University","2":"65.4","3":"Private","4":"1050","5":"41.876"},{"1":"St Olaf College","2":"84.9","3":"Private","4":"1285","5":"47.200"},{"1":"The College of Saint Scholastica","2":"63.5","3":"Private","4":"1030","5":"38.756"},{"1":"University of St Thomas, Saint Paul, MN","2":"74.3","3":"Private","4":"1165","5":"44.630"},{"1":"Bemidji State University","2":"42.3","3":"Public","4":"1010","5":"18.057"},{"1":"Minnesota State University Moorhead","2":"44.7","3":"Public","4":"1030","5":"16.800"},{"1":"Minnesota State University-Mankato","2":"49.6","3":"Public","4":"1030","5":"16.294"},{"1":"Saint Cloud State University","2":"48.5","3":"Public","4":"1010","5":"17.050"},{"1":"Southwest Minnesota State University","2":"39.5","3":"Public","4":"1010","5":"18.102"},{"1":"University of Minnesota-Crookston","2":"46.4","3":"Public","4":"1010","5":"19.897"},{"1":"University of Minnesota-Duluth","2":"54.8","3":"Public","4":"1110","5":"21.404"},{"1":"University of Minnesota-Morris","2":"60.3","3":"Public","4":"1165","5":"21.722"},{"1":"University of Minnesota-Twin Cities","2":"70.2","3":"Public","4":"1245","5":"23.058"},{"1":"Winona State University","2":"54.0","3":"Public","4":"1070","5":"19.670"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><br></p>
+<section id="data-exploration" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="data-exploration"><span class="header-section-number">14.1</span> Data Exploration</h2>
+<p>To begin, as always, we will plot the marginal distributions of graduation rates (<code>grad</code>) and educational sector (<code>sector</code>). Since educational sector is a categorical variable, rather than creating a density plot of the marginal distribution, we will create a bar plot. We will also create a scatterplot of graduation rates versus educational sector.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of graduation rates</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> grad)) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#c62f4b"</span>) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Six-year graduation rate"</span>) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar plot of education sector</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sector)) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#c62f4b"</span>) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Educational sector"</span>) <span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frequency"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sector, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Educational sector"</span>) <span class="sc">+</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Six-year graduation rate"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">|</span> p2) <span class="sc">/</span> p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-mn-explore" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-01-dichotomous-predictors_files/figure-html/fig-mn-explore-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;14.1: LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We will also compute the means, standard deviations, and sample sizes for private and public schools.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute summary measures</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mn <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sector) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">mean</span>(grad),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(grad),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">length</span>(grad)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="tbl-mn-explore" class="anchored">
+
+<div id="mctgfesisa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  
+  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: 40%; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" width="40%" bgcolor="#FFFFFF"><caption>Table&nbsp;14.1:  <p>Mean (M), standard deviation (SD), and sample size (N) of the
+six-year graduation rates for 33 Minnesota colleges and universities
+conditioned on educational sector.</p> </caption>
+  <thead style="border-style: none;">
+    
+    <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Sector" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left">Sector</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="M" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: center;" bgcolor="#FFFFFF" valign="bottom" align="center">M</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="SD" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: center;" bgcolor="#FFFFFF" valign="bottom" align="center">SD</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="N" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: center;" bgcolor="#FFFFFF" valign="bottom" align="center">N</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
+    <tr style="border-style: none;"><td headers="Sector" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Private</td>
+<td headers="M" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">65.27</td>
+<td headers="SD" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">17.58</td>
+<td headers="N" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">23</td></tr>
+    <tr style="border-style: none;"><td headers="Sector" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Public</td>
+<td headers="M" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">51.03</td>
+<td headers="SD" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">9.16</td>
+<td headers="N" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">10</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>We note a couple differences in the distribution of graduation rates between public and private schools. First, the mean graduation rates are different. Private schools have a graduation rate that is, on average, 14.2 percentage points higher than public schools. There is also more variation in private schools’ graduation rates than in public schools’ graduation rates. Lastly, we note that the sample sizes are not equal. There are 13 more private schools than there are public schools in the data set.</p>
+<p><br></p>
+</section>
+<section id="indicator-variables" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="indicator-variables"><span class="header-section-number">14.2</span> Indicator Variables</h2>
+<p>Before we can compute correlations or fit a regression model, we need to convert educational sector into a numeric variable. In this numeric variable, we will assign the public schools one value, and the private schools another value. The numbers are just stand-ins for the category. As such, they are referred to as <em>indicator variables</em>, since the numerical values only indicate a category.</p>
+<p>For example, here we will code public schools as 5 and private schools as 10. To create this new indicator variable, we <code>mutate()</code> a new column (called <code>indicator</code>) onto our <code>mn</code> data frame that takes the value of 5 if <code>sector</code> is <code>Public</code> and 10 if <code>sector</code> is <code>Private</code>. Here we use the <code>if_else()</code> function to carry out this logic.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create indicator variable</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mn <span class="ot">=</span> mn <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">indicator =</span> <span class="fu">if_else</span>(sector <span class="sc">==</span> <span class="st">"Public"</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View data frame</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>mn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["grad"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sector"],"name":[3],"type":["chr"],"align":["left"]},{"label":["sat"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["tuition"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["indicator"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Augsburg College","2":"65.2","3":"Private","4":"1030","5":"39.294","6":"10"},{"1":"Bethany Lutheran College","2":"52.6","3":"Private","4":"1065","5":"30.480","6":"10"},{"1":"Bethel University, Saint Paul, MN","2":"73.3","3":"Private","4":"1145","5":"39.400","6":"10"},{"1":"Carleton College","2":"92.6","3":"Private","4":"1400","5":"54.265","6":"10"},{"1":"College of Saint Benedict","2":"81.1","3":"Private","4":"1185","5":"43.198","6":"10"},{"1":"Concordia College at Moorhead","2":"69.4","3":"Private","4":"1145","5":"36.590","6":"10"},{"1":"Concordia University-Saint Paul","2":"47.9","3":"Private","4":"990","5":"37.795","6":"10"},{"1":"Crossroads College","2":"26.9","3":"Private","4":"970","5":"25.345","6":"10"},{"1":"Crown College","2":"51.3","3":"Private","4":"1030","5":"33.210","6":"10"},{"1":"Gustavus Adolphus College","2":"81.7","3":"Private","4":"1225","5":"43.800","6":"10"},{"1":"Hamline University","2":"67.8","3":"Private","4":"1090","5":"41.085","6":"10"},{"1":"Macalester College","2":"87.2","3":"Private","4":"1355","5":"50.984","6":"10"},{"1":"Martin Luther College","2":"72.8","3":"Private","4":"1125","5":"19.450","6":"10"},{"1":"Minneapolis College of Art and Design","2":"69.6","3":"Private","4":"1105","5":"41.420","6":"10"},{"1":"North Central University","2":"40.4","3":"Private","4":"1010","5":"25.698","6":"10"},{"1":"Northwestern College, Saint Paul, MN","2":"63.6","3":"Private","4":"1105","5":"35.400","6":"10"},{"1":"Oak Hills Christian College","2":"27.3","3":"Private","4":"890","5":"24.805","6":"10"},{"1":"Saint Johns University","2":"79.9","3":"Private","4":"1185","5":"41.920","6":"10"},{"1":"Saint Mary's University of Minnesota","2":"62.4","3":"Private","4":"1070","5":"35.700","6":"10"},{"1":"St Catherine University","2":"65.4","3":"Private","4":"1050","5":"41.876","6":"10"},{"1":"St Olaf College","2":"84.9","3":"Private","4":"1285","5":"47.200","6":"10"},{"1":"The College of Saint Scholastica","2":"63.5","3":"Private","4":"1030","5":"38.756","6":"10"},{"1":"University of St Thomas, Saint Paul, MN","2":"74.3","3":"Private","4":"1165","5":"44.630","6":"10"},{"1":"Bemidji State University","2":"42.3","3":"Public","4":"1010","5":"18.057","6":"5"},{"1":"Minnesota State University Moorhead","2":"44.7","3":"Public","4":"1030","5":"16.800","6":"5"},{"1":"Minnesota State University-Mankato","2":"49.6","3":"Public","4":"1030","5":"16.294","6":"5"},{"1":"Saint Cloud State University","2":"48.5","3":"Public","4":"1010","5":"17.050","6":"5"},{"1":"Southwest Minnesota State University","2":"39.5","3":"Public","4":"1010","5":"18.102","6":"5"},{"1":"University of Minnesota-Crookston","2":"46.4","3":"Public","4":"1010","5":"19.897","6":"5"},{"1":"University of Minnesota-Duluth","2":"54.8","3":"Public","4":"1110","5":"21.404","6":"5"},{"1":"University of Minnesota-Morris","2":"60.3","3":"Public","4":"1165","5":"21.722","6":"5"},{"1":"University of Minnesota-Twin Cities","2":"70.2","3":"Public","4":"1245","5":"23.058","6":"5"},{"1":"Winona State University","2":"54.0","3":"Public","4":"1070","5":"19.670","6":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Now, we can then use this new indicator variable in correlation and regression analyses.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mn <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(grad, indicator) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fashion</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["noquote"],"align":["right"]},{"label":["grad"],"name":[2],"type":["noquote"],"align":["right"]},{"label":["indicator"],"name":[3],"type":["noquote"],"align":["right"]}],"data":[{"1":"grad","2":"","3":".397"},{"1":"indicator","2":".397","3":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The correlation between educational sector and graduation rate is small and positive, indicating that institutions with higher graduation rates tend to have higher values on the indicator variable. Since there are only two values mapped to the <code>sector</code> variable, this implies that institutions with higher graduation rates tend to be private institutions.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> indicator, <span class="at">data =</span> mn)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.a) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.158         0.130  15.6      5.80  0.0222     1  -136.  279.  283.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    7552.          31    33</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"36.794783","3":"10.39432","4":"3.539895","5":"0.001287468"},{"1":"indicator","2":"2.847043","3":"1.18245","4":"2.407750","5":"0.022191246"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="fyi">
+<p>Chaining the <code>glance()</code> output in the <code>print()</code> function allows us to include the argument <code>width=Inf</code>. This argument prints ALL the columns from the <code>glance()</code> output instead of truncating the output. This hack can also be used to print all of the columns from a data frame that gets truncated as well.</p>
+</div>
+<p>Differences in these indicator values (i.e., educational sector) explain 15.75% of the variation in graduation rates. This is statistically reliable, <span class="math inline">\(F(1, 31) = 5.80\)</span>, <span class="math inline">\(p=0.022\)</span>. Interpreting the coefficients,</p>
+<ul>
+<li>The average graduation rate for schools coded as 0 on the indicator variable is 36.8% (<span class="math inline">\(t(31)=3.54\)</span>, <span class="math inline">\(p = 0.001\)</span>). Since the mapping we used (5 and 10) did not include 0, the intercept and inferential information related to the intercept are meaningless.</li>
+<li>Institutions that have coding values that are one-unit differences have, on average, a graduation rate that is 2.85 percentage points different (<span class="math inline">\(t(31)=2.41\)</span>, <span class="math inline">\(p=0.022\)</span>). The slope information in its current form is also meaningless. But, since the model is linear, we can translate the slope information to be more meaningful. In our mapping, the difference between public and private schools was a 5-point difference. We can use this to compute the difference in graduation rates between these two sectors,</li>
+</ul>
+<p><span class="math display">\[
+\mathrm{Difference} = 5 \times 2.85 = 14.3
+\]</span></p>
+<p>We could also have substituted the mapped values of 5 and 10 into the fitted regression equation to obtain the same result. Substituting the indicator values into the fitted equation, we find the predicted average graduation rates for public and private schools:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathbf{Private:~}\hat{\mathrm{Graduation~Rate}_i} &amp;= 36.8 + 2.85(10) = 65.3 \\[2ex]
+\mathbf{Public:~}\hat{\mathrm{Graduation~Rate}_i} &amp;= 36.8 + 2.85(5) = 51 \\[2ex]
+\end{split}
+\]</span></p>
+<p>The difference in these average graduation rates comes out to 14.3. The <em>p</em>-value associated with the slope coefficient suggests that this difference (or any difference between different values of <em>X</em> computed from the model) is more than we expect because of chance, so we conclude that there is a difference between the average graduation rates of public and private schools. What if we would have used different values in the indicator variable. Let’s try this mapping:</p>
+<p><span class="math display">\[
+\mathrm{Indicator}_2 = \begin{cases}
+2 \quad \mathrm{for~Public}\\
+7 \quad \mathrm{for~Private}
+\end{cases}
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create indicator variable</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mn <span class="ot">=</span> mn <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">indicator_2 =</span> <span class="fu">if_else</span>(sector <span class="sc">==</span> <span class="st">"Public"</span>, <span class="dv">2</span>, <span class="dv">7</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View data frame</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>mn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["grad"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sector"],"name":[3],"type":["chr"],"align":["left"]},{"label":["sat"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["tuition"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["indicator"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["indicator_2"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"Augsburg College","2":"65.2","3":"Private","4":"1030","5":"39.294","6":"10","7":"7"},{"1":"Bethany Lutheran College","2":"52.6","3":"Private","4":"1065","5":"30.480","6":"10","7":"7"},{"1":"Bethel University, Saint Paul, MN","2":"73.3","3":"Private","4":"1145","5":"39.400","6":"10","7":"7"},{"1":"Carleton College","2":"92.6","3":"Private","4":"1400","5":"54.265","6":"10","7":"7"},{"1":"College of Saint Benedict","2":"81.1","3":"Private","4":"1185","5":"43.198","6":"10","7":"7"},{"1":"Concordia College at Moorhead","2":"69.4","3":"Private","4":"1145","5":"36.590","6":"10","7":"7"},{"1":"Concordia University-Saint Paul","2":"47.9","3":"Private","4":"990","5":"37.795","6":"10","7":"7"},{"1":"Crossroads College","2":"26.9","3":"Private","4":"970","5":"25.345","6":"10","7":"7"},{"1":"Crown College","2":"51.3","3":"Private","4":"1030","5":"33.210","6":"10","7":"7"},{"1":"Gustavus Adolphus College","2":"81.7","3":"Private","4":"1225","5":"43.800","6":"10","7":"7"},{"1":"Hamline University","2":"67.8","3":"Private","4":"1090","5":"41.085","6":"10","7":"7"},{"1":"Macalester College","2":"87.2","3":"Private","4":"1355","5":"50.984","6":"10","7":"7"},{"1":"Martin Luther College","2":"72.8","3":"Private","4":"1125","5":"19.450","6":"10","7":"7"},{"1":"Minneapolis College of Art and Design","2":"69.6","3":"Private","4":"1105","5":"41.420","6":"10","7":"7"},{"1":"North Central University","2":"40.4","3":"Private","4":"1010","5":"25.698","6":"10","7":"7"},{"1":"Northwestern College, Saint Paul, MN","2":"63.6","3":"Private","4":"1105","5":"35.400","6":"10","7":"7"},{"1":"Oak Hills Christian College","2":"27.3","3":"Private","4":"890","5":"24.805","6":"10","7":"7"},{"1":"Saint Johns University","2":"79.9","3":"Private","4":"1185","5":"41.920","6":"10","7":"7"},{"1":"Saint Mary's University of Minnesota","2":"62.4","3":"Private","4":"1070","5":"35.700","6":"10","7":"7"},{"1":"St Catherine University","2":"65.4","3":"Private","4":"1050","5":"41.876","6":"10","7":"7"},{"1":"St Olaf College","2":"84.9","3":"Private","4":"1285","5":"47.200","6":"10","7":"7"},{"1":"The College of Saint Scholastica","2":"63.5","3":"Private","4":"1030","5":"38.756","6":"10","7":"7"},{"1":"University of St Thomas, Saint Paul, MN","2":"74.3","3":"Private","4":"1165","5":"44.630","6":"10","7":"7"},{"1":"Bemidji State University","2":"42.3","3":"Public","4":"1010","5":"18.057","6":"5","7":"2"},{"1":"Minnesota State University Moorhead","2":"44.7","3":"Public","4":"1030","5":"16.800","6":"5","7":"2"},{"1":"Minnesota State University-Mankato","2":"49.6","3":"Public","4":"1030","5":"16.294","6":"5","7":"2"},{"1":"Saint Cloud State University","2":"48.5","3":"Public","4":"1010","5":"17.050","6":"5","7":"2"},{"1":"Southwest Minnesota State University","2":"39.5","3":"Public","4":"1010","5":"18.102","6":"5","7":"2"},{"1":"University of Minnesota-Crookston","2":"46.4","3":"Public","4":"1010","5":"19.897","6":"5","7":"2"},{"1":"University of Minnesota-Duluth","2":"54.8","3":"Public","4":"1110","5":"21.404","6":"5","7":"2"},{"1":"University of Minnesota-Morris","2":"60.3","3":"Public","4":"1165","5":"21.722","6":"5","7":"2"},{"1":"University of Minnesota-Twin Cities","2":"70.2","3":"Public","4":"1245","5":"23.058","6":"5","7":"2"},{"1":"Winona State University","2":"54.0","3":"Public","4":"1070","5":"19.670","6":"5","7":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Using this second indicator to compute correlations and in the regression model, we find:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mn <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(grad, indicator_2) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fashion</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["noquote"],"align":["right"]},{"label":["grad"],"name":[2],"type":["noquote"],"align":["right"]},{"label":["indicator_2"],"name":[3],"type":["noquote"],"align":["right"]}],"data":[{"1":"grad","2":"","3":".397"},{"1":"indicator_2","2":".397","3":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>lm.b <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> indicator_2, <span class="at">data =</span> mn)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.b) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.158         0.130  15.6      5.80  0.0222     1  -136.  279.  283.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    7552.          31    33</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"45.335913","3":"7.031714","4":"6.447348","5":"0.0000003458879"},{"1":"indicator_2","2":"2.847043","3":"1.182450","4":"2.407750","5":"0.0221912462853"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The correlation between educational sector and graduation rate and the model-level output is exactly the same. Institutions with higher graduation rates tend to have higher values on the indicator variable (private institutions). Differences in these indicator values (i.e., educational sector) explain 15.75% of the variation in graduation rates. This is statistically reliable, <span class="math inline">\(F(1, 31) = 5.80\)</span>, <span class="math inline">\(p=0.022\)</span>.</p>
+<p>In the coefficient-level output, the slope output is the same as when we used the values of 5 and 10 (<span class="math inline">\(\hat\beta_1=2.85\)</span>, <span class="math inline">\(t(31)=2.41\)</span>, <span class="math inline">\(p=0.022\)</span>). Institutions that have coding values that are one-unit differences have, on average, a graduation rate that is 2.85 percentage points different (<span class="math inline">\(t(31)=2.41\)</span>, <span class="math inline">\(p=0.022\)</span>). Substituting the indicator values into the fitted equation, we find the predicted average graduation rates for public and private schools:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathbf{Private:~}\hat{\mathrm{Graduation~Rate}_i} &amp;= 45.3 + 2.85(7) = 65.25 \\[2ex]
+\mathbf{Public:~}\hat{\mathrm{Graduation~Rate}_i} &amp;= 45.3 + 2.85(2) = 51 \\[2ex]
+\end{split}
+\]</span></p>
+<p>The intercept coefficient, and subsequently inferential output, are different. This is because in our second indicator variable, the code of 0 is in a different location relative to the values of 2 and 7 than it was when we used 5 and 10. In reality, it doesn’t matter because 0 is not a legitimate mapping in either indicator variable (remember the values represent categories!).</p>
+<p><br></p>
+<section id="dummy-coding" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="dummy-coding"><span class="header-section-number">14.2.1</span> Dummy Coding</h3>
+<p>Since regardless of the values we choose for the indicator variable, we get similar results we can make use of the interpretational value of the intercept and slope to help select our mapped values. For example, since the intercept is the average <em>Y</em>-value for an <em>X</em>-value of 0, we should choose one of our mapped values to be 0. Also, since the slope gives us a difference in the average <em>Y</em>-value for a one-unit difference in <em>X</em>, we can choose our other value to correspond to a mapping that is one-unit higher than 0, namely 1. Our mapping is then,</p>
+<p><span class="math display">\[
+\mathrm{Indicator} = \begin{cases}
+0 \quad \mathrm{for~Public}\\
+1 \quad \mathrm{for~Private}
+\end{cases}
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create indicator variable</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mn <span class="ot">=</span> mn <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">private =</span> <span class="fu">if_else</span>(sector <span class="sc">==</span> <span class="st">"Private"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View data frame</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>mn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["grad"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sector"],"name":[3],"type":["chr"],"align":["left"]},{"label":["sat"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["tuition"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["indicator"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["indicator_2"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["private"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"Augsburg College","2":"65.2","3":"Private","4":"1030","5":"39.294","6":"10","7":"7","8":"1"},{"1":"Bethany Lutheran College","2":"52.6","3":"Private","4":"1065","5":"30.480","6":"10","7":"7","8":"1"},{"1":"Bethel University, Saint Paul, MN","2":"73.3","3":"Private","4":"1145","5":"39.400","6":"10","7":"7","8":"1"},{"1":"Carleton College","2":"92.6","3":"Private","4":"1400","5":"54.265","6":"10","7":"7","8":"1"},{"1":"College of Saint Benedict","2":"81.1","3":"Private","4":"1185","5":"43.198","6":"10","7":"7","8":"1"},{"1":"Concordia College at Moorhead","2":"69.4","3":"Private","4":"1145","5":"36.590","6":"10","7":"7","8":"1"},{"1":"Concordia University-Saint Paul","2":"47.9","3":"Private","4":"990","5":"37.795","6":"10","7":"7","8":"1"},{"1":"Crossroads College","2":"26.9","3":"Private","4":"970","5":"25.345","6":"10","7":"7","8":"1"},{"1":"Crown College","2":"51.3","3":"Private","4":"1030","5":"33.210","6":"10","7":"7","8":"1"},{"1":"Gustavus Adolphus College","2":"81.7","3":"Private","4":"1225","5":"43.800","6":"10","7":"7","8":"1"},{"1":"Hamline University","2":"67.8","3":"Private","4":"1090","5":"41.085","6":"10","7":"7","8":"1"},{"1":"Macalester College","2":"87.2","3":"Private","4":"1355","5":"50.984","6":"10","7":"7","8":"1"},{"1":"Martin Luther College","2":"72.8","3":"Private","4":"1125","5":"19.450","6":"10","7":"7","8":"1"},{"1":"Minneapolis College of Art and Design","2":"69.6","3":"Private","4":"1105","5":"41.420","6":"10","7":"7","8":"1"},{"1":"North Central University","2":"40.4","3":"Private","4":"1010","5":"25.698","6":"10","7":"7","8":"1"},{"1":"Northwestern College, Saint Paul, MN","2":"63.6","3":"Private","4":"1105","5":"35.400","6":"10","7":"7","8":"1"},{"1":"Oak Hills Christian College","2":"27.3","3":"Private","4":"890","5":"24.805","6":"10","7":"7","8":"1"},{"1":"Saint Johns University","2":"79.9","3":"Private","4":"1185","5":"41.920","6":"10","7":"7","8":"1"},{"1":"Saint Mary's University of Minnesota","2":"62.4","3":"Private","4":"1070","5":"35.700","6":"10","7":"7","8":"1"},{"1":"St Catherine University","2":"65.4","3":"Private","4":"1050","5":"41.876","6":"10","7":"7","8":"1"},{"1":"St Olaf College","2":"84.9","3":"Private","4":"1285","5":"47.200","6":"10","7":"7","8":"1"},{"1":"The College of Saint Scholastica","2":"63.5","3":"Private","4":"1030","5":"38.756","6":"10","7":"7","8":"1"},{"1":"University of St Thomas, Saint Paul, MN","2":"74.3","3":"Private","4":"1165","5":"44.630","6":"10","7":"7","8":"1"},{"1":"Bemidji State University","2":"42.3","3":"Public","4":"1010","5":"18.057","6":"5","7":"2","8":"0"},{"1":"Minnesota State University Moorhead","2":"44.7","3":"Public","4":"1030","5":"16.800","6":"5","7":"2","8":"0"},{"1":"Minnesota State University-Mankato","2":"49.6","3":"Public","4":"1030","5":"16.294","6":"5","7":"2","8":"0"},{"1":"Saint Cloud State University","2":"48.5","3":"Public","4":"1010","5":"17.050","6":"5","7":"2","8":"0"},{"1":"Southwest Minnesota State University","2":"39.5","3":"Public","4":"1010","5":"18.102","6":"5","7":"2","8":"0"},{"1":"University of Minnesota-Crookston","2":"46.4","3":"Public","4":"1010","5":"19.897","6":"5","7":"2","8":"0"},{"1":"University of Minnesota-Duluth","2":"54.8","3":"Public","4":"1110","5":"21.404","6":"5","7":"2","8":"0"},{"1":"University of Minnesota-Morris","2":"60.3","3":"Public","4":"1165","5":"21.722","6":"5","7":"2","8":"0"},{"1":"University of Minnesota-Twin Cities","2":"70.2","3":"Public","4":"1245","5":"23.058","6":"5","7":"2","8":"0"},{"1":"Winona State University","2":"54.0","3":"Public","4":"1070","5":"19.670","6":"5","7":"2","8":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Using a 0, and 1 coding for an indicator variable is referred to as <em>dummy coding</em>. Conventionally, we name an indicator variable that employs dummy coding with the category that is mapped to 1. In the syntax, private schools are mapped to 1, and hence the indicator variable is named <code>private</code>. The category mapped to 0 is known as the <em>reference category</em>, or <em>reference group</em>. Here public schools are the reference group.</p>
+<p>Using the dummy coded indicator to compute correlations and fit the regression model, we find:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mn <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(grad, private) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fashion</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["noquote"],"align":["right"]},{"label":["grad"],"name":[2],"type":["noquote"],"align":["right"]},{"label":["private"],"name":[3],"type":["noquote"],"align":["right"]}],"data":[{"1":"grad","2":"","3":".397"},{"1":"private","2":".397","3":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>lm.c <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> private, <span class="at">data =</span> mn)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.c) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.158         0.130  15.6      5.80  0.0222     1  -136.  279.  283.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    7552.          31    33</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"51.03000","3":"4.935825","4":"10.33870","5":"1.437896e-11"},{"1":"private","2":"14.23522","3":"5.912250","4":"2.40775","5":"2.219125e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The correlation between educational sector and graduation rate and the model-level output is exactly the same. Institutions with higher graduation rates tend to have higher values on the indicator variable (private institutions). Differences in these indicator values (i.e., educational sector) explain 15.75% of the variation in graduation rates. This is statistically reliable, <span class="math inline">\(F(1, 31) = 5.80\)</span>, <span class="math inline">\(p=0.022\)</span>.</p>
+<p>The fitted equation is:</p>
+<p><span class="math display">\[
+\hat{\mathrm{Graduation~Rate}_i} = 51 + 14.2(\mathrm{Private_i})
+\]</span></p>
+<p>Interpreting the coefficients,</p>
+<ul>
+<li>The average graduation rate for schools coded as 0 on the indicator variable is 51%.</li>
+<li>Each one-unit difference on the indicator variable has, on average, a graduation rate that is 14.2 percentage points different.</li>
+</ul>
+<p>Since 0 represented the private schools the intercept is the average graduation rate for public schools. In general, when using dummy coding, the intercept will be the average <em>Y</em>-value for the reference group. The inferential test, <span class="math inline">\(H_0:\beta_0=0\)</span>, tests whether the average <em>Y</em>-value for the reference group is 0. (Sometimes this is relevant and other times it is not, depending whether this is of substantive interest.) In our example, we find that the empirical data is not consistent with the average graduation rate for public schools being 0%; <span class="math inline">\(t(31)=10.34\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>.</p>
+<p>The slope coefficient now represents the difference in average graduation rates between public and private schools as their dummy codes were one-unit apart. In general, when using dummy coding, the slope gives the difference between the category labeled 1 and the reference group. The test of the parameter, <span class="math inline">\(H_0:\beta_1=0\)</span>, is a direct test of whether the difference in average graduation rates is different than 0; or that public and private schools have the same graduation rate. Here we find that the empirical data is not consistent with the average graduation rates between public and private schools being the same; <span class="math inline">\(t(31)=2.41\)</span>, <span class="math inline">\(p=0.022\)</span>.</p>
+<p>Putting these contextual queues around the interpretations, we interpret the coefficients as:</p>
+<ul>
+<li>The average graduation rate for public schools is 51%.</li>
+<li>Private schools have a graduation rate that is 14.2 percentage points, on average, higher than public schools.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="making-private-schools-the-reference-group" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="making-private-schools-the-reference-group"><span class="header-section-number">14.2.2</span> Making Private Schools the Reference Group</h3>
+<p>What happens if we had coded the predictor so that private schools were the reference group (coded as 0), and public schools were coded as 1?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create indicator variable</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>mn <span class="ot">=</span> mn <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">public =</span> <span class="fu">if_else</span>(sector <span class="sc">==</span> <span class="st">"Public"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View data frame</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>mn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["grad"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sector"],"name":[3],"type":["chr"],"align":["left"]},{"label":["sat"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["tuition"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["indicator"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["indicator_2"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["private"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["public"],"name":[9],"type":["dbl"],"align":["right"]}],"data":[{"1":"Augsburg College","2":"65.2","3":"Private","4":"1030","5":"39.294","6":"10","7":"7","8":"1","9":"0"},{"1":"Bethany Lutheran College","2":"52.6","3":"Private","4":"1065","5":"30.480","6":"10","7":"7","8":"1","9":"0"},{"1":"Bethel University, Saint Paul, MN","2":"73.3","3":"Private","4":"1145","5":"39.400","6":"10","7":"7","8":"1","9":"0"},{"1":"Carleton College","2":"92.6","3":"Private","4":"1400","5":"54.265","6":"10","7":"7","8":"1","9":"0"},{"1":"College of Saint Benedict","2":"81.1","3":"Private","4":"1185","5":"43.198","6":"10","7":"7","8":"1","9":"0"},{"1":"Concordia College at Moorhead","2":"69.4","3":"Private","4":"1145","5":"36.590","6":"10","7":"7","8":"1","9":"0"},{"1":"Concordia University-Saint Paul","2":"47.9","3":"Private","4":"990","5":"37.795","6":"10","7":"7","8":"1","9":"0"},{"1":"Crossroads College","2":"26.9","3":"Private","4":"970","5":"25.345","6":"10","7":"7","8":"1","9":"0"},{"1":"Crown College","2":"51.3","3":"Private","4":"1030","5":"33.210","6":"10","7":"7","8":"1","9":"0"},{"1":"Gustavus Adolphus College","2":"81.7","3":"Private","4":"1225","5":"43.800","6":"10","7":"7","8":"1","9":"0"},{"1":"Hamline University","2":"67.8","3":"Private","4":"1090","5":"41.085","6":"10","7":"7","8":"1","9":"0"},{"1":"Macalester College","2":"87.2","3":"Private","4":"1355","5":"50.984","6":"10","7":"7","8":"1","9":"0"},{"1":"Martin Luther College","2":"72.8","3":"Private","4":"1125","5":"19.450","6":"10","7":"7","8":"1","9":"0"},{"1":"Minneapolis College of Art and Design","2":"69.6","3":"Private","4":"1105","5":"41.420","6":"10","7":"7","8":"1","9":"0"},{"1":"North Central University","2":"40.4","3":"Private","4":"1010","5":"25.698","6":"10","7":"7","8":"1","9":"0"},{"1":"Northwestern College, Saint Paul, MN","2":"63.6","3":"Private","4":"1105","5":"35.400","6":"10","7":"7","8":"1","9":"0"},{"1":"Oak Hills Christian College","2":"27.3","3":"Private","4":"890","5":"24.805","6":"10","7":"7","8":"1","9":"0"},{"1":"Saint Johns University","2":"79.9","3":"Private","4":"1185","5":"41.920","6":"10","7":"7","8":"1","9":"0"},{"1":"Saint Mary's University of Minnesota","2":"62.4","3":"Private","4":"1070","5":"35.700","6":"10","7":"7","8":"1","9":"0"},{"1":"St Catherine University","2":"65.4","3":"Private","4":"1050","5":"41.876","6":"10","7":"7","8":"1","9":"0"},{"1":"St Olaf College","2":"84.9","3":"Private","4":"1285","5":"47.200","6":"10","7":"7","8":"1","9":"0"},{"1":"The College of Saint Scholastica","2":"63.5","3":"Private","4":"1030","5":"38.756","6":"10","7":"7","8":"1","9":"0"},{"1":"University of St Thomas, Saint Paul, MN","2":"74.3","3":"Private","4":"1165","5":"44.630","6":"10","7":"7","8":"1","9":"0"},{"1":"Bemidji State University","2":"42.3","3":"Public","4":"1010","5":"18.057","6":"5","7":"2","8":"0","9":"1"},{"1":"Minnesota State University Moorhead","2":"44.7","3":"Public","4":"1030","5":"16.800","6":"5","7":"2","8":"0","9":"1"},{"1":"Minnesota State University-Mankato","2":"49.6","3":"Public","4":"1030","5":"16.294","6":"5","7":"2","8":"0","9":"1"},{"1":"Saint Cloud State University","2":"48.5","3":"Public","4":"1010","5":"17.050","6":"5","7":"2","8":"0","9":"1"},{"1":"Southwest Minnesota State University","2":"39.5","3":"Public","4":"1010","5":"18.102","6":"5","7":"2","8":"0","9":"1"},{"1":"University of Minnesota-Crookston","2":"46.4","3":"Public","4":"1010","5":"19.897","6":"5","7":"2","8":"0","9":"1"},{"1":"University of Minnesota-Duluth","2":"54.8","3":"Public","4":"1110","5":"21.404","6":"5","7":"2","8":"0","9":"1"},{"1":"University of Minnesota-Morris","2":"60.3","3":"Public","4":"1165","5":"21.722","6":"5","7":"2","8":"0","9":"1"},{"1":"University of Minnesota-Twin Cities","2":"70.2","3":"Public","4":"1245","5":"23.058","6":"5","7":"2","8":"0","9":"1"},{"1":"Winona State University","2":"54.0","3":"Public","4":"1070","5":"19.670","6":"5","7":"2","8":"0","9":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Using the dummy coded indicator to compute correlations and fit the regression model, we find:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>mn <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(grad, public) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fashion</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["noquote"],"align":["right"]},{"label":["grad"],"name":[2],"type":["noquote"],"align":["right"]},{"label":["public"],"name":[3],"type":["noquote"],"align":["right"]}],"data":[{"1":"grad","2":"","3":"-.397"},{"1":"public","2":"-.397","3":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>lm.d <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> public, <span class="at">data =</span> mn)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.d) <span class="sc">|&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.158         0.130  15.6      5.80  0.0222     1  -136.  279.  283.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    7552.          31    33</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"65.26522","3":"3.254586","4":"20.05331","5":"2.608064e-19"},{"1":"public","2":"-14.23522","3":"5.912250","4":"-2.40775","5":"2.219125e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The correlations and model-level output are exactly the same, except that the sign on the correlation is now negative since we switched the order of the coding so that private schools were mapped to a lower value (0) and public school were mapped to a higher value (1). The fitted equation is:</p>
+<p><span class="math display">\[
+\hat{\mathrm{Graduation~Rate}_i} = 65.3 - 14.2(\mathrm{Public_i})
+\]</span></p>
+<p>Interpreting the coefficients,</p>
+<ul>
+<li>The average graduation rate for private schools is 65.3%.</li>
+<li>Public schools have a graduation rate that is 14.2 percentage points, on average, lower than private schools.</li>
+</ul>
+<p>The inferential test for the intercept now examines whether the average graduation rate for private schools (reference group) is different than 0%. The test for slope is still evaluating whether there is a difference between the average graduation rates between private and public schools. Although the coefficient has the opposite sign, the <em>p</em>-value is still identical.</p>
+<p><br></p>
+</section>
+</section>
+<section id="assumption-checking" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="assumption-checking"><span class="header-section-number">14.3</span> Assumption Checking</h2>
+<p>Like any other regression model, we need to examine whether or not the model’s assumptions are tenable. We look at (1) the marginal distribution of the standardized residuals, and (2) the scatterplot of the standardized residuals versus the model’s fitted values. The only difference is that <em>with only categorical predictors in the model, we do not have to worry about the linearity assumption</em>. Since there is no ordinal quality to the predictor space, the average residual will always be zero when there are only categorical predictors in the model. (Once we add any quantitative covariates we will again have to evaluate this assumption.)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain the fitted values and residuals</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>aug_d <span class="ot">=</span> <span class="fu">augment</span>(lm.d)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View augmented data frame</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aug_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-assumptions-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div data-pagedtable="false">
+
+<script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["grad"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["public"],"name":[2],"type":["dbl"],"align":["right"]},{"label":[".fitted"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".resid"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".hat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":[".sigma"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".cooksd"],"name":[7],"type":["dbl"],"align":["right"]},{"label":[".std.resid"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"65.2","2":"0","3":"65.26522","4":"-0.06521739","5":"0.04347826","6":"15.86645","7":"0.0000004148202","8":"-0.004272246"},{"1":"52.6","2":"0","3":"65.26522","4":"-12.66521739","5":"0.04347826","6":"15.68931","7":"0.0156443790139","8":"-0.829670222"},{"1":"73.3","2":"0","3":"65.26522","4":"8.03478261","5":"0.04347826","6":"15.79540","7":"0.0062962402814","8":"0.526340738"},{"1":"92.6","2":"0","3":"65.26522","4":"27.33478261","5":"0.04347826","6":"15.02351","7":"0.0728726026129","8":"1.790640811"},{"1":"81.1","2":"0","3":"65.26522","4":"15.83478261","5":"0.04347826","6":"15.58867","7":"0.0244544130063","8":"1.037301389"},{"1":"69.4","2":"0","3":"65.26522","4":"4.13478261","5":"0.04347826","6":"15.84767","7":"0.0016673946113","8":"0.270860412"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;14.2: LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed.</figcaption>
+</figure>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of the marginal standardized residuals</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_d, <span class="fu">aes</span>(<span class="at">x =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_confidence</span>(<span class="at">model =</span><span class="st">"normal"</span>) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#c62f4b"</span>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Standardized residual"</span>) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot of the standardized residuals versus the fitted values</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_d, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted value"</span>) <span class="sc">+</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residual"</span>)</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-assumptions-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-01-dichotomous-predictors_files/figure-html/fig-assumptions-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;14.3: LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>From the scatterplot, we see that there is some question about the tenability of the equal variances assumption. The variation in the private schools’ residuals seems greater than the variation in the public schools’ residuals. (This was foreshadowed earlier when we examined the standard deviations of the two distributions.) This difference in variation, however, might be due to the extreme private school that has a residual that is less than <span class="math inline">\(-2\)</span>. Additionally, this assumption violation might not be a problem once we add other predictors to the model. So, for now, we will move on, but will re-check this assumption after fitting additional models.</p>
+<p>The <em>marginal</em> distribution of the residuals does not show evidence of mis-fit with the normality assumption. Since the predictor has only two levels, we could actually examine the distribution of residuals for each sector. Here we do so as a pedagogical example, but note that once other non-categorical predictors are included, this can no longer be done. To examine the conditional distributions, we will filter the augmented data by sector and then plot each sector’s residuals separately.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get private schools</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>aug_private <span class="ot">=</span> aug_d <span class="sc">|&gt;</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(public <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get public schools</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>aug_public <span class="ot">=</span> aug_d <span class="sc">|&gt;</span> </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(public <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of the private schools' standardized residuals</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_private, <span class="fu">aes</span>(<span class="at">x =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_confidence</span>(<span class="at">model =</span> <span class="st">"normal"</span>) <span class="sc">+</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#c62f4b"</span>) <span class="sc">+</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Standardized residual"</span>) <span class="sc">+</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of the public schools' standardized residuals</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_public, <span class="fu">aes</span>(<span class="at">x =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_confidence</span>(<span class="at">model =</span> <span class="st">"normal"</span>) <span class="sc">+</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#c62f4b"</span>) <span class="sc">+</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Standardized residual"</span>) <span class="sc">+</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-assumptions-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-01-dichotomous-predictors_files/figure-html/fig-assumptions-2-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;14.4: Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The normality assumption seems tenable since neither <em>conditional</em> distribution of residuals seem to indicate more mis-fit to normality than would be expected from sampling error. Lastly, we wonder if the independence assumption is tenable. It might seem reasonable that there is some dependence among graduation rates given that multiple schools may be related to one another (e.g., University of Minnesota–Twin Cities and Duluth). Dependence also arises because of spatial proximity. Since schools are located in particular geographic areas within Minnesota, this might also be a problem.</p>
+<p><br></p>
+</section>
+<section id="including-other-predictors" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="including-other-predictors"><span class="header-section-number">14.4</span> Including Other Predictors</h2>
+<p>Based on the results from fitting the simple regression model, there seems to be differences between the average graduation rate between public and private institutions. It may, however, be that the private schools are just more selective and this selectivity is the cause of the differences in graduation rates. To examine this, we will include the median SAT score (<code>sat</code>) as a covariate into our model. So now, the regression model will include both the <code>public</code> dummy coded predictor and the <code>sat</code> predictors in an effort to explain variation in graduation rates.</p>
+<p>Prior to fitting the regression model, we will examine the correlation matrix.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>mn <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(grad, private, sat) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fashion</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["noquote"],"align":["right"]},{"label":["grad"],"name":[2],"type":["noquote"],"align":["right"]},{"label":["private"],"name":[3],"type":["noquote"],"align":["right"]},{"label":["sat"],"name":[4],"type":["noquote"],"align":["right"]}],"data":[{"1":"grad","2":"","3":".397","4":".889"},{"1":"private","2":".397","3":"","4":".194"},{"1":"sat","2":".889","3":".194","4":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>From the correlation matrix we see:</p>
+<ul>
+<li>Private institutions tend to have higher graduation rates than public institutions (<span class="math inline">\(r = 0.397\)</span>).</li>
+<li>Institutions with higher median SAT scores tend to have higher graduation rates (<span class="math inline">\(r=0.889\)</span>).</li>
+<li>Private institutions tend to have higher median SAT scores than public institutions (<span class="math inline">\(r = 0.194\)</span>).</li>
+</ul>
+<p>Fitting the regression model</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>lm.e <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> sat <span class="sc">+</span> private, <span class="at">data =</span> mn)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.e) <span class="sc">|&gt;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.843         0.832  6.86      80.3 9.05e-13     2  -109.  226.  232.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    1411.          30    33</code></pre>
+</div>
+</div>
+<p>Differences in educational sector and median SAT score explain 84.26% of the variation in graduation rates. This is statistically reliable, <span class="math inline">\(F(2, 30) = 80.27\)</span>, <span class="math inline">\(p&lt;0.001\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-84.4350298","3":"12.05387496","4":"-7.004804","5":"8.755352e-08"},{"1":"sat","2":"0.1267213","3":"0.01109178","4":"11.424789","5":"1.884787e-12"},{"1":"private","2":"8.3784912","3":"2.64822241","4":"3.163817","5":"3.554453e-03"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The fitted equation is:</p>
+<p><span class="math display">\[
+\hat{\mathrm{Graduation~Rate}_i} = -84.4 + 0.13(\mathrm{SAT}_i) + 8.4(\mathrm{Private_i})
+\]</span></p>
+<p>Interpreting the coefficients,</p>
+<ul>
+<li>The average graduation rate for private schools that have a median SAT score of 0 is <span class="math inline">\(-84.4\)</span>%. (extrapolation)</li>
+<li>A ten-point difference in median SAT score is associated with a 1.3 percentage point difference in graduation rate, controlling for differences in educational sector. (Here we interpret using a factor of 10.)</li>
+<li>Private schools, on average, have a graduation rate that is 8.4 percentage points higher than public schools (reference group), controlling for differences in median SAT scores.</li>
+</ul>
+<p>Based on our research question, the focal predictor in this model is the coefficient and test associated with <code>private</code>. The <span class="math inline">\(t\)</span>-test associated with the partial slope for <code>private</code> suggests that the <em>controlled difference</em> in means between private and public schools is likely not 0 (<span class="math inline">\(p=0.004\)</span>) given the empirical evidence. Thus, even after controlling for differences in institution selectivity, we believe there is still a difference in private and public schools’ graduation rates, on average.</p>
+<p><br></p>
+<section id="analysis-of-covariance-ancova" class="level3" data-number="14.4.1">
+<h3 data-number="14.4.1" class="anchored" data-anchor-id="analysis-of-covariance-ancova"><span class="header-section-number">14.4.1</span> Analysis of Covariance (ANCOVA)</h3>
+<p>Our research question in the controlled model, fundamentally, is: <em>Is there a difference on Y between group A and group B, after controlling for covariate Z?</em> We can make the question more complex by having more than two groups (say group A, group B, and group C), or by controlling for multiple covariates. But, the primary question is whether there are group differences on some outcome after controlling for one or more covariates.</p>
+<p>In the social sciences, the methodology used to analyze group differences when controlling for other predictors is referred to as <em>analysis of covariance</em>, or ANCOVA. ANCOVA models can be analyzed using a framework that focuses on partitioning variation (ANOVA) or using regression as a framework. Both ultimately give the same results (<em>p</em>-values, etc.). In this course we will focus using the regression framework to analyze this type of data.</p>
+<p><br></p>
+</section>
+<section id="adjusted-means" class="level3" data-number="14.4.2">
+<h3 data-number="14.4.2" class="anchored" data-anchor-id="adjusted-means"><span class="header-section-number">14.4.2</span> Adjusted Means</h3>
+<p>Since the focus of the analysis is to answer whether there is a difference in graduation rates between private and public schools, we should provide some measure of how different the graduation rates are. Initially, we provided the mean graduation rates for public and private schools, along with the difference in these two means. These are referred to as the <em>unconditional means</em> and the <em>unconditional mean difference</em>, respectively. They are unconditional because they are the model predicted means (<span class="math inline">\(\hat{Y_i}\)</span>-values) from the model that does not include any covariates.</p>
+<p>After fitting our controlled model, we should provide new <em>adjusted means</em> and an <em>adjusted mean difference</em> based on the predicted mean graduation rates from the model that controls for median SAT scores. Typically, the adjusted means are computed based on substituting in the mean value for all covariates, and then computing the predicted value for all groups. Here we show those computations for our analysis.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute mean SAT</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>mn <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">M =</span> <span class="fu">mean</span>(sat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["M"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"1101.212"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute adjusted mean for private schools</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">84.4</span> <span class="sc">+</span> <span class="fl">0.127</span><span class="sc">*</span><span class="fl">1101.2</span> <span class="sc">+</span> <span class="fl">8.4</span><span class="sc">*</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 63.8524</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute adjusted mean for public schools</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">84.4</span> <span class="sc">+</span> <span class="fl">0.127</span><span class="sc">*</span><span class="fl">1101.2</span> <span class="sc">+</span> <span class="fl">8.4</span><span class="sc">*</span><span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 55.4524</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute adjusted mean difference</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fl">63.9</span> <span class="sc">-</span> <span class="fl">55.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.4</code></pre>
+</div>
+</div>
+<p>Note that the adjusted mean difference is the value of the partial regression coefficient for <code>private</code> from the ANCOVA model. These values are typically presented in a table along with the unadjusted values.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="tbl-means" class="anchored">
+
+<div id="hdqogeauop" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  
+  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: 60%; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" width="60%" bgcolor="#FFFFFF"><caption>Table&nbsp;14.2:  <p>Unadjusted and adjusted mean six-year graduation rates for private
+and public colleges and universities in Minnesota.</p> </caption>
+  <thead style="border-style: none;">
+    
+    <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Unadjusted Mean" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: center;" bgcolor="#FFFFFF" valign="bottom" align="center">Unadjusted Mean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Adjusted Mean<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: center;" bgcolor="#FFFFFF" valign="bottom" align="center">Adjusted Mean<span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
+    <tr style="border-style: none;"><td headers="v1" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Private institution</td>
+<td headers="v2" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">65.3</td>
+<td headers="v3" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">63.9</td></tr>
+    <tr style="border-style: none;"><td headers="v1" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Public institution</td>
+<td headers="v2" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">51.0</td>
+<td headers="v3" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">55.5</td></tr>
+    <tr style="border-style: none;"><td headers="v1" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Difference</td>
+<td headers="v2" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">14.3</td>
+<td headers="v3" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">8.4</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes" style="border-style: none; color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF">
+    <tr style="border-style: none;">
+      <td class="gt_footnote" colspan="3" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;"><span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal;"><sup>1</sup></span> The model controlled for median SAT scores.</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="one-last-model" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="one-last-model"><span class="header-section-number">14.5</span> One Last Model</h2>
+<p>Now we will include the <code>private</code> dummy coded predictor, the <code>sat</code> predictor, and the <code>tuition</code> predictor in a model to explain variation in graduation rates. Our focus again will be on whether or not there are mean differences in graduation rates between public and private schools, but this time after controlling for differences in median SAT scores and tuition.</p>
+<p>Again, prior to fitting the regression model, we will examine the correlation matrix.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mn <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(grad, private, sat, tuition) <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">|&gt;</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fashion</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["noquote"],"align":["right"]},{"label":["grad"],"name":[2],"type":["noquote"],"align":["right"]},{"label":["private"],"name":[3],"type":["noquote"],"align":["right"]},{"label":["sat"],"name":[4],"type":["noquote"],"align":["right"]},{"label":["tuition"],"name":[5],"type":["noquote"],"align":["right"]}],"data":[{"1":"grad","2":"","3":".397","4":".889","5":".755"},{"1":"private","2":".397","3":"","4":".194","5":".773"},{"1":"sat","2":".889","3":".194","4":"","5":".613"},{"1":"tuition","2":".755","3":".773","4":".613","5":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>From the correlation matrix we see:</p>
+<ul>
+<li>Private institutions tend to have higher graduation rates than public institutions (<span class="math inline">\(r = 0.397\)</span>).</li>
+<li>Institutions with higher median SAT scores tend to have higher graduation rates (<span class="math inline">\(r=0.889\)</span>).</li>
+<li>Institutions with higher tuition costs tend to have higher graduation rates (<span class="math inline">\(r=0.755\)</span>).</li>
+<li>Private institutions tend to have higher median SAT scores than public institutions (<span class="math inline">\(r = 0.194\)</span>).</li>
+<li>Private institutions tend to have higher tuition costs than public institutions (<span class="math inline">\(r = 0.773\)</span>).</li>
+<li>Institutions with higher tuition costs tend to have higher median SAT scores (<span class="math inline">\(r=0.613\)</span>).</li>
+</ul>
+<p>Fitting the regression model:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>lm.f <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> sat <span class="sc">+</span> tuition <span class="sc">+</span> private, <span class="at">data =</span> mn)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level info</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.f) <span class="sc">|&gt;</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.861         0.846  6.56      59.7 1.59e-12     3  -107.  224.  231.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    1249.          29    33</code></pre>
+</div>
+</div>
+<p>Differences in median SAT scores, tuition rates, and educational sector explain 86.07% of the variation in graduation rates. This is statistically reliable, <span class="math inline">\(F(3, 29) = 59.73\)</span>, <span class="math inline">\(p&lt;0.001\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level info</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-68.9437279","3":"14.01707822","4":"-4.9185520","5":"0.000031810576"},{"1":"sat","2":"0.1037931","3":"0.01586515","4":"6.5422037","5":"0.000000364095"},{"1":"tuition","2":"0.4696043","3":"0.24156584","4":"1.9440012","5":"0.061654397872"},{"1":"private","2":"0.6468374","3":"4.71555849","4":"0.1371709","5":"0.891843634272"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Here we will not interpret all of the coefficients, but instead focus on only the <code>private</code> coefficient, as that is germain to our research question.</p>
+<ul>
+<li>Private schools, on average, have a graduation rate that is 0.64 percentage points higher than public schools, controlling for differences in median SAT scores and tuition.</li>
+</ul>
+<p>The <em>t</em>-test associated with the partial slope coefficient for <code>private</code> suggests that 0 is a possible value for the <em>controlled difference</em> in means between private and public schools (<span class="math inline">\(p=0.892\)</span>). Given the empirical evidence, after controlling for differences in median SAT score and tuition rates, it is uncertain that there is a difference in average graduation rates between private and public schools.</p>
+<p><br></p>
+</section>
+<section id="assumption-checking-for-the-final-model" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="assumption-checking-for-the-final-model"><span class="header-section-number">14.6</span> Assumption Checking for the Final Model</h2>
+<p>It is important to check the assumptions of any adopted model. Since we have added non-categorical covariates into the model we need to evaluate all four major assumptions (LINE).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain the fitted values and residuals</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>aug_f <span class="ot">=</span> <span class="fu">augment</span>(lm.f)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View augmented data frame</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aug_f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-assumptions-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div data-pagedtable="false">
+
+<script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["grad"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sat"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["tuition"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["private"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".fitted"],"name":[5],"type":["dbl"],"align":["right"]},{"label":[".resid"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".hat"],"name":[7],"type":["dbl"],"align":["right"]},{"label":[".sigma"],"name":[8],"type":["dbl"],"align":["right"]},{"label":[".cooksd"],"name":[9],"type":["dbl"],"align":["right"]},{"label":[".std.resid"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"65.2","2":"1030","3":"39.294","4":"1","5":"57.06260","6":"8.137400","7":"0.10389064","8":"6.477448","9":"0.049739998","10":"1.3100117"},{"1":"52.6","2":"1065","3":"30.480","4":"1","5":"56.55627","6":"-3.956266","7":"0.08387593","8":"6.632212","9":"0.009081962","10":"-0.6299097"},{"1":"73.3","2":"1145","3":"39.400","4":"1","5":"69.04858","6":"4.251419","7":"0.04579828","8":"6.627210","9":"0.005278573","10":"0.6632600"},{"1":"92.6","2":"1400","3":"54.265","4":"1","5":"102.49648","6":"-9.896481","7":"0.26358723","8":"6.312411","9":"0.276390691","10":"-1.7574791"},{"1":"81.1","2":"1185","3":"43.198","4":"1","5":"74.98386","6":"6.116139","7":"0.06092474","8":"6.570675","9":"0.015004712","10":"0.9618275"},{"1":"69.4","2":"1145","3":"36.590","4":"1","5":"67.72899","6":"1.671007","7":"0.05634885","8":"6.670138","9":"0.001025885","10":"0.2621456"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;14.5: LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed.</figcaption>
+</figure>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of the marginal standardized residuals</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_f, <span class="fu">aes</span>(<span class="at">x =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_confidence</span>(<span class="at">model =</span><span class="st">"normal"</span>) <span class="sc">+</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#c62f4b"</span>) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Standardized residual"</span>) <span class="sc">+</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot of the standardized residuals versus the fitted values</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_f, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted value"</span>) <span class="sc">+</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residual"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The marginal distribution of the residuals shows minor evidence of misfit with the normality assumption. The equal variances assumption looks tenable from this set of plots. However, the scatterplot of the standardized residuals versus the fitted values suggests problems with the tenability of the linearity assumption—at low fitted values more of the residuals are negative than we would expect (over-estimation); at moderate fitted values the residuals tend to be positive (under-estimation); and at high fitted values the residuals tend to the negative again (over-estimation). For now we will ignore this (although in practice this is a BIG problem).</p>
+<p><br></p>
+</section>
+<section id="presenting-results" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="presenting-results"><span class="header-section-number">14.7</span> Presenting Results</h2>
+<p>Below we present pertinent results from the three models that we fitted.</p>
+
+<table class="table" style="width:70%; margin-left: auto; margin-right: auto; text-align:center">
+<caption>
+Unstandardized coefficients (standard errors) for a taxonomy of OLS regression models to explain variation in six-year graduation rates for colleges and universities in Minnesota. All models were fitted with <em>n</em>=33 observations.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left">
+</th>
+<th>
+Model A
+</th>
+<th>
+Model B
+</th>
+<th>
+Model C
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">
+Median SAT score
+</td>
+<td>
+</td>
+<td>
+0.127<br>(0.011)
+</td>
+<td>
+0.104<br>(0.016)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Tuition
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.470<br>(0.242)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Educational Sector
+</td>
+<td>
+14.235<br>(5.912)
+</td>
+<td>
+8.378<br>(2.648)
+</td>
+<td>
+0.647<br>(4.716)
+</td>
+</tr>
+<tr style="border-bottom: 1px solid black">
+<td style="text-align:left">
+Constant
+</td>
+<td>
+51.030<br>(4.936)
+</td>
+<td>
+-84.435<br>(12.054)
+</td>
+<td>
+-68.944<br>(14.017)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.158
+</td>
+<td>
+0.843
+</td>
+<td>
+0.861
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+RMSE
+</td>
+<td>
+15.608
+</td>
+<td>
+6.859
+</td>
+<td>
+6.562
+</td>
+</tr>
+<tr style="border-top: 1px solid black; border-bottom: 0">
+<td style="text-align:left" colspan="4">
+<em>Note: </em>Educational sector was dummy coded so that 0 = Private institutions; 1 = Public institutions.
+</td>
+</tr>
+</tbody>
+
+</table>
+<p><br></p>
+<section id="data-narrative" class="level3" data-number="14.7.1">
+<h3 data-number="14.7.1" class="anchored" data-anchor-id="data-narrative"><span class="header-section-number">14.7.1</span> Data Narrative</h3>
+<p>The presentation of the models helps us build an evidence-based narrative about the differences in graduation rates between public and private schools. In the unconditional model, the evidence suggests that private schools have a higher graduation rate than public schools. Once we control for median SAT score, this difference in graduation rates persists, but at a much lesser magnitude. Finally, after controlling for differences in SAT scores and tuition, we find no statistically reliable differences between the two educational sectors.</p>
+<p>This narrative suggests that the initial differences we saw in graduation rates between the two sectors is really just a function of differences in SAT scores and tuition, and not really a public/private school difference. As with many non-experimental results, the answer to the question about group differences change as we control for different covariates. It may be, that once we control for other covariates, the narrative might change yet again. This is an important lesson, and one that cannot be emphasized enough—the magnitude and statistical importance of predictors change when the model is changed.</p>
+<p><br></p>
+</section>
+<section id="plots-to-display-model-results" class="level3" data-number="14.7.2">
+<h3 data-number="14.7.2" class="anchored" data-anchor-id="plots-to-display-model-results"><span class="header-section-number">14.7.2</span> Plots to Display Model Results</h3>
+<p>There are two plots we may want to consider creating to accompany the data narrative: (1) a coefficient plot to emphasize the public–private institution difference (i.e., effect of educational sector), and (2) a plot of the final fitted model, again emphasizing the public–private institution difference. We start by creating the coefficient plot.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dotwhisker)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create tidy() objects and identify each with a model column</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">tidy</span>(lm.c) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"Model A"</span>)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">=</span> <span class="fu">tidy</span>(lm.e) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"Model B"</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">=</span> <span class="fu">tidy</span>(lm.f) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"Model C"</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine all three tidy() outputs, filter out intercepts, and drop missing values</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>all_models <span class="ot">=</span> <span class="fu">rbind</span>(m1, m2, m3)</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(all_models, <span class="at">show_intercept =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">"Model"</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#c62f4b"</span>, <span class="st">"#c62f4b"</span>, <span class="st">"#c62f4b"</span>)) <span class="sc">+</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Estimate"</span>) <span class="sc">+</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Coefficients"</span>, </span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Tuition"</span>, <span class="st">"Median SAT score"</span>, <span class="st">"Private institution</span><span class="sc">\n</span><span class="st">(dummy coded)"</span>)</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-coeff-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-01-dichotomous-predictors_files/figure-html/fig-coeff-plot-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;14.6: Coefficient plot for three models regressing six-year graduation rates on educational sector. Uncertainty based on the 95% confidence intervals is displayed. (The intercept is not displayed.)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A second plot is based on plotting the model predicted graduation rates as a function of one of the predictors. Here we will plot the model predicted graduation rates as a function of median SAT scores for both public and private institutions. We will control for tuition rate by fixing it to its mean value of 32.25. Substituting this into the fitted equation, along with the appropriate dummy-coded public value results in two equations that we can plot.</p>
+<p><span class="math display">\[
+\begin{split}
+\mathbf{Public:}\quad\hat{\mathrm{Graduation~Rate}_i} &amp;= -68.9 + 0.10(\mathrm{Median~SAT}_i) + 0.47(32.25) + 0.65(0) \\[2ex]
+&amp;= -53.7 + 0.10(\mathrm{Median~SAT}_i) \\[4ex]
+\mathbf{Private:}\quad\hat{\mathrm{Graduation~Rate}_i} &amp;= -68.9 + 0.10(\mathrm{Median~SAT}_i) + 0.47(32.25) + 0.65(1)\\[2ex]
+&amp;= -53.0 + 0.10(\mathrm{Median~SAT}_i)
+\end{split}
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">53.7</span>, <span class="at">slope =</span> <span class="fl">0.10</span>, <span class="at">color =</span> <span class="st">"#e69f00"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">53.0</span>, <span class="at">slope =</span> <span class="fl">0.10</span>, <span class="at">color =</span> <span class="st">"#56b4e9"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Median SAT score"</span>) <span class="sc">+</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted graduation rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-final-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-01-dichotomous-predictors_files/figure-html/fig-final-plot-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;14.7: Predicted graduation rate as a function of median SAT scores for public (orange, solid line) and private (blue, dashed line) institutions in Minnesota. Tuition rate is controlled by fixing the value to the marginal average tuition value.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In my opinion, the coefficient plot corresponds better to the data narrative than the plot of the fitted model, so in a publication that is what I would present along with the table of model results.</p>
+<p><br></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./04-00-extending-regression-model.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Extending the Regression Model</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04-02-polychotomous-predictors.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
