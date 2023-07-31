@@ -9,7 +9,7 @@ source("scripts/_common.R")
 
 In this chapter, you will be learn about how to use functionality from the `{dplyr}` package to wrangle your data. Data wrangling is the catchall phrase that includes the processes of cleaning, structuring, and summarizing your data. It is a skill that every educational scientist needs to have in their computational toolkit! 
 
-We will use the [comic-characters.csv](https://raw.githubusercontent.com/zief0002/epsy-8251/master/data/comic-characters.csv) data (see the [data codebook](https://zief0002.github.io/miniature-garbanzo/codebooks/comic-characters.html)) to illustrate how to use several data wrangling functions in order to answer a set of research questions about LGBTQ representation in comics. 
+We will use the [comic-characters.csv](https://raw.githubusercontent.com/zief0002/epsy-8251/main/data/comic-characters.csv) data (see the [data codebook](#comic-characters)) to illustrate how to use several data wrangling functions in order to answer a set of research questions about LGBTQ representation in comics. 
 
 :::exercises
 **Research Questions**
@@ -30,7 +30,7 @@ library(dplyr)
 library(readr)
 
 # Read in data
-comics = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8251/master/data/comic-characters.csv")
+comics = read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/comic-characters.csv")
 
 # View data
 glimpse(comics)
@@ -182,7 +182,7 @@ sorted_comics = comics |>
 #| fig-cap: "Clicking the `sorted_comics` data object in the Environment pane will display the data in the RStudio data viewer."
 #| out-width: "70%"
 
-knitr::include_graphics("figs/20-click-data-object.png")
+knitr::include_graphics("figs/01-04-click-data-object.png")
 ```
 
 Based on an examination of the sorted data, we find the first appearance of an LQBTQ character is Jack Casey in 1940.

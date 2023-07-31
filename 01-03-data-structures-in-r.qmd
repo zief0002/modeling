@@ -9,7 +9,7 @@ One way to think about vectors and data frames is to use the metaphor of bookcas
 #| out-width: "60%"
 #|fig-cap: "LEFT: A visual mnemonic for a vector is a single-column bookcase. RIGHT: A visual mnemonic for a data frame is a multi-column bookcase."
 
-knitr::include_graphics("figs/15-vector-df.png")
+knitr::include_graphics("figs/01-03-vector-df.png")
 ```
 
 Similar to real bookcases, the bookcases in our metaphor can be used to store things. In our metaphorical bookcases, we will store data values. Note that in the picture, the color of the bookcase is constant within each column. This indicates that, unlike real bookcases, whatever type of data we store in a column of our metaphorical bookcase will have to be homogeneous. For example, we cannot store numeric values and character strings (e.g., names) within the same column without consequences.^[In this case, everything in the column would be turned into a character string.]
@@ -20,7 +20,7 @@ Similar to real bookcases, the bookcases in our metaphor can be used to store th
 #| out-width: "60%"
 #|fig-cap: "The data type in each column of a vector or data frame is homogeneous. All data in the skyblue columns are character strings. All data in the reddish-purple columns are numeric values. All data in the yellow columns are logical values."
 
-knitr::include_graphics("figs/16-vector-df-data.png")
+knitr::include_graphics("figs/01-03-vector-df-data.png")
 ```
 
 <br />
@@ -167,7 +167,7 @@ spice_girls = data.frame(
 spice_girls
 ```
 
-Note that we also assigned the data frame to an object called `spice_girls` so we can compute on it. You will learn how to compute on data frames in the chapters [Data Wrangling with dplyr](#dplyr) and [Plotting with ggplot2](http://zief0002.github.io/epsy-8251/misc/03-plotting-with-ggplot2.html).
+Note that we also assigned the data frame to an object called `spice_girls` so we can compute on it. You will learn how to compute on data frames in the chapters [Data Wrangling with dplyr](#dplyr) and [Visualizing Data with ggplot2](#ggplot2).
 
 <br />
 
@@ -181,7 +181,7 @@ In professional practice, you will often enter data into a spreadsheet and rathe
 #| out-width: "80%"
 #|fig-cap: "Export or save your data using the CSV file format. In Google Sheets, you can download the data as a CSV file."
 
-knitr::include_graphics("figs/17-save-as-csv.png")
+knitr::include_graphics("figs/01-03-save-as-csv.png")
 ```
 
 :::protip
@@ -203,7 +203,7 @@ Once your data are saved as a CSV file, it can be easily imported into R. To do 
 
 ### Importing the Spice Girls Data
 
-The file *spice-girls.csv* is accessible at <https://raw.githubusercontent.com/zief0002/toolkit/master/data/spice_girls.csv>. 
+The file *spice-girls.csv* is accessible at <https://raw.githubusercontent.com/zief0002/modeling/main/data/spice-girls.csv>. 
 
 - Copy and paste that URL into the "File/URL" text box.
 - Click the "Update" button.
@@ -220,7 +220,7 @@ After importing the data you should see the object in your global environment.
 #| out-width: "90%"
 #|fig-cap: "Import data saved in a CSV file into R."
 
-knitr::include_graphics("figs/18-import-csv.png")
+knitr::include_graphics("figs/01-03-import-csv.png")
 ```
 
 <br />
@@ -233,9 +233,9 @@ Even though you used the `Import` button---a point-and-click feature in RStudio-
 ```{r}
 #| echo: false
 #| out-width: "90%"
-#|fig-cap: "Code Preview window showing the syntax to import the *spice_girls.csv* data."
+#|fig-cap: "Code Preview window showing the syntax to import the *spice-girls.csv* data."
 
-knitr::include_graphics("figs/19-code-preview.png")
+knitr::include_graphics("figs/01-03-code-preview.png")
 ```
 
 In the first line of syntax, the `{readr}` package is loaded using the `library()` function. The data is imported in the second line of syntax and assigned to an object, in this case `spice_girls`. The `read_csv()` function includes an unnamed argument providing the URL for the CSV file.^[This argument for the `read_csv()` function can also be a pathname to the location of the CSV file on your computer. If you are computing on a Mac, you may need to add `~/` to the beginning of this path name.] The `View()` function in the third line of syntax simply opens the `spice_girls` object in a view tab in RStudio.
@@ -255,7 +255,7 @@ Below are the two lines I would include in the script file. I would also comment
 library(readr)
 
 # Import data
-spice_girls <- read_csv("https://raw.githubusercontent.com/zief0002/toolkit/master/data/spice_girls.csv")
+spice_girls <- read_csv("https://raw.githubusercontent.com/zief0002/modeling/main/data/spice-girls.csv")
 ```
 
 :::fyi

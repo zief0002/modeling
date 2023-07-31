@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will learn about how to include and interpret interaction effects in the regression model. To do so, we will use the [work-demands.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/work-demands.csv) data to examine predictors of guilt about home-life/work balance; see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/work-demands.html)). In particular we will evaluate whether there is an effect of boundary-spanning work (work-related  matters  outside  normal  work  hours) on guilt and whether that effect differs by gender.
+In this chapter, you will learn about how to include and interpret interaction effects in the regression model. To do so, we will use the [work-demands.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/work-demands.csv) data to examine predictors of guilt about home-life/work balance; see the [data codebook](#work)). In particular we will evaluate whether there is an effect of boundary-spanning work (work-related  matters  outside  normal  work  hours) on guilt and whether that effect differs by gender.
 
 To begin, we will load several libraries and import the data into an object called `work`.
 

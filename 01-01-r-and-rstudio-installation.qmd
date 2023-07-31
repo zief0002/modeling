@@ -7,7 +7,7 @@ In this chapter, we will walk you through the process of installing R and the de
 #| out-width: "60%"
 #| fig-cap: "Workflow for using R: Once both applications are installed on you computer, you will only interact with R through RStudio."
 
-knitr::include_graphics("figs/01-rstudio-and-r.png")
+knitr::include_graphics("figs/01-01-rstudio-and-r.png")
 ```
 
 <br />
@@ -74,7 +74,7 @@ From your Applications or Programs folder, open RStudio. If you have successfull
 #| out-width: "100%"
 #| fig-cap: "Once you open RStudio, you should see a message indicating that you are using `R version 4.1.1` (or whichever version of R you installed) in the console pane. Here the console pane is on the left-side, but it may be in a different location for you. Your RStudio may also have a white background rather than the black background seen here."
 
-knitr::include_graphics("figs/02-opening-rstudio.png")
+knitr::include_graphics("figs/01-01-opening-rstudio.png")
 ```
 
 <br />
@@ -89,7 +89,7 @@ While the information in this section is not crucial for making things work, it 
 #| fig-cap: "The RStudio options/preferences menu has many settings to customize RStudio."
 #| out-width: "50%"
 
-knitr::include_graphics("figs/06-options.png")
+knitr::include_graphics("figs/01-01-options.png")
 ```
 
 

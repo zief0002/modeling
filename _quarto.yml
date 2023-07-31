@@ -41,6 +41,19 @@ book:
         - 04-01-dichotomous-predictors.qmd
         - 04-02-polychotomous-predictors.qmd
         - 04-03-interaction-effects.qmd
+        - 04-04-more-interaction-effects.qmd
+    - part: 05-00-data-codebooks.qmd
+      chapters:
+        - 05-01-comic-characters.qmd
+        #- 05-02-evaluations.qmd
+        - 05-03-fertility.qmd
+        - 05-04-gapminder.qmd
+        - 05-05-keith-gpa.qmd
+        - 05-06-mn-schools.qmd
+        - 05-07-riverview.qmd
+        - 05-08-spice-girls.qmd
+        - 05-09-substance-family.qmd
+        - 05-10-work-demands.qmd
 
 bibliography: ["assets/modeling.bib", "assets/packages.bib"]
 csl: 'assets/apa-single-spaced.csl'

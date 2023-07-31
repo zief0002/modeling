@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistical Modeling and Computation for Educational Scientists - 20&nbsp; gapminder.csv</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05-05-keith-gpa.html" rel="next">
+<link href="./05-03-fertility.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable/js/pagedtable.js"></script>
+
+
+<link rel="stylesheet" href="assets/sticky-notes.css">
+<link rel="stylesheet" href="assets/table-styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-00-data-codebooks.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="./05-04-gapminder.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">gapminder.csv</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Modeling and Computation for Educational Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Front Matter</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistical Computation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-01-r-and-rstudio-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R and RStudio: Installation and Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-02-getting-started-with-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-03-data-structures-in-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structures in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-04-data-wrangling-with-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling with dplyr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-05-visualizing-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./02-00-regression-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-01-simple-regression-description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Simple Linear Regression—Description</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02-ols-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Ordinary Least Squares (OLS) Estimation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-03-correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Correlation and Standardized Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-04-coefficient-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-05-model-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model-Level Inference</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./03-00-deeper-understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deeper Understanding</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-01-intro-to-multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduction to Multiple Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-02-understanding-statistical-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Understanding Statistical Control</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-03-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Distributional Assumptions Underlying the Regression Model</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./04-00-extending-regression-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extending the Regression Model</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-01-dichotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dichotomous Categorical Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-02-polychotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-03-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-04-more-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">More Interaction Effects</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./05-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Codebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-01-comic-characters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-03-fertility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-04-gapminder.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-05-keith-gpa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-06-mn-schools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-07-riverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-08-spice-girls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-09-substance-family.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">substance-family.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-10-work-demands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On This Page</h2>
+   
+  <ul>
+  <li><a href="#preview" id="toc-preview" class="nav-link active" data-scroll-target="#preview"><span class="header-section-number">20.0.1</span> Preview</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">20.0.2</span> References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="gapminder" class="quarto-section-identifier"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>The data in <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/gapminder.csv">gapminder.csv</a> contains data on 6 attributes for 193 countries. These data, based on 2017 measures collected by World Bank, were compiled by <a href="https://www.gapminder.org/">gapminder.org</a> and made available free under the <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY license</a>. The variables are:</p>
+<ul>
+<li><code>country</code>: The name of the country</li>
+<li><code>region</code>: The world region (Africa, Americas, Asia, or Europe)</li>
+<li><code>income</code>: Income per person based on the gross domestic product per person, adjusted for differences in purchasing power (in international dollars, fixed for 2017 prices)</li>
+<li><code>life_exp</code>: Average number of years a newborn child would live if current mortality patterns were to stay the same</li>
+<li><code>co2</code>: Carbon dioxide emissions per person from the burning of fossil fuels (metric tonnes of CO2 per person)</li>
+<li><code>co2_change</code>: Indicator of whether the carbon dioxide emissions per person from the burning of fossil fuels has increased or decreased since 2007 (10 year span)</li>
+<li><code>population</code>: Population of the country, in millions</li>
+</ul>
+<p><br></p>
+<section id="preview" class="level3" data-number="20.0.1">
+<h3 data-number="20.0.1" class="anchored" data-anchor-id="preview"><span class="header-section-number">20.0.1</span> Preview</h3>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import Data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/modeling/main/data/gapminder.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gapminder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["region"],"name":[2],"type":["chr"],"align":["left"]},{"label":["income"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["income_level"],"name":[4],"type":["chr"],"align":["left"]},{"label":["life_exp"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["co2"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["co2_change"],"name":[7],"type":["chr"],"align":["left"]},{"label":["population"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"Afghanistan","2":"Asia","3":"2.030","4":"Level 1","5":"62.7","6":"0.2540","7":"increase","8":"37.2000"},{"1":"Albania","2":"Europe","3":"13.300","4":"Level 3","5":"78.4","6":"1.5900","7":"increase","8":"2.8800"},{"1":"Algeria","2":"Africa","3":"11.600","4":"Level 3","5":"76.0","6":"3.6900","7":"increase","8":"42.2000"},{"1":"Andorra","2":"Europe","3":"58.300","4":"Level 4","5":"82.1","6":"6.1200","7":"decrease","8":"0.0770"},{"1":"Angola","2":"Africa","3":"6.930","4":"Level 2","5":"64.6","6":"1.1200","7":"decrease","8":"30.8000"},{"1":"Antigua and Barbuda","2":"Americas","3":"21.000","4":"Level 3","5":"76.2","6":"5.8800","7":"increase","8":"0.0963"},{"1":"Argentina","2":"Americas","3":"22.700","4":"Level 3","5":"76.5","6":"4.4100","7":"decrease","8":"44.4000"},{"1":"Armenia","2":"Europe","3":"12.700","4":"Level 3","5":"75.6","6":"1.8900","7":"decrease","8":"2.9500"},{"1":"Australia","2":"Asia","3":"49.000","4":"Level 4","5":"82.9","6":"16.9000","7":"decrease","8":"24.9000"},{"1":"Austria","2":"Europe","3":"55.300","4":"Level 4","5":"82.1","6":"7.7500","7":"decrease","8":"8.8900"},{"1":"Azerbaijan","2":"Europe","3":"14.200","4":"Level 3","5":"70.8","6":"3.7000","7":"decrease","8":"9.9500"},{"1":"Bahamas","2":"Americas","3":"36.500","4":"Level 4","5":"73.8","6":"4.7000","7":"decrease","8":"0.3860"},{"1":"Bahrain","2":"Asia","3":"46.400","4":"Level 4","5":"77.0","6":"19.8000","7":"decrease","8":"1.5700"},{"1":"Bangladesh","2":"Asia","3":"4.440","4":"Level 2","5":"74.2","6":"0.5310","7":"increase","8":"161.0000"},{"1":"Barbados","2":"Americas","3":"15.700","4":"Level 3","5":"76.5","6":"4.4800","7":"decrease","8":"0.2870"},{"1":"Belarus","2":"Europe","3":"19.000","4":"Level 3","5":"74.0","6":"6.9300","7":"decrease","8":"9.4500"},{"1":"Belgium","2":"Europe","3":"51.100","4":"Level 4","5":"81.4","6":"8.6900","7":"decrease","8":"11.5000"},{"1":"Belize","2":"Americas","3":"7.260","4":"Level 2","5":"74.4","6":"1.5000","7":"increase","8":"0.3830"},{"1":"Benin","2":"Africa","3":"3.160","4":"Level 2","5":"64.0","6":"0.6230","7":"increase","8":"11.5000"},{"1":"Bhutan","2":"Asia","3":"11.300","4":"Level 3","5":"73.0","6":"1.6100","7":"increase","8":"0.7540"},{"1":"Bolivia","2":"Americas","3":"8.660","4":"Level 3","5":"71.8","6":"1.9600","7":"increase","8":"11.4000"},{"1":"Bosnia and Herzegovina","2":"Europe","3":"14.400","4":"Level 3","5":"76.9","6":"6.5300","7":"increase","8":"3.3200"},{"1":"Botswana","2":"Africa","3":"16.200","4":"Level 3","5":"61.8","6":"2.9600","7":"increase","8":"2.2500"},{"1":"Brazil","2":"Americas","3":"14.700","4":"Level 3","5":"75.7","6":"2.1800","7":"increase","8":"209.0000"},{"1":"Brunei","2":"Asia","3":"60.400","4":"Level 4","5":"74.2","6":"18.5000","7":"decrease","8":"0.4290"},{"1":"Bulgaria","2":"Europe","3":"22.200","4":"Level 3","5":"73.3","6":"6.3200","7":"decrease","8":"7.0500"},{"1":"Burkina Faso","2":"Africa","3":"2.120","4":"Level 1","5":"61.3","6":"0.1980","7":"increase","8":"19.8000"},{"1":"Burundi","2":"Africa","3":"0.762","4":"Level 1","5":"63.4","6":"0.0467","7":"increase","8":"11.2000"},{"1":"Cambodia","2":"Asia","3":"4.160","4":"Level 2","5":"69.7","6":"0.6400","7":"increase","8":"16.2000"},{"1":"Cameroon","2":"Africa","3":"3.710","4":"Level 2","5":"62.6","6":"0.3230","7":"increase","8":"25.2000"},{"1":"Canada","2":"Americas","3":"49.000","4":"Level 4","5":"82.2","6":"15.3000","7":"decrease","8":"37.1000"},{"1":"Cape Verde","2":"Africa","3":"6.860","4":"Level 2","5":"73.5","6":"1.1600","7":"increase","8":"0.5440"},{"1":"Central African Republic","2":"Africa","3":"0.933","4":"Level 1","5":"51.5","6":"0.0651","7":"increase","8":"4.6700"},{"1":"Chad","2":"Africa","3":"1.580","4":"Level 1","5":"59.9","6":"0.0656","7":"decrease","8":"15.5000"},{"1":"Chile","2":"Americas","3":"25.000","4":"Level 4","5":"80.1","6":"4.5900","7":"increase","8":"18.7000"},{"1":"China","2":"Asia","3":"15.100","4":"Level 3","5":"77.4","6":"7.0600","7":"increase","8":"1430.0000"},{"1":"Colombia","2":"Americas","3":"14.300","4":"Level 3","5":"80.1","6":"1.9600","7":"increase","8":"49.7000"},{"1":"Comoros","2":"Africa","3":"3.070","4":"Level 2","5":"68.5","6":"0.2630","7":"increase","8":"0.8320"},{"1":"Congo, Dem. Rep.","2":"Africa","3":"1.090","4":"Level 1","5":"64.7","6":"0.0243","7":"decrease","8":"84.1000"},{"1":"Congo, Rep.","2":"Africa","3":"3.930","4":"Level 2","5":"65.0","6":"0.6170","7":"increase","8":"5.2400"},{"1":"Costa Rica","2":"Americas","3":"20.700","4":"Level 3","5":"80.0","6":"1.6100","7":"decrease","8":"5.0000"},{"1":"Cote d'Ivoire","2":"Africa","3":"4.850","4":"Level 2","5":"63.6","6":"0.3350","7":"decrease","8":"25.1000"},{"1":"Croatia","2":"Europe","3":"28.200","4":"Level 4","5":"78.6","6":"4.4800","7":"decrease","8":"4.1600"},{"1":"Cuba","2":"Americas","3":"9.680","4":"Level 3","5":"78.3","6":"2.5300","7":"increase","8":"11.3000"},{"1":"Cyprus","2":"Europe","3":"40.000","4":"Level 4","5":"80.8","6":"6.3000","7":"decrease","8":"1.1900"},{"1":"Czech Republic","2":"Europe","3":"39.900","4":"Level 4","5":"79.3","6":"9.9400","7":"decrease","8":"10.7000"},{"1":"Denmark","2":"Europe","3":"56.200","4":"Level 4","5":"81.1","6":"6.0600","7":"decrease","8":"5.7500"},{"1":"Djibouti","2":"Africa","3":"5.210","4":"Level 2","5":"66.7","6":"0.6720","7":"increase","8":"0.9590"},{"1":"Dominica","2":"Americas","3":"11.500","4":"Level 3","5":"72.3","6":"2.5500","7":"increase","8":"0.0716"},{"1":"Dominican Republic","2":"Americas","3":"17.700","4":"Level 3","5":"72.9","6":"2.3400","7":"increase","8":"10.6000"},{"1":"Ecuador","2":"Americas","3":"11.600","4":"Level 3","5":"76.2","6":"2.4600","7":"increase","8":"17.1000"},{"1":"Egypt","2":"Africa","3":"11.400","4":"Level 3","5":"70.7","6":"2.4300","7":"decrease","8":"98.4000"},{"1":"El Salvador","2":"Americas","3":"8.620","4":"Level 3","5":"75.6","6":"1.1100","7":"increase","8":"6.4200"},{"1":"Equatorial Guinea","2":"Africa","3":"20.400","4":"Level 3","5":"65.8","6":"4.3500","7":"decrease","8":"1.3100"},{"1":"Eritrea","2":"Africa","3":"1.560","4":"Level 1","5":"63.4","6":"0.2150","7":"increase","8":"3.4500"},{"1":"Estonia","2":"Europe","3":"35.100","4":"Level 4","5":"77.9","6":"14.8000","7":"increase","8":"1.3200"},{"1":"Eswatini","2":"Africa","3":"8.520","4":"Level 3","5":"57.8","6":"1.0600","7":"decrease","8":"1.1400"},{"1":"Ethiopia","2":"Africa","3":"2.100","4":"Level 1","5":"68.4","6":"0.1370","7":"increase","8":"109.0000"},{"1":"Fiji","2":"Asia","3":"13.800","4":"Level 3","5":"68.3","6":"2.4100","7":"increase","8":"0.8830"},{"1":"Finland","2":"Europe","3":"48.000","4":"Level 4","5":"81.8","6":"8.5200","7":"decrease","8":"5.5200"},{"1":"France","2":"Europe","3":"45.300","4":"Level 4","5":"82.9","6":"5.2000","7":"decrease","8":"65.0000"},{"1":"Gabon","2":"Africa","3":"14.700","4":"Level 3","5":"67.5","6":"2.5300","7":"decrease","8":"2.1200"},{"1":"Gambia","2":"Africa","3":"2.160","4":"Level 1","5":"66.4","6":"0.2680","7":"increase","8":"2.2800"},{"1":"Georgia","2":"Europe","3":"14.300","4":"Level 3","5":"73.3","6":"2.6400","7":"increase","8":"4.0000"},{"1":"Germany","2":"Europe","3":"53.500","4":"Level 4","5":"81.2","6":"9.1400","7":"decrease","8":"83.1000"},{"1":"Ghana","2":"Africa","3":"5.320","4":"Level 2","5":"65.8","6":"0.6150","7":"increase","8":"29.8000"},{"1":"Greece","2":"Europe","3":"29.100","4":"Level 4","5":"81.0","6":"7.0300","7":"decrease","8":"10.5000"},{"1":"Grenada","2":"Americas","3":"16.800","4":"Level 3","5":"73.2","6":"2.4300","7":"increase","8":"0.1110"},{"1":"Guatemala","2":"Americas","3":"8.460","4":"Level 3","5":"72.4","6":"1.0700","7":"increase","8":"17.2000"},{"1":"Guinea","2":"Africa","3":"2.500","4":"Level 1","5":"60.6","6":"0.2560","7":"increase","8":"12.4000"},{"1":"Guinea-Bissau","2":"Africa","3":"1.900","4":"Level 1","5":"60.3","6":"0.1810","7":"increase","8":"1.8700"},{"1":"Guyana","2":"Americas","3":"12.500","4":"Level 3","5":"67.1","6":"3.1200","7":"increase","8":"0.7790"},{"1":"Haiti","2":"Americas","3":"3.170","4":"Level 2","5":"63.5","6":"0.2700","7":"increase","8":"11.1000"},{"1":"Honduras","2":"Americas","3":"5.680","4":"Level 2","5":"71.9","6":"1.0400","7":"decrease","8":"9.5900"},{"1":"Hong Kong, China","2":"Asia","3":"61.100","4":"Level 4","5":"84.3","6":"5.8600","7":"decrease","8":"7.3700"},{"1":"Hungary","2":"Europe","3":"31.100","4":"Level 4","5":"76.3","6":"5.1400","7":"decrease","8":"9.7100"},{"1":"Iceland","2":"Europe","3":"56.800","4":"Level 4","5":"84.0","6":"10.8000","7":"decrease","8":"0.3370"},{"1":"India","2":"Asia","3":"6.520","4":"Level 2","5":"70.5","6":"1.9600","7":"increase","8":"1350.0000"},{"1":"Indonesia","2":"Asia","3":"11.400","4":"Level 3","5":"71.1","6":"2.3000","7":"increase","8":"268.0000"},{"1":"Iran","2":"Asia","3":"13.500","4":"Level 3","5":"77.6","6":"8.8100","7":"increase","8":"81.8000"},{"1":"Iraq","2":"Asia","3":"10.600","4":"Level 3","5":"73.3","6":"5.3200","7":"increase","8":"38.4000"},{"1":"Ireland","2":"Europe","3":"83.700","4":"Level 4","5":"82.0","6":"8.0900","7":"decrease","8":"4.8200"},{"1":"Israel","2":"Asia","3":"39.900","4":"Level 4","5":"83.0","6":"7.6700","7":"decrease","8":"8.3800"},{"1":"Italy","2":"Europe","3":"42.000","4":"Level 4","5":"83.1","6":"5.5800","7":"decrease","8":"60.6000"},{"1":"Jamaica","2":"Americas","3":"9.740","4":"Level 3","5":"76.3","6":"2.7900","7":"decrease","8":"2.9300"},{"1":"Japan","2":"Asia","3":"41.800","4":"Level 4","5":"84.8","6":"9.1400","7":"decrease","8":"127.0000"},{"1":"Jordan","2":"Asia","3":"10.000","4":"Level 3","5":"77.9","6":"2.4200","7":"decrease","8":"9.9700"},{"1":"Kazakhstan","2":"Asia","3":"25.500","4":"Level 4","5":"71.7","6":"17.6000","7":"increase","8":"18.3000"},{"1":"Kenya","2":"Africa","3":"4.340","4":"Level 2","5":"66.1","6":"0.3600","7":"increase","8":"51.4000"},{"1":"Kiribati","2":"Asia","3":"2.290","4":"Level 1","5":"59.3","6":"0.6010","7":"decrease","8":"0.1160"},{"1":"Kuwait","2":"Asia","3":"50.500","4":"Level 4","5":"81.6","6":"23.7000","7":"decrease","8":"4.1400"},{"1":"Kyrgyz Republic","2":"Asia","3":"5.130","4":"Level 2","5":"73.3","6":"1.6000","7":"increase","8":"6.3000"},{"1":"Lao","2":"Asia","3":"7.590","4":"Level 2","5":"68.6","6":"2.7400","7":"increase","8":"7.0600"},{"1":"Latvia","2":"Europe","3":"30.100","4":"Level 4","5":"75.8","6":"3.7300","7":"decrease","8":"1.9300"},{"1":"Lebanon","2":"Asia","3":"15.700","4":"Level 3","5":"76.2","6":"3.5300","7":"decrease","8":"6.8600"},{"1":"Lesotho","2":"Africa","3":"2.620","4":"Level 1","5":"51.4","6":"1.2600","7":"increase","8":"2.1100"},{"1":"Liberia","2":"Africa","3":"1.540","4":"Level 1","5":"65.7","6":"0.3240","7":"increase","8":"4.8200"},{"1":"Libya","2":"Africa","3":"15.000","4":"Level 3","5":"75.7","6":"8.0900","7":"decrease","8":"6.6800"},{"1":"Lithuania","2":"Europe","3":"35.400","4":"Level 4","5":"76.1","6":"4.8400","7":"increase","8":"2.8000"},{"1":"Luxembourg","2":"Europe","3":"115.000","4":"Level 4","5":"82.9","6":"15.9000","7":"decrease","8":"0.6040"},{"1":"Madagascar","2":"Africa","3":"1.590","4":"Level 1","5":"65.1","6":"0.1630","7":"increase","8":"26.3000"},{"1":"Malawi","2":"Africa","3":"1.500","4":"Level 1","5":"64.1","6":"0.0762","7":"decrease","8":"18.1000"},{"1":"Malaysia","2":"Asia","3":"27.600","4":"Level 4","5":"75.2","6":"8.0800","7":"increase","8":"31.5000"},{"1":"Maldives","2":"Asia","3":"18.800","4":"Level 3","5":"79.0","6":"2.9600","7":"increase","8":"0.5160"},{"1":"Mali","2":"Africa","3":"2.280","4":"Level 1","5":"61.2","6":"0.1870","7":"increase","8":"19.1000"},{"1":"Malta","2":"Europe","3":"43.300","4":"Level 4","5":"82.5","6":"3.6100","7":"decrease","8":"0.4390"},{"1":"Marshall Islands","2":"Asia","3":"3.820","4":"Level 2","5":"65.3","6":"2.5800","7":"increase","8":"0.0584"},{"1":"Mauritania","2":"Africa","3":"5.190","4":"Level 2","5":"70.5","6":"0.6050","7":"increase","8":"4.4000"},{"1":"Mauritius","2":"Africa","3":"22.200","4":"Level 3","5":"75.3","6":"3.8300","7":"increase","8":"1.2700"},{"1":"Mexico","2":"Americas","3":"19.900","4":"Level 3","5":"75.5","6":"3.7900","7":"decrease","8":"126.0000"},{"1":"Micronesia, Fed. Sts.","2":"Asia","3":"3.460","4":"Level 2","5":"64.1","6":"1.3400","7":"increase","8":"0.1130"},{"1":"Moldova","2":"Europe","3":"12.400","4":"Level 3","5":"74.0","6":"1.2700","7":"increase","8":"4.0500"},{"1":"Mongolia","2":"Asia","3":"12.000","4":"Level 3","5":"68.0","6":"8.8800","7":"increase","8":"3.1700"},{"1":"Montenegro","2":"Europe","3":"20.700","4":"Level 3","5":"75.6","6":"3.2000","7":"decrease","8":"0.6280"},{"1":"Morocco","2":"Africa","3":"7.450","4":"Level 2","5":"73.1","6":"1.8400","7":"increase","8":"36.0000"},{"1":"Mozambique","2":"Africa","3":"1.290","4":"Level 1","5":"57.9","6":"0.2810","7":"increase","8":"29.5000"},{"1":"Myanmar","2":"Asia","3":"4.470","4":"Level 2","5":"69.1","6":"0.4910","7":"increase","8":"53.7000"},{"1":"Namibia","2":"Africa","3":"10.100","4":"Level 3","5":"64.7","6":"1.7500","7":"increase","8":"2.4500"},{"1":"Nauru","2":"Asia","3":"13.600","4":"Level 3","5":"63.2","6":"4.7100","7":"increase","8":"0.0107"},{"1":"Nepal","2":"Asia","3":"3.770","4":"Level 2","5":"70.8","6":"0.3370","7":"increase","8":"28.1000"},{"1":"Netherlands","2":"Europe","3":"56.100","4":"Level 4","5":"81.7","6":"9.4800","7":"decrease","8":"17.1000"},{"1":"New Zealand","2":"Asia","3":"42.900","4":"Level 4","5":"81.8","6":"7.3400","7":"decrease","8":"4.7400"},{"1":"Nicaragua","2":"Americas","3":"5.730","4":"Level 2","5":"75.2","6":"0.8620","7":"increase","8":"6.4700"},{"1":"Niger","2":"Africa","3":"1.200","4":"Level 1","5":"62.0","6":"0.1030","7":"increase","8":"22.4000"},{"1":"Nigeria","2":"Africa","3":"5.160","4":"Level 2","5":"63.8","6":"0.6500","7":"increase","8":"196.0000"},{"1":"North Korea","2":"Asia","3":"1.860","4":"Level 1","5":"72.9","6":"1.1800","7":"decrease","8":"25.5000"},{"1":"North Macedonia","2":"Europe","3":"16.100","4":"Level 3","5":"74.3","6":"3.4900","7":"decrease","8":"2.0800"},{"1":"Norway","2":"Europe","3":"64.300","4":"Level 4","5":"82.8","6":"8.3100","7":"decrease","8":"5.3400"},{"1":"Oman","2":"Asia","3":"32.600","4":"Level 4","5":"73.6","6":"13.9000","7":"decrease","8":"4.8300"},{"1":"Pakistan","2":"Asia","3":"4.740","4":"Level 2","5":"65.5","6":"1.0500","7":"increase","8":"212.0000"},{"1":"Palau","2":"Asia","3":"17.600","4":"Level 3","5":"67.4","6":"13.2000","7":"increase","8":"0.0179"},{"1":"Palestine","2":"Asia","3":"6.320","4":"Level 2","5":"74.7","6":"0.6610","7":"increase","8":"4.8600"},{"1":"Panama","2":"Americas","3":"31.000","4":"Level 4","5":"79.9","6":"2.6200","7":"increase","8":"4.1800"},{"1":"Papua New Guinea","2":"Asia","3":"4.190","4":"Level 2","5":"64.4","6":"0.9110","7":"increase","8":"8.6100"},{"1":"Paraguay","2":"Americas","3":"12.800","4":"Level 3","5":"76.5","6":"1.0700","7":"increase","8":"6.9600"},{"1":"Peru","2":"Americas","3":"12.800","4":"Level 3","5":"80.0","6":"1.7400","7":"increase","8":"32.0000"},{"1":"Philippines","2":"Asia","3":"8.520","4":"Level 3","5":"71.6","6":"1.2700","7":"increase","8":"107.0000"},{"1":"Poland","2":"Europe","3":"31.700","4":"Level 4","5":"78.0","6":"9.0700","7":"increase","8":"37.9000"},{"1":"Portugal","2":"Europe","3":"34.000","4":"Level 4","5":"81.7","6":"4.9700","7":"decrease","8":"10.3000"},{"1":"Qatar","2":"Asia","3":"91.000","4":"Level 4","5":"76.1","6":"38.0000","7":"decrease","8":"2.7800"},{"1":"Romania","2":"Europe","3":"28.500","4":"Level 4","5":"75.5","6":"3.8000","7":"decrease","8":"19.5000"},{"1":"Russia","2":"Europe","3":"26.700","4":"Level 4","5":"73.0","6":"11.7000","7":"increase","8":"146.0000"},{"1":"Rwanda","2":"Africa","3":"2.090","4":"Level 1","5":"68.3","6":"0.0913","7":"increase","8":"12.3000"},{"1":"Samoa","2":"Asia","3":"6.390","4":"Level 2","5":"70.4","6":"1.3200","7":"increase","8":"0.1960"},{"1":"Sao Tome and Principe","2":"Africa","3":"3.990","4":"Level 2","5":"70.7","6":"0.5870","7":"increase","8":"0.2110"},{"1":"Saudi Arabia","2":"Asia","3":"47.600","4":"Level 4","5":"74.3","6":"18.4000","7":"increase","8":"33.7000"},{"1":"Senegal","2":"Africa","3":"3.310","4":"Level 2","5":"68.0","6":"0.7390","7":"increase","8":"15.9000"},{"1":"Serbia","2":"Europe","3":"17.500","4":"Level 3","5":"75.6","6":"5.1700","7":"decrease","8":"8.8000"},{"1":"Seychelles","2":"Africa","3":"27.500","4":"Level 4","5":"73.5","6":"6.7500","7":"decrease","8":"0.0971"},{"1":"Sierra Leone","2":"Africa","3":"1.660","4":"Level 1","5":"61.2","6":"0.1410","7":"increase","8":"7.6500"},{"1":"Singapore","2":"Asia","3":"98.200","4":"Level 4","5":"84.7","6":"7.1000","7":"decrease","8":"5.7600"},{"1":"Slovak Republic","2":"Europe","3":"31.200","4":"Level 4","5":"77.5","6":"6.6100","7":"decrease","8":"5.4500"},{"1":"Slovenia","2":"Europe","3":"38.000","4":"Level 4","5":"81.4","6":"6.9500","7":"decrease","8":"2.0800"},{"1":"Solomon Islands","2":"Asia","3":"2.700","4":"Level 2","5":"59.0","6":"0.2730","7":"decrease","8":"0.6530"},{"1":"Somalia","2":"Africa","3":"1.130","4":"Level 1","5":"57.9","6":"0.0466","7":"decrease","8":"15.0000"},{"1":"South Africa","2":"Africa","3":"13.900","4":"Level 3","5":"64.4","6":"8.1000","7":"decrease","8":"57.8000"},{"1":"South Korea","2":"Asia","3":"42.000","4":"Level 4","5":"82.9","6":"12.9000","7":"increase","8":"51.2000"},{"1":"South Sudan","2":"Africa","3":"2.010","4":"Level 1","5":"63.0","6":"0.1710","7":"increase","8":"11.0000"},{"1":"Spain","2":"Europe","3":"40.300","4":"Level 4","5":"83.1","6":"5.7500","7":"decrease","8":"46.7000"},{"1":"Sri Lanka","2":"Asia","3":"12.900","4":"Level 3","5":"77.2","6":"1.1000","7":"increase","8":"21.2000"},{"1":"St. Kitts and Nevis","2":"Americas","3":"27.500","4":"Level 4","5":"72.1","6":"4.6200","7":"increase","8":"0.0524"},{"1":"St. Lucia","2":"Americas","3":"15.300","4":"Level 3","5":"75.1","6":"2.3100","7":"decrease","8":"0.1820"},{"1":"St. Vincent and the Grenadines","2":"Americas","3":"12.500","4":"Level 3","5":"72.8","6":"2.0300","7":"decrease","8":"0.1100"},{"1":"Sudan","2":"Africa","3":"4.370","4":"Level 2","5":"70.1","6":"0.5040","7":"increase","8":"41.8000"},{"1":"Suriname","2":"Americas","3":"19.000","4":"Level 3","5":"72.6","6":"3.1000","7":"decrease","8":"0.5760"},{"1":"Sweden","2":"Europe","3":"52.300","4":"Level 4","5":"82.7","6":"4.1200","7":"decrease","8":"9.9700"},{"1":"Switzerland","2":"Europe","3":"70.600","4":"Level 4","5":"83.9","6":"4.3300","7":"decrease","8":"8.5300"},{"1":"Syria","2":"Asia","3":"3.890","4":"Level 2","5":"73.2","6":"1.6700","7":"decrease","8":"16.9000"},{"1":"Taiwan","2":"Asia","3":"51.900","4":"Level 4","5":"80.2","6":"11.6000","7":"increase","8":"23.7000"},{"1":"Tajikistan","2":"Asia","3":"3.420","4":"Level 2","5":"69.2","6":"0.6030","7":"increase","8":"9.1000"},{"1":"Tanzania","2":"Africa","3":"2.590","4":"Level 1","5":"66.7","6":"0.2220","7":"increase","8":"56.3000"},{"1":"Thailand","2":"Asia","3":"18.100","4":"Level 3","5":"78.3","6":"4.1500","7":"increase","8":"69.4000"},{"1":"Timor-Leste","2":"Asia","3":"3.090","4":"Level 2","5":"70.5","6":"0.4120","7":"increase","8":"1.2700"},{"1":"Togo","2":"Africa","3":"2.060","4":"Level 1","5":"64.5","6":"0.4340","7":"increase","8":"7.8900"},{"1":"Tonga","2":"Asia","3":"6.410","4":"Level 2","5":"72.9","6":"1.3100","7":"increase","8":"0.1030"},{"1":"Trinidad and Tobago","2":"Americas","3":"26.300","4":"Level 4","5":"74.8","6":"31.3000","7":"decrease","8":"1.3900"},{"1":"Tunisia","2":"Africa","3":"11.400","4":"Level 3","5":"77.5","6":"2.7300","7":"increase","8":"11.6000"},{"1":"Turkey","2":"Europe","3":"28.300","4":"Level 4","5":"78.1","6":"5.2000","7":"increase","8":"82.3000"},{"1":"Turkmenistan","2":"Asia","3":"14.800","4":"Level 3","5":"70.6","6":"13.7000","7":"increase","8":"5.8500"},{"1":"Tuvalu","2":"Asia","3":"3.950","4":"Level 2","5":"67.8","6":"1.0100","7":"decrease","8":"0.0115"},{"1":"Uganda","2":"Africa","3":"2.130","4":"Level 1","5":"65.7","6":"0.1350","7":"increase","8":"42.7000"},{"1":"Ukraine","2":"Europe","3":"12.300","4":"Level 3","5":"73.9","6":"5.0900","7":"decrease","8":"44.2000"},{"1":"United Arab Emirates","2":"Asia","3":"67.000","4":"Level 4","5":"73.7","6":"21.4000","7":"decrease","8":"9.6300"},{"1":"United Kingdom","2":"Europe","3":"46.900","4":"Level 4","5":"81.0","6":"5.6500","7":"decrease","8":"67.1000"},{"1":"United States","2":"Americas","3":"61.600","4":"Level 4","5":"79.0","6":"16.6000","7":"decrease","8":"327.0000"},{"1":"Uruguay","2":"Americas","3":"23.000","4":"Level 3","5":"77.5","6":"2.0100","7":"decrease","8":"3.4500"},{"1":"Uzbekistan","2":"Asia","3":"7.080","4":"Level 2","5":"68.1","6":"2.8100","7":"decrease","8":"32.5000"},{"1":"Vanuatu","2":"Asia","3":"3.090","4":"Level 2","5":"65.3","6":"0.5290","7":"increase","8":"0.2930"},{"1":"Venezuela","2":"Americas","3":"12.400","4":"Level 3","5":"75.4","6":"4.8100","7":"decrease","8":"28.9000"},{"1":"Vietnam","2":"Asia","3":"7.590","4":"Level 2","5":"74.3","6":"2.1600","7":"increase","8":"95.5000"},{"1":"Yemen","2":"Asia","3":"2.660","4":"Level 2","5":"66.1","6":"0.3560","7":"decrease","8":"28.5000"},{"1":"Zambia","2":"Africa","3":"3.520","4":"Level 2","5":"62.5","6":"0.3020","7":"increase","8":"17.4000"},{"1":"Zimbabwe","2":"Africa","3":"3.920","4":"Level 2","5":"60.6","6":"0.8500","7":"increase","8":"14.4000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="references" class="level3" data-number="20.0.2">
+<h3 data-number="20.0.2" class="anchored" data-anchor-id="references"><span class="header-section-number">20.0.2</span> References</h3>
+<p>College Board. (2020). <a href="https://reports.collegeboard.org/pdf/2020-total-group-sat-suite-assessments-annual-report.pdf">SAT suite of assessments annual report</a>. Author.</p>
+<p>NEA Research. (2021). <a href="https://www.nea.org/sites/default/files/2021-04/2021%20Rankings_and_Estimates_Report.pdf">Rankings of the states 2020 and estimates of school statistics 2021</a>. National Education Association.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-03-fertility.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">fertility.csv</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05-05-keith-gpa.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

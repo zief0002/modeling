@@ -7,25 +7,7 @@ source("scripts/_common.R")
 
 In this chapter, you will be learn about how to use functionality from the `{ggplot2}` package to visualize your data. Data visualization helps you identify trends in your data. It can also help you find unexpected observations or patterns you might miss in the raw numbers themselves. Visualization is an important step in almost every data analysis and is often all you need to draw meaningful conclusions about the data!
 
-We will use the [gapminder.csv](https://raw.githubusercontent.com/zief0002/miniature-garbanzo/main/data/gapminder.csv) data (see the [data codebook](http://zief0002.github.io/miniature-garbanzo/codebooks/gapminder.html)) to illustrate how to create and modify visualizations using functionality in `{ggplot2}`.
-
-<!-- :::exercises -->
-
-<!-- **Research Questions** -->
-
-<!-- - Who was the first LGBTQ character?  -->
-
-<!--   + Which year did that character first appear? -->
-
-<!--   + Did Marvel and DC introduce LGBTQ characters around the same time? Or was one company more progressive? -->
-
-<!-- - What percentage of comic characters identify as LQBTQ? -->
-
-<!-- - Did the percentage of comic characters identifying as LQBTQ change after the Pride Movement began? -->
-
-<!-- - How does the average number of appearances for comic characters identifying as LQBTQ differ from those who don't? -->
-
-<!-- ::: -->
+We will use the [gapminder.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/gapminder.csv) data (see the [data codebook](#gapminder)) to illustrate how to create and modify visualizations using functionality in `{ggplot2}`.
 
 To begin, we will load the `{dplyr}`, `{ggplot2}` and `{readr}` libraries, and import the data into an object called `gapminder`.
 
@@ -36,7 +18,7 @@ library(ggplot2)
 library(readr)
 
 # Read in data
-gapminder = read_csv(file = "https://raw.githubusercontent.com/zief0002/miniature-garbanzo/main/data/gapminder.csv")
+gapminder = read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/gapminder.csv")
 
 # View data
 glimpse(gapminder)
@@ -500,7 +482,7 @@ She has palettes for three different types of data
 
 ```{r}
 #| echo: false
-knitr::include_graphics("figs/21-color-brewer-palette.png")
+knitr::include_graphics("figs/01-05-color-brewer-palette.png")
 ```
 
 To use one of Cynthia Brewer's color palettes, we employ `scale_color_brewer()` or `scale_fill_brewer()`. Within these functions, we need to specify a palette using the `palette=` argument. The palette names can be found at <https://colorbrewer2.org/>. In our example, the region values constitute qualitative/categorical data, so we could choose any of the qualitative color palettes. To use the qualitative color palette called "Set1" we use:
@@ -723,10 +705,10 @@ There are several packages that extend the functionality of `{ggplot2}`. Many of
 
 ```{r}
 #| echo: false
-knitr::include_graphics("figs/22-ggplot-extensions.png")
+knitr::include_graphics("figs/01-05-ggplot-extensions.png")
 ```
 
-One useful extension package is the `{scales}` package. The functions and layers in this package are useful for transforming and labeling scales that are used to create your plot. For example, one of the functions in the `{scales}` package. `label_number()`, can be used to add a character prior to, or after all the numericval values labelled on an axis (very useful if the attribute being plotted is dollars). There is a nice web tutorial on using the `{scales}` package [here](https://bookdown.org/Maxine/ggplot2-maps/posts/2019-11-27-using-scales-package-to-modify-ggplot2-scale/).
+One useful extension package is the `{scales}` package. The functions and layers in this package are useful for transforming and labeling scales that are used to create your plot. For example, one of the functions in the `{scales}` package. `label_number()`, can be used to add a character prior to, or after all the numerical values labelled on an axis (very useful if the attribute being plotted is dollars). There is a nice web tutorial on using the `{scales}` package [here](https://bookdown.org/Maxine/ggplot2-maps/posts/2019-11-27-using-scales-package-to-modify-ggplot2-scale/).
 
 Here we add
 

@@ -7,7 +7,7 @@ source("scripts/_common.R")
 ```
 
 
-In this set of notes, you will begin your foray into regression analysis. To do so, we will use the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv) data to examine **whether education level is related to income**. The data contain five attributes collected from a random sample of $n=32$ employees working for the city of Riverview, a hypothetical midwestern city (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/riverview.html)). To begin, we will load several libraries and import the data into an object called `city`.
+In this set of notes, you will begin your foray into regression analysis. To do so, we will use the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv) data to examine **whether education level is related to income**. The data contain five attributes collected from a random sample of $n=32$ employees working for the city of Riverview, a hypothetical midwestern city (see the [data codebook](#riverview)). To begin, we will load several libraries and import the data into an object called `city`.
 
 ```{r}
 # Load libraries

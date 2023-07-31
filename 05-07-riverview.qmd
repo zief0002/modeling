@@ -1,0 +1,35 @@
+## riverview.csv {#riverview}
+
+```{r}
+#| echo: false
+source("scripts/_common.R")
+```
+
+The data in [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv) come from @Lewis-Beck:2016 and contain five attributes collected from a random sample of $n=32$ employees working for the city of Riverview, a hypothetical midwestern city. The attributes include:
+
+- `education`: Years of formal education
+- `income`: Annual income (in thousands of U.S. dollars)
+- `seniority`: Years of seniority
+- `gender`: Employee's gender
+- `party`: Political party affiliation
+
+
+<br />
+
+
+### Preview
+
+```{r}
+#| code-fold: true
+# Import Data
+city = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv")
+
+# View data
+city
+```
+
+<br />
+
+### References
+
+

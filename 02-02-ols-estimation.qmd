@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv) data to examine whether education level is related to income (see the [data codebook](http://zief0002.github.io/epsy-8251/codebooks/riverview.html)). To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.a`.
+In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv) data to examine whether education level is related to income (see the [data codebook](#riverview)). To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.a`.
 
 ```{r}
 # Load libraries

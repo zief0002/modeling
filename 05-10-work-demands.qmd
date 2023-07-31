@@ -1,0 +1,39 @@
+## work-demands.csv {#work}
+
+```{r}
+#| echo: false
+source("scripts/_common.R")
+```
+
+Research has documented the importance of a healthy work-life balance. The data in [work-demands.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/work-demands.csv) were simulated to mimic the effects of boundary-spanning work (receiving work-related contact outside of normal work hours) found in the literature on psychological outcomes. The variables in the data are:
+
+- `guilt`: Standardized measure of guilt (as a transitory affective state) related to home-life balance. This was measured using survey questions such as,  "In the past seven days, on how many  days  have  you  felt  guilty?" Higher values indicate more perceived guilt.
+- `bound_span_work`: Standardized measure of boundary-spanning work demands. Measured using survey items such as, "how  often  do  coworkers,  supervisors, managers, customers, or clients contact you about work-related  matters  outside  normal  work  hours?". Higher values indicate higher degrees of boundary-spanning work demands.
+- `female`: Dummy-coded indicator of sex (0 = Not female; 1 = Female)
+- `authority`: Standardized measure of job authority. Measured using survey items such as: "Do you influence or set the rate of pay  received  by  others?" and "Do you have  the authority to hire or fire others?". Higher values indicate more authority.
+- `married`: Dummy-coded indicator of marital status (0 = Not married; 1 = Married)
+
+
+
+<br />
+
+
+### Preview
+
+```{r}
+#| code-fold: true
+# Import Data
+work = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/work-demands.csv")
+
+# View data
+work
+```
+
+<br />
+
+
+### References
+
+
+Glavin, P., Schieman, S., &amp; Reid, S. (2011). Boundary-spanning work demands and their consequences for guilt and psychological distress. *Journal of Health and Social Behavior, 52*(1) 43&ndash;57. doi: 10.1177/0022146510395023
+

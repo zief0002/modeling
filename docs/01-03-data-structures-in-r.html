@@ -301,6 +301,77 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-04-more-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">More Interaction Effects</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./05-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Codebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-01-comic-characters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-03-fertility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-04-gapminder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-05-keith-gpa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-06-mn-schools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-07-riverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-08-spice-girls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-09-substance-family.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">substance-family.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-10-work-demands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -353,13 +424,13 @@ div.csl-indent {
 <p>One way to think about vectors and data frames is to use the metaphor of bookcases. Vectors are single column bookcases and data frames are multi-column bookcases.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="figs/15-vector-df.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="figs/01-03-vector-df.png" class="img-fluid" style="width:60.0%"></p>
 </div>
 </div>
 <p>Similar to real bookcases, the bookcases in our metaphor can be used to store things. In our metaphorical bookcases, we will store data values. Note that in the picture, the color of the bookcase is constant within each column. This indicates that, unlike real bookcases, whatever type of data we store in a column of our metaphorical bookcase will have to be homogeneous. For example, we cannot store numeric values and character strings (e.g., names) within the same column without consequences.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="figs/16-vector-df-data.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="figs/01-03-vector-df-data.png" class="img-fluid" style="width:60.0%"></p>
 </div>
 </div>
 <p><br></p>
@@ -531,7 +602,7 @@ NA</code></pre>
 </div>
 </div>
 </div>
-<p>Note that we also assigned the data frame to an object called <code>spice_girls</code> so we can compute on it. You will learn how to compute on data frames in the chapters <a href="01-04-data-wrangling-with-dplyr.html">Data Wrangling with dplyr</a> and <a href="http://zief0002.github.io/epsy-8251/misc/03-plotting-with-ggplot2.html">Plotting with ggplot2</a>.</p>
+<p>Note that we also assigned the data frame to an object called <code>spice_girls</code> so we can compute on it. You will learn how to compute on data frames in the chapters <a href="01-04-data-wrangling-with-dplyr.html">Data Wrangling with dplyr</a> and <a href="01-05-visualizing-with-ggplot2.html">Visualizing Data with ggplot2</a>.</p>
 <p><br></p>
 </section>
 <section id="importing-data-from-a-csv-file" class="level2" data-number="3.3">
@@ -539,7 +610,7 @@ NA</code></pre>
 <p>In professional practice, you will often enter data into a spreadsheet and rather than typing it into R. When you save this work, many spreadsheet programs use a proprietary format for saving the information (e.g., Excel saves as a XLSX file; Google Sheets saves as a GSHEET file). These often include extraneous information (e.g., formatting) that is irrelevant to the raw data. While R includes libraries and functions that can import data in the XLSX and GSHEETS formats, it is generally easier to save or export your data to a CSV (comma separated value) file from within your spreadsheet program prior to importing it into R.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="figs/17-save-as-csv.png" class="img-fluid" style="width:80.0%"></p>
+<p><img src="figs/01-03-save-as-csv.png" class="img-fluid" style="width:80.0%"></p>
 </div>
 </div>
 <div class="protip">
@@ -559,7 +630,7 @@ NA</code></pre>
 <p><br></p>
 <section id="importing-the-spice-girls-data" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="importing-the-spice-girls-data"><span class="header-section-number">3.3.1</span> Importing the Spice Girls Data</h3>
-<p>The file <em>spice-girls.csv</em> is accessible at <a href="https://raw.githubusercontent.com/zief0002/toolkit/master/data/spice_girls.csv" class="uri">https://raw.githubusercontent.com/zief0002/toolkit/master/data/spice_girls.csv</a>.</p>
+<p>The file <em>spice-girls.csv</em> is accessible at <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/spice-girls.csv" class="uri">https://raw.githubusercontent.com/zief0002/modeling/main/data/spice-girls.csv</a>.</p>
 <ul>
 <li>Copy and paste that URL into the “File/URL” text box.</li>
 <li>Click the “Update” button.</li>
@@ -572,7 +643,7 @@ NA</code></pre>
 <p>After importing the data you should see the object in your global environment.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="figs/18-import-csv.png" class="img-fluid" style="width:90.0%"></p>
+<p><img src="figs/01-03-import-csv.png" class="img-fluid" style="width:90.0%"></p>
 </div>
 </div>
 <p><br></p>
@@ -582,7 +653,7 @@ NA</code></pre>
 <p>Even though you used the <code>Import</code> button—a point-and-click feature in RStudio—to import the data, behind the scenes, syntax was generated that was actually used to import the data into R. When we selected “From Text (readr)”, the <code>read_csv()</code> function from the <code>{readr}</code> package was used to import the data. You can see the syntax generated in the <code>Code Preview</code> window after you selected your CSV file.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="figs/19-code-preview.png" class="img-fluid" style="width:90.0%"></p>
+<p><img src="figs/01-03-code-preview.png" class="img-fluid" style="width:90.0%"></p>
 </div>
 </div>
 <p>In the first line of syntax, the <code>{readr}</code> package is loaded using the <code>library()</code> function. The data is imported in the second line of syntax and assigned to an object, in this case <code>spice_girls</code>. The <code>read_csv()</code> function includes an unnamed argument providing the URL for the CSV file.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> The <code>View()</code> function in the third line of syntax simply opens the <code>spice_girls</code> object in a view tab in RStudio.</p>
@@ -596,7 +667,7 @@ NA</code></pre>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>spice_girls <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/zief0002/toolkit/master/data/spice_girls.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>spice_girls <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/zief0002/modeling/main/data/spice-girls.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fyi">
 <p>The syntax <code>&lt;-</code> is another way to write the assignment operator. You can use either <code>=</code> or <code>&lt;-</code> for the assignment operator. Whichever you choose, be consistent!</p>

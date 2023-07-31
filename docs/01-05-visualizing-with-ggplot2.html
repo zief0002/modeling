@@ -301,6 +301,77 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-04-more-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">More Interaction Effects</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./05-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Codebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-01-comic-characters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-03-fertility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-04-gapminder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-05-keith-gpa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-06-mn-schools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-07-riverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-08-spice-girls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-09-substance-family.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">substance-family.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-10-work-demands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -373,16 +444,7 @@ div.csl-indent {
 </header>
 
 <p>In this chapter, you will be learn about how to use functionality from the <code>{ggplot2}</code> package to visualize your data. Data visualization helps you identify trends in your data. It can also help you find unexpected observations or patterns you might miss in the raw numbers themselves. Visualization is an important step in almost every data analysis and is often all you need to draw meaningful conclusions about the data!</p>
-<p>We will use the <a href="https://raw.githubusercontent.com/zief0002/miniature-garbanzo/main/data/gapminder.csv">gapminder.csv</a> data (see the <a href="http://zief0002.github.io/miniature-garbanzo/codebooks/gapminder.html">data codebook</a>) to illustrate how to create and modify visualizations using functionality in <code>{ggplot2}</code>.</p>
-<!-- :::exercises -->
-<!-- **Research Questions** -->
-<!-- - Who was the first LGBTQ character?  -->
-<!--   + Which year did that character first appear? -->
-<!--   + Did Marvel and DC introduce LGBTQ characters around the same time? Or was one company more progressive? -->
-<!-- - What percentage of comic characters identify as LQBTQ? -->
-<!-- - Did the percentage of comic characters identifying as LQBTQ change after the Pride Movement began? -->
-<!-- - How does the average number of appearances for comic characters identifying as LQBTQ differ from those who don't? -->
-<!-- ::: -->
+<p>We will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/gapminder.csv">gapminder.csv</a> data (see the <a href="05-04-gapminder.html">data codebook</a>) to illustrate how to create and modify visualizations using functionality in <code>{ggplot2}</code>.</p>
 <p>To begin, we will load the <code>{dplyr}</code>, <code>{ggplot2}</code> and <code>{readr}</code> libraries, and import the data into an object called <code>gapminder</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
@@ -391,7 +453,7 @@ div.csl-indent {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/miniature-garbanzo/main/data/gapminder.csv"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/modeling/main/data/gapminder.csv"</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -919,7 +981,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/21-color-brewer-palette.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="figs/01-05-color-brewer-palette.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
@@ -1169,12 +1231,12 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/22-ggplot-extensions.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="figs/01-05-ggplot-extensions.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>One useful extension package is the <code>{scales}</code> package. The functions and layers in this package are useful for transforming and labeling scales that are used to create your plot. For example, one of the functions in the <code>{scales}</code> package. <code>label_number()</code>, can be used to add a character prior to, or after all the numericval values labelled on an axis (very useful if the attribute being plotted is dollars). There is a nice web tutorial on using the <code>{scales}</code> package <a href="https://bookdown.org/Maxine/ggplot2-maps/posts/2019-11-27-using-scales-package-to-modify-ggplot2-scale/">here</a>.</p>
+<p>One useful extension package is the <code>{scales}</code> package. The functions and layers in this package are useful for transforming and labeling scales that are used to create your plot. For example, one of the functions in the <code>{scales}</code> package. <code>label_number()</code>, can be used to add a character prior to, or after all the numerical values labelled on an axis (very useful if the attribute being plotted is dollars). There is a nice web tutorial on using the <code>{scales}</code> package <a href="https://bookdown.org/Maxine/ggplot2-maps/posts/2019-11-27-using-scales-package-to-modify-ggplot2-scale/">here</a>.</p>
 <p>Here we add</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library</span></span>
@@ -1264,7 +1326,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <li><strong>Cookbook for R:</strong> Web-based version of Winston Chang’s R Graphics Cookbook http://www.cookbook-r.com/Graphs/ (The UMN library has electronic access to the actual book. Just search for “R Graphics Cookbook” and log-in with your x500.)</li>
 <li><strong>Data Visualization: A Practical Introduction:</strong> Online book about data viz using ggplot2 https://socviz.co/</li>
 </ul>
-<p>Happy Plotting!!! 📈 🥳</p>
+<p>Happy Plotting!!! 📊 🎉</p>
 <p><br></p>
 </section>
 <section id="references" class="level2 unnumbered">

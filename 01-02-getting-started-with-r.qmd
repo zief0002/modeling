@@ -19,7 +19,7 @@ There are a several ways to interact with R within RStudio. One of those methods
 #| out-width: "60%"
 #| fig-cap: "The console pane in RStudio is one way to compute with R. Syntax is entered at the R prompt and executed by hitting the <return> or <enter> key."
 
-knitr::include_graphics("figs/08-console.png")
+knitr::include_graphics("figs/01-02-console.png")
 ```
 
 To get started, we will have R carry out some arithmetic. At the prompt enter each of the following lines of syntax. After each line, hit the `<return>` or `<enter>` key.
@@ -78,7 +78,7 @@ Almost all commands in R are built around the use of a function. Functions carry
 #| out-width: "60%"
 #| fig-cap: "LEFT: Arguments are inputted into a function which returns an output. RIGHT: The value 25 is inputted into the square root function which returns the value of 5."
 
-knitr::include_graphics("figs/09-function-machine.png")
+knitr::include_graphics("figs/01-02-function-machine.png")
 ```
 
 The syntax for using most functions in R follows a simple structure: The name of the function is followed by a pair of parentheses. Argument values (inputs) are specified inside the parentheses. In general,
@@ -235,7 +235,7 @@ In RStudio you can see which objects are in your working environment by examinin
 #| out-width: "40%"
 #| fig-cap: "The enivironment pane shows the objects in the R working environment. It also displays the object's class and gives a preview of the the contents."
 
-knitr::include_graphics("figs/10-environment.png")
+knitr::include_graphics("figs/01-02-environment.png")
 ```
 
 Not only does this pane indicate the name of the objects in the working environment, but is also displays each object's class. In this case we can tell that `chili` is an integer vector and `sadie` is a numeric vector.^[The difference between the two classes is technical and related to how R internally stores the information in the vector.] Moreover, we are told that each vector includes five elements, shown in the environment pane as `[1:5]`. Lastly, we are given a preview of each object's contents. Since these vectors only contain five elements, we see all the values in the preview.
@@ -262,7 +262,7 @@ After assigning new values to `chili`, we can see the information in the environ
 #| out-width: "40%"
 #| fig-cap: "The object `chili` although still an integer vector, now includes 10 elements."
 
-knitr::include_graphics("figs/11-environment-chili.png")
+knitr::include_graphics("figs/01-02-environment-chili.png")
 ```
 
 Any computations carried out with `chili` will use the new object.
@@ -287,7 +287,7 @@ It is important to be able to record the syntax you use. This acts as a way of "
 #| out-width: "60%"
 #| fig-cap: "LEFT: Create a new script file using RStudio's `File` menu. RIGHT: Create a new script file by clicking on the `New File` icon in the toolbar."
 
-knitr::include_graphics("figs/12-new-script-file.png")
+knitr::include_graphics("figs/01-02-new-script-file.png")
 ```
 
 Script files should only include your R syntax and comments. Script files should NOT include:
@@ -302,7 +302,7 @@ Comments, which are human-readable annotations or explanations of the syntax, ar
 #| out-width: "60%"
 #| fig-cap: "Example script file with comments."
 
-knitr::include_graphics("figs/13-script-file.png")
+knitr::include_graphics("figs/01-02-script-file.png")
 ```
 
 Script files can be saved and opened the same as any other document. So, no more worrying about losing your work or objects that you created when you close your R sesssion. Just open your saved script file, highlight the parts you want to re-run, and click the `Run` button! 
@@ -319,7 +319,7 @@ Not only does the script file record your syntax, but it can also act as the veh
 #| out-width: "80%"
 #| fig-cap: "To execute syntax from the script file, highlight the syntax you want to run and then click the `Run` button in the toolbar."
 
-knitr::include_graphics("figs/14-run-script.png")
+knitr::include_graphics("figs/01-02-run-script.png")
 ```
 
 Writing syntax directly in the script file and running it is a groovy workflow for using R. Writing syntax directly in the script file also saves you from having to copy-and-paste syntax you want to save from the console. In my own work, I use this workflow almost daily.
@@ -336,7 +336,7 @@ Every R function is housed in a package. To use the functions in a particular pa
 #| out-width: "60%"
 #| fig-cap: "Packages need to be installed and loaded."
 
-knitr::include_graphics("figs/07-install-vs-load.png")
+knitr::include_graphics("figs/01-02-install-vs-load.png")
 ```
 
 You can see the packages  (and which version of each package) are installed by examining the `Packages` tab in RStudio. Every package listed there has been installed. You will also be able to see the version number of the package that is installed. Some of those packages may be checked. These are the packages that are also loaded into memory.
@@ -346,7 +346,7 @@ You can see the packages  (and which version of each package) are installed by e
 #| out-width: "40%"
 #| fig-cap: "The packages tab shows which packages are installed. The list of packages you have installed will likely be different. Checked packages are loaded into memory. In the packages seen here, only the base package is loaded into memory."
 
-knitr::include_graphics("figs/03-package-tab.png")
+knitr::include_graphics("figs/01-02-package-tab.png")
 ```
 
 Twenty-nine packages were included when you installed R on your computer. When you start an R session by opening RStudio, some of those packages are also loaded into memory. 
@@ -356,7 +356,7 @@ Twenty-nine packages were included when you installed R on your computer. When y
 #| out-width: "70%"
 #| fig-cap: "The 29 packages installed as part of R. The base, datasets, graphics, grDevices, methods, stats, and utils packages are loaded into memory when you start an R session. The other 22 packages are installed but not loaded into memory."
 
-knitr::include_graphics("figs/04-default-packages.png")
+knitr::include_graphics("figs/01-02-default-packages.png")
 ```
 
 <br />
@@ -451,7 +451,7 @@ This will open a pop-up window where you can type the CRAN package you want to i
 #| out-width: "50%"
 #| fig-cap: "Pop-up window to install packages. Here we are installing the dplyr package. Note that the 'Install dependencies' box is checked."
 
-knitr::include_graphics("figs/05-install-package.png")
+knitr::include_graphics("figs/01-02-install-package.png")
 ```
 
 You may be prompted to choose a nearest mirror. If so, choose a mirror location. If you are successful in installing the package, you will get a message like the following:

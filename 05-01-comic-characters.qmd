@@ -1,0 +1,42 @@
+## comic-characters.csv {#comic-characters}
+
+```{r}
+#| echo: false
+source("scripts/_common.R")
+```
+
+The data in [comic-characters.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/comic-characters.csv) contains data on 14 attributes for 23,272 comic characters. These data were scraped in 2014 from from [Marvel Wikia](http://marvel.wikia.com/Main_Page) and [DC Wikia](http://dc.wikia.com/wiki/Main_Page) by FiveThirtyEight and used in the story [Comic Books Are Still Made By Men, For Men And About Men](http://fivethirtyeight.com/features/women-in-comic-books/). The variables are:
+
+- `character`: The name of the character
+- `comic`: If the character appears in DC Comics or Marvel Comics
+- `reality`: Comic reality the character appears in
+- `identity`: The identity status of the character (Secret Identity, Public identity, No Dual Identity)
+- `alignment`: If the character is Good, Bad or Neutral
+- `eye_color`: Eye color of the character
+- `hair_color`: Hair color of the character 
+- `sex`: Sex of the character (e.g. Male, Female, etc.)
+- `lgbtq`: If the character is identified as LGBTQ
+- `lgbtq_note`: Additional information if the character is identified as LGBTQ
+- `alive`: If the character is alive or deceased
+- `appearances`: The number of appearances of the character in comic books (as of September 2, 2014)
+- `first_appear_date`: The month and year of the character's first appearance in a comic book, if available
+- `first_appear_year`: The year of the character's first appearance in a comic book, if available
+
+<br />
+
+
+### Preview
+
+```{r}
+#| code-fold: true
+# Import Data
+comics = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/comic-characters.csv")
+
+# View data
+comics
+```
+
+<br />
+
+
+
