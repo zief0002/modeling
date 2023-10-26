@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -556,7 +556,7 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 <h3 data-number="13.2.3" class="anchored" data-anchor-id="normality-and-equal-variances"><span class="header-section-number">13.2.3</span> Normality and Equal Variances</h3>
 <p>The assumption about normality is about the conditional distribution of errors at each value of <em>X</em>. This assumption is less critical than the assumptions of linearity and independence. It is only problematic for the OLS regression results if there are egregious violations of normality. In general, if the violations of these assumptions are only minor, the results of the OLS regression are still valid; we would say the results from an OLS regression are <em>robust</em> to violations of normality. Even if the violations are bad, there are many transformations of the data that can alleviate this problem.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <p>Normal distributions are symmetric with the density of observations close to the mean. This means that in the scatterplot of the residuals versus the <em>X</em>-values, we want to see symmetry around 0 at each <em>X</em>-value and that most of the residuals are “close” to 0 (“Close” is hard to define as it depends on the standard deviation, remember that 68% of the residuals should be within one standard deviation, 95% within two standard deviations, etc.)</p>
-<div class="cell" data-layout-align="center" data-hash="03-03-assumptions_cache/html/fig-normality-residuals_f51a084c3fc226e8e181b1d551b50648">
+<div class="cell" data-layout-align="center" data-hash="03-03-assumptions_cache/html/fig-normality-residuals_c5748a84d5a2fd46a7ffdc563e94eea5">
 <div class="cell-output-display">
 <div id="fig-normality-residuals" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -569,7 +569,7 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 <p>The residuals in the left-hand plot of Figure 4 are symmetric around 0 for each <em>X</em>-value. The bulk of the residuals at each <em>X</em>-value is near 0 and they become less dense the further from 0 they are, for both the positive and negative residual values. This is the pattern we want to see in empirical residuals. The residuals in the right-hand plot of Figure 4, are not symmetric around 0. They are also more dense in the negative values and then become less dense for higher positive values. This is evidence that the normality assumption is violated.</p>
 <p>In the examples given in Figure 4, the number of observations and the shape of the conditional distributions make deviations from normality easier to spot. Evaluating the normality assumption in empirical data, which are often composed of fewer observations, is much more of a challenge. Moreover, evaluating the shape of distributions in a scatterplot is not an easy task.</p>
 <p>Researchers often evaluate the normality assumption by examining the shape of the marginal distribution of the residuals. Figure 5 shows density plots of the marginal distributions for the same two sets of residuals plotted in Figure 4.</p>
-<div class="cell" data-layout-align="center" data-hash="03-03-assumptions_cache/html/fig-normality-residuals-2_abd33c51a50d155c5d3d1131b9263ef7">
+<div class="cell" data-layout-align="center" data-hash="03-03-assumptions_cache/html/fig-normality-residuals-2_e49fa1aa917ccc8bfa9d4bc45bac9d9f">
 <div class="cell-output-display">
 <div id="fig-normality-residuals-2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -584,7 +584,7 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 <section id="equal-variances" class="level3" data-number="13.2.4">
 <h3 data-number="13.2.4" class="anchored" data-anchor-id="equal-variances"><span class="header-section-number">13.2.4</span> Equal Variances</h3>
 <p>Similar to the assumption about normality, the assumption of equal variances (homoskedasticity) is less critical than the assumptions of linearity and independence, and only egregious violations of the assumption is problematic for the validity of the regression results.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
-<div class="cell" data-layout-align="center" data-hash="03-03-assumptions_cache/html/fig-equal-var-residuals_8139e62046c80349171d4e7e7f3f1e39">
+<div class="cell" data-layout-align="center" data-hash="03-03-assumptions_cache/html/fig-equal-var-residuals_4394e77c941be97a1ff2c7ab3ea32a88">
 <div class="cell-output-display">
 <div id="fig-equal-var-residuals" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
