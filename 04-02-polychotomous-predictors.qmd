@@ -255,7 +255,9 @@ $$
 When we use multiple dummy-coded indicator variables to represent a categorical predictor, each partial slope represents the mean difference between two groups, and the effect of that categorical predictor is composed of ALL sets of differences between two groups (pairwise differences). In our example, since there are three pairwise differences, the model-level null hypothesis can be expressed as
 
 $$
-H_0: \bigg(\mu_{\mathrm{Parent/Guardian}} - \mu_{\mathrm{Two\mbox{-}Parent}}\bigg) = \bigg(\mu_{\mathrm{One\mbox{-}Parent}} - \mu_{\mathrm{Two\mbox{-}Parent}}\bigg) = \bigg(\mu_{\mathrm{One\mbox{-}Parent}} - \mu_{\mathrm{Parent/Guardian}}\bigg) = 0
+\begin{split}
+H_0: &\bigg(\mu_{\mathrm{Parent/Guardian}} - \mu_{\mathrm{Two\mbox{-}Parent}}\bigg) = \bigg(\mu_{\mathrm{One\mbox{-}Parent}} - \mu_{\mathrm{Two\mbox{-}Parent}}\bigg) =\\ &\bigg(\mu_{\mathrm{One\mbox{-}Parent}} - \mu_{\mathrm{Parent/Guardian}}\bigg) = 0
+\end{split}
 $$
 
 The test at the model-level is considering all three pairwise differences simultaneously. If the model-level test is statistically reliable, any one (or more than one) of the differences may not be zero. *Because of this, it is important to examine ALL potential coefficient-level differences, not just those outputted from the initial fitted model.*
@@ -263,7 +265,7 @@ The test at the model-level is considering all three pairwise differences simult
 <br />
 
 
-## Evaluate Substance Use Bewteen Adolescents from Single-Parent Households and Those from Houeholds with One Parent/One Guardian
+## Evaluate Substance Use Between Adolescents from Single-Parent Households and Those from Houeholds with One Parent/One Guardian
 
 The first regression model we fitted allowed us to evaluate the difference in substance use between adolescents from two-parent households and those from one parent/one guardian households, as well as that between two-parent and one-parent households. In order to examine the remaining pairwise difference, we need to fit an additional regression model that allows us to evaluate any substance use differences between adolescents from single-parent households and those from households with one parent/one guardian. Below, we fit a second model (using single-parent households as the reference group) to predict variation in substance use.
 
@@ -544,7 +546,7 @@ To evaluate whether these differences are more than we expect because of chance 
 ```{r}
 data.frame(
   comparison = c("Two-parent vs. Parent/guardian", "Two-parent vs. Single-parent", "Parent/guardian vs. Single-parent"),
-  unadjusted_p = c(0.092, 0.007, 0.092)
+  unadjusted_p = c(0.092, 0.007, 0.635)
 ) |>
   mutate(
     bh_p = p.adjust(unadjusted_p, method = "BH")

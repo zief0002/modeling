@@ -391,7 +391,7 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#alternative-expression-of-the-model-level-null-hypothesis" id="toc-alternative-expression-of-the-model-level-null-hypothesis" class="nav-link" data-scroll-target="#alternative-expression-of-the-model-level-null-hypothesis"><span class="header-section-number">15.2.1</span> Alternative Expression of the Model-Level Null Hypothesis</a></li>
   </ul></li>
-  <li><a href="#evaluate-substance-use-bewteen-adolescents-from-single-parent-households-and-those-from-houeholds-with-one-parentone-guardian" id="toc-evaluate-substance-use-bewteen-adolescents-from-single-parent-households-and-those-from-houeholds-with-one-parentone-guardian" class="nav-link" data-scroll-target="#evaluate-substance-use-bewteen-adolescents-from-single-parent-households-and-those-from-houeholds-with-one-parentone-guardian"><span class="header-section-number">15.3</span> Evaluate Substance Use Bewteen Adolescents from Single-Parent Households and Those from Houeholds with One Parent/One Guardian</a>
+  <li><a href="#evaluate-substance-use-between-adolescents-from-single-parent-households-and-those-from-houeholds-with-one-parentone-guardian" id="toc-evaluate-substance-use-between-adolescents-from-single-parent-households-and-those-from-houeholds-with-one-parentone-guardian" class="nav-link" data-scroll-target="#evaluate-substance-use-between-adolescents-from-single-parent-households-and-those-from-houeholds-with-one-parentone-guardian"><span class="header-section-number">15.3</span> Evaluate Substance Use Between Adolescents from Single-Parent Households and Those from Houeholds with One Parent/One Guardian</a>
   <ul class="collapse">
   <li><a href="#link-to-the-analysis-of-variance-methodology-for-testing-mean-differences" id="toc-link-to-the-analysis-of-variance-methodology-for-testing-mean-differences" class="nav-link" data-scroll-target="#link-to-the-analysis-of-variance-methodology-for-testing-mean-differences"><span class="header-section-number">15.3.1</span> Link to the Analysis of Variance Methodology for Testing Mean Differences</a></li>
   </ul></li>
@@ -742,14 +742,16 @@ H_0: \beta_1 = \beta_2 = \ldots = \beta_k = 0
 \]</span></p>
 <p>When we use multiple dummy-coded indicator variables to represent a categorical predictor, each partial slope represents the mean difference between two groups, and the effect of that categorical predictor is composed of ALL sets of differences between two groups (pairwise differences). In our example, since there are three pairwise differences, the model-level null hypothesis can be expressed as</p>
 <p><span class="math display">\[
-H_0: \bigg(\mu_{\mathrm{Parent/Guardian}} - \mu_{\mathrm{Two\mbox{-}Parent}}\bigg) = \bigg(\mu_{\mathrm{One\mbox{-}Parent}} - \mu_{\mathrm{Two\mbox{-}Parent}}\bigg) = \bigg(\mu_{\mathrm{One\mbox{-}Parent}} - \mu_{\mathrm{Parent/Guardian}}\bigg) = 0
+\begin{split}
+H_0: &amp;\bigg(\mu_{\mathrm{Parent/Guardian}} - \mu_{\mathrm{Two\mbox{-}Parent}}\bigg) = \bigg(\mu_{\mathrm{One\mbox{-}Parent}} - \mu_{\mathrm{Two\mbox{-}Parent}}\bigg) =\\ &amp;\bigg(\mu_{\mathrm{One\mbox{-}Parent}} - \mu_{\mathrm{Parent/Guardian}}\bigg) = 0
+\end{split}
 \]</span></p>
 <p>The test at the model-level is considering all three pairwise differences simultaneously. If the model-level test is statistically reliable, any one (or more than one) of the differences may not be zero. <em>Because of this, it is important to examine ALL potential coefficient-level differences, not just those outputted from the initial fitted model.</em></p>
 <p><br></p>
 </section>
 </section>
-<section id="evaluate-substance-use-bewteen-adolescents-from-single-parent-households-and-those-from-houeholds-with-one-parentone-guardian" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="evaluate-substance-use-bewteen-adolescents-from-single-parent-households-and-those-from-houeholds-with-one-parentone-guardian"><span class="header-section-number">15.3</span> Evaluate Substance Use Bewteen Adolescents from Single-Parent Households and Those from Houeholds with One Parent/One Guardian</h2>
+<section id="evaluate-substance-use-between-adolescents-from-single-parent-households-and-those-from-houeholds-with-one-parentone-guardian" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="evaluate-substance-use-between-adolescents-from-single-parent-households-and-those-from-houeholds-with-one-parentone-guardian"><span class="header-section-number">15.3</span> Evaluate Substance Use Between Adolescents from Single-Parent Households and Those from Houeholds with One Parent/One Guardian</h2>
 <p>The first regression model we fitted allowed us to evaluate the difference in substance use between adolescents from two-parent households and those from one parent/one guardian households, as well as that between two-parent and one-parent households. In order to examine the remaining pairwise difference, we need to fit an additional regression model that allows us to evaluate any substance use differences between adolescents from single-parent households and those from households with one parent/one guardian. Below, we fit a second model (using single-parent households as the reference group) to predict variation in substance use.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Single-parent households is reference group</span></span>
@@ -1060,7 +1062,7 @@ structures.</p> </caption>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">comparison =</span> <span class="fu">c</span>(<span class="st">"Two-parent vs. Parent/guardian"</span>, <span class="st">"Two-parent vs. Single-parent"</span>, <span class="st">"Parent/guardian vs. Single-parent"</span>),</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">unadjusted_p =</span> <span class="fu">c</span>(<span class="fl">0.092</span>, <span class="fl">0.007</span>, <span class="fl">0.092</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">unadjusted_p =</span> <span class="fu">c</span>(<span class="fl">0.092</span>, <span class="fl">0.007</span>, <span class="fl">0.635</span>)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">bh_p =</span> <span class="fu">p.adjust</span>(unadjusted_p, <span class="at">method =</span> <span class="st">"BH"</span>)</span>
@@ -1069,7 +1071,7 @@ structures.</p> </caption>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["comparison"],"name":[1],"type":["chr"],"align":["left"]},{"label":["unadjusted_p"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["bh_p"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Two-parent vs. Parent/guardian","2":"0.092","3":"0.092"},{"1":"Two-parent vs. Single-parent","2":"0.007","3":"0.021"},{"1":"Parent/guardian vs. Single-parent","2":"0.092","3":"0.092"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["comparison"],"name":[1],"type":["chr"],"align":["left"]},{"label":["unadjusted_p"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["bh_p"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Two-parent vs. Parent/guardian","2":"0.092","3":"0.138"},{"1":"Two-parent vs. Single-parent","2":"0.007","3":"0.021"},{"1":"Parent/guardian vs. Single-parent","2":"0.635","3":"0.635"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
