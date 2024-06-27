@@ -801,7 +801,7 @@ There are also several resources to help you get started and continue your `gg_j
 -   **Cookbook for R:** Web-based version of Winston Chang's R Graphics Cookbook http://www.cookbook-r.com/Graphs/ (The UMN library has electronic access to the actual book. Just search for "R Graphics Cookbook" and log-in with your x500.)
 -   **Data Visualization: A Practical Introduction:** Online book about data viz using ggplot2 https://socviz.co/
 
-Happy Plotting!!! `r emo::ji("graph")` `r emo::ji("party")`
+Happy Plotting!!! 📈 🎉
 
 <br />
 

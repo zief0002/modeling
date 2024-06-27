@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -83,7 +84,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-00-regression-basics.html" rel="next">
+<link href="./02-00-intro-to-regression.html" rel="next">
 <link href="./01-04-data-wrangling-with-dplyr.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -100,7 +101,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -109,32 +116,61 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
-
 <link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable/js/pagedtable.js"></script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="assets/sticky-notes.css">
 <link rel="stylesheet" href="assets/table-styles.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-00-statistical-computation.html">Introduction to Statistical Computation</a></li><li class="breadcrumb-item"><a href="./01-05-visualizing-with-ggplot2.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-00-statistical-computation.html">Introduction to Statistical Computation</a></li><li class="breadcrumb-item"><a href="./01-05-visualizing-with-ggplot2.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -144,7 +180,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Statistical Modeling and Computation for Educational Scientists</a> 
@@ -206,8 +242,8 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./02-00-regression-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Regression Basics</span></a>
+            <a href="./02-00-intro-to-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Regression</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -215,40 +251,40 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-01-simple-regression-description.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Simple Linear Regression—Description</span></span></a>
+  <a href="./02-01-data-exploration-for-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Exploration for Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-02-ols-estimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Ordinary Least Squares (OLS) Estimation</span></span></a>
+  <a href="./02-02-simple-regression-and-correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Simple Linear Regression and Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-03-correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Correlation and Standardized Regression</span></span></a>
+  <a href="./02-03-ols-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ordinary Least Squares (OLS) Estimation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-04-coefficient-level-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></a>
+  <a href="./02-04-anova-decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">ANOVA Decomposition and <span class="math inline">\(R^2\)</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-05-model-level-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model-Level Inference</span></span></a>
+  <a href="./02-05-standardized-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Standardized Regression</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./03-00-deeper-understanding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Deeper Understanding</span></a>
+            <a href="./03-00-regression-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression Inference</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -256,28 +292,28 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-01-intro-to-multiple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduction to Multiple Regression</span></span></a>
+  <a href="./03-01-coefficient-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-02-understanding-statistical-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Understanding Statistical Control</span></span></a>
+  <a href="./03-02-model-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Model-Level Inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-03-assumptions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Distributional Assumptions Underlying the Regression Model</span></span></a>
+  <a href="./03-03-model-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Assumptions Underlying the Regression Model</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./04-00-extending-regression-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Extending the Regression Model</span></a>
+            <a href="./04-00-multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiple Regression</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -285,34 +321,34 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-01-dichotomous-predictors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dichotomous Categorical Predictors</span></span></a>
+  <a href="./04-01-intro-to-multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction to Multiple Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-polychotomous-predictors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></a>
+  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-03-interaction-effects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></span></a>
+  <a href="./04-03-understanding-statistical-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Understanding Statistical Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-04-more-interaction-effects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">More Interaction Effects</span></span></a>
+  <a href="./04-04-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Assumptions: Multiple Regression</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./05-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Codebooks</span></a>
+            <a href="./05-00-categorical-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical Predictors</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -320,56 +356,108 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-01-comic-characters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
+  <a href="./05-01-dichotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Dichotomous Categorical Predictors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-03-fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
+  <a href="./05-02-polychotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-04-gapminder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
+  <a href="./05-03-multiple-comparisons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multiple Comparisons</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./06-00-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interaction Effects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-01-intro-to-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-05-keith-gpa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
+  <a href="./06-02-more-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">More Interaction Effects</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Codebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-01-comic-characters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-06-mn-schools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
+  <a href="./07-03-fertility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-07-riverview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
+  <a href="./07-04-gapminder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-08-spice-girls.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
+  <a href="./07-05-keith-gpa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-09-substance-family.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">substance-family.csv</span></span></a>
+  <a href="./07-06-mn-schools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-10-work-demands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
+  <a href="./07-07-pew.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">pew.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-08-riverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-09-spice-girls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-10-work-demands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
   </div>
 </li>
       </ul>
@@ -377,56 +465,13 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On This Page</h2>
-   
-  <ul>
-  <li><a href="#some-background" id="toc-some-background" class="nav-link active" data-scroll-target="#some-background"><span class="header-section-number">5.1</span> Some Background</a></li>
-  <li><a href="#understanding-the-basic-syntax" id="toc-understanding-the-basic-syntax" class="nav-link" data-scroll-target="#understanding-the-basic-syntax"><span class="header-section-number">5.2</span> Understanding the Basic Syntax</a>
-  <ul class="collapse">
-  <li><a href="#the-global-layer" id="toc-the-global-layer" class="nav-link" data-scroll-target="#the-global-layer"><span class="header-section-number">5.2.1</span> The Global Layer</a></li>
-  <li><a href="#aesthetics-and-aesthetic-mappings" id="toc-aesthetics-and-aesthetic-mappings" class="nav-link" data-scroll-target="#aesthetics-and-aesthetic-mappings"><span class="header-section-number">5.2.2</span> Aesthetics and Aesthetic Mappings</a></li>
-  <li><a href="#adding-layers" id="toc-adding-layers" class="nav-link" data-scroll-target="#adding-layers"><span class="header-section-number">5.2.3</span> Adding Layers</a></li>
-  <li><a href="#good-syntactic-habits" id="toc-good-syntactic-habits" class="nav-link" data-scroll-target="#good-syntactic-habits"><span class="header-section-number">5.2.4</span> Good Syntactic Habits</a></li>
-  </ul></li>
-  <li><a href="#global-vs.-local-aesthetic-mappings" id="toc-global-vs.-local-aesthetic-mappings" class="nav-link" data-scroll-target="#global-vs.-local-aesthetic-mappings"><span class="header-section-number">5.3</span> Global vs.&nbsp;Local Aesthetic Mappings</a></li>
-  <li><a href="#fixed-aesthetics" id="toc-fixed-aesthetics" class="nav-link" data-scroll-target="#fixed-aesthetics"><span class="header-section-number">5.4</span> Fixed Aesthetics</a></li>
-  <li><a href="#faceting-separate-plots-for-subgroups" id="toc-faceting-separate-plots-for-subgroups" class="nav-link" data-scroll-target="#faceting-separate-plots-for-subgroups"><span class="header-section-number">5.5</span> Faceting: Separate Plots for Subgroups</a>
-  <ul class="collapse">
-  <li><a href="#facetting-on-multiple-variables" id="toc-facetting-on-multiple-variables" class="nav-link" data-scroll-target="#facetting-on-multiple-variables"><span class="header-section-number">5.5.1</span> Facetting on Multiple Variables</a></li>
-  </ul></li>
-  <li><a href="#working-with-the-axes" id="toc-working-with-the-axes" class="nav-link" data-scroll-target="#working-with-the-axes"><span class="header-section-number">5.6</span> Working with the Axes</a>
-  <ul class="collapse">
-  <li><a href="#changing-the-axis-label" id="toc-changing-the-axis-label" class="nav-link" data-scroll-target="#changing-the-axis-label"><span class="header-section-number">5.6.1</span> Changing the Axis Label</a></li>
-  <li><a href="#changing-the-axis-limits" id="toc-changing-the-axis-limits" class="nav-link" data-scroll-target="#changing-the-axis-limits"><span class="header-section-number">5.6.2</span> Changing the Axis Limits</a></li>
-  <li><a href="#fine-tuning-axis-scales" id="toc-fine-tuning-axis-scales" class="nav-link" data-scroll-target="#fine-tuning-axis-scales"><span class="header-section-number">5.6.3</span> Fine-Tuning Axis Scales</a></li>
-  <li><a href="#customizing-the-color-and-fill" id="toc-customizing-the-color-and-fill" class="nav-link" data-scroll-target="#customizing-the-color-and-fill"><span class="header-section-number">5.6.4</span> Customizing the Color and Fill</a></li>
-  </ul></li>
-  <li><a href="#selecting-a-color-palette" id="toc-selecting-a-color-palette" class="nav-link" data-scroll-target="#selecting-a-color-palette"><span class="header-section-number">5.7</span> Selecting a Color Palette</a>
-  <ul class="collapse">
-  <li><a href="#pre-selected-color-palettes" id="toc-pre-selected-color-palettes" class="nav-link" data-scroll-target="#pre-selected-color-palettes"><span class="header-section-number">5.7.1</span> Pre-Selected Color Palettes</a></li>
-  </ul></li>
-  <li><a href="#customizing-the-legendguide" id="toc-customizing-the-legendguide" class="nav-link" data-scroll-target="#customizing-the-legendguide"><span class="header-section-number">5.8</span> Customizing the Legend/Guide</a></li>
-  <li><a href="#themes-changing-the-look-of-your-plot" id="toc-themes-changing-the-look-of-your-plot" class="nav-link" data-scroll-target="#themes-changing-the-look-of-your-plot"><span class="header-section-number">5.9</span> Themes: Changing the Look of Your Plot</a>
-  <ul class="collapse">
-  <li><a href="#the-ggthemes-package" id="toc-the-ggthemes-package" class="nav-link" data-scroll-target="#the-ggthemes-package"><span class="header-section-number">5.9.1</span> The ggthemes Package</a></li>
-  <li><a href="#customizing-a-theme" id="toc-customizing-a-theme" class="nav-link" data-scroll-target="#customizing-a-theme"><span class="header-section-number">5.9.2</span> Customizing a Theme</a></li>
-  </ul></li>
-  <li><a href="#ggplot2-extension-packages" id="toc-ggplot2-extension-packages" class="nav-link" data-scroll-target="#ggplot2-extension-packages"><span class="header-section-number">5.10</span> <code>{ggplot2}</code> Extension Packages</a></li>
-  <li><a href="#captions-and-figure-numbering" id="toc-captions-and-figure-numbering" class="nav-link" data-scroll-target="#captions-and-figure-numbering"><span class="header-section-number">5.11</span> Captions and Figure Numbering</a></li>
-  <li><a href="#using-piping-with-ggplot2" id="toc-using-piping-with-ggplot2" class="nav-link" data-scroll-target="#using-piping-with-ggplot2"><span class="header-section-number">5.12</span> Using Piping with <code>{ggplot2}</code></a></li>
-  <li><a href="#practice-practice-practice" id="toc-practice-practice-practice" class="nav-link" data-scroll-target="#practice-practice-practice"><span class="header-section-number">5.13</span> Practice, Practice, Practice</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-00-statistical-computation.html">Introduction to Statistical Computation</a></li><li class="breadcrumb-item"><a href="./01-05-visualizing-with-ggplot2.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span id="ggplot2" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></span></h1>
 </div>
@@ -441,10 +486,12 @@ div.csl-indent {
   </div>
   
 
+
 </header>
 
+
 <p>In this chapter, you will be learn about how to use functionality from the <code>{ggplot2}</code> package to visualize your data. Data visualization helps you identify trends in your data. It can also help you find unexpected observations or patterns you might miss in the raw numbers themselves. Visualization is an important step in almost every data analysis and is often all you need to draw meaningful conclusions about the data!</p>
-<p>We will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/gapminder.csv">gapminder.csv</a> data (see the <a href="05-04-gapminder.html">data codebook</a>) to illustrate how to create and modify visualizations using functionality in <code>{ggplot2}</code>.</p>
+<p>We will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/gapminder.csv">gapminder.csv</a> data (see the <a href="07-04-gapminder.html">data codebook</a>) to illustrate how to create and modify visualizations using functionality in <code>{ggplot2}</code>.</p>
 <p>To begin, we will load the <code>{dplyr}</code>, <code>{ggplot2}</code> and <code>{readr}</code> libraries, and import the data into an object called <code>gapminder</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
@@ -486,7 +533,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -507,8 +554,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">The background layer for the plot is drawn. The domain (x-values) and range (y-values) is based on data in the income and co2 attributes.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>The background layer for the plot is drawn. The domain (x-values) and range (y-values) is based on data in the income and co2 attributes.</figcaption>
 </figure>
 </div>
 </div>
@@ -544,7 +591,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -563,21 +610,24 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">alpha =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div>
+
+</div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-align="center">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother.</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother.</figcaption>
 </figure>
 </div>
 </div>
@@ -618,8 +668,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers.</figcaption>
 </figure>
 </div>
 </div>
@@ -637,8 +687,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer.</figcaption>
 </figure>
 </div>
 </div>
@@ -666,8 +716,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics.</figcaption>
 </figure>
 </div>
 </div>
@@ -685,8 +735,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions.</figcaption>
 </figure>
 </div>
 </div>
@@ -700,8 +750,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions.</figcaption>
 </figure>
 </div>
 </div>
@@ -719,8 +769,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007.</figcaption>
 </figure>
 </div>
 </div>
@@ -745,7 +795,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -767,7 +817,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -799,8 +849,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Scale on the x-axis set to have a label, as well as, specific limits, and break lines.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>Scale on the x-axis set to have a label, as well as, specific limits, and break lines.</figcaption>
 </figure>
 </div>
 </div>
@@ -821,8 +871,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Color palette set manually using named color values.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Color palette set manually using named color values.</figcaption>
 </figure>
 </div>
 </div>
@@ -861,8 +911,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Color palette set manually using RGB triplets.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Color palette set manually using RGB triplets.</figcaption>
 </figure>
 </div>
 </div>
@@ -891,8 +941,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Color palette set manually using hex notation.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Color palette set manually using hex notation.</figcaption>
 </figure>
 </div>
 </div>
@@ -964,8 +1014,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Greyscale color palette good for black-and-white printing.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Greyscale color palette good for black-and-white printing.</figcaption>
 </figure>
 </div>
 </div>
@@ -981,7 +1031,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-05-color-brewer-palette.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="figs/01-05-color-brewer-palette.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -996,8 +1046,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Set1 qualitative color palette from the Brewer color palette.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Set1 qualitative color palette from the Brewer color palette.</figcaption>
 </figure>
 </div>
 </div>
@@ -1010,7 +1060,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 </ul>
 <p>Emil Hvitfeldt has also put together a package called <code>{paletteer}</code>, that includes a comprehensive collection of color palettes in R that can be called using a common interface [see <a href="https://github.com/EmilHvitfeldt/r-color-palettes">here</a>].</p>
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
@@ -1024,14 +1074,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">FiveThirtyEight color palette from the <code>{ggthemes}</code> package.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>FiveThirtyEight color palette from the <code>{ggthemes}</code> package.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wesanderson)</span>
@@ -1046,14 +1096,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">BottleRocket2 color palette from the <code>{wesanderson}</code> package.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>BottleRocket2 color palette from the <code>{wesanderson}</code> package.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nationalparkcolors)</span>
@@ -1068,8 +1118,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Acadia color palette from the <code>{nationalparks}</code> package.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>Acadia color palette from the <code>{nationalparks}</code> package.</figcaption>
 </figure>
 </div>
 </div>
@@ -1093,8 +1143,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Set1 qualitative color palette from the Brewer color palette.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Set1 qualitative color palette from the Brewer color palette.</figcaption>
 </figure>
 </div>
 </div>
@@ -1118,8 +1168,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Using the <code>theme_minimal()</code> layer to update the look of the plot.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Using the <code>theme_minimal()</code> layer to update the look of the plot.</figcaption>
 </figure>
 </div>
 </div>
@@ -1145,8 +1195,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Using the <code>theme_wsj()</code> layer from the <code>{ggthemes}</code> package to update the look of the plot to look like plots in the Wall Street Journal.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Using the <code>theme_wsj()</code> layer from the <code>{ggthemes}</code> package to update the look of the plot to look like plots in the Wall Street Journal.</figcaption>
 </figure>
 </div>
 </div>
@@ -1174,8 +1224,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">You can customize almost any part of the theme using the <code>theme()</code> layer. In this plot we changed the font face and color on the axes labels.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>You can customize almost any part of the theme using the <code>theme()</code> layer. In this plot we changed the font face and color on the axes labels.</figcaption>
 </figure>
 </div>
 </div>
@@ -1215,8 +1265,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">You can also create your own theme to use with any plot.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>You can also create your own theme to use with any plot.</figcaption>
 </figure>
 </div>
 </div>
@@ -1231,7 +1281,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-05-ggplot-extensions.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="figs/01-05-ggplot-extensions.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -1259,8 +1309,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">The <code>{scales}</code> package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>The <code>{scales}</code> package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis.</figcaption>
 </figure>
 </div>
 </div>
@@ -1308,8 +1358,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Using <code>{dplyr}</code> functions and piping to plot athe African countries.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Using <code>{dplyr}</code> functions and piping to plot athe African countries.</figcaption>
 </figure>
 </div>
 </div>
@@ -1326,14 +1376,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <li><strong>Cookbook for R:</strong> Web-based version of Winston Chang’s R Graphics Cookbook http://www.cookbook-r.com/Graphs/ (The UMN library has electronic access to the actual book. Just search for “R Graphics Cookbook” and log-in with your x500.)</li>
 <li><strong>Data Visualization: A Practical Introduction:</strong> Online book about data viz using ggplot2 https://socviz.co/</li>
 </ul>
-<p>Happy Plotting!!! 📊 🥳</p>
+<p>Happy Plotting!!! 📈 🎉</p>
 <p><br></p>
 </section>
 <section id="references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-wilkinson:2005" class="csl-entry" role="listitem">
 Wilkinson, L. (2005). <em>The grammar of graphics</em> (2nd ed.). Springer.
 </div>
@@ -1426,10 +1476,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1439,8 +1488,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1453,6 +1511,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1496,6 +1673,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1521,6 +1699,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1582,17 +1786,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./01-04-data-wrangling-with-dplyr.html" class="pagination-link">
+      <a href="./01-04-data-wrangling-with-dplyr.html" class="pagination-link" aria-label="Data Wrangling with dplyr">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling with dplyr</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-00-regression-basics.html" class="pagination-link">
-        <span class="nav-page-text">Regression Basics</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-00-intro-to-regression.html" class="pagination-link" aria-label="Introduction to Regression">
+        <span class="nav-page-text">Introduction to Regression</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

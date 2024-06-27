@@ -13,7 +13,8 @@ The initial chapters of this document will address:
 
 ```{r}
 #| echo: false
-knitr::include_graphics("figs/01-00-unit-01.png")
+#| out-width: "100%"
+knitr::include_graphics("figs/01-00-stat-computing.png")
 ```
 
 <br /><br />

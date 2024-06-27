@@ -1,0 +1,13 @@
+# Regression Inference
+
+In this unit you will learn how to carry out statistical inference on the regression parameters. You will be introduced to how we quantify uncertainty in the estimates we make for the regression model. You will also learn about the hypothesis tests that are commonly used in regression analyses, including *t*-tests to evaluate hypotheses about coefficients, and *F*-tests to evaluate hypotheses about the broader model. You will also learn about how we can use our estimates of uncertainty to produce interval estimates for our regression coefficients. Finally you will learn how to evaluate the distributional assumptions that underlie the simple regression model.
+
+
+```{r}
+#| echo: false
+knitr::include_graphics("figs/03-00-regression-inference.png")
+```
+
+
+
+<br /><br />

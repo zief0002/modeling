@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistical Modeling and Computation for Educational Scientists - 15&nbsp; Multiple Regression: ANOVA Decomposition</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04-03-understanding-statistical-control.html" rel="next">
+<link href="./04-01-intro-to-multiple-regression.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="assets/sticky-notes.css">
+<link rel="stylesheet" href="assets/table-styles.css">
+</head>
+
+<body class="nav-sidebar floating fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-00-multiple-regression.html">Multiple Regression</a></li><li class="breadcrumb-item"><a href="./04-02-more-multiple-regression.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Modeling and Computation for Educational Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Front Matter</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistical Computation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-01-r-and-rstudio-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R and RStudio: Installation and Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-02-getting-started-with-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-03-data-structures-in-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structures in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-04-data-wrangling-with-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling with dplyr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-05-visualizing-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./02-00-intro-to-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Regression</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-01-data-exploration-for-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Exploration for Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02-simple-regression-and-correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Simple Linear Regression and Correlation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-03-ols-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ordinary Least Squares (OLS) Estimation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-04-anova-decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">ANOVA Decomposition and <span class="math inline">\(R^2\)</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-05-standardized-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Standardized Regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./03-00-regression-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression Inference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-01-coefficient-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-02-model-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Model-Level Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-03-model-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Assumptions Underlying the Regression Model</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./04-00-multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiple Regression</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-01-intro-to-multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction to Multiple Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-03-understanding-statistical-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Understanding Statistical Control</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-04-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Assumptions: Multiple Regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./05-00-categorical-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical Predictors</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-01-dichotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Dichotomous Categorical Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-02-polychotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-03-multiple-comparisons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multiple Comparisons</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./06-00-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interaction Effects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-01-intro-to-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-02-more-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">More Interaction Effects</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Codebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-01-comic-characters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-03-fertility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-04-gapminder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-05-keith-gpa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-06-mn-schools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-07-pew.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">pew.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-08-riverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-09-spice-girls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-10-work-demands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-00-multiple-regression.html">Multiple Regression</a></li><li class="breadcrumb-item"><a href="./04-02-more-multiple-regression.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="moremultreg" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this chapter, you will learn about carrying out an ANOVA decomposition for a multiple regression model to partition the total variation in the outcome into explained and unexplained sources. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students (see the <a href="07-05-keith-gpa.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>. We will also fit our simple and multiple regression models.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>keith <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>keith</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["gpa"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["homework"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["parent_ed"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"78","2":"2","3":"13"},{"1":"79","2":"6","3":"14"},{"1":"79","2":"1","3":"13"},{"1":"89","2":"5","3":"13"},{"1":"82","2":"3","3":"16"},{"1":"77","2":"4","3":"13"},{"1":"88","2":"5","3":"13"},{"1":"70","2":"3","3":"13"},{"1":"86","2":"5","3":"15"},{"1":"80","2":"5","3":"14"},{"1":"76","2":"1","3":"16"},{"1":"72","2":"5","3":"13"},{"1":"66","2":"3","3":"12"},{"1":"79","2":"4","3":"14"},{"1":"76","2":"4","3":"10"},{"1":"80","2":"6","3":"20"},{"1":"91","2":"8","3":"15"},{"1":"85","2":"6","3":"16"},{"1":"79","2":"8","3":"13"},{"1":"82","2":"3","3":"14"},{"1":"94","2":"8","3":"12"},{"1":"91","2":"6","3":"12"},{"1":"80","2":"5","3":"14"},{"1":"73","2":"7","3":"14"},{"1":"77","2":"5","3":"12"},{"1":"76","2":"5","3":"16"},{"1":"84","2":"3","3":"12"},{"1":"81","2":"5","3":"16"},{"1":"97","2":"10","3":"16"},{"1":"80","2":"6","3":"15"},{"1":"74","2":"5","3":"16"},{"1":"83","2":"11","3":"15"},{"1":"78","2":"6","3":"13"},{"1":"64","2":"7","3":"17"},{"1":"82","2":"4","3":"13"},{"1":"81","2":"1","3":"17"},{"1":"73","2":"4","3":"13"},{"1":"87","2":"7","3":"13"},{"1":"81","2":"2","3":"14"},{"1":"86","2":"4","3":"11"},{"1":"92","2":"4","3":"14"},{"1":"79","2":"1","3":"13"},{"1":"69","2":"4","3":"15"},{"1":"66","2":"5","3":"14"},{"1":"67","2":"7","3":"13"},{"1":"76","2":"7","3":"13"},{"1":"83","2":"6","3":"13"},{"1":"73","2":"3","3":"15"},{"1":"85","2":"6","3":"15"},{"1":"80","2":"5","3":"17"},{"1":"83","2":"4","3":"13"},{"1":"82","2":"3","3":"15"},{"1":"90","2":"7","3":"12"},{"1":"69","2":"5","3":"12"},{"1":"95","2":"8","3":"17"},{"1":"79","2":"2","3":"13"},{"1":"72","2":"3","3":"13"},{"1":"83","2":"7","3":"16"},{"1":"81","2":"4","3":"12"},{"1":"86","2":"5","3":"15"},{"1":"78","2":"2","3":"11"},{"1":"84","2":"9","3":"13"},{"1":"81","2":"5","3":"14"},{"1":"72","2":"4","3":"12"},{"1":"64","2":"5","3":"12"},{"1":"83","2":"8","3":"14"},{"1":"94","2":"5","3":"14"},{"1":"77","2":"6","3":"13"},{"1":"80","2":"5","3":"14"},{"1":"74","2":"5","3":"18"},{"1":"89","2":"8","3":"16"},{"1":"87","2":"6","3":"15"},{"1":"82","2":"7","3":"16"},{"1":"87","2":"4","3":"15"},{"1":"71","2":"2","3":"12"},{"1":"88","2":"5","3":"17"},{"1":"80","2":"7","3":"13"},{"1":"89","2":"6","3":"16"},{"1":"87","2":"2","3":"15"},{"1":"72","2":"5","3":"10"},{"1":"79","2":"4","3":"17"},{"1":"93","2":"7","3":"14"},{"1":"100","2":"7","3":"18"},{"1":"90","2":"4","3":"13"},{"1":"69","2":"4","3":"10"},{"1":"85","2":"5","3":"14"},{"1":"75","2":"7","3":"14"},{"1":"82","2":"2","3":"12"},{"1":"72","2":"2","3":"10"},{"1":"87","2":"5","3":"14"},{"1":"81","2":"7","3":"15"},{"1":"80","2":"9","3":"15"},{"1":"79","2":"7","3":"17"},{"1":"79","2":"5","3":"14"},{"1":"94","2":"8","3":"17"},{"1":"71","2":"4","3":"11"},{"1":"77","2":"8","3":"14"},{"1":"68","2":"4","3":"15"},{"1":"87","2":"6","3":"16"},{"1":"74","2":"4","3":"12"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit simple regression models</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> homework, <span class="at">data =</span> keith)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>lm.b <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> parent_ed, <span class="at">data =</span> keith)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit multiple regression model</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>lm.c <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> parent_ed <span class="sc">+</span> homework, <span class="at">data =</span> keith)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The fitted multiple regression equation was,</p>
+<p><span class="math display">\[
+\hat{\mathrm{GPA}_i} = 63.20 + 0.87(\mathrm{Parent~Education~Level}_i) + 0.99(\mathrm{Time~on~HW}_i)
+\]</span></p>
+<p><br></p>
+<section id="anova-decomposition" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="anova-decomposition"><span class="header-section-number">15.1</span> ANOVA Decomposition</h2>
+<p>One goal in fitting any regression is to quantify the amount of variation in the outcome that the model explains. As with the simple regression, the way we do this is via an ANOVA decomposition, computing the different sums of squares (total, model, error). The decomposition of the variation into these three parts is governed by the equation:</p>
+<p><span class="math display">\[
+\mathrm{SS_{\mathrm{Total}}} = \mathrm{SS_{\mathrm{Model}}} + \mathrm{SS_{\mathrm{Error}}}
+\]</span></p>
+<p>Prior to this the way we obtained this was to compute sum of squared errors for two different models—the model in question (SSE), and the intercept-only model (SST). Then by comparing these two SSEs we could quantify the amount of variation explained by the model (SSM). These values could also be used to compute the model’s <span class="math inline">\(R^2\)</span> value:</p>
+<p><span class="math display">\[
+R^2 = \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}}
+\]</span></p>
+<p>Rather than fit the intercept-only model like we have in the past, we are going to instead use the <code>anova()</code> function to carry out the ANOVA decomposition. To illustrate this function, we will first carry out the ANOVA decomposition on a simple regression model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA decomposition</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm.a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"616.5388","3":"616.53883","4":"11.76333","5":"0.0008853515","_rn_":"homework"},{"1":"98","2":"5136.3712","3":"52.41195","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The <code>Sum Sq</code> column provides the sum of squares values. In this output we have the sum of squares explained by homework (616.5) and the residual (error) sum of squares (5136.4). Since this is a simple regression model the model only encompasses the time spent on homework predictor, so the model sum of squares is 616.5. That is, in this model:</p>
+<ul>
+<li>SSM = 616.5</li>
+<li>SSE = 5136.4</li>
+</ul>
+<p>The <code>anova()</code> output doesn’t provide the total sum of squares, but we can use out decomposition equation to compute it by summing the model and residual sum of squares:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{SS_{\mathrm{Total}}} &amp;= 616.5 + 5136.4 \\[2ex]
+&amp;= 5752.9
+\end{split}
+\]</span></p>
+<p>A visualization of this partitioning is shown in <a href="#fig-anova-1" class="quarto-xref">Figure&nbsp;<span>15.1</span></a></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-anova-1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-anova-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-02-partitioning-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anova-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.1: Partitioning of variation associated with the simple regression model using time spent on homework to predict variation in GPA.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<section id="anova-decomposition-for-multiple-regression-model" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="anova-decomposition-for-multiple-regression-model"><span class="header-section-number">15.1.1</span> ANOVA Decomposition for Multiple Regression Model</h3>
+<p>We will no carry out an ANOVA decomposition on our multiple regression model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA decomposition</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm.c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"497.9247","3":"497.92466","4":"9.900983","5":"0.002194193","_rn_":"parent_ed"},{"1":"1","2":"376.8140","3":"376.81403","4":"7.492759","5":"0.007369676","_rn_":"homework"},{"1":"97","2":"4878.1713","3":"50.29043","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Because the multiple regression model has an additional predictor (parent education level), the output of the <code>anova()</code> function has an additional row. It splits the explained variation (i.e., the SS Model) into that which is explained by the parent education predictor and that which is explained by the time spent on homework predictor. Since the model includes both of these predictors, to compute the SS Model, we need to sum these two sum of squares terms.</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{SS_{\mathrm{Model}}} &amp;= \mathrm{SS_{\mathrm{Parent~Education~Level}}} + \mathrm{SS_{\mathrm{HW}}} \\[2ex]
+&amp;= 497.9 + 376.8 \\[2ex]
+&amp;= 874.7
+\end{split}
+\]</span> Then, to compute the SS Total we can use:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{SS_{\mathrm{Total}}} &amp;= \mathrm{SS_{\mathrm{Model}}} + \mathrm{SS_{\mathrm{Error}}} \\[2ex]
+&amp;= 874.7 + 4878.2 \\[2ex]
+&amp;= 5752.9
+\end{split}
+\]</span> Notice that the SS Total is the same as in the simple regression model! This is because the outcome is still GPA and the total variation in the GPA values has not changed; it is still 5752.9. We could also use the SS Model and SS Total values to compuyte the model <span class="math inline">\(R^2\)</span>.</p>
+<p><span class="math display">\[
+\begin{split}
+R^2 &amp;= \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[2ex]
+&amp;= \frac{874.7}{5752.9} \\[2ex]
+&amp;= 0.152
+\end{split}
+\]</span> This is the same <span class="math inline">\(R^2\)</span> value produced in the <code>glance()</code> output.</p>
+<div class="protip">
+<p>Note that the output from <code>anova()</code> also partitions the <em>df</em> among the predictor terms and the residuals. Each predictor has 1 <em>df</em> associated with it, which gives the model 2 <em>df</em>. The residuals have 97 <em>df</em> associated with them. The model and residual <em>df</em> are the <em>df</em> used in the <em>F</em>-test and given in the <code>glance()</code> output, namely 2 and 97. The total <em>df</em> in the data are <span class="math inline">\(2+97 = 99\)</span>, which is <span class="math inline">\(n-1\)</span>. Lastly, we point out that the residual <em>df</em> value from the <code>anova()</code> output (97) is the <em>df</em> associated with the <em>t</em>-tests for the coefficient-level tests (presented earlier).</p>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="order-in-the-lm-mattterskind-of" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="order-in-the-lm-mattterskind-of"><span class="header-section-number">15.2</span> Order in the <code>lm()</code> Mattters…Kind Of</h2>
+<p>Let’s re-fit our multiple regression model, but this time we will include time spent on homework first and parent education level second.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lm.d <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> homework <span class="sc">+</span> parent_ed, <span class="at">data =</span> keith)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now let’s examine the results from the ANOVA decomposition.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA decomposition</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm.d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"616.5388","3":"616.53883","4":"12.259567","5":"0.000701325","_rn_":"homework"},{"1":"1","2":"258.1999","3":"258.19987","4":"5.134175","5":"0.025682009","_rn_":"parent_ed"},{"1":"97","2":"4878.1713","3":"50.29043","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>In this decomposition time spent on homework has a SS value of 616.5 and parent education level has a SS value of 258.2. This is quite different than the SS we obtained from the model where parent education level was put in the model before time spent on homework. The residual SS are the same as in the previous model’s decomposition (4878.2). Let’s compute the Model SS using these new values.</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{SS_{\mathrm{Model}}} &amp;= \mathrm{SS_{\mathrm{Parent~Education~Level}}} + \mathrm{SS_{\mathrm{HW}}} \\[2ex]
+&amp;= 258.2 + 616.5 \\[2ex]
+&amp;= 874.7
+\end{split}
+\]</span> The Model SS is the same regardless of order of the predictors in <code>lm()</code>. This implies that our model <span class="math inline">\(R^2\)</span> value will also be the same regardless of order of order of the predictors in <code>lm()</code>.</p>
+<p><br></p>
+<section id="danger-using-the-anova-decomposition-at-the-individual-predictor-level" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="danger-using-the-anova-decomposition-at-the-individual-predictor-level"><span class="header-section-number">15.2.1</span> Danger: Using the ANOVA Decomposition at the Individual Predictor Level</h3>
+<p>The fact that the SS values change depending on the order you put the the predictors in the <code>lm()</code> function implies that it is difficult to come up with a quantification for the amount of variation that an <em>individual predictor</em> explains in a multiple regression model. For example, say we wanted to compute the explained variation for time spent on homework on GPA (our focal predictor). If we use the ANOVA decomposition from Model C, we would say it explains 376.8 of the total 5752.9, and we could compute its <span class="math inline">\(R^2\)</span> value as:</p>
+<p><span class="math display">\[
+\begin{split}
+R^2_{\mathrm{HW}} &amp;= \frac{\mathrm{SS_{\mathrm{HW}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[2ex]
+&amp;= \frac{376.8}{5752.9} \\[2ex]
+&amp;= 0.065
+\end{split}
+\]</span></p>
+<p>If, however, we use the ANOVA decomposition from Model D, we would say it explains 616.5 of the total 5752.9, and we could compute its <span class="math inline">\(R^2\)</span> value as:</p>
+<p><span class="math display">\[
+\begin{split}
+R^2_{\mathrm{HW}} &amp;= \frac{616.5}{5752.9} \\[2ex]
+&amp;= 0.107
+\end{split}
+\]</span> This is almost double the explained percentage as in Model C! Moreover, which one of these is “correct” depends on what you are trying to answer by getting this percentage, and it may be that neither is correct. In general it is advisable to only use the ANOVA decomposition to compute sum of squares for the Model, Residuals, and Total, and not use it to compute SS for individual predictors.</p>
+<div class="protip">
+<p>Most of the time researchers who undertake this are trying to determine which predictor is more important. In general it is not a good idea to use an ANOVA decomposition to evaluate this. Instead, look at the coefficients to assess importance. Is parent education level or time spent on homework more important? Each 1-unit difference in parent education level is associated with a 0.87-grade point difference while a 1-unit difference in time spent on homework is associated with a 0.99-grade point difference. It seems time spent on homework has a larger effect than parent education level.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</div>
+<!-- ### Hypotheses Tested in the ANOVA Output -->
+<!-- The *F*-values given in the `anova()` output do not match the *F*-test given in the `glance()` output. This is because the hypotheses being tested in the `anova()` output are different than that being tested in the `glance()` output. To understand the tests that are being performed, we need to understand how the variation is being partitioned in the model we fitted. The order the predictors in the `anova()` output (which is connected to the order they were included in the `lm()` function) shows this partitioning numerically. We can also create a diagram that shows this partitioning. -->
+<!-- ```{r} -->
+<!-- #| label: fig-anova-1 -->
+<!-- #| fig-cap: "Partitioning of variation associated with the model in which education-level is included prior to seniority-level." -->
+<!-- #| out-width: "60%" -->
+<!-- #| echo: false -->
+<!-- knitr::include_graphics("figs/03-01-partitioning-1.png") -->
+<!-- ``` -->
+<!-- In the diagram, the total unexplained variation is first explained by including education-level in the model (the first predictor included in the `lm()` function). This predictor explains some variation and leaves some of the variation unexplained. Then, seniority-level is allowed to explain any residual (unexplained) variation that remains. -->
+<!-- The hypothesis that is being tested by an *F*-test is whether the explained variation is more than we expect because of sampling error. The way we quantify this is to compute $R^2$ which is a ratio of the explained variation to the total variation the predictor(s) is allowed to explain. The key here is that the numerator and denominator for $R^2$ are different depending on what is being tested. -->
+<!-- Consider the *F*-test at the model-level from the `glance()` output. This is testing whether the model-level $R^2$ is more than we expect because of sampling error. In the diagram, the explained variation in the model-level $R^2$ is the total sum of all the blue circles since the model includes both education-level and seniority-level. The denominator is the baseline unexplained variation. Mathematically, -->
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- R^2_{\mathrm{Model}} &= \frac{4147 + 723}{6566} \\[2ex] -->
+<!-- &= \frac{4879}{6566} -->
+<!-- \end{split} -->
+<!-- $$ -->
+<!-- This *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in `glance()`, namely, $F(2,29)=41.65$, $p<.001$. -->
+<!-- In the `anova()` output, results from two different *F*-tests are presented. The *F*-test in the first line of this output is associated with the education-level predictor. This is testing whether education-level (by itself) explains variation in the outcome *given the model fitted*. In the diagram, the explained variation for the education-level $R^2$ is the blue circles associated with adding education to the model first. The denominator is the  unexplained variation if we only consider the education and residual variation. Mathematically, -->
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- R^2_{\mathrm{Education\mbox{-}Level}} &= \frac{4147}{4147 + 1695} \\[2ex] -->
+<!-- &= 0.710 -->
+<!-- \end{split} -->
+<!-- $$ -->
+<!-- The *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the first line of the `anova()` output, namely, $F(1,29)=70.94$, $p<.001$. The numerator *df* for the *F*-test is given in the `Df` column of the `anova()` output and the denominator *df* is the model's residual *df*. -->
+<!-- The *F*-test in the second line of this output is associated with the seniority-level predictor. This is testing whether seniority-level explains variation in the outcome AFTER education-level has already been allowed to explain any unexplained variation. In the diagram, the explained variation for the seniority-level $R^2$ is the blue circle associated with adding seniority-level to the model. The denominator is the unexplained variation that remains after education-level has explained all the variation it can (this is no longer the baseline unexplained variation). Mathematically, -->
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- R^2_{\mathrm{Seniority\mbox{-}Level} \vert \mathrm{Education\mbox{-}Level}} &= \frac{723}{723 + 1695} \\[2ex] -->
+<!-- &= 0.299 -->
+<!-- \end{split} -->
+<!-- $$ -->
+<!-- This *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the second line of the `anova()` output, namely, $F(1,29)=12.37$, $p=.001$. -->
+<!-- This second test is asking whether there is an effect of seniority-level *after accounting for* education-level given the model fitted. This is equivalent to the hypothesis we tested for seniority-level in the coefficient-level output. In fact, the *p*-value from the `tidy()` output for the seniority-level effect is equivalent to the *p*-value associated with the seniority-level in the second line of the `anova()` output. -->
+<!-- <br /> -->
+<!-- ### Changing the Order of the Predictors -->
+<!-- Let's re-fit the model, but this time we will include seniority-level in the model first and education-level second. -->
+<!-- ```{r} -->
+<!-- # Fit model with different predictor order -->
+<!-- lm.d = lm(income ~ 1 + seniority + education, data = city) -->
+<!-- # ANOVA decomposition -->
+<!-- anova(lm.d) -->
+<!-- ``` -->
+<!-- Examining the ANOVA decomposition, we see that some of the values in the table are the same and others are different. To understand why, we will again compose the partitioning diagram. -->
+<!-- ```{r} -->
+<!-- #| label: fig-anova-2 -->
+<!-- #| fig-cap: "Partitioning of variation associated with the model in which seniority-level is included prior to education-level." -->
+<!-- #| out-width: "60%" -->
+<!-- #| echo: false -->
+<!-- knitr::include_graphics("figs/03-01-partitioning-2.png") -->
+<!-- ``` -->
+<!-- Consider the model-level *F*-test which tests whether the model-level $R^2$ is more than we expect because of sampling error. In the diagram, the explained variation in the model-level $R^2$ is the total sum of all the blue circles since the model includes both education-level and seniority-level. The denominator is the baseline unexplained variation. Mathematically, -->
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- R^2_{\mathrm{Model}} &= \frac{2223 + 2647}{6566} \\[2ex] -->
+<!-- &= \frac{4879}{6566} -->
+<!-- \end{split} -->
+<!-- $$ -->
+<!-- This is the same model-level $R^2$ value we obtained earlier. Thus the results given in `glance()`, namely, $F(2,29)=41.65$, $p<.001$ are identical regardless of the order the predictors are included in the model. -->
+<!-- ```{r} -->
+<!-- # Model-level output -->
+<!-- glance(lm.d) -->
+<!-- ``` -->
+<!-- The *F*-test in the first line of this output is associated with the seniority-level predictor. This is testing whether seniority-level (by itself) explains variation in the outcome given the model. Mathematically, -->
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- R^2_{\mathrm{Seniority\mbox{-}Level}} =& \frac{2223}{2223+1695} \\[2ex] -->
+<!-- &= 0.567 -->
+<!-- \end{split} -->
+<!-- $$ -->
+<!-- The *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the first line of the `anova()` output, namely, $F(1,29)=38.03$, $p<.001$. -->
+<!-- The *F*-test in the second line of this output is testing whether education-level explains variation in the outcome AFTER seniority-level has already been allowed to explain any unexplained variation, given the model. Mathematically, -->
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- R^2_{\mathrm{Education\mbox{-}Level} \vert \mathrm{Seniority\mbox{-}Level}} &= \frac{2647}{2647 + 1695} \\[2ex] -->
+<!-- &= 0.610 -->
+<!-- \end{split} -->
+<!-- $$ -->
+<!-- The *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the second line of the `anova()` output, namely, $F(1,29)=45.28$, $p<.001$. This test is asking whether there is an effect of education-level *after accounting for* seniority-level. The *p*-value from this test is equivalent to the *p*-value associated with the education-level effect in the `tidy()` output. -->
+<!-- ```{r} -->
+<!-- # Coefficient-level output -->
+<!-- tidy(lm.d) -->
+<!-- ``` -->
+<!-- Note that the output from `tidy()` is also the same, regardless of predictor order. This means that whichever order you include the predictors in the model, the tests of the partial effects (does a predictor explain variation AFTER all other predictors have already explained a much variation as they can) will be the same. Additionally, the fitted equation will be the same. -->
+<!-- <br /> -->
+<!-- ## Argh! Which Set of Results Should I Use? -->
+<!-- From all these different *F*-tests and $R^2$ values, we see that there are different ways of computing the amount of "variation accounted for" for any given predictor. The sum of squares for a particular predictor depends on whether we are considering it in isolation, or whether it is being considered in conjunction with other predictors. Not only that, but it also depends on the order that the predictor is included in the model! Similarly the amount of total unexplained variation depends on whether we consider all the unexplained variation in a variable, or whether we condition on a particular model. -->
+<!-- In a regression analysis, we typically want to understand the amount of variation explained by a predictor after accounting for all the other predictors. That means, that when computing an $R^2$ value, the numerator will be based on the sum of squares if that predictor is last in the model. Similarly, the denominator will be based on the total variation available to explain after accounting for all the other predictors. To determine this, we include the predictor of interest last in the `lm()` and then examine the `anova()` output to obtain the sums of squares for the predictor and residuals. The $R^2$ value can then be computed based on those two values. -->
+<!-- To evaluate whether that proportion of explained variation is more than we expect because of chance, we can evaluate the *p*-value for that predictor from the `tidy()` output. This is equivalent to asking: Is a particular predictor statistically important after controlling for the other predictors in the model? Again, this is the same *p*-value you get from the `anova()` output if the predictor is last in thr `lm()`. -->
+<!-- :::fyi -->
+<!-- Some statisticians and quantitative methodologists have attempted to capture some of the differences in the various ways to compute "variance accounted for" by referring to different types of sums of squares. For example, the sums of squares in the `anova()` output is sometimes referred to as *Type 1 Sums of Squares* or *Sequential Sums of Squares*. While these terms can be helpful, they are not universally adopted and as a result often add more confusion than they solve. It is probably best to view them as different ways of partitioning and accounting for variation, and understand that how you decide to do this has an impact on how much variation a particular predictor explains and subsequently the *p*-value associated with it. -->
+<!-- ::: -->
+<!-- <br /> -->
+<!-- ## Presenting Results -->
+<!-- It is quite common for researchers to present the results of their regression analyses in table form. Different models are typically presented in different columns and predictors are presented in rows. (Because it is generally of less substantive value, the intercept is often presented in the last row.) -->
+<!-- Note that we **DO NOT INCLUDE stars to indicate "statistical significance"** as is the recommendation of the American Statistical Association. [@Wasserstein:2019] -->
+<!-- ```{r} -->
+<!-- #| results: asis -->
+<!-- #| echo: false -->
+<!-- #| eval: false -->
+<!-- library(stargazer) -->
+<!-- stargazer(lm.a, lm.b, lm.c, -->
+<!--   column.labels = c("Model 1", "Model 2", "Model 3"), -->
+<!--   covariate.labels = c("Education level", "Seniority level"), -->
+<!--   dep.var.caption = "Outcome variable: Income (in thousands of dollars)", -->
+<!--   dep.var.labels = NULL, -->
+<!--   dep.var.labels.include = FALSE, -->
+<!--   type = "html", -->
+<!--   keep.stat = c("rsq","ser"), -->
+<!--   star.cutoffs = NA, -->
+<!--   header = FALSE, -->
+<!--   title = "Regression Models Fitted to City Employee Data ($n=32$) Using Education Level and Seniority to Predict Income", -->
+<!--   omit.table.layout = "n" -->
+<!--   ) -->
+<!-- ``` -->
+<!-- <table class="table" style="width:70%; margin-left: auto; margin-right: auto;"> -->
+<!-- <caption>Unstandardized coefficients (standard errors) for a taxonomy of OLS regression models to explain variation in Riverview city employee's incomes. All models were fitted with *n*=32 observations.</caption> -->
+<!-- <thead> -->
+<!--   <tr><th>Predictor</th><th>Model A</th><th>Model B</th><th>Model C</th></tr> -->
+<!-- </thead> -->
+<!-- <tbody> -->
+<!-- <tr><td style="text-align:left">Education level</td><td style="text-align:center">2.651<br />(0.370)</td><td></td><td style="text-align:center">2.252<br />(0.335)</td></tr> -->
+<!-- <tr><td style="text-align:left">Seniority level</td><td></td><td style="text-align:center">1.219<br />(0.311)</td><td style="text-align:center">0.739<br />(0.210)</td></tr> -->
+<!-- <tr style="border-bottom: 1px solid black"><td style="text-align:left">Constant</td><td style="text-align:center">11.321<br />(6.123)</td><td style="text-align:center">35.690<br />(5.073)</td><td style="text-align:center">6.769<br />(5.373)</td></tr> -->
+<!-- <tr><td style="text-align:left">R<sup>2</sup></td><td style="text-align:center">0.632</td><td style="text-align:center">0.339</td><td style="text-align:center">0.742</td></tr> -->
+<!-- <tr><td style="text-align:left">RMSE</td><td style="text-align:center">8.978</td><td style="text-align:center">12.031</td><td style="text-align:center">7.646</td></tr> -->
+<!-- </tbody> -->
+<!-- </table> -->
+<!-- Based on the results of fitting the three models, we can now go back and answer our research questions. Do differences in education level explain variation in incomes? Based on Model A, the empirical evidence suggests the answer is yes. Is this true even after accounting for differences in seniority? The empirical evidence from Model C suggests that, again, the answer is yes. (Since it is not necessary for answering the RQ, some researchers might choose to not present the results from Model B.) -->
+<!-- <br /> -->
+<!-- ## Coefficient Plot -->
+<!-- To create a coefficient plot for a multiple regression, we will again use the `dwplot()` function from the `{dotwhisker}` package. To create coefficient plots for multiple models we need to create a data frame based on the `tidy()` output for each fitted model. We also need to append a column that identifies the model name in these data frames. Finally, we need to combine these data frames into a single data frame that we will use in the `dwplot()` function.^[It is critical when you are changing labels on the axes that you double-check the actual `tidy()` output so that you don't erroneously mislabel the coefficients. Here for example, the `tidy()` output indicates that in Model C the coefficient for education level is 2.25 and the seniority coefficient is 0.739. This corresponds to what we see in the plot.] Here we presented the coefficient plot for all three models. Another option would be to create this plot for only the "final" adopted model (e.g., Model C).  -->
+<!-- ```{r} -->
+<!-- #| label: fig-coefplot -->
+<!-- #| fig-cap: "Coefficient plot for the model regressing income on education. Uncertainty is displayed based on the 95% confidence intervals." -->
+<!-- #| fig-width: 12 -->
+<!-- #| fig-height: 4 -->
+<!-- #| out-width: "80%" -->
+<!-- # Load library -->
+<!-- library(dotwhisker) -->
+<!-- # Create tidy() data frames with model names -->
+<!-- mod_1 = tidy(lm.a) |> -->
+<!--   mutate(model = "Model A") -->
+<!-- mod_2 = tidy(lm.b) |> -->
+<!--   mutate(model = "Model B") -->
+<!-- mod_3 = tidy(lm.c) |> -->
+<!--   mutate(model = "Model C") -->
+<!-- # Combine into single data frame -->
+<!-- all_models = rbind(mod_1, mod_2, mod_3) -->
+<!-- # Create plot -->
+<!-- dwplot(all_models, show_intercept = FALSE) + -->
+<!--   theme_bw() + -->
+<!--   scale_color_manual(name = "Model", values = c("#c62f4b", "#c62f4b", "#c62f4b")) + -->
+<!--   scale_x_continuous(name = "Estimate") + -->
+<!--   scale_y_discrete(name = "Coefficients", labels = c("Seniority", "Education")) + -->
+<!--   facet_wrap(~model) + -->
+<!--   guides(color = FALSE) -->
+<!-- ``` -->
+<!-- This plot shows graphically what we observed in the numerical results. There does seem to be a positive effect of education-level on employee income. After including seniority-level in the model, the effect of education-level is somewhat tempered, but it is still positive. There is, however, some uncertainty in the exact magnitude of the size of the effect as is shown in the wide 95% confidence interval for education-level in the plot. -->
+<p><br></p>
+
+
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>If you are worried about the difference in metric—years versus hours—you can fit a standardized regression which puts both predictors on the same metric. In this example the homework coefficient from the standardized regression (0.27) is still larger than that for parent education level (0.22) indicating time spent on homework has a larger effect on GPA than parent education level.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./04-01-intro-to-multiple-regression.html" class="pagination-link" aria-label="Introduction to Multiple Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction to Multiple Regression</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04-03-understanding-statistical-control.html" class="pagination-link" aria-label="Understanding Statistical Control">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Understanding Statistical Control</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

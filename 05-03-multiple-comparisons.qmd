@@ -1,0 +1,495 @@
+# Multiple Comparisons {#mult-comp}
+
+```{r}
+#| echo: false
+source("scripts/_common.R")
+```
+
+
+In this chapter, you will learn about why it is important to adjust *p*-values and confidence intervals when we are comparing more than two groups. You will also learn about familywise error rates and false discovery rates. Finally, you will learn about methods to deal with multiple comparisons. To do so, we will again use the [pew.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/pew.csv) data to examine whether American's news knowledge differs based on the source of their news (see the [data codebook](#pew)). 
+
+To begin, we will load several libraries and import the data into an object called `pew`. We will also fit one of our regression models that allowed us to examine differences in knowledge based on news source, after controlling for differences in age, education level, amount of news consumed, and political engagement. 
+
+```{r}
+# Load libraries
+library(broom)
+library(corrr)
+library(emmeans)
+library(ggridges)
+library(tidyverse)
+
+# Read in data and create dummy variables
+pew = read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/pew.csv") |>
+  mutate(
+    none    = if_else(news_source == "None", 1, 0),
+    con     = if_else(news_source == "Conservative", 1, 0),
+    com     = if_else(news_source == "Comedy", 1, 0),
+    lib     = if_else(news_source == "Liberal", 1, 0),
+    con_com = if_else(news_source == "Conservative_Comedy", 1, 0),
+    con_lib = if_else(news_source == "Conservative_Liberal", 1, 0),
+    lib_com = if_else(news_source == "Liberal_Comedy", 1, 0),
+    all     = if_else(news_source == "All", 1, 0),
+    )
+
+# View data
+pew
+
+# Fit model (None is reference group)
+lm.none.2 = lm(knowledge ~ 1 + age + education + news + engagement + all + con + 
+              com + lib + con_com + con_lib + lib_com, data = pew)
+```
+
+<br />
+
+
+## $\alpha$-Level and Errors
+
+Recall that when we evaluated the difference between each pair of news sources, we did so by comparing the *p*-value to our $\alpha$-level of 0.05. Remember also that the alpha-value is determined by the researcher and determines the Type I error rate for the study, where a Type I error is the probability of rejecting the null hypothesis if it is really true. In our study, this would mean we claim there is a difference in news knowledge between two news sources, but there really isn't. 
+
+One way to think about a Type I error is that it represents a *false discovery*. The data have mislead the researcher into saying there is an effect when in fact there isn't. When we use an $alpha$-level of 0.05, we are saying that we are OK making a false discovery in 5% of the hypothesis tests we will ever evaluate. 
+
+Imagine a researcher who evaluates 1000 hypothesis tests during their career. Let's imagine also that this researcher always does a sample size analysis prior to every research project and always has a large enough sample size to have statistical power of 0.8, a commonly used value in the social and educational sciences. (That is they would be able to detect a true effect 80% of the time that there actually is an effect.) Lastly, let's assume that half of all the hypothesis that this research evaluates are in reality true^[This is probably high in practice.]. If this researcher always used an $alpha$-value of 0.05, then:
+
+- Of the 1000 tests, they would be able to detect 400 true effects which could be written about in manuscripts.
+- Of the 1000 tests, they would make 50 false discoveries---that is they would publish about a false claim 50 times in their career.
+
+Think of how many hypothesis tests you will carry out in your career, it will likely be more than 1000, and 5% of those will be false discoveries! This is alarming, but is expected when we use an $alpha$-value of 0.05. What is more alarming is that if you only consider the 450 "publishable" hypotheses (i.e., those for which you found an effect, including the false discoveries), the false positive rate is about 11%. This is much higher than the advertised 5% rate.
+
+<br />
+
+
+### Multiple Tests on the Same Data
+
+When a researcher carries out multiple hypothesis tests on the same data, it turns out that the probability of making false discoveries gets higher than value we set for $\alpha$. This is especially problematic when researchers are coming at the data without any *a priori* hypotheses to be tested, which are generally based on relationships identified in the theoretical literature. Statisticians refer to this as taking an *Exploratory Approach* with hypothesis testing.^[Alternatively, when researchers spell out ALL of the hypotheses they will test prior to looking at the data (and those tests are driven from the literature), they are taking a *confirmatory approach* to hypothesis testing.] Another way to think about the exploratory approach is that the researcher is "data dredging"---they are testing a lot of different effects to see what pops.
+
+Another common situation in which the probability of making false discoveries gets higher than value we set for $\alpha$ is when researchers have multiple groups that they are testing differences between. This is exactly the situation we have in our news knowledge study! In our study we had eight different groups that we were evaluating differences between. **Having multiple groups that you are comparing leads to higher than specified rates of false discovery regardless of whether the approach is exploratory or confirmatory.** 
+
+@Whalley:2018 offers a nice metaphor about buying lottery tickets to help you understand why testing differences between multiple groups increases the number of false discoveries. He writes, "if you buy more tickets you have a larger change of winning a prize. [For example], with three comparisons between the groups (tickets) we have a 15% chance of winning a prize, rather than the 5% we intended." That is, mathematically, we can think about the false positive rate as a function of the number of hypothesis tests you conduct. Specifically,
+
+$$
+\mathrm{False~Positive~Rate} = (\mathrm{Number~of~Tests~Evaluated}) \times 0.05
+$$
+
+If you were only doing one test, the false positive rate would be 0.05, our designated $\alpha$-value. For three tests, the false positive rate would be $3\times.05=.15$, much higher than the designated $\alpha$-value. For our news knowledge example, we carried out 28 tests. The false positive rate in our study is $28\times.05>1$; that is we are essentially guaranteed to have at least one false discovery!
+
+<br />
+
+
+## Fixing the Problem
+
+There are two approaches to fixing this problem: (1) controlling for the familywise error rate, and (2) controlling for the false discovery rate. Both of these methods, in practice, involve penalizing the size of the *p*-value (making it bigger) based on the number of tests you are evaluating. We refer to this as "adjusting the $p$-values". 
+
+<br />
+
+### Controlling the Family-Wise Error Eate
+
+The first approach for adjusting $p$-values is to control for the familywise error rate. The familywise-error rate is defined as the probability of making AT LEAST ONE Type I Error in all of the hypothesis tests that you are evaluating. As an example consider a situation in which we were conducting hypothesis tests to evaluate pairwise differences in three groups, A, B, and C. We would be carrying out the following hypothesis tests:
+
+- Hypothesis Test 1: A vs. B
+- Hypothesis Test 2: A vs. C
+- Hypothesis Test 3: B vs. C
+
+You could make a Type I error in HT 1, in HT 2, or in HT 3, respectively. You could also make a Type I error in HT 1 and HT 2, but not in HT 3. Or, you could make a Type I error in HT 1 and HT 3, but not in HT 2. Or, you could make a Type I error in HT 2 and HT 3, but not in HT 1. Or, you could make a Type I error in all three tests! In controlling for family-wise error, we would want the total error rate across all of those possibilities to be no more than our $\alpha$-value (We would refer to this as the family-wise $\alpha$-value or $\alpha_{\mathrm{FW}}$). Mathematically,
+
+$$
+\begin{split}
+\alpha_{\mathrm{FW}} = P\biggl(\mathrm{Type~I~error~in~}&(\mathrm{HT1}) \lor (\mathrm{HT2}) \lor (\mathrm{HT3}) \lor \\
+&(\mathrm{HT1~and~HT2}) \lor (\mathrm{HT1~and~HT3}) \lor (\mathrm{HT2~and~HT3}) \lor \\
+&(\mathrm{HT1~and~HT2~and~HT3})\biggr)
+\end{split}
+$$
+
+Most social and educational scientists who take this approach set their family-wise error rate to 0.05.  
+
+<br />
+
+
+#### Dunn-Bonferroni Adjustments
+
+
+An Italian mathematician named [Carlo Emilio Bonferroni](https://en.wikipedia.org/wiki/Carlo_Emilio_Bonferroni) generalized a finding from probability theory (Boole's inequality) to determine the upper bound on making a Type I error in *k* tests [@Dunn:1961]. (*k* here refers to the number of tests.) Statistician [Olive Jean Dunn](https://en.wikipedia.org/wiki/Olive_Jean_Dunn) developed the mathematical details of using Bonferroni's results and was the first to apply them to the problem of multiple comparisons. This inequality is:
+
+
+$$
+P(\mathrm{Type~I~error}) < 1 - (1 - \alpha_{\mathrm{PC}})^k
+$$
+
+where $\alpha_{\mathrm{PC}}$ is the alpha level for each test (the per-comparison alpha value), and *k* is the number of tests (comparisons) for the effect. This is where the shortcut of multiplying the number of tests by the $\alpha$-level comes from; it is an approximation for this inequality. That is,
+
+$$
+1 - (1 - \alpha_{\mathrm{PC}})^k \approx k \times \alpha_{\mathrm{PC}}
+$$
+
+That means, if we want our family-wise error rate to be 0.05, we can set this to be equal to 0.05 and solve for the $\alpha_{\mathrm{PC}}$ based on the number of tests be evaluated. In our news knowledge example, there are 28 different tests we are evaluating. So to determine the per-comparison alpha value, we would need to solve the following:
+
+$$
+\begin{split}
+28 \times \alpha_{\mathrm{PC}} &= 0.05 \\[2ex]
+\alpha_{\mathrm{PC}} &= \frac{0.05}{28} \\[2ex]
+&= 0.001785714
+\end{split}
+$$
+That is, rather than comparing the *p*-value we got to 0.05, we should have been comparing the *p*-value to 0.001785714.
+
+
+In practice, we don't adjust the $alpha$-value, but instead adjust the *p*-value. The easiest way to make these adjustments is to multiply each *p*-value for the group comparisons by the number of tests being evaluated. If we have *k* tests, then:
+
+$$
+p_{\mathrm{Adjusted}}=p_{\mathrm{Original}} \times k
+$$
+
+In our example,
+
+$$
+p_{\mathrm{Adjusted}}=p_{\mathrm{Original}} \times 28
+$$
+
+:::fyi
+This *p*-value adjustment is referred to as the Dunn-Bonferroni adjustment.^[In our patriarchal society, unfortunately Olive Dunn's name is often removed from the nomenclature, and this adjustment gets referred to as the "Bonferroni adjustment".]
+:::
+
+Consider the 28 *p*-values for our pairwise comparisons of news knowledge from the model that included covariates (from `lm.none.2`). To compute the Dunn-Bonferroni adjusted *p*-values for these comparisons, we could use the followwing syntax.
+
+```{r}
+c(
+  0.2170, #All vs. Comedy                              
+  0.2550, #All vs. Conservative                        
+  0.2209, #All vs. Conservative_Comedy                 
+  0.1142, #All vs. Conservative_Liberal                
+  0.3514, #All vs. Liberal                             
+  0.0003, #All vs. Liberal_Comedy                      
+  0.1158, #All vs. None                                
+  0.0155, #Comedy vs. Conservative                     
+  0.8630, #Comedy vs. Conservative_Comedy              
+  0.0084, #Comedy vs. Conservative_Liberal             
+  0.5109, #Comedy vs. Liberal                          
+  0.0536, #Comedy vs. Liberal_Comedy                   
+  0.0037, #Comedy vs. None                             
+  0.0086, #Conservative vs. Conservative_Comedy        
+  0.4859, #Conservative vs. Conservative_Liberal       
+  0.0016, #Conservative vs. Liberal                    
+  0.0000000289, #Conservative vs. Liberal_Comedy             
+  0.3307, #Conservative vs. None                       
+  0.0033, #Conservative_Comedy vs. Conservative_Liberal
+  0.6060, #Conservative_Comedy vs. Liberal             
+  0.0190, #Conservative_Comedy vs. Liberal_Comedy      
+  0.0022, #Conservative_Comedy vs. None                
+  0.0012, #Conservative_Liberal vs. Liberal            
+  0.00000000826, #Conservative_Liberal vs. Liberal_Comedy     
+  0.9042, #Conservative_Liberal vs. None               
+  0.0008, #Liberal vs. Liberal_Comedy                  
+  0.0000477, #Liberal vs. None                            
+  0.00000000284  #Liberal_Comedy vs. None                     
+  ) * 28
+```
+
+We can compare these adjusted *p*-values to 0.05 to evaluate whether groups differ in their average news knowledge. There are now far fewer groups that differ in their average news knowledge.
+
+- All vs. Liberal_Comedy ($p=.008$)
+- Conservative vs. Liberal ($p=.045$)
+- Conservative vs. Liberal_Comedy ($p<.001$)
+- Conservative_Liberal vs. Liberal ($p=.034$)
+- Conservative_Liberal vs. Liberal_Comedy ($p<.001$)
+- Liberal vs. Liberal_Comedy ($p=.022$)             
+- Liberal vs. None ($p=.001$)         
+- Liberal_Comedy vs. None ($p<.001$)
+
+Of the 28 comparisons, we found only 8 statistically discernible differences. Compare this to the 15 statistically discernible differences we found when we used the unadjusted *p*-values (in the previous chapter). This means that 7 of those previous findings were likely false discoveries!
+
+:::fyi
+In practice, since *p*-values have limits of 0 and 1, any adjusted *p*-value that exceeds 1 we limit to 1 when we report them.
+:::
+
+<br />
+
+
+#### Obtaining the Dunn-Bonferroni *p*-Values Directly
+
+In practice, you are not going to list all of the unadjusted *p*-values in a vector and multiply by *k*. Instead, we are going to use the `emmeans()` function from the `{emmeans}` package to obtain the Dunn-Bonferroni *p*-values. This argument takes three arguments:
+
+- The name of a model object that has been fitted using a true categorical predictor in the `lm()` function (not with dummy variables).
+- The argument `specs=pairwise ~predictor` (where `predictor` is the name of the categorical predictor on which you want to do pairwise comparisons).
+- The argument `adjust=` which takes a character string that specifies the adjustment method to use.
+
+The first thing we need to do, is re-fit the model using the actual categorical predictor (`news_source`) rather than the dummy variables.
+
+```{r}
+# Fit model using categorical predictor
+lm.news_source = lm(knowledge ~ 1 + age + education + news + engagement + news_source, data = pew)
+```
+
+When you use the categorical predictor (rather than the set of dummy variables), R will create the set of dummy variables for you. It will also choose the reference group for you. It does this alphabetically, so in our example, the reference group it will choose is "All". You can see this by looking at the coefficient-level output of the fitted model.
+
+```{r}
+# Coefficient-level output
+tidy(lm.news_source)
+```
+
+Now, we can use that model in our `emmeans()` function. Since we are interested in the pairwise comparisons between the different news sources, the second argument in the function will be `specs = pairwise ~news_source`. Before we make any adjustments, let's double-check that the function works by having it compute the unadjusted *p*-values for the differences. To get the unadjusted differences we will use `adjust="none"`.
+
+
+```{r}
+# Obtain the unadjusted p-values for pairwise differences
+emmeans(lm.news_source, specs = pairwise ~news_source, adjust = "none")
+```
+
+
+The output has two parts to it. In the first part (`$emmeans`) we are given the mean news knowledge for each news source. Because we used a model that included covariates, these are the covariate adjusted means. We are also provided the standard errors, and the confidence interval limits for those means. (We are also given the residual degrees-of-freedom used to create those intervals.) Note that these are the same confidence limits we used to create our plot of the CIs in the previous chapter!
+
+In the second part of the output (`$contrasts`^[A "contrast" is what statisticians call a difference; they are contrasting two groups.]), we are given each of the pairwise differences, as well as the SEs, *t*-values, and *p*-values associated with those differences. These are the same values we get from the `lm()` output. The nice thing is we are given all of the pairwise differences in an organized manner without having to fitt many different `lm()` models using differnt reference groups.
+
+To obtain the Dunn-Bonferroni adjusted *p*-values, we will update the argument `adjust=` to `adjust="bonferroni"`.
+
+
+```{r}
+# Obtain the Dunn-Bonferroni adjusted p-values for pairwise differences
+emmeans(lm.news_source, specs = pairwise ~news_source, adjust = "bonferroni")
+```
+
+In the `$contrasts` part of the output, the *p*-values shown are the Dunn-Bonferroni adjust *p*-values. . Note that the output in `$emmeans` section remains exactly the same as when we used `adjust="none"`. This is because the `$emmeans` section will always be the model predicted means from the fitted `lm()`. 
+
+
+We can display the results of the Dunn-Bonferroni pairwise differences in a visualization similar to those we created previously. @fig-mult-comp-bonferroni shows one such visualization. Note that the adjusted mean values have been updated based on the values from the `$emmeans` part of the output. (These values should be more exact as we rounded extensively in the computations of these values.)
+
+
+```{r}
+#| label: fig-mult-comp-bonferroni
+#| echo: false
+#| fig-cap: "Pairwise comparisons of adjusted mean news knowledge for different news sources. Means were adjusted for differences in age, education level, amount of news consumed, and political engagement. Statistical comparisons have been adjusted for multiple comparisons using the Dunn-Bonferroni adjustment. <br /><br />*Instructions:* Read across the row for a news sources to compare adjusted mean news knowledge with the news sources listed along the top of the chart. The symbols indicate whether the adjusted mean news knowledge of the news source in the row is significantly lower than that of the comparison news source, significantly higher than that of the comparison news source, or if there is no statistically discernible difference between the adjusted mean news knowledge of the two news sources."
+#| out-width: "90%"
+
+knitr::include_graphics("figs/05-03-mult-comp-bonferroni.png")
+```
+
+:::fyi
+There are many other methods to control the familywise error rate. Some other popular methods include the Tukey adjustment [@Tukey:1949], the Scheffé adjustment [@Scheffe:1959], and the Holm adjustment [@Holm:1979]. Each method gives different *p*-values based on the mathematics of the adjustments, but they are all pretty similar. The Dunn-Bonferroni method is the most popular method used in the educational and social sciences to control the familywise error rate.
+:::
+
+
+<br />
+
+
+### Controlling the False Discovery Rate
+
+The second approach to adjusting *p*-values is to control for the false discovery rate. While controlling for the familywise error rate attends to controlling false discoveries, the disadvantage is that those methods increase the Type II error rate; that is they will increase the probability of incorrectly failing to reject the null hypothesis. This means that they will lead to neglecting to find differences that might be theoretically or clinically relevant. Controlling the false discovery rate rather than the familywise error rate attends to this by minimizing the number of false discoveries (Type I errors), while at the same time trying to avoid Type II errors.
+
+<br /> 
+
+
+#### Benjamini-Hochberg Adjusments to the *p*-Values
+
+The primary method for controlling the false discovery rate used in the social and educational sciences is the Benjamin-Hochberg adjustment to the *p*-values. To obtain these, we can use the same `emmeans()` function with the argument `adjust="BH"`.
+
+```{r}
+# Obtain the Benjamini-Hochberg adjusted p-values for pairwise differences
+emmeans(lm.news_source, specs = pairwise ~news_source, adjust = "BH")
+```
+
+Using this *p*-value adjustment method, we find 13 statistically discernible differences. These are displayed in @fig-mult-comp-bh.
+
+
+
+```{r}
+#| label: fig-mult-comp-bh
+#| echo: false
+#| fig-cap: "Pairwise comparisons of adjusted mean news knowledge for different news sources. Means were adjusted for differences in age, education level, amount of news consumed, and political engagement. Statistical comparisons have been adjusted for multiple comparisons using the Benjamini-Hochberg adjustment. <br /><br />*Instructions:* Read across the row for a news sources to compare adjusted mean news knowledge with the news sources listed along the top of the chart. The symbols indicate whether the adjusted mean news knowledge of the news source in the row is significantly lower than that of the comparison news source, significantly higher than that of the comparison news source, or if there is no statistically discernible difference between the adjusted mean news knowledge of the two news sources."
+#| out-width: "90%"
+
+knitr::include_graphics("figs/05-03-mult-comp-bh.png")
+```
+
+If we compare the three sets of *p*-values, there are some things you can see:
+
+- The unadjusted *p*-values are the smallest. While you are more likely to "find" effects, some (or most) of these may be false discoveries.
+- The Dunn-Bonferroni adjusted *p*-values are the largest. Controlling for familywise error rates really protects against making Type I error. To do this it heavily penalizes the *p*-values (makes them larger).
+- The Benjamini-Hochberg adjusted *p*-values are somewhere between the unadjusted and Dunn-Bonferroni *p*-values. While this helps protect against false discoveries (they are larger than the unadjusted *p*-values so you are less likely to find effects), it does so with a less heavy penalty than the Dunn-Bonferroni penalty. This protects against Type II errors.
+
+:::fyi
+In the Dunn-Bonferroni method, each of the 28 *p*-values was penalized by the exact same amount; each of the unadjusted *p*-values was multiplied by 28. The way that the Benjamini-Hochberg method protects against Type II errors is that it penalizes the *p*-values differentially. While the exact methodology is beyond the scope of the course, if you are interested you can read the original paper  in which the method was described [@Benjamini:1995].
+:::
+
+
+
+<br />
+
+
+## Which Adjustment Method Should You Use?
+
+There is no right answer to this question. Controlling for the familywise error rate or for the false discovery rate needs to be decided by the reseracher. There are good reasons to choose either. In general if you want to really protect against Type I errors, you would control the familywise error rate. This usually occurs when the researcher has adopted a confirmatory approach to the data analysis. On the other hand, if you worry about false discovery, but not at the expense of not discovering 'true' effects, then controlling for the false discovery rate is more appropriate. This is a better fit when the researcher is undertaking an exploratory approach to the data analysis. You should also note that some fields (e.g., neuroscience) have particular proclivities for how to adjust *p*-values for multiple comparisons.
+
+
+Regardless of the approach, you should decide which adjustment method you will use **before you do the analysis**. In the educational and social sciences, the Dunn--Bonferroni method has been historically the most popular method (probably because it was easy to implement before computing), although historical popularity is probably not the best manner of choosing a methodology.
+
+If you are unsure about which procedure to use, for many analyses the Benjamini-Hochberg adjustment method is a good choice. There is a growing pool of research evidence that suggests controlling FDR may be the "best" solution to the problem of multiple comparisons [@Williams:1999]. Moreover, the Institute of Education Sciences has recommended the Benjamini-Hochberg adjustment method in its [Procedures Handbook](https://ies.ed.gov/ncee/wwc/Handbooks) [@What-Works-Clearinghouse:2020].
+
+<br />
+
+
+<!-- ## Optional: Plot of Confidence Intervals for Adjusted Means Based on Adjusted *p*-Values -->
+
+<!-- Similar to the plot we created in the previous chapter, we can produce a plot of the confidence intervals for the adjusted means and then plot those for each group. One caveat is that these intervals should correspond to the adjustments we have done to the *p*-values so that readers inferences about which groups differ are consistent with what we report using the *p*-value adjustment methods. In general, this means that the CIs produced for each of the adjusted means will be wider (more uncertainty) than the original CIs. -->
+
+<!-- One issue we have is that in the output from the `emmeans()` function, the CIs for the adjusted means are in the `$emmeans` part of the output, and this does not change when we use differnt adjustment methods---that is, we are always getting the unadjusted CIs. If we have used the Dunn-Bonferroni method to adjust *p*-values, there is an easy solution to this, namely changing the confidence level. It turns out that the Bonferroni-adjusted CIs are just CIs that have the confidence level of: -->
+
+<!-- $$ -->
+<!-- \mathrm{Confidence~Level} = 1 - \frac{\alpha_{\mathrm{FW}}}{k} -->
+<!-- $$ -->
+
+<!-- where $\alpha_{\mathrm{FW}}$ is the familywise error rate (usually 0.05), and *k* is the number of comparisons being evaluated. In our example $k=28$, and the confidence level would be: -->
+
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- \mathrm{Confidence~Level} &= 1 - \frac{0.05}{28} \\[2ex] -->
+<!-- &=0.9982143 -->
+<!-- \end{split} -->
+<!-- $$ -->
+
+<!-- To obtain the Dunn-Bonferroni adjusted CIs we will use the `confint()` function. We start by assigning our `emmeans()` results into an object, and then calling the `confint()` function on this object. To change the confidence level we use the argument `level=`. The syntax below will compute the Dunn-Bonferroni adjusted CIs for the adjusted mean news knowledge for each of the different news sources. -->
+
+
+<!-- ```{r} -->
+<!-- # Assign emmeans() output to an object -->
+<!-- bonf = emmeans(lm.news_source, specs = pairwise ~news_source, adjust = "bonferroni") -->
+
+<!-- # Get Dunn-Bonferroni adjusted CIs -->
+<!-- confint(bonf, level = 0.9982143) -->
+<!-- ``` -->
+
+<!-- The information we need to create the plot is contained in the `$emmeans` section of the output. Rather than enter all of that manually into a data frame, we can access this section of output and pipe it into `data.frame()`. This will create a data frame of this information. We also assign this into an object so we can use the data in our `ggplot()` function. -->
+
+<!-- ```{r} -->
+<!-- #| label: fig-ci-plot-bonferroni -->
+<!-- #| fig-cap: "95% Dunn-Bonferroni adjusted simultaneous confidence intervals for the adjusted mean news knowledge scores for Americans who get their news from eight different sources. The means are adjusted for differences in age, education level, amount of news consumed, and political engagement." -->
+<!-- #| fig-width: 8 -->
+<!-- #| fig-height: 6 -->
+<!-- #| out-width: "80%" -->
+<!-- # Create data frame of $emmeans section of the output -->
+<!-- bonf_ci = confint(bonf, level = 0.9982143)$emmeans |> -->
+<!--   data.frame() -->
+
+<!-- # View data frame -->
+<!-- bonf_ci -->
+
+<!-- # Create plot of the Dunn-Bonferroni CIs -->
+<!-- ggplot(data = bonf_ci, aes(x = emmean, y = news_source)) + -->
+<!--   #Create CI -->
+<!--   geom_segment(  -->
+<!--     aes(x = lower.CL, y = news_source, xend = upper.CL, yend = news_source), -->
+<!--     color = "#ff2f92", -->
+<!--     linewidth = 1.5 -->
+<!--     ) +  -->
+<!--   #Add adjusted mean -->
+<!--   geom_point(  -->
+<!--     size = 3, -->
+<!--     color = "#ff2f92" -->
+<!--     ) +  -->
+<!--   theme_minimal() + -->
+<!--   xlab("Adjusted mean news knowledge score") + -->
+<!--   ylab("News source(s)") + -->
+<!--   xlim(45, 80) -->
+<!-- ``` -->
+
+
+<!-- :::fyi -->
+<!-- Confidence intervals that are adjusted for multiple comparisons are sometimes referred to as *simultaneous intervals*.  -->
+<!-- ::: -->
+
+
+<!-- How do we adjust the CIs to correspond to using the Benjamini-Hochberg method for adjusting *p*-values? Unfortunately, this is not as easy since the length of each CI is differentially calculated.   -->
+
+## References {-}
+
+
+
+
+<!-- ## Technical Appendix: Type I Error Rate and False-Discovery Rate -->
+
+<!-- When we use an alpha value of 0.05 to evaluate consistency of the empirical data to the null hypothesis, we are saying we are willing to make a Type I error in 5% of the samples that could be randomly selected. In other words, we will end up wrongly concluding that the empirical data are inconsistent with the null hypothesis in 5% of the samples we would obtain from our thought experiment. (In practice, we have no idea whether our sample is one of the 5% where we will make an error, or one of the 95% where we won't).  -->
+
+<!-- For effects that only have one row in the model, there is only one test in which we can make a Type I error ($H_0: \beta_j=0$), so we are okay evaluating each using this criterion. When we have more than two levels of a categorical predictor, there are multiple differences that constitute the effect of that predictor. To test whether there is an effect of that predictor, we evaluate *multiple hypothesis tests*. For our data, to test whether there is an effect of family structure on substance use, we evaluate three hypothesis tests: -->
+
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- H_0: &\mu_{\mathrm{Two\mbox{-}Parent}} = \mu_{\mathrm{Parent/Guardian}} \\[2ex] -->
+<!-- H_0: &\mu_{\mathrm{Two\mbox{-}Parent}} = \mu_{\mathrm{One\mbox{-}Parent}} \\[2ex] -->
+<!-- H_0: &\mu_{\mathrm{Parent/Guardian}} = \mu_{\mathrm{One\mbox{-}Parent}} -->
+<!-- \end{split} -->
+<!-- $$ -->
+
+<!-- Or equivalently, -->
+
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- H_0: &\mu_{\mathrm{Two\mbox{-}Parent}} - \mu_{\mathrm{Parent/Guardian}} = 0 \\[2ex] -->
+<!-- H_0: &\mu_{\mathrm{Two\mbox{-}Parent}} - \mu_{\mathrm{One\mbox{-}Parent}} = 0 \\[2ex] -->
+<!-- H_0: &\mu_{\mathrm{Parent/Guardian}} - \mu_{\mathrm{One\mbox{-}Parent}} = 0 -->
+<!-- \end{split} -->
+<!-- $$ -->
+
+<!-- Because of this, there are many ways to make a Type I error. For example, we could make a Type I error in any one of the three tests, or in two of the three tests, or in all three of the three tests. Therefore, the probability of making at least one Type I error is no longer 0.05, it is: -->
+
+<!-- $$ -->
+<!-- P(\mathrm{type~I~error}) = 1 - (1 - \alpha)^k -->
+<!-- $$ -->
+
+<!-- where $\alpha$ is the alpha level for each test, and $k$ is the number of tests (comparisons) for the effect. -->
+
+
+<!-- In our example this is -->
+
+<!-- $$ -->
+<!-- P(\mathrm{type~I~error}) = 1 - (1 -0.05)^{3} = 0.142 -->
+<!-- $$ -->
+
+<!-- The probability that we will make *at least one Type I error* in the three tests is around 0.142 NOT 0.05!!! This probability is called the [family-wise Type I error rate](https://en.wikipedia.org/wiki/Family-wise_error_rate) (FWER). This assumes that the *k* tests are independent. If they are not independent, Boole's inequality still suggests that there will be an upper limit on the FWER given by -->
+
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- 1 - (1 - \alpha)^{k} &\leq k \times \alpha \\[2ex] -->
+<!-- \mathrm{FWER} &\leq k \times \alpha \\[2ex] -->
+<!-- \end{split} -->
+<!-- $$ -->
+
+
+<!-- In confirmatory research we often want to limit the probability of any type I errors, so we set the FWER to 0.05. What should $\alpha$ be if we want the FWER to be 0.05? If the three hypothesis tests are independent, essentially we would need to solve this equation for $\alpha$: -->
+
+<!-- $$ -->
+<!-- 0.05 = 1 - (1 - \alpha)^{3} -->
+<!-- $$ -->
+
+<!-- Even if we are unsure about the independence we know that by solving this equation for $\alpha$, we will have a FWER at or below 0.05: -->
+
+<!-- $$ -->
+<!-- 0.05 = 3 \times \alpha -->
+<!-- $$ -->
+
+<!-- Setting $\alpha$ to $\dfrac{0.05}{3} = 0.167$ will guarantee our FWER remains at or below 0.05. This is the Dunn--Bonferroni method! -->
+
+<!-- <br /> -->
+
+
+<!-- ### Benjamini--Hochberg Procedure -->
+
+<!-- The *Benjamini--Hochberg adjustment* tries to minimize [false discovery rate](https://en.wikipedia.org/wiki/False_discovery_rate) (FDR), a more recent approach for assessing how errors in multiple testing could be considered. The FDR is the *expected proportion of all rejected null hypotheses that are rejected erroneously*. Another way to put this is that the FDR is the expected fraction of statistically reliable test statistics (with $p<.05$) that are false discoveries. -->
+
+<!-- The Benjamini--Hochberg adjustment uses the following procedure to control FDR: -->
+
+<!-- 1. Conduct *k* separate *t*-tests, each at the common significance level $\alpha$ (in the social sciences, 0.05). -->
+<!-- 2. Rank order the *p*-values of the *k* tests from smallest to largest, where $p_1 \leq p_2 \leq \ldots \leq p_k$ are the rank ordered *p*-values. -->
+<!-- 3. Define *m* as the maximum $j$ for which $p_j \leq \frac{j}{k} \times\alpha$. -->
+<!-- 4. Reject all null hypotheses $H_{0_j}$ $j = 1, 2, \ldots, m$. If no such *m* exists, then no hypotheses are rejected. -->
+
+<!-- This boils down to essentially, rank ordering the unadjusted *p*-values from smallest to largest and then adjusting each *p*-value  by the following computation^[The actual adjusted *p*-value given is the minimum of this value and the adjusted *p*-value for the next higher raw *p*-value.]: -->
+
+<!-- $$ -->
+<!-- p_{\mathrm{adjusted}} = \frac{k \times p_{\mathrm{unadjusted}}}{\mathrm{Rank}} -->
+<!-- $$ -->
+
+<!-- In this adjustment, the numerator is equivalent to making the Bonferroni adjustment. The size of the Bonferroni adjustment is then scaled back depending on the initial rank of the unadjusted *p*-value. The smallest initial *p*-value gets the complete Bonferroni adjustment, while the largest Bonferroni adjustment is scaled back the most.  -->
+
+<!-- <br /> -->
+
+
+
+
+

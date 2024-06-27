@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistical Modeling and Computation for Educational Scientists - 14&nbsp; Introduction to Multiple Regression</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04-02-more-multiple-regression.html" rel="next">
+<link href="./04-00-multiple-regression.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="assets/sticky-notes.css">
+<link rel="stylesheet" href="assets/table-styles.css">
+</head>
+
+<body class="nav-sidebar floating fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-00-multiple-regression.html">Multiple Regression</a></li><li class="breadcrumb-item"><a href="./04-01-intro-to-multiple-regression.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction to Multiple Regression</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Modeling and Computation for Educational Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Front Matter</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistical Computation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-01-r-and-rstudio-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R and RStudio: Installation and Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-02-getting-started-with-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-03-data-structures-in-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structures in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-04-data-wrangling-with-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling with dplyr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-05-visualizing-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./02-00-intro-to-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Regression</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-01-data-exploration-for-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Exploration for Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02-simple-regression-and-correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Simple Linear Regression and Correlation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-03-ols-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ordinary Least Squares (OLS) Estimation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-04-anova-decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">ANOVA Decomposition and <span class="math inline">\(R^2\)</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-05-standardized-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Standardized Regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./03-00-regression-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression Inference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-01-coefficient-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-02-model-level-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Model-Level Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-03-model-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Assumptions Underlying the Regression Model</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./04-00-multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiple Regression</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-01-intro-to-multiple-regression.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction to Multiple Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-03-understanding-statistical-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Understanding Statistical Control</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-04-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Assumptions: Multiple Regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./05-00-categorical-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical Predictors</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-01-dichotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Dichotomous Categorical Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-02-polychotomous-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-03-multiple-comparisons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multiple Comparisons</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./06-00-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interaction Effects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-01-intro-to-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-02-more-interaction-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">More Interaction Effects</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Codebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-01-comic-characters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-03-fertility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-04-gapminder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-05-keith-gpa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-06-mn-schools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-07-pew.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">pew.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-08-riverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-09-spice-girls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-10-work-demands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-00-multiple-regression.html">Multiple Regression</a></li><li class="breadcrumb-item"><a href="./04-01-intro-to-multiple-regression.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction to Multiple Regression</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="multreg" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction to Multiple Regression</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this chapter, you will learn about including multiple predictors into the regression model. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students (see the <a href="07-05-keith-gpa.html">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>keith <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>keith</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["gpa"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["homework"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["parent_ed"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"78","2":"2","3":"13"},{"1":"79","2":"6","3":"14"},{"1":"79","2":"1","3":"13"},{"1":"89","2":"5","3":"13"},{"1":"82","2":"3","3":"16"},{"1":"77","2":"4","3":"13"},{"1":"88","2":"5","3":"13"},{"1":"70","2":"3","3":"13"},{"1":"86","2":"5","3":"15"},{"1":"80","2":"5","3":"14"},{"1":"76","2":"1","3":"16"},{"1":"72","2":"5","3":"13"},{"1":"66","2":"3","3":"12"},{"1":"79","2":"4","3":"14"},{"1":"76","2":"4","3":"10"},{"1":"80","2":"6","3":"20"},{"1":"91","2":"8","3":"15"},{"1":"85","2":"6","3":"16"},{"1":"79","2":"8","3":"13"},{"1":"82","2":"3","3":"14"},{"1":"94","2":"8","3":"12"},{"1":"91","2":"6","3":"12"},{"1":"80","2":"5","3":"14"},{"1":"73","2":"7","3":"14"},{"1":"77","2":"5","3":"12"},{"1":"76","2":"5","3":"16"},{"1":"84","2":"3","3":"12"},{"1":"81","2":"5","3":"16"},{"1":"97","2":"10","3":"16"},{"1":"80","2":"6","3":"15"},{"1":"74","2":"5","3":"16"},{"1":"83","2":"11","3":"15"},{"1":"78","2":"6","3":"13"},{"1":"64","2":"7","3":"17"},{"1":"82","2":"4","3":"13"},{"1":"81","2":"1","3":"17"},{"1":"73","2":"4","3":"13"},{"1":"87","2":"7","3":"13"},{"1":"81","2":"2","3":"14"},{"1":"86","2":"4","3":"11"},{"1":"92","2":"4","3":"14"},{"1":"79","2":"1","3":"13"},{"1":"69","2":"4","3":"15"},{"1":"66","2":"5","3":"14"},{"1":"67","2":"7","3":"13"},{"1":"76","2":"7","3":"13"},{"1":"83","2":"6","3":"13"},{"1":"73","2":"3","3":"15"},{"1":"85","2":"6","3":"15"},{"1":"80","2":"5","3":"17"},{"1":"83","2":"4","3":"13"},{"1":"82","2":"3","3":"15"},{"1":"90","2":"7","3":"12"},{"1":"69","2":"5","3":"12"},{"1":"95","2":"8","3":"17"},{"1":"79","2":"2","3":"13"},{"1":"72","2":"3","3":"13"},{"1":"83","2":"7","3":"16"},{"1":"81","2":"4","3":"12"},{"1":"86","2":"5","3":"15"},{"1":"78","2":"2","3":"11"},{"1":"84","2":"9","3":"13"},{"1":"81","2":"5","3":"14"},{"1":"72","2":"4","3":"12"},{"1":"64","2":"5","3":"12"},{"1":"83","2":"8","3":"14"},{"1":"94","2":"5","3":"14"},{"1":"77","2":"6","3":"13"},{"1":"80","2":"5","3":"14"},{"1":"74","2":"5","3":"18"},{"1":"89","2":"8","3":"16"},{"1":"87","2":"6","3":"15"},{"1":"82","2":"7","3":"16"},{"1":"87","2":"4","3":"15"},{"1":"71","2":"2","3":"12"},{"1":"88","2":"5","3":"17"},{"1":"80","2":"7","3":"13"},{"1":"89","2":"6","3":"16"},{"1":"87","2":"2","3":"15"},{"1":"72","2":"5","3":"10"},{"1":"79","2":"4","3":"17"},{"1":"93","2":"7","3":"14"},{"1":"100","2":"7","3":"18"},{"1":"90","2":"4","3":"13"},{"1":"69","2":"4","3":"10"},{"1":"85","2":"5","3":"14"},{"1":"75","2":"7","3":"14"},{"1":"82","2":"2","3":"12"},{"1":"72","2":"2","3":"10"},{"1":"87","2":"5","3":"14"},{"1":"81","2":"7","3":"15"},{"1":"80","2":"9","3":"15"},{"1":"79","2":"7","3":"17"},{"1":"79","2":"5","3":"14"},{"1":"94","2":"8","3":"17"},{"1":"71","2":"4","3":"11"},{"1":"77","2":"8","3":"14"},{"1":"68","2":"4","3":"15"},{"1":"87","2":"6","3":"16"},{"1":"74","2":"4","3":"12"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> homework, <span class="at">data =</span> keith)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<section id="observational-data-and-alternative-explanations" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="observational-data-and-alternative-explanations"><span class="header-section-number">14.1</span> Observational Data and Alternative Explanations</h2>
+<p>In the previous chapters, we fitted a model regressing students’ GPA on time spent on homework. Recall that the goal of the analysis was to understand the relationship between time spent on homework and GPA and, in particular, to estimate the effect of time spent on homework on students’ GPA. The results from the analyses we undertook are presented here:</p>
+<blockquote class="blockquote">
+<p>The <span class="math inline">\(R^2\)</span> value of 0.107 suggests that 10.7% of the variation in students’ GPAs is explainrd by differences in time spent on homework. Although small, this amount of explained variation is statistically discernible from 0; <span class="math inline">\(F(1,98)=11.8\)</span>, <span class="math inline">\(p&lt;0.001\)</span>. The effect of time spent on homework (<span class="math inline">\(B=1.21\)</span>, <span class="math inline">\(p&lt;.001\)</span>) suggests that each additional hour spent on homework is associated with a 1.21-grade point difference in GPA, on average. These analyses suggest that time spent on homework seems to have a small, positive effect on GPA.</p>
+</blockquote>
+<p>While it seems we have an answer to our research question, unfortunately because of the nature of the data our answer might be quite wrong. To understand this, we need to dive into the differences between observational and experimental data and why experimental data is the key to obtaining “true” estimates of effects.</p>
+<p><br></p>
+<section id="experimental-or-observational-data" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="experimental-or-observational-data"><span class="header-section-number">14.1.1</span> Experimental or Observational Data</h3>
+<p>Experimental data are data that have been collected from a study in which the researcher <em>randomly assigned cases/participants</em> in their sample to different levels of the predictor. In an introductory statistics class you probably encountered this in the context of a predictor with only two levels (e.g., treatment and control). In those situations the goal was to determine the effect of the treatment on some outcome.</p>
+<p>We can also think about random assignment with predictors that have more than two levels. For example, if you were studying the effect of the amount of tutoring on some educational outcome you might have several levels of the predictor: 30 min of tutoring, 45 min of tutoring, 60 min of tutoring, 75 min of tutoring, 90 min of tutoring, etc. The data here can also be experimental so long as the participants in the study were randomly assigned to the different levels of tutoring.</p>
+<div class="fyi">
+<p>The key question to determine whether the data are experimental is: were cases/participants randomly assigned to different levels of the predictor?</p>
+</div>
+<p>Let’s ask that question about our homework/GPA data…were students randomly assigned to spend different amount of time on homework? The answer is no. Students were not randomly assigned to different levels of the predictor. They self select how much time they spend on homework. Because of this, these data are not experimental in nature. We instead refer to these data as observational in nature. Observational data are any data in which cases/participants were not randomly assigned to levels of the predictor. Most data collected or used in the social and educational sciences are observational in nature!</p>
+<p><br></p>
+</section>
+<section id="confounding-and-observational-data" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="confounding-and-observational-data"><span class="header-section-number">14.1.2</span> Confounding and Observational Data</h3>
+<p>The nature of the data has a direct impact on our conclusions about the effect of the predictor. When the data are observational, any conclusions about effects are not as strong as those conclusions we could draw if the data were experimental. This is because the conclusions we draw about effects from observational data may be impacted/biased by <em>confounding</em>. Confounding occurs when some variable influences both the assignment of cases/participants to the predictor levels and also influences the outcome. For example, we know that in education, student outcomes are typically influenced by parent education level—that is it influences the outcome. Parent education level might also impact how much time a student spends on homework. Students whose parents have a higher education level might spend more time on homework than students whose parents have a lower education level. (Again, this is “on average”. There may be individual students whose parents have a lower education level that spend a lo of time on homework.) In this scenario, parent education level is a confounder; it influences both the predictor (amount of time spent on homework) and the outcome (GPA).</p>
+<p>We can depict some of these ideas in a path diagram. A path diagram visualizes the different variables under study and the effects of those variables. Variables are depicted as rectangles<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and effects are depicted as single-headed arrows. For example, the following path diagram shows the two variables time spent on homework and GPA. Note that the arrow representing the effect of time spent on homework on GPA originates from the predictor rectangle and points toward the outcome. This shows that the effect is on the outcome.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/04-01-path-diagram-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Recall that our potential confounder (parent education) has an effect on both the predictor and the outcome. The path diagram showing this is depicted as:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/04-01-path-diagram-02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The big issue with confounders is that they can impact the effect of your focal predictor on the outcome. In our case, the true effect of time spent on homework on GPA may not really be small and positive. Maybe it is actually large and positive. Or maybe time spent on homework actually has no effect on GPA. Or worse, maybe it actually has a negative effect on GPA! We just don’t know. To make matters worse, there may be other confounders that we haven’t even thought about. These will also have a potential impact on the effect of our focal variable on the outcome.</p>
+<p>With experimental studies, since participants are assigned randomly by the researcher, there is theoretically no such thing as a confounder. This is because other predictors (e.g., parent education) cannot influence the level of predictor sicne it is a random mechanism that is determining the level of the predictor. The path diagram if this were experimental data would look like this:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/04-01-path-diagram-03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that there is no longer an arrow going from parent education to time spent on homework since parent education cannot influence time spent on homework if students were being randomly assigned to levels of homework. That is, students whose parents have a higher education level are just as likely to be assigned to low levels of time on homework as high levels of time on homework. Because parent education is no longer influencing the level on the time spent on homework predictor it is not a confounder.</p>
+<p>More importantly, with experimental data whatever the effect of time spent on homework was on GPA in the simple two rectangle model, it is theoretically the same, regardless of any other predictor that might be influencing the outcome. That is, even if parent education influences students’ GPA, the effect of time spent on homework would not change the original effect, it would remain a small, positive effect. Whereas, with observational data, we just don’t know whether nor how the effect will change.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/04-01-path-diagram-04.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="fyi">
+<p>Drawing out a path diagram helps you document the effects you are evaluating. It can also help you identify confounders when you have observational data.</p>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="multiple-regression-the-key-to-evaluating-observational-data" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="multiple-regression-the-key-to-evaluating-observational-data"><span class="header-section-number">14.2</span> Multiple Regression: The Key to Evaluating Observational Data</h2>
+<p>To understand whether or how the effect of time spent on homework on GPA is impacted by the confounder of parent education, we can include parent education level as an additional predictor in the model (along with time spent on homework). By looking at the resulting effect of time spent on homework on GPA we get a better understanding of what the true effect is.</p>
+<div class="protip">
+<p>While multiple regression is helpful for dealing with confounders in observational data, we can use multiple regression to quantify effects for any type of data, including experimental data.</p>
+</div>
+<p><br></p>
+<section id="examining-the-parent-education-level-predictor" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="examining-the-parent-education-level-predictor"><span class="header-section-number">14.2.1</span> Examining the Parent Education Level Predictor</h3>
+<p>Before we begin modeling, it behooves us to explore the parent education level predictor. Below we examine the marginal distribution of parent education for the 100 students in the sample.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine the marginal distribution</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> parent_ed)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Parent education level"</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-density-seniority" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-density-seniority-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-01-intro-to-multiple-regression_files/figure-html/fig-density-seniority-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-density-seniority-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.1: Density plot of the marginal distribution of parent education level.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We also compute numerical summaries of the distribution.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute mean and standard deviation</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>keith <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">mean</span>(parent_ed),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(parent_ed)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["M"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["SD"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"14.03","2":"1.930379"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Parent education level is somewhat right skewed with a typical education level of roughly 14 years (some college). There is quite a lot of variation in parent education level (SD=1.93), with most employees having between 12 and 16 years of formal education.</p>
+</blockquote>
+<p>After we examine the marginal distribution, we should examine the relationships among all of the three variables we are considering in the analysis. Typically researchers will examine the scatterplot between each predictor and the outcome (to evaluate the functional forms of the relationships with the outcome) and also examine the correlation matrix. Since we have already looked at the scatterplot between time spent on homework and GPA, we focus here on the relationship between parent education level and GPA.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Relationship between parent education level and GPA</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> keith, <span class="fu">aes</span>(<span class="at">x =</span> parent_ed, <span class="at">y =</span> gpa)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Parent education level"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"GPA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-seniority-income" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-seniority-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-01-intro-to-multiple-regression_files/figure-html/fig-seniority-income-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seniority-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.2: Scatterplot showing the relationship between parent education level and GPA.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The correlation matrix between all three variables is also examined. When we select the variables to use, again we start with the outcome followed by our focal predictor. Then any other predictors are included.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation matrix</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>keith <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gpa, homework, parent_ed) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["gpa"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["homework"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["parent_ed"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"gpa","2":"NA","3":"0.3273682","4":"0.2941969"},{"1":"homework","2":"0.3273682","3":"NA","4":"0.2768231"},{"1":"parent_ed","2":"0.2941969","3":"0.2768231","4":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>The relationship between parent education level and GPA seems linear and positive (<span class="math inline">\(r=0.29\)</span>). This suggests that students whose parents have higher education levels also tend to have higher GPAs. Time spent on homework and parent education level are also modestly correlated (<span class="math inline">\(r=0.28\)</span>), indicating that students whose parents have higher education levels also tend to spend more time on homework.</p>
+</blockquote>
+<p>Note here that parent education level seems to be related to the predictor and the outcome. This suggests that it may be a confounder. (In an experimental study, the correlation between parent education level and time spent on homework would be close to 0.) Sometimes people show the correlations on a path diagram. Correlations are shown as double-headed arrows rather than single-headed arrows.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/04-01-path-diagram-05.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The relationships observed in this correlation matrix are consistent with the issues we were concerned about earlier, namely that the positive effect of time spent on homework on GPA may be due to the fact that students who spend more time on homework are the students whose parents have higher education levels. And, the positive relationship between parent education level and GPA is clouding the “real” underlying relationship between time spent on homework and GPA.</p>
+<p><br></p>
+</section>
+<section id="simple-regression-model-parent-education-level-as-a-predictor-of-gpa" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="simple-regression-model-parent-education-level-as-a-predictor-of-gpa"><span class="header-section-number">14.2.2</span> Simple Regression Model: Parent Education Level as a Predictor of GPA</h3>
+<p>It is also instructive to fit and examine the results from the simple regression model using parent education level as a predictor of variation in GPA.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lm.b <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> parent_ed, <span class="at">data =</span> keith)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level results</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1    0.0866        0.0772  7.32      9.29 0.00297     1  -340.  686.  694.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    5255.          98   100</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level results</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"64.170313","3":"5.3988614","4":"11.885897","5":"1.049109e-20"},{"1":"parent_ed","2":"1.161774","3":"0.3812523","4":"3.047257","5":"2.968066e-03"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The fitted equation,</p>
+<p><span class="math display">\[
+\hat{\mathrm{GPA}_i} = 64.20 + 1.16(\mathrm{Parent~Education~Level}_i)
+\]</span></p>
+<blockquote class="blockquote">
+<p>These analyses suggest that differences in parent education level explain 8.7% of the variation in GPA. The effect of parent education level on GPA is <span class="math inline">\(B=1.16\)</span> indicating that the estimated mean GPA for students whose parent education level differs by one year varies by 1.16 grade points. We also find that this effect is statistically discernible from 0 (<span class="math inline">\(p=.003\)</span>).</p>
+</blockquote>
+<p><br></p>
+</section>
+<section id="multiple-regression-model-parent-education-level-and-time-spent-on-homework-as-a-predictors-of-gpa" class="level3" data-number="14.2.3">
+<h3 data-number="14.2.3" class="anchored" data-anchor-id="multiple-regression-model-parent-education-level-and-time-spent-on-homework-as-a-predictors-of-gpa"><span class="header-section-number">14.2.3</span> Multiple Regression Model: Parent Education Level and Time Spent on Homework as a Predictors of GPA</h3>
+<p>Our research question is focused on examining the relationship between time spent on homework and GPA, which as we learned, may be confounded by parent education level.</p>
+<p>What we need to know in order to determine the effect of time spent on homework on GPA is: <strong>After we account for any distributional differences in parent eduation level across levels of time spent on homework</strong> is there is still a relationship between time spent on homework and GPA. To answer this question, we will fit a model that includes both predictors. To fit the multiple regression model, we will just add (literally) additional predictors to the right-hand side of the <code>lm()</code> formula.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit multiple regression model</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>lm.c <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> parent_ed <span class="sc">+</span> homework, <span class="at">data =</span> keith)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<section id="model-level-results" class="level4" data-number="14.2.3.1">
+<h4 data-number="14.2.3.1" class="anchored" data-anchor-id="model-level-results"><span class="header-section-number">14.2.3.1</span> Model-Level Results</h4>
+<p>To interpret multiple regression results, begin with the model-level information.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level results</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.152         0.135  7.09      8.70 0.000336     2  -336.  681.  691.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    4878.          97   100</code></pre>
+</div>
+</div>
+<p>In a multiple regression model there are multiple predictors that are being used to explain variation in the outcome variable. We can begin by examining the <span class="math inline">\(R^2\)</span> value from the output. Interpreting this value, we say:</p>
+<blockquote class="blockquote">
+<p>Differences in time spent on homework AND parent education level explain 15.2% of the variation in GPA, in the sample.</p>
+</blockquote>
+<p>The model-level test allows us to evaluate whether, together, these predictors explain variation in the outcome or whether any explained variation in the sample is attributable to sampling error. The formal model-level null hypothesis that tests this can be written mathematically as,</p>
+<p><span class="math display">\[
+H_0:\rho^2 = 0.
+\]</span></p>
+<p>This is a test of whether <em>all the predictors together</em> explain variation in the outcome variable. The results of this test, <span class="math inline">\(F(2,97)=8.70\)</span>, <span class="math inline">\(p=.003\)</span>, suggest that the empirical evidence is inconsistent with the null hypothesis; it is likely that together time spent on homework AND parent education level do explain variation in the population.</p>
+<p>Equivalently, we can also write the model null hypothesis as a function of the predictor effects, namely,</p>
+<p><span class="math display">\[
+H_0:\beta_{\mathrm{Time~on~HW}} = \beta_{\mathrm{Parent~Education~Level}} = 0.
+\]</span></p>
+<p>In plain English, this is akin to stating that there is NO EFFECT for every predictor included in the model. If the empirical data are inconsistent with this null hypothesis, it suggests that AT LEAST ONE of the predictor effects is likely not zero.</p>
+<p>Although the two expressions of the model-level null hypothesis look quite different, they are answering the same question, namely whether the model predicts more variation in GPA than is attributable to sampling variation. Based on the results of the model-level hypothesis test we believe there is: (1) an effect of time spent on homework on GPA, (2) an effect of parent education level on GPA, OR (3) there is an effect of both predictors on GPA. The model-level results, however, do not allow us to determine which of the predictors has an effect on the outcome variable. For that we need to evaluate the coefficient-level results.</p>
+<p><br></p>
+</section>
+<section id="coefficient-level-results" class="level4" data-number="14.2.3.2">
+<h4 data-number="14.2.3.2" class="anchored" data-anchor-id="coefficient-level-results"><span class="header-section-number">14.2.3.2</span> Coefficient-Level Results</h4>
+<p>Now we turn to the coefficient-level results produced in the <code>tidy()</code> output.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level results</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"63.2270245","3":"5.2397841","4":"12.066723","5":"5.083248e-21"},{"1":"parent_ed","2":"0.8706230","3":"0.3842331","4":"2.265872","5":"2.568201e-02"},{"1":"homework","2":"0.9878456","3":"0.3608845","4":"2.737290","5":"7.369676e-03"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>First we will write the fitted multiple regression equation,</p>
+<p><span class="math display">\[
+\hat{\mathrm{GPA}_i} = 63.20 + 0.87(\mathrm{Parent~Education~Level}_i) + 0.99(\mathrm{Time~on~HW}_i)
+\]</span></p>
+<p>The slopes (of which there are now more than one) are referred to as <em>partial regression slopes</em> or <em>partial effects</em>. They represent the effect of the predictor <em>AFTER</em> accounting for the effects of the other predictors included in the model. For example,</p>
+<blockquote class="blockquote">
+<ul>
+<li>The <strong>partial effect of parent education level</strong> is 0.87. This indicates that a one year difference in parent education level is associated with a 0.87 grade-point difference in GPA (on average), after accounting for differences in time spent on homework.</li>
+<li>The <strong>partial effect of time spent on homework</strong> is 0.99. This indicates that a one hour difference in time spent on homework is associated with a 0.99 grade-point difference in GPA (on average), after accounting for differences in parent education level.</li>
+</ul>
+</blockquote>
+<div class="fyi">
+<p>The language “after accounting for” is not ubiquitous in interpreting partial regression coefficients. Some researchers instead use “controlling for”, “holding constant”, or “partialling out the effects of”. For example, the time spent on homework effect could also be interpreted these ways:</p>
+<ul>
+<li><p>A one hour difference in time spent on homework is associated with a 0.99 grade-point difference in GPA (on average), <em>after controlling for differences</em> in parent education level.</p></li>
+<li><p>A one hour difference in time spent on homework is associated with a 0.99 grade-point difference in GPA (on average), <em>after holding the effect</em> of parent education level constant.</p></li>
+<li><p>A one hour difference in time spent on homework is associated with a 0.99 grade-point difference in GPA (on average), <em>after partialling out the effect</em> of parent education level.</p></li>
+</ul>
+</div>
+<p>Lastly, we can also interpret the intercept:</p>
+<blockquote class="blockquote">
+<p>The average GPA for all students whose parent education level is 0 years AND who spend 0 hours on homework a week is estimated to be 63.2.</p>
+</blockquote>
+<p>This is the predicted average <em>Y</em> value when ALL the predictors have a value of 0. As such, it is often an extrapolated prediction and is not of interest to most applied researchers. For example, in our data, parent education level ranges from 10 to 20 years and time spent on homework ranges from 1 to 11 years. We have no data that has a zero value for either predictor, let alone for both. This makes prediction of the average <em>Y</em> value tenuous at these <em>X</em> values.</p>
+<p><br></p>
+</section>
+<section id="coefficient-level-inference" class="level4" data-number="14.2.3.3">
+<h4 data-number="14.2.3.3" class="anchored" data-anchor-id="coefficient-level-inference"><span class="header-section-number">14.2.3.3</span> Coefficient-Level Inference</h4>
+<p>At the coefficient-level, the hypotheses being tested are about each individual predictor. The mathematical expression of the hypothesis is</p>
+<p><span class="math display">\[
+H_0: \beta_k = 0.
+\]</span></p>
+<p>In plain English, the statistical null hypothesis states: After accounting for ALL the other predictors included in the model, there is NO EFFECT of <em>X</em> on <em>Y</em>. These hypotheses are evaluated using a <em>t</em>-test. For example, consider the test associated with the parent education level coefficient.</p>
+<p><span class="math display">\[
+H_0: \beta_{\mathrm{Parent~Education~Level}} = 0
+\]</span></p>
+<p>This is akin to stating there is NO EFFECT of parent education level on GPA after accounting for differences in the amount of time spent on homework. The empirical evidence is inconsistent with this hypothesis, <span class="math inline">\(t(97)=2.27\)</span>, <span class="math inline">\(p=.026\)</span>, suggesting that there is likely an effect of parent education level on GPA after controlling for differences in the amount of time spent on homework. (Note that the <em>df</em> for the <em>t</em>-test for all of the coefficient tests is equivalent to the error, or denominator, <em>df</em> for the model-level <em>F</em>-test. This can be found in the <code>glance()</code> output.)</p>
+<p>The test for the focal predictor, time spent on homework is evaluating the null hypothesis that there is NO EFFECT of the amount of time spent on homework on GPA after accounting for differences in parent education level: <span class="math inline">\(H_0: \beta_{\mathrm{Time~on~HW}} = 0\)</span>. The empirical evidence is also inconsistent with this hypothesis, <span class="math inline">\(t(97)=2.74\)</span>, <span class="math inline">\(p=.007\)</span>, suggesting that there is likely an effect of the amount of time spent on homework on GPA after controlling for differences in parent education level.</p>
+<p>Based on these results, both predictors seem to have an effect on GPA.</p>
+<div class="fyi">
+<p>It is important to note that unlike in simple regression models, the <em>p</em>-value at the model-level for multiple regression models is different from any of the coefficient-level <em>p</em>-values. In our example the <em>p</em>-value from the model-level <em>F</em>-test was 0.0003, while those for the coefficient-level <em>t</em>-tests were 0.026 and 0.007 respectively. This is because when we include more than one predictor in a model, the hypotheses being tested at the model- and coefficient-levels are different. The model-level test is a simultaneous test of all the predictor effects, while the coefficient-level tests are testing the added effect of a particular predictor after we control for all other predictors in the model.</p>
+</div>
+<p><br></p>
+</section>
+<section id="updating-the-path-model" class="level4" data-number="14.2.3.4">
+<h4 data-number="14.2.3.4" class="anchored" data-anchor-id="updating-the-path-model"><span class="header-section-number">14.2.3.4</span> Updating the Path Model</h4>
+<p>We can now include the coefficients from the fitted multiple regression model to update our path diagram.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-path-model-final" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-path-model-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-path-diagram-06.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-path-model-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.3: Path diagram for the multiple regression model. Path values are unstandardized coefficients.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>One thing you will note is that the updated path diagram no longer includes the arrow from parent education level to GPA. That is because it is no longer relevant to us. We were concerned about that path because it indicated that parent education level might be a confounding variable which would impact the effect we were interested in, namely that for the effect of time spent on homework. By including parent education level in the regression model along with time spent on homework, we obtain an estimate of the effect of time spent on homework that accounts for the confounding. Because of that, the path from parent education level to GPA can be omitted.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>By comparing the effect of time spent on homework on GPA from the simple and the multiple regression model, we have a more accurate understanding of the effect.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-path-model-final-2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-path-model-final-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-path-diagram-07.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-path-model-final-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.4: Path diagram for the simple and multiple regression model. Path values are unstandardized coefficients.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In the simple regression model the effect of time spent on homework on GPA was 1.21, indicating that each one hour difference in the amount of time spent on homework was associated with a 1.21 grade-point difference in GPA on average. After we account for parent education level, the effect of time spent on homework on GPA is 0.99. This implies that some of the inital effect is really attributable to parent level of education (it is a confounder). The diminished value better reflects the actual effect of time spent on homework on GPA.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p><br></p>
+</section>
+</section>
+</section>
+<section id="multiple-regression-statistical-model" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="multiple-regression-statistical-model"><span class="header-section-number">14.3</span> Multiple Regression: Statistical Model</h2>
+<p>The multiple regression model posits that each case’s outcome (<em>Y</em>) is a function of two or more predictors (<span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, , <span class="math inline">\(X_k\)</span>) and some amount of error. Mathematically it can be written as</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1(X1_{i}) + \beta_2(X2_{i}) + \ldots + \beta_k(Xk_{i}) + \epsilon_i
+\]</span></p>
+<p>As with simple regression we are interested in estimating the values for each of the regression coefficients, namely, <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, <span class="math inline">\(\beta_2\)</span>, …, <span class="math inline">\(\beta_k\)</span>. To do this, we again employ least squares estimation to minimize the sum of the squared error terms.</p>
+<p>Since we have more than one <em>X</em> term in the fitted equation, the structural part of the model no longer mathematically defines a line. For example, the fitted equation from earlier,</p>
+<p><span class="math display">\[
+\hat{Y_i} = 63.20 + 0.87(X1_i) + 0.99(X2_i),
+\]</span></p>
+<p>mathematically defines a regression plane. (Note we have three dimensions: <em>Y</em>, <span class="math inline">\(X1\)</span>, and <span class="math inline">\(X2\)</span>. If we add predictors, we have four or more dimensions and the equation would describe a hyperplane.)</p>
+<p>The data and regression plane defined by the parent education level, time spent on homework, and GPA for the <code>keith</code> data is shown below. The regression plane is tilted up in both the education level direction (corresponding to a positive partial slope of education) and in the seniority level direction (corresponding to a positive partial slope of seniority). The blue points are above the plane (employees with a positive residual) and the yellow points are below the plane (employees with a negative residual).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-scatter3d" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scatter3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-3dscatterplot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatter3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.5: Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<section id="residuals" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="residuals"><span class="header-section-number">14.3.1</span> Residuals</h3>
+<p>Graphically, the residuals from this model are the vertical distance between the observed points and the regression plane. Mathematically, they can be computed in the same manner as they were in the simple regression model, namely:</p>
+<p><span class="math display">\[
+\hat{\epsilon_i} = Y_i - \hat{Y_i}
+\]</span></p>
+<p>For example, consider the first observation in the <code>keith</code> data. This student has the following values:</p>
+<ul>
+<li>GPA = 78</li>
+<li>Parent education level = 13</li>
+<li>Time spent on homework = 2</li>
+</ul>
+<p>To compute this students fitted value we use:</p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{GPA}_1} &amp;= 63.20 + 0.87(13) + 0.99(2) \\[2ex]
+&amp;= 76.49
+\end{split}
+\]</span></p>
+<p>The residual for this observation is then:</p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\epsilon_1} &amp;= 78 - 76.49 \\[2ex]
+&amp;= 1.51
+\end{split}
+\]</span></p>
+<p>Given this student’s parent education level and the amount of time they spend on homework, their GPA is above average by 1.51 grade-points. This is depicted in <a href="#fig-scatter3d-resid" class="quarto-xref">Figure&nbsp;<span>14.6</span></a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-scatter3d-resid" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scatter3d-resid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-3dscatterplot-resid.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatter3d-resid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.6: Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual. Observation 1 is shown in orange and its residual depicted as a blue vertical line extending to the regression plane.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="order-of-predictors-in-the-lm-function" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="order-of-predictors-in-the-lm-function"><span class="header-section-number">14.4</span> Order of Predictors in the <code>lm()</code> Function</h2>
+<p>In our <code>lm()</code>, we fitted the multiple regression model by first including parent education level, and then including time spent on homework.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit multiple regression model</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>lm.c <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> parent_ed <span class="sc">+</span> homework, <span class="at">data =</span> keith)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s re-fit our multiple regression model, but this time we will include time spent on homework first and parent education level second.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit multiple regression model</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>lm.d <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> homework <span class="sc">+</span> parent_ed, <span class="at">data =</span> keith)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Does the order of the predictors change the estimates we get in the model- and coefficient-level output?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level results</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.152         0.135  7.09      8.70 0.000336     2  -336.  681.  691.
+  deviance df.residual  nobs
+     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1    4878.          97   100</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"63.2270245","3":"5.2397841","4":"12.066723","5":"5.083248e-21"},{"1":"homework","2":"0.9878456","3":"0.3608845","4":"2.737290","5":"7.369676e-03"},{"1":"parent_ed","2":"0.8706230","3":"0.3842331","4":"2.265872","5":"2.568201e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Both the model-level and coefficient-level output is identical regardless of the order that the predictors are entered into the <code>lm()</code> function.</p>
+<div class="fyi">
+<p>While this means you don’t have to stress about the order you enter predictors in the model, conventionally if you have a focal predictor that is entered into the model last. That is why we included parent education level prior to time spent on homework in the <code>lm()</code> initially.</p>
+</div>
+<p><br></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Sometimes variables are represented as circles in a path diagram. These typically represent latent variables.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>When the effect of a predictor remains consistent regardless of other things that might influence the outcome, we call that predictor a “cause”. Because this is the case in experimental data, sometimes people will say that experimental data allows for cause-and-effect type inferences.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Depending on the analyses undertaken sometimes researchers keep the path and also include a path coefficient as well. This can help them compute indirect effects. This is beyond the scope of this class, but you can learn more in EPSY 8264.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>While this is a more accurate representation of the effect, the reality is that both estimates are pretty close to 1. Moreover, on the 100-point scale which GPA is measured on, there is really no practical difference between an effect of 1.21 and 0.99. So, while parent education level is attributable for some of the initial effect, it isn’t a lot.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./04-00-multiple-regression.html" class="pagination-link" aria-label="Multiple Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Multiple Regression</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04-02-more-multiple-regression.html" class="pagination-link" aria-label="Multiple Regression: ANOVA Decomposition">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

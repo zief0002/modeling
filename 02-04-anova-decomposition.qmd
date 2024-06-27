@@ -1,0 +1,381 @@
+# ANOVA Decomposition and $R^2$
+
+```{r}
+#| echo: false
+source("scripts/_common.R")
+```
+
+
+In this set of notes, you will learn how the variation in the outcome can be decomposed into explained and unexplained variation---a process called ANOVA decomposition. Recall that in the previous set of notes, we used the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv) data to examine whether education level is related to income (see the [data codebook](#riverview)). To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.a`.
+
+```{r}
+# Load libraries
+library(corrr)
+library(dplyr)
+library(ggplot2)
+library(readr)
+
+# Import data
+city = read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv")
+
+#View data
+city
+
+# Fit regression model
+lm.a = lm(income ~ 1 + education, data = city)
+lm.a
+```
+
+The fitted regression equation is
+
+$$
+\hat{\mathrm{Income}_i} = 11.321 + 2.651(\mathrm{Education~Level}_i)
+$$
+
+Recall also that we had previously computed the SSE for the model,
+
+$$
+\mathrm{SSE} = \sum \left( Y_i - \hat{Y}_i\right)^2
+$$
+
+
+This was a measure of the residual variation in incomes after we account for employee education level. (We do not instrepret the SSE beyond this!)
+
+```{r}
+# Compute the SSE
+city |>
+  mutate(
+    y_hat = 11.321 + 2.651 * education,  # Step 1: Compute the predicted values of Y
+    errors = income - y_hat,             # Step 2: Compute the residuals
+    sq_errors = errors ^ 2               # Step 3: Compute the squared residuals
+  ) |>
+  summarize(
+    SSE = sum(sq_errors)                 # Step 4: Compute the sum of the squared residuals
+  )
+```
+
+
+<br />
+
+
+### Evaluating the Impact of a Predictor Using SSE
+
+Consider again the general equation for the statistical model that includes a single predictor,
+
+$$
+Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
+$$
+
+One way that statisticians evaluate a predictor is to compare a model that includes that predictor to the same model that does not include that predictor. For example, comparing the following two models allows us to evaluate the impact of $X_i$.
+
+$$
+\begin{split}
+Y_i &= \beta_0 + \beta_1(X_i) + \epsilon_i \\
+Y_i &= \beta_0 + \epsilon_i
+\end{split}
+$$
+
+
+The second model, without the effect of *X*, is referred to as the *intercept-only model*. This model implies that the value of *Y* is not a function of *X*. In our example it suggests that the mean income is not conditional on education level. The fitted equation,
+
+$$
+\hat{Y}_i = \hat{\beta}_0
+$$
+
+indicates that the predicted *Y* would be the same (constant) regardless of what *X* is. In our example, this would be equivalent to saying that the mean income is the same, regardless of employee education level.
+
+<br />
+
+
+### Fitting the Intercept-Only Model
+
+To fit the intercept-only model, we just omit the predictor term on the right-hand side of the `lm()` formula.
+
+```{r}
+lm.0 = lm(income ~ 1, data = city)
+lm.0
+```
+
+The fitted regression equation for the intercept-only model can be written as,
+
+$$
+\hat{\mathrm{Income}_i} = 53.742
+$$
+
+
+Graphically, the fitted line is a flat line crossing the $y$-axis at 53.742 (see plot below).
+
+```{r}
+#| echo: false
+#| fig-cap: "Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed."
+ggplot(data = city, aes(x = education, y = income)) +
+  geom_point(size = 4) +
+  geom_hline(yintercept = 53.742, color = "blue") +
+  theme_bw() +
+  xlab("Education (in years)") +
+  ylab("Income (in U.S. dollars)")
+```
+
+Does the estimate for $\beta_0$, 53.742, seem familiar? If not, go back to the exploration of the response variable in the [Simple Linear Regression---Description](#sldr) chapter. The estimated intercept in the intercept-only model is the marginal mean value of the response variable. This is not a coincidence. 
+
+Remember that the regression model estimates the mean. Here, since the model is not a conditional model (no *X* predictor) the expected value (mean) is the marginal mean.
+
+$$
+\begin{split}
+\mu_Y &= \beta_0 \\
+\end{split}
+$$
+
+Plotting this we get,
+
+```{r}
+#| echo: false
+#| fig-cap: "Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown."
+library(ggExtra)
+
+p = ggplot(data = city, aes(x = education, y = income)) +
+  geom_point(size = 4) +
+  geom_hline(yintercept = 53.742, color = "blue") +
+  theme_bw() +
+  xlab("Education (in years)") +
+  ylab("Income (in U.S. dollars)")
+
+ggMarginal(p, margins = "y", type = "histogram")
+```
+
+The model itself does not consider any predictors, so on the plot, the *X* variable is superfluous; we could just collapse it to its margin. This is why the mean of all the *Y* values is sometimes referred to as the *marginal mean*.
+
+Yet another way to think about this is that the model is choosing a single income ($\hat{\beta}_0$) to be the predicted income for all the employees. Which value would be a good choice? Remember the `lm()` function chooses the "best" value for the parameter estimate based on minimizing the sum of squared errors. The marginal mean is the value that minimizes the squared deviations (errors) across all of the observations, regardless of education level. This is one reason the mean is often used as a summary measure of a set of data.
+
+<br />
+
+
+### SSE for the Intercept-Only Model
+
+Since the intercept-only model does not include any predictors, the SSE for this model is a quantification of the total variation in the outcome variable. It can be used as a baseline measure of the error variation in the data. Below we compute the SSE for the intercept-only model (if you need to go through the steps one-at-a-time, do so.)
+
+```{r}
+city |>
+  mutate(
+    y_hat = 53.742,
+    errors = income - y_hat,
+    sq_errors = errors ^ 2
+  ) |>
+  summarize(
+    SSE = sum(sq_errors)
+  )
+```
+
+<br />
+
+
+### Proportion Reduction in Error
+
+The SSE for the intercept-only model represents the total amount of variation in the sample incomes. As such we can use it as a baseline for comparing other models that include predictors. For example,
+
+- **SSE (Intercept-Only):**  6566
+- **SSE (w/Education Level Predictor):**  2418
+
+Once we account for education in the model, we reduce the SSE. Moreover, since the only difference between the intercept-only model and the predictor model was the inclusion of the effect of education level, any difference in the SSE is attributable to including education in the model. Since the SSE is smaller after we include education level in the model it implies that improving the data--model fit (smaller error).
+
+How much did the amount of error improve? The SSE was reduced by 4148 after including education level in the model. Is this a lot? To answer that question, we typically compute and report this reduction as a proportion of the total variation; called the *proportion of the reduction in error*, or PRE.
+
+$$
+\mathrm{PRE} = \frac{\mathrm{SSE}_{\mathrm{Intercept\mbox{-}Only}} - \mathrm{SSE}_{\mathrm{Predictor\mbox{-}Model}}}{\mathrm{SSE}_{\mathrm{Intercept\mbox{-}Only}}}
+$$
+
+For our particular example,
+
+$$
+\begin{split}
+\mathrm{PRE} &= \frac{6566 - 2418}{6566} \\[2ex]
+&= \frac{4148}{6566} \\[2ex]
+&= 0.632
+\end{split}
+$$
+
+
+Including education level as a predictor in the model reduced the error by 63.2%. 
+
+<br />
+
+
+## ANOVA Decomposition: Partitioning Variation into Sum of Squares
+
+Using the SSE terms we can partition the total variation in *Y* (the SSE value from the intercept-only model) into two parts: (1) the part that is explained by the model, and (2) the part that remains unexplained. The unexplained variation is just the SSE from the regression model that includes *X*; remember it is *residual variation*. Here is the partitioning of the variation in income.
+
+$$
+\underbrace{6566}_{\substack{\text{Total} \\ \text{Variation}}} = \underbrace{4148}_{\substack{\text{Explained} \\ \text{Variation}}} + \underbrace{2418}_{\substack{\text{Unexplained} \\ \text{Variation}}}
+$$
+
+Each of these three terms is a sum of squares (SS). The first is referred to as the *total sum of squares*, as it represents the total amount of variation in *Y*. The second term is commmonly called the *model sum of squares* (i.e., regression sum of squares), as it represents the variation explained by the model. The last term is the *error sum of squares* (i.e., residual sum of squares) as it represents the left-over variation that is unexplained by the model.
+
+More generally,
+
+$$
+\mathrm{SS_{\mathrm{Total}}} = \mathrm{SS_{\mathrm{Model}}} + \mathrm{SS_{\mathrm{Error}}}
+$$
+
+@fig-anova-decomp illustrates this partitioning in a visual manner.
+
+
+```{r}
+#| label: fig-anova-decomp
+#| echo: false
+#| fig-cap: "A visual depiction of the ANOVA decomposition. The total variation as measured by the sum of squares is partitioned into that which is explained by the model (i.e., explained by education level) and that which is not (i.e., unexplained)."
+#| out-width: "80%"
+
+knitr::include_graphics("figs/09-01-anova-decomposition-01.png")
+```
+
+Another visualization of the partitioning of the sums of squares is shown in @fig-anova-decomp-2. This visualization shows the decomposition via a tree diagram.
+
+
+```{r}
+#| label: fig-anova-decomp-2
+#| echo: false
+#| fig-cap: "Another visual depiction of the ANOVA decomposition."
+#| out-width: "100%"
+
+knitr::include_graphics("figs/09-02-anova-decomposition-02.png")
+```
+
+
+:::protip
+The visualizations of the ANOVA decomposition are primarily pedagogical in nature to help you understand the partitioning. In practice, we generally only report the numeric values of the sums of squares (or a metric such as $R^2$) and do not create a visualization of this decomposition.
+:::
+
+
+<br />
+
+
+### Variation Accounted For by the Model
+
+It is often convenient to express these values as proportions of the total variation. To do this we can divide each term in the partitioning by the total sum of squares.
+
+$$
+\frac{\mathrm{SS_{\mathrm{Total}}}}{\mathrm{SS_{\mathrm{Total}}}} = \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}}
+$$
+
+Using the values from our example,
+
+$$
+\begin{split}
+\frac{6566}{6566} &= \frac{4148}{6566} + \frac{2418}{6566} \\[2ex]
+1 &= 0.632 + 0.368
+\end{split}
+$$
+
+The first term on the right-hand side of the equation, $\frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}}$, is 0.632. This is the PRE value we computed earlier. Since the $\mathrm{SS_{\mathrm{Model}}}$ represents the model-explained variation, many researchers interpret this value as the percentage of *variation explained* or accounted for by the model. They might say,
+
+> The model accounts for 63.2% of the variation in incomes. 
+
+
+Since the only predictor in the model is education level, an alternative interpretation of this value is,
+
+> Differences in education level account for 63.2% of the variation in incomes.  
+
+Better models explain more variation in the outcome. They also have small errors. Aside from conceptually making some sense, this is also shown in the mathematics of the partitioning of variation.
+
+$$
+1 = \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}}
+$$
+
+Since the denominator is the same on both terms, and the sum of the two terms must be one, this implies that the smaller the amount of error, the smaller the last term (proportion of unexplained variation ) must be and the larger the first term (the proportion of explained variation) has to be. 
+
+<br />
+
+
+### R-Squared
+
+Another way to think about measuring the quality of a model is that 'good' models should reproduce the observed outcomes, after all they explain variation in the outcome. How well do the fitted (predicted) values from our model match wih the outcome values? To find out, we can compute the correlation between the model fitted values and the observed outcome values. To compute a correlation, we will use the `correlate()` function from the `{corrr}` package.
+
+```{r}
+# Create fitted values and correlate them with the outcome
+city |>
+  mutate(
+    y_hat = 11.321 + 2.651*education
+  ) |>
+  select(y_hat, income) |>
+  correlate()
+```
+
+The correlation between the observed and fitted values is 0.795. This is a high correlation indicating that the model fitted values and the observed values are similar. Recall that $r =0.795$ was the same correlation we computed between the education and outcome variables. 
+
+```{r}
+# Compute correlation b/w education and income
+city |>
+  select(income, education) |>
+  correlate()
+```
+
+
+Now square this value. (When we square)
+
+$$
+r_{x,y}^2 = 0.795^2 = 0.632
+$$
+
+Again we get the PRE value! All four ways of expressing this metric of model quality are equivalent:
+
+$$
+\frac{\mathrm{SSE}_{\mathrm{Intercept\mbox{-}Only}} - \mathrm{SSE}_{\mathrm{Predictor\mbox{-}Model}}}{\mathrm{SSE}_{\mathrm{Intercept\mbox{-}Only}}} = \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} = r_{x,y}^2 = r_{y,\hat{y}}^2
+$$
+
+
+Although these indices seem to measure different aspects of model quality---reduction in error variation, model explained variation, alignment between predictor and outcome, and alignment of the model fitted and observed values---with OLS fitted linear models, these values are all equal. This will not necessarily be true when we estimate model parameters using a different estimation method (e.g., maximum likelihood). Most of the time this value will be reported in applied research as $R^2$, but as you can see, there are many interpretations of this value under the OLS framework.
+
+:::fyi
+Sometimes $R^2$ is referred to as the Coefficient of Determination.
+:::
+
+<br />
+
+
+### Back to Partitioning
+
+Using the fact that $R^2 = \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}}$, we can substitute this into the partitioning equation from earlier.
+
+$$
+\begin{split}
+\frac{\mathrm{SS_{\mathrm{Total}}}}{\mathrm{SS_{\mathrm{Total}}}} &= \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[2ex]
+1 &= R^2 + \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[2ex]
+1 - R^2 &= \frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}} 
+\end{split}
+$$
+
+This suggests that the last term in the partitioning, $\frac{\mathrm{SS_{\mathrm{Error}}}}{\mathrm{SS_{\mathrm{Total}}}}$ is simply the difference between 1 and $R^2$. In our example,
+
+$$
+\begin{split}
+R^2 &= 0.632, \quad \text{and} \\[2ex]
+1 - R^2 &= 0.368
+\end{split}
+$$
+
+
+Remember that one interpretation of $R^2$ is that 63.2% of the variation in incomes was explained by the model. Alternatively, 36.8% of the variation in income is not explained by the model; it is residual variation. If the unexplained variation is too large, it suggests to an applied analyst that she could include additional predictors in the model. We will explore this in future chapters. 
+
+
+:::protip
+$R^2$ is one measure of the *effect size* of a model that educational scientists often report. As such, it is often viewed as a quantification of the quality of the model, with larger $R^2$ values indicating higher quality models. But, be careful! Understanding whether $R^2$ is large or small is based on the domain science. For example in some areas of educational research, an $R^2$ of 0.4 might indicate a really great model, whereas the same $R^2$ of 0.4 in some areas of biological research might be quite small and indicate a poor model. 
+
+Moreover, even if $R^2$ is large in the domain, it does not indicate that the model is a "good" model. In order to evaluate that, we have to study the model's residuals. We will learn more about that when we learn about the regression model's distributional assumptions.
+:::
+
+<br />
+
+
+<!-- ## References -->
+
+
+
+
+
+
+
+
+
+
+
+

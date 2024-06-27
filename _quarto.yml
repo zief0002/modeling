@@ -24,36 +24,44 @@ book:
         - 01-03-data-structures-in-r.qmd
         - 01-04-data-wrangling-with-dplyr.qmd
         - 01-05-visualizing-with-ggplot2.qmd
-    - part: 02-00-regression-basics.qmd
+    - part: 02-00-intro-to-regression.qmd
       chapters:
-        - 02-01-simple-regression-description.qmd
-        - 02-02-ols-estimation.qmd
-        - 02-03-correlation.qmd
-        - 02-04-coefficient-level-inference.qmd
-        - 02-05-model-level-inference.qmd
-    - part: 03-00-deeper-understanding.qmd
+        - 02-01-data-exploration-for-regression.qmd
+        - 02-02-simple-regression-and-correlation.qmd
+        - 02-03-ols-estimation.qmd
+        - 02-04-anova-decomposition.qmd
+        - 02-05-standardized-regression.qmd
+    - part: 03-00-regression-inference.qmd
       chapters:
-        - 03-01-intro-to-multiple-regression.qmd
-        - 03-02-understanding-statistical-control.qmd
-        - 03-03-assumptions.qmd
-    - part: 04-00-extending-regression-model.qmd
+        - 03-01-coefficient-level-inference.qmd
+        - 03-02-model-level-inference.qmd
+        - 03-03-model-assumptions.qmd
+    - part: 04-00-multiple-regression.qmd
       chapters:
-        - 04-01-dichotomous-predictors.qmd
-        - 04-02-polychotomous-predictors.qmd
-        - 04-03-interaction-effects.qmd
-        - 04-04-more-interaction-effects.qmd
-    - part: 05-00-data-codebooks.qmd
+        - 04-01-intro-to-multiple-regression.qmd
+        - 04-02-more-multiple-regression.qmd
+        - 04-03-understanding-statistical-control.qmd
+        - 04-04-assumptions.qmd
+    - part: 05-00-categorical-predictors.qmd
       chapters:
-        - 05-01-comic-characters.qmd
-        #- 05-02-evaluations.qmd
-        - 05-03-fertility.qmd
-        - 05-04-gapminder.qmd
-        - 05-05-keith-gpa.qmd
-        - 05-06-mn-schools.qmd
-        - 05-07-riverview.qmd
-        - 05-08-spice-girls.qmd
-        - 05-09-substance-family.qmd
-        - 05-10-work-demands.qmd
+        - 05-01-dichotomous-predictors.qmd
+        - 05-02-polychotomous-predictors.qmd
+        - 05-03-multiple-comparisons.qmd
+    - part: 06-00-interaction-effects.qmd
+      chapters:
+        - 06-01-intro-to-interaction-effects.qmd
+        - 06-02-more-interaction-effects.qmd
+    - part: 07-00-data-codebooks.qmd
+      chapters:
+        - 07-01-comic-characters.qmd
+        - 07-03-fertility.qmd
+        - 07-04-gapminder.qmd
+        - 07-05-keith-gpa.qmd
+        - 07-06-mn-schools.qmd
+        - 07-07-pew.qmd
+        - 07-08-riverview.qmd
+        - 07-09-spice-girls.qmd
+        - 07-10-work-demands.qmd
 
 bibliography: ["assets/modeling.bib", "assets/packages.bib"]
 csl: 'assets/apa-single-spaced.csl'
@@ -71,5 +79,6 @@ format:
     fontsize: '12pt'
     linestretch: '1.5em'
     linkcolor: '#20a2a3' #"#0099d4"
+    toc: false
     toc-title: "On This Page"
 editor: source
