@@ -1957,14 +1957,25 @@
     ]
   },
   {
-    "objectID": "07-10-work-demands.html",
-    "href": "07-10-work-demands.html",
-    "title": "33  work-demands.csv",
+    "objectID": "07-11-state-education.html",
+    "href": "07-11-state-education.html",
+    "title": "33  state-education.csv",
     "section": "",
-    "text": "Research has documented the importance of a healthy work-life balance. The data in work-demands.csv were simulated to mimic the effects of receiving work-related contact outside of normal work hours found in the literature on psychological outcomes. The variables in the data are:\n\nguilt: Measure of guilt (as a transitory affective state) related to home-life balance. This was measured using survey questions such as, “In the past seven days, on how many days have you felt guilty?” Higher values indicate more perceived guilt.\ncontact: Measure of work contact/demands outside of normal working hours. Measured using survey items such as, “how often do coworkers, supervisors, managers, customers, or clients contact you about work-related matters outside normal work hours?”. Higher values indicate higher degrees of boundary-spanning work demands.\nfemale: Dummy-coded indicator of sex (0 = Not female; 1 = Female)\nauthority: Standardized measure of job authority. Measured using survey items such as: “Do you influence or set the rate of pay received by others?” and “Do you have the authority to hire or fire others?”. Higher values indicate more authority.\nmarried: Dummy-coded indicator of marital status (0 = Not married; 1 = Married)\n\n\n\n33.0.1 Preview\n\n\nCode\n# Import Data\nwork = readr::read_csv(file = \"https://raw.githubusercontent.com/zief0002/modeling/main/data/work-demands.csv\")\n\n# View data\nwork\n\n\n\n  \n\n\n\n\n\n\n33.0.2 References\nGlavin, P., Schieman, S., & Reid, S. (2011). Boundary-spanning work demands and their consequences for guilt and psychological distress. Journal of Health and Social Behavior, 52(1) 43–57. doi: 10.1177/0022146510395023",
+    "text": "This data, stored in state-education.csv includes state-level aggregate data on six attributes. The attributes, collected for all 50 states and the District of Columbia, are:\n\nstate: State name\npostal: State postal code\nregion: Region of the country identified by the National Education Association (Far West, Great Lakes, Mid East, New England, Plains, Rocky Mountains, Southeast, Southwest)\nsat_participate: Percentage of students in the state who took the SAT.\nsat_ebrw: Average score on the Evidence-Based Reading and Writing (EBRW) scale in the state.\nsat_math: Average score on the math scale in the state.\nsat_total: Average total SAT score in the state.\nsalary_2020_21: Average 2020–2021 public teacher salary in the state.\n\nNote: All of the SAT data is based on students in the class of 2020 who took the current SAT during high school. The SAT is made up of three sections: (1) Reading, (2) Writing and Language (also just called Writing), and (3) Math. The Math section is scored on a scale of 200–800. The Reading and Writing sections are combined to give an Evidence-Based Reading and Writing (EBRW) score, also ranging from 200–800. By combining the Math and EBRW scores, we get a total SAT score ranging from 400–1600.\n\n\n33.0.1 Preview\n\n\nCode\n# Import Data\nstate_educ = readr::read_csv(file = \"https://raw.githubusercontent.com/zief0002/modeling/main/data/state-education.csv\")\n\n# View Data\nstate_educ\n\n\n\n  \n\n\n\n\n\n\n33.0.2 References\nCollege Board. (2020). SAT suite of assessments annual report. Author.\nNEA Research. (2021). Rankings of the states 2020 and estimates of school statistics 2021. National Education Association.",
     "crumbs": [
       "Data Codebooks",
-      "<span class='chapter-number'>33</span>  <span class='chapter-title'>work-demands.csv</span>"
+      "<span class='chapter-number'>33</span>  <span class='chapter-title'>state-education.csv</span>"
+    ]
+  },
+  {
+    "objectID": "07-10-work-demands.html",
+    "href": "07-10-work-demands.html",
+    "title": "34  work-demands.csv",
+    "section": "",
+    "text": "Research has documented the importance of a healthy work-life balance. The data in work-demands.csv were simulated to mimic the effects of receiving work-related contact outside of normal work hours found in the literature on psychological outcomes. The variables in the data are:\n\nguilt: Measure of guilt (as a transitory affective state) related to home-life balance. This was measured using survey questions such as, “In the past seven days, on how many days have you felt guilty?” Higher values indicate more perceived guilt.\ncontact: Measure of work contact/demands outside of normal working hours. Measured using survey items such as, “how often do coworkers, supervisors, managers, customers, or clients contact you about work-related matters outside normal work hours?”. Higher values indicate higher degrees of boundary-spanning work demands.\nfemale: Dummy-coded indicator of sex (0 = Not female; 1 = Female)\nauthority: Standardized measure of job authority. Measured using survey items such as: “Do you influence or set the rate of pay received by others?” and “Do you have the authority to hire or fire others?”. Higher values indicate more authority.\nmarried: Dummy-coded indicator of marital status (0 = Not married; 1 = Married)\n\n\n\n34.0.1 Preview\n\n\nCode\n# Import Data\nwork = readr::read_csv(file = \"https://raw.githubusercontent.com/zief0002/modeling/main/data/work-demands.csv\")\n\n# View data\nwork\n\n\n\n  \n\n\n\n\n\n\n34.0.2 References\nGlavin, P., Schieman, S., & Reid, S. (2011). Boundary-spanning work demands and their consequences for guilt and psychological distress. Journal of Health and Social Behavior, 52(1) 43–57. doi: 10.1177/0022146510395023",
+    "crumbs": [
+      "Data Codebooks",
+      "<span class='chapter-number'>34</span>  <span class='chapter-title'>work-demands.csv</span>"
     ]
   }
 ]

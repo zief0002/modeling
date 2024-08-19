@@ -63,6 +63,7 @@ book:
         - 07-08-riverview.qmd
         - 07-09-scoobydoo.qmd
         - 07-09-spice-girls.qmd
+        - 07-11-state-education.qmd
         - 07-10-work-demands.qmd
 
 bibliography: ["assets/modeling.bib", "assets/packages.bib"]
