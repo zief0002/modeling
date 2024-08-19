@@ -46,6 +46,14 @@ lm.none.2 = lm(knowledge ~ 1 + age + education + news + engagement + all + con +
 
 Recall that when we evaluated the difference between each pair of news sources, we did so by comparing the *p*-value to our $\alpha$-level of 0.05. Remember also that the alpha-value is determined by the researcher and determines the Type I error rate for the study, where a Type I error is the probability of rejecting the null hypothesis if it is really true. In our study, this would mean we claim there is a difference in news knowledge between two news sources, but there really isn't. 
 
+```{r}
+#| echo: false
+#| out-width: "100%"
+#| fig-cap: "Remembering Type I and II errors...simplified by Flowing Data."
+
+knitr::include_graphics("figs/20-01-errors.png")
+```
+
 One way to think about a Type I error is that it represents a *false discovery*. The data have mislead the researcher into saying there is an effect when in fact there isn't. When we use an $alpha$-level of 0.05, we are saying that we are OK making a false discovery in 5% of the hypothesis tests we will ever evaluate. 
 
 Imagine a researcher who evaluates 1000 hypothesis tests during their career. Let's imagine also that this researcher always does a sample size analysis prior to every research project and always has a large enough sample size to have statistical power of 0.8, a commonly used value in the social and educational sciences. (That is they would be able to detect a true effect 80% of the time that there actually is an effect.) Lastly, let's assume that half of all the hypothesis that this research evaluates are in reality true^[This is probably high in practice.]. If this researcher always used an $alpha$-value of 0.05, then:
@@ -54,6 +62,8 @@ Imagine a researcher who evaluates 1000 hypothesis tests during their career. Le
 - Of the 1000 tests, they would make 50 false discoveries---that is they would publish about a false claim 50 times in their career.
 
 Think of how many hypothesis tests you will carry out in your career, it will likely be more than 1000, and 5% of those will be false discoveries! This is alarming, but is expected when we use an $alpha$-value of 0.05. What is more alarming is that if you only consider the 450 "publishable" hypotheses (i.e., those for which you found an effect, including the false discoveries), the false positive rate is about 11%. This is much higher than the advertised 5% rate.
+
+
 
 <br />
 

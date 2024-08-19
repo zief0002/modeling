@@ -6,13 +6,25 @@ In this chapter, you will be get started writing and working with R syntax. The 
 
 A "session" is the terminology we use to describe the duration from opening RStudio to closing RStudio. You can begin a new R session by either opening the RStudio application on your computer, or, if you are already in an existing R session, by selecting `Session > New Session` from the RStudio menu. 
 
+There are four main windows (called *panes*) that we will use in RStudio. (You might only see three of the four panes when you initially open a session.) Jessica Ward in a [Twitter/X post on the R-Ladies Newcastle account](https://x.com/RLadiesNCL/status/1138812826917724160) explains the functionality of the four panes using a cooking metaphor. This metaphor is displayed in @fig-cooking.
+
+```{r}
+#| label: fig-cooking
+#| fig-cap: "The functions for each of the four RStudio panes is explained via a cooking metaphor." 
+#| echo: false
+knitr::include_graphics("figs/02-01-rstudio-cooking-metaphor.jpg")
+```
+
+There are a couple ways to interact with R within RStudio: (1) via the console pane, and (2) via a script file.    
 
 <br />
 
 
 ## Computing in the Console
 
-There are a several ways to interact with R within RStudio. One of those methods is to issue commands in the RStudio console pane. Computing in the console is similar to working with a calculator: you enter syntax and R runs the syntax. The `>` symbol in the console pane is called the "R prompt" and is prompting you to enter syntax. After you enter any syntax, you hit the <return> or <enter> key to execute the syntax.
+One method of computing in RStudio is to run syntax directly in the RStudio console pane. Computing in the console is similar to working with a calculator: you enter syntax and R runs the syntax. Then it forgets what you entered and is ready for the next bit of syntax. 
+
+The `>` symbol in the console pane is called the "R prompt" and is prompting you to enter syntax. After you enter any syntax, you hit the <return> or <enter> key to execute the syntax.
 
 ```{r}
 #| echo: false
@@ -65,6 +77,56 @@ The continuation prompt tells you that the syntax you started to enter is still 
 ```
 
 That being said, well-written code includes space! Space in code makes it easier to read and debug, in the same way that including space in written prose helps us read and parse words, sentences, and paragraphs. 
+
+<br />
+
+
+## Script Files: Recording Your Syntax
+
+A second method of computing in RStudio is to use a script file. Using a script file allows a recording of the syntax you use. This acts as a way of "saving" your work, and it also acts as a record of the analysis for your collaborators in the spirit of reproducible work. You can create a new script file by selecting `File > New File > R Script` from the RStudio menu bar. You can also obtain a new R script by clicking the `New File` icon (document with the plus-sign) on the tool bar and selecting `R Script`. (This should open the script file in a new RStudio pane!)
+
+
+```{r}
+#| echo: false
+#| out-width: "90%"
+#| fig-cap: "LEFT: Create a new script file using RStudio's `File` menu. RIGHT: Create a new script file by clicking on the `New File` icon in the toolbar."
+
+knitr::include_graphics("figs/01-02-new-script-file.png")
+```
+
+Script files should only include your R syntax and comments. Script files should NOT include:
+
+- prompts (>)
+- output
+
+Comments, which are human-readable annotations or explanations of the syntax, are written using the hashtag (`#`). These can be placed on their own line in the script file, or can be placed at the end of a line with syntax. The comment continues until you hit the <enter> key. Comments help other people understand your syntax and also act as a reminder for the future you of what your code actually does. Get is the habit of including comments in your syntax. Not only is it good coding practice, but it also will help you become familiar with and learn the R syntax as you describe the purpose of the syntax you are writing.
+
+```{r}
+#| echo: false
+#| out-width: "60%"
+#| fig-cap: "Example script file with comments."
+
+knitr::include_graphics("figs/01-02-script-file.png")
+```
+
+Script files can be saved and opened the same as any other document. So, no more worrying about losing your work or objects that you created when you close your R session. Enter the computations you previously ran in the console into your script file. (Note: When you hit `<enter>` in the script file, the cursor moves to a new line, but doesn't execute the computation like it did in the console.) Save the script file to your computer (it should have a `.R` file suffix).
+
+<br />
+
+
+### Executing Syntax from a Script File
+
+Not only does the script file record your syntax, but it can also act as the vehicle from which you run your R syntax. Syntax in the script file can be executed by highlighting it and pressing the `Run` button in the toolbar. You can run one line at a time, or highlight multiple lines and execute all of them sequentially. 
+
+```{r}
+#| echo: false
+#| out-width: "80%"
+#| fig-cap: "To execute syntax from the script file, highlight the syntax you want to run and then click the `Run` button in the toolbar."
+
+knitr::include_graphics("figs/01-02-run-script.png")
+```
+
+Writing syntax directly in the script file and running it is a groovy workflow for using R. Writing syntax directly in the script file also saves you from having to copy-and-paste syntax you want to save from the console. In my own work, I use this workflow almost daily. 
 
 <br />
 
@@ -278,53 +340,6 @@ If you want the previous version of `chili` you need to re-create the object. If
 <br />
 
 
-## Script Files: Recording Your Syntax
-
-It is important to be able to record the syntax you use. This acts as a way of "saving" your work, and it also acts as a record of the analysis for your collaborators in the spirit of reproducible work. One way to record the R syntax you use is to employ a *script file*. You can create a new script file by selecting `File > New File > R Script` from the RStudio menu bar. You can also obtain a new R script by clicking the `New File` icon (document with the plus-sign) on the tool bar and selecting `R Script`.
-
-```{r}
-#| echo: false
-#| out-width: "60%"
-#| fig-cap: "LEFT: Create a new script file using RStudio's `File` menu. RIGHT: Create a new script file by clicking on the `New File` icon in the toolbar."
-
-knitr::include_graphics("figs/01-02-new-script-file.png")
-```
-
-Script files should only include your R syntax and comments. Script files should NOT include:
-
-- prompts (>)
-- output
-
-Comments, which are human-readable annotations or explanations of the syntax, are written using the hashtag (`#`). These can be placed on their own line in the script file, or can be placed at the end of a line with syntax. The comment continues until you hit the <enter> key. Comments help other people understand your syntax and also act as a reminder for the future you of what your code actually does. Get is the habit of including comments in your syntax. Not only is it good coding practice, but it also will help you become familiar with and learn the R syntax as you describe the purpose of the syntax you are writing.
-
-```{r}
-#| echo: false
-#| out-width: "60%"
-#| fig-cap: "Example script file with comments."
-
-knitr::include_graphics("figs/01-02-script-file.png")
-```
-
-Script files can be saved and opened the same as any other document. So, no more worrying about losing your work or objects that you created when you close your R sesssion. Just open your saved script file, highlight the parts you want to re-run, and click the `Run` button! 
-
-<br />
-
-
-### Executing Syntax from a Script File
-
-Not only does the script file record your syntax, but it can also act as the vehicle from which you run your R syntax. Syntax in the script file can be executed by highlighting it and pressing the `Run` button in the toolbar. You can run one line at a time, or highlight multiple lines and execute all of them sequentially. 
-
-```{r}
-#| echo: false
-#| out-width: "80%"
-#| fig-cap: "To execute syntax from the script file, highlight the syntax you want to run and then click the `Run` button in the toolbar."
-
-knitr::include_graphics("figs/01-02-run-script.png")
-```
-
-Writing syntax directly in the script file and running it is a groovy workflow for using R. Writing syntax directly in the script file also saves you from having to copy-and-paste syntax you want to save from the console. In my own work, I use this workflow almost daily.
-
-<br />
 
 
 ## Installing and Loading R Packages
@@ -530,5 +545,17 @@ The "DONE" message typically signified successful installation. Note that you ma
 
 You may need to install some additional functionality to your system in order to get certain packages to install or load properly. On a Windows machine, you might need to install *Rtools*. Mac users might need to add the *Command Line Tools*. These tools also allow you to write and compile your own R packages. RStudio has well written instructions for adding these tools at: <https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites>.
 
+
+<br />
+
+
+## Additional Resources
+
+Here are some additional resources for getting started with R and RStudio.
+
+- [RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/): A set of printable cheatsheets for using some popular R packages.
+- [RStudio Keyboard Shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts): A set of keyboard shortcuts for working with RStudio. The information here is also available in the RStudio IDE under the Tools menu: `Tools → Keyboard Shortcuts Help`.
+- [R Cookbook](https://rc2e.com/): This book is full of how-to recipes, each of which solves a specific problem. The recipe includes a quick introduction to the solution followed by a discussion that aims to unpack the solution and give you some insight into how it works.
+- [Teacups, Giraffes, and Statistics](https://tinystats.github.io/teacups-giraffes-and-statistics/): Learn statistics & R coding through a series of modules that teach in an intuitive, playful, and approachable way
 
 <br />

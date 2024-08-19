@@ -53,6 +53,7 @@ book:
         - 06-02-more-interaction-effects.qmd
     - part: 07-00-data-codebooks.qmd
       chapters:
+        - 07-01-broadband.qmd
         - 07-01-comic-characters.qmd
         - 07-03-fertility.qmd
         - 07-04-gapminder.qmd
@@ -60,6 +61,7 @@ book:
         - 07-06-mn-schools.qmd
         - 07-07-pew.qmd
         - 07-08-riverview.qmd
+        - 07-09-scoobydoo.qmd
         - 07-09-spice-girls.qmd
         - 07-10-work-demands.qmd
 

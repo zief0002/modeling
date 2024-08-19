@@ -805,4 +805,16 @@ Happy Plotting!!! 📈 🎉
 
 <br />
 
+
+## Additional Resources
+
+Here are some additional resources for learning `{ggplot2}`.
+
+- [Data Visualization with ggplot2 Cheatsheet](https://www.rstudio.com/resources/cheatsheets/): A printable cheatsheet for using `{ggplot2}`.
+- [Cookbook for R: Graphs](http://www.cookbook-r.com/Graphs/): This book is full of how-to recipes, each of which solves a specific problem using `{ggplot2}`. The recipe includes a quick introduction to the solution followed by a discussion that aims to unpack the solution and give you some insight into how it works.
+- [Plotting with ggplot: Part 1](https://www.youtube.com/watch?v=HeqHMM4ziXA) [video]
+- [Plotting with ggplot: Part 2](https://www.youtube.com/watch?v=n8kYa9vu1l8) [video]
+
+<br />
+
 ## References {.unnumbered}

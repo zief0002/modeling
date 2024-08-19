@@ -388,56 +388,68 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./07-01-broadband.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">broadband.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./07-01-comic-characters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-03-fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-04-gapminder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-05-keith-gpa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-06-mn-schools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-07-pew.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">pew.csv</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">pew.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-08-riverview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-09-scoobydoo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">scoobydoo.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-09-spice-girls.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-10-work-demands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
   </div>
 </li>
       </ul>
@@ -475,10 +487,27 @@ window.Quarto = {
 <li>Open a new session in RStudio.</li>
 </ul>
 <p>A “session” is the terminology we use to describe the duration from opening RStudio to closing RStudio. You can begin a new R session by either opening the RStudio application on your computer, or, if you are already in an existing R session, by selecting <code>Session &gt; New Session</code> from the RStudio menu.</p>
+<p>There are four main windows (called <em>panes</em>) that we will use in RStudio. (You might only see three of the four panes when you initially open a session.) Jessica Ward in a <a href="https://x.com/RLadiesNCL/status/1138812826917724160">Twitter/X post on the R-Ladies Newcastle account</a> explains the functionality of the four panes using a cooking metaphor. This metaphor is displayed in <a href="#fig-cooking" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cooking" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cooking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/02-01-rstudio-cooking-metaphor.jpg" class="img-fluid figure-img" width="484">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cooking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: The functions for each of the four RStudio panes is explained via a cooking metaphor.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>There are a couple ways to interact with R within RStudio: (1) via the console pane, and (2) via a script file.</p>
 <p><br></p>
 <section id="computing-in-the-console" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="computing-in-the-console"><span class="header-section-number">2.1</span> Computing in the Console</h2>
-<p>There are a several ways to interact with R within RStudio. One of those methods is to issue commands in the RStudio console pane. Computing in the console is similar to working with a calculator: you enter syntax and R runs the syntax. The <code>&gt;</code> symbol in the console pane is called the “R prompt” and is prompting you to enter syntax. After you enter any syntax, you hit the <return> or <enter> key to execute the syntax.</enter></return></p>
+<p>One method of computing in RStudio is to run syntax directly in the RStudio console pane. Computing in the console is similar to working with a calculator: you enter syntax and R runs the syntax. Then it forgets what you entered and is ready for the next bit of syntax.</p>
+<p>The <code>&gt;</code> symbol in the console pane is called the “R prompt” and is prompting you to enter syntax. After you enter any syntax, you hit the <return> or <enter> key to execute the syntax.</enter></return></p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -520,8 +549,56 @@ window.Quarto = {
 <p>That being said, well-written code includes space! Space in code makes it easier to read and debug, in the same way that including space in written prose helps us read and parse words, sentences, and paragraphs.</p>
 <p><br></p>
 </section>
-<section id="functions-the-workhorse-of-r" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="functions-the-workhorse-of-r"><span class="header-section-number">2.2</span> Functions: The Workhorse of R</h2>
+<section id="script-files-recording-your-syntax" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="script-files-recording-your-syntax"><span class="header-section-number">2.2</span> Script Files: Recording Your Syntax</h2>
+<p>A second method of computing in RStudio is to use a script file. Using a script file allows a recording of the syntax you use. This acts as a way of “saving” your work, and it also acts as a record of the analysis for your collaborators in the spirit of reproducible work. You can create a new script file by selecting <code>File &gt; New File &gt; R Script</code> from the RStudio menu bar. You can also obtain a new R script by clicking the <code>New File</code> icon (document with the plus-sign) on the tool bar and selecting <code>R Script</code>. (This should open the script file in a new RStudio pane!)</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/01-02-new-script-file.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>LEFT: Create a new script file using RStudio’s <code>File</code> menu. RIGHT: Create a new script file by clicking on the <code>New File</code> icon in the toolbar.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Script files should only include your R syntax and comments. Script files should NOT include:</p>
+<ul>
+<li>prompts (&gt;)</li>
+<li>output</li>
+</ul>
+<p>Comments, which are human-readable annotations or explanations of the syntax, are written using the hashtag (<code>#</code>). These can be placed on their own line in the script file, or can be placed at the end of a line with syntax. The comment continues until you hit the <enter> key. Comments help other people understand your syntax and also act as a reminder for the future you of what your code actually does. Get is the habit of including comments in your syntax. Not only is it good coding practice, but it also will help you become familiar with and learn the R syntax as you describe the purpose of the syntax you are writing.</enter></p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/01-02-script-file.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Example script file with comments.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Script files can be saved and opened the same as any other document. So, no more worrying about losing your work or objects that you created when you close your R session. Enter the computations you previously ran in the console into your script file. (Note: When you hit <code>&lt;enter&gt;</code> in the script file, the cursor moves to a new line, but doesn’t execute the computation like it did in the console.) Save the script file to your computer (it should have a <code>.R</code> file suffix).</p>
+<p><br></p>
+<section id="executing-syntax-from-a-script-file" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="executing-syntax-from-a-script-file"><span class="header-section-number">2.2.1</span> Executing Syntax from a Script File</h3>
+<p>Not only does the script file record your syntax, but it can also act as the vehicle from which you run your R syntax. Syntax in the script file can be executed by highlighting it and pressing the <code>Run</code> button in the toolbar. You can run one line at a time, or highlight multiple lines and execute all of them sequentially.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/01-02-run-script.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>To execute syntax from the script file, highlight the syntax you want to run and then click the <code>Run</code> button in the toolbar.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Writing syntax directly in the script file and running it is a groovy workflow for using R. Writing syntax directly in the script file also saves you from having to copy-and-paste syntax you want to save from the console. In my own work, I use this workflow almost daily.</p>
+<p><br></p>
+</section>
+</section>
+<section id="functions-the-workhorse-of-r" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="functions-the-workhorse-of-r"><span class="header-section-number">2.3</span> Functions: The Workhorse of R</h2>
 <p>Almost all commands in R are built around the use of a function. Functions carry out operations on their inputs (called <em>arguments</em>) and produce an output (called a <em>returned value</em>).</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -589,8 +666,8 @@ window.Quarto = {
 <p>It is a good habit to use named arguments when you are writing your syntax. It makes the code more readable and easier to adapt if you come back to it later. Sometimes when the initial argument of a function is well-established, that first argument is left unnamed, but all other arguments used are named. A good example of this is the use of the <code>lm()</code> function in which the initial <code>formula=</code> argument is typically unnamed, but other arguments (e.g., <code>data=</code>) are named.</p>
 <p><br></p>
 </section>
-<section id="connecting-computations" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="connecting-computations"><span class="header-section-number">2.3</span> Connecting Computations</h2>
+<section id="connecting-computations" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="connecting-computations"><span class="header-section-number">2.4</span> Connecting Computations</h2>
 <p>One powerful aspect of computing is that the output from a function can be used as input into another function. This is akin to calculations you may have encountered in mathematics course like algebra. For example,</p>
 <p><span class="math display">\[
 \sqrt{\log(100)}
@@ -601,8 +678,8 @@ g(~f(x)~)
 \]</span></p>
 <p>where <span class="math inline">\(f(x)\)</span> is the logarithm function and <span class="math inline">\(g(x)\)</span> is the square root function. Regardless of how we express this,the idea is that the output of the logarithm function is used as input to the square root function. Using R, there are two primary ways to connect computations in this manner: chaining and assignment.</p>
 <p><br></p>
-<section id="chaining" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="chaining"><span class="header-section-number">2.3.1</span> Chaining</h3>
+<section id="chaining" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="chaining"><span class="header-section-number">2.4.1</span> Chaining</h3>
 <p>Chaining is a direct reflection of the functional notation <span class="math inline">\(g(~f(x)~)\)</span> in that you embed one computation directly in another. For example, to find the absolute value of all the integers between <span class="math inline">\(-5\)</span> and <span class="math inline">\(-1\)</span>, we can chain the <code>abs()</code> function and the <code>seq()</code> functions:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>( <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -627,8 +704,8 @@ g(~f(x)~)
 </div>
 <p><br></p>
 </section>
-<section id="assignment" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="assignment"><span class="header-section-number">2.3.2</span> Assignment</h3>
+<section id="assignment" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="assignment"><span class="header-section-number">2.4.2</span> Assignment</h3>
 <p>We can also connect computations through <em>assignment</em>. With assignment, we store the output of a computation by assigning it to a named object. We can then use that named object in another computation. For example, here we first store the integers between <span class="math inline">\(-5\)</span> and <span class="math inline">\(-1\)</span> in an object called <code>chili</code>. Then we find the absolute value of each value by using <code>chili</code> as the argument in the <code>abs()</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the sequence to the object chili</span></span>
@@ -659,8 +736,8 @@ g(~f(x)~)
 </ul>
 <p><br></p>
 </section>
-<section id="objects-in-the-r-working-environment" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="objects-in-the-r-working-environment"><span class="header-section-number">2.3.3</span> Objects in the R Working Environment</h3>
+<section id="objects-in-the-r-working-environment" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="objects-in-the-r-working-environment"><span class="header-section-number">2.4.3</span> Objects in the R Working Environment</h3>
 <p>We can continue to use the objects you created (e.g., <code>chili</code> and <code>sadie</code>) in our computations, so long as the objects remain in our R working environment.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum the pairwise elements of the two objects</span></span>
@@ -724,54 +801,6 @@ g(~f(x)~)
 </div>
 </div>
 <p>If you want the previous version of <code>chili</code> you need to re-create the object. If you close your R session all of the objects you created will be lost.</p>
-<p><br></p>
-</section>
-</section>
-<section id="script-files-recording-your-syntax" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="script-files-recording-your-syntax"><span class="header-section-number">2.4</span> Script Files: Recording Your Syntax</h2>
-<p>It is important to be able to record the syntax you use. This acts as a way of “saving” your work, and it also acts as a record of the analysis for your collaborators in the spirit of reproducible work. One way to record the R syntax you use is to employ a <em>script file</em>. You can create a new script file by selecting <code>File &gt; New File &gt; R Script</code> from the RStudio menu bar. You can also obtain a new R script by clicking the <code>New File</code> icon (document with the plus-sign) on the tool bar and selecting <code>R Script</code>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/01-02-new-script-file.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>LEFT: Create a new script file using RStudio’s <code>File</code> menu. RIGHT: Create a new script file by clicking on the <code>New File</code> icon in the toolbar.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Script files should only include your R syntax and comments. Script files should NOT include:</p>
-<ul>
-<li>prompts (&gt;)</li>
-<li>output</li>
-</ul>
-<p>Comments, which are human-readable annotations or explanations of the syntax, are written using the hashtag (<code>#</code>). These can be placed on their own line in the script file, or can be placed at the end of a line with syntax. The comment continues until you hit the <enter> key. Comments help other people understand your syntax and also act as a reminder for the future you of what your code actually does. Get is the habit of including comments in your syntax. Not only is it good coding practice, but it also will help you become familiar with and learn the R syntax as you describe the purpose of the syntax you are writing.</enter></p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/01-02-script-file.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Example script file with comments.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Script files can be saved and opened the same as any other document. So, no more worrying about losing your work or objects that you created when you close your R sesssion. Just open your saved script file, highlight the parts you want to re-run, and click the <code>Run</code> button!</p>
-<p><br></p>
-<section id="executing-syntax-from-a-script-file" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="executing-syntax-from-a-script-file"><span class="header-section-number">2.4.1</span> Executing Syntax from a Script File</h3>
-<p>Not only does the script file record your syntax, but it can also act as the vehicle from which you run your R syntax. Syntax in the script file can be executed by highlighting it and pressing the <code>Run</code> button in the toolbar. You can run one line at a time, or highlight multiple lines and execute all of them sequentially.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/01-02-run-script.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>To execute syntax from the script file, highlight the syntax you want to run and then click the <code>Run</code> button in the toolbar.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Writing syntax directly in the script file and running it is a groovy workflow for using R. Writing syntax directly in the script file also saves you from having to copy-and-paste syntax you want to save from the console. In my own work, I use this workflow almost daily.</p>
 <p><br></p>
 </section>
 </section>
@@ -930,9 +959,20 @@ The downloaded binary packages are in
 <h3 data-number="2.5.3" class="anchored" data-anchor-id="install-rtoolscommand-line-tools"><span class="header-section-number">2.5.3</span> Install Rtools/Command Line Tools</h3>
 <p>You may need to install some additional functionality to your system in order to get certain packages to install or load properly. On a Windows machine, you might need to install <em>Rtools</em>. Mac users might need to add the <em>Command Line Tools</em>. These tools also allow you to write and compile your own R packages. RStudio has well written instructions for adding these tools at: <a href="https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites" class="uri">https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites</a>.</p>
 <p><br></p>
-
-
 </section>
+</section>
+<section id="additional-resources" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="additional-resources"><span class="header-section-number">2.6</span> Additional Resources</h2>
+<p>Here are some additional resources for getting started with R and RStudio.</p>
+<ul>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/">RStudio Cheatsheets</a>: A set of printable cheatsheets for using some popular R packages.</li>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">RStudio Keyboard Shortcuts</a>: A set of keyboard shortcuts for working with RStudio. The information here is also available in the RStudio IDE under the Tools menu: <code>Tools → Keyboard Shortcuts Help</code>.</li>
+<li><a href="https://rc2e.com/">R Cookbook</a>: This book is full of how-to recipes, each of which solves a specific problem. The recipe includes a quick introduction to the solution followed by a discussion that aims to unpack the solution and give you some insight into how it works.</li>
+<li><a href="https://tinystats.github.io/teacups-giraffes-and-statistics/">Teacups, Giraffes, and Statistics</a>: Learn statistics &amp; R coding through a series of modules that teach in an intuitive, playful, and approachable way</li>
+</ul>
+<p><br></p>
+
+
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>

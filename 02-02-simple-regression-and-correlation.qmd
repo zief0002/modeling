@@ -574,3 +574,16 @@ In a linear function, the rate-of-change is the slope of the line.
 :::
 
 <br />
+
+
+<!-- ## Additional Resources -->
+
+<!-- Here are a couple other resources for understanding correlations and using the `{corrr}` package. -->
+
+<!-- - [corrr Package Vignette](https://github.com/tidymodels/corrr) -->
+<!-- - [Exploring correlations in R with corrr](https://drsimonj.svbtle.com/exploring-correlations-in-r-with-corrr) -->
+<!-- - [Guess the Correlation Game](http://guessthecorrelation.com/) [fun game] -->
+
+
+<!-- <br /> -->
+
