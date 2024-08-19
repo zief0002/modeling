@@ -552,7 +552,7 @@ Table&nbsp;18.1: Mean (M), standard deviation (SD), and sample size (N) of the s
 </figcaption>
 <div aria-describedby="tbl-mn-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<div id="snodgwbezu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="hodaeixhkf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="40%" data-bgcolor="#FFFFFF">
@@ -1108,7 +1108,7 @@ Table&nbsp;18.2: Unadjusted and adjusted mean six-year graduation rates for priv
 </figcaption>
 <div aria-describedby="tbl-means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<div id="mgewuipntl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="nnewekixdu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
@@ -1207,8 +1207,9 @@ Table&nbsp;18.2: Unadjusted and adjusted mean six-year graduation rates for priv
 </div>
 </div>
 <p>The fitted equation is:</p>
-<p>$$ = -68.9 + 0.10(_i) + 0.47(_i) + 0.65(_i)</p>
-<p>$$</p>
+<p><span class="math display">\[
+\hat{\mathrm{Graduation~Rate}_i} = -68.9 + 0.10(\mathrm{Median~SAT}_i) + 0.47(\mathrm{Tuition~Rate}_i) + 0.65(\mathrm{Private}_i)
+\]</span></p>
 <p>Here we will not interpret all of the coefficients, but instead focus on only the <code>private</code> coefficient, as that is germain to our research question.</p>
 <ul>
 <li>Private schools, on average, have a graduation rate that is 0.64 percentage points higher than public schools, controlling for differences in median SAT scores and tuition.</li>
@@ -1225,16 +1226,16 @@ Table&nbsp;18.2: Unadjusted and adjusted mean six-year graduation rates for priv
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View augmented data frame</span></span>
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aug_f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="fig-assumptions-3" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-assumptions-3-1" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-assumptions-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-assumptions-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div data-pagedtable="false">
 <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["grad"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sat"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["tuition"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["private"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".fitted"],"name":[5],"type":["dbl"],"align":["right"]},{"label":[".resid"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".hat"],"name":[7],"type":["dbl"],"align":["right"]},{"label":[".sigma"],"name":[8],"type":["dbl"],"align":["right"]},{"label":[".cooksd"],"name":[9],"type":["dbl"],"align":["right"]},{"label":[".std.resid"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"65.2","2":"1030","3":"39.294","4":"1","5":"57.06260","6":"8.137400","7":"0.10389064","8":"6.477448","9":"0.049739998","10":"1.3100117"},{"1":"52.6","2":"1065","3":"30.480","4":"1","5":"56.55627","6":"-3.956266","7":"0.08387593","8":"6.632212","9":"0.009081962","10":"-0.6299097"},{"1":"73.3","2":"1145","3":"39.400","4":"1","5":"69.04858","6":"4.251419","7":"0.04579828","8":"6.627210","9":"0.005278573","10":"0.6632600"},{"1":"92.6","2":"1400","3":"54.265","4":"1","5":"102.49648","6":"-9.896481","7":"0.26358723","8":"6.312411","9":"0.276390691","10":"-1.7574791"},{"1":"81.1","2":"1185","3":"43.198","4":"1","5":"74.98386","6":"6.116139","7":"0.06092474","8":"6.570675","9":"0.015004712","10":"0.9618275"},{"1":"69.4","2":"1145","3":"36.590","4":"1","5":"67.72899","6":"1.671007","7":"0.05634885","8":"6.670138","9":"0.001025885","10":"0.2621456"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assumptions-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assumptions-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.5: LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed.
 </figcaption>
 </figure>
@@ -1254,7 +1255,22 @@ Figure&nbsp;18.5: LEFT: Density plot of the marginal distribution of standardize
 <span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted value"</span>) <span class="sc">+</span></span>
-<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residual"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residual"</span>)</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-assumptions-3-2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-assumptions-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-01-dichotomous-predictors_files/figure-html/fig-assumptions-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assumptions-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.6: LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed.
+</figcaption>
+</figure>
+</div>
+</div>
 </div>
 <p>The marginal distribution of the residuals shows minor evidence of misfit with the normality assumption. The equal variances assumption looks tenable from this set of plots. However, the scatterplot of the standardized residuals versus the fitted values suggests problems with the tenability of the linearity assumption—at low fitted values more of the residuals are negative than we would expect (over-estimation); at moderate fitted values the residuals tend to be positive (under-estimation); and at high fitted values the residuals tend to the negative again (over-estimation). For now we will ignore this (although in practice this is a BIG problem).</p>
 <p><br></p>
@@ -1419,7 +1435,7 @@ Table&nbsp;18.3: Unadjusted and adjusted mean six-year graduation rates for priv
 </figcaption>
 <div aria-describedby="tbl-means-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<div id="djuuyuymwt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="cftrrcmfvk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="80%" data-bgcolor="#FFFFFF">
@@ -1497,7 +1513,7 @@ Table&nbsp;18.3: Unadjusted and adjusted mean six-year graduation rates for priv
 <img src="05-01-dichotomous-predictors_files/figure-html/fig-final-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-final-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.6: Predicted mean graduation rate for public (orange) and private (blue) institutions in Minnesota. In Models B and C, the means are adjusted for median SAT score (Model B) and median SAT score and tuition rate (Model C), respectively.
+Figure&nbsp;18.7: Predicted mean graduation rate for public (orange) and private (blue) institutions in Minnesota. In Models B and C, the means are adjusted for median SAT score (Model B) and median SAT score and tuition rate (Model C), respectively.
 </figcaption>
 </figure>
 </div>
@@ -1539,7 +1555,7 @@ Figure&nbsp;18.6: Predicted mean graduation rate for public (orange) and private
 <img src="05-01-dichotomous-predictors_files/figure-html/fig-final-plot-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-final-plot-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.7: Predicted difference in mean graduation rate between private and public institutions in Minnesota. Model A is the uncontrolled model while Model B controlls for median SAT score and Model C controld for both median SAT score and tuition rate. The line <span class="math inline">\(Y=0\)</span> indicates no difference. Differences that are statistically discernible from 0 are colored pink.
+Figure&nbsp;18.8: Predicted difference in mean graduation rate between private and public institutions in Minnesota. Model A is the uncontrolled model while Model B controlls for median SAT score and Model C controld for both median SAT score and tuition rate. The line <span class="math inline">\(Y=0\)</span> indicates no difference. Differences that are statistically discernible from 0 are colored pink.
 </figcaption>
 </figure>
 </div>

@@ -121,7 +121,6 @@ Before beginning to evaluate the distributional assumptions using our empirical 
 
 The linearity assumption is critical in specifying the structural part of the model. Fitting a linear model when the TRUE relationship between *X* and *Y* is non-linear may be quite problematic. Coefficients may be wrong. Predictions may also be wrong, especially at the extreme values for *X*. More importantly, mis-specified models lead to misinformed understandings of the world.
 
-::: {layout-ncol=2}
 
 ```{r}
 #| label: fig-nonlinear
@@ -160,7 +159,6 @@ p2 = ggplot(data = d, aes(x = x, y = y)) +
 p1 | p2
 ```
 
-:::
 
 In the left-hand plot of @fig-nonlinear, when the correct nonlinear model is fitted to the data, the conditional *Y*-values are scattered above and below the line at each *X*-value. In the right-hand plot of @fig-nonlinear, when a linear model was fitted to data generated from a non-linear function, the data tend to either be consistently above, or below the line, depending on the *X*-value. This type of systematic deviation would be evidence that the linearity assumption is not tenable. When evaluating this assumption, we want to see data in the scatterplot that is "equally" above and below the fitted regression line at each value of *X*. 
 

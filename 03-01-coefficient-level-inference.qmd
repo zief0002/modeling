@@ -30,6 +30,9 @@ keith
 
 We begin by looking at the marginal distributions of both time spent on homework and GPA. We will also examine summary statistics of these variables. Finally, we also examine a scatterplot of GPA versus time spent on homework.
 
+
+
+
 ::: {layout-nrow=2}
 ::: {layout-ncol=2}
 
@@ -49,7 +52,7 @@ ggplot(data = keith, aes(x = gpa)) +
 
 ```{r}
 #| label: fig-02-03-hw
-#| echo: false
+#| code-fold: true
 #| out-width: "100%"
 #| fig-cap: "Density plots of the marginal distribution of time spent on homework."
 # Marginal distribution of homework
@@ -64,7 +67,7 @@ ggplot(data = keith, aes(x = homework)) +
 
 ```{r}
 #| label: fig-02-03-gpa-hw
-#| echo: false
+#| code-fold: true
 #| fig-cap: "Scatterplot showing the relationship between GPA and time spent on homework."
 # Scatterplot of GPA versus homework
 ggplot( data = keith, aes(x = homework, y = gpa) ) +

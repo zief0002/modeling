@@ -615,7 +615,6 @@ The fitted equation is:
 
 $$
 \hat{\mathrm{Graduation~Rate}_i} = -68.9 + 0.10(\mathrm{Median~SAT}_i) + 0.47(\mathrm{Tuition~Rate}_i) + 0.65(\mathrm{Private}_i)
-
 $$
 
 
@@ -663,6 +662,9 @@ p2 = ggplot(data = aug_f, aes(x = .fitted, y = .std.resid)) +
   theme_bw() +
   xlab("Fitted value") +
   ylab("Standardized residual")
+
+# Layout plots
+p1 | p2
 ```
 
 The marginal distribution of the residuals shows minor evidence of misfit with the normality assumption. The equal variances assumption looks tenable from this set of plots. However, the scatterplot of the standardized residuals versus the fitted values suggests problems with the tenability of the linearity assumption---at low fitted values more of the residuals are negative than we would expect (over-estimation); at moderate fitted values the residuals tend to be positive (under-estimation); and at high fitted values the residuals tend to the negative again (over-estimation). For now we will ignore this (although in practice this is a BIG problem).

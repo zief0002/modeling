@@ -25,10 +25,10 @@ This data, stored in [pew.csv](https://raw.githubusercontent.com/zief0002/modeli
 ```{r}
 #| code-fold: true
 # Import Data
-family = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/substance-family.csv")
+pew = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/pew.csv")
 
 # View data
-family
+pew
 ```
 
 <br />

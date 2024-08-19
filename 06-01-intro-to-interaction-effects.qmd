@@ -16,6 +16,7 @@ To begin, we will load several libraries and import the data into an object call
 library(broom)
 library(corrr)
 library(educate)
+library(patchwork)
 library(tidyverse)
 
 # Read in data
