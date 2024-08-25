@@ -360,7 +360,28 @@ Here, the alphabetic order of the values in the `region` variable correspond to 
 -   Asia --\> "orange"
 -   Europe --\> "chartreuse"
 
-The color names used are built-in color names that R knows. There are 657 different named colors that you can use. To see them all, use the `colors()` function (with no arguments).
+Instead of relying on alphabetical order, we can also assign a specific color to a specific region by using named arguments in the `scale_fill_manual()` layer. Here the names need to correspond to the different regions in the `region` variable.
+
+```{r}
+#| fig-width: 8
+#| fig-height: 6
+#| out-width: '60%'
+#| fig-cap: Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the `scale_fill_manula()` layer.
+# Specify fill colors using color names and assign them to regions
+ggplot(data = gapminder, aes(x = income, y = co2)) +  
+  geom_smooth() +
+  geom_point(shape = 21, aes(fill = region)) +
+  scale_fill_manual(
+    values = c(
+      "Africa" = "chartreuse", 
+      "Americas" = "orange", 
+      "Asia" = "plum", 
+      "Europe" = "skyblue"
+      )
+    )
+```
+
+The color names used are built-in color names that R knows. There are 657 different named colors that you can use. To see them all, use the `colors()` function (with no arguments). 
 
 <br />
 
@@ -387,10 +408,10 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
   geom_point(shape = 21, size = 4, aes(fill = region)) +
   scale_fill_manual(
     values = c(
-      rgb(red = 135, green = 206, blue = 235, maxColorValue = 255), #skyblue
-      rgb(red = 221, green = 160, blue = 221, maxColorValue = 255), #plum
-      rgb(red = 255, green = 165, blue = 0,   maxColorValue = 255), #orange
-      rgb(red = 127, green = 255, blue = 0,   maxColorValue = 255) #chartreuse
+      "Africa" = rgb(red = 135, green = 206, blue = 235, maxColorValue = 255), #skyblue
+      "Americas" = rgb(red = 221, green = 160, blue = 221, maxColorValue = 255), #plum
+      "Asia" = rgb(red = 255, green = 165, blue = 0,   maxColorValue = 255), #orange
+      "Europe" = rgb(red = 127, green = 255, blue = 0,   maxColorValue = 255) #chartreuse
     )
   )
 ```
@@ -420,7 +441,14 @@ When we specify hex notation as a color in R, the six-digit color value is alway
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
   geom_point(shape = 21, size = 4, aes(fill = region)) +
-  scale_fill_manual(values = c("#87CEEB", "#DDA0DD", "#FFA500", "#7FFF00"))
+  scale_fill_manual(
+    values = c(
+      "Africa" = "#87CEEB", 
+      "Americas" = "#DDA0DD", 
+      "Asia" = "#FFA500", 
+      "Europe" = "#7FFF00"
+      )
+    )
 ```
 
 ::: fyi
@@ -437,7 +465,7 @@ Selecting a color palette can be challenging. It should be aesthetically pleasin
 -   [Color Universal Design (CUD): How to Make Figures and Presentations that are Friendly to Colorblind People](http://jfly.iam.u-tokyo.ac.jp/color/)
 -   [Color Palettes in R](https://github.com/EmilHvitfeldt/r-color-palettes)
 
-If you are creating visualizzations for a particular organization, there may be a palette of official colors associated with their brand. For example, the University of Minnesota's two official primary colors in hex notation (for electronic display) are:
+If you are creating visualizations for a particular organization, there may be a palette of official colors associated with their brand. For example, the University of Minnesota's two official primary colors in hex notation (for electronic display) are:
 
 -   `#ffcc33` (gold)
 -   `#7a0019` (maroon)
@@ -577,7 +605,7 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
   geom_point(shape = 21, size = 4, aes(fill = region)) +
   scale_fill_manual(
     name = "World Region",
-    values = c("#87CEEB", "#DDA0DD", "#FFA500", "#7FFF00"),
+    values = c("Africa" = "#87CEEB", "Americas" = "#DDA0DD", "Asia" = "#FFA500", "Europe" ="#7FFF00"),
     labels = c("Africa", "The Americas", "Asia", "Europe")
   )
 ```
@@ -599,7 +627,7 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
   geom_point(shape = 21, size = 4, aes(fill = region)) +
   scale_fill_manual(
     name = "World Region",
-    values = c("#87CEEB", "#DDA0DD", "#FFA500", "#7FFF00"),
+    values = c("Africa" = "#87CEEB", "Americas" = "#DDA0DD", "Asia" = "#FFA500", "Europe" ="#7FFF00"),
     labels = c("Africa", "The Americas", "Asia", "Europe")
   ) +
   theme_minimal()
