@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Statistical Modeling and Computation for Educational Scientists - 7&nbsp; Simple Linear Regression and Correlation</title>
+<title>7&nbsp; Simple Linear Regression and Correlation – Statistical Modeling and Computation for Educational Scientists</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable/js/pagedtable.js"></script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -145,13 +145,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-intro-to-regression.html">Introduction to Regression</a></li><li class="breadcrumb-item"><a href="./02-02-simple-regression-and-correlation.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Simple Linear Regression and Correlation</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -183,7 +183,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Statistical Computation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -224,7 +224,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./02-00-intro-to-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Regression</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -265,7 +265,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./03-00-regression-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Regression Inference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -294,7 +294,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./04-00-multiple-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Multiple Regression</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -329,7 +329,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./05-00-categorical-predictors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical Predictors</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -358,7 +358,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./06-00-interaction-effects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interaction Effects</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -381,7 +381,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Codebooks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -518,7 +518,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02-02-simple-regression-and-correlation_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="02-02-simple-regression-and-correlation_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Scatterplot displaying the relationship between employee education levels and incomes.</figcaption>
 </figure>
 </div>
@@ -580,7 +580,7 @@ Y_i = \underbrace{\beta_0 + \beta_1(X_i)}_{\substack{\text{Systematic} \\ \text{
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/conditional-means.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="figs/conditional-means.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Plot displaying conditional distribution of <em>Y</em> at several <em>X</em> values. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <em>Y</em> for each conditional distribution.</figcaption>
 </figure>
 </div>
@@ -613,7 +613,7 @@ Y_i &amp;= \mu_{Y \vert X_i} + \epsilon_i
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02-02-simple-regression-and-correlation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="02-02-simple-regression-and-correlation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Scatterplot displaying the relationship between employee education levels and incomes. The OLS fitted regression line is also displayed.</figcaption>
 </figure>
 </div>
@@ -701,7 +701,7 @@ Coefficients:
 <p>To interpret this value, remember that <span class="math inline">\(\hat{Y}_i\)</span> is a conditional mean. In this case, it represents the model predicted mean income for all employees that have an education level of 0 years. Graphically this looks like the following.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-intercept" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-intercept" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-intercept-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figs/conditional-means-intercept.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
@@ -733,7 +733,7 @@ Figure&nbsp;7.1: Plot displaying conditional distribution of <em>Y</em> at <span
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/conditional-means-slope.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="figs/conditional-means-slope.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Plot displaying conditional distribution of <em>Y</em> at <span class="math inline">\(X=0\)</span> and <span class="math inline">\(X=1\)</span>. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <em>Y</em> for these conditional distributions—the relative change which corresponds to the slope value of the regression line.</figcaption>
 </figure>
 </div>
@@ -811,7 +811,7 @@ Figure&nbsp;7.1: Plot displaying conditional distribution of <em>Y</em> at <span
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02-02-simple-regression-and-correlation_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="02-02-simple-regression-and-correlation_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Plot displaying the OLS fitted regression line (blue) between employee education levels and incomes. The 25th employee’s observed data (black dot) is plotted, and a visual representation of the employee’s residual (red line) is also displayed.</figcaption>
 </figure>
 </div>
@@ -867,7 +867,7 @@ r_{\text{Education Level, Income}} = 0.795
 <p>It is important to keep in mind that the correlation coefficient is only useful as a measure of the strength of the relationship when the relationship between variables is linear. Here is an example where the correlation coefficient would be misleading about the strength of the relationship.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-daylight" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-daylight" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-02-simple-regression-and-correlation_files/figure-html/fig-daylight-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
@@ -888,7 +888,7 @@ Figure&nbsp;7.2: Hours of daylight versus day of the year for <span class="math 
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
-<div id="fig-salary-neuroticism-01" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-salary-neuroticism-01" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-salary-neuroticism-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-02-simple-regression-and-correlation_files/figure-html/fig-salary-neuroticism-01-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
@@ -902,7 +902,7 @@ Figure&nbsp;7.3: Salary versus neuroticism (0 = not at all neurotic; 7= very neu
 </div>
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
-<div id="fig-salary-neuroticism" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-salary-neuroticism" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-salary-neuroticism-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-02-simple-regression-and-correlation_files/figure-html/fig-salary-neuroticism-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
@@ -1001,18 +1001,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1044,7 +1033,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1079,7 +1108,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

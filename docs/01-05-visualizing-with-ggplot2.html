@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Statistical Modeling and Computation for Educational Scientists - 5&nbsp; Visualizing Data with ggplot2</title>
+<title>5&nbsp; Visualizing Data with ggplot2 – Statistical Modeling and Computation for Educational Scientists</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -125,7 +125,7 @@ div.csl-indent {
 <link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable/js/pagedtable.js"></script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -165,13 +165,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-00-statistical-computation.html">Introduction to Statistical Computation</a></li><li class="breadcrumb-item"><a href="./01-05-visualizing-with-ggplot2.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -203,7 +203,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Statistical Computation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -244,7 +244,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./02-00-intro-to-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Regression</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -285,7 +285,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./03-00-regression-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Regression Inference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -314,7 +314,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./04-00-multiple-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Multiple Regression</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -349,7 +349,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./05-00-categorical-predictors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical Predictors</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -378,7 +378,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./06-00-interaction-effects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interaction Effects</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -401,7 +401,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Codebooks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -572,7 +572,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>The background layer for the plot is drawn. The domain (x-values) and range (y-values) is based on data in the income and co2 attributes.</figcaption>
 </figure>
 </div>
@@ -631,12 +631,12 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div>
 
 </div>
-<div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="2">
+<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-align="center">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother.</figcaption>
 </figure>
 </div>
@@ -644,7 +644,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother.</figcaption>
 </figure>
 </div>
@@ -686,7 +686,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers.</figcaption>
 </figure>
 </div>
@@ -705,7 +705,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer.</figcaption>
 </figure>
 </div>
@@ -734,7 +734,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics.</figcaption>
 </figure>
 </div>
@@ -753,7 +753,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions.</figcaption>
 </figure>
 </div>
@@ -768,7 +768,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions.</figcaption>
 </figure>
 </div>
@@ -787,7 +787,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007.</figcaption>
 </figure>
 </div>
@@ -867,7 +867,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Scale on the x-axis set to have a label, as well as, specific limits, and break lines.</figcaption>
 </figure>
 </div>
@@ -889,7 +889,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>Color palette set manually using named color values.</figcaption>
 </figure>
 </div>
@@ -919,7 +919,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the <code>scale_fill_manula()</code> layer.</figcaption>
 </figure>
 </div>
@@ -952,7 +952,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>Color palette set manually using RGB triplets.</figcaption>
 </figure>
 </div>
@@ -989,7 +989,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>Color palette set manually using hex notation.</figcaption>
 </figure>
 </div>
@@ -1020,7 +1020,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <section id="pre-selected-color-palettes" class="level3" data-number="5.7.1">
 <h3 data-number="5.7.1" class="anchored" data-anchor-id="pre-selected-color-palettes"><span class="header-section-number">5.7.1</span> Pre-Selected Color Palettes</h3>
 <p>There are several “built-in” palettes available for use in <code>{ggplot2}</code>.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 26%">
@@ -1062,7 +1062,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>Greyscale color palette good for black-and-white printing.</figcaption>
 </figure>
 </div>
@@ -1094,7 +1094,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>Set1 qualitative color palette from the Brewer color palette.</figcaption>
 </figure>
 </div>
@@ -1122,7 +1122,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>FiveThirtyEight color palette from the <code>{ggthemes}</code> package.</figcaption>
 </figure>
 </div>
@@ -1144,7 +1144,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>BottleRocket2 color palette from the <code>{wesanderson}</code> package.</figcaption>
 </figure>
 </div>
@@ -1166,7 +1166,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Acadia color palette from the <code>{nationalparks}</code> package.</figcaption>
 </figure>
 </div>
@@ -1191,7 +1191,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>Set1 qualitative color palette from the Brewer color palette.</figcaption>
 </figure>
 </div>
@@ -1216,7 +1216,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>Using the <code>theme_minimal()</code> layer to update the look of the plot.</figcaption>
 </figure>
 </div>
@@ -1243,7 +1243,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>Using the <code>theme_wsj()</code> layer from the <code>{ggthemes}</code> package to update the look of the plot to look like plots in the Wall Street Journal.</figcaption>
 </figure>
 </div>
@@ -1272,7 +1272,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>You can customize almost any part of the theme using the <code>theme()</code> layer. In this plot we changed the font face and color on the axes labels.</figcaption>
 </figure>
 </div>
@@ -1313,7 +1313,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>You can also create your own theme to use with any plot.</figcaption>
 </figure>
 </div>
@@ -1357,7 +1357,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>The <code>{scales}</code> package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis.</figcaption>
 </figure>
 </div>
@@ -1406,7 +1406,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>Using <code>{dplyr}</code> functions and piping to plot athe African countries.</figcaption>
 </figure>
 </div>
@@ -1491,18 +1491,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1534,7 +1523,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1569,7 +1598,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

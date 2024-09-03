@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Statistical Modeling and Computation for Educational Scientists - 11&nbsp; Coefficient-Level Inference</title>
+<title>11&nbsp; Coefficient-Level Inference – Statistical Modeling and Computation for Educational Scientists</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -125,7 +125,7 @@ div.csl-indent {
 <link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable/js/pagedtable.js"></script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -165,13 +165,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-00-regression-inference.html">Regression Inference</a></li><li class="breadcrumb-item"><a href="./03-01-coefficient-level-inference.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -203,7 +203,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Statistical Computation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -244,7 +244,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./02-00-intro-to-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Regression</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -285,7 +285,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./03-00-regression-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Regression Inference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -314,7 +314,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./04-00-multiple-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Multiple Regression</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -349,7 +349,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./05-00-categorical-predictors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical Predictors</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -378,7 +378,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./06-00-interaction-effects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interaction Effects</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -401,7 +401,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Codebooks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -556,7 +556,7 @@ window.Quarto = {
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
-<div id="fig-02-03-gpa" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-02-03-gpa" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-02-03-gpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-01-coefficient-level-inference_files/figure-html/fig-02-03-gpa-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
@@ -570,7 +570,7 @@ Figure&nbsp;11.1: Density plots of the marginal distribution of GPA.
 </div>
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
-<div id="fig-02-03-hw" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-02-03-hw" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-02-03-hw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-01-coefficient-level-inference_files/figure-html/fig-02-03-hw-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
@@ -595,7 +595,7 @@ Figure&nbsp;11.2: Density plots of the marginal distribution of time spent on ho
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"GPA (on a 100-pt. scale)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-02-03-gpa-hw" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-02-03-gpa-hw" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-02-03-gpa-hw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-01-coefficient-level-inference_files/figure-html/fig-02-03-gpa-hw-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
@@ -643,18 +643,17 @@ Figure&nbsp;11.3: Scatterplot showing the relationship between GPA and time spen
 <p><br></p>
 <p>We could also present this information in a table. This table could be extended to include additional variables (which we will do in later chapters). We include the mean and standard deviations in the same table as the correlations by placing them on the main diagonal.</p>
 <div class="cell" data-layout-align="center">
-<div id="tbl-corr" class="cell quarto-float anchored" data-layout-align="center">
+<div id="tbl-corr" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;11.1: Correlations between 8th-Grade students’ GPA and weekly time spent on homework. Means and standard deviations (in parentheses) are displayed on the main diagonal.
 </figcaption>
 <div aria-describedby="tbl-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<div id="pyyuqskdpa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="daboziojiz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
-<table class="gt_table do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="header gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col" style="text-align: left; border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden;" data-bgcolor="#FFFFFF" data-valign="bottom"></th>
@@ -676,7 +675,6 @@ Table&nbsp;11.1: Correlations between 8th-Grade students’ GPA and weekly time 
 </tbody>
 </table>
 
-</div>
 </div>
 </div>
 </div>
@@ -731,7 +729,7 @@ Coefficients:
 <p>Now, sample another <em>n</em> observations from the population. Again, find the mean. We will call this estimate <span class="math inline">\(\hat\mu_2\)</span>. Again, it probably varies from <span class="math inline">\(\mu\)</span>, and may be different than <span class="math inline">\(\hat\mu_1\)</span> as well. Continue to repeat this process: randomly sample <em>n</em> observations from the population; and find the mean.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-thought-exp-mean" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-thought-exp-mean" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-thought-exp-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figs/02-04-thought-experiment-means.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
@@ -760,7 +758,7 @@ Figure&nbsp;11.4: Thought experiment for sampling samples of size n from the pop
 <p>We can extend these ideas to regression. Now the thought experiment goes something like this: Imagine you have a population that is infinitely large. The observations in this population have two attributes, call them <em>X</em> and <em>Y</em>. The relationship between these two attributes can be expressed via a regression equation as: <span class="math inline">\(\hat{Y}=\beta_0 + \beta_1(X)\)</span>. Randomly sample <em>n</em> observations from the population. This time, rather than computing a mean, regress the sample <em>Y</em> values on the sample <em>X</em> values. Since the sample regression coefficients are estimates of the population parameters, we will write this as: <span class="math inline">\(\hat{Y}=\hat{\beta}_{0,1} + \hat{\beta}_{1,1}(X)\)</span>. Repeat the process. This time the regression equation is: <span class="math inline">\(\hat{Y}=\hat{\beta}_{0,2} + \hat{\beta}_{1,2}(X)\)</span>. Continue this process an infinite number of times.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-thought-exp-reg" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-thought-exp-reg" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-thought-exp-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figs/02-04-thought-experiment-coefficients.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
@@ -794,7 +792,7 @@ H_0: \beta_1 = 0
 <p>One question of interest may be: Is there evidence that the average GPA differs for different amounts of time spent on homework? In our example, we have a <span class="math inline">\(\hat\beta_1=1.21\)</span>. This is sample evidence, but does 1.21 differ from 0 more than we would expect because of random sampling? If it doesn’t, we cannot really say that the average GPA differs for different amounts of time spent on homework. To test this, we make an assumption that there is no relationship between time spent on homework and GPA, in other words, the slope of the line under this assumption would be 0. The thought experiment underlying this would be to randomly sample <em>n</em> observations from the population where <span class="math inline">\(\beta_1 =0\)</span>. Regress the sample <em>Y</em> values on the sample <em>X</em> values and obtain the sample slope.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-thought-exp-reg-2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-thought-exp-reg-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-thought-exp-reg-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figs/02-07-thought-experiment-hyp-test.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
@@ -832,7 +830,7 @@ Figure&nbsp;11.6: Thought experiment for sampling samples of size n from the pop
 <p>One way to envision this is as a distribution.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-sampling-dist-slope" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-sampling-dist-slope" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sampling-dist-slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-01-coefficient-level-inference_files/figure-html/fig-sampling-dist-slope-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
@@ -854,7 +852,7 @@ Figure&nbsp;11.7: Sampling distribution of the slope coefficient under the hypot
 <p>In practice these values are typically unknown and are estimated from the sample data. Anytime we are estimating things we introduce additional uncertainty. In this case, the uncertainty affects the shape of the sampling distribution.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-norm-dist-comp" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-norm-dist-comp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-norm-dist-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-01-coefficient-level-inference_files/figure-html/fig-norm-dist-comp-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
@@ -875,7 +873,7 @@ Figure&nbsp;11.8: Comparison of two distributions. The normal distribution (soli
 <p>It is important to note that the amount of uncertainty affects how closely the shape of the distribution matches the normal distribution. And, that the sample size directly affects the amount of uncertainty we have. All things being equal, we have less uncertainty when we have larger samples. The following figure illustrates this idea.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-norm-dist-comp2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-norm-dist-comp2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-norm-dist-comp2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-01-coefficient-level-inference_files/figure-html/fig-norm-dist-comp2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
@@ -935,7 +933,7 @@ H_0: \beta_1 = 0
 <p>Based on this, we will evaluate our observed <em>t</em>-value of 3.42 using a <em>t</em>-distribution with 98 degrees of freedom. Using this distribution, we can compute the probability of obtaining a <em>t</em>-value (under random sampling) at least as extreme as the one in the data under the assumed model. This is equivalent to finding the area under the probability curve for the <em>t</em>-distribution that is greater than or equal to 3.42.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> This is called the <em>p</em>-value.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-t-98" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-t-98" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-t-98-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-01-coefficient-level-inference_files/figure-html/fig-t-98-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
@@ -1203,18 +1201,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1246,7 +1233,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1281,7 +1308,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
