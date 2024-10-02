@@ -5,19 +5,15 @@
 source("scripts/_common.R")
 ```
 
-This data, stored in [state-education.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/state-education.csv) includes state-level aggregate data on six attributes. The attributes, collected for all 50 states and the District of Columbia, are:
+This data, stored in [state-education.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/state-education.csv) includes state-level aggregate data on six attributes from academic year 2020-21. The attributes, collected for all 50 states and the District of Columbia, are:
 
 - `state`: State name
 - `postal`: State postal code
 - `region`: Region of the country identified by the National Education Association (Far West, Great Lakes, Mid East, New England, Plains, Rocky Mountains, Southeast, Southwest)
-- `sat_participate`: Percentage of students in the state who took the SAT.
-- `sat_ebrw`: Average score on the Evidence-Based Reading and Writing (EBRW) scale in the state.
-- `sat_math`: Average score on the math scale in the state.
-- `sat_total`: Average total SAT score in the state.
-- `salary_2020_21`: Average 2020--2021 public teacher salary in the state.
+- `salary`: Average public teacher salary in the state.
+- `sat`: Average total SAT score in the state for students in the class of 2020 who took the SAT during high school. The SAT is made up of three sections: (1) Reading, (2) Writing and Language (also just called Writing), and (3) Math. Total SAT score range from 400--1600.
+- `participation`: Percentage of students in the state who took the SAT.
 
-
-Note: All of the SAT data is based on students in the class of 2020 who took the current SAT during high school. The SAT is made up of three sections: (1) Reading, (2) Writing and Language (also just called Writing), and (3) Math. The Math section is scored on a scale of 200--800. The Reading and Writing sections are combined to give an Evidence-Based Reading and Writing (EBRW) score, also ranging from 200--800. By combining the Math and EBRW scores, we get a total SAT score ranging from 400--1600.
 
 
 <br />

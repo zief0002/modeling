@@ -17,9 +17,9 @@ We will use the [comic-characters.csv](https://raw.githubusercontent.com/zief000
 - Who was the first LGBTQ character? 
   + Which year did that character first appear?
   + Did Marvel and DC introduce LGBTQ characters around the same time? Or was one company more progressive?
-- What percentage of comic characters identify as LQBTQ?
-- Did the percentage of comic characters identifying as LQBTQ change after the Pride Movement began?
-- How does the average number of appearances for comic characters identifying as LQBTQ differ from those who don't?
+- What percentage of comic characters identify as LGBTQ?
+- Did the percentage of comic characters identifying as LGBTQ change after the Pride Movement began?
+- How does the average number of appearances for comic characters identifying as LGBTQ differ from those who don't?
 :::
 
 To begin, we will load the `{dplyr}` and `{readr}` libraries, and import the data into an object called `comics`.
@@ -185,7 +185,7 @@ sorted_comics = comics |>
 knitr::include_graphics("figs/01-04-click-data-object.png")
 ```
 
-Based on an examination of the sorted data, we find the first appearance of an LQBTQ character is Jack Casey in 1940.
+Based on an examination of the sorted data, we find the first appearance of an LGBTQ character is Jack Casey in 1940.
 
 
 <!-- :::exercises -->
@@ -226,7 +226,7 @@ comics |>
 
 There are many times in research applications that an educational scientist will need to select a subset of data cases. This type of application, for example, is quite common when we carry out demographic analyses (e.g., select the special education students, select students on free/reduced-price lunch). To select a subset of rows from a tibble or data frame, we will pipe the data frame we want to select rows from into the `filter()` function. 
 
-The argument(s) for the `filter()` function are logical expressions that will be used to select the rows. For example, suppose we wanted to select the LGBTQ characters (i.e., rows) from the `comics` data frame. We would need a logical expression that returns a `TRUE` value for all the LGBTQ characters. One such logical expression is: `lgbtq=="Yes"`. Recall that a single equals sign (`=`) is the assignment operator and that to say "is equal to", we need to use two equals signs (`==`). Including this logical expression in the `filter()` function, the syntax for selecting the LQBTQ characters is then:
+The argument(s) for the `filter()` function are logical expressions that will be used to select the rows. For example, suppose we wanted to select the LGBTQ characters (i.e., rows) from the `comics` data frame. We would need a logical expression that returns a `TRUE` value for all the LGBTQ characters. One such logical expression is: `lgbtq=="Yes"`. Recall that a single equals sign (`=`) is the assignment operator and that to say "is equal to", we need to use two equals signs (`==`). Including this logical expression in the `filter()` function, the syntax for selecting the LGBTQ characters is then:
 
 ```{r}
 # Select the LGBTQ characters
@@ -260,14 +260,14 @@ comics |>
 
 The first pipe operator uses the `comics` data frame in the `filter()` function to select the LGBTQ characters. This output (only the LGBTQ characters) is then used in the `nrow()` function to count the number of rows. It is akin to a constant pipeline of chaining functions together (i.e., `nrow(filter(comics, lgbtq == "Yes"))`); the output of a computation is used as the input into the next computation in the pipeline.
 
-Based on this result (and the results from the earlier `glimpse()` output), we can now answer our first research question: What percentage of comic characters identify as LQBTQ?
+Based on this result (and the results from the earlier `glimpse()` output), we can now answer our first research question: What percentage of comic characters identify as LGBTQ?
 
 ```{r}
 # Compute percentage of LGBTQ characters
 155 / 23272
 ```
 
-Only 0.6% of comic characters identified as LGBTQ (at least as of 2014). This is well below 7.1%, the percentage of U.S. adults who self-identify as lesbian, gay, bisexual, transgender or something other than heterosexual according to a [2022 Gallup Poll](https://news.gallup.com/poll/389792/lgbt-identification-ticks-up.aspx). (This is even below the 2012 estimate of 3.5%.) This suggests that the LQBTQ population is likely underrepresented in comic culture.
+Only 0.6% of comic characters identified as LGBTQ (at least as of 2014). This is well below 7.1%, the percentage of U.S. adults who self-identify as lesbian, gay, bisexual, transgender or something other than heterosexual according to a [2022 Gallup Poll](https://news.gallup.com/poll/389792/lgbt-identification-ticks-up.aspx). (This is even below the 2012 estimate of 3.5%.) This suggests that the LGBTQ population is likely underrepresented in comic culture.
 
 
 <!-- :::exercises -->
@@ -328,7 +328,7 @@ comics |>
 We can also `filter()` using the OR (`|`) operator. This means that if EITHER logical expression included in the `filter()` function evaluates as TRUE, the row is included in the output. For example, say we wanted to count the number of comic characters who are either female or identify as LGBTQ. The syntax for this would be:
 
 ```{r}
-# Count character who are LQBTQ or are female
+# Count character who are LGBTQ or are female
 comics |>
   filter(lgbtq == "Yes" | sex == "Female") |>
   nrow()
@@ -540,7 +540,7 @@ comics |>
 
 ## Computations on Groups
 
-While we have leaned that, on average, comic characters appear about 20 times. And, that the variation is quite large ($SD=93.8$), telling us that there are characters who appear many more times (e.g., Spiderman, Susan Storm, Wonder Woman). Although a useful first step in an analysis, this alone does not answer our research question about how the average number of appearances for comic characters identifying as LQBTQ differ from those who don't. To answer this, we need to compute these summary measures for LGBTQ and non-LGBTQ characters separately.
+While we have leaned that, on average, comic characters appear about 20 times. And, that the variation is quite large ($SD=93.8$), telling us that there are characters who appear many more times (e.g., Spiderman, Susan Storm, Wonder Woman). Although a useful first step in an analysis, this alone does not answer our research question about how the average number of appearances for comic characters identifying as LGBTQ differ from those who don't. To answer this, we need to compute these summary measures for LGBTQ and non-LGBTQ characters separately.
 
 
 The `group_by()` function groups the data by a specified variable. By itself, this function essentially does nothing. But it is powerful when the grouped output is piped into other functions, such as `summarize()`. Here we use `group_by(lgbtq)` to compute the mean number of appearances and also the standard deviation for both LGBTQ and non-LGBTQ characters.
