@@ -598,7 +598,7 @@ Figure&nbsp;13.2: A visual depiction of the simple regression model’s assumpti
 <p><br></p>
 <section id="linearity" class="level3" data-number="13.2.1">
 <h3 data-number="13.2.1" class="anchored" data-anchor-id="linearity"><span class="header-section-number">13.2.1</span> Linearity</h3>
-<p>The linearity assumption is critical in specifying the structural part of the model. Fitting a linear model when the TRUE relationship between <em>X</em> and <em>Y</em> is non-linear may be quite problematic. Coefficients may be wrong. Predictions may also be wrong, especially at the extreme values for <em>X</em>. More importantly, mis-specified models lead to misinformed understandings of the world.</p>
+<p>The linearity assumption is critical in specifying the structural part of the model. Fitting a linear model when the TRUE relationship between <em>X</em> and <em>Y</em> is non-linear may be quite problematic; we call this mis-specifying the model. Coefficients may be wrong. Predictions may also be wrong, especially at the extreme values for <em>X</em>. More importantly, mis-specified models lead to misinformed understandings of the world.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-nonlinear" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -607,13 +607,13 @@ Figure&nbsp;13.2: A visual depiction of the simple regression model’s assumpti
 <img src="03-03-model-assumptions_files/figure-html/fig-nonlinear-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nonlinear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.3: The left-hand plot shows observations simulated from a nonlinear model. The right-hand plot shows the same data and the results of fitting a linear model to non-linear data. Using the linear fitted model to make predictions would be quite misleading, especially at extreme values of <em>X</em>.
+Figure&nbsp;13.3: The left-hand plot shows a correctly specified linear model. The right-hand plot shows a mis-specified linear model. The true underlying model is non-linear and is shown by the dashed, raspberry line. Using the linear fitted model to make predictions would be quite misleading, especially at extreme values of <em>X</em>.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In the left-hand plot of <a href="#fig-nonlinear" class="quarto-xref">Figure&nbsp;<span>13.3</span></a>, when the correct nonlinear model is fitted to the data, the conditional <em>Y</em>-values are scattered above and below the line at each <em>X</em>-value. In the right-hand plot of <a href="#fig-nonlinear" class="quarto-xref">Figure&nbsp;<span>13.3</span></a>, when a linear model was fitted to data generated from a non-linear function, the data tend to either be consistently above, or below the line, depending on the <em>X</em>-value. This type of systematic deviation would be evidence that the linearity assumption is not tenable. When evaluating this assumption, we want to see data in the scatterplot that is “equally” above and below the fitted regression line at each value of <em>X</em>.</p>
+<p>In the left-hand plot of <a href="#fig-nonlinear" class="quarto-xref">Figure&nbsp;<span>13.3</span></a>, when the correct linear model is fitted to the data, the conditional <em>Y</em>-values are scattered above and below the line at each <em>X</em>-value. In the right-hand plot of <a href="#fig-nonlinear" class="quarto-xref">Figure&nbsp;<span>13.3</span></a>, when a linear model was fitted to data generated from a non-linear function, the data tend to either be consistently above, or below the line, depending on the <em>X</em>-value. This type of systematic deviation would be evidence that the linearity assumption is not tenable. When evaluating this assumption, we want to see data in the scatterplot that is “equally” above and below the fitted regression line at each value of <em>X</em>.</p>
 <p>Since the linearity assumption also means that the average residual is 0, if we are evaluating this assumption by looking at a plot of the residuals, we would want to see residuals above (positive) and below (negative) 0. Figure 4 shows scatterplots of the residuals versus the <em>X</em>-values from the two fitted lines. In the left-hand plot, when the residuals are based on the true model, we see that the residuals are scattered above and below 0 at each value of <em>X</em>. In the right-hand plot, in which the residuals were computed based on a mis-specified linear model, we again see that the residuals are clustered above, or below 0, depending on the value of <em>X</em>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -623,7 +623,7 @@ Figure&nbsp;13.3: The left-hand plot shows observations simulated from a nonline
 <img src="03-03-model-assumptions_files/figure-html/fig-nonlinear-residuals-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nonlinear-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.4: The left-hand plot shows the residuals from the true nonlinear model versus the <em>X</em>-values. The right-hand plot shows the residuals from the mis-specified linear model versus the <em>X</em>-values. A reference line at <span class="math inline">\(Y=0\)</span> has also been added to the plot to aid interpretation.
+Figure&nbsp;13.4: The left-hand plot shows the residuals from the correctly specified linear model versus the <em>X</em>-values. The right-hand plot shows the residuals from the mis-specified linear model versus the <em>X</em>-values. A reference line at <span class="math inline">\(Y=0\)</span> has also been added to the plot to aid interpretation.
 </figcaption>
 </figure>
 </div>

@@ -119,12 +119,12 @@ Before beginning to evaluate the distributional assumptions using our empirical 
 
 ### Linearity
 
-The linearity assumption is critical in specifying the structural part of the model. Fitting a linear model when the TRUE relationship between *X* and *Y* is non-linear may be quite problematic. Coefficients may be wrong. Predictions may also be wrong, especially at the extreme values for *X*. More importantly, mis-specified models lead to misinformed understandings of the world.
+The linearity assumption is critical in specifying the structural part of the model. Fitting a linear model when the TRUE relationship between *X* and *Y* is non-linear may be quite problematic; we call this mis-specifying the model. Coefficients may be wrong. Predictions may also be wrong, especially at the extreme values for *X*. More importantly, mis-specified models lead to misinformed understandings of the world.
 
 
 ```{r}
 #| label: fig-nonlinear
-#| fig-cap: "The left-hand plot shows observations simulated from a nonlinear model. The right-hand plot shows the same data and the results of fitting a linear model to non-linear data. Using the linear fitted model to make predictions would be quite misleading, especially at extreme values of *X*."
+#| fig-cap: "The left-hand plot shows a correctly specified linear model. The right-hand plot shows a mis-specified linear model. The true underlying model is non-linear and is shown by the dashed, raspberry line. Using the linear fitted model to make predictions would be quite misleading, especially at extreme values of *X*."
 #| fig-width: 8
 #| fig-height: 4
 #| out-width: "90%"
@@ -133,26 +133,36 @@ The linearity assumption is critical in specifying the structural part of the mo
 set.seed(100)
 x = round(runif(n = 50, min = 0, max = 10), 0) + rnorm(n=50, mean = 0, sd = 0.1)
 e = rnorm(n = 50, mean = 1, sd = 20)
-y = 1 + x^2.5 + e
-d = data.frame(x, y)
+y1 = 1 + x^2.5 + e
+y2 = 10 + 23.4*x + e
+d = data.frame(x, y1, y2)
 
-# Plot with true function
-p1 = ggplot(data = d, aes(x = x, y = y)) +
+# COrrect specification
+p1 = ggplot(data = d, aes(x = x, y = y2)) +
+  geom_point() +
+  theme_bw() +
+  stat_function(
+    fun = function(x) {10 + 23.4*x}, 
+    color = "#c62f4b", 
+    linetype = "solid" 
+    ) +
+  xlim(0, 11) +
+  ylim(-30, 300) +
+  ggtitle("Correctly specified linear function")
+
+
+# Misspecified model
+p2 = ggplot(data = d, aes(x = x, y = y1)) +
   geom_point() +
   theme_bw() +
   stat_function(
     fun = function(x) {1 + x^2.5}, 
     color = "#c62f4b", 
-    linetype = "solid" 
+    linetype = "dashed" 
     ) +
-  ggtitle("True nonlinear function")
-
-
-# Plot assuming linearity
-p2 = ggplot(data = d, aes(x = x, y = y)) +
-  geom_point() +
-  theme_bw() +
   geom_smooth(method = "lm", se = FALSE) +
+  xlim(0, 11) +
+  ylim(-30, 300) +
   ggtitle("Mis-specified linear function")
 
 # Create plot
@@ -160,14 +170,14 @@ p1 | p2
 ```
 
 
-In the left-hand plot of @fig-nonlinear, when the correct nonlinear model is fitted to the data, the conditional *Y*-values are scattered above and below the line at each *X*-value. In the right-hand plot of @fig-nonlinear, when a linear model was fitted to data generated from a non-linear function, the data tend to either be consistently above, or below the line, depending on the *X*-value. This type of systematic deviation would be evidence that the linearity assumption is not tenable. When evaluating this assumption, we want to see data in the scatterplot that is "equally" above and below the fitted regression line at each value of *X*. 
+In the left-hand plot of @fig-nonlinear, when the correct linear model is fitted to the data, the conditional *Y*-values are scattered above and below the line at each *X*-value. In the right-hand plot of @fig-nonlinear, when a linear model was fitted to data generated from a non-linear function, the data tend to either be consistently above, or below the line, depending on the *X*-value. This type of systematic deviation would be evidence that the linearity assumption is not tenable. When evaluating this assumption, we want to see data in the scatterplot that is "equally" above and below the fitted regression line at each value of *X*. 
 
 
 Since the linearity assumption also means that the average residual is 0, if we are evaluating this assumption by looking at a plot of the residuals, we would want to see residuals above (positive) and below (negative) 0. Figure 4 shows scatterplots of the residuals versus the *X*-values from the two fitted lines. In the left-hand plot, when the residuals are based on the true model, we see that the residuals are scattered above and below 0 at each value of *X*. In the right-hand plot, in which the residuals were computed based on a mis-specified linear model, we again see that the residuals are clustered above, or below 0, depending on the value of *X*.
 
 ```{r}
 #| label: fig-nonlinear-residuals
-#| fig-cap: "The left-hand plot shows the residuals from the true nonlinear model versus the *X*-values. The right-hand plot shows the residuals from the mis-specified linear model versus the *X*-values. A reference line at $Y=0$ has also been added to the plot to aid interpretation."
+#| fig-cap: "The left-hand plot shows the residuals from the correctly specified linear model versus the *X*-values. The right-hand plot shows the residuals from the mis-specified linear model versus the *X*-values. A reference line at $Y=0$ has also been added to the plot to aid interpretation."
 #| fig-width: 8
 #| fig-height: 4
 #| out-width: "90%"
@@ -176,7 +186,7 @@ Since the linearity assumption also means that the average residual is 0, if we 
 d = d |>
   mutate(
     e1 = e,
-    e2 = resid(lm(y ~ 1 + x, data = d))
+    e2 = resid(lm(y1 ~ 1 + x, data = d))
   )
 
 # Plot with true function
@@ -185,7 +195,7 @@ p1 = ggplot(data = d, aes(x = x, y = e1)) +
   theme_bw() +
   geom_hline(yintercept = 0) +
   ylab("Residuals") +
-  ggtitle("True nonlinear function")
+  ggtitle("Correctly specified linear function")
 
 
 # Plot assuming linearity
