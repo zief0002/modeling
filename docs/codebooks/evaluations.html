@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andrew Zieffler">
-<meta name="dcterms.date" content="2025-06-02">
 
-<title>Statistical Modeling and Computation for Educational Scientists</title>
+<title>24&nbsp; evaluations.csv – Statistical Modeling and Computation for Educational Scientists</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -45,24 +78,23 @@ div.csl-indent {
 }</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./01-00-statistical-computation.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -90,8 +122,6 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-<link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable/js/pagedtable.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
@@ -126,8 +156,8 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="assets/sticky-notes.css">
-<link rel="stylesheet" href="assets/table-styles.css">
+<link rel="stylesheet" href="../assets/sticky-notes.css">
+<link rel="stylesheet" href="../assets/table-styles.css">
 </head>
 
 <body class="nav-sidebar floating fullcontent quarto-light">
@@ -139,7 +169,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Front Matter</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07-00-data-codebooks.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/evaluations.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">evaluations.csv</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -154,7 +184,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistical Modeling and Computation for Educational Scientists</a> 
+      <a href="../">Statistical Modeling and Computation for Educational Scientists</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -166,13 +196,13 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Front Matter</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
+            <a href="../01-00-statistical-computation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Statistical Computation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -181,31 +211,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-01-r-and-rstudio-installation.html" class="sidebar-item-text sidebar-link">
+  <a href="../01-01-r-and-rstudio-installation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R and RStudio: Installation and Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-02-getting-started-with-r.html" class="sidebar-item-text sidebar-link">
+  <a href="../01-02-getting-started-with-r.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-03-data-structures-in-r.html" class="sidebar-item-text sidebar-link">
+  <a href="../01-03-data-structures-in-r.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structures in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-04-data-wrangling-with-dplyr.html" class="sidebar-item-text sidebar-link">
+  <a href="../01-04-data-wrangling-with-dplyr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling with dplyr</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-05-visualizing-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+  <a href="../01-05-visualizing-with-ggplot2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data with ggplot2</span></span></a>
   </div>
 </li>
@@ -213,7 +243,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./02-00-intro-to-regression.html" class="sidebar-item-text sidebar-link">
+            <a href="../02-00-intro-to-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Regression</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -222,31 +252,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-01-data-exploration-for-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../02-01-data-exploration-for-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Exploration for Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-02-simple-regression-and-correlation.html" class="sidebar-item-text sidebar-link">
+  <a href="../02-02-simple-regression-and-correlation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Simple Linear Regression and Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-03-ols-estimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../02-03-ols-estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ordinary Least Squares (OLS) Estimation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-04-anova-decomposition.html" class="sidebar-item-text sidebar-link">
+  <a href="../02-04-anova-decomposition.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">ANOVA Decomposition and <span class="math inline">\(R^2\)</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-05-standardized-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../02-05-standardized-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Standardized Regression</span></span></a>
   </div>
 </li>
@@ -254,7 +284,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./03-00-regression-inference.html" class="sidebar-item-text sidebar-link">
+            <a href="../03-00-regression-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Regression Inference</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -263,19 +293,19 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-01-coefficient-level-inference.html" class="sidebar-item-text sidebar-link">
+  <a href="../03-01-coefficient-level-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-02-model-level-inference.html" class="sidebar-item-text sidebar-link">
+  <a href="../03-02-model-level-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Model-Level Inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-03-model-assumptions.html" class="sidebar-item-text sidebar-link">
+  <a href="../03-03-model-assumptions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Assumptions Underlying the Regression Model</span></span></a>
   </div>
 </li>
@@ -283,7 +313,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./04-00-multiple-regression.html" class="sidebar-item-text sidebar-link">
+            <a href="../04-00-multiple-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Multiple Regression</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -292,25 +322,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-01-intro-to-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../04-01-intro-to-multiple-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction to Multiple Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-03-understanding-statistical-control.html" class="sidebar-item-text sidebar-link">
+  <a href="../04-03-understanding-statistical-control.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Understanding Statistical Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-04-assumptions.html" class="sidebar-item-text sidebar-link">
+  <a href="../04-04-assumptions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Assumptions: Multiple Regression</span></span></a>
   </div>
 </li>
@@ -318,7 +348,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./05-00-categorical-predictors.html" class="sidebar-item-text sidebar-link">
+            <a href="../05-00-categorical-predictors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical Predictors</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -327,19 +357,19 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-01-dichotomous-predictors.html" class="sidebar-item-text sidebar-link">
+  <a href="../05-01-dichotomous-predictors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Dichotomous Categorical Predictors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-02-polychotomous-predictors.html" class="sidebar-item-text sidebar-link">
+  <a href="../05-02-polychotomous-predictors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-03-multiple-comparisons.html" class="sidebar-item-text sidebar-link">
+  <a href="../05-03-multiple-comparisons.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multiple Comparisons</span></span></a>
   </div>
 </li>
@@ -347,7 +377,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./06-00-interaction-effects.html" class="sidebar-item-text sidebar-link">
+            <a href="../06-00-interaction-effects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interaction Effects</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -356,13 +386,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-01-intro-to-interaction-effects.html" class="sidebar-item-text sidebar-link">
+  <a href="../06-01-intro-to-interaction-effects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-02-more-interaction-effects.html" class="sidebar-item-text sidebar-link">
+  <a href="../06-02-more-interaction-effects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">More Interaction Effects</span></span></a>
   </div>
 </li>
@@ -370,7 +400,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a href="../07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -379,74 +409,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-01-broadband.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">broadband.csv</span></span></a>
+  <a href="../codebooks/broadband.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">broadband.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-01-comic-characters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
+  <a href="../codebooks/comic-characters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-03-fertility.html" class="sidebar-item-text sidebar-link">
+  <a href="../codebooks/evaluations.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">evaluations.csv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../codebooks/fertility.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-04-gapminder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-05-keith-gpa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-06-mn-schools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-07-pew.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">pew.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-08-riverview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-09-scoobydoo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">scoobydoo.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-09-spice-girls.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-11-state-education.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">state-education.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-10-work-demands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
   </div>
 </li>
       </ul>
@@ -460,28 +442,16 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07-00-data-codebooks.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/evaluations.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">evaluations.csv</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Statistical Modeling and Computation for Educational Scientists</h1>
+<h1 class="title"><span id="evaluations" class="quarto-section-identifier"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">evaluations.csv</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Andrew Zieffler </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">June 2, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -491,61 +461,63 @@ window.Quarto = {
 </header>
 
 
-<p><img src="figs/banner.png" class="cover" alt=""></p>
-<section id="front-matter" class="level1 unnumbered">
-<h1 class="unnumbered">Front Matter</h1>
-<p>The content in this “book”, as the title suggests, is related to statistical modeling and computation. More specifically, the content focuses on using the General Linear Model (GLM) to provide statistical evidence that can help answer substantive questions in the educational and social sciences. It is a book intended for applied practitioners in the educational or social sciences. The statistical content is hopefully presented in a manner that these domain scientists will find useful, including practical suggestions for analysis and the presentation of results intended to help researchers clearly communicate the results of a data analysis.</p>
-<p>While the content is not overly mathematical in nature, the reader will need a solid understanding of the principles in algebra for maximum benefit. The burden of calculation that typically accompanied statistical work in previous generations is now primarily carried out in a scientific computing environment. As <span class="citation" data-cites="thisted2">Thisted &amp; Velleman (<a href="#ref-thisted2" role="doc-biblioref">1992</a>)</span> point out, “computational advances have changed the face of statistical practice by transforming what we do and by challenging how we think about scientific problems.” To support and help facilitate the use of scientific computing, examples using the R computer language will be used throughout this work.</p>
-<p>The organization of content is consistent with the sequence this content is taught in EPsy 8251, the first of two applied statistics courses that form the foundational sequence for many graduate students in the educational and social sciences at the University of Minnesota. This course require that students have taken a previous statistics course at either the undergraduate or graduate level. Because of that, many introductory ideas are assumed.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/00-00-all-units.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The units are (1) Introduction to statistical computing, (2) Introduction to regression, (3) Regression inference, (4), Multiple regression, (5) Categorical predictors, and (6) Interaction effects."></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
-<p>This book refers to and uses several data sets throughout the text. Each of these data sets and their codebooks are available online at the book’s github repository, <a href="https://github.com/zief0002/modeling/" class="uri">https://github.com/zief0002/modeling/</a>.</p>
-<p><br></p>
-</section>
-<section id="acknowledgments" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
-<p>Many thanks to all the students in my courses who have been through previous iterations of this material. Your feedback has been invaluable, and you are the world’s greatest copyeditors. In particular, I would like to thank the following students who have gone above and beyond in the feedback they have provided: Jonathan Brown, Pablo Vivas Corrales, Amaniel Mrutu, Corissa Rohloff, and Mireya Smith.</p>
-<p><br></p>
-</section>
-<section id="colophon" class="level2">
-<h2 class="anchored" data-anchor-id="colophon">Colophon</h2>
-<p>Artwork by <a href="https://twitter.com/allison_horst">@allison_horst</a></p>
-<p>Icon and note ideas and prototypes by <a href="http://desiree.rbind.io/">Desirée De Leon</a>.</p>
-<p>The book is typeset using <a href="https://fonts.google.com/specimen/Atkinson+Hyperlegible">Atkinson Hyperlegible</a>. The color palette was generated using <a href="https://coolors.co/">coolors.co</a>.</p>
-<p><strong>Statistical Computing</strong></p>
+<p>The data in <strong>evaluations.csv</strong> come from <span class="citation" data-cites="Hamermesh:2005">Hamermesh &amp; Parker (<a href="#ref-Hamermesh:2005" role="doc-biblioref">2005</a>)</span> and were made available by <span class="citation" data-cites="Gelman:2007">Gelman &amp; Hill (<a href="#ref-Gelman:2007" role="doc-biblioref">2007</a>)</span>. This data were collected from student evaluations of instructors’ beauty and teaching quality for several courses at the University of Texas. The teaching evaluations were conducted at the end of the semester, and the beauty judgments were made later, by six students who had not attended the classes and were not aware of the course evaluations. The variables are:</p>
 <ul>
-<li>Laptop icon made by <a href="https://www.flaticon.com/authors/tomas-knop">Tomas Knop</a> from <a href="https://www.flaticon.com/">www.flaticon.com</a></li>
-<li>Directory icon made by <a href="https://www.flaticon.com/authors/darius-dan">Darius Dan</a> from <a href="https://www.flaticon.com/">www.flaticon.com</a></li>
-<li>Brain icon made by <a href="https://www.flaticon.com/authors/aranagraphics">Aranagraphics</a> from <a href="https://www.flaticon.com/">www.flaticon.com</a></li>
-<li>Internet icon made by <a href="https://www.flaticon.com/authors/freepik">Freepik</a> from <a href="https://www.flaticon.com/">www.flaticon.com</a></li>
+<li><code>prof_id</code>: Professor ID number</li>
+<li><code>avg_eval</code>: Average course rating</li>
+<li><code>num_courses</code>: Number of courses for which the professor has evaluations</li>
+<li><code>num_students</code>: Number of students enrolled in the professor’s courses</li>
+<li><code>perc_evaluating</code>: Average percentage of enrolled students who completed an evaluation</li>
+<li><code>beauty</code>: Measure of the professor’s beauty composed of the average score on six standardized beauty ratings</li>
+<li><code>tenured</code>: Is the professor tenured? (0 = non-tenured; 1 = tenured)</li>
+<li><code>native_english</code>: Is the professor a native English speaker? (0 = non-native English speaker; 1 = native English speaker)</li>
+<li><code>age</code>: Professor’s age (in years)</li>
+<li><code>female</code>: Is the professor female? (0 = not female; 1 = female)</li>
 </ul>
 <p><br></p>
+<section id="preview" class="level3" data-number="24.0.1">
+<h3 data-number="24.0.1" class="anchored" data-anchor-id="preview"><span class="header-section-number">24.0.1</span> Preview</h3>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import Data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>evaluations <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/modeling/main/data/evaluations.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>evaluations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 94 × 10
+   prof_id avg_eval num_courses num_students perc_evaluating  beauty tenured
+     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;           &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1       1     4              4          416            62.0  0.202        0
+ 2       2     3.53           3          104            87.0 -0.826        1
+ 3       3     3.45           2          250            78.5 -0.660        1
+ 4       4     4.01           8          223            84.3 -0.766        1
+ 5       5     4.35           6          331            81.8  1.42         0
+ 6       6     4.44           7         1849            59.8  0.500        1
+ 7       7     3.84           5          191            81.8 -0.214        0
+ 8       8     4.03           7          174            84.6 -0.347        1
+ 9       9     4.26           7          303            73.0  0.0613       0
+10      10     4.56          10          191            82.1  0.453        0
+# ℹ 84 more rows
+# ℹ 3 more variables: native_english &lt;dbl&gt;, age &lt;dbl&gt;, female &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><br></p>
 </section>
-<section id="license" class="level2">
-<h2 class="anchored" data-anchor-id="license">License</h2>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Creative Commons License" class="center-image" style="border-width:0"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
-<p><em>Note:</em> If you want to contribute to this, create a Pull Request or <a href="mailto:%20zief0002@umn.edu">send me an email</a>.) Also, feel free to offer criticism, suggestion, and feedback. You can either <a href="https://github.com/zief0002/modeling/issues">open an issue</a> on the book’s github page or <a href="mailto:%20zief0002@umn.edu">send me an email</a> directly.</p>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="references" class="level3" data-number="24.0.2">
+<h3 data-number="24.0.2" class="anchored" data-anchor-id="references"><span class="header-section-number">24.0.2</span> References</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-thisted2" class="csl-entry" role="listitem">
-Thisted, R. A., &amp; Velleman, P. F. (1992). Computers and modern statistics. In D. C. Hoaglin &amp; D. S. Moore (Eds.), <em>Perspectives on contemporary statistics, <span>MAA</span> notes no. 21</em> (pp. 41–53). Mathematical Association of America.
+<div id="ref-Gelman:2007" class="csl-entry" role="listitem">
+Gelman, A., &amp; Hill, J. (2007). <em>Data analysis using regression and multilevel/hierarchical models</em>. Cambridge University Press.
+</div>
+<div id="ref-Hamermesh:2005" class="csl-entry" role="listitem">
+Hamermesh, D. S., &amp; Parker, A. M. (2005). Beauty in the classroom: Instructors’ pulchritude and putative pedagogical productivity. <em>Economics of Education Review</em>, <em>24</em>, 369–376.
 </div>
 </div>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -948,15 +920,6 @@ Thisted, R. A., &amp; Velleman, P. F. (1992). Computers and modern statistics. I
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./01-00-statistical-computation.html" class="pagination-link" aria-label="Introduction to Statistical Computation">
-        <span class="nav-page-text">Introduction to Statistical Computation</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

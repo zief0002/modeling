@@ -10,7 +10,8 @@ project:
 book:
   title: "Statistical Modeling and Computation for Educational Scientists"
   author: "Andrew Zieffler"
-  date: "`r Sys.Date()`"
+  date: today
+  page-navigation: false
   sidebar:
     search: true
     background: '#443850' #"#9f86c0"
@@ -53,18 +54,19 @@ book:
         - 06-02-more-interaction-effects.qmd
     - part: 07-00-data-codebooks.qmd
       chapters:
-        - 07-01-broadband.qmd
-        - 07-01-comic-characters.qmd
-        - 07-03-fertility.qmd
-        - 07-04-gapminder.qmd
-        - 07-05-keith-gpa.qmd
-        - 07-06-mn-schools.qmd
-        - 07-07-pew.qmd
-        - 07-08-riverview.qmd
-        - 07-09-scoobydoo.qmd
-        - 07-09-spice-girls.qmd
-        - 07-11-state-education.qmd
-        - 07-10-work-demands.qmd
+        - codebooks/broadband.qmd
+        - codebooks/comic-characters.qmd
+        - codebooks/evaluations.qmd
+        - codebooks/fertility.qmd
+        - codebooks/gapminder.qmd
+        - codebooks/keith-gpa.qmd
+        # - codebooks/mn-schools.qmd
+        # - codebooks/pew.qmd
+        # - codebooks/riverview.qmd
+        # - codebooks/scoobydoo.qmd
+        # - codebooks/spice-girls.qmd
+        # - codebooks/state-education.qmd
+        # - codebooks/work-demands.qmd
 
 bibliography: ["assets/modeling.bib", "assets/packages.bib"]
 csl: 'assets/apa-single-spaced.csl'
@@ -75,13 +77,16 @@ format:
       - cosmo
       - "assets/theme.scss"
     css: ["assets/sticky-notes.css", "assets/table-styles.css"]
+    header-includes: |
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     code-copy: true
-    highlight-style: zenburn
-    df-print: paged
-    mainfont: 'Crimson Text'
-    fontsize: '12pt'
+    highlight-style: a11y-dark
+    mainfont: 'Atkinson Hyperlegible'
+    fontsize: '13pt'
     linestretch: '1.5em'
-    linkcolor: '#20a2a3' #"#0099d4"
+    linkcolor: '#c10088' #"#0099d4"
     toc: false
     toc-title: "On This Page"
 editor: source

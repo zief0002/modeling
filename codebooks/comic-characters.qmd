@@ -1,11 +1,11 @@
-## comic-characters.csv {#comic-characters}
+## comic-characters.csv {-}
 
 ```{r}
 #| echo: false
-source("scripts/_common.R")
+source("../scripts/_common.R")
 ```
 
-The data in [comic-characters.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/comic-characters.csv) contains data on 14 attributes for 23,272 comic characters. These data were scraped in 2014 from from [Marvel Wikia](http://marvel.wikia.com/Main_Page) and [DC Wikia](http://dc.wikia.com/wiki/Main_Page) by FiveThirtyEight and used in the story [Comic Books Are Still Made By Men, For Men And About Men](http://fivethirtyeight.com/features/women-in-comic-books/). The variables are:
+The data in **comic-characters.csv** contains data on 14 attributes for 23,272 comic characters. These data were scraped in 2014 from from [Marvel Wikia](http://marvel.wikia.com/Main_Page) and [DC Wikia](http://dc.wikia.com/wiki/Main_Page) by FiveThirtyEight and used in the story [Comic Books Are Still Made By Men, For Men And About Men](http://fivethirtyeight.com/features/women-in-comic-books/). The variables are:
 
 - `character`: The name of the character
 - `comic`: If the character appears in DC Comics or Marvel Comics

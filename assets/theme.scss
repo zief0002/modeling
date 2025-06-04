@@ -29,19 +29,18 @@ body {
 
 // Headings
 h1, h2, h3, h4, h5, h6 {
-  color: #5F634F;
+  color: #000;
   //color: #9f86c0;
 }
 
 .header-section-number {
-  color: #5F634F;
-  //color: #9f86c0;
+  color: #000;
 }
 
 
 // Main text
 p {
-  font-family: 'Crimson Text', serif;
+  font-family: 'Atkinson Hyperlegible', serif;
   line-height: 1.5em;
   margin-top: 1.5em;
   margin-bottom: 1.5em;
@@ -49,7 +48,7 @@ p {
 
 // List elements
 li {
-  font-family: 'Crimson Text', serif;
+  font-family: 'Atkinson Hyperlegible', serif;
   line-height: 1.5em;
 }
 
@@ -60,15 +59,15 @@ li > p {
 
 // Mouse over link
 a:hover {
-  color: #ca054d;
-  //color: darken(#31AFD4, 15%);
+  color: #c10088;
 }
+
 
 // Figure caption
 .figure-caption {
-  font-size: 11pt;
+  font-size: 12pt;
   font-style: italic;
-  color: #595959;
+  color: #000;
   line-height: 1.3em;
   margin-top: 0;
   margin-bottom: 0;
@@ -98,7 +97,7 @@ a:hover {
 }
 
 div.sidebar-item-container .active .chapter-number {
-  color: #b3d3f5;
+  color: #fff;
 }
 
 //Sidebar navigation - RIGHT SIDE
@@ -114,35 +113,33 @@ div.sidebar-item-container .active .chapter-number {
 
 // Nonactive sidebar items
 .sidebar nav[role="doc-toc"] ul > li > a {
-  color: #ffffff;
+  color: #fff;
 }
 
 .sidebar.header-section-number{
-  color: #ffffff;
+  color: #fff;
 }
 
 // Active sidebar item
-.sidebar nav[role="doc-toc"] ul > li > a.active {
-    color: #b3d3f5;
-    border-left: 1px solid #b3d3f5;
-    text-decoration: underline;
+div.sidebar-item-container .active {
+  color: #fff;
 }
 
 
 .sidebar nav[role="doc-toc"] ul > li > a:hover {
-    color: #b3d3f5;
+    color: #fff;
     text-decoration: underline;
 }
 
 .sidebar nav[role="doc-toc"] ul > li > a:hover .header-section-number {
-    color: #b3d3f5;
+    color: #fff;
     text-decoration: underline;
 }
 
 
 // Bottom of the page navigation
 .nav-page .bi, span.nav-page-text {
-  color: #443850;
+  color: #c10088;
 }
 
 
@@ -166,7 +163,7 @@ div.sourceCode {
 .table caption{
   font-style: italic;
   color: black;
-  font-family: 'Crimson Text', serif;
+  font-family: 'Atkinson Hyperlegible', serif;
   font-size: 11px;
 }
 
@@ -182,8 +179,8 @@ div.sourceCode {
 .table thead tr th {
   border-color: black;
   border-width: 1px;
-  font-family: 'Crimson Text', serif;
-  font-size: 11px;
+  font-family: 'Atkinson Hyperlegible', serif;
+  font-size: 12px;
   font-weight: normal;
 }
 
@@ -201,8 +198,8 @@ div.sourceCode {
 /** Format and remove borders within the table body **/
 .table tbody tr td {
   border: none;
-  font-family: 'Crimson Text', serif;
-  font-size: 11px;
+  font-family: 'Atkinson Hyperlegible', serif;
+  font-size: 12px;
 }
 
 
@@ -215,8 +212,8 @@ div.sourceCode {
 /** Format and remove borders within the table footer **/
 .table tfoot {
   border: none;
-  font-family: 'Crimson Text', serif;
-  font-size: 11px;
+  font-family: 'Atkinson Hyperlegible', serif;
+  font-size: 12px;
 }
 
 

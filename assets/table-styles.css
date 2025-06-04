@@ -2,7 +2,7 @@
 .table caption{
   font-style: italic;
   color: black;
-  font-family: 'Crimson Text', serif;
+  font-family: 'Atkinson Hyperlegible', serif;
   font-size: 14px;
 }
 
@@ -18,7 +18,7 @@
 .table thead tr th {
   border-color: black;
   border-width: 1px;
-  font-family: 'Crimson Text', serif;
+  font-family: 'Atkinson Hyperlegible', serif;
   font-size: 14px;
   font-weight: normal;
 }
@@ -35,7 +35,7 @@
 /** Format and remove borders within the table body **/
 .table tbody tr td {
   border: none;
-  font-family: 'Crimson Text', serif;
+  font-family: 'Atkinson Hyperlegible', serif;
   font-size: 14px;
 }
 
@@ -49,6 +49,6 @@
 /** Format and remove borders within the table footer **/
 .table tfoot {
   border: none;
-  font-family: 'Crimson Text', serif;
+  font-family: 'Atkinson Hyperlegible', serif;
   font-size: 14px;
 }

@@ -1,11 +1,11 @@
-## evaluations.csv {#evaluations}
+## evaluations.csv {-}
 
 ```{r}
 #| echo: false
-source("scripts/_common.R")
+source("../scripts/_common.R")
 ```
 
-The data in [evaluations.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/evaluations.csv) come from @Hamermesh:2005 and were made available by @Gelman:2007. This data were collected from student evaluations of instructors' beauty and teaching quality for several courses at the University of Texas. The teaching evaluations were conducted at the end of the semester, and the beauty judgments were made later, by six students who had not attended the classes and were not aware of the course evaluations. The variables are:
+The data in **evaluations.csv** come from @Hamermesh:2005 and were made available by @Gelman:2007. This data were collected from student evaluations of instructors' beauty and teaching quality for several courses at the University of Texas. The teaching evaluations were conducted at the end of the semester, and the beauty judgments were made later, by six students who had not attended the classes and were not aware of the course evaluations. The variables are:
 
 - `prof_id`: Professor ID number
 - `avg_eval`: Average course rating

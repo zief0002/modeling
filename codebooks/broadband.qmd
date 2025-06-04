@@ -1,8 +1,8 @@
-## broadband.csv {#broadband}
+## broadband.csv {-}
 
 ```{r}
 #| echo: false
-source("scripts/_common.R")
+source("../scripts/_common.R")
 ```
 
 Russell Brandom and William Joel in an article for [The Verge](https://www.theverge.com/22418074/broadband-gap-america-map-county-microsoft-data) wrote, 
@@ -11,7 +11,7 @@ Russell Brandom and William Joel in an article for [The Verge](https://www.theve
 
 But, who in America has access to broadband internet? As part of their ongoing work to improve software and service performance and security, Microsoft collected router speed data from individuals who accessed their cloud services. After aggregating and anonymizing these data, they made these data available publicly to help researchers and policymakers understand and improve problems related to broadband access. 
 
-The data in [broadband.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/broadband.csv), collected by Microsoft (2021), give us much better insight as to the true broadband access (defined as internet download speeds of at least 25 Mbps) of Americans as, to date, most studies of broadband access have used data collated by the FCC that is based on individual Internet Service Providers' descriptions of the areas they serve. To better contextualize this, the data have also been augmented with several county-level poverty and education indicators. The variables are:
+The data in **broadband.csv**, collected by Microsoft (2021), give us much better insight as to the true broadband access (defined as internet download speeds of at least 25 Mbps) of Americans as, to date, most studies of broadband access have used data collated by the FCC that is based on individual Internet Service Providers' descriptions of the areas they serve. To better contextualize this, the data have also been augmented with several county-level poverty and education indicators. The variables are:
 
 - `state`: State postal code
 - `county`: County name
