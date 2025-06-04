@@ -1,11 +1,11 @@
-## state-education.csv {#state-education}
+## state-education.csv {-}
 
 ```{r}
 #| echo: false
-source("scripts/_common.R")
+source("../scripts/_common.R")
 ```
 
-This data, stored in [state-education.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/state-education.csv) includes state-level aggregate data on six attributes from academic year 2020-21. The attributes, collected for all 50 states and the District of Columbia, are:
+This data, stored in **state-education.csv** includes state-level aggregate data on six attributes from academic year 2020--21. The attributes, collected for all 50 states and the District of Columbia, are:
 
 - `state`: State name
 - `postal`: State postal code

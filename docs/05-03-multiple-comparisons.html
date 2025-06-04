@@ -409,74 +409,50 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-01-broadband.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">broadband.csv</span></span></a>
+  <a href="./codebooks/broadband.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">broadband.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-01-comic-characters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
+  <a href="./codebooks/comic-characters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">comic-characters.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-03-fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
+  <a href="./codebooks/evaluations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">evaluations.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-04-gapminder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
+  <a href="./codebooks/fertility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fertility.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-05-keith-gpa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
+  <a href="./codebooks/gapminder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">gapminder.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-06-mn-schools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
+  <a href="./codebooks/keith-gpa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">keith-gpa.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-07-pew.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">pew.csv</span></span></a>
+  <a href="./codebooks/mn-schools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">mn-schools.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-08-riverview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-09-scoobydoo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">scoobydoo.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-09-spice-girls.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-11-state-education.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">state-education.csv</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-10-work-demands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
+  <a href="./codebooks/pew.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pew.csv</span></a>
   </div>
 </li>
       </ul>
@@ -509,7 +485,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this chapter, you will learn about why it is important to adjust <em>p</em>-values and confidence intervals when we are comparing more than two groups. You will also learn about familywise error rates and false discovery rates. Finally, you will learn about methods to deal with multiple comparisons. To do so, we will again use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/pew.csv">pew.csv</a> data to examine whether American’s news knowledge differs based on the source of their news (see the <a href="07-07-pew.html">data codebook</a>).</p>
+<p>In this chapter, you will learn about why it is important to adjust <em>p</em>-values and confidence intervals when we are comparing more than two groups. You will also learn about familywise error rates and false discovery rates. Finally, you will learn about methods to deal with multiple comparisons. To do so, we will again use the <strong>pew.csv</strong> data to examine whether American’s news knowledge differs based on the source of their news.</p>
 <p>To begin, we will load several libraries and import the data into an object called <code>pew</code>. We will also fit one of our regression models that allowed us to examine differences in knowledge based on news source, after controlling for differences in age, education level, amount of news consumed, and political engagement.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
@@ -520,7 +496,7 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data and create dummy variables</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>pew <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/modeling/main/data/pew2.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>pew <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/modeling/main/data/pew.csv"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">none    =</span> <span class="fu">if_else</span>(news_source <span class="sc">==</span> <span class="st">"None"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">con     =</span> <span class="fu">if_else</span>(news_source <span class="sc">==</span> <span class="st">"Conservative"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
@@ -746,14 +722,14 @@ P value adjustment: bonferroni method for 6 tests </code></pre>
 </div>
 </div>
 <p>In the <code>$contrasts</code> part of the output, the <em>p</em>-values shown are the Dunn-Bonferroni adjust <em>p</em>-values. . Note that the output in <code>$emmeans</code> section remains exactly the same as when we used <code>adjust="none"</code>. This is because the <code>$emmeans</code> section will always be the model predicted means from the fitted <code>lm()</code>.</p>
-<p>We can display the results of the Dunn-Bonferroni pairwise differences in a table or visualization similar to those we created previously. <a href="#tbl-mult-comp-bonferroni" class="quarto-xref">Table&nbsp;<span>20.1</span></a> shows one such table Note that the adjusted mean values have been updated based on the values from the <code>$emmeans</code> part of the output. (These values should be more exact as we rounded extensively in the computations of these values.)</p>
+<p>We can display the results of the Dunn-Bonferroni pairwise differences in a table or visualization similar to those we created previously. <a href="#tbl-mult-comp-bonferroni" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-mult-comp-bonferroni</span></a> shows one such table Note that the adjusted mean values have been updated based on the values from the <code>$emmeans</code> part of the output. (These values should be more exact as we rounded extensively in the computations of these values.)</p>
 <div id="tbl-mult-comp-bonferroni" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mult-comp-bonferroni-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;20.1: Pairwise contrasts between the average news knowledge for different news sources after controlling for differences in age, education, news consumption, and political engagement. The p-values have been adjusted using the Dunn-Bonferroni method.
 </figcaption>
 <div aria-describedby="tbl-mult-comp-bonferroni-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="uunxztwifa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="qzcjxitgiw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="75%" data-bgcolor="#FFFFFF">
@@ -848,14 +824,14 @@ $contrasts
 P value adjustment: BH method for 6 tests </code></pre>
 </div>
 </div>
-<p>Using this <em>p</em>-value adjustment method, we find 4 statistically discernible differences. These are displayed in <a href="#tbl-mult-comp-bh" class="quarto-xref">Table&nbsp;<span>20.2</span></a>.</p>
+<p>Using this <em>p</em>-value adjustment method, we find 4 statistically discernible differences. These are displayed in <a href="#tbl-mult-comp-bh" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-mult-comp-bh</span></a>.</p>
 <div id="tbl-mult-comp-bh" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mult-comp-bh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;20.2: Pairwise contrasts between the average news knowledge for different news sources after controlling for differences in age, education, news consumption, and political engagement. The p-values have been adjusted using the Benjamini-Hochberg method.
 </figcaption>
 <div aria-describedby="tbl-mult-comp-bh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="pqezszlilu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="wnxgyfjpke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="75%" data-bgcolor="#FFFFFF">

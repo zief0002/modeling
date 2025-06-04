@@ -1,11 +1,11 @@
-## riverview.csv {#riverview}
+## riverview.csv {-}
 
 ```{r}
 #| echo: false
-source("scripts/_common.R")
+source("../scripts/_common.R")
 ```
 
-The data in [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv) come from @Lewis-Beck:2016 and contain five attributes collected from a random sample of $n=32$ employees working for the city of Riverview, a hypothetical midwestern city. The attributes include:
+The data in **riverview.csv** come from @Lewis-Beck:2016 and contain five attributes collected from a random sample of $n=32$ employees working for the city of Riverview, a hypothetical midwestern city. The attributes include:
 
 - `education`: Years of formal education
 - `income`: Annual income (in thousands of U.S. dollars)

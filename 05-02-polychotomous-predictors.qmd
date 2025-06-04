@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will learn about how to include categorical predictors with more than two categories in the regression model. To do so, we will use the [pew.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/pew.csv) data to examine whether American's news knowledge differs based on the source of their news (see the [data codebook](#pew)). To begin, we will load several libraries and import the data into an object called `pew`.
+In this chapter, you will learn about how to include categorical predictors with more than two categories in the regression model. To do so, we will use the **pew.csv** data to examine whether American's news knowledge differs based on the source of their news. To begin, we will load several libraries and import the data into an object called `pew`.
 
 :::fyi
 The **tidyverse** library is a meta-package that includes **dplyr**, **forcats**, **ggplot2**, **purrr**, **readr**, **stringr**, **tibble**, and **tidyr**. Loading **tidyverse** allows you to use all of the functionality in these other packages without having to load eight different packages.
@@ -21,7 +21,7 @@ library(patchwork)
 library(tidyverse)
 
 # Read in data
-pew = read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/pew2.csv")
+pew = read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/pew.csv")
 
 
 # View data

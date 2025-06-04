@@ -2,7 +2,7 @@
 
 ```{r}
 #| echo: false
-source(",,/scripts/_common.R")
+source("../scripts/_common.R")
 ```
 
 The data in **gapminder.csv** contains data on 6 attributes for 193 countries. These data, based on 2017 measures collected by World Bank, were compiled by [gapminder.org](https://www.gapminder.org/) and made available free under the [CC-BY license](https://creativecommons.org/licenses/by/4.0/). The variables are:

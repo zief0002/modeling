@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will learn about why it is important to adjust *p*-values and confidence intervals when we are comparing more than two groups. You will also learn about familywise error rates and false discovery rates. Finally, you will learn about methods to deal with multiple comparisons. To do so, we will again use the [pew.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/pew.csv) data to examine whether American's news knowledge differs based on the source of their news (see the [data codebook](#pew)). 
+In this chapter, you will learn about why it is important to adjust *p*-values and confidence intervals when we are comparing more than two groups. You will also learn about familywise error rates and false discovery rates. Finally, you will learn about methods to deal with multiple comparisons. To do so, we will again use the **pew.csv** data to examine whether American's news knowledge differs based on the source of their news. 
 
 To begin, we will load several libraries and import the data into an object called `pew`. We will also fit one of our regression models that allowed us to examine differences in knowledge based on news source, after controlling for differences in age, education level, amount of news consumed, and political engagement. 
 
@@ -19,7 +19,7 @@ library(ggridges)
 library(tidyverse)
 
 # Read in data and create dummy variables
-pew = read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/pew2.csv") |>
+pew = read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/pew.csv") |>
   mutate(
     none    = if_else(news_source == "None", 1, 0),
     con     = if_else(news_source == "Conservative", 1, 0),

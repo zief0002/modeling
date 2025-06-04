@@ -1,11 +1,11 @@
-## spice-girls.csv {#spicegirls}
+## spice-girls.csv {-}
 
 ```{r}
 #| echo: false
-source("scripts/_common.R")
+source("../scripts/_common.R")
 ```
 
-The data in [spice-girls.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/spice_girls.csv) contain five attributes about the Spice Girls. The attributes include:
+The data in **spice-girls.csv** contain five attributes about the Spice Girls. The attributes include:
 
 - `spice_name`: Nickname of the Spice Girl
 - `age`: Age the Spice Girl joined the band

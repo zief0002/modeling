@@ -1,11 +1,11 @@
-## work-demands.csv {#work}
+## work-demands.csv {-}
 
 ```{r}
 #| echo: false
-source("scripts/_common.R")
+source("../scripts/_common.R")
 ```
 
-Research has documented the importance of a healthy work-life balance. The data in [work-demands.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/work-demands.csv) were simulated to mimic the effects of receiving work-related contact outside of normal work hours found in the literature on psychological outcomes. The variables in the data are:
+Research has documented the importance of a healthy work-life balance. The data in **work-demands.csv** were simulated to mimic the effects of receiving work-related contact outside of normal work hours found in the literature on psychological outcomes. The variables in the data are:
 
 - `guilt`: Measure of guilt (as a transitory affective state) related to home-life balance. This was measured using survey questions such as,  "In the past seven days, on how many  days  have  you  felt  guilty?" Higher values indicate more perceived guilt.
 - `contact`: Measure of work contact/demands outside of normal working hours. Measured using survey items such as, "how  often  do  coworkers,  supervisors, managers, customers, or clients contact you about work-related  matters  outside  normal  work  hours?". Higher values indicate higher degrees of boundary-spanning work demands.

@@ -1,11 +1,11 @@
-## mn-schools.csv {#mn-schools}
+## mn-schools.csv {-}
 
 ```{r}
 #| echo: false
-source("scripts/_common.R")
+source("../scripts/_common.R")
 ```
 
-The data in [mnSchools.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/mn-schools.csv) were collected from [http://www.collegeresults.org](http://www.collegeresults.org) and contain 2011 institutional data for $n=33$ Minnesota colleges and universities. The attributes include:
+The data in **mnSchools.csv** were collected from <http://www.collegeresults.org> and contain 2011 institutional data for $n=33$ Minnesota colleges and universities. The attributes include:
 
 - `name`: College/university name
 - `grad`: Six-year graduation rate (as a percentage)
