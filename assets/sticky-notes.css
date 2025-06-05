@@ -75,21 +75,15 @@
   
 /* -----------Yellow Interpretation Note------------- */
 
-.interpret {
+.codeout {
   padding: 1em;
   margin: 1em 0;
-  padding-left: 100px;
-  background-image: url("../img/interpret.png");
+  padding-left: 10;
   background-size: 70px;
   background-repeat: no-repeat;
   background-position: 15px 50%;
   min-height: 120px;
-  color: #264653;
-  background-color: #fffeaaab;
-  border: solid 3px #264653;
-  border-radius: 25px;
+  background-color: #f2f0ef;
+  font-family: $monofont;
   }  
 
-.interpret h5{
-  margin-bottom: -20px;
-}

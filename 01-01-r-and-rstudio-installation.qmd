@@ -3,10 +3,11 @@
 In this chapter, we will walk you through the process of installing R and the desktop version of RStudio. Although you will need to install both R and RStudio, once they are installed you will only interact with RStudio when you compute. 
 
 ```{r}
-#| echo: false
+#| label: fig-workflow
 #| out-width: "60%"
 #| fig-cap: "Workflow for using R: Once both applications are installed on you computer, you will only interact with R through RStudio."
 #| fig-alt: "Workflow for using R: Once both applications are installed on you computer, you will only interact with R through RStudio."
+#| echo: false
 
 knitr::include_graphics("figs/01-01-rstudio-and-r.png")
 ```
@@ -71,10 +72,11 @@ Then,
 From your Applications or Programs folder, open RStudio. If you have successfully downloaded both programs, this should open the application and you should see a message indicating that you are using "R version 4.5.0" (or whichever version of R you installed) in the console pane.
 
 ```{r}
-#| echo: false
+#| label: fig-open
 #| out-width: "100%"
 #| fig-cap: "Once you open RStudio, you should see a message indicating that you are using the version of R that you installed in the console pane (here version 4.1.1). Here the console pane is on the left-side, but it may be in a different location for you. Your RStudio may also have a white background rather than the black background seen here."
 #| fig-alt: "Once you open RStudio, you should see a message indicating that you are using the version of R that you installed in the console pane (here version 4.1.1). Here the console pane is on the left-side, but it may be in a different location for you. Your RStudio may also have a white background rather than the black background seen here."
+#| echo: false
 
 knitr::include_graphics("figs/01-01-opening-rstudio.png")
 ```
@@ -87,10 +89,11 @@ knitr::include_graphics("figs/01-01-opening-rstudio.png")
 While the information in this section is not crucial for making things work, it is useful to get RStudio looking good and setting some default settings. Open the `Tools > Options` menu (Windows) or `RStudio > Preferences` (Mac). 
 
 ```{r}
-#| echo: false
+#| label: fig-options
 #| fig-cap: "The RStudio options/preferences menu has many settings to customize RStudio."
 #| fig-alt: "The RStudio options/preferences menu has many settings to customize RStudio."
 #| out-width: "50%"
+#| echo: false
 
 knitr::include_graphics("figs/01-01-options.png")
 ```

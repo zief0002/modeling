@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-42960d1493bdc3a4b014a12005315b74.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -496,7 +496,7 @@ window.Quarto = {
 
 
 <p>In this chapter, you will be learn about how to use functionality from the <code>{dplyr}</code> package to wrangle your data. Data wrangling is the catchall phrase that includes the processes of cleaning, structuring, and summarizing your data. It is a skill that every educational scientist needs to have in their computational toolkit!</p>
-<p>We will use the <a href="https://raw.githubusercontent.com/zief0002/epsy-8251/main/data/comic-characters.csv">comic-characters.csv</a> data (see the <a href="#comic-characters">data codebook</a>) to illustrate how to use several data wrangling functions in order to answer a set of research questions about LGBTQ representation in comics.</p>
+<p>We will use the <strong>comic-characters.csv</strong> data to illustrate how to use several data wrangling functions in order to answer a set of research questions about LGBTQ representation in comics.</p>
 <div class="fyi">
 <p><strong>Research Questions</strong></p>
 <ul>
@@ -648,94 +648,15 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 </section>
 <section id="common-dplyr-functions-for-data-wrangling" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="common-dplyr-functions-for-data-wrangling"><span class="header-section-number">4.2</span> Common dplyr Functions for Data Wrangling</h2>
-<p>Here are some common operations that researchers use to prepare data for analysis (i.e., data preparation, data wrangling, data cleaning) and the corresponding <code>{dplyr}</code> functions.</p>
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- data.frame( -->
-<!--   operation = c( -->
-<!--     "Select a subset of rows from a data frame.", -->
-<!--     "Select a subset of columns from a data frame.", -->
-<!--     "Add new columns to a data frame.", -->
-<!--     "Sort and re-order data in a data frame.", -->
-<!--     "Compute summaries of columns in a data frame.", -->
-<!--     "Group the data to carry out computations for each group." -->
-<!--   ), -->
-<!--   computation = c("`filter()`", "`select()`", "`mutate()`", "`arrange()`", "`summarize()`", "`group_by()`") -->
-<!-- ) |>   -->
-<!--   kable( -->
-<!--     format = "markdown", -->
-<!--     caption = "Common data wrangling activities and the corresponding `{dplyr}` functions.", -->
-<!--     col.names = c("Data wrangling activity", "dplyr function"), -->
-<!--     align = c("l", "l"), -->
-<!--     table.attr = "style='width:60%;'", -->
-<!--     escape = TRUE -->
-<!--   ) -->
-<!-- ``` -->
-<table style="width:90%;" class="table">
-<caption>
-Table 1<br>Common data wrangling activities and the corresponding <code>{dplyr}</code> functions.
-</caption>
-<thead>
-<tr>
-<th style="text-align:left; width:70%;" id="activity">
-Data wrangling activity
-</th>
-<th style="text-align:left; width: 30%;" id="dplyr">
-dplyr function
-</th>
-</tr>
-</thead>
-<tbody>
-<tr style="border-bottom: 1px solid black;">
-<td style="text-align:left;" headers="activity">
-Select a subset of rows from a data frame.
-</td>
-<td style="text-align:left;" headers="dplyr">
-<code>filter()</code>
-</td>
-</tr>
-<tr style="border-bottom: 1px solid black;">
-<td style="text-align:left;" headers="activity">
-Select a subset of columns from a data frame.
-</td>
-<td style="text-align:left;" headers="dplyr">
-<code>select()</code>
-</td>
-</tr>
-<tr style="border-bottom: 1px solid black;">
-<td style="text-align:left;" headers="activity">
-Add new columns to a data frame.
-</td>
-<td style="text-align:left;" headers="dplyr">
-<code>mutate()</code>
-</td>
-</tr>
-<tr style="border-bottom: 1px solid black;">
-<td style="text-align:left;" headers="activity">
-Sort and re-order data in a data frame.
-</td>
-<td style="text-align:left;" headers="dplyr">
-<code>arrange()</code>
-</td>
-</tr>
-<tr style="border-bottom: 1px solid black;">
-<td style="text-align:left;" headers="activity">
-Compute summaries of columns in a data frame.
-</td>
-<td style="text-align:left;" headers="dplyr">
-<code>summarize()</code>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;" headers="activity">
-Group the data to carry out computations for each group.
-</td>
-<td style="text-align:left;" headers="dplyr">
-<code>group_by()</code>
-</td>
-</tr>
-</tbody>
-</table>
+<p>Here are some common operations that researchers use to prepare data for analysis (i.e., data preparation, data wrangling, data cleaning) and the corresponding <code>{dplyr}</code> functions:</p>
+<ul>
+<li><code>filter()</code>: Select a subset of rows from a data frame.</li>
+<li><code>select()</code>: Select a subset of columns from a data frame.</li>
+<li><code>mutate()</code>: Add new columns to a data frame.</li>
+<li><code>arrange()</code>: Sort and re-order data in a data frame.</li>
+<li><code>summarize()</code>: Compute summaries of columns in a data frame.</li>
+<li><code>group_by()</code>: Group the data to carry out computations for each group.</li>
+</ul>
 <p><br></p>
 </section>
 <section id="sorting-the-data-arranging" class="level2" data-number="4.3">
@@ -1150,7 +1071,7 @@ Caused by error:
 #   first_appear_date &lt;chr&gt;, first_appear_year &lt;dbl&gt;, num_years &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<div class="protip">
+<div class="fyi">
 <p><strong>PROTIP</strong></p>
 <p>If you are running this in the console, the <code>num_years</code> column won’t be displayed because of the default printing options for tibbles; the new column is created, just not displayed. To view it, we can use the <code>print()</code> function with the argument <code>width=Inf</code>, which displays all columns in the tibble.</p>
 <div class="cell" data-layout-align="center">
@@ -1194,8 +1115,8 @@ Caused by error:
 </div>
 </div>
 <p>Note that the <code>mean()</code> function includes the optional argument <code>na.rm=TRUE</code> which allows the mean computation when there are <code>NA</code> values; it tells the <code>mean()</code> function to remove the NAs in the computation. (If you didn’t remove the NAs, the result of the computation would be an <code>NA</code>.)</p>
-<div class="protip">
-<p><strong>PROTIP</strong></p>
+<div class="fyi">
+<p><strong>FYI</strong></p>
 <p>If you want to continue to use the newly created columns, you need to assign the output into an object. If you do not assign the output into an object, the data with the new columns is printed to the screen and then the new columns are promptly “forgotten” by R. If you are sure of your syntax, you can re-assign the data into the original object. Here we create the new columns and re-assign this into the <code>comics</code> object.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add two new columns and re-assign to 'comics'</span></span>

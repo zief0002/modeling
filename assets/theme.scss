@@ -8,6 +8,8 @@ $font-weight-base: 400 !default;
 $link-decoration: underline !default;
 $toc-color: #b3d3f5;  /*-- Set active link color for TOC sidebar (RIGHT) --*/
 
+//figure and table caption color
+$body-secondary: #595959;
 
 
 /*-- scss:rules --*/
@@ -157,6 +159,10 @@ div.sidebar-item-container .active {
 // Style source code
 div.sourceCode {
  border-radius: 0; 
+}
+
+a.uri {
+  word-break: break-word; 
 }
 
 /** Make the caption italic and black 

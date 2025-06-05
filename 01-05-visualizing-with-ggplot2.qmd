@@ -8,7 +8,7 @@ source("scripts/_common.R")
 
 In this chapter, you will be learn about how to use functionality from the `{ggplot2}` package to visualize your data. Data visualization helps you identify trends in your data. It can also help you find unexpected observations or patterns you might miss in the raw numbers themselves. Visualization is an important step in almost every data analysis and is often all you need to draw meaningful conclusions about the data!
 
-We will use the [gapminder.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/gapminder.csv) data (see the [data codebook](#gapminder)) to illustrate how to create and modify visualizations using functionality in `{ggplot2}`.
+We will use the **gapminder.csv** data to illustrate how to create and modify visualizations using functionality in `{ggplot2}`.
 
 To begin, we will load the `{dplyr}`, `{ggplot2}` and `{readr}` libraries, and import the data into an object called `gapminder`.
 
@@ -216,7 +216,7 @@ Aesthetic mappings can also be set locally in a specific layer. Aesthetic mappin
 #| fig-alt: "The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
+#| out-width: '80%'
 
 # Aesthetic mappings for x- and y-position are global
 # Aesthetic mapping for color only applies to the points layer
@@ -244,7 +244,7 @@ Fixed aesthetics assign the exact same value for the visual property for **all**
 #| fig-alt: "The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
+#| out-width: '80%'
 
 # Aesthetic mappings for x- and y-position are global
 # Aesthetic mapping for fill only applies to the points layer
@@ -301,7 +301,7 @@ To facet on multiple attributes, use `facet_grid()` rather than `facet_wrap()`. 
 #| fig-alt: "Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007."
 #| fig-width: 4
 #| fig-height: 8
-#| out-width: '70%'
+#| out-width: '80%'
 
 # Facet: regions in rows; 
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
@@ -405,7 +405,7 @@ In an earlier example, we used the `fill=` mapping to fill the points using the 
 #| label: fig-color
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '70%'
+#| out-width: '80%'
 #| fig-cap: "Color palette set manually using named color values."
 #| fig-alt: "Color palette set manually using named color values."
 # Specify fill colors using color names
@@ -430,7 +430,7 @@ Instead of relying on alphabetical order, we can also assign a specific color to
 #| fig-alt: "Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the `scale_fill_manula()` layer."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '70%'
+#| out-width: '80%'
 
 # Specify fill colors using color names and assign them to regions
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
@@ -469,7 +469,7 @@ Using the RGB color model, we can obtain 16,777,216 different colors! To specify
 #| fig-alt: "Color palette set manually using RGB triplets."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '70%'
+#| out-width: '80%'
 
 # Specify fill colors using RGB color model
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
@@ -508,7 +508,7 @@ When we specify hex notation as a color in R, the six-digit color value is alway
 #| fig-alt: "Color palette set manually using hex notation."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '70%'
+#| out-width: '80%'
 
 # Specify fill colors using hex notation
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
@@ -535,11 +535,44 @@ Using lower-case letters in the hex notation would also work. Just remember to a
 
 ## Selecting a Color Palette
 
-Selecting a color palette can be challenging. It should be aesthetically pleasing, but needs to convey the differences and nuances in the data that you are using color to display. In addition, roughly 8% of males and 0.5% of females have some form of color vision deficiency which will affect how they see and interpret the plot. Here are a few resources for thinking about color palettes:
+Selecting a color palette can be challenging. It should be aesthetically pleasing, but needs to convey the differences and nuances in the data that you are using color to display. Here are a few resources for thinking about color palettes:
 
 -   [Picking a Colour Scale for Scientific Graphics](https://betterfigures.org/2015/06/23/picking-a-colour-scale-for-scientific-graphics/)
 -   [Color Universal Design (CUD): How to Make Figures and Presentations that are Friendly to Colorblind People](http://jfly.iam.u-tokyo.ac.jp/color/)
 -   [Color Palettes in R](https://github.com/EmilHvitfeldt/r-color-palettes)
+
+
+One good set of color palettes are the [Brewer palettes](https://colorbrewer2.org/). These palettes were chosen by Cynthia Brewer, a cartographer and artist, to be both colorblind friendly and aesthetically pleasing. Moreover, the palettes were designed to help humans make sense of the visualized data based on how we perceive the colors that are displayed. She has palettes for three different types of data
+
+-   **Qualitative/Categorical:** Colors do not have a perceived order
+-   **Sequential:** Colors have a perceived order and perceived difference between successive colors is uniform
+-   **Diverging:** Two back-to-back sequential palettes starting from a common color (e.g., for Likert scale data)
+
+Martin Krzywinski has written a [very readable introduction](http://mkweb.bcgsc.ca/brewer/) to the Brewer color palettes.
+
+<br />
+
+
+### Accessible Color Palettes
+
+You will also want to think about accessibility in your choice of color palette. Roughly 8% of males and 0.5% of females have some form of color vision deficiency which will affect how they see and interpret the plot.  One good palette for colorblindness is the Okabe Ito palette.
+
+```{r}
+#| label: fig-brewer
+#| fig-cap: "Okabe Ito colorblind-friendly palette."
+#| fig-alt: "Okabe Ito colorblind-friendly palette. Colors include #000000, #e69f00, #56b4e9, #009e73, #f0e442, #0072b2, #d55e00, and #cc79a7."
+#| echo: false
+#| out-width: "100%"
+
+knitr::include_graphics("figs/01-05-okabe-ito-palette.png")
+```
+
+Also, the new Federal accessibility law requires certain levels of color contrast. Although this applies mainly to text color, thinking about color contrasts is good practice. You can check the contrast of two colors at <https://contrast-ratio.org/>.
+
+<br />
+
+
+### Organizational Color Palettes
 
 If you are creating visualizations for a particular organization, there may be a palette of official colors associated with their brand. For example, the University of Minnesota's two official primary colors in hex notation (for electronic display) are:
 
@@ -551,92 +584,9 @@ You can see more on the [University Relations Colors and Type](https://universit
 <br />
 
 
-### Pre-Selected Color Palettes
+### Packages with Color Palettes
 
-There are several "built-in" palettes available for use in `{ggplot2}`.
-
-<table style='width:90%;' class="table">
-<caption>Table 1<br/>Built-in palettes in `{ggplot2}`.</caption>
- <thead>
-  <tr>
-   <th style="text-align:left; width:30%;" id="fill">Fill Scale</th>
-   <th style="text-align:left; width: 30%;" id="color">Color Scale</th>
-   <th style="text-align:left; width: 40%;" id="desc">Description</th>
-  </tr>
- </thead>
-<tbody>
-  <tr style="border-bottom: 1px solid black;">
-   <td style="text-align:left;" headers="fill"> `scale_fill_hue()` </td>
-   <td style="text-align:left;" headers="color"> `scale_color_hue()` </td>
-   <td style="text-align:left;" headers="desc"> Colors evenly spaced around the color wheel </td>
-  </tr>
-  <tr style="border-bottom: 1px solid black;">
-   <td style="text-align:left;" headers="fill"> `scale_fill_grey()` </td>
-   <td style="text-align:left;" headers="color"> `scale_color_grey()` </td>
-   <td style="text-align:left;" headers="desc"> Grey scale palette </td>
-  </tr>
-  <tr style="border-bottom: 1px solid black;">
-   <td style="text-align:left;" headers="fill"> `scale_fill_brewer()` </td>
-   <td style="text-align:left;" headers="color"> `scale_color_brewer()` </td>
-   <td style="text-align:left;" headers="desc"> ColorBrewer palettes </td>
-  </tr>
-</tbody>
-</table>
-
-If you do not specify the colors to use, the plots created in`{ggplot2}` will default to a palette that is evenly spaced around the color wheel. To use one of the other built-in palettes, we use the appropriate scale from the table above instead of the `scale_fill_manual()` or `scale_color_manual()` layer.
-
-For example, to use a greyscale color palette, useful if you are printing in black-and-white, we can use the following syntax:
-
-```{r}
-#| label: fig-greyscale
-#| fig-cap: "Greyscale color palette good for black-and-white printing."
-#| fig-alt: "Greyscale color palette good for black-and-white printing."
-#| fig-width: 8
-#| fig-height: 6
-#| out-width: '60%'
-
-# Specify greyscale for fill colors
-ggplot(data = gapminder, aes(x = income, y = co2)) +  
-  geom_smooth() +
-  geom_point(shape = 21, size = 4, aes(fill = region)) +
-  scale_fill_grey()
-```
-
-Another set of built-in palettes are the [Brewer palettes](https://colorbrewer2.org/). These paleetes were chosen by Cynthia Brewer, a cartographer and artist, to be both colorblind friendly and aesthetically pleasing. Moreover, the palettes were designed to help humans make sense of the visualized data based on how we perceive the colors that are displayed. Martin Krzywinski has written a [very readable introduction](http://mkweb.bcgsc.ca/brewer/) to the Brewer color palettes that I recommend.
-
-She has palettes for three different types of data
-
--   **Qualitative/Categorical:** Colors do not have a perceived order
--   **Sequential:** Colors have a perceived order and perceived difference between successive colors is uniform
--   **Diverging:** Two back-to-back sequential palettes starting from a common color (e.g., for Likert scale data)
-
-```{r}
-#| label: fig-brewer
-#| fig-cap: "Brewer color palettes"
-#| fig-alt: "Brewer color palettes"
-#| echo: false
-
-knitr::include_graphics("figs/01-05-color-brewer-palette.png")
-```
-
-To use one of Cynthia Brewer's color palettes, we employ `scale_color_brewer()` or `scale_fill_brewer()`. Within these functions, we need to specify a palette using the `palette=` argument. The palette names can be found at <https://colorbrewer2.org/>. In our example, the region values constitute qualitative/categorical data, so we could choose any of the qualitative color palettes. To use the qualitative color palette called "Set1" we use:
-
-```{r}
-#| label: fig-brewer2
-#| fig-cap: "Set1 qualitative color palette from the Brewer color palette."
-#| fig-alt: "Set1 qualitative color palette from the Brewer color palette."
-#| fig-width: 8
-#| fig-height: 6
-#| out-width: '60%'
-
-# Specify Brewer color palette (qualitative, Set 1)
-ggplot(data = gapminder, aes(x = income, y = co2)) +  
-  geom_smooth() +
-  geom_point(shape = 21, size = 4, aes(fill = region)) +
-  scale_fill_brewer(palette = "Set2")
-```
-
-Finally, we note that there are several packages that can extend the number of built-in color palettes. Some of my favorite extension packages include:
+There are several packages that include functions with built-in color palettes. Some of my favorite extension packages include:
 
 -   `{ggthemes}` includes palettes used by FiveThirtyEight and Tableau \[see [here](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/)\];
 -   `{wesanderson}` includes palettes based on Wes Anderson movies \[see [here](https://github.com/karthik/wesanderson)\]; and
@@ -644,64 +594,6 @@ Finally, we note that there are several packages that can extend the number of b
 
 Emil Hvitfeldt has also put together a package called `{paletteer}`, that includes a comprehensive collection of color palettes in R that can be called using a common interface \[see [here](https://github.com/EmilHvitfeldt/r-color-palettes)\].
 
-```{r}
-#| code-fold: true
-#| fig-width: 8
-#| fig-height: 6
-#| fig-show: hold
-#| fig-cap: "FiveThirtyEight color palette from the `{ggthemes}` package."
-#| fig-alt: "FiveThirtyEight color palette from the `{ggthemes}` package."
-
-# Load libraries
-library(ggthemes)
-
-# FiveThirtyEight fill colors
-ggplot(data = gapminder, aes(x = income, y = co2)) +  
-  geom_smooth() +
-  geom_point(shape = 21, size = 4, aes(fill = region)) +
-  scale_fill_fivethirtyeight()
-```
-
-```{r}
-#| label: fig-wesanderson
-#| fig-cap: "BottleRocket2 color palette from the `{wesanderson}` package."
-#| fig-alt: "BottleRocket2 color palette from the `{wesanderson}` package."
-#| code-fold: true
-#| fig-width: 8
-#| fig-height: 6
-#| fig-show: hold
-
-# Load libraries
-library(wesanderson)
-
-
-# BottleRocket2 fill colors
-ggplot(data = gapminder, aes(x = income, y = co2)) +  
-  geom_smooth() +
-  geom_point(shape = 21, size = 4, aes(fill = region)) +
-  scale_fill_manual(values = wes_palette(name = "BottleRocket2", n = 4))
-```
-
-```{r}
-#| label: fig-park
-#| fig-cap: "Acadia color palette from the `{nationalparks}` package."
-#| fig-alt: "Acadia color palette from the `{nationalparks}` package."
-#| code-fold: true
-#| fig-width: 8
-#| fig-height: 6
-#| fig-show: hold
-
-
-# Load libraries
-library(nationalparkcolors)
-
-
-# Acadia fill colors
-ggplot(data = gapminder, aes(x = income, y = co2)) +  
-  geom_smooth() +
-  geom_point(shape = 21, size = 4, aes(fill = region)) +
-  scale_fill_manual(values = park_palette("Acadia", n = 4))
-```
 
 <br />
 
@@ -712,11 +604,11 @@ Scaling functions can also be used to change the name and labels in the legend o
 
 ```{r}
 #| label: fig-legend
-#| fig-cap: "Set1 qualitative color palette from the Brewer color palette."
-#| fig-alt: "Set1 qualitative color palette from the Brewer color palette."
+#| fig-cap: "Customizing the legend with the `labels=` argument in `scale_color_manual()`."
+#| fig-alt: "Customizing the legend with the `labels=` argument in `scale_color_manual()`."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
+#| out-width: '80%'
 
 
 # Specify Brewer color palette (qualitative, Set 1)
@@ -742,7 +634,7 @@ There are several "built-in" themes that you can use to change the look of your 
 #| fig-alt: "Using the `theme_minimal()` layer to update the look of the plot."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
+#| out-width: '80%'
 
 
 # Using the `theme_minimal()` layer to update the look of the plot
@@ -770,7 +662,7 @@ The `{ggthemes}` package includes 20 additional themes that you can use to style
 #| fig-alt: "Using the `theme_wsj()` layer from the `{ggthemes}` package to update the look of the plot to look like plots in the Wall Street Journal."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
+#| out-width: '80%'
 
 
 # Load library
@@ -797,11 +689,11 @@ The `theme()` layer can be used to change every element in the plot (e.g., grid 
 
 ```{r}
 #| label: fig-theme-custom
-#| fig-cap: "You can customize almost any part of the theme using the `theme()` layer. In this plot we changed the font face and color on the axes labels."
-#| fig-alt: "You can customize almost any part of the theme using the `theme()` layer. In this plot we changed the font face and color on the axes labels."
+#| fig-cap: "You can customize almost any part of the theme using the `theme()` layer. In this plot we changed the font color on the x-axis label and increased the font size of all the text elements in the plot."
+#| fig-alt: "You can customize almost any part of the theme using the `theme()` layer. In this plot we changed the font color on the x-axis label and increased the font size of all the text elements in the plot."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
+#| out-width: '80%'
 
 
 # Using the `theme_minimal()` layer to update the look of the plot
@@ -816,7 +708,7 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
   theme_minimal() +
   theme(
     axis.title.x = element_text(face = "bold", color = "blue"),
-    axis.title.y = element_text(face = "italic")
+    text = element_text(size = 20)
   )
 ```
 
@@ -828,7 +720,7 @@ The `theme()` function can also be used to create your own `{ggplot2}` theme. Th
 #| fig-alt: "You can also create your own theme to use with any plot."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
+#| out-width: '80%'
 
 
 # Create theme_andy()
@@ -847,7 +739,9 @@ theme_andy = function() {
     axis.title = element_text(colour = "#5b0013", family = "Times New Roman"),
     axis.ticks = element_line(colour = "#5b0013"),
     # legend at the bottom
-    legend.position = "bottom"
+    legend.position = "bottom",
+    text = element_text(size = 20)
+    
   )
 }
 
@@ -875,6 +769,7 @@ There are several packages that extend the functionality of `{ggplot2}`. Many of
 #| fig-cap: "Extensions are available at the ggplot2 extensions website."
 #| fig-alt: "Extensions are available at the ggplot2 extensions website."
 #| echo: false
+#| out-width: "100%"
 
 knitr::include_graphics("figs/01-05-ggplot-extensions.png")
 ```
@@ -889,7 +784,7 @@ Here we add
 #| fig-alt: "The `{scales}` package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
+#| out-width: '80%'
 
 # Load library
 library(scales)
@@ -932,7 +827,7 @@ Here is one workflow for saving plots, importing the saved plot into your word-p
 -   Click `Save`
 -   In Word or Google Docs, import the image from where you saved it.
 -   Resize the image to take up less space if you can. (It needs to be readable, but not too big.)
--   Add the figure number and caption using your word-processing document. :::
+-   Add the figure number and caption using your word-processing document.
 
 <br />
 

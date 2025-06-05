@@ -13,6 +13,7 @@ There are four main windows (called *panes*) that we will use in RStudio. (You m
 #| fig-cap: "The functions for each of the four RStudio panes is explained via a cooking metaphor."
 #| fig-alt: "The functions for each of the four RStudio panes is explained via a cooking metaphor." 
 #| echo: false
+
 knitr::include_graphics("figs/02-01-rstudio-cooking-metaphor.jpg")
 ```
 
@@ -28,10 +29,12 @@ One method of computing in RStudio is to run syntax directly in the RStudio cons
 The `>` symbol in the console pane is called the "R prompt" and is prompting you to enter syntax. After you enter any syntax, you hit the `<return>` or `<enter>` key to execute the syntax.
 
 ```{r}
-#| echo: false
-#| out-width: "60%"
+#| label: fig-console
 #| fig-cap: "The console pane in RStudio is one way to compute with R. Syntax is entered at the R prompt and executed by hitting the <return> or <enter> key."
 #| fig-alt: "The console pane in RStudio is one way to compute with R. Syntax is entered at the R prompt and executed by hitting the <return> or <enter> key."
+#| echo: false
+#| out-width: "70%"
+
 knitr::include_graphics("figs/01-02-console.png")
 ```
 
@@ -88,10 +91,11 @@ A second method of computing in RStudio is to use a script file. Using a script 
 
 
 ```{r}
-#| echo: false
-#| out-width: "90%"
+#| label: fig-script
 #| fig-cap: "LEFT: Create a new script file using RStudio's `File` menu. RIGHT: Create a new script file by clicking on the `New File` icon in the toolbar."
 #| fig-alt: "LEFT: Create a new script file using RStudio's `File` menu. RIGHT: Create a new script file by clicking on the `New File` icon in the toolbar."
+#| echo: false
+#| out-width: "90%"
 knitr::include_graphics("figs/01-02-new-script-file.png")
 ```
 
@@ -103,10 +107,11 @@ Script files should only include your R syntax and comments. Script files should
 Comments, which are human-readable annotations or explanations of the syntax, are written using the hashtag (`#`). These can be placed on their own line in the script file, or can be placed at the end of a line with syntax. The comment continues until you hit the <enter> key. Comments help other people understand your syntax and also act as a reminder for the future you of what your code actually does. Get is the habit of including comments in your syntax. Not only is it good coding practice, but it also will help you become familiar with and learn the R syntax as you describe the purpose of the syntax you are writing.
 
 ```{r}
-#| echo: false
-#| out-width: "60%"
+#| label: fig-script2
 #| fig-cap: "Example script file with comments."
 #| fig-alt: "Example script file with comments."
+#| echo: false
+#| out-width: "70%"
 
 knitr::include_graphics("figs/01-02-script-file.png")
 ```
@@ -121,10 +126,11 @@ Script files can be saved and opened the same as any other document. So, no more
 Not only does the script file record your syntax, but it can also act as the vehicle from which you run your R syntax. Syntax in the script file can be executed by highlighting it and pressing the `Run` button in the toolbar. You can run one line at a time, or highlight multiple lines and execute all of them sequentially. 
 
 ```{r}
-#| echo: false
-#| out-width: "80%"
+#| label: fig-execute
 #| fig-cap: "To execute syntax from the script file, highlight the syntax you want to run and then click the `Run` button in the toolbar."
 #| fig-alt: "To execute syntax from the script file, highlight the syntax you want to run and then click the `Run` button in the toolbar."
+#| echo: false
+#| out-width: "80%"
 
 knitr::include_graphics("figs/01-02-run-script.png")
 ```
@@ -139,10 +145,11 @@ Writing syntax directly in the script file and running it is a groovy workflow f
 Almost all commands in R are built around the use of a function. Functions carry out operations on their inputs (called *arguments*) and produce an output (called a *returned value*).
 
 ```{r}
-#| echo: false
-#| out-width: "60%"
+#| label: fig-functions
 #| fig-cap: "LEFT: Arguments are inputted into a function which returns an output. RIGHT: The value 25 is inputted into the square root function which returns the value of 5."
 #| fig-alt: "LEFT: Arguments are inputted into a function which returns an output. RIGHT: The value 25 is inputted into the square root function which returns the value of 5."
+#| echo: false
+#| out-width: "70%"
 
 knitr::include_graphics("figs/01-02-function-machine.png")
 ```
@@ -297,10 +304,11 @@ prod(sadie)
 In RStudio you can see which objects are in your working environment by examining the `Environment` pane.
 
 ```{r}
-#| echo: false
-#| out-width: "40%"
+#| label: fig-environment
 #| fig-cap: "The enivironment pane shows the objects in the R working environment. It also displays the object's class and gives a preview of the the contents."
 #| fig-alt: "The enivironment pane shows the objects in the R working environment. It also displays the object's class and gives a preview of the the contents."
+#| echo: false
+#| out-width: "60%"
 
 knitr::include_graphics("figs/01-02-environment.png")
 ```
@@ -325,10 +333,11 @@ chili = seq(from = 1, to = 10)
 After assigning new values to `chili`, we can see the information in the environment pane has been updated to reflect the new contents of the object.
 
 ```{r}
-#| echo: false
-#| out-width: "40%"
+#| label: fig-chili
 #| fig-cap: "The object `chili` although still an integer vector, now includes 10 elements."
 #| fig-alt: "The object `chili` although still an integer vector, now includes 10 elements."
+#| echo: false
+#| out-width: "40%"
 
 knitr::include_graphics("figs/01-02-environment-chili.png")
 ```
@@ -353,10 +362,11 @@ If you want the previous version of `chili` you need to re-create the object. If
 Every R function is housed in a package. To use the functions in a particular package, the package needs to be (1) installed, and (2) loaded into memory. 
 
 ```{r}
-#| echo: false
-#| out-width: "60%"
+#| label: fig-packages
 #| fig-cap: "Packages need to be installed and loaded."
 #| fig-alt: "Packages need to be installed and loaded."
+#| echo: false
+#| out-width: "70%"
 
 knitr::include_graphics("figs/01-02-install-vs-load.png")
 ```
@@ -364,10 +374,11 @@ knitr::include_graphics("figs/01-02-install-vs-load.png")
 You can see the packages  (and which version of each package) are installed by examining the `Packages` tab in RStudio. Every package listed there has been installed. You will also be able to see the version number of the package that is installed. Some of those packages may be checked. These are the packages that are also loaded into memory.
 
 ```{r}
-#| echo: false
-#| out-width: "40%"
+#| label: fig-packages2
 #| fig-cap: "The packages tab shows which packages are installed. The list of packages you have installed will likely be different. Checked packages are loaded into memory. In the packages seen here, only the base package is loaded into memory."
 #| fig-alt: "The packages tab shows which packages are installed. The list of packages you have installed will likely be different. Checked packages are loaded into memory. In the packages seen here, only the base package is loaded into memory."
+#| echo: false
+#| out-width: "50%"
 
 knitr::include_graphics("figs/01-02-package-tab.png")
 ```
@@ -375,10 +386,11 @@ knitr::include_graphics("figs/01-02-package-tab.png")
 Twenty-nine packages were included when you installed R on your computer. When you start an R session by opening RStudio, some of those packages are also loaded into memory. 
 
 ```{r}
-#| echo: false
-#| out-width: "70%"
+#| label: fig-packages3
 #| fig-cap: "The 29 packages installed as part of R. The base, datasets, graphics, grDevices, methods, stats, and utils packages are loaded into memory when you start an R session. The other 22 packages are installed but not loaded into memory."
 #| fig-alt: "The 29 packages installed as part of R. The base, datasets, graphics, grDevices, methods, stats, and utils packages are loaded into memory when you start an R session. The other 22 packages are installed but not loaded into memory."
+#| echo: false
+#| out-width: "70%"
 
 knitr::include_graphics("figs/01-02-default-packages.png")
 ```
@@ -404,10 +416,13 @@ library(lme4)
 ```
 
 :::protip
+**FYI**
+
 Once the package is loaded, all of the functions, data sets, etc. in that package are available to you. Packages will need to be loaded every time you launch a new R session. 
 :::
 
 <br />
+
 
 #### Masked Objects
 
@@ -471,9 +486,11 @@ You can also install other packages onto your R system. R, in fact, has a reposi
 This will open a pop-up window where you can type the CRAN package you want to install in a text box. Ensure that the "Install dependencies" box is checked (this will also install any package dependencies), and then click "Install".  
 
 ```{r}
+#| label: fig-install
+#| fig-cap: "Pop-up window to install packages. Here we are installing the dplyr package. Note that the 'Install dependencies' box is checked."
+#| fig-alt: "Pop-up window to install packages. Here we are installing the dplyr package. Note that the 'Install dependencies' box is checked."
 #| echo: false
 #| out-width: "50%"
-#| fig-cap: "Pop-up window to install packages. Here we are installing the dplyr package. Note that the 'Install dependencies' box is checked."
 
 knitr::include_graphics("figs/01-02-install-package.png")
 ```

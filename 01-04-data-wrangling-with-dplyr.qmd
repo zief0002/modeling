@@ -9,7 +9,7 @@ source("scripts/_common.R")
 
 In this chapter, you will be learn about how to use functionality from the `{dplyr}` package to wrangle your data. Data wrangling is the catchall phrase that includes the processes of cleaning, structuring, and summarizing your data. It is a skill that every educational scientist needs to have in their computational toolkit! 
 
-We will use the [comic-characters.csv](https://raw.githubusercontent.com/zief0002/epsy-8251/main/data/comic-characters.csv) data (see the [data codebook](#comic-characters)) to illustrate how to use several data wrangling functions in order to answer a set of research questions about LGBTQ representation in comics. 
+We will use the **comic-characters.csv** data to illustrate how to use several data wrangling functions in order to answer a set of research questions about LGBTQ representation in comics. 
 
 :::fyi
 **Research Questions**
@@ -108,68 +108,14 @@ comics |>
 
 ## Common dplyr Functions for Data Wrangling
 
-Here are some common operations that researchers use to prepare data for analysis (i.e., data preparation, data wrangling, data cleaning) and the corresponding `{dplyr}` functions.
+Here are some common operations that researchers use to prepare data for analysis (i.e., data preparation, data wrangling, data cleaning) and the corresponding `{dplyr}` functions:
 
-<!-- ```{r} -->
-<!-- #| echo: false -->
-
-<!-- data.frame( -->
-<!--   operation = c( -->
-<!--     "Select a subset of rows from a data frame.", -->
-<!--     "Select a subset of columns from a data frame.", -->
-<!--     "Add new columns to a data frame.", -->
-<!--     "Sort and re-order data in a data frame.", -->
-<!--     "Compute summaries of columns in a data frame.", -->
-<!--     "Group the data to carry out computations for each group." -->
-<!--   ), -->
-<!--   computation = c("`filter()`", "`select()`", "`mutate()`", "`arrange()`", "`summarize()`", "`group_by()`") -->
-<!-- ) |>   -->
-<!--   kable( -->
-<!--     format = "markdown", -->
-<!--     caption = "Common data wrangling activities and the corresponding `{dplyr}` functions.", -->
-<!--     col.names = c("Data wrangling activity", "dplyr function"), -->
-<!--     align = c("l", "l"), -->
-<!--     table.attr = "style='width:60%;'", -->
-<!--     escape = TRUE -->
-<!--   ) -->
-<!-- ``` -->
-
-
-<table style='width:90%;' class="table">
-<caption>Table 1<br/>Common data wrangling activities and the corresponding `{dplyr}` functions.</caption>
- <thead>
-  <tr>
-   <th style="text-align:left; width:70%;" id="activity"> Data wrangling activity </th>
-   <th style="text-align:left; width: 30%;" id="dplyr"> dplyr function </th>
-  </tr>
- </thead>
-<tbody>
-  <tr style="border-bottom: 1px solid black;">
-   <td style="text-align:left;" headers="activity"> Select a subset of rows from a data frame. </td>
-   <td style="text-align:left;" headers="dplyr"> `filter()` </td>
-  </tr>
-  <tr style="border-bottom: 1px solid black;">
-   <td style="text-align:left;" headers="activity"> Select a subset of columns from a data frame. </td>
-   <td style="text-align:left;" headers="dplyr"> `select()` </td>
-  </tr>
-  <tr style="border-bottom: 1px solid black;">
-   <td style="text-align:left;" headers="activity"> Add new columns to a data frame. </td>
-   <td style="text-align:left;" headers="dplyr"> `mutate()` </td>
-  </tr>
-  <tr style="border-bottom: 1px solid black;">
-   <td style="text-align:left;" headers="activity"> Sort and re-order data in a data frame. </td>
-   <td style="text-align:left;" headers="dplyr"> `arrange()` </td>
-  </tr>
-  <tr style="border-bottom: 1px solid black;">
-   <td style="text-align:left;" headers="activity"> Compute summaries of columns in a data frame. </td>
-   <td style="text-align:left;" headers="dplyr"> `summarize()` </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;" headers="activity"> Group the data to carry out computations for each group. </td>
-   <td style="text-align:left;" headers="dplyr"> `group_by()` </td>
-  </tr>
-</tbody>
-</table>
+- `filter()`: Select a subset of rows from a data frame.
+- `select()`: Select a subset of columns from a data frame.
+- `mutate()`: Add new columns to a data frame.
+- `arrange()`: Sort and re-order data in a data frame.
+- `summarize()`: Compute summaries of columns in a data frame.
+- `group_by()`: Group the data to carry out computations for each group.
 
 
 <br />
@@ -451,7 +397,7 @@ comics |>
 
 
 
-:::protip
+:::fyi
 **PROTIP**
 
 If you are running this in the console, the `num_years` column won't be displayed because of the default printing options for tibbles; the new column is created, just not displayed. To view it, we can use the `print()` function with the argument `width=Inf`, which displays all columns in the tibble.
@@ -485,8 +431,8 @@ comics |>
 
 Note that the `mean()` function includes the optional argument `na.rm=TRUE` which allows the mean computation when there are `NA` values; it tells the `mean()` function to remove the NAs in the computation. (If you didn't remove the NAs, the result of the computation would be an `NA`.)
 
-:::protip
-**PROTIP**
+:::fyi
+**FYI**
 
 If you want to continue to use the newly created columns, you need to assign the output into an object. If you do not assign the output into an object, the data with the new columns is printed to the screen and then the new columns are promptly "forgotten" by R. If you are sure of your syntax, you can re-assign the data into the original object. Here we create the new columns and re-assign this into the `comics` object.
 
