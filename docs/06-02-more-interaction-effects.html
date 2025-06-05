@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -64,17 +65,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./07-00-data-codebooks.html" rel="next">
-<link href="./06-01-intro-to-interaction-effects.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,8 +102,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable/js/pagedtable.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -139,7 +140,7 @@ window.Quarto = {
 <link rel="stylesheet" href="assets/table-styles.css">
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -388,74 +389,80 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-01-broadband.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">broadband.csv</span></span></a>
+  <a href="./codebooks/broadband.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">broadband.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-01-comic-characters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
+  <a href="./codebooks/comic-characters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">comic-characters.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-03-fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
+  <a href="./codebooks/evaluations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">evaluations.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-04-gapminder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
+  <a href="./codebooks/fertility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fertility.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-05-keith-gpa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
+  <a href="./codebooks/gapminder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">gapminder.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-06-mn-schools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
+  <a href="./codebooks/keith-gpa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">keith-gpa.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-07-pew.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">pew.csv</span></span></a>
+  <a href="./codebooks/mn-schools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">mn-schools.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-08-riverview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
+  <a href="./codebooks/pew.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pew.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-09-scoobydoo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">scoobydoo.csv</span></span></a>
+  <a href="./codebooks/riverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">riverview.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-09-spice-girls.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
+  <a href="./codebooks/scoobydoo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">scoobydoo.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-11-state-education.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">state-education.csv</span></span></a>
+  <a href="./codebooks/spice-girls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">spice-girls.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-10-work-demands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
+  <a href="./codebooks/state-education.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">state-education.csv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks/work-demands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">work-demands.csv</span></a>
   </div>
 </li>
       </ul>
@@ -488,7 +495,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this chapter, you will continue to learn about how to include and interpret interaction effects in the regression model. Here we will emphasize interactions between two continuous predictors. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/fertility.csv">fertility.csv</a> data to examine predictors of fertility rates; see the <a href="07-03-fertility.html">data codebook</a>). In particular we will evaluate whether the effect of contraception on fertility rates is a function of females’ education level.</p>
+<p>In this chapter, you will continue to learn about how to include and interpret interaction effects in the regression model. Here we will emphasize interactions between two continuous predictors. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/fertility.csv">fertility.csv</a> data to examine predictors of fertility rates; see the <a href="#fertility">data codebook</a>). In particular we will evaluate whether the effect of contraception on fertility rates is a function of females’ education level.</p>
 <p>To begin, we will load several libraries and import the data into an object called <code>fert</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
@@ -503,12 +510,22 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>fert</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["region"],"name":[2],"type":["chr"],"align":["left"]},{"label":["fertility_rate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["educ_female"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["infant_mortality"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["contraceptive"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["gni_class"],"name":[7],"type":["chr"],"align":["left"]},{"label":["high_gni"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"Albania","2":"Europe and Central Asia","3":"1.49","4":"9.1","5":"15.0","6":"46","7":"Upper/Middle","8":"1"},{"1":"Algeria","2":"Middle East and North Africa","3":"2.78","4":"5.9","5":"17.2","6":"57","7":"Upper/Middle","8":"1"},{"1":"Armenia","2":"Europe and Central Asia","3":"1.39","4":"10.8","5":"14.7","6":"57","7":"Upper/Middle","8":"1"},{"1":"Austria","2":"Europe and Central Asia","3":"1.42","4":"8.9","5":"3.3","6":"66","7":"Upper","8":"1"},{"1":"Azerbaijan","2":"Europe and Central Asia","3":"1.92","4":"10.5","5":"30.8","6":"55","7":"Upper/Middle","8":"1"},{"1":"Bahamas, The","2":"Latin America and the Caribbean","3":"1.97","4":"11.1","5":"13.9","6":"45","7":"Upper","8":"1"},{"1":"Bangladesh","2":"South Asia","3":"2.50","4":"4.6","5":"33.1","6":"62","7":"Low/Middle","8":"0"},{"1":"Belgium","2":"Europe and Central Asia","3":"1.65","4":"10.5","5":"3.4","6":"67","7":"Upper","8":"1"},{"1":"Belize","2":"Latin America and the Caribbean","3":"3.08","4":"9.2","5":"15.7","6":"51","7":"Upper/Middle","8":"1"},{"1":"Benin","2":"Sub-Saharan Africa","3":"5.13","4":"2.0","5":"58.5","6":"16","7":"Low","8":"0"},{"1":"Bolivia","2":"Latin America and the Caribbean","3":"2.87","4":"8.4","5":"32.8","6":"67","7":"Low/Middle","8":"0"},{"1":"Bosnia and Herzegovina","2":"Europe and Central Asia","3":"1.25","4":"7.2","5":"5.8","6":"46","7":"Upper/Middle","8":"1"},{"1":"Botswana","2":"Sub-Saharan Africa","3":"2.41","4":"8.7","5":"41.0","6":"53","7":"Upper/Middle","8":"1"},{"1":"Brazil","2":"Latin America and the Caribbean","3":"1.81","4":"7.3","5":"12.9","6":"80","7":"Upper/Middle","8":"1"},{"1":"Bulgaria","2":"Europe and Central Asia","3":"1.43","4":"10.6","5":"10.5","6":"69","7":"Upper/Middle","8":"1"},{"1":"Burkina Faso","2":"Sub-Saharan Africa","3":"6.00","4":"1.9","5":"65.8","6":"32","7":"Low","8":"0"},{"1":"Burundi","2":"Sub-Saharan Africa","3":"5.99","4":"2.2","5":"66.9","6":"29","7":"Low","8":"0"},{"1":"Cambodia","2":"East Asia and Pacific","3":"2.72","4":"3.2","5":"33.9","6":"56","7":"Low/Middle","8":"0"},{"1":"Cameroon","2":"Sub-Saharan Africa","3":"4.00","4":"5.1","5":"61.1","6":"34","7":"Low/Middle","8":"0"},{"1":"Canada","2":"North America","3":"1.59","4":"12.3","5":"4.7","6":"85","7":"Upper","8":"1"},{"1":"Chad","2":"Sub-Saharan Africa","3":"4.80","4":"0.6","5":"89.4","6":"6","7":"Low","8":"0"},{"1":"Chile","2":"Latin America and the Caribbean","3":"1.85","4":"9.6","5":"7.8","6":"76","7":"Upper","8":"1"},{"1":"Colombia","2":"Latin America and the Caribbean","3":"2.10","4":"7.0","5":"15.1","6":"81","7":"Upper/Middle","8":"1"},{"1":"Congo, Democratic Republic","2":"Sub-Saharan Africa","3":"4.95","4":"2.1","5":"99.9","6":"20","7":"Low","8":"0"},{"1":"Costa Rica","2":"Latin America and the Caribbean","3":"1.91","4":"8.4","5":"8.6","6":"78","7":"Upper/Middle","8":"1"},{"1":"Croatia","2":"Europe and Central Asia","3":"1.45","4":"10.5","5":"4.0","6":"69","7":"Upper","8":"1"},{"1":"Czech Republic","2":"Europe and Central Asia","3":"1.29","4":"12.1","5":"3.1","6":"86","7":"Upper","8":"1"},{"1":"Denmark","2":"Europe and Central Asia","3":"1.73","4":"11.9","5":"3.0","6":"77","7":"Upper","8":"1"},{"1":"Dominican Republic","2":"Latin America and the Caribbean","3":"2.39","4":"7.7","5":"22.8","6":"70","7":"Upper/Middle","8":"1"},{"1":"Ecuador","2":"Latin America and the Caribbean","3":"2.33","4":"7.4","5":"19.8","6":"80","7":"Upper/Middle","8":"1"},{"1":"Egypt, Arab Republic","2":"Middle East and North Africa","3":"2.90","4":"5.3","5":"17.9","6":"59","7":"Low/Middle","8":"0"},{"1":"El Salvador","2":"Latin America and the Caribbean","3":"1.99","4":"6.1","5":"13.6","6":"72","7":"Low/Middle","8":"0"},{"1":"Estonia","2":"Europe and Central Asia","3":"1.45","4":"12.3","5":"2.9","6":"63","7":"Upper","8":"1"},{"1":"Ethiopia","2":"Sub-Saharan Africa","3":"5.31","4":"1.4","5":"46.5","6":"40","7":"Low","8":"0"},{"1":"Fiji","2":"East Asia and Pacific","3":"2.54","4":"9.8","5":"19.1","6":"44","7":"Upper/Middle","8":"1"},{"1":"France","2":"Europe and Central Asia","3":"2.08","4":"10.9","5":"3.4","6":"78","7":"Upper","8":"1"},{"1":"Georgia","2":"Europe and Central Asia","3":"1.46","4":"11.9","5":"17.8","6":"53","7":"Upper/Middle","8":"1"},{"1":"Germany","2":"Europe and Central Asia","3":"1.42","4":"12.6","5":"3.4","6":"80","7":"Upper","8":"1"},{"1":"Ghana","2":"Sub-Saharan Africa","3":"4.12","4":"5.9","5":"48.6","6":"31","7":"Low/Middle","8":"0"},{"1":"Greece","2":"Europe and Central Asia","3":"1.40","4":"9.9","5":"4.1","6":"76","7":"Upper","8":"1"},{"1":"Guatemala","2":"Latin America and the Caribbean","3":"3.08","4":"5.0","5":"26.5","6":"61","7":"Upper/Middle","8":"1"},{"1":"Guinea","2":"Sub-Saharan Africa","3":"4.99","4":"0.8","5":"65.2","6":"9","7":"Low","8":"0"},{"1":"Guyana","2":"Latin America and the Caribbean","3":"2.21","4":"9.0","5":"29.0","6":"34","7":"Upper/Middle","8":"1"},{"1":"Haiti","2":"Latin America and the Caribbean","3":"2.88","4":"3.2","5":"56.5","6":"34","7":"Low","8":"0"},{"1":"Honduras","2":"Latin America and the Caribbean","3":"2.94","4":"5.3","5":"19.4","6":"73","7":"Low/Middle","8":"0"},{"1":"Hungary","2":"Europe and Central Asia","3":"1.41","4":"11.2","5":"5.3","6":"62","7":"Upper","8":"1"},{"1":"India","2":"South Asia","3":"2.55","4":"3.2","5":"43.8","6":"54","7":"Low/Middle","8":"0"},{"1":"Indonesia","2":"East Asia and Pacific","3":"2.20","4":"6.9","5":"25.8","6":"61","7":"Low/Middle","8":"0"},{"1":"Iran, Islamic Republic","2":"Middle East and North Africa","3":"1.86","4":"7.1","5":"15.1","6":"77","7":"Upper/Middle","8":"1"},{"1":"Iraq","2":"Middle East and North Africa","3":"3.50","4":"4.4","5":"28.4","6":"53","7":"Upper/Middle","8":"1"},{"1":"Ireland","2":"Europe and Central Asia","3":"2.01","4":"11.7","5":"3.4","6":"73","7":"Upper","8":"1"},{"1":"Israel","2":"Middle East and North Africa","3":"2.65","4":"12.6","5":"3.3","6":"68","7":"Upper","8":"1"},{"1":"Italy","2":"Europe and Central Asia","3":"1.41","4":"9.7","5":"3.2","6":"65","7":"Upper","8":"1"},{"1":"Jamaica","2":"Latin America and the Caribbean","3":"2.09","4":"9.8","5":"14.4","6":"73","7":"Upper/Middle","8":"1"},{"1":"Japan","2":"East Asia and Pacific","3":"1.39","4":"11.2","5":"2.2","6":"40","7":"Upper","8":"1"},{"1":"Jordan","2":"Middle East and North Africa","3":"3.32","4":"9.4","5":"16.4","6":"52","7":"Upper/Middle","8":"1"},{"1":"Kazakhstan","2":"Europe and Central Asia","3":"2.38","4":"10.2","5":"16.7","6":"55","7":"Upper/Middle","8":"1"},{"1":"Kenya","2":"Sub-Saharan Africa","3":"3.76","4":"5.4","5":"48.7","6":"61","7":"Low/Middle","8":"0"},{"1":"Korea, Republic","2":"East Asia and Pacific","3":"1.24","4":"11.1","5":"3.3","6":"80","7":"Upper","8":"1"},{"1":"Kyrgyz Republic","2":"Europe and Central Asia","3":"2.71","4":"9.3","5":"23.6","6":"42","7":"Low/Middle","8":"0"},{"1":"Lao PDR","2":"East Asia and Pacific","3":"2.98","4":"3.8","5":"54.0","6":"54","7":"Low/Middle","8":"0"},{"1":"Lebanon","2":"Middle East and North Africa","3":"1.75","4":"7.6","5":"8.0","6":"55","7":"Upper/Middle","8":"1"},{"1":"Lesotho","2":"Sub-Saharan Africa","3":"2.83","4":"6.8","5":"74.2","6":"60","7":"Low/Middle","8":"0"},{"1":"Liberia","2":"Sub-Saharan Africa","3":"4.92","4":"2.3","5":"56.0","6":"31","7":"Low","8":"0"},{"1":"Lithuania","2":"Europe and Central Asia","3":"1.28","4":"12.3","5":"4.4","6":"63","7":"Upper","8":"1"},{"1":"Macedonia, FYR","2":"Europe and Central Asia","3":"1.59","4":"7.9","5":"6.5","6":"40","7":"Upper/Middle","8":"1"},{"1":"Madagascar","2":"Sub-Saharan Africa","3":"4.36","4":"4.8","5":"40.9","6":"48","7":"Low","8":"0"},{"1":"Malawi","2":"Sub-Saharan Africa","3":"5.26","4":"3.4","5":"46.0","6":"59","7":"Low","8":"0"},{"1":"Malaysia","2":"East Asia and Pacific","3":"2.61","4":"9.2","5":"7.3","6":"52","7":"Upper/Middle","8":"1"},{"1":"Maldives","2":"South Asia","3":"1.78","4":"5.4","5":"9.0","6":"19","7":"Upper/Middle","8":"1"},{"1":"Mali","2":"Sub-Saharan Africa","3":"6.25","4":"1.4","5":"79.6","6":"16","7":"Low","8":"0"},{"1":"Malta","2":"Middle East and North Africa","3":"1.53","4":"9.5","5":"5.8","6":"86","7":"Upper","8":"1"},{"1":"Mauritius","2":"Sub-Saharan Africa","3":"1.78","4":"8.0","5":"13.0","6":"64","7":"Upper/Middle","8":"1"},{"1":"Mexico","2":"Latin America and the Caribbean","3":"2.25","4":"8.1","5":"13.9","6":"67","7":"Upper/Middle","8":"1"},{"1":"Moldova","2":"Europe and Central Asia","3":"1.55","4":"9.6","5":"15.1","6":"60","7":"Low/Middle","8":"0"},{"1":"Mongolia","2":"East Asia and Pacific","3":"2.18","4":"8.5","5":"23.0","6":"55","7":"Low/Middle","8":"0"},{"1":"Morocco","2":"Middle East and North Africa","3":"2.17","4":"3.2","5":"26.8","6":"71","7":"Low/Middle","8":"0"},{"1":"Mozambique","2":"Sub-Saharan Africa","3":"5.34","4":"0.8","5":"63.1","6":"27","7":"Low","8":"0"},{"1":"Namibia","2":"Sub-Saharan Africa","3":"2.33","4":"6.3","5":"28.3","6":"56","7":"Upper/Middle","8":"1"},{"1":"Nepal","2":"South Asia","3":"2.36","4":"2.4","5":"33.6","6":"53","7":"Low","8":"0"},{"1":"Netherlands","2":"Europe and Central Asia","3":"1.78","4":"11.6","5":"3.4","6":"73","7":"Upper","8":"1"},{"1":"Nicaragua","2":"Latin America and the Caribbean","3":"2.03","4":"4.8","5":"20.6","6":"80","7":"Low/Middle","8":"0"},{"1":"Niger","2":"Sub-Saharan Africa","3":"7.03","4":"0.8","5":"62.8","6":"11","7":"Low","8":"0"},{"1":"Nigeria","2":"Sub-Saharan Africa","3":"5.31","4":"4.2","5":"77.8","6":"28","7":"Low/Middle","8":"0"},{"1":"Pakistan","2":"South Asia","3":"2.96","4":"3.3","5":"69.3","6":"34","7":"Low/Middle","8":"0"},{"1":"Panama","2":"Latin America and the Caribbean","3":"2.40","4":"9.6","5":"15.9","6":"63","7":"Upper","8":"1"},{"1":"Paraguay","2":"Latin America and the Caribbean","3":"2.01","4":"7.5","5":"18.8","6":"68","7":"Upper/Middle","8":"1"},{"1":"Philippines","2":"East Asia and Pacific","3":"3.10","4":"8.8","5":"23.5","6":"54","7":"Low/Middle","8":"0"},{"1":"Poland","2":"Europe and Central Asia","3":"1.32","4":"11.9","5":"4.3","6":"62","7":"Upper","8":"1"},{"1":"Portugal","2":"Europe and Central Asia","3":"1.51","4":"8.0","5":"2.9","6":"74","7":"Upper","8":"1"},{"1":"Romania","2":"Europe and Central Asia","3":"1.31","4":"10.4","5":"10.7","6":"70","7":"Upper/Middle","8":"1"},{"1":"Russian Federation","2":"Europe and Central Asia","3":"1.61","4":"11.7","5":"8.9","6":"68","7":"Upper/Middle","8":"1"},{"1":"Rwanda","2":"Sub-Saharan Africa","3":"4.71","4":"3.1","5":"38.8","6":"53","7":"Low","8":"0"},{"1":"Sao Tome and Principe","2":"Sub-Saharan Africa","3":"4.81","4":"4.0","5":"38.0","6":"41","7":"Low/Middle","8":"0"},{"1":"Senegal","2":"Sub-Saharan Africa","3":"4.61","4":"3.4","5":"45.2","6":"28","7":"Low/Middle","8":"0"},{"1":"Serbia","2":"Europe and Central Asia","3":"1.41","4":"9.2","5":"5.7","6":"58","7":"Upper/Middle","8":"1"},{"1":"Sierra Leone","2":"Sub-Saharan Africa","3":"4.87","4":"2.0","5":"117.4","6":"23","7":"Low","8":"0"},{"1":"Slovak Republic","2":"Europe and Central Asia","3":"1.39","4":"11.6","5":"6.3","6":"80","7":"Upper","8":"1"},{"1":"Slovenia","2":"Europe and Central Asia","3":"1.32","4":"11.8","5":"2.5","6":"79","7":"Upper","8":"1"},{"1":"South Africa","2":"Sub-Saharan Africa","3":"2.25","4":"9.8","5":"33.3","6":"55","7":"Upper/Middle","8":"1"},{"1":"Spain","2":"Europe and Central Asia","3":"1.48","4":"9.5","5":"3.8","6":"71","7":"Upper","8":"1"},{"1":"Sri Lanka","2":"South Asia","3":"2.15","4":"10.7","5":"8.3","6":"62","7":"Upper/Middle","8":"1"},{"1":"Suriname","2":"Latin America and the Caribbean","3":"2.04","4":"7.3","5":"18.5","6":"48","7":"Upper/Middle","8":"1"},{"1":"Swaziland","2":"Sub-Saharan Africa","3":"2.96","4":"7.4","5":"55.7","6":"66","7":"Low/Middle","8":"0"},{"1":"Switzerland","2":"Europe and Central Asia","3":"1.53","4":"11.5","5":"3.7","6":"73","7":"Upper","8":"1"},{"1":"Tajikistan","2":"Europe and Central Asia","3":"2.80","4":"10.0","5":"49.0","6":"29","7":"Low","8":"0"},{"1":"Tanzania","2":"Sub-Saharan Africa","3":"5.01","4":"4.5","5":"37.7","6":"38","7":"Low","8":"0"},{"1":"Thailand","2":"East Asia and Pacific","3":"1.66","4":"7.0","5":"11.4","6":"78","7":"Upper/Middle","8":"1"},{"1":"Togo","2":"Sub-Saharan Africa","3":"4.58","4":"3.3","5":"62.0","6":"20","7":"Low","8":"0"},{"1":"Tonga","2":"East Asia and Pacific","3":"3.46","4":"9.2","5":"11.1","6":"34","7":"Upper/Middle","8":"1"},{"1":"Trinidad and Tobago","2":"Latin America and the Caribbean","3":"1.71","4":"10.9","5":"18.4","6":"40","7":"Upper","8":"1"},{"1":"Tunisia","2":"Middle East and North Africa","3":"2.01","4":"5.5","5":"13.8","6":"63","7":"Low/Middle","8":"0"},{"1":"Turkey","2":"Europe and Central Asia","3":"2.10","4":"6.4","5":"12.2","6":"74","7":"Upper/Middle","8":"1"},{"1":"Uganda","2":"Sub-Saharan Africa","3":"6.06","4":"4.3","5":"45.4","6":"42","7":"Low","8":"0"},{"1":"Ukraine","2":"Europe and Central Asia","3":"1.29","4":"11.2","5":"9.2","6":"65","7":"Low/Middle","8":"0"},{"1":"United Arab Emirates","2":"Middle East and North Africa","3":"2.37","4":"10.2","5":"7.2","6":"28","7":"Upper","8":"1"},{"1":"United Kingdom","2":"Europe and Central Asia","3":"1.90","4":"12.8","5":"4.1","6":"84","7":"Upper","8":"1"},{"1":"United States","2":"North America","3":"2.06","4":"13.0","5":"6.0","6":"76","7":"Upper","8":"1"},{"1":"Uruguay","2":"Latin America and the Caribbean","3":"1.86","4":"8.7","5":"6.2","6":"80","7":"Upper","8":"1"},{"1":"Venezuela, RB","2":"Latin America and the Caribbean","3":"2.37","4":"8.7","5":"13.1","6":"75","7":"Upper/Middle","8":"1"},{"1":"Vietnam","2":"East Asia and Pacific","3":"1.87","4":"5.2","5":"18.4","6":"76","7":"Low/Middle","8":"0"},{"1":"Yemen, Republic","2":"Middle East and North Africa","3":"4.27","4":"1.2","5":"46.3","6":"34","7":"Low","8":"0"},{"1":"Zambia","2":"Sub-Saharan Africa","3":"5.81","4":"5.8","5":"56.4","6":"49","7":"Low/Middle","8":"0"},{"1":"Zimbabwe","2":"Sub-Saharan Africa","3":"3.58","4":"6.7","5":"55.7","6":"67","7":"Low/Middle","8":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 124 × 8
+   country      region fertility_rate educ_female infant_mortality contraceptive
+   &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;
+ 1 Albania      Europ…           1.49         9.1             15              46
+ 2 Algeria      Middl…           2.78         5.9             17.2            57
+ 3 Armenia      Europ…           1.39        10.8             14.7            57
+ 4 Austria      Europ…           1.42         8.9              3.3            66
+ 5 Azerbaijan   Europ…           1.92        10.5             30.8            55
+ 6 Bahamas, The Latin…           1.97        11.1             13.9            45
+ 7 Bangladesh   South…           2.5          4.6             33.1            62
+ 8 Belgium      Europ…           1.65        10.5              3.4            67
+ 9 Belize       Latin…           3.08         9.2             15.7            51
+10 Benin        Sub-S…           5.13         2               58.5            16
+# ℹ 114 more rows
+# ℹ 2 more variables: gni_class &lt;chr&gt;, high_gni &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -519,9 +536,9 @@ window.Quarto = {
 <p>In this chapter, we are evaluating whether there is an interaction between contraception use and female education level on fertility rates. As such, we need to examine the effect of contraception use on fertility rates at different levels of female education. But, since female education is continuous, there are a lot of levels in the data! Rather than look at all of these levels, we generally choose a small number of levels of female education. Another challenge is that in continuous variables, there are typically very few observations at a specific value of that variable, so instead of selecting specific values, we typically cut the variable into distinct ranges of values.</p>
 <p>Here we empirically identify distinct ranges for female education by examining the <code>summary()</code> output associated with that variable.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fert <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(educ_female) <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fert <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(educ_female) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  educ_female    
  Min.   : 0.600  
@@ -544,38 +561,49 @@ window.Quarto = {
 </div>
 <p>There are several R functions that can be employed to discretize a continuous variable. We will use the <code>case_when()</code> function from the <code>{dplyr}</code> package (or <code>{tidyverse}</code>) to create a new variable that has four different categories, one for each distinct range. (Read more about using <code>case_when()</code> <a href="https://dplyr.tidyverse.org/reference/case_when.html">here</a>.)</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Discretize female education level</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fert <span class="ot">=</span> fert <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">female_educ_discrete =</span> <span class="fu">case_when</span>(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      educ_female <span class="sc">&lt;</span> <span class="fl">4.8</span> <span class="sc">~</span> <span class="st">"Quartile 1"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      educ_female <span class="sc">&gt;=</span> <span class="fl">4.8</span> <span class="sc">&amp;</span> educ_female <span class="sc">&lt;</span> <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Quartile 2"</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      educ_female <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> educ_female <span class="sc">&lt;</span> <span class="fl">10.25</span> <span class="sc">~</span> <span class="st">"Quartile 3"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      educ_female <span class="sc">&gt;=</span> <span class="fl">10.25</span> <span class="sc">~</span> <span class="st">"Quartile 4"</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>fert</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["region"],"name":[2],"type":["chr"],"align":["left"]},{"label":["fertility_rate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["educ_female"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["infant_mortality"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["contraceptive"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["gni_class"],"name":[7],"type":["chr"],"align":["left"]},{"label":["high_gni"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["female_educ_discrete"],"name":[9],"type":["chr"],"align":["left"]}],"data":[{"1":"Albania","2":"Europe and Central Asia","3":"1.49","4":"9.1","5":"15.0","6":"46","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Algeria","2":"Middle East and North Africa","3":"2.78","4":"5.9","5":"17.2","6":"57","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Armenia","2":"Europe and Central Asia","3":"1.39","4":"10.8","5":"14.7","6":"57","7":"Upper/Middle","8":"1","9":"Quartile 4"},{"1":"Austria","2":"Europe and Central Asia","3":"1.42","4":"8.9","5":"3.3","6":"66","7":"Upper","8":"1","9":"Quartile 3"},{"1":"Azerbaijan","2":"Europe and Central Asia","3":"1.92","4":"10.5","5":"30.8","6":"55","7":"Upper/Middle","8":"1","9":"Quartile 4"},{"1":"Bahamas, The","2":"Latin America and the Caribbean","3":"1.97","4":"11.1","5":"13.9","6":"45","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Bangladesh","2":"South Asia","3":"2.50","4":"4.6","5":"33.1","6":"62","7":"Low/Middle","8":"0","9":"Quartile 1"},{"1":"Belgium","2":"Europe and Central Asia","3":"1.65","4":"10.5","5":"3.4","6":"67","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Belize","2":"Latin America and the Caribbean","3":"3.08","4":"9.2","5":"15.7","6":"51","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Benin","2":"Sub-Saharan Africa","3":"5.13","4":"2.0","5":"58.5","6":"16","7":"Low","8":"0","9":"Quartile 1"},{"1":"Bolivia","2":"Latin America and the Caribbean","3":"2.87","4":"8.4","5":"32.8","6":"67","7":"Low/Middle","8":"0","9":"Quartile 3"},{"1":"Bosnia and Herzegovina","2":"Europe and Central Asia","3":"1.25","4":"7.2","5":"5.8","6":"46","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Botswana","2":"Sub-Saharan Africa","3":"2.41","4":"8.7","5":"41.0","6":"53","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Brazil","2":"Latin America and the Caribbean","3":"1.81","4":"7.3","5":"12.9","6":"80","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Bulgaria","2":"Europe and Central Asia","3":"1.43","4":"10.6","5":"10.5","6":"69","7":"Upper/Middle","8":"1","9":"Quartile 4"},{"1":"Burkina Faso","2":"Sub-Saharan Africa","3":"6.00","4":"1.9","5":"65.8","6":"32","7":"Low","8":"0","9":"Quartile 1"},{"1":"Burundi","2":"Sub-Saharan Africa","3":"5.99","4":"2.2","5":"66.9","6":"29","7":"Low","8":"0","9":"Quartile 1"},{"1":"Cambodia","2":"East Asia and Pacific","3":"2.72","4":"3.2","5":"33.9","6":"56","7":"Low/Middle","8":"0","9":"Quartile 1"},{"1":"Cameroon","2":"Sub-Saharan Africa","3":"4.00","4":"5.1","5":"61.1","6":"34","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"Canada","2":"North America","3":"1.59","4":"12.3","5":"4.7","6":"85","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Chad","2":"Sub-Saharan Africa","3":"4.80","4":"0.6","5":"89.4","6":"6","7":"Low","8":"0","9":"Quartile 1"},{"1":"Chile","2":"Latin America and the Caribbean","3":"1.85","4":"9.6","5":"7.8","6":"76","7":"Upper","8":"1","9":"Quartile 3"},{"1":"Colombia","2":"Latin America and the Caribbean","3":"2.10","4":"7.0","5":"15.1","6":"81","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Congo, Democratic Republic","2":"Sub-Saharan Africa","3":"4.95","4":"2.1","5":"99.9","6":"20","7":"Low","8":"0","9":"Quartile 1"},{"1":"Costa Rica","2":"Latin America and the Caribbean","3":"1.91","4":"8.4","5":"8.6","6":"78","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Croatia","2":"Europe and Central Asia","3":"1.45","4":"10.5","5":"4.0","6":"69","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Czech Republic","2":"Europe and Central Asia","3":"1.29","4":"12.1","5":"3.1","6":"86","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Denmark","2":"Europe and Central Asia","3":"1.73","4":"11.9","5":"3.0","6":"77","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Dominican Republic","2":"Latin America and the Caribbean","3":"2.39","4":"7.7","5":"22.8","6":"70","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Ecuador","2":"Latin America and the Caribbean","3":"2.33","4":"7.4","5":"19.8","6":"80","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Egypt, Arab Republic","2":"Middle East and North Africa","3":"2.90","4":"5.3","5":"17.9","6":"59","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"El Salvador","2":"Latin America and the Caribbean","3":"1.99","4":"6.1","5":"13.6","6":"72","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"Estonia","2":"Europe and Central Asia","3":"1.45","4":"12.3","5":"2.9","6":"63","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Ethiopia","2":"Sub-Saharan Africa","3":"5.31","4":"1.4","5":"46.5","6":"40","7":"Low","8":"0","9":"Quartile 1"},{"1":"Fiji","2":"East Asia and Pacific","3":"2.54","4":"9.8","5":"19.1","6":"44","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"France","2":"Europe and Central Asia","3":"2.08","4":"10.9","5":"3.4","6":"78","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Georgia","2":"Europe and Central Asia","3":"1.46","4":"11.9","5":"17.8","6":"53","7":"Upper/Middle","8":"1","9":"Quartile 4"},{"1":"Germany","2":"Europe and Central Asia","3":"1.42","4":"12.6","5":"3.4","6":"80","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Ghana","2":"Sub-Saharan Africa","3":"4.12","4":"5.9","5":"48.6","6":"31","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"Greece","2":"Europe and Central Asia","3":"1.40","4":"9.9","5":"4.1","6":"76","7":"Upper","8":"1","9":"Quartile 3"},{"1":"Guatemala","2":"Latin America and the Caribbean","3":"3.08","4":"5.0","5":"26.5","6":"61","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Guinea","2":"Sub-Saharan Africa","3":"4.99","4":"0.8","5":"65.2","6":"9","7":"Low","8":"0","9":"Quartile 1"},{"1":"Guyana","2":"Latin America and the Caribbean","3":"2.21","4":"9.0","5":"29.0","6":"34","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Haiti","2":"Latin America and the Caribbean","3":"2.88","4":"3.2","5":"56.5","6":"34","7":"Low","8":"0","9":"Quartile 1"},{"1":"Honduras","2":"Latin America and the Caribbean","3":"2.94","4":"5.3","5":"19.4","6":"73","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"Hungary","2":"Europe and Central Asia","3":"1.41","4":"11.2","5":"5.3","6":"62","7":"Upper","8":"1","9":"Quartile 4"},{"1":"India","2":"South Asia","3":"2.55","4":"3.2","5":"43.8","6":"54","7":"Low/Middle","8":"0","9":"Quartile 1"},{"1":"Indonesia","2":"East Asia and Pacific","3":"2.20","4":"6.9","5":"25.8","6":"61","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"Iran, Islamic Republic","2":"Middle East and North Africa","3":"1.86","4":"7.1","5":"15.1","6":"77","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Iraq","2":"Middle East and North Africa","3":"3.50","4":"4.4","5":"28.4","6":"53","7":"Upper/Middle","8":"1","9":"Quartile 1"},{"1":"Ireland","2":"Europe and Central Asia","3":"2.01","4":"11.7","5":"3.4","6":"73","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Israel","2":"Middle East and North Africa","3":"2.65","4":"12.6","5":"3.3","6":"68","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Italy","2":"Europe and Central Asia","3":"1.41","4":"9.7","5":"3.2","6":"65","7":"Upper","8":"1","9":"Quartile 3"},{"1":"Jamaica","2":"Latin America and the Caribbean","3":"2.09","4":"9.8","5":"14.4","6":"73","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Japan","2":"East Asia and Pacific","3":"1.39","4":"11.2","5":"2.2","6":"40","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Jordan","2":"Middle East and North Africa","3":"3.32","4":"9.4","5":"16.4","6":"52","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Kazakhstan","2":"Europe and Central Asia","3":"2.38","4":"10.2","5":"16.7","6":"55","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Kenya","2":"Sub-Saharan Africa","3":"3.76","4":"5.4","5":"48.7","6":"61","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"Korea, Republic","2":"East Asia and Pacific","3":"1.24","4":"11.1","5":"3.3","6":"80","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Kyrgyz Republic","2":"Europe and Central Asia","3":"2.71","4":"9.3","5":"23.6","6":"42","7":"Low/Middle","8":"0","9":"Quartile 3"},{"1":"Lao PDR","2":"East Asia and Pacific","3":"2.98","4":"3.8","5":"54.0","6":"54","7":"Low/Middle","8":"0","9":"Quartile 1"},{"1":"Lebanon","2":"Middle East and North Africa","3":"1.75","4":"7.6","5":"8.0","6":"55","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Lesotho","2":"Sub-Saharan Africa","3":"2.83","4":"6.8","5":"74.2","6":"60","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"Liberia","2":"Sub-Saharan Africa","3":"4.92","4":"2.3","5":"56.0","6":"31","7":"Low","8":"0","9":"Quartile 1"},{"1":"Lithuania","2":"Europe and Central Asia","3":"1.28","4":"12.3","5":"4.4","6":"63","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Macedonia, FYR","2":"Europe and Central Asia","3":"1.59","4":"7.9","5":"6.5","6":"40","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Madagascar","2":"Sub-Saharan Africa","3":"4.36","4":"4.8","5":"40.9","6":"48","7":"Low","8":"0","9":"Quartile 2"},{"1":"Malawi","2":"Sub-Saharan Africa","3":"5.26","4":"3.4","5":"46.0","6":"59","7":"Low","8":"0","9":"Quartile 1"},{"1":"Malaysia","2":"East Asia and Pacific","3":"2.61","4":"9.2","5":"7.3","6":"52","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Maldives","2":"South Asia","3":"1.78","4":"5.4","5":"9.0","6":"19","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Mali","2":"Sub-Saharan Africa","3":"6.25","4":"1.4","5":"79.6","6":"16","7":"Low","8":"0","9":"Quartile 1"},{"1":"Malta","2":"Middle East and North Africa","3":"1.53","4":"9.5","5":"5.8","6":"86","7":"Upper","8":"1","9":"Quartile 3"},{"1":"Mauritius","2":"Sub-Saharan Africa","3":"1.78","4":"8.0","5":"13.0","6":"64","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Mexico","2":"Latin America and the Caribbean","3":"2.25","4":"8.1","5":"13.9","6":"67","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Moldova","2":"Europe and Central Asia","3":"1.55","4":"9.6","5":"15.1","6":"60","7":"Low/Middle","8":"0","9":"Quartile 3"},{"1":"Mongolia","2":"East Asia and Pacific","3":"2.18","4":"8.5","5":"23.0","6":"55","7":"Low/Middle","8":"0","9":"Quartile 3"},{"1":"Morocco","2":"Middle East and North Africa","3":"2.17","4":"3.2","5":"26.8","6":"71","7":"Low/Middle","8":"0","9":"Quartile 1"},{"1":"Mozambique","2":"Sub-Saharan Africa","3":"5.34","4":"0.8","5":"63.1","6":"27","7":"Low","8":"0","9":"Quartile 1"},{"1":"Namibia","2":"Sub-Saharan Africa","3":"2.33","4":"6.3","5":"28.3","6":"56","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Nepal","2":"South Asia","3":"2.36","4":"2.4","5":"33.6","6":"53","7":"Low","8":"0","9":"Quartile 1"},{"1":"Netherlands","2":"Europe and Central Asia","3":"1.78","4":"11.6","5":"3.4","6":"73","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Nicaragua","2":"Latin America and the Caribbean","3":"2.03","4":"4.8","5":"20.6","6":"80","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"Niger","2":"Sub-Saharan Africa","3":"7.03","4":"0.8","5":"62.8","6":"11","7":"Low","8":"0","9":"Quartile 1"},{"1":"Nigeria","2":"Sub-Saharan Africa","3":"5.31","4":"4.2","5":"77.8","6":"28","7":"Low/Middle","8":"0","9":"Quartile 1"},{"1":"Pakistan","2":"South Asia","3":"2.96","4":"3.3","5":"69.3","6":"34","7":"Low/Middle","8":"0","9":"Quartile 1"},{"1":"Panama","2":"Latin America and the Caribbean","3":"2.40","4":"9.6","5":"15.9","6":"63","7":"Upper","8":"1","9":"Quartile 3"},{"1":"Paraguay","2":"Latin America and the Caribbean","3":"2.01","4":"7.5","5":"18.8","6":"68","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Philippines","2":"East Asia and Pacific","3":"3.10","4":"8.8","5":"23.5","6":"54","7":"Low/Middle","8":"0","9":"Quartile 3"},{"1":"Poland","2":"Europe and Central Asia","3":"1.32","4":"11.9","5":"4.3","6":"62","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Portugal","2":"Europe and Central Asia","3":"1.51","4":"8.0","5":"2.9","6":"74","7":"Upper","8":"1","9":"Quartile 3"},{"1":"Romania","2":"Europe and Central Asia","3":"1.31","4":"10.4","5":"10.7","6":"70","7":"Upper/Middle","8":"1","9":"Quartile 4"},{"1":"Russian Federation","2":"Europe and Central Asia","3":"1.61","4":"11.7","5":"8.9","6":"68","7":"Upper/Middle","8":"1","9":"Quartile 4"},{"1":"Rwanda","2":"Sub-Saharan Africa","3":"4.71","4":"3.1","5":"38.8","6":"53","7":"Low","8":"0","9":"Quartile 1"},{"1":"Sao Tome and Principe","2":"Sub-Saharan Africa","3":"4.81","4":"4.0","5":"38.0","6":"41","7":"Low/Middle","8":"0","9":"Quartile 1"},{"1":"Senegal","2":"Sub-Saharan Africa","3":"4.61","4":"3.4","5":"45.2","6":"28","7":"Low/Middle","8":"0","9":"Quartile 1"},{"1":"Serbia","2":"Europe and Central Asia","3":"1.41","4":"9.2","5":"5.7","6":"58","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Sierra Leone","2":"Sub-Saharan Africa","3":"4.87","4":"2.0","5":"117.4","6":"23","7":"Low","8":"0","9":"Quartile 1"},{"1":"Slovak Republic","2":"Europe and Central Asia","3":"1.39","4":"11.6","5":"6.3","6":"80","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Slovenia","2":"Europe and Central Asia","3":"1.32","4":"11.8","5":"2.5","6":"79","7":"Upper","8":"1","9":"Quartile 4"},{"1":"South Africa","2":"Sub-Saharan Africa","3":"2.25","4":"9.8","5":"33.3","6":"55","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Spain","2":"Europe and Central Asia","3":"1.48","4":"9.5","5":"3.8","6":"71","7":"Upper","8":"1","9":"Quartile 3"},{"1":"Sri Lanka","2":"South Asia","3":"2.15","4":"10.7","5":"8.3","6":"62","7":"Upper/Middle","8":"1","9":"Quartile 4"},{"1":"Suriname","2":"Latin America and the Caribbean","3":"2.04","4":"7.3","5":"18.5","6":"48","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Swaziland","2":"Sub-Saharan Africa","3":"2.96","4":"7.4","5":"55.7","6":"66","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"Switzerland","2":"Europe and Central Asia","3":"1.53","4":"11.5","5":"3.7","6":"73","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Tajikistan","2":"Europe and Central Asia","3":"2.80","4":"10.0","5":"49.0","6":"29","7":"Low","8":"0","9":"Quartile 3"},{"1":"Tanzania","2":"Sub-Saharan Africa","3":"5.01","4":"4.5","5":"37.7","6":"38","7":"Low","8":"0","9":"Quartile 1"},{"1":"Thailand","2":"East Asia and Pacific","3":"1.66","4":"7.0","5":"11.4","6":"78","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Togo","2":"Sub-Saharan Africa","3":"4.58","4":"3.3","5":"62.0","6":"20","7":"Low","8":"0","9":"Quartile 1"},{"1":"Tonga","2":"East Asia and Pacific","3":"3.46","4":"9.2","5":"11.1","6":"34","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Trinidad and Tobago","2":"Latin America and the Caribbean","3":"1.71","4":"10.9","5":"18.4","6":"40","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Tunisia","2":"Middle East and North Africa","3":"2.01","4":"5.5","5":"13.8","6":"63","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"Turkey","2":"Europe and Central Asia","3":"2.10","4":"6.4","5":"12.2","6":"74","7":"Upper/Middle","8":"1","9":"Quartile 2"},{"1":"Uganda","2":"Sub-Saharan Africa","3":"6.06","4":"4.3","5":"45.4","6":"42","7":"Low","8":"0","9":"Quartile 1"},{"1":"Ukraine","2":"Europe and Central Asia","3":"1.29","4":"11.2","5":"9.2","6":"65","7":"Low/Middle","8":"0","9":"Quartile 4"},{"1":"United Arab Emirates","2":"Middle East and North Africa","3":"2.37","4":"10.2","5":"7.2","6":"28","7":"Upper","8":"1","9":"Quartile 3"},{"1":"United Kingdom","2":"Europe and Central Asia","3":"1.90","4":"12.8","5":"4.1","6":"84","7":"Upper","8":"1","9":"Quartile 4"},{"1":"United States","2":"North America","3":"2.06","4":"13.0","5":"6.0","6":"76","7":"Upper","8":"1","9":"Quartile 4"},{"1":"Uruguay","2":"Latin America and the Caribbean","3":"1.86","4":"8.7","5":"6.2","6":"80","7":"Upper","8":"1","9":"Quartile 3"},{"1":"Venezuela, RB","2":"Latin America and the Caribbean","3":"2.37","4":"8.7","5":"13.1","6":"75","7":"Upper/Middle","8":"1","9":"Quartile 3"},{"1":"Vietnam","2":"East Asia and Pacific","3":"1.87","4":"5.2","5":"18.4","6":"76","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"Yemen, Republic","2":"Middle East and North Africa","3":"4.27","4":"1.2","5":"46.3","6":"34","7":"Low","8":"0","9":"Quartile 1"},{"1":"Zambia","2":"Sub-Saharan Africa","3":"5.81","4":"5.8","5":"56.4","6":"49","7":"Low/Middle","8":"0","9":"Quartile 2"},{"1":"Zimbabwe","2":"Sub-Saharan Africa","3":"3.58","4":"6.7","5":"55.7","6":"67","7":"Low/Middle","8":"0","9":"Quartile 2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Discretize female education level</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fert <span class="ot">=</span> fert <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">female_educ_discrete =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      educ_female <span class="sc">&lt;</span> <span class="fl">4.8</span> <span class="sc">~</span> <span class="st">"Quartile 1"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      educ_female <span class="sc">&gt;=</span> <span class="fl">4.8</span> <span class="sc">&amp;</span> educ_female <span class="sc">&lt;</span> <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Quartile 2"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      educ_female <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> educ_female <span class="sc">&lt;</span> <span class="fl">10.25</span> <span class="sc">~</span> <span class="st">"Quartile 3"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      educ_female <span class="sc">&gt;=</span> <span class="fl">10.25</span> <span class="sc">~</span> <span class="st">"Quartile 4"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>fert</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 124 × 9
+   country      region fertility_rate educ_female infant_mortality contraceptive
+   &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;
+ 1 Albania      Europ…           1.49         9.1             15              46
+ 2 Algeria      Middl…           2.78         5.9             17.2            57
+ 3 Armenia      Europ…           1.39        10.8             14.7            57
+ 4 Austria      Europ…           1.42         8.9              3.3            66
+ 5 Azerbaijan   Europ…           1.92        10.5             30.8            55
+ 6 Bahamas, The Latin…           1.97        11.1             13.9            45
+ 7 Bangladesh   South…           2.5          4.6             33.1            62
+ 8 Belgium      Europ…           1.65        10.5              3.4            67
+ 9 Belize       Latin…           3.08         9.2             15.7            51
+10 Benin        Sub-S…           5.13         2               58.5            16
+# ℹ 114 more rows
+# ℹ 3 more variables: gni_class &lt;chr&gt;, high_gni &lt;dbl&gt;,
+#   female_educ_discrete &lt;chr&gt;</code></pre>
 </div>
 </div>
 <p>Now we have discretized female education level, we can use our new discretized variable to examine the potential interaction with contraception use.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate, <span class="at">color =</span> female_educ_discrete)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">"Contraception use"</span>) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>female_educ_discrete, <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate, <span class="at">color =</span> female_educ_discrete)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">"Contraception use"</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>female_educ_discrete, <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-fert-explore" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -596,12 +624,12 @@ Figure&nbsp;22.1: Scatterplot displaying the relationship between contraception 
 <h2 data-number="22.2" class="anchored" data-anchor-id="fit-the-interaction-model"><span class="header-section-number">22.2</span> Fit the Interaction Model</h2>
 <p>To fit the interaction model, use the constituent main effects and the interaction term to predict fertility rates. VERY IMPORTANT—Use the original quantitative female education level predictor, not the discretized variable in the model. We will also use the colon (<code>:</code>) notation to include the interaction term in the model. The colon implicitly creates the product term and includes it in the model (without having to initially create a product term).</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(fertility_rate <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> educ_female <span class="sc">+</span> contraceptive <span class="sc">+</span> educ_female<span class="sc">:</span>contraceptive, <span class="at">data =</span> fert)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.a) <span class="sc">|&gt;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(fertility_rate <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> educ_female <span class="sc">+</span> contraceptive <span class="sc">+</span> educ_female<span class="sc">:</span>contraceptive, <span class="at">data =</span> fert)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.a) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
@@ -611,14 +639,16 @@ Figure&nbsp;22.1: Scatterplot displaying the relationship between contraception 
      &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
 1     68.9         120   124</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"6.838964856","3":"0.354145350","4":"19.311181","5":"1.273753e-38"},{"1":"educ_female","2":"-0.408471097","3":"0.058017115","4":"-7.040528","5":"1.289324e-10"},{"1":"contraceptive","2":"-0.047863181","3":"0.007682742","4":"-6.229961","5":"7.158411e-09"},{"1":"educ_female:contraceptive","2":"0.003501479","3":"0.001001658","4":"3.495684","5":"6.634705e-04"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  term                      estimate std.error statistic  p.value
+  &lt;chr&gt;                        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)                6.84      0.354       19.3  1.27e-38
+2 educ_female               -0.408     0.0580      -7.04 1.29e-10
+3 contraceptive             -0.0479    0.00768     -6.23 7.16e- 9
+4 educ_female:contraceptive  0.00350   0.00100      3.50 6.63e- 4</code></pre>
 </div>
 </div>
 <p>Model A explains 70.9% of the variation in fertility rates which is not very consistent with the null hypothesis that the model explains no variation; <span class="math inline">\(F(3,120)=97.23\)</span>, <span class="math inline">\(p&lt;.001\)</span>.</p>
@@ -663,15 +693,15 @@ Figure&nbsp;22.1: Scatterplot displaying the relationship between contraception 
 \]</span></p>
 <p>Now we can create out plot of fertility rates versus contraception use and add the three partial regression lines.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fitted model</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">4.79</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.03</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">3.56</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.018</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">2.74</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">color =</span> <span class="st">"#758e4f"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fitted model</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">4.79</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.03</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">3.56</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.018</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">2.74</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">color =</span> <span class="st">"#758e4f"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-fitted-lines" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -713,12 +743,12 @@ Figure&nbsp;22.2: Plot of fertility rate as a function of contraceptive use and 
 <h2 data-number="22.4" class="anchored" data-anchor-id="adding-covariates"><span class="header-section-number">22.4</span> Adding Covariates</h2>
 <p>Is there an interaction between contraception use and female education level on fertility rates after we control for differences in infant mortality rate?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>lm.b <span class="ot">=</span> <span class="fu">lm</span>(fertility_rate <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> educ_female <span class="sc">+</span> contraceptive <span class="sc">+</span> infant_mortality <span class="sc">+</span> educ_female<span class="sc">:</span>contraceptive, <span class="at">data =</span> fert)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.b) <span class="sc">|&gt;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>lm.b <span class="ot">=</span> <span class="fu">lm</span>(fertility_rate <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> educ_female <span class="sc">+</span> contraceptive <span class="sc">+</span> infant_mortality <span class="sc">+</span> educ_female<span class="sc">:</span>contraceptive, <span class="at">data =</span> fert)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.b) <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
@@ -728,14 +758,17 @@ Figure&nbsp;22.2: Plot of fertility rate as a function of contraceptive use and 
      &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
 1     59.6         119   124</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"4.824292084","3":"0.5737755095","4":"8.407978","5":"1.053375e-13"},{"1":"educ_female","2":"-0.270972594","3":"0.0629421322","4":"-4.305107","5":"3.447599e-05"},{"1":"contraceptive","2":"-0.031680219","3":"0.0081056138","4":"-3.908429","5":"1.548513e-04"},{"1":"infant_mortality","2":"0.021244518","3":"0.0049430618","4":"4.297846","5":"3.546721e-05"},{"1":"educ_female:contraceptive","2":"0.002464712","3":"0.0009664348","4":"2.550314","5":"1.203200e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  term                      estimate std.error statistic  p.value
+  &lt;chr&gt;                        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)                4.82     0.574         8.41 1.05e-13
+2 educ_female               -0.271    0.0629       -4.31 3.45e- 5
+3 contraceptive             -0.0317   0.00811      -3.91 1.55e- 4
+4 infant_mortality           0.0212   0.00494       4.30 3.55e- 5
+5 educ_female:contraceptive  0.00246  0.000966      2.55 1.20e- 2</code></pre>
 </div>
 </div>
 <p>Model B explains 74.8% of the variation in fertility rates which is inconsistent with the null hypothesis that the model explains no variation; <span class="math inline">\(F(4,119)=88.16\)</span>, <span class="math inline">\(p&lt;.001\)</span>.</p>
@@ -788,28 +821,28 @@ Figure&nbsp;22.2: Plot of fertility rate as a function of contraceptive use and 
 \]</span></p>
 <p>Now we can create out plot of fertility rates versus contraception use and add the four partial regression lines.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 7)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate)) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">3.61</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.02</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">2.25</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Infant mortality rate at the first quartile (7%)"</span>)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 41)</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate)) <span class="sc">+</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">4.29</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.02</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">2.93</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Infant mortality rate at the third quartile (41%)"</span>)</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout side-by-side plot</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 7)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">3.61</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.02</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">2.25</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Infant mortality rate at the first quartile (7%)"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 41)</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate)) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">4.29</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.02</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">2.93</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Infant mortality rate at the third quartile (41%)"</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout side-by-side plot</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-fitted-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -851,19 +884,25 @@ Figure&nbsp;22.3: Plot of fertility rate as a function of contraceptive use, fem
 </ul>
 <p>We fit the model below.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>lm.c <span class="ot">=</span> <span class="fu">lm</span>(fertility_rate <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> educ_female <span class="sc">+</span> contraceptive <span class="sc">+</span> infant_mortality <span class="sc">+</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>            educ_female<span class="sc">:</span>contraceptive <span class="sc">+</span> infant_mortality<span class="sc">:</span>contraceptive <span class="sc">+</span> educ_female<span class="sc">:</span>infant_mortality <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>            educ_female<span class="sc">:</span>contraceptive<span class="sc">:</span>infant_mortality, <span class="at">data =</span> fert)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"7.0152152113","3":"1.02223386622","4":"6.862632","5":"3.521744e-10"},{"1":"educ_female","2":"-0.5120980805","3":"0.12357021500","4":"-4.144187","5":"6.511151e-05"},{"1":"contraceptive","2":"-0.0753657727","3":"0.01684216139","4":"-4.474828","5":"1.796554e-05"},{"1":"infant_mortality","2":"-0.0181900832","3":"0.01379403146","4":"-1.318692","5":"1.898696e-01"},{"1":"educ_female:contraceptive","2":"0.0070566599","3":"0.00185058670","4":"3.813201","5":"2.213593e-04"},{"1":"contraceptive:infant_mortality","2":"0.0009623104","3":"0.00032521960","4":"2.958956","5":"3.742616e-03"},{"1":"educ_female:infant_mortality","2":"0.0045460947","3":"0.00285347547","4":"1.593178","5":"1.138415e-01"},{"1":"educ_female:contraceptive:infant_mortality","2":"-0.0001035528","3":"0.00005155296","4":"-2.008669","5":"4.689488e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>lm.c <span class="ot">=</span> <span class="fu">lm</span>(fertility_rate <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> educ_female <span class="sc">+</span> contraceptive <span class="sc">+</span> infant_mortality <span class="sc">+</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>            educ_female<span class="sc">:</span>contraceptive <span class="sc">+</span> infant_mortality<span class="sc">:</span>contraceptive <span class="sc">+</span> educ_female<span class="sc">:</span>infant_mortality <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>            educ_female<span class="sc">:</span>contraceptive<span class="sc">:</span>infant_mortality, <span class="at">data =</span> fert)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 5
+  term                                     estimate std.error statistic  p.value
+  &lt;chr&gt;                                       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)                               7.02e+0 1.02           6.86 3.52e-10
+2 educ_female                              -5.12e-1 0.124         -4.14 6.51e- 5
+3 contraceptive                            -7.54e-2 0.0168        -4.47 1.80e- 5
+4 infant_mortality                         -1.82e-2 0.0138        -1.32 1.90e- 1
+5 educ_female:contraceptive                 7.06e-3 0.00185        3.81 2.21e- 4
+6 contraceptive:infant_mortality            9.62e-4 0.000325       2.96 3.74e- 3
+7 educ_female:infant_mortality              4.55e-3 0.00285        1.59 1.14e- 1
+8 educ_female:contraceptive:infant_mortal… -1.04e-4 0.0000516     -2.01 4.69e- 2</code></pre>
 </div>
 </div>
 <p>The fitted equation is:</p>
@@ -877,28 +916,28 @@ Figure&nbsp;22.3: Plot of fertility rate as a function of contraceptive use, fem
 \]</span></p>
 <p>The <em>p</em>-value associated with the second order interaction term (<span class="math inline">\(p=.0469\)</span>) suggests that there is a second order interaction effect between female education level, contraceptive use, and infant mortality rate on fertility rates. To interpret this, plot the model results. Again, pick values for female education level and infant mortality rate, substitute them into the fitted equation, and reduce it. I again used 5 and 10 for female education level and 7 and 41 for infant mortality rate. (Note: Algebra not shown.)</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 7)</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate)) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">4.49</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.04</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">2.09</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.005</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Infant mortality rate at the first quartile (7%)"</span>)</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 41)</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate)) <span class="sc">+</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">4.65</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.02</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">3.02</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.008</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Infant mortality rate at the third quartile (41%)"</span>)</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout side-by-side plot</span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 7)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">4.49</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.04</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">2.09</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.005</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Infant mortality rate at the first quartile (7%)"</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 41)</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate)) <span class="sc">+</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">4.65</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.02</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">3.02</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.008</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Infant mortality rate at the third quartile (41%)"</span>)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout side-by-side plot</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-fitted-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -930,239 +969,242 @@ Figure&nbsp;22.4: Plot of fertility rate as a function of contraceptive use, fem
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1170,197 +1212,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./06-01-intro-to-interaction-effects.html" class="pagination-link" aria-label="Introduction to Interaction Effects">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Introduction to Interaction Effects</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./07-00-data-codebooks.html" class="pagination-link" aria-label="Data Codebooks">
-        <span class="nav-page-text">Data Codebooks</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 

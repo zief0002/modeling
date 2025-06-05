@@ -435,6 +435,36 @@ window.Quarto = {
  <span class="menu-text">pew.csv</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks/riverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">riverview.csv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks/scoobydoo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">scoobydoo.csv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks/spice-girls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">spice-girls.csv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks/state-education.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">state-education.csv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks/work-demands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">work-demands.csv</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -565,7 +595,7 @@ Figure&nbsp;19.1: LEFT: Density plot of news knowledge. RIGHT: Bar plot of news 
 4 None          48.7  21.0   497</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="fig-family-explore-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="LEFT: Boxplots of the news knowledge versus news source. The jittered points show the individual data values.">
+<div id="fig-family-explore-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="LEFT: Boxplots of the news knowledge versus news source. The jittered points show the individual data values." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-family-explore-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="05-02-polychotomous-predictors_files/figure-html/fig-family-explore-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="LEFT: Boxplots of the news knowledge versus news source. The jittered points show the individual data values.">
@@ -734,7 +764,7 @@ Table&nbsp;19.1: News source and values on the four dummy-coded indicator variab
 </div>
 </figure>
 </div>
-<p>By using any three of the indicators, we can identify the news source for everyone in the sample. For example, in the data shown in <a href="#tbl-dummies" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-dummies</span></a>, we used all of the indicators except for <code>none</code>. For Americans whose news source is “None”, they would have a 0 for all three of the indicators used. In other words, we don’t need the information in the <code>none</code> indicator to identify people whose news source is “None”, so long as we have the other three indicators.</p>
+<p>By using any three of the indicators, we can identify the news source for everyone in the sample. For example, in the data shown in <a href="#tbl-dummies" class="quarto-xref">Table&nbsp;<span>19.1</span></a>, we used all of the indicators except for <code>none</code>. For Americans whose news source is “None”, they would have a 0 for all three of the indicators used. In other words, we don’t need the information in the <code>none</code> indicator to identify people whose news source is “None”, so long as we have the other three indicators.</p>
 <p>To examine the effect of news source, we will fit the regression using any three of the four dummy-coded indicator variables you created. The indicator you leave out of the model will correspond to the reference category. For example, in the model fitted below, we include all the predictors except <code>none</code> as predictors in the model. As such, people whose news source is “None” is our reference group.</p>
 <div class="protip">
 <p>Ultimately we will need to fit several models, so I often name my regression objects using the reference group. For example, in the model where “None” is the reference group, I will name my regression object <code>lm.none</code>.</p>
@@ -777,7 +807,7 @@ Table&nbsp;19.1: News source and values on the four dummy-coded indicator variab
 \hat{\mathrm{Knowledge}_i} = &amp;48.7 + 7.8(\mathrm{Con}_i) + 15.0(\mathrm{Com}_i) + 16.9(\mathrm{Lib}_i)
 \end{split}
 \]</span></p>
-<p>Recall from the <a href="#dummy">previous chapter</a>, the intercept coefficient is the average <em>Y</em>-value for the reference group. Each partial slope is the difference in average <em>Y</em>-value between the reference group and the group represented by the dummy variable. In our example,</p>
+<p>Recall from the <a href="05-01-dichotomous-predictors.html">previous chapter</a>, the intercept coefficient is the average <em>Y</em>-value for the reference group. Each partial slope is the difference in average <em>Y</em>-value between the reference group and the group represented by the dummy variable. In our example,</p>
 <ul>
 <li>The average news knowledge score for Americans who have no news source is 48.7.</li>
 <li>Americans who get their news from a conservative source have a news knowledge score that is 7.8 points higher, on average, than Americans who have no news source.</li>
@@ -937,7 +967,7 @@ H_0: &amp;\bigg(\mu_{\mathrm{Con}} - \mu_{\mathrm{Com}}\bigg) = \bigg(\mu_{\math
 <section id="presenting-results-of-the-pairwise-comparison-tests" class="level2" data-number="19.5">
 <h2 data-number="19.5" class="anchored" data-anchor-id="presenting-results-of-the-pairwise-comparison-tests"><span class="header-section-number">19.5</span> Presenting Results of the Pairwise Comparison Tests</h2>
 <p>Now that we have statistical results from the 6 pairwise comparisons let’s consider how we might want to present these results to a reader. As always, we can do this by presenting the results in the text of the manuscript, in a table, or in a visualization. If the number of pairwise comparisons is small (say three or fewer), presenting them in the text is reasonable as doing so would take less space than using a table or plot. When you have a larger number of comparisons to present, doing so in text is likely not a good choice due to the cognitive burden this would place on the reader.</p>
-<p>A table is a good choice for a small to moderate number of comparisons (e.g., <span class="math inline">\(\leq10\)</span> comparisons). For example, <a href="#tbl-mean-diffs" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-mean-diffs</span></a> presents the results for three pairwise comparisons carried out as part of a research study examining the effects of family structure on teen substance use.</p>
+<p>A table is a good choice for a small to moderate number of comparisons (e.g., <span class="math inline">\(\leq10\)</span> comparisons). For example, <a href="#tbl-mean-diffs" class="quarto-xref">Table&nbsp;<span>19.2</span></a> presents the results for three pairwise comparisons carried out as part of a research study examining the effects of family structure on teen substance use.</p>
 <div id="tbl-mean-diffs" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mean-diffs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -989,7 +1019,7 @@ Difference</th>
 <p>Once you have more than 10 comparisons, presenting this information in a table can be overwhelming. (If you really need to do this, consider putting the table in an appendix or in online resources rather than in the manuscript itself.) There are several options for such a visualization. One that I like, which shows the same pairwise comparisons presented in tbl-mean-diffs, is the following:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-mult-comp-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Pairwise comparisons of average teen substance use for different family structures. <br /><br />*Instructions:* Read across the row for a family structure to compare substance use with the family structures listed along the top of the chart. The symbols indicate whether the average substance use of the family structure in the row is significantly lower than that of the comparison family structure, significantly higher than that of the comparison family structure, or if there is no statistically discernible difference between the average substance use of the two countries.">
+<div id="fig-mult-comp-1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Pairwise comparisons of average teen substance use for different family structures. <br /><br />*Instructions:* Read across the row for a family structure to compare substance use with the family structures listed along the top of the chart. The symbols indicate whether the average substance use of the family structure in the row is significantly lower than that of the comparison family structure, significantly higher than that of the comparison family structure, or if there is no statistically discernible difference between the average substance use of the two countries." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mult-comp-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figs/05-02-mult-comp-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Pairwise comparisons of average teen substance use for different family structures. <br /><br />*Instructions:* Read across the row for a family structure to compare substance use with the family structures listed along the top of the chart. The symbols indicate whether the average substance use of the family structure in the row is significantly lower than that of the comparison family structure, significantly higher than that of the comparison family structure, or if there is no statistically discernible difference between the average substance use of the two countries.">
@@ -1468,7 +1498,7 @@ $residual.scale
 <span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"News source(s)"</span>) <span class="sc">+</span></span>
 <span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">50</span>, <span class="dv">80</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-ci-plot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="95% confidence intervals for the adjusted mean news knowledge scores for Americans who get their news from eight different sources. The means are adjusted for differences in age, education level, amount of news consumed, and political engagement.">
+<div id="fig-ci-plot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="95% confidence intervals for the adjusted mean news knowledge scores for Americans who get their news from eight different sources. The means are adjusted for differences in age, education level, amount of news consumed, and political engagement." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ci-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="05-02-polychotomous-predictors_files/figure-html/fig-ci-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="95% confidence intervals for the adjusted mean news knowledge scores for Americans who get their news from eight different sources. The means are adjusted for differences in age, education level, amount of news consumed, and political engagement.">

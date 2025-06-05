@@ -455,6 +455,36 @@ window.Quarto = {
  <span class="menu-text">pew.csv</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks/riverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">riverview.csv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks/scoobydoo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">scoobydoo.csv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks/spice-girls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">spice-girls.csv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks/state-education.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">state-education.csv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks/work-demands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">work-demands.csv</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -722,14 +752,14 @@ P value adjustment: bonferroni method for 6 tests </code></pre>
 </div>
 </div>
 <p>In the <code>$contrasts</code> part of the output, the <em>p</em>-values shown are the Dunn-Bonferroni adjust <em>p</em>-values. . Note that the output in <code>$emmeans</code> section remains exactly the same as when we used <code>adjust="none"</code>. This is because the <code>$emmeans</code> section will always be the model predicted means from the fitted <code>lm()</code>.</p>
-<p>We can display the results of the Dunn-Bonferroni pairwise differences in a table or visualization similar to those we created previously. <a href="#tbl-mult-comp-bonferroni" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-mult-comp-bonferroni</span></a> shows one such table Note that the adjusted mean values have been updated based on the values from the <code>$emmeans</code> part of the output. (These values should be more exact as we rounded extensively in the computations of these values.)</p>
+<p>We can display the results of the Dunn-Bonferroni pairwise differences in a table or visualization similar to those we created previously. <a href="#tbl-mult-comp-bonferroni" class="quarto-xref">Table&nbsp;<span>20.1</span></a> shows one such table Note that the adjusted mean values have been updated based on the values from the <code>$emmeans</code> part of the output. (These values should be more exact as we rounded extensively in the computations of these values.)</p>
 <div id="tbl-mult-comp-bonferroni" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mult-comp-bonferroni-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;20.1: Pairwise contrasts between the average news knowledge for different news sources after controlling for differences in age, education, news consumption, and political engagement. The p-values have been adjusted using the Dunn-Bonferroni method.
 </figcaption>
 <div aria-describedby="tbl-mult-comp-bonferroni-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="qzcjxitgiw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="oxqelssazo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="75%" data-bgcolor="#FFFFFF">
@@ -824,14 +854,14 @@ $contrasts
 P value adjustment: BH method for 6 tests </code></pre>
 </div>
 </div>
-<p>Using this <em>p</em>-value adjustment method, we find 4 statistically discernible differences. These are displayed in <a href="#tbl-mult-comp-bh" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-mult-comp-bh</span></a>.</p>
+<p>Using this <em>p</em>-value adjustment method, we find 4 statistically discernible differences. These are displayed in <a href="#tbl-mult-comp-bh" class="quarto-xref">Table&nbsp;<span>20.2</span></a>.</p>
 <div id="tbl-mult-comp-bh" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mult-comp-bh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;20.2: Pairwise contrasts between the average news knowledge for different news sources after controlling for differences in age, education, news consumption, and political engagement. The p-values have been adjusted using the Benjamini-Hochberg method.
 </figcaption>
 <div aria-describedby="tbl-mult-comp-bh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="wnxgyfjpke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="poeopuowqq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="75%" data-bgcolor="#FFFFFF">

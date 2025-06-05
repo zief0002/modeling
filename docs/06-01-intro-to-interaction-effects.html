@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,17 +85,16 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./06-02-more-interaction-effects.html" rel="next">
-<link href="./06-00-interaction-effects.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -122,8 +122,9 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-<link href="site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable/js/pagedtable.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -159,7 +160,7 @@ window.Quarto = {
 <link rel="stylesheet" href="assets/table-styles.css">
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -408,74 +409,80 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-01-broadband.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">broadband.csv</span></span></a>
+  <a href="./codebooks/broadband.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">broadband.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-01-comic-characters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">comic-characters.csv</span></span></a>
+  <a href="./codebooks/comic-characters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">comic-characters.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-03-fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">fertility.csv</span></span></a>
+  <a href="./codebooks/evaluations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">evaluations.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-04-gapminder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">gapminder.csv</span></span></a>
+  <a href="./codebooks/fertility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fertility.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-05-keith-gpa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">keith-gpa.csv</span></span></a>
+  <a href="./codebooks/gapminder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">gapminder.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-06-mn-schools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">mn-schools.csv</span></span></a>
+  <a href="./codebooks/keith-gpa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">keith-gpa.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-07-pew.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">pew.csv</span></span></a>
+  <a href="./codebooks/mn-schools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">mn-schools.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-08-riverview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">riverview.csv</span></span></a>
+  <a href="./codebooks/pew.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pew.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-09-scoobydoo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">scoobydoo.csv</span></span></a>
+  <a href="./codebooks/riverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">riverview.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-09-spice-girls.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">spice-girls.csv</span></span></a>
+  <a href="./codebooks/scoobydoo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">scoobydoo.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-11-state-education.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">state-education.csv</span></span></a>
+  <a href="./codebooks/spice-girls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">spice-girls.csv</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-10-work-demands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">work-demands.csv</span></span></a>
+  <a href="./codebooks/state-education.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">state-education.csv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks/work-demands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">work-demands.csv</span></a>
   </div>
 </li>
       </ul>
@@ -523,12 +530,21 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>work</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["guilt"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["contact"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["female"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["authority"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["married"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"10","2":"3","3":"1","4":"3","5":"1"},{"1":"24","2":"7","3":"1","4":"1","5":"1"},{"1":"27","2":"5","3":"1","4":"1","5":"1"},{"1":"40","2":"8","3":"1","4":"1","5":"1"},{"1":"23","2":"5","3":"1","4":"1","5":"1"},{"1":"11","2":"2","3":"1","4":"1","5":"1"},{"1":"6","2":"3","3":"1","4":"3","5":"1"},{"1":"36","2":"6","3":"1","4":"0","5":"1"},{"1":"26","2":"6","3":"1","4":"1","5":"1"},{"1":"28","2":"3","3":"1","4":"-1","5":"1"},{"1":"29","2":"6","3":"1","4":"1","5":"1"},{"1":"22","2":"7","3":"1","4":"2","5":"1"},{"1":"33","2":"9","3":"1","4":"2","5":"1"},{"1":"24","2":"5","3":"1","4":"0","5":"1"},{"1":"25","2":"4","3":"1","4":"0","5":"1"},{"1":"22","2":"5","3":"1","4":"1","5":"1"},{"1":"39","2":"6","3":"1","4":"-1","5":"1"},{"1":"21","2":"6","3":"1","4":"2","5":"1"},{"1":"24","2":"4","3":"1","4":"-1","5":"0"},{"1":"28","2":"5","3":"1","4":"1","5":"1"},{"1":"29","2":"6","3":"1","4":"1","5":"0"},{"1":"17","2":"4","3":"1","4":"1","5":"0"},{"1":"22","2":"5","3":"1","4":"1","5":"0"},{"1":"22","2":"4","3":"1","4":"1","5":"1"},{"1":"12","2":"3","3":"1","4":"1","5":"0"},{"1":"16","2":"3","3":"1","4":"1","5":"1"},{"1":"35","2":"9","3":"1","4":"-1","5":"0"},{"1":"31","2":"8","3":"1","4":"1","5":"0"},{"1":"27","2":"6","3":"1","4":"1","5":"1"},{"1":"24","2":"5","3":"1","4":"0","5":"0"},{"1":"41","2":"9","3":"1","4":"1","5":"1"},{"1":"46","2":"7","3":"1","4":"0","5":"1"},{"1":"44","2":"8","3":"1","4":"-1","5":"1"},{"1":"32","2":"7","3":"1","4":"2","5":"1"},{"1":"27","2":"6","3":"1","4":"1","5":"0"},{"1":"26","2":"5","3":"1","4":"1","5":"1"},{"1":"19","2":"4","3":"1","4":"1","5":"0"},{"1":"21","2":"7","3":"1","4":"3","5":"1"},{"1":"29","2":"7","3":"1","4":"3","5":"1"},{"1":"16","2":"4","3":"1","4":"1","5":"1"},{"1":"25","2":"5","3":"1","4":"1","5":"0"},{"1":"22","2":"3","3":"1","4":"0","5":"1"},{"1":"22","2":"4","3":"1","4":"0","5":"1"},{"1":"29","2":"6","3":"1","4":"1","5":"1"},{"1":"34","2":"6","3":"1","4":"1","5":"1"},{"1":"50","2":"8","3":"1","4":"-2","5":"1"},{"1":"32","2":"6","3":"1","4":"1","5":"1"},{"1":"22","2":"6","3":"1","4":"2","5":"1"},{"1":"34","2":"6","3":"1","4":"0","5":"1"},{"1":"25","2":"3","3":"1","4":"0","5":"0"},{"1":"30","2":"7","3":"1","4":"2","5":"0"},{"1":"18","2":"7","3":"1","4":"1","5":"1"},{"1":"3","2":"2","3":"1","4":"1","5":"0"},{"1":"43","2":"5","3":"1","4":"-2","5":"0"},{"1":"21","2":"4","3":"1","4":"0","5":"1"},{"1":"27","2":"5","3":"1","4":"1","5":"1"},{"1":"27","2":"6","3":"1","4":"1","5":"1"},{"1":"27","2":"5","3":"1","4":"0","5":"1"},{"1":"21","2":"7","3":"1","4":"1","5":"1"},{"1":"17","2":"4","3":"1","4":"1","5":"0"},{"1":"27","2":"5","3":"1","4":"0","5":"1"},{"1":"41","2":"7","3":"1","4":"-1","5":"0"},{"1":"19","2":"5","3":"1","4":"3","5":"1"},{"1":"12","2":"1","3":"1","4":"1","5":"1"},{"1":"21","2":"4","3":"1","4":"1","5":"0"},{"1":"19","2":"2","3":"1","4":"0","5":"1"},{"1":"18","2":"5","3":"1","4":"2","5":"1"},{"1":"10","2":"4","3":"1","4":"2","5":"1"},{"1":"24","2":"4","3":"1","4":"-1","5":"1"},{"1":"23","2":"4","3":"1","4":"0","5":"1"},{"1":"16","2":"2","3":"1","4":"0","5":"1"},{"1":"22","2":"4","3":"1","4":"1","5":"1"},{"1":"18","2":"2","3":"1","4":"1","5":"1"},{"1":"29","2":"7","3":"1","4":"1","5":"0"},{"1":"45","2":"8","3":"1","4":"-2","5":"1"},{"1":"30","2":"5","3":"1","4":"0","5":"1"},{"1":"15","2":"2","3":"1","4":"1","5":"1"},{"1":"24","2":"6","3":"1","4":"2","5":"0"},{"1":"45","2":"7","3":"1","4":"0","5":"1"},{"1":"19","2":"4","3":"1","4":"3","5":"1"},{"1":"22","2":"4","3":"1","4":"1","5":"1"},{"1":"12","2":"4","3":"1","4":"1","5":"0"},{"1":"33","2":"9","3":"1","4":"1","5":"0"},{"1":"10","2":"1","3":"1","4":"2","5":"1"},{"1":"34","2":"4","3":"1","4":"-1","5":"1"},{"1":"22","2":"6","3":"1","4":"3","5":"1"},{"1":"31","2":"6","3":"1","4":"0","5":"1"},{"1":"16","2":"3","3":"1","4":"1","5":"0"},{"1":"48","2":"9","3":"1","4":"0","5":"1"},{"1":"19","2":"3","3":"1","4":"0","5":"1"},{"1":"25","2":"4","3":"1","4":"1","5":"1"},{"1":"26","2":"7","3":"1","4":"2","5":"0"},{"1":"17","2":"5","3":"1","4":"2","5":"0"},{"1":"20","2":"7","3":"1","4":"1","5":"0"},{"1":"32","2":"5","3":"1","4":"-1","5":"0"},{"1":"35","2":"5","3":"1","4":"-2","5":"1"},{"1":"31","2":"6","3":"1","4":"1","5":"1"},{"1":"36","2":"6","3":"1","4":"-1","5":"1"},{"1":"28","2":"5","3":"1","4":"1","5":"1"},{"1":"21","2":"3","3":"1","4":"0","5":"1"},{"1":"36","2":"6","3":"1","4":"1","5":"0"},{"1":"24","2":"5","3":"1","4":"0","5":"1"},{"1":"32","2":"6","3":"1","4":"1","5":"1"},{"1":"44","2":"7","3":"1","4":"-1","5":"1"},{"1":"22","2":"5","3":"1","4":"0","5":"1"},{"1":"37","2":"6","3":"1","4":"-1","5":"1"},{"1":"31","2":"4","3":"1","4":"-1","5":"1"},{"1":"31","2":"6","3":"1","4":"1","5":"1"},{"1":"9","2":"2","3":"1","4":"2","5":"1"},{"1":"39","2":"7","3":"1","4":"0","5":"1"},{"1":"29","2":"4","3":"1","4":"1","5":"1"},{"1":"18","2":"3","3":"1","4":"0","5":"1"},{"1":"19","2":"5","3":"1","4":"1","5":"1"},{"1":"41","2":"9","3":"1","4":"-1","5":"1"},{"1":"39","2":"9","3":"1","4":"0","5":"1"},{"1":"28","2":"6","3":"1","4":"0","5":"0"},{"1":"20","2":"6","3":"1","4":"3","5":"0"},{"1":"26","2":"7","3":"1","4":"1","5":"1"},{"1":"35","2":"9","3":"1","4":"2","5":"1"},{"1":"28","2":"6","3":"1","4":"1","5":"1"},{"1":"14","2":"3","3":"1","4":"2","5":"1"},{"1":"29","2":"7","3":"1","4":"1","5":"1"},{"1":"33","2":"7","3":"1","4":"2","5":"1"},{"1":"19","2":"4","3":"1","4":"2","5":"1"},{"1":"22","2":"5","3":"1","4":"1","5":"1"},{"1":"25","2":"4","3":"1","4":"-1","5":"1"},{"1":"33","2":"5","3":"1","4":"-1","5":"1"},{"1":"18","2":"4","3":"1","4":"1","5":"0"},{"1":"19","2":"4","3":"1","4":"0","5":"1"},{"1":"26","2":"7","3":"1","4":"2","5":"1"},{"1":"21","2":"6","3":"1","4":"2","5":"1"},{"1":"21","2":"7","3":"1","4":"3","5":"1"},{"1":"21","2":"4","3":"1","4":"2","5":"1"},{"1":"30","2":"5","3":"1","4":"-1","5":"1"},{"1":"33","2":"7","3":"1","4":"0","5":"1"},{"1":"28","2":"9","3":"1","4":"3","5":"0"},{"1":"39","2":"9","3":"1","4":"1","5":"1"},{"1":"12","2":"3","3":"1","4":"1","5":"1"},{"1":"32","2":"9","3":"1","4":"2","5":"1"},{"1":"20","2":"5","3":"1","4":"0","5":"1"},{"1":"19","2":"3","3":"1","4":"2","5":"1"},{"1":"26","2":"4","3":"1","4":"1","5":"1"},{"1":"28","2":"4","3":"1","4":"-1","5":"1"},{"1":"14","2":"2","3":"1","4":"0","5":"0"},{"1":"15","2":"2","3":"1","4":"1","5":"1"},{"1":"45","2":"5","3":"1","4":"-3","5":"1"},{"1":"30","2":"5","3":"1","4":"-1","5":"1"},{"1":"15","2":"5","3":"1","4":"2","5":"0"},{"1":"19","2":"5","3":"1","4":"1","5":"1"},{"1":"37","2":"4","3":"1","4":"-1","5":"1"},{"1":"24","2":"6","3":"1","4":"1","5":"0"},{"1":"23","2":"3","3":"1","4":"1","5":"1"},{"1":"19","2":"5","3":"1","4":"2","5":"0"},{"1":"36","2":"5","3":"1","4":"-1","5":"1"},{"1":"45","2":"7","3":"1","4":"0","5":"1"},{"1":"35","2":"4","3":"1","4":"-2","5":"1"},{"1":"19","2":"2","3":"1","4":"0","5":"1"},{"1":"17","2":"3","3":"1","4":"2","5":"1"},{"1":"25","2":"4","3":"1","4":"0","5":"1"},{"1":"14","2":"3","3":"1","4":"2","5":"1"},{"1":"29","2":"5","3":"1","4":"-1","5":"0"},{"1":"29","2":"8","3":"1","4":"1","5":"1"},{"1":"5","2":"0","3":"1","4":"2","5":"0"},{"1":"19","2":"6","3":"1","4":"2","5":"1"},{"1":"29","2":"5","3":"1","4":"0","5":"0"},{"1":"30","2":"5","3":"1","4":"-1","5":"1"},{"1":"16","2":"4","3":"1","4":"0","5":"0"},{"1":"28","2":"5","3":"1","4":"0","5":"1"},{"1":"12","2":"3","3":"1","4":"1","5":"1"},{"1":"38","2":"8","3":"1","4":"1","5":"1"},{"1":"17","2":"4","3":"1","4":"1","5":"1"},{"1":"33","2":"7","3":"1","4":"1","5":"1"},{"1":"45","2":"8","3":"1","4":"0","5":"0"},{"1":"22","2":"2","3":"1","4":"-1","5":"1"},{"1":"22","2":"6","3":"1","4":"1","5":"0"},{"1":"32","2":"7","3":"1","4":"1","5":"1"},{"1":"28","2":"6","3":"1","4":"1","5":"1"},{"1":"16","2":"5","3":"1","4":"2","5":"1"},{"1":"33","2":"8","3":"1","4":"1","5":"1"},{"1":"14","2":"4","3":"1","4":"3","5":"1"},{"1":"12","2":"2","3":"0","4":"1","5":"0"},{"1":"29","2":"10","3":"0","4":"2","5":"0"},{"1":"24","2":"7","3":"0","4":"1","5":"0"},{"1":"33","2":"5","3":"0","4":"-1","5":"0"},{"1":"21","2":"8","3":"0","4":"1","5":"0"},{"1":"23","2":"5","3":"0","4":"1","5":"0"},{"1":"33","2":"7","3":"0","4":"0","5":"1"},{"1":"34","2":"6","3":"0","4":"-2","5":"0"},{"1":"33","2":"8","3":"0","4":"1","5":"0"},{"1":"33","2":"8","3":"0","4":"-1","5":"0"},{"1":"22","2":"5","3":"0","4":"2","5":"1"},{"1":"20","2":"4","3":"0","4":"-1","5":"0"},{"1":"17","2":"8","3":"0","4":"3","5":"1"},{"1":"18","2":"6","3":"0","4":"2","5":"0"},{"1":"26","2":"8","3":"0","4":"0","5":"0"},{"1":"28","2":"7","3":"0","4":"1","5":"1"},{"1":"6","2":"7","3":"0","4":"3","5":"1"},{"1":"17","2":"7","3":"0","4":"2","5":"1"},{"1":"12","2":"4","3":"0","4":"2","5":"1"},{"1":"25","2":"5","3":"0","4":"2","5":"1"},{"1":"4","2":"5","3":"0","4":"2","5":"0"},{"1":"21","2":"3","3":"0","4":"0","5":"0"},{"1":"12","2":"4","3":"0","4":"1","5":"0"},{"1":"21","2":"7","3":"0","4":"1","5":"0"},{"1":"19","2":"5","3":"0","4":"1","5":"1"},{"1":"20","2":"6","3":"0","4":"2","5":"1"},{"1":"26","2":"9","3":"0","4":"2","5":"1"},{"1":"9","2":"4","3":"0","4":"3","5":"1"},{"1":"19","2":"4","3":"0","4":"1","5":"1"},{"1":"30","2":"7","3":"0","4":"0","5":"1"},{"1":"4","2":"5","3":"0","4":"4","5":"0"},{"1":"19","2":"5","3":"0","4":"1","5":"1"},{"1":"25","2":"5","3":"0","4":"0","5":"1"},{"1":"13","2":"6","3":"0","4":"3","5":"1"},{"1":"17","2":"4","3":"0","4":"1","5":"1"},{"1":"23","2":"4","3":"0","4":"-1","5":"0"},{"1":"13","2":"5","3":"0","4":"2","5":"0"},{"1":"22","2":"7","3":"0","4":"2","5":"1"},{"1":"29","2":"5","3":"0","4":"0","5":"1"},{"1":"30","2":"7","3":"0","4":"1","5":"1"},{"1":"13","2":"3","3":"0","4":"1","5":"1"},{"1":"34","2":"9","3":"0","4":"0","5":"1"},{"1":"13","2":"2","3":"0","4":"0","5":"0"},{"1":"33","2":"9","3":"0","4":"0","5":"1"},{"1":"37","2":"10","3":"0","4":"2","5":"1"},{"1":"33","2":"8","3":"0","4":"1","5":"0"},{"1":"20","2":"7","3":"0","4":"2","5":"1"},{"1":"20","2":"9","3":"0","4":"3","5":"1"},{"1":"37","2":"5","3":"0","4":"-1","5":"1"},{"1":"16","2":"4","3":"0","4":"2","5":"1"},{"1":"29","2":"7","3":"0","4":"0","5":"1"},{"1":"26","2":"8","3":"0","4":"0","5":"0"},{"1":"38","2":"9","3":"0","4":"1","5":"0"},{"1":"27","2":"6","3":"0","4":"0","5":"1"},{"1":"19","2":"4","3":"0","4":"0","5":"1"},{"1":"37","2":"9","3":"0","4":"0","5":"0"},{"1":"16","2":"5","3":"0","4":"0","5":"1"},{"1":"24","2":"5","3":"0","4":"0","5":"1"},{"1":"21","2":"6","3":"0","4":"2","5":"1"},{"1":"33","2":"8","3":"0","4":"1","5":"1"},{"1":"41","2":"9","3":"0","4":"0","5":"1"},{"1":"17","2":"3","3":"0","4":"0","5":"0"},{"1":"11","2":"6","3":"0","4":"3","5":"0"},{"1":"5","2":"3","3":"0","4":"3","5":"0"},{"1":"36","2":"7","3":"0","4":"0","5":"0"},{"1":"16","2":"5","3":"0","4":"2","5":"1"},{"1":"15","2":"5","3":"0","4":"3","5":"1"},{"1":"14","2":"6","3":"0","4":"2","5":"1"},{"1":"34","2":"5","3":"0","4":"-1","5":"1"},{"1":"33","2":"8","3":"0","4":"0","5":"0"},{"1":"7","2":"5","3":"0","4":"3","5":"0"},{"1":"33","2":"6","3":"0","4":"0","5":"0"},{"1":"26","2":"6","3":"0","4":"1","5":"1"},{"1":"22","2":"6","3":"0","4":"1","5":"1"},{"1":"33","2":"7","3":"0","4":"0","5":"0"},{"1":"26","2":"7","3":"0","4":"0","5":"1"},{"1":"19","2":"6","3":"0","4":"1","5":"0"},{"1":"23","2":"5","3":"0","4":"0","5":"0"},{"1":"19","2":"6","3":"0","4":"2","5":"0"},{"1":"24","2":"6","3":"0","4":"1","5":"1"},{"1":"25","2":"6","3":"0","4":"1","5":"1"},{"1":"34","2":"6","3":"0","4":"-1","5":"1"},{"1":"28","2":"3","3":"0","4":"-1","5":"1"},{"1":"23","2":"6","3":"0","4":"2","5":"1"},{"1":"22","2":"4","3":"0","4":"1","5":"1"},{"1":"15","2":"5","3":"0","4":"1","5":"1"},{"1":"13","2":"7","3":"0","4":"4","5":"0"},{"1":"15","2":"5","3":"0","4":"2","5":"1"},{"1":"20","2":"4","3":"0","4":"0","5":"1"},{"1":"16","2":"5","3":"0","4":"2","5":"1"},{"1":"5","2":"1","3":"0","4":"2","5":"0"},{"1":"7","2":"4","3":"0","4":"2","5":"1"},{"1":"34","2":"6","3":"0","4":"0","5":"0"},{"1":"17","2":"4","3":"0","4":"1","5":"0"},{"1":"11","2":"5","3":"0","4":"2","5":"1"},{"1":"25","2":"6","3":"0","4":"1","5":"1"},{"1":"14","2":"7","3":"0","4":"3","5":"0"},{"1":"8","2":"5","3":"0","4":"3","5":"1"},{"1":"29","2":"3","3":"0","4":"-1","5":"1"},{"1":"16","2":"4","3":"0","4":"1","5":"1"},{"1":"25","2":"4","3":"0","4":"0","5":"1"},{"1":"22","2":"8","3":"0","4":"1","5":"0"},{"1":"32","2":"7","3":"0","4":"-1","5":"1"},{"1":"26","2":"6","3":"0","4":"1","5":"1"},{"1":"32","2":"6","3":"0","4":"0","5":"0"},{"1":"32","2":"7","3":"0","4":"-1","5":"1"},{"1":"23","2":"7","3":"0","4":"2","5":"1"},{"1":"39","2":"8","3":"0","4":"0","5":"1"},{"1":"22","2":"7","3":"0","4":"1","5":"0"},{"1":"24","2":"5","3":"0","4":"2","5":"1"},{"1":"34","2":"5","3":"0","4":"-1","5":"0"},{"1":"24","2":"6","3":"0","4":"1","5":"0"},{"1":"12","2":"4","3":"0","4":"0","5":"0"},{"1":"20","2":"7","3":"0","4":"2","5":"1"},{"1":"16","2":"4","3":"0","4":"2","5":"1"},{"1":"18","2":"5","3":"0","4":"2","5":"1"},{"1":"27","2":"9","3":"0","4":"1","5":"1"},{"1":"26","2":"6","3":"0","4":"2","5":"1"},{"1":"29","2":"9","3":"0","4":"2","5":"1"},{"1":"28","2":"4","3":"0","4":"-1","5":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 300 × 5
+   guilt contact female authority married
+   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+ 1    10       3      1         3       1
+ 2    24       7      1         1       1
+ 3    27       5      1         1       1
+ 4    40       8      1         1       1
+ 5    23       5      1         1       1
+ 6    11       2      1         1       1
+ 7     6       3      1         3       1
+ 8    36       6      1         0       1
+ 9    26       6      1         1       1
+10    28       3      1        -1       1
+# ℹ 290 more rows</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -536,80 +552,63 @@ window.Quarto = {
 <h2 data-number="21.1" class="anchored" data-anchor-id="data-exploration"><span class="header-section-number">21.1</span> Data Exploration</h2>
 <p>To begin, as always, we would plot the marginal distributions of guilt (<code>guilt</code>) and amount of work contact outside normal working hours (<code>contact</code>). We will also examine the scatterplot to look at the relationship between amount of work contact outside normal working hours and guilt. We will also examine summary measures for each distribution and the correlation matrix.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of pre-test scores</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> guilt)) <span class="sc">+</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Guilt"</span>) <span class="sc">+</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of post-test scores</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact)) <span class="sc">+</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of work contact outside normal working hours"</span>) <span class="sc">+</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot of post- vs. pre-test scores</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of work contact outside normal working hours"</span>) <span class="sc">+</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Guilt"</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2 <span class="sc">|</span> p3</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute summary statistics</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>work <span class="sc">|&gt;</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">M_guilt  =</span> <span class="fu">mean</span>(guilt),</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD_guilt =</span> <span class="fu">sd</span>(guilt),</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">M_contact  =</span> <span class="fu">mean</span>(contact),</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD_contact =</span> <span class="fu">sd</span>(contact),</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>()</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="fig-vocab-explore-1" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-vocab-explore-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div data-pagedtable="false">
-<script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["M_guilt"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["SD_guilt"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["M_contact"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["SD_contact"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["N"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"24.51","2":"9.095364","3":"5.466667","4":"1.883449","5":"300"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of pre-test scores</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Guilt"</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of post-test scores</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact)) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of work contact outside normal working hours"</span>) <span class="sc">+</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot of post- vs. pre-test scores</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of work contact outside normal working hours"</span>) <span class="sc">+</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Guilt"</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2 <span class="sc">|</span> p3</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute summary statistics</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>work <span class="sc">|&gt;</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">M_guilt  =</span> <span class="fu">mean</span>(guilt),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD_guilt =</span> <span class="fu">sd</span>(guilt),</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">M_contact  =</span> <span class="fu">mean</span>(contact),</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD_contact =</span> <span class="fu">sd</span>(contact),</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>()</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  M_guilt SD_guilt M_contact SD_contact     N
+    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;
+1    24.5     9.10      5.47       1.88   300</code></pre>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vocab-explore-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21.1: Density plots of guilt and amount of work contact outside normal working hours, as well as, the scatterplot showing the relationship between these measures.
-</figcaption>
-</figure>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>work <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(guilt, contact) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fashion</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="fig-vocab-explore-2" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-vocab-explore-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div data-pagedtable="false">
-<script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["term"],"name":[1],"type":["noquote"],"align":["right"]},{"label":["guilt"],"name":[2],"type":["noquote"],"align":["right"]},{"label":["contact"],"name":[3],"type":["noquote"],"align":["right"]}],"data":[{"1":"guilt","2":"","3":".60"},{"1":"contact","2":".60","3":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vocab-explore-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21.2: Density plots of guilt and amount of work contact outside normal working hours, as well as, the scatterplot showing the relationship between these measures.
-</figcaption>
-</figure>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>work <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(guilt, contact) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fashion</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     term guilt contact
+1   guilt           .60
+2 contact   .60        </code></pre>
 </div>
 <div class="cell-output-display">
-<div id="fig-vocab-explore-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-vocab-explore" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-vocab-explore-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-vocab-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="06-01-intro-to-interaction-effects_files/figure-html/fig-vocab-explore-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vocab-explore-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21.3: Density plots of guilt and amount of work contact outside normal working hours, as well as, the scatterplot showing the relationship between these measures.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vocab-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.1: Density plots of guilt and amount of work contact outside normal working hours, as well as, the scatterplot showing the relationship between these measures.
 </figcaption>
 </figure>
 </div>
@@ -622,20 +621,20 @@ Figure&nbsp;21.3: Density plots of guilt and amount of work contact outside norm
 <h2 data-number="21.2" class="anchored" data-anchor-id="examining-the-effect-of-work-contact-on-guilt"><span class="header-section-number">21.2</span> Examining the Effect of Work Contact on Guilt</h2>
 <p>We will begin by fitting a regression model that regresses guilt on amount of work contact. We will also fit two additional models: one that controls for differences in gender and a second that controls for differences in level of job authority and marital status in addition to gender.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit models</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> contact, <span class="at">data =</span> work)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>lm.b <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> contact <span class="sc">+</span> female, <span class="at">data =</span> work)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>lm.c <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> contact <span class="sc">+</span> female <span class="sc">+</span> authority <span class="sc">+</span> married, <span class="at">data =</span> work)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># glance(lm.a)</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># glance(lm.b)</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># glance(lm.c)</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy(lm.a, conf.int = TRUE)</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy(lm.b, conf.int = TRUE)</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy(lm.c, conf.int = TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit models</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> contact, <span class="at">data =</span> work)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>lm.b <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> contact <span class="sc">+</span> female, <span class="at">data =</span> work)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>lm.c <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> contact <span class="sc">+</span> female <span class="sc">+</span> authority <span class="sc">+</span> married, <span class="at">data =</span> work)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># glance(lm.a)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># glance(lm.b)</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># glance(lm.c)</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy(lm.a, conf.int = TRUE)</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy(lm.b, conf.int = TRUE)</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy(lm.c, conf.int = TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <table class="table" style="width:90%; margin-left: auto; margin-right: auto; text-align:center">
 <caption style="font-style:normal;text-align:left;caption-side:top;">
@@ -768,13 +767,13 @@ RMSE
 \end{split}
 \]</span></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of boundary-spanning work"</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted home-life/work guilt"</span>) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">6.94</span>, <span class="at">slope =</span> <span class="fl">3.22</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">3.22</span>, <span class="at">slope =</span> <span class="fl">3.22</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Amount of boundary-spanning work"</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted home-life/work guilt"</span>) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">6.94</span>, <span class="at">slope =</span> <span class="fl">3.22</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">3.22</span>, <span class="at">slope =</span> <span class="fl">3.22</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-model-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -782,7 +781,7 @@ RMSE
 <img src="06-01-intro-to-interaction-effects_files/figure-html/fig-model-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-model-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21.4: Partial fitted regression lines showing model-predicted guilt as a function of the amount of work contact outside normal working hours for females (charcoal, solid line) and non-females (mango, dashed line). The effects of job authority (mean value) and marital status (non-married) have been partialed out.
+Figure&nbsp;21.2: Partial fitted regression lines showing model-predicted guilt as a function of the amount of work contact outside normal working hours for females (charcoal, solid line) and non-females (mango, dashed line). The effects of job authority (mean value) and marital status (non-married) have been partialed out.
 </figcaption>
 </figure>
 </div>
@@ -804,17 +803,17 @@ Figure&nbsp;21.4: Partial fitted regression lines showing model-predicted guilt 
 <h3 data-number="21.3.1" class="anchored" data-anchor-id="evaluating-an-interaction-effect"><span class="header-section-number">21.3.1</span> Evaluating an Interaction Effect</h3>
 <p>We can initally evaluate whether there is an interaction effect in the sample by re-creating the scatterplot between work contact and guilt and plotting different regression lines for each gender. To do this we include <code>group=</code> in the aesthetic. Because the column we are grouping on (<code>female</code>) is numbers—remember it is dummy coded—we force R to treat it as categorical by calling the <code>factor()</code> function on it. In addition to grouping by <code>female</code>, we also color by it so that we can better evaluate the different regression lines.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt, <span class="at">group =</span> <span class="fu">factor</span>(female), <span class="at">color =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">""</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#F5853F"</span>, <span class="st">"#424651"</span>),</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non-females"</span>, <span class="st">"Females"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Guilt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt, <span class="at">group =</span> <span class="fu">factor</span>(female), <span class="at">color =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">""</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#F5853F"</span>, <span class="st">"#424651"</span>),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non-females"</span>, <span class="st">"Females"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Guilt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-explore-cond-gender" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -822,7 +821,7 @@ Figure&nbsp;21.4: Partial fitted regression lines showing model-predicted guilt 
 <img src="06-01-intro-to-interaction-effects_files/figure-html/fig-explore-cond-gender-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-explore-cond-gender-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21.5: Scatterplot of guilt versus work contact conditioned on gender. The fitted simple regression lines have also been included.
+Figure&nbsp;21.3: Scatterplot of guilt versus work contact conditioned on gender. The fitted simple regression lines have also been included.
 </figcaption>
 </figure>
 </div>
@@ -831,41 +830,52 @@ Figure&nbsp;21.5: Scatterplot of guilt versus work contact conditioned on gender
 <p>The two regression lines are not parallel; the effect of work contact outside normal working hours on guilt is different for females and non-females. This is evidence of an interaction in the sample data. The empirical data suggests that the effect of work contact outside normal working hours on guilt is positive for females and non-females, but that the magnitude (slope) of this relationship may be higher for females. In other words, increased amounts of work contact outside normal working hours may be associated with more guilt for females than for non-females.</p>
 <p>The inferential question is now: Is this difference in effects (i.e., slopes) that we are seeing in the sample data “real”, or is it an artifact of sampling error? To evaluate this we need to fit a regression model where the effect of work contact on guilt is allowed to differ by gender. To do this, we create another predictor that is the <strong>product of the two predictors we believe interact</strong> and include that product term in the regression model along with the original predictors we used to create it (i.e., also include the constituent main-effects). In our example, we multiply the dummy-coded <code>female</code> predictor by the work contact (<code>contact</code>) predictor to create an <em>interaction term</em>. Then we fit a model that includes the dummy-coded female predictor, the work contact predictor, and the newly created interaction term.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create interaction term</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>work <span class="ot">=</span> work <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">contact_female =</span> contact <span class="sc">*</span> female</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>work</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["guilt"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["contact"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["female"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["authority"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["married"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["contact_female"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"10","2":"3","3":"1","4":"3","5":"1","6":"3"},{"1":"24","2":"7","3":"1","4":"1","5":"1","6":"7"},{"1":"27","2":"5","3":"1","4":"1","5":"1","6":"5"},{"1":"40","2":"8","3":"1","4":"1","5":"1","6":"8"},{"1":"23","2":"5","3":"1","4":"1","5":"1","6":"5"},{"1":"11","2":"2","3":"1","4":"1","5":"1","6":"2"},{"1":"6","2":"3","3":"1","4":"3","5":"1","6":"3"},{"1":"36","2":"6","3":"1","4":"0","5":"1","6":"6"},{"1":"26","2":"6","3":"1","4":"1","5":"1","6":"6"},{"1":"28","2":"3","3":"1","4":"-1","5":"1","6":"3"},{"1":"29","2":"6","3":"1","4":"1","5":"1","6":"6"},{"1":"22","2":"7","3":"1","4":"2","5":"1","6":"7"},{"1":"33","2":"9","3":"1","4":"2","5":"1","6":"9"},{"1":"24","2":"5","3":"1","4":"0","5":"1","6":"5"},{"1":"25","2":"4","3":"1","4":"0","5":"1","6":"4"},{"1":"22","2":"5","3":"1","4":"1","5":"1","6":"5"},{"1":"39","2":"6","3":"1","4":"-1","5":"1","6":"6"},{"1":"21","2":"6","3":"1","4":"2","5":"1","6":"6"},{"1":"24","2":"4","3":"1","4":"-1","5":"0","6":"4"},{"1":"28","2":"5","3":"1","4":"1","5":"1","6":"5"},{"1":"29","2":"6","3":"1","4":"1","5":"0","6":"6"},{"1":"17","2":"4","3":"1","4":"1","5":"0","6":"4"},{"1":"22","2":"5","3":"1","4":"1","5":"0","6":"5"},{"1":"22","2":"4","3":"1","4":"1","5":"1","6":"4"},{"1":"12","2":"3","3":"1","4":"1","5":"0","6":"3"},{"1":"16","2":"3","3":"1","4":"1","5":"1","6":"3"},{"1":"35","2":"9","3":"1","4":"-1","5":"0","6":"9"},{"1":"31","2":"8","3":"1","4":"1","5":"0","6":"8"},{"1":"27","2":"6","3":"1","4":"1","5":"1","6":"6"},{"1":"24","2":"5","3":"1","4":"0","5":"0","6":"5"},{"1":"41","2":"9","3":"1","4":"1","5":"1","6":"9"},{"1":"46","2":"7","3":"1","4":"0","5":"1","6":"7"},{"1":"44","2":"8","3":"1","4":"-1","5":"1","6":"8"},{"1":"32","2":"7","3":"1","4":"2","5":"1","6":"7"},{"1":"27","2":"6","3":"1","4":"1","5":"0","6":"6"},{"1":"26","2":"5","3":"1","4":"1","5":"1","6":"5"},{"1":"19","2":"4","3":"1","4":"1","5":"0","6":"4"},{"1":"21","2":"7","3":"1","4":"3","5":"1","6":"7"},{"1":"29","2":"7","3":"1","4":"3","5":"1","6":"7"},{"1":"16","2":"4","3":"1","4":"1","5":"1","6":"4"},{"1":"25","2":"5","3":"1","4":"1","5":"0","6":"5"},{"1":"22","2":"3","3":"1","4":"0","5":"1","6":"3"},{"1":"22","2":"4","3":"1","4":"0","5":"1","6":"4"},{"1":"29","2":"6","3":"1","4":"1","5":"1","6":"6"},{"1":"34","2":"6","3":"1","4":"1","5":"1","6":"6"},{"1":"50","2":"8","3":"1","4":"-2","5":"1","6":"8"},{"1":"32","2":"6","3":"1","4":"1","5":"1","6":"6"},{"1":"22","2":"6","3":"1","4":"2","5":"1","6":"6"},{"1":"34","2":"6","3":"1","4":"0","5":"1","6":"6"},{"1":"25","2":"3","3":"1","4":"0","5":"0","6":"3"},{"1":"30","2":"7","3":"1","4":"2","5":"0","6":"7"},{"1":"18","2":"7","3":"1","4":"1","5":"1","6":"7"},{"1":"3","2":"2","3":"1","4":"1","5":"0","6":"2"},{"1":"43","2":"5","3":"1","4":"-2","5":"0","6":"5"},{"1":"21","2":"4","3":"1","4":"0","5":"1","6":"4"},{"1":"27","2":"5","3":"1","4":"1","5":"1","6":"5"},{"1":"27","2":"6","3":"1","4":"1","5":"1","6":"6"},{"1":"27","2":"5","3":"1","4":"0","5":"1","6":"5"},{"1":"21","2":"7","3":"1","4":"1","5":"1","6":"7"},{"1":"17","2":"4","3":"1","4":"1","5":"0","6":"4"},{"1":"27","2":"5","3":"1","4":"0","5":"1","6":"5"},{"1":"41","2":"7","3":"1","4":"-1","5":"0","6":"7"},{"1":"19","2":"5","3":"1","4":"3","5":"1","6":"5"},{"1":"12","2":"1","3":"1","4":"1","5":"1","6":"1"},{"1":"21","2":"4","3":"1","4":"1","5":"0","6":"4"},{"1":"19","2":"2","3":"1","4":"0","5":"1","6":"2"},{"1":"18","2":"5","3":"1","4":"2","5":"1","6":"5"},{"1":"10","2":"4","3":"1","4":"2","5":"1","6":"4"},{"1":"24","2":"4","3":"1","4":"-1","5":"1","6":"4"},{"1":"23","2":"4","3":"1","4":"0","5":"1","6":"4"},{"1":"16","2":"2","3":"1","4":"0","5":"1","6":"2"},{"1":"22","2":"4","3":"1","4":"1","5":"1","6":"4"},{"1":"18","2":"2","3":"1","4":"1","5":"1","6":"2"},{"1":"29","2":"7","3":"1","4":"1","5":"0","6":"7"},{"1":"45","2":"8","3":"1","4":"-2","5":"1","6":"8"},{"1":"30","2":"5","3":"1","4":"0","5":"1","6":"5"},{"1":"15","2":"2","3":"1","4":"1","5":"1","6":"2"},{"1":"24","2":"6","3":"1","4":"2","5":"0","6":"6"},{"1":"45","2":"7","3":"1","4":"0","5":"1","6":"7"},{"1":"19","2":"4","3":"1","4":"3","5":"1","6":"4"},{"1":"22","2":"4","3":"1","4":"1","5":"1","6":"4"},{"1":"12","2":"4","3":"1","4":"1","5":"0","6":"4"},{"1":"33","2":"9","3":"1","4":"1","5":"0","6":"9"},{"1":"10","2":"1","3":"1","4":"2","5":"1","6":"1"},{"1":"34","2":"4","3":"1","4":"-1","5":"1","6":"4"},{"1":"22","2":"6","3":"1","4":"3","5":"1","6":"6"},{"1":"31","2":"6","3":"1","4":"0","5":"1","6":"6"},{"1":"16","2":"3","3":"1","4":"1","5":"0","6":"3"},{"1":"48","2":"9","3":"1","4":"0","5":"1","6":"9"},{"1":"19","2":"3","3":"1","4":"0","5":"1","6":"3"},{"1":"25","2":"4","3":"1","4":"1","5":"1","6":"4"},{"1":"26","2":"7","3":"1","4":"2","5":"0","6":"7"},{"1":"17","2":"5","3":"1","4":"2","5":"0","6":"5"},{"1":"20","2":"7","3":"1","4":"1","5":"0","6":"7"},{"1":"32","2":"5","3":"1","4":"-1","5":"0","6":"5"},{"1":"35","2":"5","3":"1","4":"-2","5":"1","6":"5"},{"1":"31","2":"6","3":"1","4":"1","5":"1","6":"6"},{"1":"36","2":"6","3":"1","4":"-1","5":"1","6":"6"},{"1":"28","2":"5","3":"1","4":"1","5":"1","6":"5"},{"1":"21","2":"3","3":"1","4":"0","5":"1","6":"3"},{"1":"36","2":"6","3":"1","4":"1","5":"0","6":"6"},{"1":"24","2":"5","3":"1","4":"0","5":"1","6":"5"},{"1":"32","2":"6","3":"1","4":"1","5":"1","6":"6"},{"1":"44","2":"7","3":"1","4":"-1","5":"1","6":"7"},{"1":"22","2":"5","3":"1","4":"0","5":"1","6":"5"},{"1":"37","2":"6","3":"1","4":"-1","5":"1","6":"6"},{"1":"31","2":"4","3":"1","4":"-1","5":"1","6":"4"},{"1":"31","2":"6","3":"1","4":"1","5":"1","6":"6"},{"1":"9","2":"2","3":"1","4":"2","5":"1","6":"2"},{"1":"39","2":"7","3":"1","4":"0","5":"1","6":"7"},{"1":"29","2":"4","3":"1","4":"1","5":"1","6":"4"},{"1":"18","2":"3","3":"1","4":"0","5":"1","6":"3"},{"1":"19","2":"5","3":"1","4":"1","5":"1","6":"5"},{"1":"41","2":"9","3":"1","4":"-1","5":"1","6":"9"},{"1":"39","2":"9","3":"1","4":"0","5":"1","6":"9"},{"1":"28","2":"6","3":"1","4":"0","5":"0","6":"6"},{"1":"20","2":"6","3":"1","4":"3","5":"0","6":"6"},{"1":"26","2":"7","3":"1","4":"1","5":"1","6":"7"},{"1":"35","2":"9","3":"1","4":"2","5":"1","6":"9"},{"1":"28","2":"6","3":"1","4":"1","5":"1","6":"6"},{"1":"14","2":"3","3":"1","4":"2","5":"1","6":"3"},{"1":"29","2":"7","3":"1","4":"1","5":"1","6":"7"},{"1":"33","2":"7","3":"1","4":"2","5":"1","6":"7"},{"1":"19","2":"4","3":"1","4":"2","5":"1","6":"4"},{"1":"22","2":"5","3":"1","4":"1","5":"1","6":"5"},{"1":"25","2":"4","3":"1","4":"-1","5":"1","6":"4"},{"1":"33","2":"5","3":"1","4":"-1","5":"1","6":"5"},{"1":"18","2":"4","3":"1","4":"1","5":"0","6":"4"},{"1":"19","2":"4","3":"1","4":"0","5":"1","6":"4"},{"1":"26","2":"7","3":"1","4":"2","5":"1","6":"7"},{"1":"21","2":"6","3":"1","4":"2","5":"1","6":"6"},{"1":"21","2":"7","3":"1","4":"3","5":"1","6":"7"},{"1":"21","2":"4","3":"1","4":"2","5":"1","6":"4"},{"1":"30","2":"5","3":"1","4":"-1","5":"1","6":"5"},{"1":"33","2":"7","3":"1","4":"0","5":"1","6":"7"},{"1":"28","2":"9","3":"1","4":"3","5":"0","6":"9"},{"1":"39","2":"9","3":"1","4":"1","5":"1","6":"9"},{"1":"12","2":"3","3":"1","4":"1","5":"1","6":"3"},{"1":"32","2":"9","3":"1","4":"2","5":"1","6":"9"},{"1":"20","2":"5","3":"1","4":"0","5":"1","6":"5"},{"1":"19","2":"3","3":"1","4":"2","5":"1","6":"3"},{"1":"26","2":"4","3":"1","4":"1","5":"1","6":"4"},{"1":"28","2":"4","3":"1","4":"-1","5":"1","6":"4"},{"1":"14","2":"2","3":"1","4":"0","5":"0","6":"2"},{"1":"15","2":"2","3":"1","4":"1","5":"1","6":"2"},{"1":"45","2":"5","3":"1","4":"-3","5":"1","6":"5"},{"1":"30","2":"5","3":"1","4":"-1","5":"1","6":"5"},{"1":"15","2":"5","3":"1","4":"2","5":"0","6":"5"},{"1":"19","2":"5","3":"1","4":"1","5":"1","6":"5"},{"1":"37","2":"4","3":"1","4":"-1","5":"1","6":"4"},{"1":"24","2":"6","3":"1","4":"1","5":"0","6":"6"},{"1":"23","2":"3","3":"1","4":"1","5":"1","6":"3"},{"1":"19","2":"5","3":"1","4":"2","5":"0","6":"5"},{"1":"36","2":"5","3":"1","4":"-1","5":"1","6":"5"},{"1":"45","2":"7","3":"1","4":"0","5":"1","6":"7"},{"1":"35","2":"4","3":"1","4":"-2","5":"1","6":"4"},{"1":"19","2":"2","3":"1","4":"0","5":"1","6":"2"},{"1":"17","2":"3","3":"1","4":"2","5":"1","6":"3"},{"1":"25","2":"4","3":"1","4":"0","5":"1","6":"4"},{"1":"14","2":"3","3":"1","4":"2","5":"1","6":"3"},{"1":"29","2":"5","3":"1","4":"-1","5":"0","6":"5"},{"1":"29","2":"8","3":"1","4":"1","5":"1","6":"8"},{"1":"5","2":"0","3":"1","4":"2","5":"0","6":"0"},{"1":"19","2":"6","3":"1","4":"2","5":"1","6":"6"},{"1":"29","2":"5","3":"1","4":"0","5":"0","6":"5"},{"1":"30","2":"5","3":"1","4":"-1","5":"1","6":"5"},{"1":"16","2":"4","3":"1","4":"0","5":"0","6":"4"},{"1":"28","2":"5","3":"1","4":"0","5":"1","6":"5"},{"1":"12","2":"3","3":"1","4":"1","5":"1","6":"3"},{"1":"38","2":"8","3":"1","4":"1","5":"1","6":"8"},{"1":"17","2":"4","3":"1","4":"1","5":"1","6":"4"},{"1":"33","2":"7","3":"1","4":"1","5":"1","6":"7"},{"1":"45","2":"8","3":"1","4":"0","5":"0","6":"8"},{"1":"22","2":"2","3":"1","4":"-1","5":"1","6":"2"},{"1":"22","2":"6","3":"1","4":"1","5":"0","6":"6"},{"1":"32","2":"7","3":"1","4":"1","5":"1","6":"7"},{"1":"28","2":"6","3":"1","4":"1","5":"1","6":"6"},{"1":"16","2":"5","3":"1","4":"2","5":"1","6":"5"},{"1":"33","2":"8","3":"1","4":"1","5":"1","6":"8"},{"1":"14","2":"4","3":"1","4":"3","5":"1","6":"4"},{"1":"12","2":"2","3":"0","4":"1","5":"0","6":"0"},{"1":"29","2":"10","3":"0","4":"2","5":"0","6":"0"},{"1":"24","2":"7","3":"0","4":"1","5":"0","6":"0"},{"1":"33","2":"5","3":"0","4":"-1","5":"0","6":"0"},{"1":"21","2":"8","3":"0","4":"1","5":"0","6":"0"},{"1":"23","2":"5","3":"0","4":"1","5":"0","6":"0"},{"1":"33","2":"7","3":"0","4":"0","5":"1","6":"0"},{"1":"34","2":"6","3":"0","4":"-2","5":"0","6":"0"},{"1":"33","2":"8","3":"0","4":"1","5":"0","6":"0"},{"1":"33","2":"8","3":"0","4":"-1","5":"0","6":"0"},{"1":"22","2":"5","3":"0","4":"2","5":"1","6":"0"},{"1":"20","2":"4","3":"0","4":"-1","5":"0","6":"0"},{"1":"17","2":"8","3":"0","4":"3","5":"1","6":"0"},{"1":"18","2":"6","3":"0","4":"2","5":"0","6":"0"},{"1":"26","2":"8","3":"0","4":"0","5":"0","6":"0"},{"1":"28","2":"7","3":"0","4":"1","5":"1","6":"0"},{"1":"6","2":"7","3":"0","4":"3","5":"1","6":"0"},{"1":"17","2":"7","3":"0","4":"2","5":"1","6":"0"},{"1":"12","2":"4","3":"0","4":"2","5":"1","6":"0"},{"1":"25","2":"5","3":"0","4":"2","5":"1","6":"0"},{"1":"4","2":"5","3":"0","4":"2","5":"0","6":"0"},{"1":"21","2":"3","3":"0","4":"0","5":"0","6":"0"},{"1":"12","2":"4","3":"0","4":"1","5":"0","6":"0"},{"1":"21","2":"7","3":"0","4":"1","5":"0","6":"0"},{"1":"19","2":"5","3":"0","4":"1","5":"1","6":"0"},{"1":"20","2":"6","3":"0","4":"2","5":"1","6":"0"},{"1":"26","2":"9","3":"0","4":"2","5":"1","6":"0"},{"1":"9","2":"4","3":"0","4":"3","5":"1","6":"0"},{"1":"19","2":"4","3":"0","4":"1","5":"1","6":"0"},{"1":"30","2":"7","3":"0","4":"0","5":"1","6":"0"},{"1":"4","2":"5","3":"0","4":"4","5":"0","6":"0"},{"1":"19","2":"5","3":"0","4":"1","5":"1","6":"0"},{"1":"25","2":"5","3":"0","4":"0","5":"1","6":"0"},{"1":"13","2":"6","3":"0","4":"3","5":"1","6":"0"},{"1":"17","2":"4","3":"0","4":"1","5":"1","6":"0"},{"1":"23","2":"4","3":"0","4":"-1","5":"0","6":"0"},{"1":"13","2":"5","3":"0","4":"2","5":"0","6":"0"},{"1":"22","2":"7","3":"0","4":"2","5":"1","6":"0"},{"1":"29","2":"5","3":"0","4":"0","5":"1","6":"0"},{"1":"30","2":"7","3":"0","4":"1","5":"1","6":"0"},{"1":"13","2":"3","3":"0","4":"1","5":"1","6":"0"},{"1":"34","2":"9","3":"0","4":"0","5":"1","6":"0"},{"1":"13","2":"2","3":"0","4":"0","5":"0","6":"0"},{"1":"33","2":"9","3":"0","4":"0","5":"1","6":"0"},{"1":"37","2":"10","3":"0","4":"2","5":"1","6":"0"},{"1":"33","2":"8","3":"0","4":"1","5":"0","6":"0"},{"1":"20","2":"7","3":"0","4":"2","5":"1","6":"0"},{"1":"20","2":"9","3":"0","4":"3","5":"1","6":"0"},{"1":"37","2":"5","3":"0","4":"-1","5":"1","6":"0"},{"1":"16","2":"4","3":"0","4":"2","5":"1","6":"0"},{"1":"29","2":"7","3":"0","4":"0","5":"1","6":"0"},{"1":"26","2":"8","3":"0","4":"0","5":"0","6":"0"},{"1":"38","2":"9","3":"0","4":"1","5":"0","6":"0"},{"1":"27","2":"6","3":"0","4":"0","5":"1","6":"0"},{"1":"19","2":"4","3":"0","4":"0","5":"1","6":"0"},{"1":"37","2":"9","3":"0","4":"0","5":"0","6":"0"},{"1":"16","2":"5","3":"0","4":"0","5":"1","6":"0"},{"1":"24","2":"5","3":"0","4":"0","5":"1","6":"0"},{"1":"21","2":"6","3":"0","4":"2","5":"1","6":"0"},{"1":"33","2":"8","3":"0","4":"1","5":"1","6":"0"},{"1":"41","2":"9","3":"0","4":"0","5":"1","6":"0"},{"1":"17","2":"3","3":"0","4":"0","5":"0","6":"0"},{"1":"11","2":"6","3":"0","4":"3","5":"0","6":"0"},{"1":"5","2":"3","3":"0","4":"3","5":"0","6":"0"},{"1":"36","2":"7","3":"0","4":"0","5":"0","6":"0"},{"1":"16","2":"5","3":"0","4":"2","5":"1","6":"0"},{"1":"15","2":"5","3":"0","4":"3","5":"1","6":"0"},{"1":"14","2":"6","3":"0","4":"2","5":"1","6":"0"},{"1":"34","2":"5","3":"0","4":"-1","5":"1","6":"0"},{"1":"33","2":"8","3":"0","4":"0","5":"0","6":"0"},{"1":"7","2":"5","3":"0","4":"3","5":"0","6":"0"},{"1":"33","2":"6","3":"0","4":"0","5":"0","6":"0"},{"1":"26","2":"6","3":"0","4":"1","5":"1","6":"0"},{"1":"22","2":"6","3":"0","4":"1","5":"1","6":"0"},{"1":"33","2":"7","3":"0","4":"0","5":"0","6":"0"},{"1":"26","2":"7","3":"0","4":"0","5":"1","6":"0"},{"1":"19","2":"6","3":"0","4":"1","5":"0","6":"0"},{"1":"23","2":"5","3":"0","4":"0","5":"0","6":"0"},{"1":"19","2":"6","3":"0","4":"2","5":"0","6":"0"},{"1":"24","2":"6","3":"0","4":"1","5":"1","6":"0"},{"1":"25","2":"6","3":"0","4":"1","5":"1","6":"0"},{"1":"34","2":"6","3":"0","4":"-1","5":"1","6":"0"},{"1":"28","2":"3","3":"0","4":"-1","5":"1","6":"0"},{"1":"23","2":"6","3":"0","4":"2","5":"1","6":"0"},{"1":"22","2":"4","3":"0","4":"1","5":"1","6":"0"},{"1":"15","2":"5","3":"0","4":"1","5":"1","6":"0"},{"1":"13","2":"7","3":"0","4":"4","5":"0","6":"0"},{"1":"15","2":"5","3":"0","4":"2","5":"1","6":"0"},{"1":"20","2":"4","3":"0","4":"0","5":"1","6":"0"},{"1":"16","2":"5","3":"0","4":"2","5":"1","6":"0"},{"1":"5","2":"1","3":"0","4":"2","5":"0","6":"0"},{"1":"7","2":"4","3":"0","4":"2","5":"1","6":"0"},{"1":"34","2":"6","3":"0","4":"0","5":"0","6":"0"},{"1":"17","2":"4","3":"0","4":"1","5":"0","6":"0"},{"1":"11","2":"5","3":"0","4":"2","5":"1","6":"0"},{"1":"25","2":"6","3":"0","4":"1","5":"1","6":"0"},{"1":"14","2":"7","3":"0","4":"3","5":"0","6":"0"},{"1":"8","2":"5","3":"0","4":"3","5":"1","6":"0"},{"1":"29","2":"3","3":"0","4":"-1","5":"1","6":"0"},{"1":"16","2":"4","3":"0","4":"1","5":"1","6":"0"},{"1":"25","2":"4","3":"0","4":"0","5":"1","6":"0"},{"1":"22","2":"8","3":"0","4":"1","5":"0","6":"0"},{"1":"32","2":"7","3":"0","4":"-1","5":"1","6":"0"},{"1":"26","2":"6","3":"0","4":"1","5":"1","6":"0"},{"1":"32","2":"6","3":"0","4":"0","5":"0","6":"0"},{"1":"32","2":"7","3":"0","4":"-1","5":"1","6":"0"},{"1":"23","2":"7","3":"0","4":"2","5":"1","6":"0"},{"1":"39","2":"8","3":"0","4":"0","5":"1","6":"0"},{"1":"22","2":"7","3":"0","4":"1","5":"0","6":"0"},{"1":"24","2":"5","3":"0","4":"2","5":"1","6":"0"},{"1":"34","2":"5","3":"0","4":"-1","5":"0","6":"0"},{"1":"24","2":"6","3":"0","4":"1","5":"0","6":"0"},{"1":"12","2":"4","3":"0","4":"0","5":"0","6":"0"},{"1":"20","2":"7","3":"0","4":"2","5":"1","6":"0"},{"1":"16","2":"4","3":"0","4":"2","5":"1","6":"0"},{"1":"18","2":"5","3":"0","4":"2","5":"1","6":"0"},{"1":"27","2":"9","3":"0","4":"1","5":"1","6":"0"},{"1":"26","2":"6","3":"0","4":"2","5":"1","6":"0"},{"1":"29","2":"9","3":"0","4":"2","5":"1","6":"0"},{"1":"28","2":"4","3":"0","4":"-1","5":"1","6":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create interaction term</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>work <span class="ot">=</span> work <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">contact_female =</span> contact <span class="sc">*</span> female</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>work</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 300 × 6
+   guilt contact female authority married contact_female
+   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;          &lt;dbl&gt;
+ 1    10       3      1         3       1              3
+ 2    24       7      1         1       1              7
+ 3    27       5      1         1       1              5
+ 4    40       8      1         1       1              8
+ 5    23       5      1         1       1              5
+ 6    11       2      1         1       1              2
+ 7     6       3      1         3       1              3
+ 8    36       6      1         0       1              6
+ 9    26       6      1         1       1              6
+10    28       3      1        -1       1              3
+# ℹ 290 more rows</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit interaction model</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>lm.d <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> contact <span class="sc">+</span> female <span class="sc">+</span> contact_female, <span class="at">data =</span> work)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.443         0.437  6.82      78.4 2.32e-37     3 -1000. 2010. 2028.
+# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit interaction model</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>lm.d <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> contact <span class="sc">+</span> female <span class="sc">+</span> contact_female, <span class="at">data =</span> work)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.4428702","2":"0.4372236","3":"6.823199","4":"78.43149","5":"2.318427e-37","6":"3","7":"-999.7666","8":"2009.533","9":"2028.052","10":"13780.59","11":"296","12":"300"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"7.2223566","3":"2.1308641","4":"3.3894027","5":"7.954744e-04"},{"1":"contact","2":"2.6183483","3":"0.3473517","4":"7.5380325","5":"5.862833e-13"},{"1":"female","2":"0.7312664","3":"2.5995483","4":"0.2813052","5":"7.786729e-01"},{"1":"contact_female","2":"0.8125789","3":"0.4394089","4":"1.8492547","5":"6.541792e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  term           estimate std.error statistic  p.value
+  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)       7.22      2.13      3.39  7.95e- 4
+2 contact           2.62      0.347     7.54  5.86e-13
+3 female            0.731     2.60      0.281 7.79e- 1
+4 contact_female    0.813     0.439     1.85  6.54e- 2</code></pre>
 </div>
 </div>
 <p>For now we will focus on the coefficient-level output. The fitted equation is:</p>
@@ -966,13 +976,13 @@ Y_i = \beta_0 &amp;+ \beta_1(X_{1i}) + \beta_2(X_{2i}) + \epsilon_i, \quad \math
 <h3 data-number="21.3.4" class="anchored" data-anchor-id="plotting-the-fitted-equation-for-the-interaction-model"><span class="header-section-number">21.3.4</span> Plotting the Fitted Equation for the Interaction Model</h3>
 <p>Almost always, plotting the fitted model is a good idea once you have fitted an interaction model. To do this we use <code>geom_abline()</code> to plot the non-female and female fitted lines.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted guilt"</span>) <span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">7.95</span>, <span class="at">slope =</span> <span class="fl">3.43</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span> <span class="co">#Females</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">7.22</span>, <span class="at">slope =</span> <span class="fl">2.62</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="co">#Non-females</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted guilt"</span>) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">7.95</span>, <span class="at">slope =</span> <span class="fl">3.43</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span> <span class="co">#Females</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">7.22</span>, <span class="at">slope =</span> <span class="fl">2.62</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="co">#Non-females</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-fitted-lines" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -980,7 +990,7 @@ Y_i = \beta_0 &amp;+ \beta_1(X_{1i}) + \beta_2(X_{2i}) + \epsilon_i, \quad \math
 <img src="06-01-intro-to-interaction-effects_files/figure-html/fig-fitted-lines-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fitted-lines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21.6: Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for females (charcoal, solid line) and non-females (mango, dashed line).
+Figure&nbsp;21.4: Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for females (charcoal, solid line) and non-females (mango, dashed line).
 </figcaption>
 </figure>
 </div>
@@ -1004,26 +1014,30 @@ Figure&nbsp;21.6: Fitted regression lines showing model-predicted guilt as a fun
 <h2 data-number="21.4" class="anchored" data-anchor-id="adding-covariates-into-the-model"><span class="header-section-number">21.4</span> Adding Covariates into the Model</h2>
 <p>Two important covariates identified in the literature that may be confounding the relationship between work contact outside normal working hours and guilt are: (1) an employee’s level of job authority, and (2) marital status. Like the main-effects models we have previously fitted, we can also control for effects in the interaction model. Here we include both covariates in the model to further examine whether there are differential effects of work contact outside normal working hours on guilt by gender after controlling for job authority and marital status.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit interaction model</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>lm.e <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> contact <span class="sc">+</span> female <span class="sc">+</span> authority <span class="sc">+</span> married <span class="sc">+</span> contact_female, <span class="at">data =</span> work)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.7953062","2":"0.791825","3":"4.149869","4":"228.4583","5":"5.214105e-99","6":"5","7":"-849.5742","8":"1713.148","9":"1739.075","10":"5063.095","11":"294","12":"300"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit interaction model</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>lm.e <span class="ot">=</span> <span class="fu">lm</span>(guilt <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> contact <span class="sc">+</span> female <span class="sc">+</span> authority <span class="sc">+</span> married <span class="sc">+</span> contact_female, <span class="at">data =</span> work)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.795         0.792  4.15      228. 5.21e-99     5  -850. 1713. 1739.
+# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"9.3834743","3":"1.3434074","4":"6.9848313","5":"1.908259e-11"},{"1":"contact","2":"2.7856705","3":"0.2114033","4":"13.1770440","5":"1.781884e-31"},{"1":"female","2":"-0.1774586","3":"1.5843025","4":"-0.1120105","5":"9.108915e-01"},{"1":"authority","2":"-4.4243481","3":"0.1989767","4":"-22.2355030","5":"6.190713e-65"},{"1":"married","2":"2.0782817","3":"0.5334048","4":"3.8962560","5":"1.210139e-04"},{"1":"contact_female","2":"0.6935840","3":"0.2673339","4":"2.5944481","5":"9.949174e-03"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  term           estimate std.error statistic  p.value
+  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)       9.38      1.34      6.98  1.91e-11
+2 contact           2.79      0.211    13.2   1.78e-31
+3 female           -0.177     1.58     -0.112 9.11e- 1
+4 authority        -4.42      0.199   -22.2   6.19e-65
+5 married           2.08      0.533     3.90  1.21e- 4
+6 contact_female    0.694     0.267     2.59  9.95e- 3</code></pre>
 </div>
 </div>
 <p>The model explains 79.5% of the variation in guilt, which is more than we expect just because of sampling error; <span class="math inline">\(F(5,294)=228.00\)</span>, <span class="math inline">\(p&lt;.001\)</span>. The fitted equation is,</p>
@@ -1075,28 +1089,28 @@ Figure&nbsp;21.6: Fitted regression lines showing model-predicted guilt as a fun
 \end{split}
 \]</span></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Female</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted guilt"</span>) <span class="sc">+</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">7.66</span>, <span class="at">slope =</span> <span class="fl">3.48</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span> <span class="co">#Married</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.58</span>, <span class="at">slope =</span> <span class="fl">3.48</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span>  <span class="co">#Not married</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Female"</span>)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-female</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted guilt"</span>) <span class="sc">+</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">7.84</span>, <span class="at">slope =</span> <span class="fl">2.79</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span> <span class="co">#Married</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.76</span>, <span class="at">slope =</span> <span class="fl">2.79</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span>  <span class="co">#Not married</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Non-female"</span>)</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Female</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted guilt"</span>) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">7.66</span>, <span class="at">slope =</span> <span class="fl">3.48</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span> <span class="co">#Married</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.58</span>, <span class="at">slope =</span> <span class="fl">3.48</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span>  <span class="co">#Not married</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Female"</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-female</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted guilt"</span>) <span class="sc">+</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">7.84</span>, <span class="at">slope =</span> <span class="fl">2.79</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span> <span class="co">#Married</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.76</span>, <span class="at">slope =</span> <span class="fl">2.79</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span>  <span class="co">#Not married</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Non-female"</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-fitted-lines-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1104,7 +1118,7 @@ Figure&nbsp;21.6: Fitted regression lines showing model-predicted guilt as a fun
 <img src="06-01-intro-to-interaction-effects_files/figure-html/fig-fitted-lines-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fitted-lines-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21.7: Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for married (dashed lines) and non-married (solid lines) employees conditioned on gender. Job authority is controlled by setting this to its mean value.
+Figure&nbsp;21.5: Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for married (dashed lines) and non-married (solid lines) employees conditioned on gender. Job authority is controlled by setting this to its mean value.
 </figcaption>
 </figure>
 </div>
@@ -1113,28 +1127,28 @@ Figure&nbsp;21.7: Fitted regression lines showing model-predicted guilt as a fun
 <p>Notice that the slope of the lines represents the effect of work contact outside normal working hours on guilt, and that this effect differs by gender; the lines across gender are not parallel. Across marital status, however, the slopes are the same (at least within gender); parallel lines. This is because marital status was only included in the model as a main effect, whereas gender was included as part of an interaction effect.</p>
 <p>We could also have facetted on marital status rather than gender. In this plot, the partial fitted lines within each panel of the plot are not parallel, but the set of lines are parallel across panels.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-married</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted guilt"</span>) <span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.76</span>, <span class="at">slope =</span> <span class="fl">2.79</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span>  <span class="co">#Non-female</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.58</span>, <span class="at">slope =</span> <span class="fl">3.48</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span> <span class="co">#Female</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Non-married"</span>)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Married</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted guilt"</span>) <span class="sc">+</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">7.84</span>, <span class="at">slope =</span> <span class="fl">2.79</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span>  <span class="co">#Non-female</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">7.66</span>, <span class="at">slope =</span> <span class="fl">3.48</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span> <span class="co">#Female</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Married"</span>)</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-married</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted guilt"</span>) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.76</span>, <span class="at">slope =</span> <span class="fl">2.79</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span>  <span class="co">#Non-female</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.58</span>, <span class="at">slope =</span> <span class="fl">3.48</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span> <span class="co">#Female</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Non-married"</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Married</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted guilt"</span>) <span class="sc">+</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">7.84</span>, <span class="at">slope =</span> <span class="fl">2.79</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span>  <span class="co">#Non-female</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">7.66</span>, <span class="at">slope =</span> <span class="fl">3.48</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span> <span class="co">#Female</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Married"</span>)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-fitted-lines-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1142,7 +1156,7 @@ Figure&nbsp;21.7: Fitted regression lines showing model-predicted guilt as a fun
 <img src="06-01-intro-to-interaction-effects_files/figure-html/fig-fitted-lines-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fitted-lines-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21.8: Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for females (charcoal, dashed line) and non-females (mango, solid line) conditioned on marital status. Job authority is controlled by setting this to its mean value.
+Figure&nbsp;21.6: Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for females (charcoal, dashed line) and non-females (mango, solid line) conditioned on marital status. Job authority is controlled by setting this to its mean value.
 </figcaption>
 </figure>
 </div>
@@ -1158,29 +1172,29 @@ Figure&nbsp;21.8: Fitted regression lines showing model-predicted guilt as a fun
 <h2 data-number="21.5" class="anchored" data-anchor-id="evaluating-the-distributional-assumptions"><span class="header-section-number">21.5</span> Evaluating the Distributional Assumptions</h2>
 <p>Just like main-effects models, we need to examine the distributional assumptions for any adopted interaction models. We do this in the exact same way we did for main effects models.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create augmented data</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>aug_e <span class="ot">=</span> <span class="fu">augment</span>(lm.e)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine normality assumption</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_e, <span class="fu">aes</span>(<span class="at">x =</span> .std.resid)) <span class="sc">+</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_confidence</span>(<span class="at">model =</span> <span class="st">"normal"</span>) <span class="sc">+</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Standardized Residuals"</span>) <span class="sc">+</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine other assumptions</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_e, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted Values"</span>) <span class="sc">+</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized Residuals"</span>)</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create augmented data</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>aug_e <span class="ot">=</span> <span class="fu">augment</span>(lm.e)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine normality assumption</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_e, <span class="fu">aes</span>(<span class="at">x =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_confidence</span>(<span class="at">model =</span> <span class="st">"normal"</span>) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Standardized Residuals"</span>) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine other assumptions</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_e, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted Values"</span>) <span class="sc">+</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized Residuals"</span>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-assumptions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1188,7 +1202,7 @@ Figure&nbsp;21.8: Fitted regression lines showing model-predicted guilt as a fun
 <img src="06-01-intro-to-interaction-effects_files/figure-html/fig-assumptions-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21.9: LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from Model E. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption and the shaded, grey region indicates the expected uncertainty. The loess line (blue) is also displayed.
+Figure&nbsp;21.7: LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from Model E. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption and the shaded, grey region indicates the expected uncertainty. The loess line (blue) is also displayed.
 </figcaption>
 </figure>
 </div>
@@ -1214,15 +1228,15 @@ Figure&nbsp;21.9: LEFT: Density plot of the marginal distribution of standardize
 </ul>
 <p>In the visual display, this interpretation would focus on the vertical distance between the partial regression lines. For example, focusing on the non-married panel of the plotted results from Model E, rather than focus on the slopes of the lines, look at the vertical distance between lines; this is the effect of gender.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-married</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted guilt"</span>) <span class="sc">+</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.76</span>, <span class="at">slope =</span> <span class="fl">2.79</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span>  <span class="co">#Non-female</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.58</span>, <span class="at">slope =</span> <span class="fl">3.48</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span> <span class="co">#Female</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Non-married"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-married</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> work, <span class="fu">aes</span>(<span class="at">x =</span> contact, <span class="at">y =</span> guilt)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Work contact outside normal working hours"</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Predicted guilt"</span>) <span class="sc">+</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.76</span>, <span class="at">slope =</span> <span class="fl">2.79</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"#f5853f"</span>) <span class="sc">+</span>  <span class="co">#Non-female</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.58</span>, <span class="at">slope =</span> <span class="fl">3.48</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#424651"</span>) <span class="sc">+</span> <span class="co">#Female</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Non-married"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-fitted-lines-4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1230,7 +1244,7 @@ Figure&nbsp;21.9: LEFT: Density plot of the marginal distribution of standardize
 <img src="06-01-intro-to-interaction-effects_files/figure-html/fig-fitted-lines-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fitted-lines-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21.10: Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for non-married females (charcoal, dash line) and non-females (mango, solid line). Job authority is controlled by setting this to its mean value.
+Figure&nbsp;21.8: Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for non-married females (charcoal, dash line) and non-females (mango, solid line). Job authority is controlled by setting this to its mean value.
 </figcaption>
 </figure>
 </div>
@@ -1261,239 +1275,242 @@ Glavin, P., Schieman, S., &amp; Reid, S. (2011). Boundary-spanning work demands 
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1501,197 +1518,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./06-00-interaction-effects.html" class="pagination-link" aria-label="Interaction Effects">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Interaction Effects</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./06-02-more-interaction-effects.html" class="pagination-link" aria-label="More Interaction Effects">
-        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">More Interaction Effects</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 
