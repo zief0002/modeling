@@ -6,6 +6,7 @@ In this chapter, we will walk you through the process of installing R and the de
 #| echo: false
 #| out-width: "60%"
 #| fig-cap: "Workflow for using R: Once both applications are installed on you computer, you will only interact with R through RStudio."
+#| fig-alt: "Workflow for using R: Once both applications are installed on you computer, you will only interact with R through RStudio."
 
 knitr::include_graphics("figs/01-01-rstudio-and-r.png")
 ```
@@ -29,7 +30,7 @@ This is where the installation directions diverge depending on your OS.
 
 **Mac Instructions**
 
-So long as you are running MacOS 10.13 or higher just click the first link for the PKG, which will download the installer for the most current version of R (4.1.1 as of August 16, 2021). Once the download completes, open the installer and follow the directions to install R on your computer.
+So long as you are running MacOS 10.13 or higher just click the first link for the PKG, which will download the installer for the most current version of R (4.5.0 as of June 5, 2025). Once the download completes, open the installer and follow the directions to install R on your computer.
 
 If you are running an older version of MacOS, you will have to install an older version of R. You can find these links under the `Binaries for legacy OS X systems` heading further down the install page. Click the appropriate PKG link for R your version of MacOS. Once the download completes, open the installer and follow the directions to install R on your computer.
 
@@ -38,7 +39,7 @@ If you are unsure which version of the MacOS is running on your computer, select
 
 **Windows Instructions**
 
-Click the link that says `Install R for the first time` (or click `base`; they go to the same place). Then click the `Download R 4.1.1 for Windows` link, which will download the installer for the most current version of R (4.0.2 as of July 24, 2020). Once the download completes, open the installer and follow the directions to install R on your computer.
+Click the link that says `Install R for the first time` (or click `base`; they go to the same place). Then click the `Download R-4.5.0 for Windows` link (the version might be newer since this was written), which will download the installer for the most current version of R. Once the download completes, open the installer and follow the directions to install R on your computer.
 
 
 **Linux Instructions**
@@ -67,12 +68,13 @@ Then,
 
 ## Checking that Things Worked
 
-From your Applications or Programs folder, open RStudio. If you have successfully downloaded both programs, this should open the application and you should see a message indicating that you are using "R version 4.1.1" (or whichever version of R you installed) in the console pane.
+From your Applications or Programs folder, open RStudio. If you have successfully downloaded both programs, this should open the application and you should see a message indicating that you are using "R version 4.5.0" (or whichever version of R you installed) in the console pane.
 
 ```{r}
 #| echo: false
 #| out-width: "100%"
-#| fig-cap: "Once you open RStudio, you should see a message indicating that you are using `R version 4.1.1` (or whichever version of R you installed) in the console pane. Here the console pane is on the left-side, but it may be in a different location for you. Your RStudio may also have a white background rather than the black background seen here."
+#| fig-cap: "Once you open RStudio, you should see a message indicating that you are using the version of R that you installed in the console pane (here version 4.1.1). Here the console pane is on the left-side, but it may be in a different location for you. Your RStudio may also have a white background rather than the black background seen here."
+#| fig-alt: "Once you open RStudio, you should see a message indicating that you are using the version of R that you installed in the console pane (here version 4.1.1). Here the console pane is on the left-side, but it may be in a different location for you. Your RStudio may also have a white background rather than the black background seen here."
 
 knitr::include_graphics("figs/01-01-opening-rstudio.png")
 ```
@@ -87,6 +89,7 @@ While the information in this section is not crucial for making things work, it 
 ```{r}
 #| echo: false
 #| fig-cap: "The RStudio options/preferences menu has many settings to customize RStudio."
+#| fig-alt: "The RStudio options/preferences menu has many settings to customize RStudio."
 #| out-width: "50%"
 
 knitr::include_graphics("figs/01-01-options.png")

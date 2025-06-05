@@ -11,10 +11,4 @@ The initial chapters of this document will address:
 - Visualizing data using functions from the `{ggplot2}` package.
 
 
-```{r}
-#| echo: false
-#| out-width: "100%"
-knitr::include_graphics("figs/01-00-stat-computing.png")
-```
-
-<br /><br />
+<br />

@@ -11,7 +11,7 @@ In this chapter, you will be learn about how to use functionality from the `{dpl
 
 We will use the [comic-characters.csv](https://raw.githubusercontent.com/zief0002/epsy-8251/main/data/comic-characters.csv) data (see the [data codebook](#comic-characters)) to illustrate how to use several data wrangling functions in order to answer a set of research questions about LGBTQ representation in comics. 
 
-:::exercises
+:::fyi
 **Research Questions**
 
 - Who was the first LGBTQ character? 
@@ -87,6 +87,8 @@ comics |> print(width = Inf)
 Here, `comics` will be inputted as the FIRST argument in the `print()` function, and any additional arguments are simply included in the `print()` function itself.
 
 :::protip
+**PROTIP**
+
 It is a good coding practice to use multiple lines when you are piping rather than putting all the syntax on a single line. When you do this, the pipe operator (`|>`) needs to come at the end of the line. You can see this in the code below, where the pipe operator is placed at the end of the first line of syntax; not at the beginning of the second line of syntax. **Include a line break after every pipe operator you use.**
 
 ```{r}
@@ -108,29 +110,67 @@ comics |>
 
 Here are some common operations that researchers use to prepare data for analysis (i.e., data preparation, data wrangling, data cleaning) and the corresponding `{dplyr}` functions.
 
-```{r}
-#| echo: false
+<!-- ```{r} -->
+<!-- #| echo: false -->
 
-data.frame(
-  operation = c(
-    "Select a subset of rows from a data frame.",
-    "Select a subset of columns from a data frame.",
-    "Add new columns to a data frame.",
-    "Sort and re-order data in a data frame.",
-    "Compute summaries of columns in a data frame.",
-    "Group the data to carry out computations for each group."
-  ),
-  computation = c("`filter()`", "`select()`", "`mutate()`", "`arrange()`", "`summarize()`", "`group_by()`")
-) |>  
-  kable(
-    format = "markdown",
-    caption = "Common data wrangling activities and the corresponding `{dplyr}` functions.",
-    col.names = c("Data wrangling activity", "dplyr function"),
-    align = c("l", "l"),
-    table.attr = "style='width:60%;'",
-    escape = TRUE
-  )
-```
+<!-- data.frame( -->
+<!--   operation = c( -->
+<!--     "Select a subset of rows from a data frame.", -->
+<!--     "Select a subset of columns from a data frame.", -->
+<!--     "Add new columns to a data frame.", -->
+<!--     "Sort and re-order data in a data frame.", -->
+<!--     "Compute summaries of columns in a data frame.", -->
+<!--     "Group the data to carry out computations for each group." -->
+<!--   ), -->
+<!--   computation = c("`filter()`", "`select()`", "`mutate()`", "`arrange()`", "`summarize()`", "`group_by()`") -->
+<!-- ) |>   -->
+<!--   kable( -->
+<!--     format = "markdown", -->
+<!--     caption = "Common data wrangling activities and the corresponding `{dplyr}` functions.", -->
+<!--     col.names = c("Data wrangling activity", "dplyr function"), -->
+<!--     align = c("l", "l"), -->
+<!--     table.attr = "style='width:60%;'", -->
+<!--     escape = TRUE -->
+<!--   ) -->
+<!-- ``` -->
+
+
+<table style='width:90%;' class="table">
+<caption>Table 1<br/>Common data wrangling activities and the corresponding `{dplyr}` functions.</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left; width:70%;" id="activity"> Data wrangling activity </th>
+   <th style="text-align:left; width: 30%;" id="dplyr"> dplyr function </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr style="border-bottom: 1px solid black;">
+   <td style="text-align:left;" headers="activity"> Select a subset of rows from a data frame. </td>
+   <td style="text-align:left;" headers="dplyr"> `filter()` </td>
+  </tr>
+  <tr style="border-bottom: 1px solid black;">
+   <td style="text-align:left;" headers="activity"> Select a subset of columns from a data frame. </td>
+   <td style="text-align:left;" headers="dplyr"> `select()` </td>
+  </tr>
+  <tr style="border-bottom: 1px solid black;">
+   <td style="text-align:left;" headers="activity"> Add new columns to a data frame. </td>
+   <td style="text-align:left;" headers="dplyr"> `mutate()` </td>
+  </tr>
+  <tr style="border-bottom: 1px solid black;">
+   <td style="text-align:left;" headers="activity"> Sort and re-order data in a data frame. </td>
+   <td style="text-align:left;" headers="dplyr"> `arrange()` </td>
+  </tr>
+  <tr style="border-bottom: 1px solid black;">
+   <td style="text-align:left;" headers="activity"> Compute summaries of columns in a data frame. </td>
+   <td style="text-align:left;" headers="dplyr"> `summarize()` </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" headers="activity"> Group the data to carry out computations for each group. </td>
+   <td style="text-align:left;" headers="dplyr"> `group_by()` </td>
+  </tr>
+</tbody>
+</table>
+
 
 <br />
 
@@ -180,19 +220,13 @@ sorted_comics = comics |>
 ```{r}
 #| echo: false
 #| fig-cap: "Clicking the `sorted_comics` data object in the Environment pane will display the data in the RStudio data viewer."
+#| fig-alt: "Clicking the `sorted_comics` data object in the Environment pane will display the data in the RStudio data viewer."
 #| out-width: "70%"
 
 knitr::include_graphics("figs/01-04-click-data-object.png")
 ```
 
 Based on an examination of the sorted data, we find the first appearance of an LGBTQ character is Jack Casey in 1940.
-
-
-<!-- :::exercises -->
-<!-- **Your Turn** -->
-
-<!-- Use the `arrange()` function to determine whether Marvel and DC introduced LGBTQ characters around the same time, or whether one company was more progressive? -->
-<!-- ::: -->
 
 <br />
 
@@ -208,14 +242,6 @@ Use the `desc()` function on a column name to sort the data in descending order.
 comics |>
   arrange(desc(lgbtq), first_appear_year)
 ```
-
-<!-- :::exercises -->
-<!-- **Your Turn** -->
-
-<!-- Use the `arrange()` function to determine the first appearance of an LGBTQ female character in DC comics. -->
-<!-- ::: -->
-
-
 
 <br />
 
@@ -233,9 +259,6 @@ The argument(s) for the `filter()` function are logical expressions that will be
 comics |>
   filter(lgbtq == "Yes")
 ```
-
-
-
 
 
 Note that the output from this computation (data for the LGBTQ characters) is only printed to the screen. If you want to keep the filtered data or operate on it further, you need to assign the output into an object.
@@ -269,14 +292,6 @@ Based on this result (and the results from the earlier `glimpse()` output), we c
 
 Only 0.6% of comic characters identified as LGBTQ (at least as of 2014). This is well below 7.1%, the percentage of U.S. adults who self-identify as lesbian, gay, bisexual, transgender or something other than heterosexual according to a [2022 Gallup Poll](https://news.gallup.com/poll/389792/lgbt-identification-ticks-up.aspx). (This is even below the 2012 estimate of 3.5%.) This suggests that the LGBTQ population is likely underrepresented in comic culture.
 
-
-<!-- :::exercises -->
-<!-- **Your Turn** -->
-
-<!-- Use the `filter()` function and `nrow()` to determine the percentage of female comic characters. -->
-<!-- ::: -->
-
-
 <br />
 
 
@@ -306,7 +321,9 @@ Of the 4002 characters introduced prior to 1970, 0.27% identified as LGBTQ.
 
 Here, when we included multiple logical expressions in the `filter()` function, separated by a comma, they were linked using the AND (`&`) operator. This means that both expressions have to evaluate as `TRUE` to be included. We could also have explicitly used the `&` operator to link the two statements.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
+
 comics |>
   filter(lgbtq == "Yes", sex == "Female")
 
@@ -316,13 +333,6 @@ comics |>
 ```
 
 <br />
-
-<!-- :::exercises -->
-<!-- **Your Turn** -->
-
-<!-- Use the `filter()` function and `nrow()` to determine the percentage of LGBTQ comic characters introduced in 1970 or later. Based on the result is there evidence that the Pride Movement may have had an impact on LGBTQ representation?  -->
-<!-- ::: -->
-
 
 
 We can also `filter()` using the OR (`|`) operator. This means that if EITHER logical expression included in the `filter()` function evaluates as TRUE, the row is included in the output. For example, say we wanted to count the number of comic characters who are either female or identify as LGBTQ. The syntax for this would be:
@@ -393,12 +403,6 @@ comics |>
 
 In both of the Mac and PC examples, the part of the pathname called `username` needs to be modified to be the user name for your computer. Typically this is the username you use to login to your computer.
 
-<!-- :::exercises -->
-<!-- **Your Turn** -->
-
-<!-- Modify the syntax to export a CSV of the LGBTQ character data to the desktop on your computer. Also try modifying the syntax to export the CSV file to another folder/directory on your computer.  -->
-<!-- ::: -->
-
 <br />
 
 
@@ -445,19 +449,11 @@ comics |>
     )
 ```
 
-<!-- Depending on your print options, the results in `income2` may be in scientific notation. For example `3.74e+04` is equivalent to $3.74 \times 10^4=37400$. -->
 
-<!-- :::protip -->
-<!-- You can "turn off" scientific notation by running the following syntax in your R session: -->
-
-<!-- ```{r eval=FALSE} -->
-<!-- options(scipen = 99) -->
-<!-- ``` -->
-
-<!-- You will need to run this syntax every R session. -->
-<!-- ::: -->
 
 :::protip
+**PROTIP**
+
 If you are running this in the console, the `num_years` column won't be displayed because of the default printing options for tibbles; the new column is created, just not displayed. To view it, we can use the `print()` function with the argument `width=Inf`, which displays all columns in the tibble.
 
 ```{r eval=FALSE}
@@ -490,6 +486,8 @@ comics |>
 Note that the `mean()` function includes the optional argument `na.rm=TRUE` which allows the mean computation when there are `NA` values; it tells the `mean()` function to remove the NAs in the computation. (If you didn't remove the NAs, the result of the computation would be an `NA`.)
 
 :::protip
+**PROTIP**
+
 If you want to continue to use the newly created columns, you need to assign the output into an object. If you do not assign the output into an object, the data with the new columns is printed to the screen and then the new columns are promptly "forgotten" by R. If you are sure of your syntax, you can re-assign the data into the original object. Here we create the new columns and re-assign this into the `comics` object.
 
 ```{r}
@@ -519,6 +517,8 @@ comics |>
 ```
 
 :::protip
+**PROTIP**
+
 Because the appearance column includes missing values (NAs), we need to include the argument `na.rm=TRUE` in the `mean()` function. Including this will compute the mean only using the cases that have values. If there are missing values and the argument is not included, the result of the mean computation will be `NA`.
 :::
 
@@ -583,12 +583,6 @@ comics |>
 ```
 
 This added information reminds us that while the average number of appearances for LGBTQ characters is higher than for non-LGBTQ characters (for both DC and Marvel), overwhelming majority of comic characters are non-LGBTQ. 
-
-<!-- :::exercises -->
-<!-- **Your Turn** -->
-
-<!-- Modify the syntax to determine the average number of appearances for both DC and Marvel LGBTQ and non-LGBTQ characters (as well as the standard deviation and sample size) before and after the Pride Movement.   -->
-<!-- ::: -->
 
 <br />
 

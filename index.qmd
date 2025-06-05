@@ -17,12 +17,12 @@ While the content is not overly mathematical in nature, the reader will need a s
 The organization of content is consistent with the sequence this content is taught in EPsy 8251, the first of two applied statistics courses that form the foundational sequence for many graduate students in the educational and social sciences at the University of Minnesota. This course require that students have taken a previous statistics course at either the undergraduate or graduate level. Because of that, many introductory ideas are assumed. 
 
 
-```{r}
-#| echo: false
-#| out-width: "100%"
-#| fig-alt: "The units are (1) Introduction to statistical computing, (2) Introduction to regression, (3) Regression inference, (4), Multiple regression, (5) Categorical predictors, and (6) Interaction effects."
-knitr::include_graphics("figs/00-00-all-units.png")
-```
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| out-width: "100%" -->
+<!-- #| fig-alt: "The units are (1) Introduction to statistical computing, (2) Introduction to regression, (3) Regression inference, (4), Multiple regression, (5) Categorical predictors, and (6) Interaction effects." -->
+<!-- knitr::include_graphics("figs/00-00-all-units.png") -->
+<!-- ``` -->
 
 <br />
 

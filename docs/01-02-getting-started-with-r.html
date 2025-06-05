@@ -503,10 +503,10 @@ window.Quarto = {
 <p>There are four main windows (called <em>panes</em>) that we will use in RStudio. (You might only see three of the four panes when you initially open a session.) Jessica Ward in a <a href="https://x.com/RLadiesNCL/status/1138812826917724160">Twitter/X post on the R-Ladies Newcastle account</a> explains the functionality of the four panes using a cooking metaphor. This metaphor is displayed in <a href="#fig-cooking" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-cooking" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-cooking" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The functions for each of the four RStudio panes is explained via a cooking metaphor.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cooking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/02-01-rstudio-cooking-metaphor.jpg" class="img-fluid figure-img">
+<img src="figs/02-01-rstudio-cooking-metaphor.jpg" class="img-fluid figure-img" alt="The functions for each of the four RStudio panes is explained via a cooking metaphor.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cooking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.1: The functions for each of the four RStudio panes is explained via a cooking metaphor.
@@ -520,12 +520,12 @@ Figure&nbsp;2.1: The functions for each of the four RStudio panes is explained v
 <section id="computing-in-the-console" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="computing-in-the-console"><span class="header-section-number">2.1</span> Computing in the Console</h2>
 <p>One method of computing in RStudio is to run syntax directly in the RStudio console pane. Computing in the console is similar to working with a calculator: you enter syntax and R runs the syntax. Then it forgets what you entered and is ready for the next bit of syntax.</p>
-<p>The <code>&gt;</code> symbol in the console pane is called the “R prompt” and is prompting you to enter syntax. After you enter any syntax, you hit the <return> or <enter> key to execute the syntax.</enter></return></p>
+<p>The <code>&gt;</code> symbol in the console pane is called the “R prompt” and is prompting you to enter syntax. After you enter any syntax, you hit the <code>&lt;return&gt;</code> or <code>&lt;enter&gt;</code> key to execute the syntax.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-02-console.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="figs/01-02-console.png" class="img-fluid figure-img" style="width:60.0%" alt="The console pane in RStudio is one way to compute with R. Syntax is entered at the R prompt and executed by hitting the <return> or <enter> key."></p>
 <figcaption>The console pane in RStudio is one way to compute with R. Syntax is entered at the R prompt and executed by hitting the <return> or <enter> key.</enter></return></figcaption>
 </figure>
 </div>
@@ -569,7 +569,7 @@ Figure&nbsp;2.1: The functions for each of the four RStudio panes is explained v
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-02-new-script-file.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p><img src="figs/01-02-new-script-file.png" class="img-fluid figure-img" style="width:90.0%" alt="LEFT: Create a new script file using RStudio's `File` menu. RIGHT: Create a new script file by clicking on the `New File` icon in the toolbar."></p>
 <figcaption>LEFT: Create a new script file using RStudio’s <code>File</code> menu. RIGHT: Create a new script file by clicking on the <code>New File</code> icon in the toolbar.</figcaption>
 </figure>
 </div>
@@ -577,7 +577,7 @@ Figure&nbsp;2.1: The functions for each of the four RStudio panes is explained v
 </div>
 <p>Script files should only include your R syntax and comments. Script files should NOT include:</p>
 <ul>
-<li>prompts (&gt;)</li>
+<li>prompts (<code>&gt;</code>)</li>
 <li>output</li>
 </ul>
 <p>Comments, which are human-readable annotations or explanations of the syntax, are written using the hashtag (<code>#</code>). These can be placed on their own line in the script file, or can be placed at the end of a line with syntax. The comment continues until you hit the <enter> key. Comments help other people understand your syntax and also act as a reminder for the future you of what your code actually does. Get is the habit of including comments in your syntax. Not only is it good coding practice, but it also will help you become familiar with and learn the R syntax as you describe the purpose of the syntax you are writing.</enter></p>
@@ -585,7 +585,7 @@ Figure&nbsp;2.1: The functions for each of the four RStudio panes is explained v
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-02-script-file.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="figs/01-02-script-file.png" class="img-fluid figure-img" style="width:60.0%" alt="Example script file with comments."></p>
 <figcaption>Example script file with comments.</figcaption>
 </figure>
 </div>
@@ -600,7 +600,7 @@ Figure&nbsp;2.1: The functions for each of the four RStudio panes is explained v
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-02-run-script.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="figs/01-02-run-script.png" class="img-fluid figure-img" style="width:80.0%" alt="To execute syntax from the script file, highlight the syntax you want to run and then click the `Run` button in the toolbar."></p>
 <figcaption>To execute syntax from the script file, highlight the syntax you want to run and then click the <code>Run</code> button in the toolbar.</figcaption>
 </figure>
 </div>
@@ -617,7 +617,7 @@ Figure&nbsp;2.1: The functions for each of the four RStudio panes is explained v
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-02-function-machine.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="figs/01-02-function-machine.png" class="img-fluid figure-img" style="width:60.0%" alt="LEFT: Arguments are inputted into a function which returns an output. RIGHT: The value 25 is inputted into the square root function which returns the value of 5."></p>
 <figcaption>LEFT: Arguments are inputted into a function which returns an output. RIGHT: The value 25 is inputted into the square root function which returns the value of 5.</figcaption>
 </figure>
 </div>
@@ -707,7 +707,7 @@ g(~f(x)~)
 <pre><code>[1] -3</code></pre>
 </div>
 </div>
-<p>Here the mean function applied to the sequence of values returns a single value as output. When a function is applied to a set of multiple values (i.e., a vector), some functions will apply their computations separately on each element/value (<em>element-wise computation</em> returns multiple values), while others will apply the computation to the set of elements as a whole (<em>vector-wise computation</em> returns a single value). Most of the time it will be clear from the function name or description whether the output returns a single value or multiple values.</p>
+<p>Here the mean function applied to the sequence of values returns a single value as output. When a function is applied to a set of multiple values (i.e., a vector), some functions will apply their computations separately on each element/value (<strong>element-wise computation</strong> returns multiple values), while others will apply the computation to the set of elements as a whole (<strong>vector-wise computation</strong> returns a single value). Most of the time it will be clear from the function name or description whether the output returns a single value or multiple values.</p>
 <p>We can chain as many computations together as we would like. For example here we find the square root of the absolute value of all the integers between <span class="math inline">\(-5\)</span> and <span class="math inline">\(-1\)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>( <span class="fu">abs</span>( <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>) ) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -719,7 +719,7 @@ g(~f(x)~)
 </section>
 <section id="assignment" class="level3" data-number="2.4.2">
 <h3 data-number="2.4.2" class="anchored" data-anchor-id="assignment"><span class="header-section-number">2.4.2</span> Assignment</h3>
-<p>We can also connect computations through <em>assignment</em>. With assignment, we store the output of a computation by assigning it to a named object. We can then use that named object in another computation. For example, here we first store the integers between <span class="math inline">\(-5\)</span> and <span class="math inline">\(-1\)</span> in an object called <code>chili</code>. Then we find the absolute value of each value by using <code>chili</code> as the argument in the <code>abs()</code> function.</p>
+<p>We can also connect computations through <strong>assignment</strong>. With assignment, we store the output of a computation by assigning it to a named object. We can then use that named object in another computation. For example, here we first store the integers between <span class="math inline">\(-5\)</span> and <span class="math inline">\(-1\)</span> in an object called <code>chili</code>. Then we find the absolute value of each value by using <code>chili</code> as the argument in the <code>abs()</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the sequence to the object chili</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>chili <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>) </span>
@@ -774,7 +774,7 @@ g(~f(x)~)
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-02-environment.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<p><img src="figs/01-02-environment.png" class="img-fluid figure-img" style="width:40.0%" alt="The enivironment pane shows the objects in the R working environment. It also displays the object's class and gives a preview of the the contents."></p>
 <figcaption>The enivironment pane shows the objects in the R working environment. It also displays the object’s class and gives a preview of the the contents.</figcaption>
 </figure>
 </div>
@@ -799,7 +799,7 @@ g(~f(x)~)
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-02-environment-chili.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<p><img src="figs/01-02-environment-chili.png" class="img-fluid figure-img" style="width:40.0%" alt="The object `chili` although still an integer vector, now includes 10 elements."></p>
 <figcaption>The object <code>chili</code> although still an integer vector, now includes 10 elements.</figcaption>
 </figure>
 </div>
@@ -824,7 +824,7 @@ g(~f(x)~)
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-02-install-vs-load.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="figs/01-02-install-vs-load.png" class="img-fluid figure-img" style="width:60.0%" alt="Packages need to be installed and loaded."></p>
 <figcaption>Packages need to be installed and loaded.</figcaption>
 </figure>
 </div>
@@ -835,7 +835,7 @@ g(~f(x)~)
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-02-package-tab.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<p><img src="figs/01-02-package-tab.png" class="img-fluid figure-img" style="width:40.0%" alt="The packages tab shows which packages are installed. The list of packages you have installed will likely be different. Checked packages are loaded into memory. In the packages seen here, only the base package is loaded into memory."></p>
 <figcaption>The packages tab shows which packages are installed. The list of packages you have installed will likely be different. Checked packages are loaded into memory. In the packages seen here, only the base package is loaded into memory.</figcaption>
 </figure>
 </div>
@@ -846,7 +846,7 @@ g(~f(x)~)
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-02-default-packages.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="figs/01-02-default-packages.png" class="img-fluid figure-img" style="width:70.0%" alt="The 29 packages installed as part of R. The base, datasets, graphics, grDevices, methods, stats, and utils packages are loaded into memory when you start an R session. The other 22 packages are installed but not loaded into memory."></p>
 <figcaption>The 29 packages installed as part of R. The base, datasets, graphics, grDevices, methods, stats, and utils packages are loaded into memory when you start an R session. The other 22 packages are installed but not loaded into memory.</figcaption>
 </figure>
 </div>

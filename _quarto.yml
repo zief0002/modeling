@@ -89,4 +89,7 @@ format:
     linkcolor: '#c10088' #"#0099d4"
     toc: false
     toc-title: "On This Page"
+    tbl-cap-location: "top"
+    fig-cap-location: "top"
 editor: source
+

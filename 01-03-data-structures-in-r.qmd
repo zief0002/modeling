@@ -7,7 +7,8 @@ One way to think about vectors and data frames is to use the metaphor of bookcas
 ```{r}
 #| echo: false
 #| out-width: "60%"
-#|fig-cap: "LEFT: A visual mnemonic for a vector is a single-column bookcase. RIGHT: A visual mnemonic for a data frame is a multi-column bookcase."
+#| fig-cap: "LEFT: A visual mnemonic for a vector is a single-column bookcase. RIGHT: A visual mnemonic for a data frame is a multi-column bookcase."
+#| fig-alt: "LEFT: A visual mnemonic for a vector is a single-column bookcase. RIGHT: A visual mnemonic for a data frame is a multi-column bookcase."
 
 knitr::include_graphics("figs/01-03-vector-df.png")
 ```
@@ -18,7 +19,8 @@ Similar to real bookcases, the bookcases in our metaphor can be used to store th
 ```{r}
 #| echo: false
 #| out-width: "60%"
-#|fig-cap: "The data type in each column of a vector or data frame is homogeneous. All data in the skyblue columns are character strings. All data in the reddish-purple columns are numeric values. All data in the yellow columns are logical values."
+#| fig-cap: "The data type in each column of a vector or data frame is homogeneous. All data in the skyblue columns are character strings. All data in the reddish-purple columns are numeric values. All data in the yellow columns are logical values."
+#| fig-alt: "The data type in each column of a vector or data frame is homogeneous. All data in the skyblue columns are character strings. All data in the reddish-purple columns are numeric values. All data in the yellow columns are logical values."
 
 knitr::include_graphics("figs/01-03-vector-df-data.png")
 ```
@@ -179,12 +181,15 @@ In professional practice, you will often enter data into a spreadsheet and rathe
 ```{r}
 #| echo: false
 #| out-width: "80%"
-#|fig-cap: "Export or save your data using the CSV file format. In Google Sheets, you can download the data as a CSV file."
+#| fig-cap: "Export or save your data using the CSV file format. In Google Sheets, you can download the data as a CSV file."
+#| fig-alt: "Export or save your data using the CSV file format. In Google Sheets, you can download the data as a CSV file."
 
 knitr::include_graphics("figs/01-03-save-as-csv.png")
 ```
 
 :::protip
+**PROTIP**
+
 Here are some tips for entering data into a spreadsheet:
 
 - The first row should be the variable names. Do not use spaces in variable names. 
@@ -200,6 +205,7 @@ Once your data are saved as a CSV file, it can be easily imported into R. To do 
 - If the CSV file is a file stored on your computer, click the `Browse` button and navigate to where you saved your CSV file, select the file, and click "Open". If the CSV file is hosted on the web, type the URL into the "File/URL" text box and click "Update".
 
 <br />
+
 
 ### Importing the Spice Girls Data
 
@@ -218,7 +224,8 @@ After importing the data you should see the object in your global environment.
 ```{r}
 #| echo: false
 #| out-width: "90%"
-#|fig-cap: "Import data saved in a CSV file into R."
+#| fig-cap: "Import data saved in a CSV file into R."
+#| fig-alt: "Import data saved in a CSV file into R."
 
 knitr::include_graphics("figs/01-03-import-csv.png")
 ```
@@ -233,7 +240,8 @@ Even though you used the `Import` button---a point-and-click feature in RStudio-
 ```{r}
 #| echo: false
 #| out-width: "90%"
-#|fig-cap: "Code Preview window showing the syntax to import the *spice-girls.csv* data."
+#| fig-cap: "Code Preview window showing the syntax to import the *spice-girls.csv* data."
+#| fig-alt: "Code Preview window showing the syntax to import the *spice-girls.csv* data."
 
 knitr::include_graphics("figs/01-03-code-preview.png")
 ```
@@ -243,6 +251,8 @@ In the first line of syntax, the `{readr}` package is loaded using the `library(
 It is a good idea to copy the first two lines of syntax from the `Code Preview` window into your script file. It will be faster to import the data in the future by running it from a script file rather than trying to reproduce all the steps to import your data. The third line of syntax, using `View()`, is not essential to importing your data..
 
 :::protip
+**FYI**
+
 Since there are better ways to actually "see" the contents of the data object (e.g., `print()`), you should not include the `View()` syntax line in your script file.
 :::
 
@@ -259,6 +269,8 @@ spice_girls <- read_csv("https://raw.githubusercontent.com/zief0002/modeling/mai
 ```
 
 :::fyi
+**FYI**
+
 The syntax `<-` is another way to write the assignment operator. You can use either `=` or `<-` for the assignment operator. Whichever you choose, be consistent!
 :::
 

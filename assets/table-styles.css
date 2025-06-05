@@ -1,9 +1,13 @@
+
+
+
 /** Make the caption italic and black **/
 .table caption{
   font-style: italic;
-  color: black;
   font-family: 'Atkinson Hyperlegible', serif;
   font-size: 14px;
+  text-align: left;
+  caption-side: top;
 }
 
 .table caption span{
@@ -14,15 +18,14 @@
 
 
 
-/** Change border color to black **/
-.table thead tr th {
-  border-color: black;
-  border-width: 1px;
+/** Style header row **/
+.table thead tr th{
   font-family: 'Atkinson Hyperlegible', serif;
   font-size: 14px;
-  font-weight: normal;
+  font-weight: bold;
+  border-color: black;
+  border-width: 2px;
 }
-
 
 
 
@@ -42,7 +45,7 @@
 
 /** Add a bottom border to the table body **/
 .table tbody tr:last-child {
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
 }
 
 

@@ -497,7 +497,7 @@ window.Quarto = {
 
 <p>In this chapter, you will be learn about how to use functionality from the <code>{dplyr}</code> package to wrangle your data. Data wrangling is the catchall phrase that includes the processes of cleaning, structuring, and summarizing your data. It is a skill that every educational scientist needs to have in their computational toolkit!</p>
 <p>We will use the <a href="https://raw.githubusercontent.com/zief0002/epsy-8251/main/data/comic-characters.csv">comic-characters.csv</a> data (see the <a href="#comic-characters">data codebook</a>) to illustrate how to use several data wrangling functions in order to answer a set of research questions about LGBTQ representation in comics.</p>
-<div class="exercises">
+<div class="fyi">
 <p><strong>Research Questions</strong></p>
 <ul>
 <li>Who was the first LGBTQ character?
@@ -636,6 +636,7 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 </div>
 <p>Here, <code>comics</code> will be inputted as the FIRST argument in the <code>print()</code> function, and any additional arguments are simply included in the <code>print()</code> function itself.</p>
 <div class="protip">
+<p><strong>PROTIP</strong></p>
 <p>It is a good coding practice to use multiple lines when you are piping rather than putting all the syntax on a single line. When you do this, the pipe operator (<code>|&gt;</code>) needs to come at the end of the line. You can see this in the code below, where the pipe operator is placed at the end of the first line of syntax; not at the beginning of the second line of syntax. <strong>Include a line break after every pipe operator you use.</strong></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print all columns of comics tibble</span></span>
@@ -648,49 +649,93 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 <section id="common-dplyr-functions-for-data-wrangling" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="common-dplyr-functions-for-data-wrangling"><span class="header-section-number">4.2</span> Common dplyr Functions for Data Wrangling</h2>
 <p>Here are some common operations that researchers use to prepare data for analysis (i.e., data preparation, data wrangling, data cleaning) and the corresponding <code>{dplyr}</code> functions.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Common data wrangling activities and the corresponding <code>{dplyr}</code> functions.</caption>
-<colgroup>
-<col style="width: 79%">
-<col style="width: 20%">
-</colgroup>
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- data.frame( -->
+<!--   operation = c( -->
+<!--     "Select a subset of rows from a data frame.", -->
+<!--     "Select a subset of columns from a data frame.", -->
+<!--     "Add new columns to a data frame.", -->
+<!--     "Sort and re-order data in a data frame.", -->
+<!--     "Compute summaries of columns in a data frame.", -->
+<!--     "Group the data to carry out computations for each group." -->
+<!--   ), -->
+<!--   computation = c("`filter()`", "`select()`", "`mutate()`", "`arrange()`", "`summarize()`", "`group_by()`") -->
+<!-- ) |>   -->
+<!--   kable( -->
+<!--     format = "markdown", -->
+<!--     caption = "Common data wrangling activities and the corresponding `{dplyr}` functions.", -->
+<!--     col.names = c("Data wrangling activity", "dplyr function"), -->
+<!--     align = c("l", "l"), -->
+<!--     table.attr = "style='width:60%;'", -->
+<!--     escape = TRUE -->
+<!--   ) -->
+<!-- ``` -->
+<table style="width:90%;" class="table">
+<caption>
+Table 1<br>Common data wrangling activities and the corresponding <code>{dplyr}</code> functions.
+</caption>
 <thead>
-<tr class="header">
-<th style="text-align: left;">Data wrangling activity</th>
-<th style="text-align: left;">dplyr function</th>
+<tr>
+<th style="text-align:left; width:70%;" id="activity">
+Data wrangling activity
+</th>
+<th style="text-align:left; width: 30%;" id="dplyr">
+dplyr function
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">Select a subset of rows from a data frame.</td>
-<td style="text-align: left;"><code>filter()</code></td>
+<tr style="border-bottom: 1px solid black;">
+<td style="text-align:left;" headers="activity">
+Select a subset of rows from a data frame.
+</td>
+<td style="text-align:left;" headers="dplyr">
+<code>filter()</code>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Select a subset of columns from a data frame.</td>
-<td style="text-align: left;"><code>select()</code></td>
+<tr style="border-bottom: 1px solid black;">
+<td style="text-align:left;" headers="activity">
+Select a subset of columns from a data frame.
+</td>
+<td style="text-align:left;" headers="dplyr">
+<code>select()</code>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Add new columns to a data frame.</td>
-<td style="text-align: left;"><code>mutate()</code></td>
+<tr style="border-bottom: 1px solid black;">
+<td style="text-align:left;" headers="activity">
+Add new columns to a data frame.
+</td>
+<td style="text-align:left;" headers="dplyr">
+<code>mutate()</code>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Sort and re-order data in a data frame.</td>
-<td style="text-align: left;"><code>arrange()</code></td>
+<tr style="border-bottom: 1px solid black;">
+<td style="text-align:left;" headers="activity">
+Sort and re-order data in a data frame.
+</td>
+<td style="text-align:left;" headers="dplyr">
+<code>arrange()</code>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Compute summaries of columns in a data frame.</td>
-<td style="text-align: left;"><code>summarize()</code></td>
+<tr style="border-bottom: 1px solid black;">
+<td style="text-align:left;" headers="activity">
+Compute summaries of columns in a data frame.
+</td>
+<td style="text-align:left;" headers="dplyr">
+<code>summarize()</code>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Group the data to carry out computations for each group.</td>
-<td style="text-align: left;"><code>group_by()</code></td>
+<tr>
+<td style="text-align:left;" headers="activity">
+Group the data to carry out computations for each group.
+</td>
+<td style="text-align:left;" headers="dplyr">
+<code>group_by()</code>
+</td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 <p><br></p>
 </section>
 <section id="sorting-the-data-arranging" class="level2" data-number="4.3">
@@ -782,17 +827,13 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/01-04-click-data-object.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="figs/01-04-click-data-object.png" class="img-fluid figure-img" style="width:70.0%" alt="Clicking the `sorted_comics` data object in the Environment pane will display the data in the RStudio data viewer."></p>
 <figcaption>Clicking the <code>sorted_comics</code> data object in the Environment pane will display the data in the RStudio data viewer.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Based on an examination of the sorted data, we find the first appearance of an LGBTQ character is Jack Casey in 1940.</p>
-<!-- :::exercises -->
-<!-- **Your Turn** -->
-<!-- Use the `arrange()` function to determine whether Marvel and DC introduced LGBTQ characters around the same time, or whether one company was more progressive? -->
-<!-- ::: -->
 <p><br></p>
 <section id="sorting-in-descending-order" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="sorting-in-descending-order"><span class="header-section-number">4.3.1</span> Sorting in Descending Order</h3>
@@ -821,10 +862,6 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 #   first_appear_date &lt;chr&gt;, first_appear_year &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<!-- :::exercises -->
-<!-- **Your Turn** -->
-<!-- Use the `arrange()` function to determine the first appearance of an LGBTQ female character in DC comics. -->
-<!-- ::: -->
 <p><br></p>
 </section>
 </section>
@@ -887,10 +924,6 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 </div>
 </div>
 <p>Only 0.6% of comic characters identified as LGBTQ (at least as of 2014). This is well below 7.1%, the percentage of U.S. adults who self-identify as lesbian, gay, bisexual, transgender or something other than heterosexual according to a <a href="https://news.gallup.com/poll/389792/lgbt-identification-ticks-up.aspx">2022 Gallup Poll</a>. (This is even below the 2012 estimate of 3.5%.) This suggests that the LGBTQ population is likely underrepresented in comic culture.</p>
-<!-- :::exercises -->
-<!-- **Your Turn** -->
-<!-- Use the `filter()` function and `nrow()` to determine the percentage of female comic characters. -->
-<!-- ::: -->
 <p><br></p>
 <section id="filtering-on-multiple-attributes" class="level3" data-number="4.4.1">
 <h3 data-number="4.4.1" class="anchored" data-anchor-id="filtering-on-multiple-attributes"><span class="header-section-number">4.4.1</span> Filtering on Multiple Attributes</h3>
@@ -928,10 +961,6 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lgbtq <span class="sc">==</span> <span class="st">"Yes"</span> <span class="sc">&amp;</span> sex <span class="sc">==</span> <span class="st">"Female"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
-<!-- :::exercises -->
-<!-- **Your Turn** -->
-<!-- Use the `filter()` function and `nrow()` to determine the percentage of LGBTQ comic characters introduced in 1970 or later. Based on the result is there evidence that the Pride Movement may have had an impact on LGBTQ representation?  -->
-<!-- ::: -->
 <p>We can also <code>filter()</code> using the OR (<code>|</code>) operator. This means that if EITHER logical expression included in the <code>filter()</code> function evaluates as TRUE, the row is included in the output. For example, say we wanted to count the number of comic characters who are either female or identify as LGBTQ. The syntax for this would be:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count character who are LGBTQ or are female</span></span>
@@ -1020,10 +1049,6 @@ Caused by error:
 <span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_csv</span>(<span class="st">"C:\Users\username\Desktop\lgbtq-comic-characters.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In both of the Mac and PC examples, the part of the pathname called <code>username</code> needs to be modified to be the user name for your computer. Typically this is the username you use to login to your computer.</p>
-<!-- :::exercises -->
-<!-- **Your Turn** -->
-<!-- Modify the syntax to export a CSV of the LGBTQ character data to the desktop on your computer. Also try modifying the syntax to export the CSV file to another folder/directory on your computer.  -->
-<!-- ::: -->
 <p><br></p>
 <section id="helper-functions-for-select" class="level3" data-number="4.5.1">
 <h3 data-number="4.5.1" class="anchored" data-anchor-id="helper-functions-for-select"><span class="header-section-number">4.5.1</span> Helper Functions for <code>select()</code></h3>
@@ -1125,15 +1150,8 @@ Caused by error:
 #   first_appear_date &lt;chr&gt;, first_appear_year &lt;dbl&gt;, num_years &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<!-- Depending on your print options, the results in `income2` may be in scientific notation. For example `3.74e+04` is equivalent to $3.74 \times 10^4=37400$. -->
-<!-- :::protip -->
-<!-- You can "turn off" scientific notation by running the following syntax in your R session: -->
-<!-- ```{r eval=FALSE} -->
-<!-- options(scipen = 99) -->
-<!-- ``` -->
-<!-- You will need to run this syntax every R session. -->
-<!-- ::: -->
 <div class="protip">
+<p><strong>PROTIP</strong></p>
 <p>If you are running this in the console, the <code>num_years</code> column won’t be displayed because of the default printing options for tibbles; the new column is created, just not displayed. To view it, we can use the <code>print()</code> function with the argument <code>width=Inf</code>, which displays all columns in the tibble.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new column and display all the columns</span></span>
@@ -1177,6 +1195,7 @@ Caused by error:
 </div>
 <p>Note that the <code>mean()</code> function includes the optional argument <code>na.rm=TRUE</code> which allows the mean computation when there are <code>NA</code> values; it tells the <code>mean()</code> function to remove the NAs in the computation. (If you didn’t remove the NAs, the result of the computation would be an <code>NA</code>.)</p>
 <div class="protip">
+<p><strong>PROTIP</strong></p>
 <p>If you want to continue to use the newly created columns, you need to assign the output into an object. If you do not assign the output into an object, the data with the new columns is printed to the screen and then the new columns are promptly “forgotten” by R. If you are sure of your syntax, you can re-assign the data into the original object. Here we create the new columns and re-assign this into the <code>comics</code> object.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add two new columns and re-assign to 'comics'</span></span>
@@ -1206,6 +1225,7 @@ Caused by error:
 </div>
 </div>
 <div class="protip">
+<p><strong>PROTIP</strong></p>
 <p>Because the appearance column includes missing values (NAs), we need to include the argument <code>na.rm=TRUE</code> in the <code>mean()</code> function. Including this will compute the mean only using the cases that have values. If there are missing values and the argument is not included, the result of the mean computation will be <code>NA</code>.</p>
 </div>
 <p>The output from <code>summarize()</code> is a data frame with a single row and one or more columns, depending on how many summaries you computed. Here we computed a single summary so there is only one column. We also named the column <code>M</code> within the <code>summarize()</code> function.</p>
@@ -1286,10 +1306,6 @@ Caused by error:
 </div>
 </div>
 <p>This added information reminds us that while the average number of appearances for LGBTQ characters is higher than for non-LGBTQ characters (for both DC and Marvel), overwhelming majority of comic characters are non-LGBTQ.</p>
-<!-- :::exercises -->
-<!-- **Your Turn** -->
-<!-- Modify the syntax to determine the average number of appearances for both DC and Marvel LGBTQ and non-LGBTQ characters (as well as the standard deviation and sample size) before and after the Pride Movement.   -->
-<!-- ::: -->
 <p><br></p>
 </section>
 <section id="additional-resources" class="level2" data-number="4.9">

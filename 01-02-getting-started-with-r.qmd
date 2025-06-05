@@ -10,7 +10,8 @@ There are four main windows (called *panes*) that we will use in RStudio. (You m
 
 ```{r}
 #| label: fig-cooking
-#| fig-cap: "The functions for each of the four RStudio panes is explained via a cooking metaphor." 
+#| fig-cap: "The functions for each of the four RStudio panes is explained via a cooking metaphor."
+#| fig-alt: "The functions for each of the four RStudio panes is explained via a cooking metaphor." 
 #| echo: false
 knitr::include_graphics("figs/02-01-rstudio-cooking-metaphor.jpg")
 ```
@@ -24,13 +25,13 @@ There are a couple ways to interact with R within RStudio: (1) via the console p
 
 One method of computing in RStudio is to run syntax directly in the RStudio console pane. Computing in the console is similar to working with a calculator: you enter syntax and R runs the syntax. Then it forgets what you entered and is ready for the next bit of syntax. 
 
-The `>` symbol in the console pane is called the "R prompt" and is prompting you to enter syntax. After you enter any syntax, you hit the <return> or <enter> key to execute the syntax.
+The `>` symbol in the console pane is called the "R prompt" and is prompting you to enter syntax. After you enter any syntax, you hit the `<return>` or `<enter>` key to execute the syntax.
 
 ```{r}
 #| echo: false
 #| out-width: "60%"
 #| fig-cap: "The console pane in RStudio is one way to compute with R. Syntax is entered at the R prompt and executed by hitting the <return> or <enter> key."
-
+#| fig-alt: "The console pane in RStudio is one way to compute with R. Syntax is entered at the R prompt and executed by hitting the <return> or <enter> key."
 knitr::include_graphics("figs/01-02-console.png")
 ```
 
@@ -90,13 +91,13 @@ A second method of computing in RStudio is to use a script file. Using a script 
 #| echo: false
 #| out-width: "90%"
 #| fig-cap: "LEFT: Create a new script file using RStudio's `File` menu. RIGHT: Create a new script file by clicking on the `New File` icon in the toolbar."
-
+#| fig-alt: "LEFT: Create a new script file using RStudio's `File` menu. RIGHT: Create a new script file by clicking on the `New File` icon in the toolbar."
 knitr::include_graphics("figs/01-02-new-script-file.png")
 ```
 
 Script files should only include your R syntax and comments. Script files should NOT include:
 
-- prompts (>)
+- prompts (`>`)
 - output
 
 Comments, which are human-readable annotations or explanations of the syntax, are written using the hashtag (`#`). These can be placed on their own line in the script file, or can be placed at the end of a line with syntax. The comment continues until you hit the <enter> key. Comments help other people understand your syntax and also act as a reminder for the future you of what your code actually does. Get is the habit of including comments in your syntax. Not only is it good coding practice, but it also will help you become familiar with and learn the R syntax as you describe the purpose of the syntax you are writing.
@@ -105,6 +106,7 @@ Comments, which are human-readable annotations or explanations of the syntax, ar
 #| echo: false
 #| out-width: "60%"
 #| fig-cap: "Example script file with comments."
+#| fig-alt: "Example script file with comments."
 
 knitr::include_graphics("figs/01-02-script-file.png")
 ```
@@ -122,6 +124,7 @@ Not only does the script file record your syntax, but it can also act as the veh
 #| echo: false
 #| out-width: "80%"
 #| fig-cap: "To execute syntax from the script file, highlight the syntax you want to run and then click the `Run` button in the toolbar."
+#| fig-alt: "To execute syntax from the script file, highlight the syntax you want to run and then click the `Run` button in the toolbar."
 
 knitr::include_graphics("figs/01-02-run-script.png")
 ```
@@ -139,6 +142,7 @@ Almost all commands in R are built around the use of a function. Functions carry
 #| echo: false
 #| out-width: "60%"
 #| fig-cap: "LEFT: Arguments are inputted into a function which returns an output. RIGHT: The value 25 is inputted into the square root function which returns the value of 5."
+#| fig-alt: "LEFT: Arguments are inputted into a function which returns an output. RIGHT: The value 25 is inputted into the square root function which returns the value of 5."
 
 knitr::include_graphics("figs/01-02-function-machine.png")
 ```
@@ -231,7 +235,7 @@ Note here that the output/returned value is not a single value, but five values.
 mean( seq(from = -5, to = -1) )
 ```
 
-Here the mean function applied to the sequence of values returns a single value as output. When a function is applied to a set of multiple values (i.e., a vector), some functions will apply their computations separately on each element/value (*element-wise computation* returns multiple values), while others will apply the computation to the set of elements as a whole (*vector-wise computation* returns a single value). Most of the time it will be clear from the function name or description whether the output returns a single value or multiple values.
+Here the mean function applied to the sequence of values returns a single value as output. When a function is applied to a set of multiple values (i.e., a vector), some functions will apply their computations separately on each element/value (**element-wise computation** returns multiple values), while others will apply the computation to the set of elements as a whole (**vector-wise computation** returns a single value). Most of the time it will be clear from the function name or description whether the output returns a single value or multiple values.
 
 We can chain as many computations together as we would like. For example here we find the square root of the absolute value of all the integers between $-5$ and $-1$.
 
@@ -245,7 +249,7 @@ sqrt( abs( seq(from = -5, to = -1) ) )
 
 ### Assignment
 
-We can also connect computations through *assignment*. With assignment, we store the output of a computation by assigning it to a named object. We can then use that named object in another computation. For example, here we first store the integers between $-5$ and $-1$ in an object called `chili`. Then we find the absolute value of each value by using `chili` as the argument in the `abs()` function.
+We can also connect computations through **assignment**. With assignment, we store the output of a computation by assigning it to a named object. We can then use that named object in another computation. For example, here we first store the integers between $-5$ and $-1$ in an object called `chili`. Then we find the absolute value of each value by using `chili` as the argument in the `abs()` function.
 
 ```{r}
 # Assign the sequence to the object chili
@@ -296,6 +300,7 @@ In RStudio you can see which objects are in your working environment by examinin
 #| echo: false
 #| out-width: "40%"
 #| fig-cap: "The enivironment pane shows the objects in the R working environment. It also displays the object's class and gives a preview of the the contents."
+#| fig-alt: "The enivironment pane shows the objects in the R working environment. It also displays the object's class and gives a preview of the the contents."
 
 knitr::include_graphics("figs/01-02-environment.png")
 ```
@@ -323,6 +328,7 @@ After assigning new values to `chili`, we can see the information in the environ
 #| echo: false
 #| out-width: "40%"
 #| fig-cap: "The object `chili` although still an integer vector, now includes 10 elements."
+#| fig-alt: "The object `chili` although still an integer vector, now includes 10 elements."
 
 knitr::include_graphics("figs/01-02-environment-chili.png")
 ```
@@ -350,6 +356,7 @@ Every R function is housed in a package. To use the functions in a particular pa
 #| echo: false
 #| out-width: "60%"
 #| fig-cap: "Packages need to be installed and loaded."
+#| fig-alt: "Packages need to be installed and loaded."
 
 knitr::include_graphics("figs/01-02-install-vs-load.png")
 ```
@@ -360,6 +367,7 @@ You can see the packages  (and which version of each package) are installed by e
 #| echo: false
 #| out-width: "40%"
 #| fig-cap: "The packages tab shows which packages are installed. The list of packages you have installed will likely be different. Checked packages are loaded into memory. In the packages seen here, only the base package is loaded into memory."
+#| fig-alt: "The packages tab shows which packages are installed. The list of packages you have installed will likely be different. Checked packages are loaded into memory. In the packages seen here, only the base package is loaded into memory."
 
 knitr::include_graphics("figs/01-02-package-tab.png")
 ```
@@ -370,6 +378,7 @@ Twenty-nine packages were included when you installed R on your computer. When y
 #| echo: false
 #| out-width: "70%"
 #| fig-cap: "The 29 packages installed as part of R. The base, datasets, graphics, grDevices, methods, stats, and utils packages are loaded into memory when you start an R session. The other 22 packages are installed but not loaded into memory."
+#| fig-alt: "The 29 packages installed as part of R. The base, datasets, graphics, grDevices, methods, stats, and utils packages are loaded into memory when you start an R session. The other 22 packages are installed but not loaded into memory."
 
 knitr::include_graphics("figs/01-02-default-packages.png")
 ```
@@ -559,3 +568,4 @@ Here are some additional resources for getting started with R and RStudio.
 - [Teacups, Giraffes, and Statistics](https://tinystats.github.io/teacups-giraffes-and-statistics/): Learn statistics & R coding through a series of modules that teach in an intuitive, playful, and approachable way
 
 <br />
+

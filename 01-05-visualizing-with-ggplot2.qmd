@@ -2,6 +2,7 @@
 
 ```{r}
 #| echo: false
+
 source("scripts/_common.R")
 ```
 
@@ -26,17 +27,22 @@ glimpse(gapminder)
 
 <br />
 
+
 ## Some Background
 
 The `gg` in `{ggplot2`} stands for *grammar of graphics*. The grammar of graphics [@wilkinson:2005] is a formal system of expressive grammatical rules for creating perceivable graphs. The grammar of graphics includes things such as aesthetics, geometries, scales, facets, and guides. Hadley Wickham adopted this grammar into the initial `{ggplot}` package, which he then re-wrote and updated to create the `{ggplot2}` package. As you learn how to create plots using `{ggplot2}`, you will also begin to learn the grammar of graphics. Understanding this grammar will help you describe, and create almost any visualization you can imagine.
 
 <br />
 
+
 ## Understanding the Basic Syntax
 
 Plots in `{ggplot2`} are built by *layering* different components. For example, consider the following syntax which creates a scatterplot using the income and CO2 emissions attributes:
 
 ```{r}
+#| label: fig-understand
+#| fig-cap: "Scatterplot of CO2 emissions versus income."
+#| fig-alt: "Scatterplot of CO2 emissions versus income."
 ggplot(data = gapminder, aes(x = income, y = co2)) + 
   geom_point() +
   theme_minimal()
@@ -57,7 +63,10 @@ The layers are literally *summed* together to form the plot. We will look at eac
 The first layer (referred to as the global layer) in every plot you create employs the function `ggplot()`. It contains a reference to the source data (`data=`) and any *global aesthetic mappings* (more about this later). The first layer only sets up the plot, it doesn't actually plot anything.
 
 ```{r}
+#| label: fig-global
 #| fig-cap: "The background layer for the plot is drawn. The domain (x-values) and range (y-values) is based on data in the income and co2 attributes."
+#| fig-alt: "The background layer for the plot is drawn. The domain (x-values) and range (y-values) is based on data in the income and co2 attributes."
+
 ggplot(data = gapminder, aes(x = income, y = co2))
 ```
 
@@ -65,6 +74,7 @@ ggplot(data = gapminder, aes(x = income, y = co2))
 -   The `aes=` argument sets the aesthetic mapping(s).
 
 <br />
+
 
 ### Aesthetics and Aesthetic Mappings
 
@@ -77,8 +87,8 @@ Linking an aesthetic to an attribute in the data, is referred to as an *aestheti
 
 These mappings were used to define the domain (*x*-values) and range (*y*-values) for the blank plot created by the `ggplot()` global layer.
 
-::: note
-**Important**
+:::protip
+**IMPORTANT**
 
 All aesthetic mappings need to be specified in an `aes()` function. Because aesthetic mappings use information in the attribute to apply the specified visual properties, the aesthetics (e.g., `x=`, `y=`, `color=`) need to be set to an attribute name in the data frame. For example, both `income` and `co2` are attribute names in the `gapminder` data object.
 :::
@@ -90,7 +100,10 @@ All aesthetic mappings need to be specified in an `aes()` function. Because aest
 After starting with the global layer, we can modify our visualization by adding layers to the global layer. For example, the layer that includes the function `geom_point()` is being added to the global layer in the syntax below.
 
 ```{r}
-#: fig-cap: Points are added on top of the plot's background layer.
+#| label: fig-adding
+#| fig-cap: "Points are added on top of the plot's background layer."
+#| fig-alt: "Points are added on top of the plot's background layer."
+
 ggplot(data = gapminder, aes(x = income, y = co2)) + 
   geom_point()
 ```
@@ -116,30 +129,37 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 ```
 
 ```{r}
-#| echo: false
-#| layout-ncol: 2
-#| tidy: false
+#| label: fig-layer
 #| fig-cap: "LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother."
+#| fig-alt: "LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother."
+#| echo: false
+#| fig-width: 8
+#| fig-height: 4
+#| out-width: "100%"
+
 # Draw smoother on top of points
-ggplot(data = gapminder, aes(x = income, y = co2)) + 
+p1 = ggplot(data = gapminder, aes(x = income, y = co2)) + 
   geom_point() +
   geom_smooth(alpha = 1)
 
 # Draw points on top of smoother
-ggplot(data = gapminder, aes(x = income, y = co2)) + 
+p2 = ggplot(data = gapminder, aes(x = income, y = co2)) + 
   geom_smooth(alpha = 1) +
   geom_point()
+
+p1 | p2
 ```
 
 A useful metaphor might be to imagine putting together a collage of many different photographs. Some parts of some of the photographs (especially those you put down first) might be covered up by photographs that you add later.
 
-::: protip
-**Protip**
+:::protip
+**PROTIP**
 
 When you are creating plots, you might need to switch the order of some of the layers to get the visualization you want.
 :::
 
 <br />
+
 
 ### Good Syntactic Habits
 
@@ -153,8 +173,8 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 
 The `+` sign needs to be at the end of the line (not at the beginning). If you are using a script file (which you should be), highlight ALL layers in the plot and click `Run` to create the plot.
 
-::: protip
-**Protip**
+:::protip
+**PROTIP**
 
 If you write your `{ggplot2}` syntax across multiple lines, it makes it not only easier to read, but also easier to try out different layers or features. For example, you can comment out lines to remove layers as you are building the plot without losing the syntax you wrote.
 
@@ -163,32 +183,41 @@ You can also debug syntax by highlighting all lines up to a given `+` sign and r
 
 <br />
 
+
 ## Global vs. Local Aesthetic Mappings
 
 As you learned earlier, we use the `aes()` function to set aesthetic mappings (i.e., linking attributes to aesthetics). Aesthetic mappings are often set globally (in the initial `ggplot()` layer). When we include aesthetic mappings in the global layer they are applied to *all layers* in the plot. For example, the syntax below maps data in the `income` attribute to the *x*-position, data from the `co2` attribute to the *y*-position, and data from the `region` attribute to color for both the loess smoother and the points.
 
 ```{r}
+#| label: fig-aes
+#| fig-cap: "The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers."
+#| fig-alt: "The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
-#| fig-cap: "The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers."
+#| out-width: '80%'
+
 # All aesthetic mappings are global
 ggplot(data = gapminder, aes(x = income, y = co2, color = region)) +  
   geom_smooth() +
   geom_point()
 ```
 
-::: note
+:::protip
+**FYI**
+
 Notice when we use non-positional aesthetic mappings (e.g., color) a legend, or guide in the grammar of graphics, will be automatically added to our plot for each aesthetic mapping.
 :::
 
 Aesthetic mappings can also be set locally in a specific layer. Aesthetic mappings set in a specific layer only apply to that particular layer. Below, we continue to globally map data from the `income` attribute to the *x*-position, and data from the `co2` attribute to the *y*-position. Both the smoother layer and point layer will utilize that. However, only the point layer will map data from the `region` attribute to color. Note that regardless of whether the aesthetic mapping is global or local, we still make this mapping inside an `aes()` function.
 
 ```{r}
+#| label: fig-aes2
+#| fig-cap: "The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer."
+#| fig-alt: "The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: '60%'
-#| fig-cap: "The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer."
+
 # Aesthetic mappings for x- and y-position are global
 # Aesthetic mapping for color only applies to the points layer
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
@@ -210,10 +239,13 @@ Fixed aesthetics assign the exact same value for the visual property for **all**
 -   **Fixed local aesthetic:** All points are given a border color of black (for this shape border color is set using `color=`).
 
 ```{r}
+#| label: fig-aes3
+#| fig-cap: "The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics."
+#| fig-alt: "The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: '60%'
-#| fig-cap: "The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics."
+
 # Aesthetic mappings for x- and y-position are global
 # Aesthetic mapping for fill only applies to the points layer
 # All points are the same shape, size, and border color
@@ -224,12 +256,16 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 
 <br />
 
+
 ## Faceting: Separate Plots for Subgroups
 
 Faceting creates a separate plot for different levels of a attribute. This is useful, for example, when you want a separate plot for different subgroups. To facet on a single attribute include the `facet_wrap()` layer. The wiggle, or tilde, (`~`) sets the attribute to facet on. In the following syntax, we create a separate plot for each region.
 
 ```{r}
+#| labl: fig-facet
 #| fig-cap: "Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions."
+#| fig-alt: "Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions."
+
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
   geom_point() +
@@ -239,7 +275,13 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 We can format the output of the facetted plots by setting the number of rows (`nrow=`) or columns (`ncol=`). For example, the following syntax outputs all four subplots in a single row.
 
 ```{r}
+#| label: fig-facet2
 #| fig-cap: "Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions."
+#| fig-alt: "Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions."
+#| fig-width: 12
+#| fig-height: 4
+#| out-width: "100%"
+
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
   geom_point() +
@@ -248,15 +290,19 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 
 <br />
 
+
 ### Facetting on Multiple Variables
 
 To facet on multiple attributes, use `facet_grid()` rather than `facet_wrap()`. The `facet_grid()` layer also uses the wiggle or tilde, but in this function we will include an attribute before the tilde and a second attribute after the tilde. This defines the layout of the plot grid, so that the attribute that comes prior to the tilde will be facetted into separate rows, and the attribute that comes after the tilde will be facetted into different columns (i.e., `rows ~ columns`). The syntax below facets on both world region (rows) and CO2 change (columns).
 
 ```{r}
-#| fig-cap: "Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007. "
+#| label: fig-facet3
+#| fig-cap: "Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007."
+#| fig-alt: "Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007."
 #| fig-width: 4
 #| fig-height: 8
 #| out-width: '70%'
+
 # Facet: regions in rows; 
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -266,17 +312,23 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 
 <br />
 
+
 ## Working with the Axes
 
 Many of the functions and layers employed in `{ggplot2}` syntax is to fine-tune the plot and make it ready for publication. One place this happens is on the axes of the plot. Changing the labels, the limits, or even where breakpoints occur are all things you may want to adjust as you ready a plot for publication.
 
 <br />
 
+
 ### Changing the Axis Label
 
 Two commonly used layers are `xlab()` and `ylab()`. These layers are used to change the label on the *x*- and *y*-axes, respectively. Here we change the axis label on both the *x*- and *y*-axes to give more information about the attributes being plotted.
 
 ```{r}
+#| label: fig-axis
+#| fig-cap: "Using xlab() and ylab() to change the labels on the axes."
+#| fig-alt: "Using xlab() and ylab() to change the labels on the axes."
+
 # Change the labels on the x- and y-axis
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -287,11 +339,16 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 
 <br />
 
+
 ### Changing the Axis Limits
 
 Another set of commonly used layers are `xlim()` and `ylim()`. These layers are used to set the limits on the *x*-axis and *y*-axis, respectively. These functions take two values which set the limits on the particular axis. The first value provided is the minimum, and the second value given is the maximum. Here, for example, the *x*-limits in the plot will be 0 to 125, and the *y*-axis will be 0 to 50.
 
 ```{r}
+#| label: fig-limits
+#| fig-cap: "Using xlim() and ylim() to change the limits on the axes."
+#| fig-alt: "Using xlim() and ylim() to change the limits on the axes."
+
 # Change the limits on the x- and y-axis
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -316,7 +373,10 @@ The `xlab()`, `ylab()`, `xlim()` and `ylim()` functions we used are shortcuts to
 For example, in our plot, to fine-tune the *x*-axis we could use `scale_x_continuous()` since `income` is a continuous variable and we want to fine-tune the *x*-axis.
 
 ```{r}
-#| fig-cap: Scale on the x-axis set to have a label, as well as, specific limits, and break lines.
+#| label: fig-all
+#| fig-cap: "Scale on the x-axis set to have a label, as well as, specific limits, and break lines."
+#| fig-alt: "Scale on the x-axis set to have a label, as well as, specific limits, and break lines."
+
 # Fine-tune the x-axis
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -342,10 +402,12 @@ Scaling functions can also be used to fine-tune colors and fills. For these you 
 In an earlier example, we used the `fill=` mapping to fill the points using the `region` attribute. Because of this we will use the layer `scale_fill_manual()` to change the fill colors. We use the `values=` argument to set the colors. Since the `region` attribute includes four values, we need to give the `values=` argument a vector of four different colors.
 
 ```{r}
+#| label: fig-color
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
-#| fig-cap: Color palette set manually using named color values.
+#| out-width: '70%'
+#| fig-cap: "Color palette set manually using named color values."
+#| fig-alt: "Color palette set manually using named color values."
 # Specify fill colors using color names
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -363,10 +425,13 @@ Here, the alphabetic order of the values in the `region` variable correspond to 
 Instead of relying on alphabetical order, we can also assign a specific color to a specific region by using named arguments in the `scale_fill_manual()` layer. Here the names need to correspond to the different regions in the `region` variable.
 
 ```{r}
+#| label: fig-color2
+#| fig-cap: "Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the `scale_fill_manula()` layer."
+#| fig-alt: "Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the `scale_fill_manula()` layer."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
-#| fig-cap: Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the `scale_fill_manula()` layer.
+#| out-width: '70%'
+
 # Specify fill colors using color names and assign them to regions
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -385,6 +450,7 @@ The color names used are built-in color names that R knows. There are 657 differ
 
 <br />
 
+
 #### Specifying Colors: RGB Color Model
 
 Colors can also be defined using an [RGB color model](https://en.wikipedia.org/wiki/RGB_color_model). This model uses a triplet of values to indicate the intensity of red (R), green (G), and blue (B) hues in the color. Each value in the triplet takes a value from 0 (none of that hue) to 255 (complete hue). For example, the color "skyblue" is equivalent to the RGB value of (135, 206, 235), where the triplet values correspond to:
@@ -398,10 +464,13 @@ Using the RGB color model, we can obtain 16,777,216 different colors! To specify
 [^06-visualizing-with-ggplot2-1]: Computer scientists often use a 0--1 scale of intensity rather than a 0--255. In that case, our color of "skyblue" would have an RGB triplet of (0.5294118 0.8078431 0.9215686). Here the original RGB triplet values are divided by 255.
 
 ```{r}
+#| label: fig-color3
+#| fig-cap: "Color palette set manually using RGB triplets."
+#| fig-alt: "Color palette set manually using RGB triplets."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
-#| fig-cap: Color palette set manually using RGB triplets.
+#| out-width: '70%'
+
 # Specify fill colors using RGB color model
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -418,6 +487,7 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 
 <br />
 
+
 #### Specifying Colors: HEX
 
 Colors can also be defined using [hexadecimal (hex)](https://en.wikipedia.org/wiki/Hexadecimal) notation. This notation takes the three RGB color model values (from 0--255) and converts each of those to a two-digit base-16 value. For example "skyblue", which in the RGB color model was (135, 206, 235) in hex is:
@@ -433,10 +503,13 @@ There are many websites that will convert between RGB values and hex, including 
 When we specify hex notation as a color in R, the six-digit color value is always preceeded by a hashtag (#). This is given as a character string instead of a color name. So to specify the colors in our plot using hex notation, the syntax is as follows.
 
 ```{r}
+#| label: fig-color4
+#| fig-cap: "Color palette set manually using hex notation."
+#| fig-alt: "Color palette set manually using hex notation."
 #| fig-width: 8
 #| fig-height: 6
-#| out-width: '60%'
-#| fig-cap: Color palette set manually using hex notation.
+#| out-width: '70%'
+
 # Specify fill colors using hex notation
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -451,11 +524,14 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
     )
 ```
 
-::: fyi
+:::fyi
+**FYI**
+
 Using lower-case letters in the hex notation would also work. Just remember to always include a hashtag when specifying hex.
 :::
 
 <br />
+
 
 ## Selecting a Color Palette
 
@@ -474,25 +550,51 @@ You can see more on the [University Relations Colors and Type](https://universit
 
 <br />
 
+
 ### Pre-Selected Color Palettes
 
 There are several "built-in" palettes available for use in `{ggplot2}`.
 
-| Fill Scale            | Color Scale            | Description                                 |
-|------------------|-------------------|-----------------------------------|
-| `scale_fill_hue()`    | `scale_color_hue()`    | Colors evenly spaced around the color wheel |
-| `scale_fill_grey()`   | `scale_color_grey()`   | Grey scale palette                          |
-| `scale_fill_brewer()` | `scale_color_brewer()` | ColorBrewer palettes                        |
+<table style='width:90%;' class="table">
+<caption>Table 1<br/>Built-in palettes in `{ggplot2}`.</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left; width:30%;" id="fill">Fill Scale</th>
+   <th style="text-align:left; width: 30%;" id="color">Color Scale</th>
+   <th style="text-align:left; width: 40%;" id="desc">Description</th>
+  </tr>
+ </thead>
+<tbody>
+  <tr style="border-bottom: 1px solid black;">
+   <td style="text-align:left;" headers="fill"> `scale_fill_hue()` </td>
+   <td style="text-align:left;" headers="color"> `scale_color_hue()` </td>
+   <td style="text-align:left;" headers="desc"> Colors evenly spaced around the color wheel </td>
+  </tr>
+  <tr style="border-bottom: 1px solid black;">
+   <td style="text-align:left;" headers="fill"> `scale_fill_grey()` </td>
+   <td style="text-align:left;" headers="color"> `scale_color_grey()` </td>
+   <td style="text-align:left;" headers="desc"> Grey scale palette </td>
+  </tr>
+  <tr style="border-bottom: 1px solid black;">
+   <td style="text-align:left;" headers="fill"> `scale_fill_brewer()` </td>
+   <td style="text-align:left;" headers="color"> `scale_color_brewer()` </td>
+   <td style="text-align:left;" headers="desc"> ColorBrewer palettes </td>
+  </tr>
+</tbody>
+</table>
 
 If you do not specify the colors to use, the plots created in`{ggplot2}` will default to a palette that is evenly spaced around the color wheel. To use one of the other built-in palettes, we use the appropriate scale from the table above instead of the `scale_fill_manual()` or `scale_color_manual()` layer.
 
 For example, to use a greyscale color palette, useful if you are printing in black-and-white, we can use the following syntax:
 
 ```{r}
+#| label: fig-greyscale
+#| fig-cap: "Greyscale color palette good for black-and-white printing."
+#| fig-alt: "Greyscale color palette good for black-and-white printing."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: '60%'
-#| fig-cap: Greyscale color palette good for black-and-white printing.
+
 # Specify greyscale for fill colors
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -509,17 +611,24 @@ She has palettes for three different types of data
 -   **Diverging:** Two back-to-back sequential palettes starting from a common color (e.g., for Likert scale data)
 
 ```{r}
+#| label: fig-brewer
+#| fig-cap: "Brewer color palettes"
+#| fig-alt: "Brewer color palettes"
 #| echo: false
+
 knitr::include_graphics("figs/01-05-color-brewer-palette.png")
 ```
 
 To use one of Cynthia Brewer's color palettes, we employ `scale_color_brewer()` or `scale_fill_brewer()`. Within these functions, we need to specify a palette using the `palette=` argument. The palette names can be found at <https://colorbrewer2.org/>. In our example, the region values constitute qualitative/categorical data, so we could choose any of the qualitative color palettes. To use the qualitative color palette called "Set1" we use:
 
 ```{r}
+#| label: fig-brewer2
+#| fig-cap: "Set1 qualitative color palette from the Brewer color palette."
+#| fig-alt: "Set1 qualitative color palette from the Brewer color palette."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: '60%'
-#| fig-cap: Set1 qualitative color palette from the Brewer color palette.
+
 # Specify Brewer color palette (qualitative, Set 1)
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -541,6 +650,7 @@ Emil Hvitfeldt has also put together a package called `{paletteer}`, that includ
 #| fig-height: 6
 #| fig-show: hold
 #| fig-cap: "FiveThirtyEight color palette from the `{ggthemes}` package."
+#| fig-alt: "FiveThirtyEight color palette from the `{ggthemes}` package."
 
 # Load libraries
 library(ggthemes)
@@ -553,11 +663,13 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 ```
 
 ```{r}
+#| label: fig-wesanderson
+#| fig-cap: "BottleRocket2 color palette from the `{wesanderson}` package."
+#| fig-alt: "BottleRocket2 color palette from the `{wesanderson}` package."
 #| code-fold: true
 #| fig-width: 8
 #| fig-height: 6
 #| fig-show: hold
-#| fig-cap: "BottleRocket2 color palette from the `{wesanderson}` package."
 
 # Load libraries
 library(wesanderson)
@@ -571,11 +683,14 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 ```
 
 ```{r}
+#| label: fig-park
+#| fig-cap: "Acadia color palette from the `{nationalparks}` package."
+#| fig-alt: "Acadia color palette from the `{nationalparks}` package."
 #| code-fold: true
 #| fig-width: 8
 #| fig-height: 6
 #| fig-show: hold
-#| fig-cap: "Acadia color palette from the `{nationalparks}` package."
+
 
 # Load libraries
 library(nationalparkcolors)
@@ -590,15 +705,20 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 
 <br />
 
+
 ## Customizing the Legend/Guide
 
 Scaling functions can also be used to change the name and labels in the legend or guide. When we used the color scales, the guide included both the name of the attribute being plotted, and each value of the attribute along with its corresponding fill color. To change the , We can include the argument `name=` to edit the text of the attribute name in the guide. We can also use `labels=` to edit the text for each of the attribute vaslues. For example, below we change the text of the attribute in the guide to read "World Region" and the text of "Americas" to instead read "The Americas". Note that because there are four attribute values, the `labels=` argument needs to have a vector with four values; we can't only include the text we want to change.
 
 ```{r}
+#| label: fig-legend
+#| fig-cap: "Set1 qualitative color palette from the Brewer color palette."
+#| fig-alt: "Set1 qualitative color palette from the Brewer color palette."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: '60%'
-#| fig-cap: Set1 qualitative color palette from the Brewer color palette.
+
+
 # Specify Brewer color palette (qualitative, Set 1)
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -617,10 +737,14 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 There are several "built-in" themes that you can use to change the look of your plot: `theme_grey()`, `theme_minimal()`, `theme_linedraw()`, `theme_light()`, `theme_dark()`, `theme_minimal()`, `theme_classic()`, `theme_void()`, and `theme_test()`. The default theme is `theme_grey()`. Here we use the layer `theme_minimal()` to modify the look of our plot. This theme uses a minimal black-and-white background (rather than grey).
 
 ```{r}
+#| label: fig-theme
+#| fig-cap: "Using the `theme_minimal()` layer to update the look of the plot."
+#| fig-alt: "Using the `theme_minimal()` layer to update the look of the plot."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: '60%'
-#| fig-cap: Using the `theme_minimal()` layer to update the look of the plot.
+
+
 # Using the `theme_minimal()` layer to update the look of the plot
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -635,15 +759,20 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 
 <br />
 
+
 ### The ggthemes Package
 
 The `{ggthemes}` package includes 20 additional themes that you can use to style your plot (see [here](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) to view the different themes available). Here I use a theme similar to that from plots that appear in the Wall Street Journal.
 
 ```{r}
+#| label: fig-wsj
+#| fig-cap: "Using the `theme_wsj()` layer from the `{ggthemes}` package to update the look of the plot to look like plots in the Wall Street Journal."
+#| fig-alt: "Using the `theme_wsj()` layer from the `{ggthemes}` package to update the look of the plot to look like plots in the Wall Street Journal."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: '60%'
-#| fig-cap: Using the `theme_wsj()` layer from the `{ggthemes}` package to update the look of the plot to look like plots in the Wall Street Journal.
+
+
 # Load library
 library(ggthemes)
 
@@ -661,15 +790,20 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 
 <br />
 
+
 ### Customizing a Theme
 
 The `theme()` layer can be used to change every element in the plot (e.g., grid lines, font, color, etc.). See [here](http://docs.ggplot2.org/current/theme.html) for more detail. In the syntax below, we call `theme_minimal()` to get the minimal black-and-white them from before, and the use arguments in the `theme()` layer to change the font face and color on the axes labels.
 
 ```{r}
+#| label: fig-theme-custom
+#| fig-cap: "You can customize almost any part of the theme using the `theme()` layer. In this plot we changed the font face and color on the axes labels."
+#| fig-alt: "You can customize almost any part of the theme using the `theme()` layer. In this plot we changed the font face and color on the axes labels."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: '60%'
-#| fig-cap: You can customize almost any part of the theme using the `theme()` layer. In this plot we changed the font face and color on the axes labels.
+
+
 # Using the `theme_minimal()` layer to update the look of the plot
 ggplot(data = gapminder, aes(x = income, y = co2)) +  
   geom_smooth() +
@@ -689,10 +823,14 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 The `theme()` function can also be used to create your own `{ggplot2}` theme. This is useful if you always want your plots to look a certain way (e.g., to fit an organizations style guide) or are always using the same modifications to the theme in your plots. Below, I create a theme called `theme_andy()` that
 
 ```{r}
+#| label: fig-andy
+#| fig-cap: "You can also create your own theme to use with any plot."
+#| fig-alt: "You can also create your own theme to use with any plot."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: '60%'
-#| fig-cap: You can also create your own theme to use with any plot.
+
+
 # Create theme_andy()
 theme_andy = function() {
   theme_minimal() +
@@ -727,12 +865,17 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 
 <br />
 
+
 ## `{ggplot2}` Extension Packages
 
 There are several packages that extend the functionality of `{ggplot2}`. Many of these packages are listed at the [ggplot2 Extensions](https://exts.ggplot2.tidyverse.org/) page.
 
 ```{r}
+#| label: fig-extensions
+#| fig-cap: "Extensions are available at the ggplot2 extensions website."
+#| fig-alt: "Extensions are available at the ggplot2 extensions website."
 #| echo: false
+
 knitr::include_graphics("figs/01-05-ggplot-extensions.png")
 ```
 
@@ -741,10 +884,13 @@ One useful extension package is the `{scales}` package. The functions and layers
 Here we add
 
 ```{r}
+#| label: fig-scales
+#| fig-cap: "The `{scales}` package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis."
+#| fig-alt: "The `{scales}` package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: '60%'
-#| fig-cap: The `{scales}` package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis.
+
 # Load library
 library(scales)
 
@@ -766,9 +912,12 @@ ggplot(data = gapminder, aes(x = income, y = co2)) +
 
 <br />
 
+
 ## Captions and Figure Numbering
 
-::: protip
+:::protip
+**PROTIP**
+
 It is easier to use a word-processor (e.g., MS Word) to add the figure title and caption than to try and get it formatted correctly using R. This is especially true when trying to mimic the APA format.
 :::
 
@@ -787,35 +936,36 @@ Here is one workflow for saving plots, importing the saved plot into your word-p
 
 <br />
 
-## Using Piping with `{ggplot2}`
 
-Since output from the piping operator produces a data frame, we can pipe the data into the `ggplot()` global layer rather than using the argument `data=`. For example:
+<!-- ## Using Piping with `{ggplot2}` -->
 
-```{r}
-#| eval: false
-# Use piping to indicate the data
-gapminder |>
-  ggplot(aes(x = income, y = co2)) +  
-    geom_smooth() +
-    geom_point() 
-```
+<!-- Since output from the piping operator produces a data frame, we can pipe the data into the `ggplot()` global layer rather than using the argument `data=`. For example: -->
 
-This is useful if you are wrangling data and want to see a plot. Here for example we filter to obtain the African countries and create the plot using only those countries. Note that since we only have observations from one region, we can now change the `fill=` to a fixed aesthetic.
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- # Use piping to indicate the data -->
+<!-- gapminder |> -->
+<!--   ggplot(aes(x = income, y = co2)) +   -->
+<!--     geom_smooth() + -->
+<!--     geom_point()  -->
+<!-- ``` -->
 
-```{r}
-#| fig-width: 8
-#| fig-height: 6
-#| out-width: '60%'
-#| fig-cap: Using `{dplyr}` functions and piping to plot athe African countries.
-gapminder |>
-  filter(region == "Africa") |>
-  ggplot(aes(x = income, y = co2)) +  
-    geom_smooth() +
-    geom_point(shape = 21, size = 4, fill = "#87CEEB") +
-    theme_minimal()
-```
+<!-- This is useful if you are wrangling data and want to see a plot. Here for example we filter to obtain the African countries and create the plot using only those countries. Note that since we only have observations from one region, we can now change the `fill=` to a fixed aesthetic. -->
 
-<br />
+<!-- ```{r} -->
+<!-- #| fig-width: 8 -->
+<!-- #| fig-height: 6 -->
+<!-- #| out-width: '60%' -->
+<!-- #| fig-cap: Using `{dplyr}` functions and piping to plot athe African countries. -->
+<!-- gapminder |> -->
+<!--   filter(region == "Africa") |> -->
+<!--   ggplot(aes(x = income, y = co2)) +   -->
+<!--     geom_smooth() + -->
+<!--     geom_point(shape = 21, size = 4, fill = "#87CEEB") + -->
+<!--     theme_minimal() -->
+<!-- ``` -->
+
+<!-- <br /> -->
 
 ## Practice, Practice, Practice
 
@@ -844,5 +994,6 @@ Here are some additional resources for learning `{ggplot2}`.
 - [Plotting with ggplot: Part 2](https://www.youtube.com/watch?v=n8kYa9vu1l8) [video]
 
 <br />
+
 
 ## References {.unnumbered}

@@ -556,9 +556,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<div id="fig-understand" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of CO2 emissions versus income." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-understand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: Scatterplot of CO2 emissions versus income.
+</figcaption>
+<div aria-describedby="fig-understand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-understand-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot of CO2 emissions versus income.">
+</div>
 </figure>
 </div>
 </div>
@@ -577,10 +582,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> co2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>The background layer for the plot is drawn. The domain (x-values) and range (y-values) is based on data in the income and co2 attributes.</figcaption>
+<div id="fig-global" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The background layer for the plot is drawn. The domain (x-values) and range (y-values) is based on data in the income and co2 attributes." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-global-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: The background layer for the plot is drawn. The domain (x-values) and range (y-values) is based on data in the income and co2 attributes.
+</figcaption>
+<div aria-describedby="fig-global-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-global-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="The background layer for the plot is drawn. The domain (x-values) and range (y-values) is based on data in the income and co2 attributes.">
+</div>
 </figure>
 </div>
 </div>
@@ -600,8 +609,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <li>CO2 values from the data will be mapped to the <em>y</em>-position.</li>
 </ol>
 <p>These mappings were used to define the domain (<em>x</em>-values) and range (<em>y</em>-values) for the blank plot created by the <code>ggplot()</code> global layer.</p>
-<div class="note">
-<p><strong>Important</strong></p>
+<div class="protip">
+<p><strong>IMPORTANT</strong></p>
 <p>All aesthetic mappings need to be specified in an <code>aes()</code> function. Because aesthetic mappings use information in the attribute to apply the specified visual properties, the aesthetics (e.g., <code>x=</code>, <code>y=</code>, <code>color=</code>) need to be set to an attribute name in the data frame. For example, both <code>income</code> and <code>co2</code> are attribute names in the <code>gapminder</code> data object.</p>
 </div>
 <p><br></p>
@@ -610,13 +619,17 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <h3 data-number="5.2.3" class="anchored" data-anchor-id="adding-layers"><span class="header-section-number">5.2.3</span> Adding Layers</h3>
 <p>After starting with the global layer, we can modify our visualization by adding layers to the global layer. For example, the layer that includes the function <code>geom_point()</code> is being added to the global layer in the syntax below.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#: fig-cap: Points are added on top of the plot's background layer.</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> co2)) <span class="sc">+</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> co2)) <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<div id="fig-adding" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Points are added on top of the plot's background layer." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-adding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.3: Points are added on top of the plot’s background layer.
+</figcaption>
+<div aria-describedby="fig-adding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-adding-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Points are added on top of the plot's background layer.">
+</div>
 </figure>
 </div>
 </div>
@@ -635,29 +648,23 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">alpha =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-align="center">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother.</figcaption>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-layer" class="quarto-float quarto-figure quarto-figure-center anchored" alt="LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-layer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.4: LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother.
+</figcaption>
+<div aria-describedby="fig-layer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-layer-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother.">
+</div>
 </figure>
-</div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother.</figcaption>
-</figure>
-</div>
 </div>
 </div>
 </div>
 <p>A useful metaphor might be to imagine putting together a collage of many different photographs. Some parts of some of the photographs (especially those you put down first) might be covered up by photographs that you add later.</p>
 <div class="protip">
-<p><strong>Protip</strong></p>
+<p><strong>PROTIP</strong></p>
 <p>When you are creating plots, you might need to switch the order of some of the layers to get the visualization you want.</p>
 </div>
 <p><br></p>
@@ -672,7 +679,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 </div>
 <p>The <code>+</code> sign needs to be at the end of the line (not at the beginning). If you are using a script file (which you should be), highlight ALL layers in the plot and click <code>Run</code> to create the plot.</p>
 <div class="protip">
-<p><strong>Protip</strong></p>
+<p><strong>PROTIP</strong></p>
 <p>If you write your <code>{ggplot2}</code> syntax across multiple lines, it makes it not only easier to read, but also easier to try out different layers or features. For example, you can comment out lines to remove layers as you are building the plot without losing the syntax you wrote.</p>
 <p>You can also debug syntax by highlighting all lines up to a given <code>+</code> sign and running the syntax. By subsequently highlighting and running additional lines of syntax, you can often figure out where any errors show up!</p>
 </div>
@@ -688,15 +695,20 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers.</figcaption>
+<div id="fig-aes" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-aes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.5: The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers.
+</figcaption>
+<div aria-describedby="fig-aes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-aes-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers.">
+</div>
 </figure>
 </div>
 </div>
 </div>
-<div class="note">
+<div class="protip">
+<p><strong>FYI</strong></p>
 <p>Notice when we use non-positional aesthetic mappings (e.g., color) a legend, or guide in the grammar of graphics, will be automatically added to our plot for each aesthetic mapping.</p>
 </div>
 <p>Aesthetic mappings can also be set locally in a specific layer. Aesthetic mappings set in a specific layer only apply to that particular layer. Below, we continue to globally map data from the <code>income</code> attribute to the <em>x</em>-position, and data from the <code>co2</code> attribute to the <em>y</em>-position. Both the smoother layer and point layer will utilize that. However, only the point layer will map data from the <code>region</code> attribute to color. Note that regardless of whether the aesthetic mapping is global or local, we still make this mapping inside an <code>aes()</code> function.</p>
@@ -707,10 +719,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> region))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer.</figcaption>
+<div id="fig-aes2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-aes2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.6: The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer.
+</figcaption>
+<div aria-describedby="fig-aes2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-aes2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer.">
+</div>
 </figure>
 </div>
 </div>
@@ -736,10 +752,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">fill =</span> region), <span class="at">shape =</span> <span class="dv">22</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics.</figcaption>
+<div id="fig-aes3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-aes3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.7: The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics.
+</figcaption>
+<div aria-describedby="fig-aes3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-aes3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics.">
+</div>
 </figure>
 </div>
 </div>
@@ -749,7 +769,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <section id="faceting-separate-plots-for-subgroups" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="faceting-separate-plots-for-subgroups"><span class="header-section-number">5.5</span> Faceting: Separate Plots for Subgroups</h2>
 <p>Faceting creates a separate plot for different levels of a attribute. This is useful, for example, when you want a separate plot for different subgroups. To facet on a single attribute include the <code>facet_wrap()</code> layer. The wiggle, or tilde, (<code>~</code>) sets the attribute to facet on. In the following syntax, we create a separate plot for each region.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-labl="fig-facet">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> co2)) <span class="sc">+</span>  </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
@@ -757,8 +777,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:70.0%" alt="Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions."></p>
 </figure>
 </div>
 </div>
@@ -770,10 +790,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions.</figcaption>
+<div id="fig-facet2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-facet2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.8: Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions.
+</figcaption>
+<div aria-describedby="fig-facet2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-facet2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions.">
+</div>
 </figure>
 </div>
 </div>
@@ -789,10 +813,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(region <span class="sc">~</span> co2_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007.</figcaption>
+<div id="fig-facet3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-facet3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.9: Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007.
+</figcaption>
+<div aria-describedby="fig-facet3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-facet3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007.">
+</div>
 </figure>
 </div>
 </div>
@@ -815,9 +843,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Per-person income (in thousands of international dollars, fixed for 2017 prices)"</span>) <span class="sc">+</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Per-person CO2 emissions (in metric tonnes)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<div id="fig-axis" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Using xlab() and ylab() to change the labels on the axes." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-axis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.10: Using xlab() and ylab() to change the labels on the axes.
+</figcaption>
+<div aria-describedby="fig-axis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-axis-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Using xlab() and ylab() to change the labels on the axes.">
+</div>
 </figure>
 </div>
 </div>
@@ -837,9 +870,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">125</span>) <span class="sc">+</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<div id="fig-limits" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Using xlim() and ylim() to change the limits on the axes." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-limits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.11: Using xlim() and ylim() to change the limits on the axes.
+</figcaption>
+<div aria-describedby="fig-limits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-limits-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Using xlim() and ylim() to change the limits on the axes.">
+</div>
 </figure>
 </div>
 </div>
@@ -869,10 +907,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Per-person CO2 emissions (in metric tonnes)"</span>) <span class="sc">+</span></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Scale on the x-axis set to have a label, as well as, specific limits, and break lines.</figcaption>
+<div id="fig-all" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scale on the x-axis set to have a label, as well as, specific limits, and break lines." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.12: Scale on the x-axis set to have a label, as well as, specific limits, and break lines.
+</figcaption>
+<div aria-describedby="fig-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-all-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scale on the x-axis set to have a label, as well as, specific limits, and break lines.">
+</div>
 </figure>
 </div>
 </div>
@@ -891,10 +933,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="fu">aes</span>(<span class="at">fill =</span> region)) <span class="sc">+</span></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"skyblue"</span>, <span class="st">"plum"</span>, <span class="st">"orange"</span>, <span class="st">"chartreuse"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Color palette set manually using named color values.</figcaption>
+<div id="fig-color" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Color palette set manually using named color values." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-color-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.13: Color palette set manually using named color values.
+</figcaption>
+<div aria-describedby="fig-color-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-color-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Color palette set manually using named color values.">
+</div>
 </figure>
 </div>
 </div>
@@ -921,10 +967,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the <code>scale_fill_manula()</code> layer.</figcaption>
+<div id="fig-color2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the `scale_fill_manula()` layer." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-color2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.14: Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the <code>scale_fill_manula()</code> layer.
+</figcaption>
+<div aria-describedby="fig-color2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-color2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the `scale_fill_manula()` layer.">
+</div>
 </figure>
 </div>
 </div>
@@ -954,10 +1004,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Color palette set manually using RGB triplets.</figcaption>
+<div id="fig-color3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Color palette set manually using RGB triplets." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-color3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.15: Color palette set manually using RGB triplets.
+</figcaption>
+<div aria-describedby="fig-color3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-color3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Color palette set manually using RGB triplets.">
+</div>
 </figure>
 </div>
 </div>
@@ -991,15 +1045,20 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Color palette set manually using hex notation.</figcaption>
+<div id="fig-color4" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Color palette set manually using hex notation." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-color4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.16: Color palette set manually using hex notation.
+</figcaption>
+<div aria-describedby="fig-color4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-color4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Color palette set manually using hex notation.">
+</div>
 </figure>
 </div>
 </div>
 </div>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>Using lower-case letters in the hex notation would also work. Just remember to always include a hashtag when specifying hex.</p>
 </div>
 <p><br></p>
@@ -1024,34 +1083,56 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <section id="pre-selected-color-palettes" class="level3" data-number="5.7.1">
 <h3 data-number="5.7.1" class="anchored" data-anchor-id="pre-selected-color-palettes"><span class="header-section-number">5.7.1</span> Pre-Selected Color Palettes</h3>
 <p>There are several “built-in” palettes available for use in <code>{ggplot2}</code>.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 26%">
-<col style="width: 48%">
-</colgroup>
+<table style="width:90%;" class="table">
+<caption>
+Table 1<br>Built-in palettes in <code>{ggplot2}</code>.
+</caption>
 <thead>
-<tr class="header">
-<th>Fill Scale</th>
-<th>Color Scale</th>
-<th>Description</th>
+<tr>
+<th style="text-align:left; width:30%;" id="fill">
+Fill Scale
+</th>
+<th style="text-align:left; width: 30%;" id="color">
+Color Scale
+</th>
+<th style="text-align:left; width: 40%;" id="desc">
+Description
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td><code>scale_fill_hue()</code></td>
-<td><code>scale_color_hue()</code></td>
-<td>Colors evenly spaced around the color wheel</td>
+<tr style="border-bottom: 1px solid black;">
+<td style="text-align:left;" headers="fill">
+<code>scale_fill_hue()</code>
+</td>
+<td style="text-align:left;" headers="color">
+<code>scale_color_hue()</code>
+</td>
+<td style="text-align:left;" headers="desc">
+Colors evenly spaced around the color wheel
+</td>
 </tr>
-<tr class="even">
-<td><code>scale_fill_grey()</code></td>
-<td><code>scale_color_grey()</code></td>
-<td>Grey scale palette</td>
+<tr style="border-bottom: 1px solid black;">
+<td style="text-align:left;" headers="fill">
+<code>scale_fill_grey()</code>
+</td>
+<td style="text-align:left;" headers="color">
+<code>scale_color_grey()</code>
+</td>
+<td style="text-align:left;" headers="desc">
+Grey scale palette
+</td>
 </tr>
-<tr class="odd">
-<td><code>scale_fill_brewer()</code></td>
-<td><code>scale_color_brewer()</code></td>
-<td>ColorBrewer palettes</td>
+<tr style="border-bottom: 1px solid black;">
+<td style="text-align:left;" headers="fill">
+<code>scale_fill_brewer()</code>
+</td>
+<td style="text-align:left;" headers="color">
+<code>scale_color_brewer()</code>
+</td>
+<td style="text-align:left;" headers="desc">
+ColorBrewer palettes
+</td>
 </tr>
 </tbody>
 </table>
@@ -1064,10 +1145,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="fu">aes</span>(<span class="at">fill =</span> region)) <span class="sc">+</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_grey</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Greyscale color palette good for black-and-white printing.</figcaption>
+<div id="fig-greyscale" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Greyscale color palette good for black-and-white printing." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-greyscale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.17: Greyscale color palette good for black-and-white printing.
+</figcaption>
+<div aria-describedby="fig-greyscale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-greyscale-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Greyscale color palette good for black-and-white printing.">
+</div>
 </figure>
 </div>
 </div>
@@ -1081,9 +1166,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/01-05-color-brewer-palette.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<div id="fig-brewer" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Brewer color palettes" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-brewer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.18: Brewer color palettes
+</figcaption>
+<div aria-describedby="fig-brewer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/01-05-color-brewer-palette.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Brewer color palettes">
+</div>
 </figure>
 </div>
 </div>
@@ -1096,10 +1186,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="fu">aes</span>(<span class="at">fill =</span> region)) <span class="sc">+</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Set1 qualitative color palette from the Brewer color palette.</figcaption>
+<div id="fig-brewer2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Set1 qualitative color palette from the Brewer color palette." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-brewer2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.19: Set1 qualitative color palette from the Brewer color palette.
+</figcaption>
+<div aria-describedby="fig-brewer2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-brewer2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Set1 qualitative color palette from the Brewer color palette.">
+</div>
 </figure>
 </div>
 </div>
@@ -1126,8 +1220,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>FiveThirtyEight color palette from the <code>{ggthemes}</code> package.</figcaption>
+<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:70.0%" alt="FiveThirtyEight color palette from the `{ggthemes}` package."></p>
 </figure>
 </div>
 </div>
@@ -1146,10 +1240,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">wes_palette</span>(<span class="at">name =</span> <span class="st">"BottleRocket2"</span>, <span class="at">n =</span> <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>BottleRocket2 color palette from the <code>{wesanderson}</code> package.</figcaption>
+<div id="fig-wesanderson" class="quarto-float quarto-figure quarto-figure-center anchored" alt="BottleRocket2 color palette from the `{wesanderson}` package." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-wesanderson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.20: BottleRocket2 color palette from the <code>{wesanderson}</code> package.
+</figcaption>
+<div aria-describedby="fig-wesanderson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-wesanderson-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="BottleRocket2 color palette from the `{wesanderson}` package.">
+</div>
 </figure>
 </div>
 </div>
@@ -1168,10 +1266,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">park_palette</span>(<span class="st">"Acadia"</span>, <span class="at">n =</span> <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Acadia color palette from the <code>{nationalparks}</code> package.</figcaption>
+<div id="fig-park" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Acadia color palette from the `{nationalparks}` package." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-park-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.21: Acadia color palette from the <code>{nationalparks}</code> package.
+</figcaption>
+<div aria-describedby="fig-park-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-park-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Acadia color palette from the `{nationalparks}` package.">
+</div>
 </figure>
 </div>
 </div>
@@ -1193,10 +1295,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Africa"</span>, <span class="st">"The Americas"</span>, <span class="st">"Asia"</span>, <span class="st">"Europe"</span>)</span>
 <span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Set1 qualitative color palette from the Brewer color palette.</figcaption>
+<div id="fig-legend" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Set1 qualitative color palette from the Brewer color palette." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-legend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.22: Set1 qualitative color palette from the Brewer color palette.
+</figcaption>
+<div aria-describedby="fig-legend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-legend-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Set1 qualitative color palette from the Brewer color palette.">
+</div>
 </figure>
 </div>
 </div>
@@ -1218,10 +1324,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Using the <code>theme_minimal()</code> layer to update the look of the plot.</figcaption>
+<div id="fig-theme" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Using the `theme_minimal()` layer to update the look of the plot." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-theme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.23: Using the <code>theme_minimal()</code> layer to update the look of the plot.
+</figcaption>
+<div aria-describedby="fig-theme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-theme-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Using the `theme_minimal()` layer to update the look of the plot.">
+</div>
 </figure>
 </div>
 </div>
@@ -1245,10 +1355,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_wsj</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Using the <code>theme_wsj()</code> layer from the <code>{ggthemes}</code> package to update the look of the plot to look like plots in the Wall Street Journal.</figcaption>
+<div id="fig-wsj" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Using the `theme_wsj()` layer from the `{ggthemes}` package to update the look of the plot to look like plots in the Wall Street Journal." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-wsj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.24: Using the <code>theme_wsj()</code> layer from the <code>{ggthemes}</code> package to update the look of the plot to look like plots in the Wall Street Journal.
+</figcaption>
+<div aria-describedby="fig-wsj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-wsj-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Using the `theme_wsj()` layer from the `{ggthemes}` package to update the look of the plot to look like plots in the Wall Street Journal.">
+</div>
 </figure>
 </div>
 </div>
@@ -1274,10 +1388,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>)</span>
 <span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>You can customize almost any part of the theme using the <code>theme()</code> layer. In this plot we changed the font face and color on the axes labels.</figcaption>
+<div id="fig-theme-custom" class="quarto-float quarto-figure quarto-figure-center anchored" alt="You can customize almost any part of the theme using the `theme()` layer. In this plot we changed the font face and color on the axes labels." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-theme-custom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.25: You can customize almost any part of the theme using the <code>theme()</code> layer. In this plot we changed the font face and color on the axes labels.
+</figcaption>
+<div aria-describedby="fig-theme-custom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-theme-custom-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="You can customize almost any part of the theme using the `theme()` layer. In this plot we changed the font face and color on the axes labels.">
+</div>
 </figure>
 </div>
 </div>
@@ -1315,10 +1433,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_andy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>You can also create your own theme to use with any plot.</figcaption>
+<div id="fig-andy" class="quarto-float quarto-figure quarto-figure-center anchored" alt="You can also create your own theme to use with any plot." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-andy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.26: You can also create your own theme to use with any plot.
+</figcaption>
+<div aria-describedby="fig-andy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-andy-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="You can also create your own theme to use with any plot.">
+</div>
 </figure>
 </div>
 </div>
@@ -1331,9 +1453,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <p>There are several packages that extend the functionality of <code>{ggplot2}</code>. Many of these packages are listed at the <a href="https://exts.ggplot2.tidyverse.org/">ggplot2 Extensions</a> page.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/01-05-ggplot-extensions.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<div id="fig-extensions" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Extensions are available at the ggplot2 extensions website." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-extensions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.27: Extensions are available at the ggplot2 extensions website.
+</figcaption>
+<div aria-describedby="fig-extensions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/01-05-ggplot-extensions.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Extensions are available at the ggplot2 extensions website.">
+</div>
 </figure>
 </div>
 </div>
@@ -1359,10 +1486,14 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>The <code>{scales}</code> package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis.</figcaption>
+<div id="fig-scales" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The `{scales}` package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-scales-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.28: The <code>{scales}</code> package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis.
+</figcaption>
+<div aria-describedby="fig-scales-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-05-visualizing-with-ggplot2_files/figure-html/fig-scales-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="The `{scales}` package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis.">
+</div>
 </figure>
 </div>
 </div>
@@ -1372,6 +1503,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <section id="captions-and-figure-numbering" class="level2" data-number="5.11">
 <h2 data-number="5.11" class="anchored" data-anchor-id="captions-and-figure-numbering"><span class="header-section-number">5.11</span> Captions and Figure Numbering</h2>
 <div class="protip">
+<p><strong>PROTIP</strong></p>
 <p>It is easier to use a word-processor (e.g., MS Word) to add the figure title and caption than to try and get it formatted correctly using R. This is especially true when trying to mimic the APA format.</p>
 </div>
 <p>Here is one workflow for saving plots, importing the saved plot into your word-processing application, and adding a figure number and caption.</p>
@@ -1388,38 +1520,33 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <li>Add the figure number and caption using your word-processing document. :::</li>
 </ul>
 <p><br></p>
+<!-- ## Using Piping with `{ggplot2}` -->
+<!-- Since output from the piping operator produces a data frame, we can pipe the data into the `ggplot()` global layer rather than using the argument `data=`. For example: -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- # Use piping to indicate the data -->
+<!-- gapminder |> -->
+<!--   ggplot(aes(x = income, y = co2)) +   -->
+<!--     geom_smooth() + -->
+<!--     geom_point()  -->
+<!-- ``` -->
+<!-- This is useful if you are wrangling data and want to see a plot. Here for example we filter to obtain the African countries and create the plot using only those countries. Note that since we only have observations from one region, we can now change the `fill=` to a fixed aesthetic. -->
+<!-- ```{r} -->
+<!-- #| fig-width: 8 -->
+<!-- #| fig-height: 6 -->
+<!-- #| out-width: '60%' -->
+<!-- #| fig-cap: Using `{dplyr}` functions and piping to plot athe African countries. -->
+<!-- gapminder |> -->
+<!--   filter(region == "Africa") |> -->
+<!--   ggplot(aes(x = income, y = co2)) +   -->
+<!--     geom_smooth() + -->
+<!--     geom_point(shape = 21, size = 4, fill = "#87CEEB") + -->
+<!--     theme_minimal() -->
+<!-- ``` -->
+<!-- <br /> -->
 </section>
-<section id="using-piping-with-ggplot2" class="level2" data-number="5.12">
-<h2 data-number="5.12" class="anchored" data-anchor-id="using-piping-with-ggplot2"><span class="header-section-number">5.12</span> Using Piping with <code>{ggplot2}</code></h2>
-<p>Since output from the piping operator produces a data frame, we can pipe the data into the <code>ggplot()</code> global layer rather than using the argument <code>data=</code>. For example:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use piping to indicate the data</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> co2)) <span class="sc">+</span>  </span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This is useful if you are wrangling data and want to see a plot. Here for example we filter to obtain the African countries and create the plot using only those countries. Note that since we only have observations from one region, we can now change the <code>fill=</code> to a fixed aesthetic.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"Africa"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> co2)) <span class="sc">+</span>  </span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fill =</span> <span class="st">"#87CEEB"</span>) <span class="sc">+</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-05-visualizing-with-ggplot2_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Using <code>{dplyr}</code> functions and piping to plot athe African countries.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
-</section>
-<section id="practice-practice-practice" class="level2" data-number="5.13">
-<h2 data-number="5.13" class="anchored" data-anchor-id="practice-practice-practice"><span class="header-section-number">5.13</span> Practice, Practice, Practice</h2>
+<section id="practice-practice-practice" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="practice-practice-practice"><span class="header-section-number">5.12</span> Practice, Practice, Practice</h2>
 <p>The key to becoming a <code>{ggplot2}</code> ninja is to practice by creating visualizations. They don’t have to be fancy! Even by creating simple visualizations, you will hone your skills. As you become more confident try changing the color, or the labels, or really anything.</p>
 <p>If you are unsure where to start, one practice method I have found helpful is to try and re-create a plot that someone else has already created. There are many datasets available online that people have created plots for. One source of these is the <a href="https://github.com/rfordatascience/tidytuesday">Tidy Tuesday Repository</a>.</p>
 <p>There are also several resources to help you get started and continue your <code>gg_journey</code>! Here are a few I have found helpful:</p>
@@ -1431,8 +1558,8 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.0963, 44
 <p>Happy Plotting!!! 📈 🎉</p>
 <p><br></p>
 </section>
-<section id="additional-resources" class="level2" data-number="5.14">
-<h2 data-number="5.14" class="anchored" data-anchor-id="additional-resources"><span class="header-section-number">5.14</span> Additional Resources</h2>
+<section id="additional-resources" class="level2" data-number="5.13">
+<h2 data-number="5.13" class="anchored" data-anchor-id="additional-resources"><span class="header-section-number">5.13</span> Additional Resources</h2>
 <p>Here are some additional resources for learning <code>{ggplot2}</code>.</p>
 <ul>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/">Data Visualization with ggplot2 Cheatsheet</a>: A printable cheatsheet for using <code>{ggplot2}</code>.</li>
