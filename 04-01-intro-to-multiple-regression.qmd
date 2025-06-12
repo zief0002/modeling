@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will learn about including multiple predictors into the regression model. To do so, we will use the [keith-gpa.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv) data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of $n=100$ 8th-grade students (see the [data codebook](#keith)). To begin, we will load several libraries and import the data into an object called `keith`.
+In this chapter, you will learn about including multiple predictors into the regression model. To do so, we will use the **keith-gpa.csv** data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of $n=100$ 8th-grade students. To begin, we will load several libraries and import the data into an object called `keith`.
 
 
 ```{r}
@@ -49,12 +49,15 @@ Experimental data are data that have been collected from a study in which the re
 We can also think about random assignment with predictors that have more than two levels. For example, if you were studying the effect of the amount of tutoring on some educational outcome you might have several levels of the predictor: 30 min of tutoring, 45 min of tutoring, 60 min of tutoring, 75 min of tutoring, 90 min of tutoring, etc. The data here can also be experimental so long as the participants in the study were randomly assigned to the different levels of tutoring. 
 
 :::fyi
+**FYI**
+
 The key question to determine whether the data are experimental is: were cases/participants randomly assigned to different levels of the predictor?
 :::
 
 Let's ask that question about our homework/GPA data...were students randomly assigned to spend different amount of time on homework? The answer is no. Students were not randomly assigned to different levels of the predictor. They self select how much time they spend on homework. Because of this, these data are not experimental in nature. We instead refer to these data as observational in nature. Observational data are any data in which cases/participants were not randomly assigned to levels of the predictor. Most data collected or used in the social and educational sciences are observational in nature! 
 
 <br />
+
 
 ### Confounding and Observational Data
 
@@ -63,8 +66,12 @@ The nature of the data has a direct impact on our conclusions about the effect o
 We can depict some of these ideas in a path diagram. A path diagram visualizes the different variables under study and the effects of those variables. Variables are depicted as rectangles^[Sometimes variables are represented as circles in a path diagram. These typically represent latent variables.] and effects are depicted as single-headed arrows. For example, the following path diagram shows the two variables time spent on homework and GPA. Note that the arrow representing the effect of time spent on homework on GPA originates from the predictor rectangle and points toward the outcome. This shows that the effect is on the outcome.
 
 ```{r}
+#| label: fig-path1
+#| fig-cap: "Path diagram showing the hypothesized causal effect of time spent on homework on GPA."
+#| fig-alt: "Path diagram showing the hypothesized causal effect of time spent on homework on GPA."
 #| echo: false
 #| out-width: "50%"
+
 knitr::include_graphics("figs/04-01-path-diagram-01.png")
 ```
 
@@ -72,8 +79,12 @@ Recall that our potential confounder (parent education) has an effect on both th
 
 
 ```{r}
+#| label: fig-path2
+#| fig-cap: "Path diagram showing both the hypothesized causal effect of time spent on homework on GPA, and the confounding effect of parent education."
+#| fig-alt: "Path diagram showing both the hypothesized causal effect of time spent on homework on GPA, and the confounding effect of parent education."
 #| echo: false
 #| out-width: "50%"
+
 knitr::include_graphics("figs/04-01-path-diagram-02.png")
 ```
 
@@ -83,8 +94,12 @@ The big issue with confounders is that they can impact the effect of your focal 
 With experimental studies, since participants are assigned randomly by the researcher, there is theoretically no such thing as a confounder. This is because other predictors (e.g., parent education) cannot influence the level of predictor sicne it is a random mechanism that is determining the level of the predictor. The path diagram if this were experimental data would look like this:
 
 ```{r}
+#| label: fig-path3
+#| fig-cap: "Path diagram showing both the hypothesized causal effect of time spent on homework and parent education on GPA if the data were from an experiment."
+#| fig-alt: "Path diagram showing both the hypothesized causal effect of time spent on homework and parent education on GPA if the data were from an experiment."
 #| echo: false
 #| out-width: "50%"
+
 knitr::include_graphics("figs/04-01-path-diagram-03.png")
 ```
 
@@ -93,23 +108,32 @@ Note that there is no longer an arrow going from parent education to time spent 
 More importantly, with experimental data whatever the effect of time spent on homework was on GPA in the simple two rectangle model, it is theoretically the same, regardless of any other predictor that might be influencing the outcome. That is, even if parent education influences students' GPA, the effect of time spent on homework would not change the original effect, it would remain a small, positive effect. Whereas, with observational data, we just don't know whether nor how the effect will change.^[When the effect of a predictor remains consistent regardless of other things that might influence the outcome, we call that predictor a "cause". Because this is the case in experimental data, sometimes people will say that experimental data allows for cause-and-effect type inferences.] 
 
 ```{r}
+#| label: fig-path4
+#| fig-cap: "LEFT: Path diagram showing both the hypothesized causal effect of time spent on homework on GPA, and the confounding effect of parent education. RIGHT: Path diagram showing both the hypothesized causal effect of time spent on homework and parent education on GPA if the data were from an experiment."
+#| fig-alt: "LEFT: Path diagram showing both the hypothesized causal effect of time spent on homework on GPA, and the confounding effect of parent education. RIGHT: Path diagram showing both the hypothesized causal effect of time spent on homework and parent education on GPA if the data were from an experiment."
 #| echo: false
-#| out-width: "80%"
+#| out-width: "100%"
+
 knitr::include_graphics("figs/04-01-path-diagram-04.png")
 ```
 
 
 :::fyi
+**PROTIP**
+
 Drawing out a path diagram helps you document the effects you are evaluating. It can also help you identify confounders when you have observational data.  
 :::
 
 <br />
+
 
 ## Multiple Regression: The Key to Evaluating Observational Data
 
 To understand whether or how the effect of time spent on homework on GPA is impacted by the confounder of parent education, we can include parent education level as an additional predictor in the model (along with time spent on homework). By looking at the resulting effect of time spent on homework on GPA we get a better understanding of what the true effect is.
 
 :::protip
+**FYI**
+
 While multiple regression is helpful for dealing with confounders in observational data, we can use multiple regression to quantify effects for any type of data, including experimental data. 
 :::
 
@@ -123,6 +147,8 @@ Before we begin modeling, it behooves us to explore the parent education level p
 ```{r}
 #| label: fig-density-seniority
 #| fig-cap: "Density plot of the marginal distribution of parent education level."
+#| fig-alt: "Density plot of the marginal distribution of parent education level."
+
 # Examine the marginal distribution
 ggplot(data = keith, aes(x = parent_ed)) +
   stat_density(geom = "line") +
@@ -151,6 +177,8 @@ After we examine the marginal distribution, we should examine the relationships 
 ```{r}
 #| label: fig-seniority-income
 #| fig-cap: "Scatterplot showing the relationship between parent education level and GPA."
+#| fig-alt: "Scatterplot showing the relationship between parent education level and GPA."
+
 # Relationship between parent education level and GPA
 ggplot(data = keith, aes(x = parent_ed, y = gpa)) +
   geom_point() +
@@ -174,8 +202,12 @@ keith |>
 Note here that parent education level seems to be related to the predictor and the outcome. This suggests that it may be a confounder. (In an experimental study, the correlation between parent education level and time spent on homework would be close to 0.) Sometimes people show the correlations on a path diagram. Correlations are shown as double-headed arrows rather than single-headed arrows.
 
 ```{r}
+#| label: fig-path5
+#| fig-cap: "Path diagram showing the correlations between the time spent on homework, parent education, and GPA."
+#| fig-alt: "Path diagram showing the correlations between the time spent on homework, parent education, and GPA."
 #| echo: false
 #| out-width: "80%"
+
 knitr::include_graphics("figs/04-01-path-diagram-05.png")
 ```
 
@@ -304,6 +336,8 @@ The slopes (of which there are now more than one) are referred to as *partial re
 
 
 :::fyi
+**FYI**
+
 The language "after accounting for" is not ubiquitous in interpreting partial regression coefficients. Some researchers instead use "controlling for", "holding constant", or "partialling out the effects of". For example, the time spent on homework effect could also be interpreted these ways:
 
 - A one hour difference in time spent on homework is associated with a 0.99 grade-point difference in GPA (on average), *after controlling for differences* in parent education level.
@@ -345,6 +379,8 @@ Based on these results, both predictors seem to have an effect on GPA.
 
 
 :::fyi
+**FYI**
+
 It is important to note that unlike in simple regression models,  the *p*-value at the model-level for multiple regression models is different from any of the coefficient-level *p*-values. In our example the *p*-value from the model-level *F*-test was 0.0003, while those for the coefficient-level *t*-tests were 0.026 and 0.007 respectively. This is because when we include more than one predictor in a model, the hypotheses being tested at the model- and coefficient-levels are different. The model-level test is a simultaneous test of all the predictor effects, while the coefficient-level tests are testing the added effect of a particular predictor after we control for all other predictors in the model.
 :::
 
@@ -359,8 +395,10 @@ We can now include the coefficients from the fitted multiple regression model to
 ```{r}
 #| label: fig-path-model-final
 #| fig-cap: "Path diagram for the multiple regression model. Path values are unstandardized coefficients."
+#| fig-alt: "Path diagram for the multiple regression model. Path values are unstandardized coefficients."
 #| echo: false
 #| out-width: "80%"
+
 knitr::include_graphics("figs/04-01-path-diagram-06.png")
 ```
 
@@ -371,8 +409,10 @@ By comparing the effect of time spent on homework on GPA from the simple and the
 ```{r}
 #| label: fig-path-model-final-2
 #| fig-cap: "Path diagram for the simple and multiple regression model. Path values are unstandardized coefficients."
+#| fig-alt: "Path diagram for the simple and multiple regression model. Path values are unstandardized coefficients."
 #| echo: false
 #| out-width: "80%"
+
 knitr::include_graphics("figs/04-01-path-diagram-07.png")
 ```
 
@@ -404,6 +444,7 @@ The data and regression plane defined by the parent education level, time spent 
 ```{r}
 #| label: fig-scatter3d
 #| fig-cap: "Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual."
+#| fig-alt: "Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual."
 #| out-width: "70%"
 #| echo: false
 # library("scatterplot3d")
@@ -489,6 +530,7 @@ Given this student's parent education level and the amount of time they spend on
 ```{r}
 #| label: fig-scatter3d-resid
 #| fig-cap: "Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual. Observation 1 is shown in orange and its residual depicted as a blue vertical line extending to the regression plane."
+#| fig-alt: "Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual. Observation 1 is shown in orange and its residual depicted as a blue vertical line extending to the regression plane."
 #| out-width: "70%"
 #| echo: false
 # library("scatterplot3d")
@@ -584,6 +626,8 @@ tidy(lm.d)
 Both the model-level and coefficient-level output is identical regardless of the order that the predictors are entered into the `lm()` function.
 
 :::fyi
+**FYI**
+
 While this means you don't have to stress about the order you enter predictors in the model, conventionally if you have a focal predictor that is entered into the model last. That is why we included parent education level prior to time spent on homework in the `lm()` initially.
 :::
 

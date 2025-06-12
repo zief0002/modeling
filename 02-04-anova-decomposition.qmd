@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this set of notes, you will learn how the variation in the outcome can be decomposed into explained and unexplained variation---a process called ANOVA decomposition. Recall that in the previous set of notes, we used the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv) data to examine whether education level is related to income (see the [data codebook](#riverview)). To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.a`.
+In this set of notes, you will learn how the variation in the outcome can be decomposed into explained and unexplained variation---a process called ANOVA decomposition. Recall that in the previous set of notes, we used the **riverview.csv** data to examine whether education level is related to income . To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.a`.
 
 ```{r}
 # Load libraries
@@ -106,8 +106,11 @@ $$
 Graphically, the fitted line is a flat line crossing the $y$-axis at 53.742 (see plot below).
 
 ```{r}
-#| echo: false
+#| label: fig-employee
 #| fig-cap: "Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed."
+#| fig-alt: "Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed."
+#| echo: false
+
 ggplot(data = city, aes(x = education, y = income)) +
   geom_point(size = 4) +
   geom_hline(yintercept = 53.742, color = "blue") +
@@ -116,7 +119,7 @@ ggplot(data = city, aes(x = education, y = income)) +
   ylab("Income (in U.S. dollars)")
 ```
 
-Does the estimate for $\beta_0$, 53.742, seem familiar? If not, go back to the exploration of the response variable in the [Simple Linear Regression---Description](#sldr) chapter. The estimated intercept in the intercept-only model is the marginal mean value of the response variable. This is not a coincidence. 
+Does the estimate for $\beta_0$, 53.742, seem familiar? If not, go back to the exploration of the response variable in the **Simple Linear Regression---Description** chapter. The estimated intercept in the intercept-only model is the marginal mean value of the response variable. This is not a coincidence. 
 
 Remember that the regression model estimates the mean. Here, since the model is not a conditional model (no *X* predictor) the expected value (mean) is the marginal mean.
 
@@ -129,8 +132,11 @@ $$
 Plotting this we get,
 
 ```{r}
-#| echo: false
+#| label: fig-int-only
 #| fig-cap: "Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown."
+#| fig-alt: "Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown."
+#| echo: false
+
 library(ggExtra)
 
 p = ggplot(data = city, aes(x = education, y = income)) +
@@ -221,8 +227,9 @@ $$
 
 ```{r}
 #| label: fig-anova-decomp
-#| echo: false
 #| fig-cap: "A visual depiction of the ANOVA decomposition. The total variation as measured by the sum of squares is partitioned into that which is explained by the model (i.e., explained by education level) and that which is not (i.e., unexplained)."
+#| fig-alt: "A visual depiction of the ANOVA decomposition. The total variation as measured by the sum of squares is partitioned into that which is explained by the model (i.e., explained by education level) and that which is not (i.e., unexplained)."
+#| echo: false
 #| out-width: "80%"
 
 knitr::include_graphics("figs/09-01-anova-decomposition-01.png")
@@ -233,15 +240,18 @@ Another visualization of the partitioning of the sums of squares is shown in @fi
 
 ```{r}
 #| label: fig-anova-decomp-2
-#| echo: false
 #| fig-cap: "Another visual depiction of the ANOVA decomposition."
+#| fig-alt: "Another visual depiction of the ANOVA decomposition."
+#| echo: false
 #| out-width: "100%"
 
 knitr::include_graphics("figs/09-02-anova-decomposition-02.png")
 ```
 
 
-:::protip
+:::fyi
+**FYI**
+
 The visualizations of the ANOVA decomposition are primarily pedagogical in nature to help you understand the partitioning. In practice, we generally only report the numeric values of the sums of squares (or a metric such as $R^2$) and do not create a visualization of this decomposition.
 :::
 
@@ -326,6 +336,8 @@ $$
 Although these indices seem to measure different aspects of model quality---reduction in error variation, model explained variation, alignment between predictor and outcome, and alignment of the model fitted and observed values---with OLS fitted linear models, these values are all equal. This will not necessarily be true when we estimate model parameters using a different estimation method (e.g., maximum likelihood). Most of the time this value will be reported in applied research as $R^2$, but as you can see, there are many interpretations of this value under the OLS framework.
 
 :::fyi
+**FYI**
+
 Sometimes $R^2$ is referred to as the Coefficient of Determination.
 :::
 
@@ -357,7 +369,9 @@ $$
 Remember that one interpretation of $R^2$ is that 63.2% of the variation in incomes was explained by the model. Alternatively, 36.8% of the variation in income is not explained by the model; it is residual variation. If the unexplained variation is too large, it suggests to an applied analyst that she could include additional predictors in the model. We will explore this in future chapters. 
 
 
-:::protip
+:::fyi
+**FYI**
+
 $R^2$ is one measure of the *effect size* of a model that educational scientists often report. As such, it is often viewed as a quantification of the quality of the model, with larger $R^2$ values indicating higher quality models. But, be careful! Understanding whether $R^2$ is large or small is based on the domain science. For example in some areas of educational research, an $R^2$ of 0.4 might indicate a really great model, whereas the same $R^2$ of 0.4 in some areas of biological research might be quite small and indicate a poor model. 
 
 Moreover, even if $R^2$ is large in the domain, it does not indicate that the model is a "good" model. In order to evaluate that, we have to study the model's residuals. We will learn more about that when we learn about the regression model's distributional assumptions.

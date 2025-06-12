@@ -3,11 +3,6 @@
 In this unit you will learn about interaction effects and how they can be included in the regression model. 
 
 
-```{r}
-#| echo: false
-knitr::include_graphics("figs/06-00-interaction-effects.png")
-```
-
 
 
 <br /><br />

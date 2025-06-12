@@ -94,7 +94,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-44b64cbf1a1a4e5718d81f3787ba6ba1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -169,9 +169,9 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-00-regression-inference.html">Regression Inference</a></li><li class="breadcrumb-item"><a href="./03-01-coefficient-level-inference.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span id="coefinf" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></h1>
+        </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -328,7 +328,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -400,7 +400,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -496,9 +496,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-00-regression-inference.html">Regression Inference</a></li><li class="breadcrumb-item"><a href="./03-01-coefficient-level-inference.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="coefinf" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></h1>
+<h1 class="title d-none d-lg-block"><span id="coefinf" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coefficient-Level Inference</span></span></h1>
 </div>
 
 
@@ -515,7 +515,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this chapter, you will learn about statistical inference at the coefficient-level for regression models. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students (see the <a href="#keith">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
+<p>In this chapter, you will learn about statistical inference at the coefficient-level for regression models. To do so, we will use the <strong>keith-gpa.csv</strong> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students. To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
@@ -572,28 +572,28 @@ window.Quarto = {
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
-<div id="fig-02-03-gpa" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-02-03-gpa" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Density plots of the marginal distribution of GPA." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-02-03-gpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-01-coefficient-level-inference_files/figure-html/fig-02-03-gpa-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-03-gpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-02-03-gpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.1: Density plots of the marginal distribution of GPA.
 </figcaption>
+<div aria-describedby="fig-02-03-gpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-01-coefficient-level-inference_files/figure-html/fig-02-03-gpa-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Density plots of the marginal distribution of GPA.">
+</div>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
-<div id="fig-02-03-hw" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-02-03-hw" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Density plots of the marginal distribution of time spent on homework." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-02-03-hw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-01-coefficient-level-inference_files/figure-html/fig-02-03-hw-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-03-hw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-02-03-hw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.2: Density plots of the marginal distribution of time spent on homework.
 </figcaption>
+<div aria-describedby="fig-02-03-hw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-01-coefficient-level-inference_files/figure-html/fig-02-03-hw-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Density plots of the marginal distribution of time spent on homework.">
+</div>
 </figure>
 </div>
 </div>
@@ -611,14 +611,14 @@ Figure&nbsp;11.2: Density plots of the marginal distribution of time spent on ho
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"GPA (on a 100-pt. scale)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-02-03-gpa-hw" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-02-03-gpa-hw" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot showing the relationship between GPA and time spent on homework." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-02-03-gpa-hw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-01-coefficient-level-inference_files/figure-html/fig-02-03-gpa-hw-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-03-gpa-hw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-02-03-gpa-hw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.3: Scatterplot showing the relationship between GPA and time spent on homework.
 </figcaption>
+<div aria-describedby="fig-02-03-gpa-hw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-01-coefficient-level-inference_files/figure-html/fig-02-03-gpa-hw-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot showing the relationship between GPA and time spent on homework.">
+</div>
 </figure>
 </div>
 </div>
@@ -665,7 +665,7 @@ Table&nbsp;11.1: Correlations between 8th-Grade students’ GPA and weekly time 
 </figcaption>
 <div aria-describedby="tbl-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="movbwdglzc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="pdyxocluwq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
@@ -744,14 +744,14 @@ Coefficients:
 <p>Now, sample another <em>n</em> observations from the population. Again, find the mean. We will call this estimate <span class="math inline">\(\hat\mu_2\)</span>. Again, it probably varies from <span class="math inline">\(\mu\)</span>, and may be different than <span class="math inline">\(\hat\mu_1\)</span> as well. Continue to repeat this process: randomly sample <em>n</em> observations from the population; and find the mean.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-thought-exp-mean" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-thought-exp-mean" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the mean." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-thought-exp-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/02-04-thought-experiment-means.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thought-exp-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-thought-exp-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.4: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the mean.
 </figcaption>
+<div aria-describedby="fig-thought-exp-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/02-04-thought-experiment-means.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the mean.">
+</div>
 </figure>
 </div>
 </div>
@@ -762,6 +762,7 @@ Figure&nbsp;11.4: Thought experiment for sampling samples of size n from the pop
 \]</span></p>
 <p>The important thing is not that you memorize this result, but that you understand that <strong>the process of randomly sampling from a known population can lead to predictable results in the distribution of statistical summaries</strong> (e.g., the distribution of sample means). The other crucial thing is that there the sampling variation can be quantified. The standard error is the quantification of that sampling error. In this case, it gives a numerical answer to the question of how variable the sample mean will be because of random sampling.</p>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>When we report information about theoretical distributions, we <em>parameterize</em> the distribution by reporting all the necessary parameter values that are needed to reproduce it. For example to parameterize a normal distribution we need to report not only that it is normal, but also the mean and standard deviation. Notice that these two parameters specifically define the center (mean) and variability (standard deviation) of the distribution. In addition to the shape (normal) these give a perfect description of the distribution. Mathematically, we write that description as:</p>
 <p><span class="math display">\[
 \sim\mathcal{N}\left(\text{Mean}, ~\text{SD}\right)
@@ -773,14 +774,14 @@ Figure&nbsp;11.4: Thought experiment for sampling samples of size n from the pop
 <p>We can extend these ideas to regression. Now the thought experiment goes something like this: Imagine you have a population that is infinitely large. The observations in this population have two attributes, call them <em>X</em> and <em>Y</em>. The relationship between these two attributes can be expressed via a regression equation as: <span class="math inline">\(Y_i=\beta_0 + \beta_1(X_i) + \epsilon_i\)</span>. Randomly sample <em>n</em> observations from the population. This time, rather than computing a mean, regress the sample <em>Y</em> values on the sample <em>X</em> values. Since the sample regression coefficients are estimates of the population parameters, we will write this as: <span class="math inline">\(\hat{Y}=\hat{\beta}_{0,1} + \hat{\beta}_{1,1}(X)\)</span>. Repeat the process. This time the regression equation is: <span class="math inline">\(\hat{Y}=\hat{\beta}_{0,2} + \hat{\beta}_{1,2}(X)\)</span>. Continue this process an infinite number of times.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-thought-exp-reg" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-thought-exp-reg" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the regression coefficients." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-thought-exp-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/02-04-thought-experiment-coefficients.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thought-exp-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-thought-exp-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.5: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the regression coefficients.
 </figcaption>
+<div aria-describedby="fig-thought-exp-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/02-04-thought-experiment-coefficients.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the regression coefficients.">
+</div>
 </figure>
 </div>
 </div>
@@ -807,14 +808,14 @@ H_0: \beta_1 = 0
 <p>One question of interest may be: Is there evidence that the average GPA differs for different amounts of time spent on homework? In our example, we have a <span class="math inline">\(\hat\beta_1=1.21\)</span>. This is sample evidence, but does 1.21 differ from 0 more than we would expect because of random sampling? If it doesn’t, we cannot really say that the average GPA differs for different amounts of time spent on homework. To test this, we make an assumption that there is no relationship between time spent on homework and GPA, in other words, the slope of the line under this assumption would be 0. The thought experiment underlying this would be to randomly sample <em>n</em> observations from the population where <span class="math inline">\(\beta_1 =0\)</span>. Regress the sample <em>Y</em> values on the sample <em>X</em> values and obtain the sample slope.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-thought-exp-reg-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-thought-exp-reg-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Thought experiment for sampling samples of size n from the population where there is no effect of X ($\beta_1=0$) to obtain the sampling distribution of the slopes." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-thought-exp-reg-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/02-07-thought-experiment-hyp-test.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thought-exp-reg-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-thought-exp-reg-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.6: Thought experiment for sampling samples of size n from the population where there is no effect of X (<span class="math inline">\(\beta_1=0\)</span>) to obtain the sampling distribution of the slopes.
 </figcaption>
+<div aria-describedby="fig-thought-exp-reg-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/02-07-thought-experiment-hyp-test.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Thought experiment for sampling samples of size n from the population where there is no effect of X ($\beta_1=0$) to obtain the sampling distribution of the slopes.">
+</div>
 </figure>
 </div>
 </div>
@@ -845,14 +846,14 @@ Figure&nbsp;11.6: Thought experiment for sampling samples of size n from the pop
 <p>One way to envision this is as a distribution.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-sampling-dist-slope" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-sampling-dist-slope" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Sampling distribution of the slope coefficient under the hypothesis that $\beta_1=0$. The distribution is approximately normal with a mean of 0 and a standard error of 0.35." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-sampling-dist-slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-01-coefficient-level-inference_files/figure-html/fig-sampling-dist-slope-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sampling-dist-slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sampling-dist-slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.7: Sampling distribution of the slope coefficient under the hypothesis that <span class="math inline">\(\beta_1=0\)</span>. The distribution is approximately normal with a mean of 0 and a standard error of 0.35.
 </figcaption>
+<div aria-describedby="fig-sampling-dist-slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-01-coefficient-level-inference_files/figure-html/fig-sampling-dist-slope-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Sampling distribution of the slope coefficient under the hypothesis that $\beta_1=0$. The distribution is approximately normal with a mean of 0 and a standard error of 0.35.">
+</div>
 </figure>
 </div>
 </div>
@@ -867,14 +868,14 @@ Figure&nbsp;11.7: Sampling distribution of the slope coefficient under the hypot
 <p>In practice these values are typically unknown and are estimated from the sample data. Anytime we are estimating things we introduce additional uncertainty. In this case, the uncertainty affects the shape of the sampling distribution.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-norm-dist-comp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-norm-dist-comp" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Comparison of two distributions. The normal distribution (solid, blue) and one with additional uncertainty (dashed, orange)." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-norm-dist-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-01-coefficient-level-inference_files/figure-html/fig-norm-dist-comp-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-norm-dist-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-norm-dist-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.8: Comparison of two distributions. The normal distribution (solid, blue) and one with additional uncertainty (dashed, orange).
 </figcaption>
+<div aria-describedby="fig-norm-dist-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-01-coefficient-level-inference_files/figure-html/fig-norm-dist-comp-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Comparison of two distributions. The normal distribution (solid, blue) and one with additional uncertainty (dashed, orange).">
+</div>
 </figure>
 </div>
 </div>
@@ -888,14 +889,14 @@ Figure&nbsp;11.8: Comparison of two distributions. The normal distribution (soli
 <p>It is important to note that the amount of uncertainty affects how closely the shape of the distribution matches the normal distribution. And, that the sample size directly affects the amount of uncertainty we have. All things being equal, we have less uncertainty when we have larger samples. The following figure illustrates this idea.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-norm-dist-comp2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-norm-dist-comp2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The normal distribution (solid, blue), a distribution with estimates based on a larger sample size (dashed, orange), and one based on a smaller sample size (dotted, green)." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-norm-dist-comp2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-01-coefficient-level-inference_files/figure-html/fig-norm-dist-comp2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-norm-dist-comp2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-norm-dist-comp2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.9: The normal distribution (solid, blue), a distribution with estimates based on a larger sample size (dashed, orange), and one based on a smaller sample size (dotted, green).
 </figcaption>
+<div aria-describedby="fig-norm-dist-comp2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-01-coefficient-level-inference_files/figure-html/fig-norm-dist-comp2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="The normal distribution (solid, blue), a distribution with estimates based on a larger sample size (dashed, orange), and one based on a smaller sample size (dotted, green).">
+</div>
 </figure>
 </div>
 </div>
@@ -948,14 +949,14 @@ H_0: \beta_1 = 0
 <p>Based on this, we will evaluate our observed <em>t</em>-value of 3.42 using a <em>t</em>-distribution with 98 degrees of freedom. Using this distribution, we can compute the probability of obtaining a <em>t</em>-value (under random sampling) at least as extreme as the one in the data under the assumed model. This is equivalent to finding the area under the probability curve for the <em>t</em>-distribution that is greater than or equal to 3.42.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> This is called the <em>p</em>-value.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-t-98" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-t-98" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Plot of the probability curve for the t(98) distribution. The shaded area under the curve represents the p-value for a two-tailed test evaluating whether the population slope is zero using an observed t-value of 73.42." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-t-98-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-01-coefficient-level-inference_files/figure-html/fig-t-98-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-98-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-t-98-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.10: Plot of the probability curve for the t(98) distribution. The shaded area under the curve represents the p-value for a two-tailed test evaluating whether the population slope is zero using an observed t-value of 73.42.
 </figcaption>
+<div aria-describedby="fig-t-98-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-01-coefficient-level-inference_files/figure-html/fig-t-98-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Plot of the probability curve for the t(98) distribution. The shaded area under the curve represents the p-value for a two-tailed test evaluating whether the population slope is zero using an observed t-value of 73.42.">
+</div>
 </figure>
 </div>
 </div>
@@ -991,6 +992,7 @@ t = \frac{74.28 - 0}{1.94} = 38.26
 \]</span></p>
 <p>Assuming the null hypothesis that <span class="math inline">\(\beta_0=0\)</span> is true, the probability of observing a sample intercept of 74.28 or one that is more extreme, is <span class="math inline">\(1.01 \times 10^{-60}\)</span>. (Any <em>p</em>-value less than .001 is typically reported as <span class="math inline">\(p&lt;.001\)</span>.) This is evidence against the hypothesized model. Because of this, we would say the empirical data are inconsistent with the hypothesis that <span class="math inline">\(\beta_0=0\)</span>; it is unlikely that the intercept in the population is zero.</p>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>How small does our <em>p</em>-value have to be for the empirical data are inconsistent with the null hypothesis? That is something that is decided by the researcher <em>prior</em> to doing any data analysis. Typically in the social and educational sciences we say that for the empirical data are inconsistent with the null hypothesis the <em>p</em>-value needs to be less than 0.05. The value we choose is referred to as the alpha value (<span class="math inline">\(\alpha = .05\)</span>).</p>
 </div>
 <p><br></p>
@@ -1014,9 +1016,14 @@ t = \frac{74.28 - 0}{1.94} = 38.26
 </blockquote>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/02-04-pvalue-and-tinder.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<div id="fig-tinder" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Small *p*-values are like a right-swipe in Tinder. It means you have an interest. It doesn't mean you're ready to book the wedding venue." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-tinder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.11: Small <em>p</em>-values are like a right-swipe in Tinder. It means you have an interest. It doesn’t mean you’re ready to book the wedding venue.
+</figcaption>
+<div aria-describedby="fig-tinder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/02-04-pvalue-and-tinder.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Small *p*-values are like a right-swipe in Tinder. It means you have an interest. It doesn't mean you're ready to book the wedding venue.">
+</div>
 </figure>
 </div>
 </div>
@@ -1030,6 +1037,7 @@ t = \frac{74.28 - 0}{1.94} = 38.26
 <p>The hypothesis test suggests that the effect of homework (<span class="math inline">\(B = 1.21\)</span>) is statistically discernible from 0 (<span class="math inline">\(p=0.000885\)</span>).</p>
 </blockquote>
 <div class="fyi">
+<p><strong>PROTIP</strong></p>
 <p>When reporting <em>p</em>-values for the social sciences, we typically round to three decimal places. So our <em>p</em>-value of 0.000885 would be rounded to 0.000. However, since the <em>p</em>-value is not actually 0, we would instead report this as <span class="math inline">\(p &lt; .001\)</span>.</p>
 </div>
 <p><br></p>
@@ -1073,11 +1081,10 @@ t = \frac{74.28 - 0}{1.94} = 38.26
 <blockquote class="blockquote">
 <p>The average GPA for all 8th-grade students in the district who spend zero hopurs per week on homework is between 70.4 and 78.1.</p>
 </blockquote>
-<div class="protip">
+<div class="fyi">
+<p><strong>PROTIP</strong></p>
 <p>When reporting results from hypothesis tests, in addition to the <em>p</em>-value, always include either the standard error or the confidence interval in reporting your results. This allows readers to see how different from 0 the observed result is after accounting for uncertainty. This allows them to judge the scientific importance using their domain knowledge. For example,</p>
-<blockquote class="blockquote">
-<p>The hypothesis test suggests that the effect of homework (<span class="math inline">\(B = 1.21\)</span>) is statistically discernible from 0 (<span class="math inline">\(p&lt;0.001\)</span>). The 95% CI suggests that the effect of homework for 8th-graders is likely between 0.51 and 1.91, indicating that each 1-hour of homework is associated with a difference of between 0.51 and 1.91 GPA points.</p>
-</blockquote>
+<p><em>The hypothesis test suggests that the effect of homework (<span class="math inline">\(B = 1.21\)</span>) is statistically discernible from 0 (<span class="math inline">\(p&lt;0.001\)</span>). The 95% CI suggests that the effect of homework for 8th-graders is likely between 0.51 and 1.91, indicating that each 1-hour of homework is associated with a difference of between 0.51 and 1.91 GPA points.</em></p>
 </div>
 <p><br></p>
 <section id="confidence-intervals-as-compatibility-intervals" class="level3" data-number="11.7.1">

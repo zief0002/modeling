@@ -12,6 +12,12 @@ $toc-color: #b3d3f5;  /*-- Set active link color for TOC sidebar (RIGHT) --*/
 $body-secondary: #595959;
 
 
+// Inline code
+$code-bg: #2b2b2b;
+$code-color: #ffd700;
+
+
+
 /*-- scss:rules --*/
 
 
@@ -27,6 +33,8 @@ body {
   border-radius: 25px;
   padding: 25px 60px 25px;
 }
+
+ 
 
 
 // Headings
@@ -61,8 +69,15 @@ li > p {
 
 // Mouse over link
 a:hover {
-  color: #c10088;
+  color: #7d12ba;
 }
+
+
+// Title breadcrumbs
+.quarto-title-breadcrumbs .breadcrumb {
+  color: blue;
+}
+
 
 
 // Figure caption
@@ -139,10 +154,7 @@ div.sidebar-item-container .active {
 }
 
 
-// Bottom of the page navigation
-.nav-page .bi, span.nav-page-text {
-  color: #c10088;
-}
+
 
 
 // Style cover art 
@@ -165,20 +177,16 @@ a.uri {
   word-break: break-word; 
 }
 
-/** Make the caption italic and black 
-.table caption{
-  font-style: italic;
-  color: black;
-  font-family: 'Atkinson Hyperlegible', serif;
-  font-size: 11px;
+
+.blockquote {
+  color: #5b0013;
+  border-left: .25rem solid #5b0013;
 }
 
-.table caption span{
-  font-style: normal;
-  font-weight: bold;
-  margin-bottom: 30px;
-}**/
-
+/** Left align table captions **/
+figure.quarto-float-tbl figcaption.quarto-float-caption-top {
+  text-align: left;
+}
 
 
 /** Change border color to black **/
@@ -222,6 +230,11 @@ a.uri {
   font-size: 12px;
 }
 
+
+.cell-output-stdout code {
+  word-break: break-wor !important;
+  white-space: pre-wrap !important;
+}
 
 #references {
   margin-bottom: 5em;

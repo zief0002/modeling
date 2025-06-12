@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -149,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07-00-data-codebooks.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/pew.html">pew.csv</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../codebooks/broadband.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/pew.html">pew.csv</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -476,7 +476,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07-00-data-codebooks.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/pew.html">pew.csv</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../codebooks/broadband.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/pew.html">pew.csv</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">pew.csv</h1>
 </div>
@@ -521,19 +521,20 @@ window.Quarto = {
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,094 × 9
-      id knowledge news_source   news ideology engagement   age education female
-   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; 
- 1     1        50 Conservative    63     39.3       79.5  44.4        14 Yes   
- 2     3        45 None            49     75.7       61    45.7        12 Yes   
- 3     4        26 None            22     23.5       66.8  39.3        15 Yes   
- 4     5        79 None            54     69.5       80.8  59.5        15 No    
- 5     6        31 Conservative    65     18         99.6  43.8        12 Yes   
- 6     7        22 Conservative    63     33.2       37.4  29.6        10 No    
- 7     8        93 Conservative    50     29.7       88.6  29.6        16 No    
- 8     9        23 None            12     52.5       82.4  45.1        12 Yes   
- 9    10        41 Liberal         16     14         87.3  18.7        11 No    
-10    11        23 Liberal         43     62         67    47.5         9 Yes   
-# ℹ 1,084 more rows</code></pre>
+      id knowledge news_source   news ideology engagement   age
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
+ 1     1        50 Conservative    63     39.3       79.5  44.4
+ 2     3        45 None            49     75.7       61    45.7
+ 3     4        26 None            22     23.5       66.8  39.3
+ 4     5        79 None            54     69.5       80.8  59.5
+ 5     6        31 Conservative    65     18         99.6  43.8
+ 6     7        22 Conservative    63     33.2       37.4  29.6
+ 7     8        93 Conservative    50     29.7       88.6  29.6
+ 8     9        23 None            12     52.5       82.4  45.1
+ 9    10        41 Liberal         16     14         87.3  18.7
+10    11        23 Liberal         43     62         67    47.5
+# ℹ 1,084 more rows
+# ℹ 2 more variables: education &lt;dbl&gt;, female &lt;chr&gt;</code></pre>
 </div>
 </div>
 <p><br></p>

@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will learn about how to include dichotomous categorical predictors (i.e., predictors with two levels) in the regression model. To do so, we will use the [mn-schools.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/mn-schools.csv) data to examine whether there are differences in graduation rates between public and private colleges and universities (see the [data codebook](#mn-schools)). To begin, we will load several libraries and import the data into an object called `mn`. 
+In this chapter, you will learn about how to include dichotomous categorical predictors (i.e., predictors with two levels) in the regression model. To do so, we will use the **mn-schools.csv** data to examine whether there are differences in graduation rates between public and private colleges and universities. To begin, we will load several libraries and import the data into an object called `mn`. 
 
 
 ```{r}
@@ -36,9 +36,11 @@ To begin, as always, we will plot the marginal distributions of graduation rates
 ```{r}
 #| label: fig-mn-explore
 #| fig-cap: "LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector."
+#| fig-alt: "LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
+
 # Density plot of graduation rates
 p1 = ggplot(data = mn, aes(x = grad)) +
   stat_density(geom = "line", color = "#c62f4b") +
@@ -84,6 +86,7 @@ mn |>
 #| tbl-cap: "Mean (M), standard deviation (SD), and sample size (N) of the six-year graduation rates for 33 Minnesota colleges and universities conditioned on educational sector."
 #| echo: false
 #| results: asis
+
 tab_01 = mn |> 
   group_by(sector) |>
   summarize(
@@ -167,6 +170,8 @@ tidy(lm.a)
 ```
 
 :::fyi
+**PROTIP**
+
 Chaining the `glance()` output in the `print()` function allows us to include the argument `width=Inf`. This argument prints ALL the columns from the `glance()` output instead of truncating the output. This hack can also be used to print all of the columns from a data frame that gets truncated as well.
 :::
 
@@ -372,9 +377,11 @@ Like any other regression model, we need to examine whether or not the model's a
 ```{r}
 #| label: fig-assumptions
 #| fig-cap: "LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed."
+#| fig-alt: "LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
+
 # Obtain the fitted values and residuals
 aug_d = augment(lm.d)
 
@@ -406,12 +413,14 @@ From the scatterplot, we see that there is some question about the tenability of
 
 The *marginal* distribution of the residuals does not show evidence of mis-fit with the normality assumption. Since the predictor has only two levels, we could actually examine the distribution of residuals for each sector. Here we do so as a pedagogical example, but note that once other non-categorical predictors are included, this can no longer be done. To examine the conditional distributions, we will filter the augmented data by sector and then plot each sector's residuals separately.
 
-```{r out.width='45%', fig.show='hold', fig.cap=""}
+```{r}
 #| label: fig-assumptions-2
 #| fig-cap: "Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for  private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools."
+#| fig-alt: "Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for  private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
+
 # Get private schools
 aug_private = aug_d |> 
   filter(public == 0)
@@ -537,6 +546,7 @@ Note that the adjusted mean difference is the value of the partial regression co
 #| tbl-cap: "Unadjusted and adjusted mean six-year graduation rates for private and public colleges and universities in Minnesota."
 #| echo: false
 #| results: asis
+
 tab_02 = data.frame(
   v1 = c("Private institution", "Public institution", "Difference"),
   v2 = c(65.3, 51.0, 14.3),
@@ -627,9 +637,6 @@ The *t*-test associated with the partial slope coefficient for `private` suggest
 <br />
 
 
-
-
-
 ## Assumption Checking for the Final Model
 
 It is important to check the assumptions of any adopted model. Since we have added non-categorical covariates into the model we need to evaluate all four major assumptions (LINE).
@@ -637,9 +644,11 @@ It is important to check the assumptions of any adopted model. Since we have add
 ```{r}
 #| label: fig-assumptions-3
 #| fig-cap: "LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed."
+#| fig-alt: "LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
+
 # Obtain the fitted values and residuals
 aug_f = augment(lm.f)
 
@@ -680,6 +689,7 @@ Below we present pertinent results from the three models that we fitted.
 #| echo: false
 #| eval: false
 #| results: asis
+
 library(stargazer)
 stargazer(
   lm.c, lm.e, lm.f, 
@@ -712,6 +722,8 @@ stargazer(
 
 
 :::protip
+**FYI**
+
 Notice that when presenting results we referred to the three models as Model A, B, and C, despite the fact that these were named `lm.c`, `lm.e`, and `lm.f`. You need to make decisions about what you present and your naming structure in the final manuscript doesn't need to reflect the names used in your analysis. By using A, B, and C, it makes it easier for the reader!
 :::
 
@@ -755,6 +767,7 @@ The updated table is presented below.
 #| tbl-cap: "Unadjusted and adjusted mean six-year graduation rates for private and public colleges and universities in Minnesota."
 #| echo: false
 #| results: asis
+
 tab_03 = data.frame(
   v1 = c("Private institution", "Public institution", "Difference"),
   v2 = c(65.3, 51.0, 14.3),
@@ -806,9 +819,11 @@ One solution is to plot the unadjusted (Model A) and adjusted (Models B and C) m
 ```{r}
 #| label: fig-final-plot
 #| fig-cap: "Predicted mean graduation rate for public (orange) and private (blue) institutions in Minnesota. In Models B and C, the means are adjusted for median SAT score (Model B) and median SAT score and tuition rate (Model C), respectively."
+#| fig-alt: "Predicted mean graduation rate for public (orange) and private (blue) institutions in Minnesota. In Models B and C, the means are adjusted for median SAT score (Model B) and median SAT score and tuition rate (Model C), respectively."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: "70%"
+
 # Create plot data
 plot_data = data.frame(
   pred_grad = c(65.3, 51.0, 63.9, 55.5, 61.4, 60.8),
@@ -844,9 +859,11 @@ Now we create a data frame of the `private` coefficient information and create a
 ```{r}
 #| label: fig-final-plot-2
 #| fig-cap: "Predicted difference in mean graduation rate between private and public institutions in Minnesota. Model A is the uncontrolled model while Model B controlls for median SAT score and Model C controld for both median SAT score and tuition rate. The line $Y=0$ indicates no difference. Differences that are statistically discernible from 0 are colored pink."
+#| fig-alt: "Predicted difference in mean graduation rate between private and public institutions in Minnesota. Model A is the uncontrolled model while Model B controlls for median SAT score and Model C controld for both median SAT score and tuition rate. The line $Y=0$ indicates no difference. Differences that are statistically discernible from 0 are colored pink."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: "70%"
+
 # Create plot data
 plot_data = data.frame(
   pred_diff = c(14.2, 8.38, 0.647),

@@ -94,7 +94,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -328,7 +328,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -400,7 +400,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -515,7 +515,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this chapter, you will learn about how including multiple predictors into the regression model helps us evaluate these alternative explanations by providing a measure of <em>statistical control</em>. To do so, we will return to the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA (see the <a href="#keith">data codebook</a>). However this time, we will control for parent education level. To begin, we will load several libraries and import the data into an object called <code>keith</code>. We will also fit our simple and multiple regression models.</p>
+<p>In this chapter, you will learn about how including multiple predictors into the regression model helps us evaluate these alternative explanations by providing a measure of <em>statistical control</em>. To do so, we will return to the <strong>keith-gpa.csv</strong> data to examine whether time spent on homework is related to GPA. However this time, we will control for parent education level. To begin, we will load several libraries and import the data into an object called <code>keith</code>. We will also fit our simple and multiple regression models.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
@@ -658,7 +658,7 @@ Table&nbsp;16.1: Predicted average GPA for students who spend 1, 2, and 3 hours 
 </figcaption>
 <div aria-describedby="tbl-gpa-vary-hw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="serrbxcxyl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="jvprasnybt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
@@ -704,7 +704,7 @@ Table&nbsp;16.2: Predicted average GPA for students who spend 1, 2, and 3 hours 
 </figcaption>
 <div aria-describedby="tbl-gpa-vary-hw-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="rpfzrftbvz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="girwdafkki" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
@@ -814,14 +814,14 @@ Table&nbsp;16.2: Predicted average GPA for students who spend 1, 2, and 3 hours 
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">73.66</span>, <span class="at">slope =</span> <span class="fl">0.99</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">77.14</span>, <span class="at">slope =</span> <span class="fl">0.99</span>, <span class="at">color =</span> <span class="st">"#b40f20"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-model" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-model" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line)." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="04-03-understanding-statistical-control_files/figure-html/fig-model-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.1: Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line).
 </figcaption>
+<div aria-describedby="fig-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-03-understanding-statistical-control_files/figure-html/fig-model-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line).">
+</div>
 </figure>
 </div>
 </div>
@@ -841,14 +841,14 @@ Figure&nbsp;16.1: Model predicted GPA as a function of time spent on homework fo
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">y =</span> <span class="fl">79.60157</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">y =</span> <span class="fl">83.08407</span>, <span class="at">color =</span> <span class="st">"#b40f20"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-model-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-model-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line). The model predicted GPAs for students who spend six hours a week on homework are also displayed." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-model-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="04-03-understanding-statistical-control_files/figure-html/fig-model-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-model-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-model-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.2: Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line). The model predicted GPAs for students who spend six hours a week on homework are also displayed.
 </figcaption>
+<div aria-describedby="fig-model-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-03-understanding-statistical-control_files/figure-html/fig-model-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line). The model predicted GPAs for students who spend six hours a week on homework are also displayed.">
+</div>
 </figure>
 </div>
 </div>
@@ -862,7 +862,7 @@ Table&nbsp;16.3: Predicted GPA for students who spend six hours a week on homewo
 </figcaption>
 <div aria-describedby="tbl-gpa-vary-parented-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="nwcoqrwufd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="nloyirfkoy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
@@ -911,7 +911,7 @@ Table&nbsp;16.4: Predicted GPA for students who spend six hours a week on homewo
 </figcaption>
 <div aria-describedby="tbl-gpa-vary-parented-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="izuydmfyba" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="hdxrhrlvqz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
@@ -996,14 +996,14 @@ Table&nbsp;16.4: Predicted GPA for students who spend six hours a week on homewo
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Put plots side-by-side</span></span>
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2 <span class="sc">|</span> p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-triptych" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-triptych" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8, 12, and 16 years." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-triptych-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="04-03-understanding-statistical-control_files/figure-html/fig-triptych-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-triptych-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-triptych-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.3: Model predicted GPA as a function of time spent on homework for students with a parent education level of 8, 12, and 16 years.
 </figcaption>
+<div aria-describedby="fig-triptych-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-03-understanding-statistical-control_files/figure-html/fig-triptych-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Model predicted GPA as a function of time spent on homework for students with a parent education level of 8, 12, and 16 years.">
+</div>
 </figure>
 </div>
 </div>
@@ -1053,14 +1053,14 @@ Figure&nbsp;16.3: Model predicted GPA as a function of time spent on homework fo
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Put plots side-by-side</span></span>
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>p4 <span class="sc">|</span> p5 <span class="sc">|</span>p6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-triptych-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-triptych-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Model predicted GPA as a function of parent education level for students who spend 2 hours, 5 hours, and 10 hours a week on homework." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-triptych-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="04-03-understanding-statistical-control_files/figure-html/fig-triptych-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-triptych-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-triptych-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.4: Model predicted GPA as a function of parent education level for students who spend 2 hours, 5 hours, and 10 hours a week on homework.
 </figcaption>
+<div aria-describedby="fig-triptych-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-03-understanding-statistical-control_files/figure-html/fig-triptych-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Model predicted GPA as a function of parent education level for students who spend 2 hours, 5 hours, and 10 hours a week on homework.">
+</div>
 </figure>
 </div>
 </div>
@@ -1084,14 +1084,14 @@ Figure&nbsp;16.4: Model predicted GPA as a function of parent education level fo
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Time spent on homework"</span>) <span class="sc">+</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a> <span class="fu">ylab</span>(<span class="st">"Model predicted GPA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-single-effect" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-single-effect" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Model predicted GPA as a function of time spent on homework for students with an average parent education level (14.03 years)." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-single-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="04-03-understanding-statistical-control_files/figure-html/fig-single-effect-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-single-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-single-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.5: Model predicted GPA as a function of time spent on homework for students with an average parent education level (14.03 years).
 </figcaption>
+<div aria-describedby="fig-single-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-03-understanding-statistical-control_files/figure-html/fig-single-effect-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Model predicted GPA as a function of time spent on homework for students with an average parent education level (14.03 years).">
+</div>
 </figure>
 </div>
 </div>

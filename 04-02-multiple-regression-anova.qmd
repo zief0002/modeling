@@ -1,0 +1,446 @@
+# Multiple Regression: ANOVA Decomposition {#moremultreg}
+
+```{r}
+#| echo: false
+source("scripts/_common.R")
+```
+
+
+In this chapter, you will learn about carrying out an ANOVA decomposition for a multiple regression model to partition the total variation in the outcome into explained and unexplained sources. To do so, we will use the **keith-gpa.csv** data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of $n=100$ 8th-grade students. To begin, we will load several libraries and import the data into an object called `keith`. We will also fit our simple and multiple regression models.
+
+
+```{r}
+# Load libraries
+library(broom)
+library(corrr)
+library(dplyr)
+library(ggplot2)
+library(readr)
+
+# Import data
+keith = read_csv(file = "https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv")
+
+# View data
+keith
+
+# Fit simple regression models
+lm.a = lm(gpa ~ 1 + homework, data = keith)
+lm.b = lm(gpa ~ 1 + parent_ed, data = keith)
+
+# Fit multiple regression model
+lm.c = lm(gpa ~ 1 + parent_ed + homework, data = keith)
+```
+
+The fitted multiple regression equation was,
+
+$$
+\hat{\mathrm{GPA}_i} = 63.20 + 0.87(\mathrm{Parent~Education~Level}_i) + 0.99(\mathrm{Time~on~HW}_i)
+$$
+
+
+<br />
+
+
+## ANOVA Decomposition
+
+One goal in fitting any regression is to quantify the amount of variation in the outcome that the model explains. As with the simple regression, the way we do this is via an ANOVA decomposition, computing the different sums of squares (total, model, error). The decomposition of the variation into these three parts is governed by the equation:
+
+$$
+\mathrm{SS_{\mathrm{Total}}} = \mathrm{SS_{\mathrm{Model}}} + \mathrm{SS_{\mathrm{Error}}}
+$$
+
+Prior to this the way we obtained this was to compute sum of squared errors for two different models---the model in question (SSE), and the intercept-only model (SST). Then by comparing these two SSEs we could quantify the amount of variation explained by the model (SSM). These values could also be used to compute the model's $R^2$ value:
+
+$$
+R^2 = \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} 
+$$
+
+Rather than fit the intercept-only model like we have in the past, we are going to instead use the `anova()` function to carry out the ANOVA decomposition. To illustrate this function, we will first carry out the ANOVA decomposition on a simple regression model.
+
+```{r}
+# ANOVA decomposition
+anova(lm.a)
+```
+
+The `Sum Sq` column provides the sum of squares values. In this output we have the sum of squares explained by homework (616.5) and the residual (error) sum of squares (5136.4). Since this is a simple regression model the model only encompasses the time spent on homework predictor, so the model sum of squares is 616.5. That is, in this model:
+
+- SSM = 616.5
+- SSE = 5136.4
+
+
+The `anova()` output doesn't provide the total sum of squares, but we can use out decomposition equation to compute it by summing the model and residual sum of squares:
+
+$$
+\begin{split}
+\mathrm{SS_{\mathrm{Total}}} &= 616.5 + 5136.4 \\[2ex]
+&= 5752.9
+\end{split}
+$$
+
+A visualization of this partitioning is shown in @fig-anova-1
+
+
+```{r}
+#| label: fig-anova-1
+#| fig-cap: "Partitioning of variation associated with the simple regression model using time spent on homework to predict variation in GPA."
+#| fig-alt: "Partitioning of variation associated with the simple regression model using time spent on homework to predict variation in GPA."
+#| out-width: "60%"
+#| echo: false
+
+knitr::include_graphics("figs/04-02-partitioning-01.png")
+```
+
+
+<br />
+
+
+### ANOVA Decomposition for Multiple Regression Model
+
+We will no carry out an ANOVA decomposition on our multiple regression model.
+
+```{r}
+# ANOVA decomposition
+anova(lm.c)
+```
+
+Because the multiple regression model has an additional predictor (parent education level), the output of the `anova()` function has an additional row. It splits the explained variation (i.e., the SS Model) into that which is explained by the parent education predictor and that which is explained by the time spent on homework predictor. Since the model includes both of these predictors, to compute the SS Model, we need to sum these two sum of squares terms.
+
+$$
+\begin{split}
+\mathrm{SS_{\mathrm{Model}}} &= \mathrm{SS_{\mathrm{Parent~Education~Level}}} + \mathrm{SS_{\mathrm{HW}}} \\[2ex]
+&= 497.9 + 376.8 \\[2ex]
+&= 874.7
+\end{split}
+$$
+Then, to compute the SS Total we can use:
+
+$$
+\begin{split}
+\mathrm{SS_{\mathrm{Total}}} &= \mathrm{SS_{\mathrm{Model}}} + \mathrm{SS_{\mathrm{Error}}} \\[2ex]
+&= 874.7 + 4878.2 \\[2ex]
+&= 5752.9
+\end{split}
+$$
+Notice that the SS Total is the same as in the simple regression model! This is because the outcome is still GPA and the total variation in the GPA values has not changed; it is still 5752.9. We could also use the SS Model and SS Total values to compuyte the model $R^2$.
+
+$$
+\begin{split}
+R^2 &= \frac{\mathrm{SS_{\mathrm{Model}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[2ex]
+&= \frac{874.7}{5752.9} \\[2ex]
+&= 0.152
+\end{split}
+$$
+This is the same $R^2$ value produced in the `glance()` output.
+
+:::fyi
+**FYI**
+
+Note that the output from `anova()` also partitions the *df* among the predictor terms and the residuals. Each predictor has 1 *df* associated with it, which gives the model 2 *df*. The residuals have 97 *df* associated with them. The model and residual *df* are the *df* used in the *F*-test and given in the `glance()` output, namely 2 and 97. The total *df* in the data are $2+97 = 99$, which is $n-1$. Lastly, we point out that the residual *df* value from the `anova()` output (97) is the *df* associated with the *t*-tests for the coefficient-level tests (presented earlier).
+:::
+
+
+<br />
+
+
+## Order in the `lm()` Mattters...Kind Of
+
+Let's re-fit our multiple regression model, but this time we will include time spent on homework first and parent education level second.
+
+```{r}
+lm.d = lm(gpa ~ 1 + homework + parent_ed, data = keith)
+```
+
+Now let's examine the results from the ANOVA decomposition.
+
+```{r}
+# ANOVA decomposition
+anova(lm.d)
+```
+
+In this decomposition time spent on homework has a SS value of 616.5 and parent education level has a SS value of 258.2. This is quite different than the SS we obtained from the model where parent education level was put in the model before time spent on homework. The residual SS are the same as in the previous model's decomposition (4878.2). Let's compute the Model SS using these new values.
+
+$$
+\begin{split}
+\mathrm{SS_{\mathrm{Model}}} &= \mathrm{SS_{\mathrm{Parent~Education~Level}}} + \mathrm{SS_{\mathrm{HW}}} \\[2ex]
+&= 258.2 + 616.5 \\[2ex]
+&= 874.7
+\end{split}
+$$
+The Model SS is the same regardless of order of the predictors in `lm()`. This implies that our model $R^2$ value will also be the same regardless of order of order of the predictors in `lm()`.
+
+<br />
+
+
+### Danger: Using the ANOVA Decomposition at the Individual Predictor Level
+
+The fact that the SS values change depending on the order you put the the predictors in the `lm()` function implies that it is difficult to come up with a quantification for the amount of variation that an *individual predictor* explains in a multiple regression model. For example, say we wanted to compute the explained variation for time spent on homework on GPA (our focal predictor). If we use the ANOVA decomposition from Model C, we would say it explains 376.8 of the total 5752.9, and we could compute its $R^2$ value as:
+
+
+$$
+\begin{split}
+R^2_{\mathrm{HW}} &= \frac{\mathrm{SS_{\mathrm{HW}}}}{\mathrm{SS_{\mathrm{Total}}}} \\[2ex]
+&= \frac{376.8}{5752.9} \\[2ex]
+&= 0.065
+\end{split}
+$$
+
+If, however, we use the ANOVA decomposition from Model D, we would say it explains 616.5 of the total 5752.9, and we could compute its $R^2$ value as:
+
+
+$$
+\begin{split}
+R^2_{\mathrm{HW}} &= \frac{616.5}{5752.9} \\[2ex]
+&= 0.107
+\end{split}
+$$
+This is almost double the explained percentage as in Model C! Moreover, which one of these is "correct" depends on what you are trying to answer by getting this percentage, and it may be that neither is correct. In general it is advisable to only use the ANOVA decomposition to compute sum of squares for the Model, Residuals, and Total, and not use it to compute SS for individual predictors.
+
+:::fyi
+**FYI**
+
+Most of the time researchers who undertake this are trying to determine which predictor is more important. In general it is not a good idea to use an ANOVA decomposition to evaluate this. Instead, look at the coefficients to assess importance. Is parent education level or time spent on homework more important? Each 1-unit difference in parent education level is associated with a 0.87-grade point difference while a 1-unit difference in time spent on homework is associated with a 0.99-grade point difference. It seems time spent on homework has a larger effect than parent education level.^[If you are worried about the difference in metric---years versus hours---you can fit a standardized regression which puts both predictors on the same metric. In this example the homework coefficient from the standardized regression (0.27) is still larger than that for parent education level (0.22) indicating time spent on homework has a larger effect on GPA than parent education level.]
+:::
+
+<!-- ### Hypotheses Tested in the ANOVA Output -->
+
+<!-- The *F*-values given in the `anova()` output do not match the *F*-test given in the `glance()` output. This is because the hypotheses being tested in the `anova()` output are different than that being tested in the `glance()` output. To understand the tests that are being performed, we need to understand how the variation is being partitioned in the model we fitted. The order the predictors in the `anova()` output (which is connected to the order they were included in the `lm()` function) shows this partitioning numerically. We can also create a diagram that shows this partitioning. -->
+
+<!-- ```{r} -->
+<!-- #| label: fig-anova-1 -->
+<!-- #| fig-cap: "Partitioning of variation associated with the model in which education-level is included prior to seniority-level." -->
+<!-- #| out-width: "60%" -->
+<!-- #| echo: false -->
+<!-- knitr::include_graphics("figs/03-01-partitioning-1.png") -->
+<!-- ``` -->
+
+<!-- In the diagram, the total unexplained variation is first explained by including education-level in the model (the first predictor included in the `lm()` function). This predictor explains some variation and leaves some of the variation unexplained. Then, seniority-level is allowed to explain any residual (unexplained) variation that remains. -->
+
+<!-- The hypothesis that is being tested by an *F*-test is whether the explained variation is more than we expect because of sampling error. The way we quantify this is to compute $R^2$ which is a ratio of the explained variation to the total variation the predictor(s) is allowed to explain. The key here is that the numerator and denominator for $R^2$ are different depending on what is being tested. -->
+
+<!-- Consider the *F*-test at the model-level from the `glance()` output. This is testing whether the model-level $R^2$ is more than we expect because of sampling error. In the diagram, the explained variation in the model-level $R^2$ is the total sum of all the blue circles since the model includes both education-level and seniority-level. The denominator is the baseline unexplained variation. Mathematically, -->
+
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- R^2_{\mathrm{Model}} &= \frac{4147 + 723}{6566} \\[2ex] -->
+<!-- &= \frac{4879}{6566} -->
+<!-- \end{split} -->
+<!-- $$ -->
+
+<!-- This *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in `glance()`, namely, $F(2,29)=41.65$, $p<.001$. -->
+
+
+<!-- In the `anova()` output, results from two different *F*-tests are presented. The *F*-test in the first line of this output is associated with the education-level predictor. This is testing whether education-level (by itself) explains variation in the outcome *given the model fitted*. In the diagram, the explained variation for the education-level $R^2$ is the blue circles associated with adding education to the model first. The denominator is the  unexplained variation if we only consider the education and residual variation. Mathematically, -->
+
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- R^2_{\mathrm{Education\mbox{-}Level}} &= \frac{4147}{4147 + 1695} \\[2ex] -->
+<!-- &= 0.710 -->
+<!-- \end{split} -->
+<!-- $$ -->
+
+<!-- The *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the first line of the `anova()` output, namely, $F(1,29)=70.94$, $p<.001$. The numerator *df* for the *F*-test is given in the `Df` column of the `anova()` output and the denominator *df* is the model's residual *df*. -->
+
+<!-- The *F*-test in the second line of this output is associated with the seniority-level predictor. This is testing whether seniority-level explains variation in the outcome AFTER education-level has already been allowed to explain any unexplained variation. In the diagram, the explained variation for the seniority-level $R^2$ is the blue circle associated with adding seniority-level to the model. The denominator is the unexplained variation that remains after education-level has explained all the variation it can (this is no longer the baseline unexplained variation). Mathematically, -->
+
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- R^2_{\mathrm{Seniority\mbox{-}Level} \vert \mathrm{Education\mbox{-}Level}} &= \frac{723}{723 + 1695} \\[2ex] -->
+<!-- &= 0.299 -->
+<!-- \end{split} -->
+<!-- $$ -->
+
+<!-- This *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the second line of the `anova()` output, namely, $F(1,29)=12.37$, $p=.001$. -->
+
+<!-- This second test is asking whether there is an effect of seniority-level *after accounting for* education-level given the model fitted. This is equivalent to the hypothesis we tested for seniority-level in the coefficient-level output. In fact, the *p*-value from the `tidy()` output for the seniority-level effect is equivalent to the *p*-value associated with the seniority-level in the second line of the `anova()` output. -->
+
+<!-- <br /> -->
+
+
+<!-- ### Changing the Order of the Predictors -->
+
+<!-- Let's re-fit the model, but this time we will include seniority-level in the model first and education-level second. -->
+
+<!-- ```{r} -->
+<!-- # Fit model with different predictor order -->
+<!-- lm.d = lm(income ~ 1 + seniority + education, data = city) -->
+
+<!-- # ANOVA decomposition -->
+<!-- anova(lm.d) -->
+<!-- ``` -->
+
+<!-- Examining the ANOVA decomposition, we see that some of the values in the table are the same and others are different. To understand why, we will again compose the partitioning diagram. -->
+
+
+<!-- ```{r} -->
+<!-- #| label: fig-anova-2 -->
+<!-- #| fig-cap: "Partitioning of variation associated with the model in which seniority-level is included prior to education-level." -->
+<!-- #| out-width: "60%" -->
+<!-- #| echo: false -->
+<!-- knitr::include_graphics("figs/03-01-partitioning-2.png") -->
+<!-- ``` -->
+
+<!-- Consider the model-level *F*-test which tests whether the model-level $R^2$ is more than we expect because of sampling error. In the diagram, the explained variation in the model-level $R^2$ is the total sum of all the blue circles since the model includes both education-level and seniority-level. The denominator is the baseline unexplained variation. Mathematically, -->
+
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- R^2_{\mathrm{Model}} &= \frac{2223 + 2647}{6566} \\[2ex] -->
+<!-- &= \frac{4879}{6566} -->
+<!-- \end{split} -->
+<!-- $$ -->
+
+<!-- This is the same model-level $R^2$ value we obtained earlier. Thus the results given in `glance()`, namely, $F(2,29)=41.65$, $p<.001$ are identical regardless of the order the predictors are included in the model. -->
+
+<!-- ```{r} -->
+<!-- # Model-level output -->
+<!-- glance(lm.d) -->
+<!-- ``` -->
+
+<!-- The *F*-test in the first line of this output is associated with the seniority-level predictor. This is testing whether seniority-level (by itself) explains variation in the outcome given the model. Mathematically, -->
+
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- R^2_{\mathrm{Seniority\mbox{-}Level}} =& \frac{2223}{2223+1695} \\[2ex] -->
+<!-- &= 0.567 -->
+<!-- \end{split} -->
+<!-- $$ -->
+
+<!-- The *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the first line of the `anova()` output, namely, $F(1,29)=38.03$, $p<.001$. -->
+
+<!-- The *F*-test in the second line of this output is testing whether education-level explains variation in the outcome AFTER seniority-level has already been allowed to explain any unexplained variation, given the model. Mathematically, -->
+
+<!-- $$ -->
+<!-- \begin{split} -->
+<!-- R^2_{\mathrm{Education\mbox{-}Level} \vert \mathrm{Seniority\mbox{-}Level}} &= \frac{2647}{2647 + 1695} \\[2ex] -->
+<!-- &= 0.610 -->
+<!-- \end{split} -->
+<!-- $$ -->
+
+<!-- The *F*-test examines whether this fraction (or proportion) is statistically different than 0. Here the results are those given in the second line of the `anova()` output, namely, $F(1,29)=45.28$, $p<.001$. This test is asking whether there is an effect of education-level *after accounting for* seniority-level. The *p*-value from this test is equivalent to the *p*-value associated with the education-level effect in the `tidy()` output. -->
+
+<!-- ```{r} -->
+<!-- # Coefficient-level output -->
+<!-- tidy(lm.d) -->
+<!-- ``` -->
+
+<!-- Note that the output from `tidy()` is also the same, regardless of predictor order. This means that whichever order you include the predictors in the model, the tests of the partial effects (does a predictor explain variation AFTER all other predictors have already explained a much variation as they can) will be the same. Additionally, the fitted equation will be the same. -->
+
+<!-- <br /> -->
+
+
+<!-- ## Argh! Which Set of Results Should I Use? -->
+
+<!-- From all these different *F*-tests and $R^2$ values, we see that there are different ways of computing the amount of "variation accounted for" for any given predictor. The sum of squares for a particular predictor depends on whether we are considering it in isolation, or whether it is being considered in conjunction with other predictors. Not only that, but it also depends on the order that the predictor is included in the model! Similarly the amount of total unexplained variation depends on whether we consider all the unexplained variation in a variable, or whether we condition on a particular model. -->
+
+<!-- In a regression analysis, we typically want to understand the amount of variation explained by a predictor after accounting for all the other predictors. That means, that when computing an $R^2$ value, the numerator will be based on the sum of squares if that predictor is last in the model. Similarly, the denominator will be based on the total variation available to explain after accounting for all the other predictors. To determine this, we include the predictor of interest last in the `lm()` and then examine the `anova()` output to obtain the sums of squares for the predictor and residuals. The $R^2$ value can then be computed based on those two values. -->
+
+<!-- To evaluate whether that proportion of explained variation is more than we expect because of chance, we can evaluate the *p*-value for that predictor from the `tidy()` output. This is equivalent to asking: Is a particular predictor statistically important after controlling for the other predictors in the model? Again, this is the same *p*-value you get from the `anova()` output if the predictor is last in thr `lm()`. -->
+
+
+
+<!-- :::fyi -->
+<!-- Some statisticians and quantitative methodologists have attempted to capture some of the differences in the various ways to compute "variance accounted for" by referring to different types of sums of squares. For example, the sums of squares in the `anova()` output is sometimes referred to as *Type 1 Sums of Squares* or *Sequential Sums of Squares*. While these terms can be helpful, they are not universally adopted and as a result often add more confusion than they solve. It is probably best to view them as different ways of partitioning and accounting for variation, and understand that how you decide to do this has an impact on how much variation a particular predictor explains and subsequently the *p*-value associated with it. -->
+<!-- ::: -->
+
+<!-- <br /> -->
+
+
+<!-- ## Presenting Results -->
+
+<!-- It is quite common for researchers to present the results of their regression analyses in table form. Different models are typically presented in different columns and predictors are presented in rows. (Because it is generally of less substantive value, the intercept is often presented in the last row.) -->
+
+<!-- Note that we **DO NOT INCLUDE stars to indicate "statistical significance"** as is the recommendation of the American Statistical Association. [@Wasserstein:2019] -->
+
+
+<!-- ```{r} -->
+<!-- #| results: asis -->
+<!-- #| echo: false -->
+<!-- #| eval: false -->
+<!-- library(stargazer) -->
+
+<!-- stargazer(lm.a, lm.b, lm.c, -->
+<!--   column.labels = c("Model 1", "Model 2", "Model 3"), -->
+<!--   covariate.labels = c("Education level", "Seniority level"), -->
+<!--   dep.var.caption = "Outcome variable: Income (in thousands of dollars)", -->
+<!--   dep.var.labels = NULL, -->
+<!--   dep.var.labels.include = FALSE, -->
+<!--   type = "html", -->
+<!--   keep.stat = c("rsq","ser"), -->
+<!--   star.cutoffs = NA, -->
+<!--   header = FALSE, -->
+<!--   title = "Regression Models Fitted to City Employee Data ($n=32$) Using Education Level and Seniority to Predict Income", -->
+<!--   omit.table.layout = "n" -->
+<!--   ) -->
+<!-- ``` -->
+
+
+
+
+<!-- <table class="table" style="width:70%; margin-left: auto; margin-right: auto;"> -->
+<!-- <caption>Unstandardized coefficients (standard errors) for a taxonomy of OLS regression models to explain variation in Riverview city employee's incomes. All models were fitted with *n*=32 observations.</caption> -->
+<!-- <thead> -->
+<!--   <tr><th>Predictor</th><th>Model A</th><th>Model B</th><th>Model C</th></tr> -->
+<!-- </thead> -->
+<!-- <tbody> -->
+<!-- <tr><td style="text-align:left">Education level</td><td style="text-align:center">2.651<br />(0.370)</td><td></td><td style="text-align:center">2.252<br />(0.335)</td></tr> -->
+<!-- <tr><td style="text-align:left">Seniority level</td><td></td><td style="text-align:center">1.219<br />(0.311)</td><td style="text-align:center">0.739<br />(0.210)</td></tr> -->
+<!-- <tr style="border-bottom: 1px solid black"><td style="text-align:left">Constant</td><td style="text-align:center">11.321<br />(6.123)</td><td style="text-align:center">35.690<br />(5.073)</td><td style="text-align:center">6.769<br />(5.373)</td></tr> -->
+
+<!-- <tr><td style="text-align:left">R<sup>2</sup></td><td style="text-align:center">0.632</td><td style="text-align:center">0.339</td><td style="text-align:center">0.742</td></tr> -->
+<!-- <tr><td style="text-align:left">RMSE</td><td style="text-align:center">8.978</td><td style="text-align:center">12.031</td><td style="text-align:center">7.646</td></tr> -->
+<!-- </tbody> -->
+<!-- </table> -->
+
+
+<!-- Based on the results of fitting the three models, we can now go back and answer our research questions. Do differences in education level explain variation in incomes? Based on Model A, the empirical evidence suggests the answer is yes. Is this true even after accounting for differences in seniority? The empirical evidence from Model C suggests that, again, the answer is yes. (Since it is not necessary for answering the RQ, some researchers might choose to not present the results from Model B.) -->
+
+<!-- <br /> -->
+
+
+<!-- ## Coefficient Plot -->
+
+<!-- To create a coefficient plot for a multiple regression, we will again use the `dwplot()` function from the `{dotwhisker}` package. To create coefficient plots for multiple models we need to create a data frame based on the `tidy()` output for each fitted model. We also need to append a column that identifies the model name in these data frames. Finally, we need to combine these data frames into a single data frame that we will use in the `dwplot()` function.^[It is critical when you are changing labels on the axes that you double-check the actual `tidy()` output so that you don't erroneously mislabel the coefficients. Here for example, the `tidy()` output indicates that in Model C the coefficient for education level is 2.25 and the seniority coefficient is 0.739. This corresponds to what we see in the plot.] Here we presented the coefficient plot for all three models. Another option would be to create this plot for only the "final" adopted model (e.g., Model C).  -->
+
+<!-- ```{r} -->
+<!-- #| label: fig-coefplot -->
+<!-- #| fig-cap: "Coefficient plot for the model regressing income on education. Uncertainty is displayed based on the 95% confidence intervals." -->
+<!-- #| fig-width: 12 -->
+<!-- #| fig-height: 4 -->
+<!-- #| out-width: "80%" -->
+<!-- # Load library -->
+<!-- library(dotwhisker) -->
+
+<!-- # Create tidy() data frames with model names -->
+<!-- mod_1 = tidy(lm.a) |> -->
+<!--   mutate(model = "Model A") -->
+
+<!-- mod_2 = tidy(lm.b) |> -->
+<!--   mutate(model = "Model B") -->
+
+<!-- mod_3 = tidy(lm.c) |> -->
+<!--   mutate(model = "Model C") -->
+
+<!-- # Combine into single data frame -->
+<!-- all_models = rbind(mod_1, mod_2, mod_3) -->
+
+<!-- # Create plot -->
+<!-- dwplot(all_models, show_intercept = FALSE) + -->
+<!--   theme_bw() + -->
+<!--   scale_color_manual(name = "Model", values = c("#c62f4b", "#c62f4b", "#c62f4b")) + -->
+<!--   scale_x_continuous(name = "Estimate") + -->
+<!--   scale_y_discrete(name = "Coefficients", labels = c("Seniority", "Education")) + -->
+<!--   facet_wrap(~model) + -->
+<!--   guides(color = FALSE) -->
+<!-- ``` -->
+
+<!-- This plot shows graphically what we observed in the numerical results. There does seem to be a positive effect of education-level on employee income. After including seniority-level in the model, the effect of education-level is somewhat tempered, but it is still positive. There is, however, some uncertainty in the exact magnitude of the size of the effect as is shown in the wide 95% confidence interval for education-level in the plot. -->
+
+
+<br />
+
+
+
+
+
+
+
+

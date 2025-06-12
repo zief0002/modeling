@@ -2,6 +2,7 @@
 # library(gt)
 # library(gtExtras)
 library(knitr)
+library(ggplot2)
 library(gt)
 library(gtExtras)
 library(patchwork)
@@ -37,5 +38,13 @@ options(
   tibble.pillar.subtle = FALSE, 
   tibble.pillar.sigfig = 7, 
   tibble.pillar.min_title_chars = 10,
-  scipen = 5
+  scipen = 5,
+  tibble.width = 70
 )
+
+
+
+theme_set(theme_bw())  # Set black & white theme as default
+theme_update(text = element_text(size = 15))  # Adjust txt size
+
+

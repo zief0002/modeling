@@ -152,6 +152,8 @@ p_{\mathrm{Adjusted}}=p_{\mathrm{Original}} \times 6
 $$
 
 :::fyi
+**FYI**
+
 This *p*-value adjustment is referred to as the Dunn-Bonferroni adjustment.^[In our patriarchal society, unfortunately Olive Dunn's name is often removed from the nomenclature, and this adjustment gets referred to as the "Bonferroni adjustment".]
 :::
 

@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -149,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07-00-data-codebooks.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/fertility.html">fertility.csv</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../codebooks/broadband.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/fertility.html">fertility.csv</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -476,7 +476,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07-00-data-codebooks.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/fertility.html">fertility.csv</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../codebooks/broadband.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/fertility.html">fertility.csv</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">fertility.csv</h1>
 </div>
@@ -526,20 +526,21 @@ window.Quarto = {
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 124 × 8
-   country      region fertility_rate educ_female infant_mortality contraceptive
-   &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;
- 1 Albania      Europ…           1.49         9.1             15              46
- 2 Algeria      Middl…           2.78         5.9             17.2            57
- 3 Armenia      Europ…           1.39        10.8             14.7            57
- 4 Austria      Europ…           1.42         8.9              3.3            66
- 5 Azerbaijan   Europ…           1.92        10.5             30.8            55
- 6 Bahamas, The Latin…           1.97        11.1             13.9            45
- 7 Bangladesh   South…           2.5          4.6             33.1            62
- 8 Belgium      Europ…           1.65        10.5              3.4            67
- 9 Belize       Latin…           3.08         9.2             15.7            51
-10 Benin        Sub-S…           5.13         2               58.5            16
+   country      region     fertility_rate educ_female infant_mortality
+   &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;
+ 1 Albania      Europe an…           1.49         9.1             15  
+ 2 Algeria      Middle Ea…           2.78         5.9             17.2
+ 3 Armenia      Europe an…           1.39        10.8             14.7
+ 4 Austria      Europe an…           1.42         8.9              3.3
+ 5 Azerbaijan   Europe an…           1.92        10.5             30.8
+ 6 Bahamas, The Latin Ame…           1.97        11.1             13.9
+ 7 Bangladesh   South Asia           2.5          4.6             33.1
+ 8 Belgium      Europe an…           1.65        10.5              3.4
+ 9 Belize       Latin Ame…           3.08         9.2             15.7
+10 Benin        Sub-Sahar…           5.13         2               58.5
 # ℹ 114 more rows
-# ℹ 2 more variables: gni_class &lt;chr&gt;, high_gni &lt;dbl&gt;</code></pre>
+# ℹ 3 more variables: contraceptive &lt;dbl&gt;, gni_class &lt;chr&gt;,
+#   high_gni &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p><br></p>

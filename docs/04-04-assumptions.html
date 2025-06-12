@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -495,7 +495,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this chapter, you will learn about the various distributional assumptions underlying the regression model. To do so, we will return to the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA (see the <a href="#keith">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>. We will also fit our multiple regression model.</p>
+<p>In this chapter, you will learn about the various distributional assumptions underlying the regression model. To do so, we will return to the <strong>keith-gpa.csv</strong> data to examine whether time spent on homework is related to GPA. To begin, we will load several libraries and import the data into an object called <code>keith</code>. We will also fit our multiple regression model.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
@@ -542,14 +542,14 @@ window.Quarto = {
 <p>These are the same four assumptions that we evaluate for multiple regression models. To help you see these assumptions, remember that the model for a multiple regression (with two predictors) is a plane that is fitted using observations composed of ordered triples, <span class="math inline">\((X_1,X_2,Y)\)</span>. Figure 8 visually shows the multiple regression model’s assumptions on a plane.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-multreg-assumptions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-multreg-assumptions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="A visual depiction of the multiple regression model's assumptions.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-multreg-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/03-03-multiple-regression-assumptions.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multreg-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-multreg-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.1: A visual depiction of the multiple regression model’s assumptions.
 </figcaption>
+<div aria-describedby="fig-multreg-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/03-03-multiple-regression-assumptions.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="A visual depiction of the multiple regression model's assumptions.">
+</div>
 </figure>
 </div>
 </div>
@@ -569,14 +569,15 @@ Figure&nbsp;17.1: A visual depiction of the multiple regression model’s assump
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aug_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 9
-    gpa parent_ed homework .fitted .resid   .hat .sigma  .cooksd .std.resid
-  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
-1    78        13        2    76.5   1.48 0.0330   7.13 0.000512      0.212
-2    79        14        6    81.3  -2.34 0.0122   7.12 0.000454     -0.332
-3    79        13        1    75.5   3.47 0.0500   7.12 0.00441       0.502
-4    89        13        5    79.5   9.52 0.0130   7.06 0.00801       1.35 
-5    82        16        3    80.1   1.88 0.0390   7.13 0.000988      0.270
-6    77        13        4    78.5  -1.50 0.0145   7.13 0.000221     -0.213</code></pre>
+    gpa parent_ed homework .fitted .resid   .hat .sigma  .cooksd
+  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+1    78        13        2    76.5   1.48 0.0330   7.13 0.000512
+2    79        14        6    81.3  -2.34 0.0122   7.12 0.000454
+3    79        13        1    75.5   3.47 0.0500   7.12 0.00441 
+4    89        13        5    79.5   9.52 0.0130   7.06 0.00801 
+5    82        16        3    80.1   1.88 0.0390   7.13 0.000988
+6    77        13        4    78.5  -1.50 0.0145   7.13 0.000221
+# ℹ 1 more variable: .std.resid &lt;dbl&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of the standardized residuals</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_c, <span class="fu">aes</span>(<span class="at">x =</span> .std.resid)) <span class="sc">+</span></span>
@@ -600,14 +601,14 @@ Figure&nbsp;17.1: A visual depiction of the multiple regression model’s assump
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-assumptions-emp-mulreg" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-assumptions-emp-mulreg" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework and parent education level to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed. The $Y=0$, $Y=-2$ and $Y=2$ lines have been included as a references for interpretation.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-assumptions-emp-mulreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="04-04-assumptions_files/figure-html/fig-assumptions-emp-mulreg-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assumptions-emp-mulreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-assumptions-emp-mulreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.2: LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework and parent education level to predict GPA. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed. The <span class="math inline">\(Y=0\)</span>, <span class="math inline">\(Y=-2\)</span> and <span class="math inline">\(Y=2\)</span> lines have been included as a references for interpretation.
 </figcaption>
+<div aria-describedby="fig-assumptions-emp-mulreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-04-assumptions_files/figure-html/fig-assumptions-emp-mulreg-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework and parent education level to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed. The $Y=0$, $Y=-2$ and $Y=2$ lines have been included as a references for interpretation.">
+</div>
 </figure>
 </div>
 </div>
@@ -616,7 +617,8 @@ Figure&nbsp;17.2: LEFT: Density plot of the marginal distribution of standardize
 <p>The scatterplot shows random scatter around the <span class="math inline">\(Y=0\)</span> line which indicates that the mean residual value is close to 0 (linearity) for all fitted values. Since the loess smoother is encompassed inside the confidence envelope (again, what where we expect the loess smoother to be if the assumption that the average residual is equal to 0 is actually met), the assumption of <strong>“linearity” also seems tenable</strong>.</p>
 <p>The range of the standardized residuals at each fitted value also seems roughly the same indicating that the <strong>equal variances assumption seems tenable</strong> as well.</p>
 <p>Lastly, since the observations were randomly sampled we believe the <strong>independence assumption is satisfied</strong>.</p>
-<div class="protip">
+<div class="fyi">
+<p><strong>PROTIP</strong></p>
 <p>If any of the assumptions (aside from the independence assumption) do not seem reasonably satisfied, you can re-plot the residual plots based on the different simple regression models. (In this case we would look at the residuals versus time spent on homework and then the residuals versus parent education). This might help you identify if one, or both. of the predictors is the cause of the problem.</p>
 </div>
 <p><br></p>
@@ -633,14 +635,15 @@ Figure&nbsp;17.2: LEFT: Density plot of the marginal distribution of standardize
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aug_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 10
-    gpa parent_ed homework .fitted .resid   .hat .sigma .cooksd .std.resid id   
-  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;
-1    78        13        2    76.5   1.48 0.0330   7.13 5.12e-4      0.212 1    
-2    79        14        6    81.3  -2.34 0.0122   7.12 4.54e-4     -0.332 2    
-3    79        13        1    75.5   3.47 0.0500   7.12 4.41e-3      0.502 3    
-4    89        13        5    79.5   9.52 0.0130   7.06 8.01e-3      1.35  4    
-5    82        16        3    80.1   1.88 0.0390   7.13 9.88e-4      0.270 5    
-6    77        13        4    78.5  -1.50 0.0145   7.13 2.21e-4     -0.213 6    </code></pre>
+    gpa parent_ed homework .fitted .resid   .hat .sigma  .cooksd
+  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+1    78        13        2    76.5   1.48 0.0330   7.13 0.000512
+2    79        14        6    81.3  -2.34 0.0122   7.12 0.000454
+3    79        13        1    75.5   3.47 0.0500   7.12 0.00441 
+4    89        13        5    79.5   9.52 0.0130   7.06 0.00801 
+5    82        16        3    80.1   1.88 0.0390   7.13 0.000988
+6    77        13        4    78.5  -1.50 0.0145   7.13 0.000221
+# ℹ 2 more variables: .std.resid &lt;dbl&gt;, id &lt;chr&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create different data sets for the extreme and non-extreme observations</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>extreme <span class="ot">=</span> aug_c <span class="sc">|&gt;</span> </span>
@@ -659,20 +662,21 @@ Figure&nbsp;17.2: LEFT: Density plot of the marginal distribution of standardize
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residual"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-extreme-plot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-extreme-plot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework and parent education level to predict GPA. Students with standardized residuals more than two standard errors from 0 are identified by their row number. A horizontal lines at $Y=0$, $Y=-2$, and $Y=+2$ are included to aid interpretation.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-extreme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="04-04-assumptions_files/figure-html/fig-extreme-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-extreme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-extreme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.3: Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework and parent education level to predict GPA. Students with standardized residuals more than two standard errors from 0 are identified by their row number. A horizontal lines at <span class="math inline">\(Y=0\)</span>, <span class="math inline">\(Y=-2\)</span>, and <span class="math inline">\(Y=+2\)</span> are included to aid interpretation.
 </figcaption>
+<div aria-describedby="fig-extreme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-04-assumptions_files/figure-html/fig-extreme-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework and parent education level to predict GPA. Students with standardized residuals more than two standard errors from 0 are identified by their row number. A horizontal lines at $Y=0$, $Y=-2$, and $Y=+2$ are included to aid interpretation.">
+</div>
 </figure>
 </div>
 </div>
 </div>
 <p>Observation 34 has the most extreme residual with a standardized residual value of around three standard error lower than we would expect. This student is really underperforming given their parent education level and the amount of time they spend on homework.</p>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>As a data analyst, because the assumptions were all reasonably satisfied, there is no need to remove any of the observations. But, as an educational practioner this student is “interesting”. If we had additional data or knew the participants, you could explore this student more to understand why their GPA is so low given where we would expect them to be. This could also be helpful in identifying students for potential interventions or testing.</p>
 </div>
 <p><br></p>
@@ -692,6 +696,7 @@ Y_i = \beta_0 + \beta_1(X_{1i}) + \beta_2(X_{2i}) + \ldots + \beta_k(X_{ki}) + \
 \]</span></p>
 <p>To read the distribution part of this expression, we say: <em>the errors are independent and identically normally distributed with some variance.</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>When we report regression results, we want to report parameter estimates for the data generating model. Notice that aside from the coefficient estimates, another parameter in the model (now that we have added the assumptions) is <span class="math inline">\(\sigma^2\)</span>. This is the estimate of the error variance (i.e., <span class="math inline">\(\sigma^2_{\epsilon}\)</span>). That means we should report the estimate for this parameter, or for the square root of this parameter. This is why we report the <code>sigma</code> value (or RMSE) from the <code>glance()</code> output for our models. This is the estimate for <span class="math inline">\(\sigma_{\epsilon}\)</span>.</p>
 </div>
 <p><br></p>

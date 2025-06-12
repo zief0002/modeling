@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will learn about the various distributional assumptions underlying the regression model. To do so, we will return to the [keith-gpa.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv) data to examine whether time spent on homework is related to GPA (see the [data codebook](#keith)). To begin, we will load several libraries and import the data into an object called `keith`. We will also fit our multiple regression model.
+In this chapter, you will learn about the various distributional assumptions underlying the regression model. To do so, we will return to the **keith-gpa.csv** data to examine whether time spent on homework is related to GPA. To begin, we will load several libraries and import the data into an object called `keith`. We will also fit our multiple regression model.
 
 
 ```{r}
@@ -45,8 +45,10 @@ These are the same four assumptions that we evaluate for multiple regression mod
 ```{r}
 #| label: fig-multreg-assumptions
 #| fig-cap: "A visual depiction of the multiple regression model's assumptions."
-#| out-width: "60%"
+#| fig-alt: "A visual depiction of the multiple regression model's assumptions."
+#| out-width: "70%"
 #| echo: false
+
 include_graphics("figs/03-03-multiple-regression-assumptions.png")
 ```
 
@@ -64,9 +66,11 @@ As an example, we will regress student GPAs on both time spent on homework and p
 ```{r}
 #| label: fig-assumptions-emp-mulreg
 #| fig-cap: "LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework and parent education level to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed. The $Y=0$, $Y=-2$ and $Y=2$ lines have been included as a references for interpretation."
+#| fig-alt: "LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework and parent education level to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed. The $Y=0$, $Y=-2$ and $Y=2$ lines have been included as a references for interpretation."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
+
 # Augment the model to obtain the fitted values and residuals
 aug_c = augment(lm.c)
 head(aug_c)
@@ -104,7 +108,9 @@ The range of the standardized residuals at each fitted value also seems roughly 
 Lastly, since the observations were randomly sampled we believe the **independence assumption is satisfied**.
 
 
-:::protip
+:::fyi
+**PROTIP**
+
 If any of the assumptions (aside from the independence assumption) do not seem reasonably satisfied, you can re-plot the residual plots based on the different simple regression models. (In this case we would look at the residuals versus time spent on homework and then the residuals versus parent education). This might help you identify if one, or both. of the predictors is the cause of the problem.
 :::
 
@@ -119,6 +125,8 @@ One potential reason that assumptions are violated occurs when there are cases w
 ```{r}
 #| label: fig-extreme-plot
 #| fig-cap: "Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework and parent education level to predict GPA. Students with standardized residuals more than two standard errors from 0 are identified by their row number. A horizontal lines at $Y=0$, $Y=-2$, and $Y=+2$ are included to aid interpretation."
+#| fig-alt: "Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework and parent education level to predict GPA. Students with standardized residuals more than two standard errors from 0 are identified by their row number. A horizontal lines at $Y=0$, $Y=-2$, and $Y=+2$ are included to aid interpretation."
+
 # Create ID variable in the augmented data
 aug_c = aug_c |> 
   mutate(id = row.names(keith))
@@ -147,6 +155,8 @@ ggplot(data = extreme, aes(x = .fitted, y = .std.resid)) +
 Observation 34 has the most extreme residual with a standardized residual value of around three standard error lower than we would expect. This student is really underperforming given their parent education level and the amount of time they spend on homework.
 
 :::fyi
+**FYI**
+
 As a data analyst, because the assumptions were all reasonably satisfied, there is no need to remove any of the observations. But, as an educational practioner this student is "interesting". If we had additional data or knew the participants, you could explore this student more to understand why their GPA is so low given where we would expect them to be. This could also be helpful in identifying students for potential interventions or testing.
 :::
 
@@ -174,6 +184,8 @@ To read the distribution part of this expression, we say: *the errors are indepe
 
 
 :::fyi
+**FYI**
+
 When we report regression results, we want to report parameter estimates for the data generating model. Notice that aside from the coefficient estimates, another parameter in the model (now that we have added the assumptions) is $\sigma^2$. This is the estimate of the error variance (i.e., $\sigma^2_{\epsilon}$). That means we should report the estimate for this parameter, or for the square root of this parameter. This is why we report the `sigma` value (or RMSE) from the `glance()` output for our models. This is the estimate for $\sigma_{\epsilon}$. 
 :::
 

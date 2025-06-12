@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -495,7 +495,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this set of notes, you will begin your foray into regression analysis. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv">riverview.csv</a> data to examine <strong>whether education level is related to income</strong>. The data contain five attributes collected from a random sample of <span class="math inline">\(n=32\)</span> employees working for the city of Riverview, a hypothetical midwestern city (see the <a href="#riverview">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>city</code>.</p>
+<p>In this set of notes, you will begin your foray into regression analysis. To do so, we will use the <strong>riverview.csv</strong> data to examine whether education level is related to income. The data contain five attributes collected from a random sample of <span class="math inline">\(n=32\)</span> employees working for the city of Riverview, a hypothetical midwestern city. To begin, we will load several libraries and import the data into an object called <code>city</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
@@ -539,25 +539,31 @@ window.Quarto = {
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Income (in thousands of dollars)"</span>) <span class="sc">+</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-01-data-exploration-for-regression_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Density plot of employee incomes.</figcaption>
+<div id="fig-dens-income" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Density plot of employee incomes.">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-dens-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: Density plot of employee incomes.
+</figcaption>
+<div aria-describedby="fig-dens-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-01-data-exploration-for-regression_files/figure-html/fig-dens-income-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Density plot of employee incomes.">
+</div>
 </figure>
 </div>
 </div>
 </div>
 <p>This plot suggests that the distribution of employee incomes is unimodal with a little bit of positive (right) skew. Most of the incomes are between roughly $50,000 and $70,000. The smallest income in the sample is about $25,000 and the largest income is over $80,000. This indicates there is a fair amount of variation in the data. A typical income looks to be about $55,000.</p>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>When describing the marginal distribution of a variable, you want to describe three features: the shape of the distribution, typical value(s) in the distribution (i.e., “center”) and the variability in the distribution.</p>
 </div>
 <p>To further summarize the distribution, it is typical to compute and report summary statistics such as the mean and standard deviation. One way to compute these values is to use functions from the <code>{dplyr}</code> library.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>city <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">mean</span>(income),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(income)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># COmpute mean and SD of incomes</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>city <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">mean</span>(income),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(income)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
       M    SD
@@ -582,16 +588,20 @@ window.Quarto = {
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Education level"</span>) <span class="sc">+</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-01-data-exploration-for-regression_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Density plot of employee education levels.</figcaption>
+<div id="fig-dens-educ" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Density plot of employee education levels.">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-dens-educ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: Density plot of employee education levels.
+</figcaption>
+<div aria-describedby="fig-dens-educ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-01-data-exploration-for-regression_files/figure-html/fig-dens-educ-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Density plot of employee education levels.">
+</div>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean and SD of education level</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>city <span class="sc">|&gt;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">mean</span>(education),</span>
@@ -620,10 +630,14 @@ window.Quarto = {
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Education (in years)"</span>) <span class="sc">+</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Income (in U.S. dollars)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-01-data-exploration-for-regression_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Scatterplot displaying the relationship between employee education levels and incomes.</figcaption>
+<div id="fig-scatter-inc-educ" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Scatterplot displaying the relationship between employee education levels and incomes.">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-scatter-inc-educ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.3: Scatterplot displaying the relationship between employee education levels and incomes.
+</figcaption>
+<div aria-describedby="fig-scatter-inc-educ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-01-data-exploration-for-regression_files/figure-html/fig-scatter-inc-educ-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot displaying the relationship between employee education levels and incomes.">
+</div>
 </figure>
 </div>
 </div>
@@ -638,17 +652,17 @@ window.Quarto = {
 <p><br></p>
 <section id="functional-form-of-the-relationship" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="functional-form-of-the-relationship"><span class="header-section-number">6.3.1</span> Functional Form of the Relationship</h3>
-<p>A <em>functional form</em> refers to the algebraic (mathematical) description of the relationship between the two attributes included in the relationship. Common functional forms used in the social and educational sciences are linear, quadratic, exponential, and cyclical (e.g., sinusoidal). <a href="#fig-functional-forms" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> shows examples of these four functional forms.</p>
+<p>A <em>functional form</em> refers to the algebraic (mathematical) description of the relationship between the two attributes included in the relationship. Common functional forms used in the social and educational sciences are linear, quadratic, exponential, and cyclical (e.g., sinusoidal). <a href="#fig-functional-forms" class="quarto-xref">Figure&nbsp;<span>6.4</span></a> shows examples of these four functional forms.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-functional-forms" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-functional-forms" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Four functional forms commonly used to describe relationships in the educational and social sciences.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-functional-forms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-01-data-exploration-for-regression_files/figure-html/fig-functional-forms-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-functional-forms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.1: Four functional forms commonly used to describe relationships in the educational and social sciences.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-functional-forms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.4: Four functional forms commonly used to describe relationships in the educational and social sciences.
 </figcaption>
+<div aria-describedby="fig-functional-forms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-01-data-exploration-for-regression_files/figure-html/fig-functional-forms-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Four functional forms commonly used to describe relationships in the educational and social sciences.">
+</div>
 </figure>
 </div>
 </div>
@@ -658,23 +672,24 @@ Figure&nbsp;6.1: Four functional forms commonly used to describe relationships i
 </section>
 <section id="directiontrend" class="level3" data-number="6.3.2">
 <h3 data-number="6.3.2" class="anchored" data-anchor-id="directiontrend"><span class="header-section-number">6.3.2</span> Direction/Trend</h3>
-<p>Once we pick the functional form, the next thing we want to do is identify the <em>direction/trend</em> of the relationship. The direction/trend describes the overall “slope” of the data and can be positive, negative, or flat. <a href="#fig-direction" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> shows examples of a positive, negative, and flat linear relationship.</p>
+<p>Once we pick the functional form, the next thing we want to do is identify the <em>direction/trend</em> of the relationship. The direction/trend describes the overall “slope” of the data and can be positive, negative, or flat. <a href="#fig-direction" class="quarto-xref">Figure&nbsp;<span>6.5</span></a> shows examples of a positive, negative, and flat linear relationship.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-direction" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-direction" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="A positive, negative, and flat linear relationship.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-direction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-01-data-exploration-for-regression_files/figure-html/fig-direction-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-direction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.2: A positive, negative, and flat linear relationship.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-direction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.5: A positive, negative, and flat linear relationship.
 </figcaption>
+<div aria-describedby="fig-direction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-01-data-exploration-for-regression_files/figure-html/fig-direction-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="A positive, negative, and flat linear relationship.">
+</div>
 </figure>
 </div>
 </div>
 </div>
 <p>A positive relationship would imply that lower values of <em>x</em> are associated with lower values of <em>y</em> and higher values of <em>x</em> are associated with higher values of <em>y</em>. A negative relationship, on the other hand, would imply that lower values of <em>x</em> are associated with higher values of <em>y</em> and higher values of <em>x</em> are associated with lower values of <em>y</em>. A flat relationship implies there is no relationship between <em>x</em> and <em>y</em> since all values of <em>x</em> are associated with the same <em>y</em> value.</p>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>When you describe what the direction/trend implies, be careful about the language you use. For example, we would not want to say “when <em>x</em> goes up, <em>y</em> goes up” when describing a positive relationship. This is because that statement is not true for all of our cases. The trend describes the general pattern in the relationship, which does not apply to all cases. That is why we use the wording “is associated with”, which to other researchers indicates the general pattern. Other ways to describe a positive relationship would be that:</p>
 <ul>
 <li><em>On average</em>, higher values of <em>x</em> correspond to higher values of <em>y</em>.</li>
@@ -686,17 +701,17 @@ Figure&nbsp;6.2: A positive, negative, and flat linear relationship.
 <section id="magnitude" class="level3" data-number="6.3.3">
 <h3 data-number="6.3.3" class="anchored" data-anchor-id="magnitude"><span class="header-section-number">6.3.3</span> Magnitude</h3>
 <p>The magnitude of the relationship constitutes a description of the magnitude of change in the <em>y</em>-values for a given change in the <em>x</em>-values. Is an increase in <em>x</em> associated with a small change in the <em>y</em>-values? A big change in the <em>y</em>-values?</p>
-<p>To better understand this, consider the three linear relationships in <a href="#fig-magnitude" class="quarto-xref">Figure&nbsp;<span>6.3</span></a>. All three relationships depicted have a positive relationship; higher values of <em>x</em> are associated with higher values of <em>y</em>. However, the magnitude of change in the <em>y</em>-values is quite different as we increase <em>x</em> in these plots.</p>
+<p>To better understand this, consider the three linear relationships in <a href="#fig-magnitude" class="quarto-xref">Figure&nbsp;<span>6.6</span></a>. All three relationships depicted have a positive relationship; higher values of <em>x</em> are associated with higher values of <em>y</em>. However, the magnitude of change in the <em>y</em>-values is quite different as we increase <em>x</em> in these plots.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-magnitude" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-magnitude" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="A steep, moderately steep, and shallow, positive linear relationship.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-magnitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-01-data-exploration-for-regression_files/figure-html/fig-magnitude-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-magnitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.3: A steep, moderately steep, and shallow, positive linear relationship.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-magnitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.6: A steep, moderately steep, and shallow, positive linear relationship.
 </figcaption>
+<div aria-describedby="fig-magnitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-01-data-exploration-for-regression_files/figure-html/fig-magnitude-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="A steep, moderately steep, and shallow, positive linear relationship.">
+</div>
 </figure>
 </div>
 </div>
@@ -707,39 +722,40 @@ Figure&nbsp;6.3: A steep, moderately steep, and shallow, positive linear relatio
 </section>
 <section id="strength" class="level3" data-number="6.3.4">
 <h3 data-number="6.3.4" class="anchored" data-anchor-id="strength"><span class="header-section-number">6.3.4</span> Strength</h3>
-<p>The strength of the relationship describes how well the data adhere to the functional form. For example a strong linear relationship would be one in which the observations lie close to the line. <a href="#fig-strength" class="quarto-xref">Figure&nbsp;<span>6.4</span></a> shows three positive linear relationships, one that has weak, one that is moderate, and one that is strong.</p>
+<p>The strength of the relationship describes how well the data adhere to the functional form. For example a strong linear relationship would be one in which the observations lie close to the line. <a href="#fig-strength" class="quarto-xref">Figure&nbsp;<span>6.7</span></a> shows three positive linear relationships, one that has weak, one that is moderate, and one that is strong.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-strength" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-strength" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="A weak, moderate, and strong positive linear relationship.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-strength-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-01-data-exploration-for-regression_files/figure-html/fig-strength-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-strength-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.4: A weak, moderate, and strong positive linear relationship.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-strength-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.7: A weak, moderate, and strong positive linear relationship.
 </figcaption>
+<div aria-describedby="fig-strength-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-01-data-exploration-for-regression_files/figure-html/fig-strength-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="A weak, moderate, and strong positive linear relationship.">
+</div>
 </figure>
 </div>
 </div>
 </div>
 <p>As you describe the strength of a relationship, know that the qualifiers ‘weak’, ‘moderate’, and ‘strong’ are somewhat subjective. For now, use your best judgment.</p>
 <div class="fyi">
+<p><strong>PROTIP</strong></p>
 <p>After positing the functional form, put that line or curve on the scatterplot in your mind. This will help you better consider and describe the strength of the relationship. In a later chapter, we will actually learn how to do this in R.</p>
 </div>
 </section>
 <section id="potential-outliers" class="level3" data-number="6.3.5">
 <h3 data-number="6.3.5" class="anchored" data-anchor-id="potential-outliers"><span class="header-section-number">6.3.5</span> Potential Outliers</h3>
-<p>Lastly, you also want to identify any observations that do not fit the trend. These are potential outliers. For example, the reddish, purple observation is <a href="#fig-outlier" class="quarto-xref">Figure&nbsp;<span>6.5</span></a> would be a potential outlier.</p>
+<p>Lastly, you also want to identify any observations that do not fit the trend. These are potential outliers. For example, the reddish, purple observation is <a href="#fig-outlier" class="quarto-xref">Figure&nbsp;<span>6.8</span></a> would be a potential outlier.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-outlier" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-outlier" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The reddish, purple observation does not fit the trend.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-outlier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-01-data-exploration-for-regression_files/figure-html/fig-outlier-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-outlier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.5: The reddish, purple observation does not fit the trend.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-outlier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.8: The reddish, purple observation does not fit the trend.
 </figcaption>
+<div aria-describedby="fig-outlier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-01-data-exploration-for-regression_files/figure-html/fig-outlier-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="The reddish, purple observation does not fit the trend.">
+</div>
 </figure>
 </div>
 </div>
@@ -750,7 +766,7 @@ Figure&nbsp;6.5: The reddish, purple observation does not fit the trend.
 <li>A potential outlier might have an extreme <em>y</em>-value.</li>
 <li>A potential outlier might have both an extreme <em>x</em>-value and an extreme <em>y</em>-value.</li>
 </ul>
-<p>When we identify potential outliers, we do so by referencing their coordinates in the scatterplot. For example, to describe the reddish, purple observation that is a potential outlier in <a href="#fig-outlier" class="quarto-xref">Figure&nbsp;<span>6.5</span></a>, we might say,</p>
+<p>When we identify potential outliers, we do so by referencing their coordinates in the scatterplot. For example, to describe the reddish, purple observation that is a potential outlier in <a href="#fig-outlier" class="quarto-xref">Figure&nbsp;<span>6.8</span></a>, we might say,</p>
 <blockquote class="blockquote">
 <p>The observation with the coordinates (6, 17) is a potential outlier. This observation has a very large <em>y</em>-value relative to the other observations in the data.</p>
 </blockquote>
@@ -766,10 +782,14 @@ Figure&nbsp;6.5: The reddish, purple observation does not fit the trend.
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Education (in years)"</span>) <span class="sc">+</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Income (in U.S. dollars)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-01-data-exploration-for-regression_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Scatterplot displaying the relationship between employee education levels and incomes.</figcaption>
+<div id="fig-scat" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Scatterplot displaying the relationship between employee education levels and incomes.">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-scat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.9: Scatterplot displaying the relationship between employee education levels and incomes.
+</figcaption>
+<div aria-describedby="fig-scat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-01-data-exploration-for-regression_files/figure-html/fig-scat-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot displaying the relationship between employee education levels and incomes.">
+</div>
 </figure>
 </div>
 </div>
@@ -780,22 +800,22 @@ Figure&nbsp;6.5: The reddish, purple observation does not fit the trend.
 </section>
 <section id="plot-scale-and-human-perception" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="plot-scale-and-human-perception"><span class="header-section-number">6.4</span> Plot Scale and Human Perception</h2>
-<p>One issue that arises when we describe the magnitude and strength of the relationship is that our guesstimate for both the magnitude of the effect and the strength of the relationship can be influenced by the <em>x</em>- and <em>y</em>-scale on our scatterplot. To illustrate this, <a href="#fig-scale" class="quarto-xref">Figure&nbsp;<span>6.6</span></a> shows a plot of the relationship between education level and income data with two different scales on the axes.</p>
+<p>One issue that arises when we describe the magnitude and strength of the relationship is that our guesstimate for both the magnitude of the effect and the strength of the relationship can be influenced by the <em>x</em>- and <em>y</em>-scale on our scatterplot. To illustrate this, <a href="#fig-scale" class="quarto-xref">Figure&nbsp;<span>6.10</span></a> shows a plot of the relationship between education level and income data with two different scales on the axes.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-scale" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-scale" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The two plots show the exact same data plotted using different scales on the x- and y-axis. This difference in scales can influence how we perceive both the magnitude and the strength of the relationship.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-01-data-exploration-for-regression_files/figure-html/fig-scale-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.6: The two plots show the exact same data plotted using different scales on the x- and y-axis. This difference in scales can influence how we perceive both the magnitude and the strength of the relationship.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.10: The two plots show the exact same data plotted using different scales on the x- and y-axis. This difference in scales can influence how we perceive both the magnitude and the strength of the relationship.
 </figcaption>
+<div aria-describedby="fig-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-01-data-exploration-for-regression_files/figure-html/fig-scale-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The two plots show the exact same data plotted using different scales on the x- and y-axis. This difference in scales can influence how we perceive both the magnitude and the strength of the relationship.">
+</div>
 </figure>
 </div>
 </div>
 </div>
-<p>In the right-hand graph of <a href="#fig-scale" class="quarto-xref">Figure&nbsp;<span>6.6</span></a>, we may perceive a stronger relationship than in the left-hand graph. We would also perceive that the magnitude of the effect (i.e., the slope of the linear function) is larger, that is the line looks steeper. This is problematic as the strength of the relationship is exactly the same in both graphs as it is the same data that is plotted.</p>
+<p>In the right-hand graph of <a href="#fig-scale" class="quarto-xref">Figure&nbsp;<span>6.10</span></a>, we may perceive a stronger relationship than in the left-hand graph. We would also perceive that the magnitude of the effect (i.e., the slope of the linear function) is larger, that is the line looks steeper. This is problematic as the strength of the relationship is exactly the same in both graphs as it is the same data that is plotted.</p>
 <p>Because of this, we often compute and report a numerical summary measures to quantify both the strength and the magnitude of the relationship. These measures are useful as they are not impacted by the scale we use to plot the data. In the next chapter, you will learn how to quantify the magnitude of the effect and the strength of the linear relationship.</p>
 <p><br></p>
 

@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -495,7 +495,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this set of notes, you will learn how the variation in the outcome can be decomposed into explained and unexplained variation—a process called ANOVA decomposition. Recall that in the previous set of notes, we used the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv">riverview.csv</a> data to examine whether education level is related to income (see the <a href="#riverview">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>city</code>. We will also fit a model by regressing income on education level and storing those results in an object called <code>lm.a</code>.</p>
+<p>In this set of notes, you will learn how the variation in the outcome can be decomposed into explained and unexplained variation—a process called ANOVA decomposition. Recall that in the previous set of notes, we used the <strong>riverview.csv</strong> data to examine whether education level is related to income . To begin, we will load several libraries and import the data into an object called <code>city</code>. We will also fit a model by regressing income on education level and storing those results in an object called <code>lm.a</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
@@ -608,15 +608,19 @@ Coefficients:
 <p>Graphically, the fitted line is a flat line crossing the <span class="math inline">\(y\)</span>-axis at 53.742 (see plot below).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-04-anova-decomposition_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed.</figcaption>
+<div id="fig-employee" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-employee-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed.
+</figcaption>
+<div aria-describedby="fig-employee-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-04-anova-decomposition_files/figure-html/fig-employee-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot of employee incomes versus education levels. The OLS fitted regression line for the intercept-only model is also displayed.">
+</div>
 </figure>
 </div>
 </div>
 </div>
-<p>Does the estimate for <span class="math inline">\(\beta_0\)</span>, 53.742, seem familiar? If not, go back to the exploration of the response variable in the <a href="#sldr">Simple Linear Regression—Description</a> chapter. The estimated intercept in the intercept-only model is the marginal mean value of the response variable. This is not a coincidence.</p>
+<p>Does the estimate for <span class="math inline">\(\beta_0\)</span>, 53.742, seem familiar? If not, go back to the exploration of the response variable in the <strong>Simple Linear Regression—Description</strong> chapter. The estimated intercept in the intercept-only model is the marginal mean value of the response variable. This is not a coincidence.</p>
 <p>Remember that the regression model estimates the mean. Here, since the model is not a conditional model (no <em>X</em> predictor) the expected value (mean) is the marginal mean.</p>
 <p><span class="math display">\[
 \begin{split}
@@ -626,10 +630,14 @@ Coefficients:
 <p>Plotting this we get,</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-04-anova-decomposition_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown.</figcaption>
+<div id="fig-int-only" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-int-only-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2: Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown.
+</figcaption>
+<div aria-describedby="fig-int-only-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-04-anova-decomposition_files/figure-html/fig-int-only-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Plot displaying the OLS fitted regression line for the intercept-only model. Histogram showing the marginal distributon of incomes is also shown.">
+</div>
 </figure>
 </div>
 </div>
@@ -694,37 +702,38 @@ Coefficients:
 <p><span class="math display">\[
 \mathrm{SS_{\mathrm{Total}}} = \mathrm{SS_{\mathrm{Model}}} + \mathrm{SS_{\mathrm{Error}}}
 \]</span></p>
-<p><a href="#fig-anova-decomp" class="quarto-xref">Figure&nbsp;<span>9.1</span></a> illustrates this partitioning in a visual manner.</p>
+<p><a href="#fig-anova-decomp" class="quarto-xref">Figure&nbsp;<span>9.3</span></a> illustrates this partitioning in a visual manner.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-anova-decomp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-anova-decomp" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A visual depiction of the ANOVA decomposition. The total variation as measured by the sum of squares is partitioned into that which is explained by the model (i.e., explained by education level) and that which is not (i.e., unexplained)." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-anova-decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.3: A visual depiction of the ANOVA decomposition. The total variation as measured by the sum of squares is partitioned into that which is explained by the model (i.e., explained by education level) and that which is not (i.e., unexplained).
+</figcaption>
 <div aria-describedby="fig-anova-decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/09-01-anova-decomposition-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+<img src="figs/09-01-anova-decomposition-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="A visual depiction of the ANOVA decomposition. The total variation as measured by the sum of squares is partitioned into that which is explained by the model (i.e., explained by education level) and that which is not (i.e., unexplained).">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anova-decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.1: A visual depiction of the ANOVA decomposition. The total variation as measured by the sum of squares is partitioned into that which is explained by the model (i.e., explained by education level) and that which is not (i.e., unexplained).
-</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Another visualization of the partitioning of the sums of squares is shown in <a href="#fig-anova-decomp-2" class="quarto-xref">Figure&nbsp;<span>9.2</span></a>. This visualization shows the decomposition via a tree diagram.</p>
+<p>Another visualization of the partitioning of the sums of squares is shown in <a href="#fig-anova-decomp-2" class="quarto-xref">Figure&nbsp;<span>9.4</span></a>. This visualization shows the decomposition via a tree diagram.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-anova-decomp-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-anova-decomp-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Another visual depiction of the ANOVA decomposition." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-anova-decomp-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/09-02-anova-decomposition-02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anova-decomp-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.2: Another visual depiction of the ANOVA decomposition.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-anova-decomp-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.4: Another visual depiction of the ANOVA decomposition.
 </figcaption>
+<div aria-describedby="fig-anova-decomp-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/09-02-anova-decomposition-02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Another visual depiction of the ANOVA decomposition.">
+</div>
 </figure>
 </div>
 </div>
 </div>
-<div class="protip">
+<div class="fyi">
+<p><strong>FYI</strong></p>
 <p>The visualizations of the ANOVA decomposition are primarily pedagogical in nature to help you understand the partitioning. In practice, we generally only report the numeric values of the sums of squares (or a metric such as <span class="math inline">\(R^2\)</span>) and do not create a visualization of this decomposition.</p>
 </div>
 <p><br></p>
@@ -799,6 +808,7 @@ r_{x,y}^2 = 0.795^2 = 0.632
 \]</span></p>
 <p>Although these indices seem to measure different aspects of model quality—reduction in error variation, model explained variation, alignment between predictor and outcome, and alignment of the model fitted and observed values—with OLS fitted linear models, these values are all equal. This will not necessarily be true when we estimate model parameters using a different estimation method (e.g., maximum likelihood). Most of the time this value will be reported in applied research as <span class="math inline">\(R^2\)</span>, but as you can see, there are many interpretations of this value under the OLS framework.</p>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>Sometimes <span class="math inline">\(R^2\)</span> is referred to as the Coefficient of Determination.</p>
 </div>
 <p><br></p>
@@ -821,7 +831,8 @@ R^2 &amp;= 0.632, \quad \text{and} \\[2ex]
 \end{split}
 \]</span></p>
 <p>Remember that one interpretation of <span class="math inline">\(R^2\)</span> is that 63.2% of the variation in incomes was explained by the model. Alternatively, 36.8% of the variation in income is not explained by the model; it is residual variation. If the unexplained variation is too large, it suggests to an applied analyst that she could include additional predictors in the model. We will explore this in future chapters.</p>
-<div class="protip">
+<div class="fyi">
+<p><strong>FYI</strong></p>
 <p><span class="math inline">\(R^2\)</span> is one measure of the <em>effect size</em> of a model that educational scientists often report. As such, it is often viewed as a quantification of the quality of the model, with larger <span class="math inline">\(R^2\)</span> values indicating higher quality models. But, be careful! Understanding whether <span class="math inline">\(R^2\)</span> is large or small is based on the domain science. For example in some areas of educational research, an <span class="math inline">\(R^2\)</span> of 0.4 might indicate a really great model, whereas the same <span class="math inline">\(R^2\)</span> of 0.4 in some areas of biological research might be quite small and indicate a poor model.</p>
 <p>Moreover, even if <span class="math inline">\(R^2\)</span> is large in the domain, it does not indicate that the model is a “good” model. In order to evaluate that, we have to study the model’s residuals. We will learn more about that when we learn about the regression model’s distributional assumptions.</p>
 </div>

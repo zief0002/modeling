@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will learn about statistical inference at the model-level for regression models. To do so, we will use the [keith-gpa.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv) data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of $n=100$ 8th-grade students (see the [data codebook](#keith)). To begin, we will load several libraries and import the data into an object called `keith`. 
+In this chapter, you will learn about statistical inference at the model-level for regression models. To do so, we will use the **keith-gpa.csv** data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of $n=100$ 8th-grade students. To begin, we will load several libraries and import the data into an object called `keith`. 
 
 ```{r}
 # Load libraries
@@ -28,7 +28,7 @@ keith
 
 ## Model-Level Inference
 
-In the [previous chapter](#coefinf), we looked at how to carry out statistical tests of hypotheses and quantify the uncertainty associated with the coefficients in the simple regression model. Sometimes you are interested in the model as a whole, rather than the individual parameters. For example, you may be interested in whether a set of predictors *together* explains variation in the outcome. (This is more relevant when we have multiple predictors!) Model-level information is displayed using the `glance()` output from the `{broom}` package. Below we fit a model by regressing GPA on time spent on homework, store those results in an object called `lm.a`, and then print the model-level output.
+In the **Coefficient-Level Inference** chapter, we looked at how to carry out statistical tests of hypotheses and quantify the uncertainty associated with the coefficients in the simple regression model. Sometimes you are interested in the model as a whole, rather than the individual parameters. For example, you may be interested in whether a set of predictors *together* explains variation in the outcome. (This is more relevant when we have multiple predictors!) Model-level information is displayed using the `glance()` output from the `{broom}` package. Below we fit a model by regressing GPA on time spent on homework, store those results in an object called `lm.a`, and then print the model-level output.
 
 ```{r}
 #| eval: false
@@ -60,6 +60,7 @@ To test this, we need to be able to obtain the sampling distribution of $R^2$ to
 ```{r}
 #| label: fig-thought-exp-r2
 #| fig-cap: "Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared."
+#| fig-alt: "Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared."
 #| out-width: "80%"
 #| echo: false
 include_graphics("figs/02-05-thought-experiment-r2.png")
@@ -70,6 +71,7 @@ Below is a density plot of the sampling distribution for $R^2$ based on 1,000 ra
 ```{r}
 #| label: fig-samp-dist-r2
 #| fig-cap: "Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\\rho^2=0$."
+#| fig-alt: "Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\\rho^2=0$."
 #| fig-width: 8
 #| fig-height: 6
 #| out-width: "60%"
@@ -136,6 +138,7 @@ Thus, our observed *F*-value is: $F(1,98)=11.74$. To evaluate this under the nul
 ```{r}
 #| label: fig-prob-f
 #| fig-cap: "Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74."
+#| fig-alt: "Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74."
 #| echo: false
 new = data.frame(
   X = seq(from = 0, to = 20, by = 0.01)
@@ -346,8 +349,10 @@ Re-consider our thought experiment. Again, imagine you have a population that is
 ```{r}
 #| label: fig-thought-exp-confenv
 #| fig-cap: "Thought experiment for sampling samples of size *n* from the population to obtain the fitted regression line."
+#| fig-alt: "Thought experiment for sampling samples of size *n* from the population to obtain the fitted regression line."
 #| out-width: "80%"
 #| echo: false
+
 include_graphics("figs/02-05-thought-experiment-confidence-envelope.png")
 ```
 
@@ -356,7 +361,9 @@ Now, imagine superimposing all of these lines on the same plot.
 ```{r}
 #| label: fig-superimposed-lines
 #| fig-cap: "Plot showing the fitted regression lines for many, many random samples of size *n*."
+#| fig-alt: "Plot showing the fitted regression lines for many, many random samples of size *n*."
 #| echo: false
+
 include_graphics("figs/02-05-superimposed-lines.png")
 ```
 
@@ -367,6 +374,8 @@ For simple regression models, we can plot this directly by including the `geom_s
 ```{r}
 #| label: fig-scatterplot-regline
 #| fig-cap: "GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed."
+#| fig-alt: "GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed."
+
 # Create plot
 ggplot(data = keith, aes(x = homework, y = gpa)) +
   geom_smooth(method = "lm", color = "#c62f4b", fill = "#696969") +
@@ -384,7 +393,9 @@ However, we also now understand that there is uncertainty associated with estima
 ```{r}
 #| label: fig-scatterplot-confenv
 #| fig-cap: "GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar."
+#| fig-alt: "GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar."
 #| echo: false
+
 # Create plot
 d = data.frame(
   x = 6,

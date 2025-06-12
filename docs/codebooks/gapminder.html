@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -149,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07-00-data-codebooks.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/gapminder.html">gapminder.csv</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../codebooks/broadband.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/gapminder.html">gapminder.csv</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -476,7 +476,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07-00-data-codebooks.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/gapminder.html">gapminder.csv</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../codebooks/broadband.html">Data Codebooks</a></li><li class="breadcrumb-item"><a href="../codebooks/gapminder.html">gapminder.csv</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">gapminder.csv</h1>
 </div>
@@ -519,19 +519,20 @@ window.Quarto = {
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 193 × 8
-   country      region income income_level life_exp    co2 co2_change population
-   &lt;chr&gt;        &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
- 1 Afghanistan  Asia     2.03 Level 1          62.7  0.254 increase      37.2   
- 2 Albania      Europe  13.3  Level 3          78.4  1.59  increase       2.88  
- 3 Algeria      Africa  11.6  Level 3          76    3.69  increase      42.2   
- 4 Andorra      Europe  58.3  Level 4          82.1  6.12  decrease       0.077 
- 5 Angola       Africa   6.93 Level 2          64.6  1.12  decrease      30.8   
- 6 Antigua and… Ameri…  21    Level 3          76.2  5.88  increase       0.0963
- 7 Argentina    Ameri…  22.7  Level 3          76.5  4.41  decrease      44.4   
- 8 Armenia      Europe  12.7  Level 3          75.6  1.89  decrease       2.95  
- 9 Australia    Asia    49    Level 4          82.9 16.9   decrease      24.9   
-10 Austria      Europe  55.3  Level 4          82.1  7.75  decrease       8.89  
-# ℹ 183 more rows</code></pre>
+   country       region income income_level life_exp    co2 co2_change
+   &lt;chr&gt;         &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     
+ 1 Afghanistan   Asia     2.03 Level 1          62.7  0.254 increase  
+ 2 Albania       Europe  13.3  Level 3          78.4  1.59  increase  
+ 3 Algeria       Africa  11.6  Level 3          76    3.69  increase  
+ 4 Andorra       Europe  58.3  Level 4          82.1  6.12  decrease  
+ 5 Angola        Africa   6.93 Level 2          64.6  1.12  decrease  
+ 6 Antigua and … Ameri…  21    Level 3          76.2  5.88  increase  
+ 7 Argentina     Ameri…  22.7  Level 3          76.5  4.41  decrease  
+ 8 Armenia       Europe  12.7  Level 3          75.6  1.89  decrease  
+ 9 Australia     Asia    49    Level 4          82.9 16.9   decrease  
+10 Austria       Europe  55.3  Level 4          82.1  7.75  decrease  
+# ℹ 183 more rows
+# ℹ 1 more variable: population &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p><br></p>

@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-42960d1493bdc3a4b014a12005315b74.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -524,20 +524,20 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 23,272
 Columns: 14
-$ character         &lt;chr&gt; "14", "88", "99", "107", "'Spinner", "\"Thumper\" Mo…
-$ comic             &lt;chr&gt; "Marvel", "Marvel", "Marvel", "Marvel", "Marvel", "M…
-$ reality           &lt;chr&gt; "Earth-616", "Earth-616", "Earth-616", "Earth-616", …
-$ identity          &lt;chr&gt; "Secret Identity", "Public Identity", "Secret Identi…
-$ alignment         &lt;chr&gt; "Bad", "Bad", "Neutral", "Neutral", "Good", "Bad", "…
-$ eye_color         &lt;chr&gt; NA, "Blue", "Blue", "Green", NA, NA, NA, "Blue", NA,…
-$ hair_color        &lt;chr&gt; NA, "Blond", NA, NA, NA, "Bald", NA, "White", NA, "B…
-$ sex               &lt;chr&gt; "Female", "Male", "Male", "Male", "Male", "Male", "M…
-$ lgbtq             &lt;chr&gt; "No", "No", "No", "No", "No", "No", "No", "No", "No"…
-$ lgbtq_note        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-$ alive             &lt;chr&gt; "Living", "Living", "Living", "Living", "Living", "L…
-$ appearances       &lt;dbl&gt; 1, 3, 1, 1, NA, NA, 1, 1, 1, 1, 3, 1, 2, 1, 1, 10, N…
-$ first_appear_date &lt;chr&gt; "1994, November 01", "1994, March 01", "1994, Novemb…
-$ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 2011…</code></pre>
+$ character         &lt;chr&gt; "14", "88", "99", "107", "'Spinner", "\"Th…
+$ comic             &lt;chr&gt; "Marvel", "Marvel", "Marvel", "Marvel", "M…
+$ reality           &lt;chr&gt; "Earth-616", "Earth-616", "Earth-616", "Ea…
+$ identity          &lt;chr&gt; "Secret Identity", "Public Identity", "Sec…
+$ alignment         &lt;chr&gt; "Bad", "Bad", "Neutral", "Neutral", "Good"…
+$ eye_color         &lt;chr&gt; NA, "Blue", "Blue", "Green", NA, NA, NA, "…
+$ hair_color        &lt;chr&gt; NA, "Blond", NA, NA, NA, "Bald", NA, "Whit…
+$ sex               &lt;chr&gt; "Female", "Male", "Male", "Male", "Male", …
+$ lgbtq             &lt;chr&gt; "No", "No", "No", "No", "No", "No", "No", …
+$ lgbtq_note        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ alive             &lt;chr&gt; "Living", "Living", "Living", "Living", "L…
+$ appearances       &lt;dbl&gt; 1, 3, 1, 1, NA, NA, 1, 1, 1, 1, 3, 1, 2, 1…
+$ first_appear_date &lt;chr&gt; "1994, November 01", "1994, March 01", "19…
+$ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, …</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -555,20 +555,20 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 23,272
 Columns: 14
-$ character         &lt;chr&gt; "14", "88", "99", "107", "'Spinner", "\"Thumper\" Mo…
-$ comic             &lt;chr&gt; "Marvel", "Marvel", "Marvel", "Marvel", "Marvel", "M…
-$ reality           &lt;chr&gt; "Earth-616", "Earth-616", "Earth-616", "Earth-616", …
-$ identity          &lt;chr&gt; "Secret Identity", "Public Identity", "Secret Identi…
-$ alignment         &lt;chr&gt; "Bad", "Bad", "Neutral", "Neutral", "Good", "Bad", "…
-$ eye_color         &lt;chr&gt; NA, "Blue", "Blue", "Green", NA, NA, NA, "Blue", NA,…
-$ hair_color        &lt;chr&gt; NA, "Blond", NA, NA, NA, "Bald", NA, "White", NA, "B…
-$ sex               &lt;chr&gt; "Female", "Male", "Male", "Male", "Male", "Male", "M…
-$ lgbtq             &lt;chr&gt; "No", "No", "No", "No", "No", "No", "No", "No", "No"…
-$ lgbtq_note        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-$ alive             &lt;chr&gt; "Living", "Living", "Living", "Living", "Living", "L…
-$ appearances       &lt;dbl&gt; 1, 3, 1, 1, NA, NA, 1, 1, 1, 1, 3, 1, 2, 1, 1, 10, N…
-$ first_appear_date &lt;chr&gt; "1994, November 01", "1994, March 01", "1994, Novemb…
-$ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 2011…</code></pre>
+$ character         &lt;chr&gt; "14", "88", "99", "107", "'Spinner", "\"Th…
+$ comic             &lt;chr&gt; "Marvel", "Marvel", "Marvel", "Marvel", "M…
+$ reality           &lt;chr&gt; "Earth-616", "Earth-616", "Earth-616", "Ea…
+$ identity          &lt;chr&gt; "Secret Identity", "Public Identity", "Sec…
+$ alignment         &lt;chr&gt; "Bad", "Bad", "Neutral", "Neutral", "Good"…
+$ eye_color         &lt;chr&gt; NA, "Blue", "Blue", "Green", NA, NA, NA, "…
+$ hair_color        &lt;chr&gt; NA, "Blond", NA, NA, NA, "Bald", NA, "Whit…
+$ sex               &lt;chr&gt; "Female", "Male", "Male", "Male", "Male", …
+$ lgbtq             &lt;chr&gt; "No", "No", "No", "No", "No", "No", "No", …
+$ lgbtq_note        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ alive             &lt;chr&gt; "Living", "Living", "Living", "Living", "L…
+$ appearances       &lt;dbl&gt; 1, 3, 1, 1, NA, NA, 1, 1, 1, 1, 3, 1, 2, 1…
+$ first_appear_date &lt;chr&gt; "1994, November 01", "1994, March 01", "19…
+$ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, …</code></pre>
 </div>
 </div>
 <p>Note since the <code>glimpse()</code> function did NOT include any additional arguments, we do not include anything between the parentheses after we pipe. Here is another example that illustrate the use of the pipe operator.</p>
@@ -668,21 +668,22 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(first_appear_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 23,272 × 14
-   character   comic reality identity alignment eye_color hair_color sex   lgbtq
-   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;
- 1 Richard Oc… DC    New Ea… Secret … &lt;NA&gt;      Grey      Black      Male  No   
- 2 Arthur Pen… DC    New Ea… Public … Good      Brown     Brown      Male  No   
- 3 Bedivere    DC    New Ea… &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 4 Franklin D… DC    New Ea… Public … Good      &lt;NA&gt;      Grey       Male  No   
- 5 Gareth      DC    New Ea… &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 6 Gawain      DC    New Ea… Public … Good      &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 7 Guinevere   DC    New Ea… Public … Good      &lt;NA&gt;      Blond      Fema… No   
- 8 Lady of th… DC    New Ea… &lt;NA&gt;     Good      Blue      Blue       Fema… No   
- 9 Lancelot    DC    New Ea… Public … Good      &lt;NA&gt;      &lt;NA&gt;       Male  No   
-10 Merlin      DC    New Ea… Secret … Neutral   Black     White      Male  No   
+   character     comic reality identity alignment eye_color hair_color
+   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     
+ 1 Richard Occu… DC    New Ea… Secret … &lt;NA&gt;      Grey      Black     
+ 2 Arthur Pendr… DC    New Ea… Public … Good      Brown     Brown     
+ 3 Bedivere      DC    New Ea… &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      
+ 4 Franklin Del… DC    New Ea… Public … Good      &lt;NA&gt;      Grey      
+ 5 Gareth        DC    New Ea… &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      
+ 6 Gawain        DC    New Ea… Public … Good      &lt;NA&gt;      &lt;NA&gt;      
+ 7 Guinevere     DC    New Ea… Public … Good      &lt;NA&gt;      Blond     
+ 8 Lady of the … DC    New Ea… &lt;NA&gt;     Good      Blue      Blue      
+ 9 Lancelot      DC    New Ea… Public … Good      &lt;NA&gt;      &lt;NA&gt;      
+10 Merlin        DC    New Ea… Secret … Neutral   Black     White     
 # ℹ 23,262 more rows
-# ℹ 5 more variables: lgbtq_note &lt;chr&gt;, alive &lt;chr&gt;, appearances &lt;dbl&gt;,
-#   first_appear_date &lt;chr&gt;, first_appear_year &lt;dbl&gt;</code></pre>
+# ℹ 7 more variables: sex &lt;chr&gt;, lgbtq &lt;chr&gt;, lgbtq_note &lt;chr&gt;,
+#   alive &lt;chr&gt;, appearances &lt;dbl&gt;, first_appear_date &lt;chr&gt;,
+#   first_appear_year &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Here we see the earliest character in these data (Richard Occult) appeared in 1935. This, however, does not give us the first LBGTQ character. To determine this, we need to sort on LGBTQ status in addition to year of first appearance.</p>
@@ -693,21 +694,22 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(lgbtq, first_appear_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 23,272 × 14
-   character   comic reality identity alignment eye_color hair_color sex   lgbtq
-   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;
- 1 Richard Oc… DC    New Ea… Secret … &lt;NA&gt;      Grey      Black      Male  No   
- 2 Arthur Pen… DC    New Ea… Public … Good      Brown     Brown      Male  No   
- 3 Bedivere    DC    New Ea… &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 4 Franklin D… DC    New Ea… Public … Good      &lt;NA&gt;      Grey       Male  No   
- 5 Gareth      DC    New Ea… &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 6 Gawain      DC    New Ea… Public … Good      &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 7 Guinevere   DC    New Ea… Public … Good      &lt;NA&gt;      Blond      Fema… No   
- 8 Lady of th… DC    New Ea… &lt;NA&gt;     Good      Blue      Blue       Fema… No   
- 9 Lancelot    DC    New Ea… Public … Good      &lt;NA&gt;      &lt;NA&gt;       Male  No   
-10 Merlin      DC    New Ea… Secret … Neutral   Black     White      Male  No   
+   character     comic reality identity alignment eye_color hair_color
+   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     
+ 1 Richard Occu… DC    New Ea… Secret … &lt;NA&gt;      Grey      Black     
+ 2 Arthur Pendr… DC    New Ea… Public … Good      Brown     Brown     
+ 3 Bedivere      DC    New Ea… &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      
+ 4 Franklin Del… DC    New Ea… Public … Good      &lt;NA&gt;      Grey      
+ 5 Gareth        DC    New Ea… &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      
+ 6 Gawain        DC    New Ea… Public … Good      &lt;NA&gt;      &lt;NA&gt;      
+ 7 Guinevere     DC    New Ea… Public … Good      &lt;NA&gt;      Blond     
+ 8 Lady of the … DC    New Ea… &lt;NA&gt;     Good      Blue      Blue      
+ 9 Lancelot      DC    New Ea… Public … Good      &lt;NA&gt;      &lt;NA&gt;      
+10 Merlin        DC    New Ea… Secret … Neutral   Black     White     
 # ℹ 23,262 more rows
-# ℹ 5 more variables: lgbtq_note &lt;chr&gt;, alive &lt;chr&gt;, appearances &lt;dbl&gt;,
-#   first_appear_date &lt;chr&gt;, first_appear_year &lt;dbl&gt;</code></pre>
+# ℹ 7 more variables: sex &lt;chr&gt;, lgbtq &lt;chr&gt;, lgbtq_note &lt;chr&gt;,
+#   alive &lt;chr&gt;, appearances &lt;dbl&gt;, first_appear_date &lt;chr&gt;,
+#   first_appear_year &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Because <code>No</code> is alphabetically before <code>Yes</code>, the non-LGBTQ characters are printed first. Because only the first 10 rows of a tibble are printed (and all 10 are non-LGBTQ characters), we still can’t quite answer our research question. If you want to see all of the sorted data or operate on it further, you need to (a) explicitly tell R to print all of the rows, or (b) assign the output into an object which can be viewed and scrolled through by clicking on the object in the RStudio <code>Environment</code> pane.</p>
@@ -720,21 +722,22 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">N =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 23,272 × 14
-   character   comic reality identity alignment eye_color hair_color sex   lgbtq
-   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;
- 1 Richard Oc… DC    New Ea… Secret … &lt;NA&gt;      Grey      Black      Male  No   
- 2 Arthur Pen… DC    New Ea… Public … Good      Brown     Brown      Male  No   
- 3 Bedivere    DC    New Ea… &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 4 Franklin D… DC    New Ea… Public … Good      &lt;NA&gt;      Grey       Male  No   
- 5 Gareth      DC    New Ea… &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 6 Gawain      DC    New Ea… Public … Good      &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 7 Guinevere   DC    New Ea… Public … Good      &lt;NA&gt;      Blond      Fema… No   
- 8 Lady of th… DC    New Ea… &lt;NA&gt;     Good      Blue      Blue       Fema… No   
- 9 Lancelot    DC    New Ea… Public … Good      &lt;NA&gt;      &lt;NA&gt;       Male  No   
-10 Merlin      DC    New Ea… Secret … Neutral   Black     White      Male  No   
+   character     comic reality identity alignment eye_color hair_color
+   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     
+ 1 Richard Occu… DC    New Ea… Secret … &lt;NA&gt;      Grey      Black     
+ 2 Arthur Pendr… DC    New Ea… Public … Good      Brown     Brown     
+ 3 Bedivere      DC    New Ea… &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      
+ 4 Franklin Del… DC    New Ea… Public … Good      &lt;NA&gt;      Grey      
+ 5 Gareth        DC    New Ea… &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      
+ 6 Gawain        DC    New Ea… Public … Good      &lt;NA&gt;      &lt;NA&gt;      
+ 7 Guinevere     DC    New Ea… Public … Good      &lt;NA&gt;      Blond     
+ 8 Lady of the … DC    New Ea… &lt;NA&gt;     Good      Blue      Blue      
+ 9 Lancelot      DC    New Ea… Public … Good      &lt;NA&gt;      &lt;NA&gt;      
+10 Merlin        DC    New Ea… Secret … Neutral   Black     White     
 # ℹ 23,262 more rows
-# ℹ 5 more variables: lgbtq_note &lt;chr&gt;, alive &lt;chr&gt;, appearances &lt;dbl&gt;,
-#   first_appear_date &lt;chr&gt;, first_appear_year &lt;dbl&gt;</code></pre>
+# ℹ 7 more variables: sex &lt;chr&gt;, lgbtq &lt;chr&gt;, lgbtq_note &lt;chr&gt;,
+#   alive &lt;chr&gt;, appearances &lt;dbl&gt;, first_appear_date &lt;chr&gt;,
+#   first_appear_year &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Another way to view the entire set of data is to assign the sorted data into an object and then click on that object in the environment pane.</p>
@@ -766,21 +769,22 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(lgbtq), first_appear_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 23,272 × 14
-   character   comic reality identity alignment eye_color hair_color sex   lgbtq
-   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;
- 1 Jack Casey  Marv… Earth-… No Dual… Good      &lt;NA&gt;      Brown      Male  Yes  
- 2 Mortimer D… DC    New Ea… Secret … Bad       Brown     Brown      Male  Yes  
- 3 Roger Aubr… Marv… Earth-… Secret … &lt;NA&gt;      Blue      Blond      Male  Yes  
- 4 Chili Storm Marv… Earth-… Public … &lt;NA&gt;      Green     Red        Fema… Yes  
- 5 Loki Laufe… Marv… Earth-… No Dual… Neutral   Green     Black      Gend… Yes  
- 6 Hartley Ra… DC    New Ea… Secret … Good      Blue      Red        Male  Yes  
- 7 Jonathan C… Marv… Earth-… Secret … Good      Blue      Red        Male  Yes  
- 8 Brain       DC    New Ea… Secret … Bad       &lt;NA&gt;      &lt;NA&gt;       Male  Yes  
- 9 Mallah      DC    New Ea… Secret … Bad       Brown     Brown      Male  Yes  
-10 Natalia Ro… Marv… Earth-… Public … Good      Green     Red        Fema… Yes  
+   character     comic reality identity alignment eye_color hair_color
+   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     
+ 1 Jack Casey    Marv… Earth-… No Dual… Good      &lt;NA&gt;      Brown     
+ 2 Mortimer Dra… DC    New Ea… Secret … Bad       Brown     Brown     
+ 3 Roger Aubrey  Marv… Earth-… Secret … &lt;NA&gt;      Blue      Blond     
+ 4 Chili Storm   Marv… Earth-… Public … &lt;NA&gt;      Green     Red       
+ 5 Loki Laufeys… Marv… Earth-… No Dual… Neutral   Green     Black     
+ 6 Hartley Rath… DC    New Ea… Secret … Good      Blue      Red       
+ 7 Jonathan Clay Marv… Earth-… Secret … Good      Blue      Red       
+ 8 Brain         DC    New Ea… Secret … Bad       &lt;NA&gt;      &lt;NA&gt;      
+ 9 Mallah        DC    New Ea… Secret … Bad       Brown     Brown     
+10 Natalia Roma… Marv… Earth-… Public … Good      Green     Red       
 # ℹ 23,262 more rows
-# ℹ 5 more variables: lgbtq_note &lt;chr&gt;, alive &lt;chr&gt;, appearances &lt;dbl&gt;,
-#   first_appear_date &lt;chr&gt;, first_appear_year &lt;dbl&gt;</code></pre>
+# ℹ 7 more variables: sex &lt;chr&gt;, lgbtq &lt;chr&gt;, lgbtq_note &lt;chr&gt;,
+#   alive &lt;chr&gt;, appearances &lt;dbl&gt;, first_appear_date &lt;chr&gt;,
+#   first_appear_year &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -796,21 +800,22 @@ $ first_appear_year &lt;dbl&gt; 1994, 1994, 1994, 1994, 2007, 1965, 1991, 2010, 
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lgbtq <span class="sc">==</span> <span class="st">"Yes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 155 × 14
-   character   comic reality identity alignment eye_color hair_color sex   lgbtq
-   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;
- 1 Achilles W… DC    New Ea… Secret … Good      Blue      Blond      Male  Yes  
- 2 Aimee (Cli… Marv… Earth-… No Dual… Good      Black     Pink       Fema… Yes  
- 3 Akihiro     Marv… Earth-… Secret … Bad       Blue      Black      Male  Yes  
- 4 Alana Jobs… Marv… Earth-… Secret … Good      Green     Brown      Fema… Yes  
- 5 Aleksandr … DC    New Ea… Secret … Good      &lt;NA&gt;      Brown      Male  Yes  
- 6 Alexander … DC    New Ea… Public … Bad       Brown     Red        Male  Yes  
- 7 Amy Chen    Marv… Earth-… Secret … Neutral   Black     Black      Fema… Yes  
- 8 Anaya       DC    New Ea… &lt;NA&gt;     Good      Brown     Brown      Fema… Yes  
- 9 Anissa Pie… DC    New Ea… Secret … Good      Brown     Black      Fema… Yes  
-10 Annabelle … Marv… Earth-… Public … Good      Blue      Brown      Fema… Yes  
+   character     comic reality identity alignment eye_color hair_color
+   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     
+ 1 Achilles War… DC    New Ea… Secret … Good      Blue      Blond     
+ 2 Aimee (Clint… Marv… Earth-… No Dual… Good      Black     Pink      
+ 3 Akihiro       Marv… Earth-… Secret … Bad       Blue      Black     
+ 4 Alana Jobson  Marv… Earth-… Secret … Good      Green     Brown     
+ 5 Aleksandr Cr… DC    New Ea… Secret … Good      &lt;NA&gt;      Brown     
+ 6 Alexander Bu… DC    New Ea… Public … Bad       Brown     Red       
+ 7 Amy Chen      Marv… Earth-… Secret … Neutral   Black     Black     
+ 8 Anaya         DC    New Ea… &lt;NA&gt;     Good      Brown     Brown     
+ 9 Anissa Pierce DC    New Ea… Secret … Good      Brown     Black     
+10 Annabelle Ri… Marv… Earth-… Public … Good      Blue      Brown     
 # ℹ 145 more rows
-# ℹ 5 more variables: lgbtq_note &lt;chr&gt;, alive &lt;chr&gt;, appearances &lt;dbl&gt;,
-#   first_appear_date &lt;chr&gt;, first_appear_year &lt;dbl&gt;</code></pre>
+# ℹ 7 more variables: sex &lt;chr&gt;, lgbtq &lt;chr&gt;, lgbtq_note &lt;chr&gt;,
+#   alive &lt;chr&gt;, appearances &lt;dbl&gt;, first_appear_date &lt;chr&gt;,
+#   first_appear_year &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Note that the output from this computation (data for the LGBTQ characters) is only printed to the screen. If you want to keep the filtered data or operate on it further, you need to assign the output into an object.</p>
@@ -1054,21 +1059,22 @@ Caused by error:
 <span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 23,272 × 15
-   character   comic reality identity alignment eye_color hair_color sex   lgbtq
-   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;
- 1 "14"        Marv… Earth-… Secret … Bad       &lt;NA&gt;      &lt;NA&gt;       Fema… No   
- 2 "88"        Marv… Earth-… Public … Bad       Blue      Blond      Male  No   
- 3 "99"        Marv… Earth-… Secret … Neutral   Blue      &lt;NA&gt;       Male  No   
- 4 "107"       Marv… Earth-… Secret … Neutral   Green     &lt;NA&gt;       Male  No   
- 5 "'Spinner"  Marv… Earth-… Secret … Good      &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 6 "\"Thumper… Marv… Earth-… Secret … Bad       &lt;NA&gt;      Bald       Male  No   
- 7 "11-Ball"   Marv… Earth-… Secret … Bad       &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 8 "115 (Legi… Marv… Earth-… Secret … Neutral   Blue      White      Fema… No   
- 9 "181 (Legi… Marv… Earth-… Secret … Neutral   &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  No   
-10 "1X"        Marv… Earth-… Public … Good      &lt;NA&gt;      Blond      Male  No   
+   character     comic reality identity alignment eye_color hair_color
+   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     
+ 1 "14"          Marv… Earth-… Secret … Bad       &lt;NA&gt;      &lt;NA&gt;      
+ 2 "88"          Marv… Earth-… Public … Bad       Blue      Blond     
+ 3 "99"          Marv… Earth-… Secret … Neutral   Blue      &lt;NA&gt;      
+ 4 "107"         Marv… Earth-… Secret … Neutral   Green     &lt;NA&gt;      
+ 5 "'Spinner"    Marv… Earth-… Secret … Good      &lt;NA&gt;      &lt;NA&gt;      
+ 6 "\"Thumper\"… Marv… Earth-… Secret … Bad       &lt;NA&gt;      Bald      
+ 7 "11-Ball"     Marv… Earth-… Secret … Bad       &lt;NA&gt;      &lt;NA&gt;      
+ 8 "115 (Legion… Marv… Earth-… Secret … Neutral   Blue      White     
+ 9 "181 (Legion… Marv… Earth-… Secret … Neutral   &lt;NA&gt;      &lt;NA&gt;      
+10 "1X"          Marv… Earth-… Public … Good      &lt;NA&gt;      Blond     
 # ℹ 23,262 more rows
-# ℹ 6 more variables: lgbtq_note &lt;chr&gt;, alive &lt;chr&gt;, appearances &lt;dbl&gt;,
-#   first_appear_date &lt;chr&gt;, first_appear_year &lt;dbl&gt;, num_years &lt;dbl&gt;</code></pre>
+# ℹ 8 more variables: sex &lt;chr&gt;, lgbtq &lt;chr&gt;, lgbtq_note &lt;chr&gt;,
+#   alive &lt;chr&gt;, appearances &lt;dbl&gt;, first_appear_date &lt;chr&gt;,
+#   first_appear_year &lt;dbl&gt;, num_years &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <div class="fyi">
@@ -1096,21 +1102,22 @@ Caused by error:
 <span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 23,272 × 16
-   character   comic reality identity alignment eye_color hair_color sex   lgbtq
-   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;
- 1 "14"        Marv… Earth-… Secret … Bad       &lt;NA&gt;      &lt;NA&gt;       Fema… No   
- 2 "88"        Marv… Earth-… Public … Bad       Blue      Blond      Male  No   
- 3 "99"        Marv… Earth-… Secret … Neutral   Blue      &lt;NA&gt;       Male  No   
- 4 "107"       Marv… Earth-… Secret … Neutral   Green     &lt;NA&gt;       Male  No   
- 5 "'Spinner"  Marv… Earth-… Secret … Good      &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 6 "\"Thumper… Marv… Earth-… Secret … Bad       &lt;NA&gt;      Bald       Male  No   
- 7 "11-Ball"   Marv… Earth-… Secret … Bad       &lt;NA&gt;      &lt;NA&gt;       Male  No   
- 8 "115 (Legi… Marv… Earth-… Secret … Neutral   Blue      White      Fema… No   
- 9 "181 (Legi… Marv… Earth-… Secret … Neutral   &lt;NA&gt;      &lt;NA&gt;       &lt;NA&gt;  No   
-10 "1X"        Marv… Earth-… Public … Good      &lt;NA&gt;      Blond      Male  No   
+   character     comic reality identity alignment eye_color hair_color
+   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     
+ 1 "14"          Marv… Earth-… Secret … Bad       &lt;NA&gt;      &lt;NA&gt;      
+ 2 "88"          Marv… Earth-… Public … Bad       Blue      Blond     
+ 3 "99"          Marv… Earth-… Secret … Neutral   Blue      &lt;NA&gt;      
+ 4 "107"         Marv… Earth-… Secret … Neutral   Green     &lt;NA&gt;      
+ 5 "'Spinner"    Marv… Earth-… Secret … Good      &lt;NA&gt;      &lt;NA&gt;      
+ 6 "\"Thumper\"… Marv… Earth-… Secret … Bad       &lt;NA&gt;      Bald      
+ 7 "11-Ball"     Marv… Earth-… Secret … Bad       &lt;NA&gt;      &lt;NA&gt;      
+ 8 "115 (Legion… Marv… Earth-… Secret … Neutral   Blue      White     
+ 9 "181 (Legion… Marv… Earth-… Secret … Neutral   &lt;NA&gt;      &lt;NA&gt;      
+10 "1X"          Marv… Earth-… Public … Good      &lt;NA&gt;      Blond     
 # ℹ 23,262 more rows
-# ℹ 7 more variables: lgbtq_note &lt;chr&gt;, alive &lt;chr&gt;, appearances &lt;dbl&gt;,
-#   first_appear_date &lt;chr&gt;, first_appear_year &lt;dbl&gt;, num_years &lt;dbl&gt;,
+# ℹ 9 more variables: sex &lt;chr&gt;, lgbtq &lt;chr&gt;, lgbtq_note &lt;chr&gt;,
+#   alive &lt;chr&gt;, appearances &lt;dbl&gt;, first_appear_date &lt;chr&gt;,
+#   first_appear_year &lt;dbl&gt;, num_years &lt;dbl&gt;,
 #   centered_appearances &lt;dbl&gt;</code></pre>
 </div>
 </div>

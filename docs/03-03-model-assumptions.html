@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-44b64cbf1a1a4e5718d81f3787ba6ba1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -149,9 +149,9 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-00-regression-inference.html">Regression Inference</a></li><li class="breadcrumb-item"><a href="./03-03-model-assumptions.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Assumptions Underlying the Regression Model</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span id="assumptions" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Assumptions Underlying the Regression Model</span></span></h1>
+        </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -476,9 +476,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-00-regression-inference.html">Regression Inference</a></li><li class="breadcrumb-item"><a href="./03-03-model-assumptions.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Assumptions Underlying the Regression Model</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="assumptions" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Assumptions Underlying the Regression Model</span></span></h1>
+<h1 class="title d-none d-lg-block"><span id="assumptions" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Assumptions Underlying the Regression Model</span></span></h1>
 </div>
 
 
@@ -495,7 +495,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this chapter, you will learn about the various distributional assumptions underlying the regression model. To do so, we will return to the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA (see the <a href="#keith">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
+<p>In this chapter, you will learn about the various distributional assumptions underlying the regression model. To do so, we will return to the <strong>keith-gpa.csv</strong> data to examine whether time spent on homework is related to GPA. To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
@@ -548,14 +548,14 @@ Y_i = \beta_0 + \beta_1(X_i) + \epsilon_i
 <p>You can remember these assumptions using the mnemonic LINE. To better understand these assumptions, imagine that we had the population of <em>X</em>- and <em>Y</em>-values in which all the distributional assumptions were valid. Now imagine we plotted the ordered pairs, <span class="math inline">\((x_i,y_i)\)</span>, and we also regressed the <em>Y</em>-values on the <em>X</em>-values and plotted this regression line as well. A visual depiction of this is shown in <a href="06-01-intro-to-interaction-effects.html#fig-assumptions" class="quarto-xref">Figure&nbsp;<span>21.7</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-assumptions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-assumptions" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A visual depiction of *X*- and *Y*-values and regression line from a population in which the distributional assumptions are valid." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/regression-assumptions.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.1: A visual depiction of <em>X</em>- and <em>Y</em>-values and regression line from a population in which the distributional assumptions are valid.
 </figcaption>
+<div aria-describedby="fig-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/regression-assumptions.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="A visual depiction of *X*- and *Y*-values and regression line from a population in which the distributional assumptions are valid.">
+</div>
 </figure>
 </div>
 </div>
@@ -581,14 +581,14 @@ Figure&nbsp;13.1: A visual depiction of <em>X</em>- and <em>Y</em>-values and re
 <p>Remember, subtracting a constant from each value in a distribution shifts the center of the distribution. Pick any conditional distribution from Figure 1, which is a normal distribution centered at the <span class="math inline">\(\hat{Y}_i\)</span> value. Now subtract the <span class="math inline">\(\hat{Y}_i\)</span>-value from each <em>Y</em>-value. This will re-center the normal distribution at 0. Thus, the conditional distribution of residuals is normally distributed, has a mean of 0, and has the same variance (or standard deviation) as the conditional distribution of <em>Y</em>-values. If we transform every <em>Y</em>-value in the population, from <a href="06-01-intro-to-interaction-effects.html#fig-assumptions" class="quarto-xref">Figure&nbsp;<span>21.7</span></a>, to a residual value, and re-plot them, the visual depiction now looks like this.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-assumptions-residuals" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-assumptions-residuals" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A visual depiction of the simple regression model's assumptions about the residuals." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-assumptions-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/regression-assumptions-residuals.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assumptions-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-assumptions-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.2: A visual depiction of the simple regression model’s assumptions about the residuals.
 </figcaption>
+<div aria-describedby="fig-assumptions-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/regression-assumptions-residuals.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="A visual depiction of the simple regression model's assumptions about the residuals.">
+</div>
 </figure>
 </div>
 </div>
@@ -617,14 +617,14 @@ Figure&nbsp;13.2: A visual depiction of the simple regression model’s assumpti
 <p>The linearity assumption is critical in specifying the structural part of the model. Fitting a linear model when the TRUE relationship between <em>X</em> and <em>Y</em> is non-linear may be quite problematic; we call this mis-specifying the model. Coefficients may be wrong. Predictions may also be wrong, especially at the extreme values for <em>X</em>. More importantly, mis-specified models lead to misinformed understandings of the world.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-nonlinear" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-nonlinear" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The left-hand plot shows a correctly specified linear model. The right-hand plot shows a mis-specified linear model. The true underlying model is non-linear and is shown by the dashed, raspberry line. Using the linear fitted model to make predictions would be quite misleading, especially at extreme values of *X*." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-nonlinear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-nonlinear-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nonlinear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-nonlinear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.3: The left-hand plot shows a correctly specified linear model. The right-hand plot shows a mis-specified linear model. The true underlying model is non-linear and is shown by the dashed, raspberry line. Using the linear fitted model to make predictions would be quite misleading, especially at extreme values of <em>X</em>.
 </figcaption>
+<div aria-describedby="fig-nonlinear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-nonlinear-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The left-hand plot shows a correctly specified linear model. The right-hand plot shows a mis-specified linear model. The true underlying model is non-linear and is shown by the dashed, raspberry line. Using the linear fitted model to make predictions would be quite misleading, especially at extreme values of *X*.">
+</div>
 </figure>
 </div>
 </div>
@@ -633,14 +633,14 @@ Figure&nbsp;13.3: The left-hand plot shows a correctly specified linear model. T
 <p>Since the linearity assumption also means that the average residual is 0, if we are evaluating this assumption by looking at a plot of the residuals, we would want to see residuals above (positive) and below (negative) 0. Figure 4 shows scatterplots of the residuals versus the <em>X</em>-values from the two fitted lines. In the left-hand plot, when the residuals are based on the true model, we see that the residuals are scattered above and below 0 at each value of <em>X</em>. In the right-hand plot, in which the residuals were computed based on a mis-specified linear model, we again see that the residuals are clustered above, or below 0, depending on the value of <em>X</em>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-nonlinear-residuals" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-nonlinear-residuals" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The left-hand plot shows the residuals from the correctly specified linear model versus the *X*-values. The right-hand plot shows the residuals from the mis-specified linear model versus the *X*-values. A reference line at $Y=0$ has also been added to the plot to aid interpretation." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-nonlinear-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-nonlinear-residuals-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nonlinear-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-nonlinear-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.4: The left-hand plot shows the residuals from the correctly specified linear model versus the <em>X</em>-values. The right-hand plot shows the residuals from the mis-specified linear model versus the <em>X</em>-values. A reference line at <span class="math inline">\(Y=0\)</span> has also been added to the plot to aid interpretation.
 </figcaption>
+<div aria-describedby="fig-nonlinear-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-nonlinear-residuals-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The left-hand plot shows the residuals from the correctly specified linear model versus the *X*-values. The right-hand plot shows the residuals from the mis-specified linear model versus the *X*-values. A reference line at $Y=0$ has also been added to the plot to aid interpretation.">
+</div>
 </figure>
 </div>
 </div>
@@ -662,14 +662,14 @@ Figure&nbsp;13.4: The left-hand plot shows the residuals from the correctly spec
 <p>Normal distributions are symmetric with the density of observations close to the mean. This means that in the scatterplot of the residuals versus the <em>X</em>-values, we want to see symmetry around 0 at each <em>X</em>-value and that most of the residuals are “close” to 0 (“Close” is hard to define as it depends on the standard deviation, remember that 68% of the residuals should be within one standard deviation, 95% within two standard deviations, etc.)</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-normality-residuals" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-normality-residuals" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The left-hand plot shows conditional distributions of normally distributed residuals. The right-hand plot shows conditional distributions that are not normally distributed. The line $Y=0$ has also been included to aid interpretation." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-normality-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-normality-residuals-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normality-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-normality-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.5: The left-hand plot shows conditional distributions of normally distributed residuals. The right-hand plot shows conditional distributions that are not normally distributed. The line <span class="math inline">\(Y=0\)</span> has also been included to aid interpretation.
 </figcaption>
+<div aria-describedby="fig-normality-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-normality-residuals-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The left-hand plot shows conditional distributions of normally distributed residuals. The right-hand plot shows conditional distributions that are not normally distributed. The line $Y=0$ has also been included to aid interpretation.">
+</div>
 </figure>
 </div>
 </div>
@@ -679,14 +679,14 @@ Figure&nbsp;13.5: The left-hand plot shows conditional distributions of normally
 <p>Researchers often evaluate the normality assumption by examining the shape of the marginal distribution of the residuals. Figure 5 shows density plots of the marginal distributions for the same two sets of residuals plotted in Figure 4.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-normality-residuals-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-normality-residuals-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The left-hand plot shows conditional distributions of normally distributed residuals. The right-hand plot shows conditional distributions that are not normally distributed. The line $Y=0$ has also been included to aid interpretation." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-normality-residuals-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-normality-residuals-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normality-residuals-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-normality-residuals-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.6: The left-hand plot shows conditional distributions of normally distributed residuals. The right-hand plot shows conditional distributions that are not normally distributed. The line <span class="math inline">\(Y=0\)</span> has also been included to aid interpretation.
 </figcaption>
+<div aria-describedby="fig-normality-residuals-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-normality-residuals-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The left-hand plot shows conditional distributions of normally distributed residuals. The right-hand plot shows conditional distributions that are not normally distributed. The line $Y=0$ has also been included to aid interpretation.">
+</div>
 </figure>
 </div>
 </div>
@@ -698,14 +698,14 @@ Figure&nbsp;13.6: The left-hand plot shows conditional distributions of normally
 <p>Similar to the assumption about normality, the assumption of equal variances (homoskedasticity) is less critical than the assumptions of linearity and independence, and only egregious violations of the assumption is problematic for the validity of the regression results.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-equal-var-residuals" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-equal-var-residuals" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The left-hand plot shows conditional distributions of normally distributed residuals with equal variances. The center plot shows conditional distributions that are not normally distributed but still have equal variances. The right-hand plot shows conditional distributions that are normally distributed but have unequal variances. The line $Y=0$ has also been included in all plots to aid interpretation." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-equal-var-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-equal-var-residuals-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-equal-var-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-equal-var-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.7: The left-hand plot shows conditional distributions of normally distributed residuals with equal variances. The center plot shows conditional distributions that are not normally distributed but still have equal variances. The right-hand plot shows conditional distributions that are normally distributed but have unequal variances. The line <span class="math inline">\(Y=0\)</span> has also been included in all plots to aid interpretation.
 </figcaption>
+<div aria-describedby="fig-equal-var-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-equal-var-residuals-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The left-hand plot shows conditional distributions of normally distributed residuals with equal variances. The center plot shows conditional distributions that are not normally distributed but still have equal variances. The right-hand plot shows conditional distributions that are normally distributed but have unequal variances. The line $Y=0$ has also been included in all plots to aid interpretation.">
+</div>
 </figure>
 </div>
 </div>
@@ -766,14 +766,14 @@ Figure&nbsp;13.7: The left-hand plot shows conditional distributions of normally
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-residuals-emp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-residuals-emp" class="quarto-float quarto-figure quarto-figure-center anchored" alt="LEFT: Density plot of the marginal distribution of residuals from the fitted regression model. RIGHT: Scatterplot of the residuals versus time spent on homework. The $Y=0$ line has been included as a reference for interpretation." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-residuals-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-residuals-emp-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residuals-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-residuals-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.8: LEFT: Density plot of the marginal distribution of residuals from the fitted regression model. RIGHT: Scatterplot of the residuals versus time spent on homework. The <span class="math inline">\(Y=0\)</span> line has been included as a reference for interpretation.
 </figcaption>
+<div aria-describedby="fig-residuals-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-residuals-emp-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="LEFT: Density plot of the marginal distribution of residuals from the fitted regression model. RIGHT: Scatterplot of the residuals versus time spent on homework. The $Y=0$ line has been included as a reference for interpretation.">
+</div>
 </figure>
 </div>
 </div>
@@ -812,14 +812,14 @@ t_{\epsilon} = \frac{\epsilon - 0}{\mathrm{\hat\sigma}_{\epsilon}}
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-std-residuals-emp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-std-residuals-emp" class="quarto-float quarto-figure quarto-figure-center anchored" alt="LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model. RIGHT: Scatterplot of the standardized residuals versus time spent on homework. The $Y=0$ line has been included as a reference for interpretation." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-std-residuals-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-std-residuals-emp-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-std-residuals-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-std-residuals-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.9: LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model. RIGHT: Scatterplot of the standardized residuals versus time spent on homework. The <span class="math inline">\(Y=0\)</span> line has been included as a reference for interpretation.
 </figcaption>
+<div aria-describedby="fig-std-residuals-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-std-residuals-emp-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model. RIGHT: Scatterplot of the standardized residuals versus time spent on homework. The $Y=0$ line has been included as a reference for interpretation.">
+</div>
 </figure>
 </div>
 </div>
@@ -854,14 +854,14 @@ Figure&nbsp;13.9: LEFT: Density plot of the marginal distribution of standardize
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residual"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-std-residuals-fitted-emp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-std-residuals-fitted-emp" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of the standardized residuals versus the fitted values. The $Y=0$ line has been included as a reference for interpretation." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-std-residuals-fitted-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-std-residuals-fitted-emp-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-std-residuals-fitted-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-std-residuals-fitted-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.10: Scatterplot of the standardized residuals versus the fitted values. The <span class="math inline">\(Y=0\)</span> line has been included as a reference for interpretation.
 </figcaption>
+<div aria-describedby="fig-std-residuals-fitted-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-std-residuals-fitted-emp-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot of the standardized residuals versus the fitted values. The $Y=0$ line has been included as a reference for interpretation.">
+</div>
 </figure>
 </div>
 </div>
@@ -885,14 +885,14 @@ Figure&nbsp;13.10: Scatterplot of the standardized residuals versus the fitted v
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Standardized residual"</span>) <span class="sc">+</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-density-multreg" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-density-multreg" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry, solid line). The density for a ~N(0,1) distribution (black, dashed line) has been included as a comparative reference." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-density-multreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-density-multreg-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-density-multreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-density-multreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.11: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry, solid line). The density for a ~N(0,1) distribution (black, dashed line) has been included as a comparative reference.
 </figcaption>
+<div aria-describedby="fig-density-multreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-density-multreg-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry, solid line). The density for a ~N(0,1) distribution (black, dashed line) has been included as a comparative reference.">
+</div>
 </figure>
 </div>
 </div>
@@ -901,14 +901,14 @@ Figure&nbsp;13.11: Density plot of the marginal distribution of standardized res
 <p>To answer this question, we need to be able to visualize the deviation from a perfectly normal distribution that is due to sampling error.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-density-multreg-confenv" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-density-multreg-confenv" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The density for a ~N(0,1) distribution (black, dashed line) and the sampling uncertainty associated with that normal distribution (blue shaded area)." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-density-multreg-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-density-multreg-confenv-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-density-multreg-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-density-multreg-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.12: The density for a ~N(0,1) distribution (black, dashed line) and the sampling uncertainty associated with that normal distribution (blue shaded area).
 </figcaption>
+<div aria-describedby="fig-density-multreg-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-density-multreg-confenv-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="The density for a ~N(0,1) distribution (black, dashed line) and the sampling uncertainty associated with that normal distribution (blue shaded area).">
+</div>
 </figure>
 </div>
 </div>
@@ -927,21 +927,21 @@ Figure&nbsp;13.12: The density for a ~N(0,1) distribution (black, dashed line) a
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Standardized residual"</span>) <span class="sc">+</span></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-density-multreg-confenv-emp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-density-multreg-confenv-emp" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area)." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-density-multreg-confenv-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-density-multreg-confenv-emp-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-density-multreg-confenv-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-density-multreg-confenv-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.13: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area).
 </figcaption>
+<div aria-describedby="fig-density-multreg-confenv-emp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-density-multreg-confenv-emp-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area).">
+</div>
 </figure>
 </div>
 </div>
 </div>
 <p>The raspberry line depicting the density of the marginal distribution of standardized residuals lies completely within the blue area. This suggests that the deviation we saw earlier from the normal distribution is consistent with just being sampling error. Thus we conclude that the normality assumption is tenable.</p>
-<section id="installing-the-educate-package" class="level3 fyi" data-number="13.6.1">
-<h3 data-number="13.6.1" class="anchored" data-anchor-id="installing-the-educate-package"><span class="header-section-number">13.6.1</span> Installing the educate Package</h3>
+<div class="fyi">
+<p><strong>Installing the educate Package</strong></p>
 <p>The <code>{educate}</code> package is not available on CRAN, thus you cannot install it using the <code>Install</code> button in RStudio. To install this package, we need to use the <code>install_github()</code> function from the <code>{remotes}</code> package.</p>
 <ol type="1">
 <li>Use the <code>Install</code> button in RStudio to install the <code>{remotes}</code> package.</li>
@@ -950,7 +950,7 @@ Figure&nbsp;13.13: Density plot of the marginal distribution of standardized res
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"zief0002/educate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
+</div>
 <p><br></p>
 </section>
 <section id="advanced-plotting-loess-smooth-to-help-evaluate-linearity" class="level2" data-number="13.7">
@@ -965,14 +965,14 @@ Figure&nbsp;13.13: Density plot of the marginal distribution of standardized res
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residual"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-res-vs-fitted-confenv" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-res-vs-fitted-confenv" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-res-vs-fitted-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-res-vs-fitted-confenv-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-res-vs-fitted-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.14: Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption.”
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-res-vs-fitted-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.14: Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption.
 </figcaption>
+<div aria-describedby="fig-res-vs-fitted-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-res-vs-fitted-confenv-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption.">
+</div>
 </figure>
 </div>
 </div>
@@ -989,14 +989,14 @@ Figure&nbsp;13.14: Scatterplot of the standardized residuals versus the fitted v
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residual"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-res-vs-fitted-confenv-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-res-vs-fitted-confenv-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-res-vs-fitted-confenv-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-res-vs-fitted-confenv-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-res-vs-fitted-confenv-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-res-vs-fitted-confenv-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.15: Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed.
 </figcaption>
+<div aria-describedby="fig-res-vs-fitted-confenv-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-res-vs-fitted-confenv-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed.">
+</div>
 </figure>
 </div>
 </div>
@@ -1021,14 +1021,14 @@ Figure&nbsp;13.15: Scatterplot of the standardized residuals versus the fitted v
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aug_a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 9
-    gpa homework .fitted .resid   .hat .sigma  .cooksd .std.resid id   
-  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;
-1    78        2    76.7   1.28 0.0328   7.28 0.000550      0.180 1    
-2    79        6    81.6  -2.57 0.0120   7.27 0.000776     -0.358 2    
-3    79        1    75.5   3.50 0.0500   7.27 0.00646       0.495 3    
-4    89        5    80.4   8.64 0.0100   7.22 0.00728       1.20  4    
-5    82        3    77.9   4.07 0.0204   7.26 0.00336       0.568 5    
-6    77        4    79.1  -2.15 0.0128   7.27 0.000579     -0.298 6    </code></pre>
+    gpa homework .fitted .resid   .hat .sigma .cooksd .std.resid id   
+  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;
+1    78        2    76.7   1.28 0.0328   7.28 5.50e-4      0.180 1    
+2    79        6    81.6  -2.57 0.0120   7.27 7.76e-4     -0.358 2    
+3    79        1    75.5   3.50 0.0500   7.27 6.46e-3      0.495 3    
+4    89        5    80.4   8.64 0.0100   7.22 7.28e-3      1.20  4    
+5    82        3    77.9   4.07 0.0204   7.26 3.36e-3      0.568 5    
+6    77        4    79.1  -2.15 0.0128   7.27 5.79e-4     -0.298 6    </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the id variable as text rather than points in the scatterplot</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> aug_a, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
@@ -1040,14 +1040,14 @@ Figure&nbsp;13.15: Scatterplot of the standardized residuals versus the fitted v
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residuals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-extreme-plot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-extreme-plot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. The values plotted indicate the students' row numbers in the data. Horizontal lines at $Y={-2, 0, +2}$ are included to aid interpretation." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-extreme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-extreme-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-extreme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-extreme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.16: Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. The values plotted indicate the students’ row numbers in the data. Horizontal lines at <span class="math inline">\(Y={-2, 0, +2}\)</span> are included to aid interpretation.
 </figcaption>
+<div aria-describedby="fig-extreme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-extreme-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. The values plotted indicate the students' row numbers in the data. Horizontal lines at $Y={-2, 0, +2}$ are included to aid interpretation.">
+</div>
 </figure>
 </div>
 </div>
@@ -1070,14 +1070,14 @@ Figure&nbsp;13.16: Scatterplot of the standardized residuals versus the fitted v
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
 <span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residual"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-extreme-plot-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-extreme-plot-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. Students with standardized residuals more than two standard errors from 0 are identified by their row number. A horizontal line at $Y=0$ is included to aid interpretation." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-extreme-plot-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-03-model-assumptions_files/figure-html/fig-extreme-plot-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-extreme-plot-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-extreme-plot-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.17: Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. Students with standardized residuals more than two standard errors from 0 are identified by their row number. A horizontal line at <span class="math inline">\(Y=0\)</span> is included to aid interpretation.
 </figcaption>
+<div aria-describedby="fig-extreme-plot-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-03-model-assumptions_files/figure-html/fig-extreme-plot-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. Students with standardized residuals more than two standard errors from 0 are identified by their row number. A horizontal line at $Y=0$ is included to aid interpretation.">
+</div>
 </figure>
 </div>
 </div>

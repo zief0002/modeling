@@ -12,6 +12,7 @@ book:
   author: "Andrew Zieffler"
   date: today
   page-navigation: false
+  bread-crumbs: false
   sidebar:
     search: true
     background: '#443850' #"#9f86c0"
@@ -40,7 +41,7 @@ book:
     - part: 04-00-multiple-regression.qmd
       chapters:
         - 04-01-intro-to-multiple-regression.qmd
-        - 04-02-more-multiple-regression.qmd
+        - 04-02-multiple-regression-anova.qmd
         - 04-03-understanding-statistical-control.qmd
         - 04-04-assumptions.qmd
     - part: 05-00-categorical-predictors.qmd
@@ -52,22 +53,23 @@ book:
       chapters:
         - 06-01-intro-to-interaction-effects.qmd
         - 06-02-more-interaction-effects.qmd
-    - part: 07-00-data-codebooks.qmd
-      chapters:
-        - codebooks/broadband.qmd
-        - codebooks/comic-characters.qmd
-        - codebooks/evaluations.qmd
-        - codebooks/fertility.qmd
-        - codebooks/gapminder.qmd
-        - codebooks/keith-gpa.qmd
-        - codebooks/mn-schools.qmd
-        - codebooks/pew.qmd
-        - codebooks/riverview.qmd
-        - codebooks/scoobydoo.qmd
-        - codebooks/spice-girls.qmd
-        - codebooks/state-education.qmd
-        - codebooks/work-demands.qmd
+  appendices:
+    - codebooks/broadband.qmd
+    - codebooks/comic-characters.qmd
+    - codebooks/evaluations.qmd
+    - codebooks/fertility.qmd
+    - codebooks/gapminder.qmd
+    - codebooks/keith-gpa.qmd
+    - codebooks/mn-schools.qmd
+    - codebooks/pew.qmd
+    - codebooks/riverview.qmd
+    - codebooks/scoobydoo.qmd
+    - codebooks/spice-girls.qmd
+    - codebooks/state-education.qmd
+    - codebooks/work-demands.qmd
 
+language:
+  section-title-appendices: "Data Codebooks"
 bibliography: ["assets/modeling.bib", "assets/packages.bib"]
 csl: 'assets/apa-single-spaced.csl'
 
@@ -87,10 +89,11 @@ format:
     mainfont: 'Atkinson Hyperlegible'
     fontsize: '13pt'
     linestretch: '1.5em'
-    linkcolor: '#c10088' #"#0099d4"
+    linkcolor: '#7d12ba' #"#0099d4"
     toc: false
     toc-title: "On This Page"
     tbl-cap-location: "top"
+    # html-table-processing: none
     fig-cap-location: "top"
 editor: source
 

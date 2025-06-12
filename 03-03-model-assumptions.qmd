@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will learn about the various distributional assumptions underlying the regression model. To do so, we will return to the [keith-gpa.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv) data to examine whether time spent on homework is related to GPA (see the [data codebook](#keith)). To begin, we will load several libraries and import the data into an object called `keith`. 
+In this chapter, you will learn about the various distributional assumptions underlying the regression model. To do so, we will return to the **keith-gpa.csv** data to examine whether time spent on homework is related to GPA. To begin, we will load several libraries and import the data into an object called `keith`. 
 
 
 ```{r}
@@ -54,6 +54,7 @@ You can remember these assumptions using the mnemonic LINE. To better understand
 ```{r}
 #| label: fig-assumptions
 #| fig-cap: "A visual depiction of *X*- and *Y*-values and regression line from a population in which the distributional assumptions are valid."
+#| fig-alt: "A visual depiction of *X*- and *Y*-values and regression line from a population in which the distributional assumptions are valid."
 #| echo: false
 include_graphics("figs/regression-assumptions.png")
 ```
@@ -88,7 +89,9 @@ Remember, subtracting a constant from each value in a distribution shifts the ce
 ```{r}
 #| label: fig-assumptions-residuals
 #| fig-cap: "A visual depiction of the simple regression model's assumptions about the residuals."
+#| fig-alt: "A visual depiction of the simple regression model's assumptions about the residuals."
 #| echo: false
+
 include_graphics("figs/regression-assumptions-residuals.png")
 ```
 
@@ -125,9 +128,10 @@ The linearity assumption is critical in specifying the structural part of the mo
 ```{r}
 #| label: fig-nonlinear
 #| fig-cap: "The left-hand plot shows a correctly specified linear model. The right-hand plot shows a mis-specified linear model. The true underlying model is non-linear and is shown by the dashed, raspberry line. Using the linear fitted model to make predictions would be quite misleading, especially at extreme values of *X*."
+#| fig-alt: "The left-hand plot shows a correctly specified linear model. The right-hand plot shows a mis-specified linear model. The true underlying model is non-linear and is shown by the dashed, raspberry line. Using the linear fitted model to make predictions would be quite misleading, especially at extreme values of *X*."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
 #| echo: false
 # Simulate data
 set.seed(100)
@@ -178,9 +182,10 @@ Since the linearity assumption also means that the average residual is 0, if we 
 ```{r}
 #| label: fig-nonlinear-residuals
 #| fig-cap: "The left-hand plot shows the residuals from the correctly specified linear model versus the *X*-values. The right-hand plot shows the residuals from the mis-specified linear model versus the *X*-values. A reference line at $Y=0$ has also been added to the plot to aid interpretation."
+#| fig-alt: "The left-hand plot shows the residuals from the correctly specified linear model versus the *X*-values. The right-hand plot shows the residuals from the mis-specified linear model versus the *X*-values. A reference line at $Y=0$ has also been added to the plot to aid interpretation."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
 #| echo: false
 # Simulate data
 d = d |>
@@ -240,9 +245,10 @@ Normal distributions are symmetric with the density of observations close to the
 ```{r}
 #| label: fig-normality-residuals
 #| fig-cap: "The left-hand plot shows conditional distributions of normally distributed residuals. The right-hand plot shows conditional distributions that are not normally distributed. The line $Y=0$ has also been included to aid interpretation."
+#| fig-alt: "The left-hand plot shows conditional distributions of normally distributed residuals. The right-hand plot shows conditional distributions that are not normally distributed. The line $Y=0$ has also been included to aid interpretation."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
 #| echo: false
 #| cache: true
 # Simulate data
@@ -283,9 +289,10 @@ Researchers often evaluate the normality assumption by examining the shape of th
 ```{r}
 #| label: fig-normality-residuals-2
 #| fig-cap: "The left-hand plot shows conditional distributions of normally distributed residuals. The right-hand plot shows conditional distributions that are not normally distributed. The line $Y=0$ has also been included to aid interpretation."
+#| fig-alt: "The left-hand plot shows conditional distributions of normally distributed residuals. The right-hand plot shows conditional distributions that are not normally distributed. The line $Y=0$ has also been included to aid interpretation."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
 #| echo: false
 #| cache: true
 # Plot normal
@@ -319,9 +326,10 @@ Similar to the assumption about normality, the assumption of equal variances (ho
 ```{r}
 #| label: fig-equal-var-residuals
 #| fig-cap: "The left-hand plot shows conditional distributions of normally distributed residuals with equal variances. The center plot shows conditional distributions that are not normally distributed but still have equal variances. The right-hand plot shows conditional distributions that are normally distributed but have unequal variances. The line $Y=0$ has also been included in all plots to aid interpretation."
+#| fig-alt: "The left-hand plot shows conditional distributions of normally distributed residuals with equal variances. The center plot shows conditional distributions that are not normally distributed but still have equal variances. The right-hand plot shows conditional distributions that are normally distributed but have unequal variances. The line $Y=0$ has also been included in all plots to aid interpretation."
 #| fig-width: 12
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
 #| echo: false
 #| cache: true
 # Simulate data
@@ -395,12 +403,13 @@ The cases in the augmented data frame are in the same order as the cases in the 
 
 We will examine two residual plots to help us evaluate the tenability of the assumptions: (1) a density plot of the marginal distribution of residuals, and (2) a scatterplot of the residuals versus the *X*-values. The density plot will allow us to evaluate the normality assumption, and the scatterplot will allow us to evaluate the linearity and equal variances assumption. As we make these evaluations, remember that we do not have the entire population of residuals (we obtained our residuals by fitting a regression to a sample of data), so we do not expect that our residuals will actually meet the assumptions perfectly (remember, sampling error). Examining the sample residuals, is however, a reasonable way to evaluate the tenability of assumptions in practice. We just have to keep in mind that the sample residuals may deviate a bit from these assumptions.
 
-```{r out.width="45%", fig.cap="", fig.show='hold'}
+```{r}
 #| label: fig-residuals-emp
 #| fig-cap: "LEFT: Density plot of the marginal distribution of residuals from the fitted regression model. RIGHT: Scatterplot of the residuals versus time spent on homework. The $Y=0$ line has been included as a reference for interpretation."
+#| fig-alt: "LEFT: Density plot of the marginal distribution of residuals from the fitted regression model. RIGHT: Scatterplot of the residuals versus time spent on homework. The $Y=0$ line has been included as a reference for interpretation."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
 # Density plot of the residuals
 p1 = ggplot(data = aug_a, aes(x = .resid)) +
   stat_density(geom = "line") +
@@ -446,9 +455,10 @@ Since the *t*-distribution is also referred to as *Student's distribution*, stan
 ```{r}
 #| label: fig-std-residuals-emp
 #| fig-cap: "LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model. RIGHT: Scatterplot of the standardized residuals versus time spent on homework. The $Y=0$ line has been included as a reference for interpretation."
+#| fig-alt: "LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model. RIGHT: Scatterplot of the standardized residuals versus time spent on homework. The $Y=0$ line has been included as a reference for interpretation."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
 # Density plot of the residuals
 p1 = ggplot(data = aug_a, aes(x = .std.resid)) +
   stat_density(geom = "line") +
@@ -488,6 +498,7 @@ In practice, when we evaluate the assumptions, we often use the fitted values (t
 ```{r}
 #| label: fig-std-residuals-fitted-emp
 #| fig-cap: "Scatterplot of the standardized residuals versus the fitted values. The $Y=0$ line has been included as a reference for interpretation."
+#| fig-alt: "Scatterplot of the standardized residuals versus the fitted values. The $Y=0$ line has been included as a reference for interpretation."
 #| out-width: "70%"
 # Scatterplot of the residuals versus the fitted values
 ggplot(data = aug_a, aes(x = .fitted, y = .std.resid)) +
@@ -513,6 +524,7 @@ So far, when we have evaluated the normality assumption we have relied on our in
 ```{r}
 #| label: fig-density-multreg
 #| fig-cap: "Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry, solid line). The density for a ~N(0,1) distribution (black, dashed line) has been included as a comparative reference."
+#| fig-alt: "Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry, solid line). The density for a ~N(0,1) distribution (black, dashed line) has been included as a comparative reference."
 # Density plot of the standardized residuals
 ggplot(data = aug_a, aes(x = .std.resid)) +
   stat_density(geom = "line", color = "#c62f4b") +
@@ -526,9 +538,10 @@ The `stat_function()` layer uses the `dnorm()` function to plot the normal densi
 
 To answer this question, we need to be able to visualize the deviation from a perfectly normal distribution that is due to sampling error. 
 
-```{r echo=FALSE, fig.cap=""}
+```{r}
 #| label: fig-density-multreg-confenv
 #| fig-cap: "The density for a ~N(0,1) distribution (black, dashed line) and the sampling uncertainty associated with that normal distribution (blue shaded area)."
+#| fig-alt: "The density for a ~N(0,1) distribution (black, dashed line) and the sampling uncertainty associated with that normal distribution (blue shaded area)."
 #| echo: false
 # Load library
 library(educate)
@@ -549,6 +562,7 @@ To create this confidence envelope, we will use the `stat_density_confidence()` 
 ```{r}
 #| label: fig-density-multreg-confenv-emp
 #| fig-cap: "Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area)."
+#| fig-alt: "Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area)."
 # Load library
 library(educate)
 
@@ -564,7 +578,7 @@ ggplot(data = aug_a, aes(x = .std.resid)) +
 The raspberry line depicting the density of the marginal distribution of standardized residuals lies completely within the blue area. This suggests that the deviation we saw earlier from the normal distribution is consistent with just being sampling error. Thus we conclude that the normality assumption is tenable.
 
 :::fyi
-### Installing the educate Package
+**Installing the educate Package**
 
 The `{educate}` package is not available on CRAN, thus you cannot install it using the `Install` button in RStudio. To install this package, we need to use the `install_github()` function from the `{remotes}` package.
 
@@ -586,7 +600,8 @@ In the scatterplot of the standardized residuals versus the fitted values, if th
 
 ```{r}
 #| label: fig-res-vs-fitted-confenv
-#| fig-cap: Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption."
+#| fig-cap: "Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption."
+#| fig-alt: "Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption."
 ggplot(data = aug_a, aes(x = .fitted, y = .std.resid)) +
   geom_point() +
   geom_smooth(method = "lm", se = TRUE) + #ADD Line and confidence envelope
@@ -603,6 +618,7 @@ The second thing we want to add to the plot is the loess smoother. This smoother
 ```{r}
 #| label: fig-res-vs-fitted-confenv-2
 #| fig-cap: "Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed."
+#| fig-alt: "Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption. The loess line (blue) and uncertainty bands (grey shaded area) are also displayed."
 ggplot(data = aug_a, aes(x = .fitted, y = .std.resid)) +
   geom_point() +
   geom_smooth(method = "lm", se = TRUE) + #ADD Line and confidence envelope
@@ -630,6 +646,7 @@ Since the original data set does not include an ID variable (e.g., names), we wi
 ```{r}
 #| label: fig-extreme-plot
 #| fig-cap: "Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. The values plotted indicate the students' row numbers in the data. Horizontal lines at $Y={-2, 0, +2}$ are included to aid interpretation."
+#| fig-alt: "Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. The values plotted indicate the students' row numbers in the data. Horizontal lines at $Y={-2, 0, +2}$ are included to aid interpretation."
 # Create ID variable in the augmented data
 aug_a = aug_a |> 
   mutate(id = row.names(keith))
@@ -653,6 +670,7 @@ We can also plot points for some students and ID label for other students. For e
 ```{r}
 #| label: fig-extreme-plot-2
 #| fig-cap: "Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. Students with standardized residuals more than two standard errors from 0 are identified by their row number. A horizontal line at $Y=0$ is included to aid interpretation."
+#| fig-alt: "Scatterplot of the standardized residuals versus the fitted values from a regression model using time spent on homework to predict GPA. Students with standardized residuals more than two standard errors from 0 are identified by their row number. A horizontal line at $Y=0$ is included to aid interpretation."
 # Create different data sets for the extreme and non-extreme observations
 extreme = aug_a |> 
   filter(.std.resid <= -2 | .std.resid >= 2)

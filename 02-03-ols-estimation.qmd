@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv) data to examine whether education level is related to income (see the [data codebook](#riverview)). To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.a`.
+In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the **riverview.csv** data to examine whether education level is related to income. To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.a`.
 
 ```{r}
 # Load libraries
@@ -41,9 +41,10 @@ How does R determine the coefficient values of $\hat{\beta}_0=11.321$ and $\hat{
 
 
 ```{r}
-#| echo: false
 #| label: tbl-1
 #| tbl-cap: "Toy data set with predictor (X) and outcome (Y) for five observations."
+#| echo: false
+
 toy = data.frame(
   x = c(30, 10, 30, 50, 20),
   y = c(63, 44, 40, 68, 25)
@@ -80,9 +81,11 @@ We could plot the data and both lines and try to determine which seems to fit be
 ::: {layout-ncol=2}
 
 ```{r}
-#| echo: false
+#| label: fig-toy
 #| fig-cap: "Scatterplot of the observed toy data and the OLS fitted regression line for Model A."
+#| fig-alt: "Scatterplot of the observed toy data and the OLS fitted regression line for Model A."
 #| out-width: "100%"
+#| echo: false
 ggplot(data = toy, aes(x = x, y = y)) +
       geom_abline(intercept = 28, slope = 0.8) +
       geom_point(size = 4) +
@@ -91,9 +94,12 @@ ggplot(data = toy, aes(x = x, y = y)) +
 ```
 
 ```{r}
-#| echo: false
+#| label: fig-toy2
+#| fig-alt: "Scatterplot of the observed toy data and the OLS fitted regression line for Model B."
 #| fig-cap: "Scatterplot of the observed toy data and the OLS fitted regression line for Model B."
 #| out-width: "100%"
+#| echo: false
+
 ggplot(data = toy, aes(x = x, y = y)) +
       geom_abline(intercept = 20, slope = 1, linetype = "dotted") +
       geom_point(size = 4) +
@@ -114,10 +120,11 @@ Remember, to compute the residuals, we will first need to  compute the predicted
 
 
 ```{r}
-#| echo: false
-#| results: asis
 #| label: tbl-2
 #| tbl-cap: "Observed values, predicted values and residuals for Model A."
+#| echo: false
+#| results: asis
+
 toy2 = toy
 toy$Predicted= 28 + 0.8*toy$x
 toy$Residual = toy$y - toy$Predicted
@@ -145,10 +152,11 @@ toy |>
 ```
 
 ```{r}
-#| echo: false
-#| results: asis
 #| label: tbl-3
 #| tbl-cap: "Observed values, predicted values and residuals for Model B."
+#| echo: false
+#| results: asis
+
 toy2$Predicted = 20 + 1.0*toy2$x
 toy2$Residual = toy2$y - toy2$Predicted
 
@@ -186,10 +194,11 @@ $$
 This is called a *sum of squared residuals* or *sum of squared error* (SSE; good name, isn't it). Computing the squared residuals for Model A and Model B we get:
 
 ```{r}
-#| echo: false
-#| results: asis
 #| label: tbl-4
 #| tbl-cap: "Observed values, predicted values, residuals, and squared residuals for Model A."
+#| echo: false
+#| results: asis
+
 toy$Residual_2 =toy$Residual^2
 
 toy |>
@@ -216,10 +225,11 @@ toy |>
 ```
 
 ```{r}
-#| echo: false
-#| results: asis
 #| label: tbl-5
 #| tbl-cap: "Observed values, predicted values, residuals, and squared residuals for Model B."
+#| echo: false
+#| results: asis
+
 toy2$Residual_2 =toy2$Residual^2
 
 toy2 |>
@@ -262,9 +272,12 @@ To further understand the sum of squared error, we can examine a visual represen
 ::: {#fig-two-models-2 layout-ncol=2}
 
 ```{r}
-#| echo: false
+#| label: fig-residuals
 #| fig-cap: "This plot visually displays the residual values as line segments with negative residuals shown as dashed lines."
+#| fig-alt: "This plot visually displays the residual values as line segments with negative residuals shown as dashed lines."
 #| out-width: "100%"
+#| echo: false
+
 ggplot(data = toy, aes(x = x, y = y)) +
   geom_segment(x = 30, xend = 30, y = 52, yend = 63, color = "#c62f4b") +
   geom_segment(x = 10, xend = 10, y = 36, yend = 44, color = "#c62f4b") +
@@ -279,9 +292,12 @@ ggplot(data = toy, aes(x = x, y = y)) +
 ```
 
 ```{r}
-#| echo: false
+#| label: fig-sq-res
 #| fig-cap: "This plot visually displays the squared residuals as the area of a square with side length equal to the absolute value of the residual."
+#| fig-alt: "This plot visually displays the squared residuals as the area of a square with side length equal to the absolute value of the residual."
 #| out-width: "100%"
+#| echo: false
+
 ggplot(data = toy, aes(x = x, y = y)) +
   geom_rect(xmin = 19, xmax = 30, ymin = 52, ymax = 63, color = "black", fill = "#c62f4b", alpha = 0.2) +
   geom_rect(xmin = 2, xmax = 10, ymin = 36, ymax = 44,  color = "black", fill = "#c62f4b", alpha = 0.2) +
@@ -301,8 +317,11 @@ Scatterplot of the observed toy data and the OLS fitted regression line for Mode
 The SSE is simply the total area encompassed by all of the squares. Note that the observation that is directly on the line has a residual of 0 and thus does not contribute a quantity to the SSE. If you computed the SSE for a line with different intercept or slope values, the SSE will be different. The plot below shows what this might look like for the flat line produced by $~~\hat{Y_i} = 50$.
 
 ```{r}
-#| echo: false
+#| label: fig-res-sq
 #| fig-cap: "Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual."
+#| fig-alt: "Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual."
+#| echo: false
+
 ggplot(data = toy, aes(x = x, y = y)) +
   geom_rect(xmin = 17, xmax = 30, ymin = 50, ymax = 63, color = "black", fill = "#c62f4b", alpha = 0.2) +
   geom_rect(xmin = 4, xmax = 10, ymin = 44, ymax = 50,  color = "black", fill = "#c62f4b", alpha = 0.2) +
@@ -338,10 +357,11 @@ $$
 This model gives the following predicted values and residuals:
 
 ```{r}
-#| echo: false
-#| results: asis
 #| label: tbl-6
 #| tbl-cap: "Observed values, predicted values, residuals, and squared residuals for the 'best' fitting model."
+#| echo: false
+#| results: asis
+
 toy3 = data.frame(
   x = c(30, 10, 30, 50, 20),
   y = c(63, 44, 40, 68, 25)
@@ -382,12 +402,12 @@ The SSE is `r round(sum(resid(lm(y~x, data = toy))^2),2)`. This is the smallest 
 <br />
 
 
-:::mathnote
-### Mathematical Optimization
+:::fyi
+**MATHEMATICAL OPTIMIZATION**
 
 Finding the intercept and slope that give the lowest SSE is referred to as an optimization problem in the field of mathematics. Optimization is such an important (and sometimes difficult) problem that there have been several mathematical and computational optimization methods that have been developed over the years. You can [read more about mathematical optimization on Wikipedia](https://en.wikipedia.org/wiki/Mathematical_optimization) if you are interested.
 
-One common mathematical method to find the minimum SSE involves calculus. We would write the SSE as a function of$\beta_0$ and $\beta_1$, compute the partial derivatives (w.r.t. each of the coefficients), set these equal to zero, and solve to find the values of the coefficients. <!--You can read [here](https://isites.harvard.edu/fs/docs/icb.topic515975.files/OLSDerivation.pdf).--> The `lm()` function actually uses an optimization method called [QR decomposition](https://en.wikipedia.org/wiki/QR_decomposition) to obtain the regression coefficients. The actual mechanics and computation of these methods are beyond the scope of this course. We will just trust that the `lm()` function is doing things correctly in this course.
+One common mathematical method to find the minimum SSE involves calculus. We would write the SSE as a function of$\beta_0$ and $\beta_1$, compute the partial derivatives (w.r.t. each of the coefficients), set these equal to zero, and solve to find the values of the coefficients. The `lm()` function actually uses an optimization method called [QR decomposition](https://en.wikipedia.org/wiki/QR_decomposition) to obtain the regression coefficients. The actual mechanics and computation of these methods are beyond the scope of this course. We will just trust that the `lm()` function is doing things correctly in this course.
 :::
 
 
@@ -427,6 +447,8 @@ city |>
 The SSE gives us information about the variation in *Y* (the outcome variable) that is left over (residual) after we fit the regression model. Since the regression model is a function of *X*, the SSE tells us about the variation in *Y* that is left over after we remove the variation associated with, or accounted for by *X*. In  our example it tells us about the residual variation in incomes after we account for employee education level.
 
 :::protip
+**PROTIP**
+
 In practice, we often report the SSE, but *we do not interpret the actual value*. The value of the SSE is more useful when comparing models that have been fitted using the same outcome. When researchers are considering different models, the SSEs from these models are compared to determine which model produces the least amount of misfit to the data (similar to what we did earlier).
 :::
 

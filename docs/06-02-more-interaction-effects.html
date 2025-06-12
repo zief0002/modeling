@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -495,7 +495,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this chapter, you will continue to learn about how to include and interpret interaction effects in the regression model. Here we will emphasize interactions between two continuous predictors. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/fertility.csv">fertility.csv</a> data to examine predictors of fertility rates; see the <a href="#fertility">data codebook</a>). In particular we will evaluate whether the effect of contraception on fertility rates is a function of females’ education level.</p>
+<p>In this chapter, you will continue to learn about how to include and interpret interaction effects in the regression model. Here we will emphasize interactions between two continuous predictors. To do so, we will use the <strong>fertility.csv</strong> data to examine predictors of fertility rates. In particular we will evaluate whether the effect of contraception on fertility rates is a function of females’ education level.</p>
 <p>To begin, we will load several libraries and import the data into an object called <code>fert</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
@@ -512,20 +512,21 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>fert</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 124 × 8
-   country      region fertility_rate educ_female infant_mortality contraceptive
-   &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;
- 1 Albania      Europ…           1.49         9.1             15              46
- 2 Algeria      Middl…           2.78         5.9             17.2            57
- 3 Armenia      Europ…           1.39        10.8             14.7            57
- 4 Austria      Europ…           1.42         8.9              3.3            66
- 5 Azerbaijan   Europ…           1.92        10.5             30.8            55
- 6 Bahamas, The Latin…           1.97        11.1             13.9            45
- 7 Bangladesh   South…           2.5          4.6             33.1            62
- 8 Belgium      Europ…           1.65        10.5              3.4            67
- 9 Belize       Latin…           3.08         9.2             15.7            51
-10 Benin        Sub-S…           5.13         2               58.5            16
+   country      region     fertility_rate educ_female infant_mortality
+   &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;
+ 1 Albania      Europe an…           1.49         9.1             15  
+ 2 Algeria      Middle Ea…           2.78         5.9             17.2
+ 3 Armenia      Europe an…           1.39        10.8             14.7
+ 4 Austria      Europe an…           1.42         8.9              3.3
+ 5 Azerbaijan   Europe an…           1.92        10.5             30.8
+ 6 Bahamas, The Latin Ame…           1.97        11.1             13.9
+ 7 Bangladesh   South Asia           2.5          4.6             33.1
+ 8 Belgium      Europe an…           1.65        10.5              3.4
+ 9 Belize       Latin Ame…           3.08         9.2             15.7
+10 Benin        Sub-Sahar…           5.13         2               58.5
 # ℹ 114 more rows
-# ℹ 2 more variables: gni_class &lt;chr&gt;, high_gni &lt;dbl&gt;</code></pre>
+# ℹ 3 more variables: contraceptive &lt;dbl&gt;, gni_class &lt;chr&gt;,
+#   high_gni &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -556,10 +557,11 @@ window.Quarto = {
 <li><span class="math inline">\(8 \leq\)</span> Female education level <span class="math inline">\(&lt; 10.25\)</span></li>
 <li><span class="math inline">\(10.25 \leq\)</span> Female education level</li>
 </ul>
-<div class="protip">
+<div class="fyi">
+<p><strong>FYI</strong></p>
 <p>Note that you will want to use the entire range of data to explore effects, otherwise, you might see a spurious relationship. Also, and this is VERY IMPORTANT, <em><strong>This discretizing is ONLY carried out to create the plot. When we fit the actual interaction in the regression model, we use the continuous predictor.</strong></em></p>
 </div>
-<p>There are several R functions that can be employed to discretize a continuous variable. We will use the <code>case_when()</code> function from the <code>{dplyr}</code> package (or <code>{tidyverse}</code>) to create a new variable that has four different categories, one for each distinct range. (Read more about using <code>case_when()</code> <a href="https://dplyr.tidyverse.org/reference/case_when.html">here</a>.)</p>
+<p>There are several R functions that can be employed to discretize a continuous variable. We will use the <code>case_when()</code> function from the <code>{dplyr}</code> package (or <code>{tidyverse}</code>) to create a new variable that has four different categories, one for each distinct range. (<a href="https://dplyr.tidyverse.org/reference/case_when.html">Read more about using case_when() here.</a>)</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Discretize female education level</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fert <span class="ot">=</span> fert <span class="sc">|&gt;</span></span>
@@ -576,21 +578,21 @@ window.Quarto = {
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>fert</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 124 × 9
-   country      region fertility_rate educ_female infant_mortality contraceptive
-   &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;
- 1 Albania      Europ…           1.49         9.1             15              46
- 2 Algeria      Middl…           2.78         5.9             17.2            57
- 3 Armenia      Europ…           1.39        10.8             14.7            57
- 4 Austria      Europ…           1.42         8.9              3.3            66
- 5 Azerbaijan   Europ…           1.92        10.5             30.8            55
- 6 Bahamas, The Latin…           1.97        11.1             13.9            45
- 7 Bangladesh   South…           2.5          4.6             33.1            62
- 8 Belgium      Europ…           1.65        10.5              3.4            67
- 9 Belize       Latin…           3.08         9.2             15.7            51
-10 Benin        Sub-S…           5.13         2               58.5            16
+   country      region     fertility_rate educ_female infant_mortality
+   &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;
+ 1 Albania      Europe an…           1.49         9.1             15  
+ 2 Algeria      Middle Ea…           2.78         5.9             17.2
+ 3 Armenia      Europe an…           1.39        10.8             14.7
+ 4 Austria      Europe an…           1.42         8.9              3.3
+ 5 Azerbaijan   Europe an…           1.92        10.5             30.8
+ 6 Bahamas, The Latin Ame…           1.97        11.1             13.9
+ 7 Bangladesh   South Asia           2.5          4.6             33.1
+ 8 Belgium      Europe an…           1.65        10.5              3.4
+ 9 Belize       Latin Ame…           3.08         9.2             15.7
+10 Benin        Sub-Sahar…           5.13         2               58.5
 # ℹ 114 more rows
-# ℹ 3 more variables: gni_class &lt;chr&gt;, high_gni &lt;dbl&gt;,
-#   female_educ_discrete &lt;chr&gt;</code></pre>
+# ℹ 4 more variables: contraceptive &lt;dbl&gt;, gni_class &lt;chr&gt;,
+#   high_gni &lt;dbl&gt;, female_educ_discrete &lt;chr&gt;</code></pre>
 </div>
 </div>
 <p>Now we have discretized female education level, we can use our new discretized variable to examine the potential interaction with contraception use.</p>
@@ -598,21 +600,21 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate, <span class="at">color =</span> female_educ_discrete)) <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#theme_bw() +</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">"Contraception use"</span>) <span class="sc">+</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>female_educ_discrete, <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>female_educ_discrete, <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-fert-explore" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-fert-explore" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot displaying the relationship between contraception use and fertility rate conditioned on female education level. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-fert-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="06-02-more-interaction-effects_files/figure-html/fig-fert-explore-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fert-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-fert-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;22.1: Scatterplot displaying the relationship between contraception use and fertility rate conditioned on female education level. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender.
 </figcaption>
+<div aria-describedby="fig-fert-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-02-more-interaction-effects_files/figure-html/fig-fert-explore-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot displaying the relationship between contraception use and fertility rate conditioned on female education level. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender.">
+</div>
 </figure>
 </div>
 </div>
@@ -658,36 +660,36 @@ Figure&nbsp;22.1: Scatterplot displaying the relationship between contraception 
 <h3 data-number="22.2.1" class="anchored" data-anchor-id="plot-of-the-interaction-model"><span class="header-section-number">22.2.1</span> Plot of the Interaction Model</h3>
 <p>To further understand the nature of the interaction, we will create a plot of the effect of contraception use on fertility rates for different levels of female education. (Or, you could create a plot of the effect of female education level on fertility rates for different values of contraception use.) Here we will choose female education values of 5, 8, and 10 (the nearest integer values to the 25th, 50th, and 75th percentile values) to create the plot. First we will substitute these values into the fitted equation to find the partial equation for each selected female education level:</p>
 <p><span class="math display">\[
-\hat{\mathrm{Fertility~rate}_i} = 6.84 - 0.41(\mathrm{Education~level}_i) - 0.05(\mathrm{Contraceptive~use}_i) + 0.004(\mathrm{Contraceptive~use}_i)(\mathrm{Education~level}_i)
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} = &amp;6.84 - 0.41(\mathrm{Education~level}_i) - 0.05(\mathrm{Contraceptive~use}_i) +\\
+&amp;0.004(\mathrm{Contraceptive~use}_i)(\mathrm{Education~level}_i)
+\end{split}
 \]</span> <br></p>
-<section id="female-education-level-of-5" class="level4" data-number="22.2.1.1">
-<h4 data-number="22.2.1.1" class="anchored" data-anchor-id="female-education-level-of-5"><span class="header-section-number">22.2.1.1</span> Female education level of 5</h4>
+<p><strong>Female education level of 5</strong></p>
 <p><span class="math display">\[
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &amp;= 6.84 - 0.41(5) - 0.05(\mathrm{Contraceptive~use}_i) + 0.004(5)(\mathrm{Contraceptive~use}_i)\\
-&amp;= 6.84 - 2.05 - 0.05(\mathrm{Contraceptive~use}_i) + 0.02(\mathrm{Contraceptive~use}_i) \\
+\hat{\mathrm{Fertility~rate}_i} &amp;= 6.84 - 0.41(5) - 0.05(\mathrm{Contraceptive~use}_i) +\\ &amp;~~~~~0.004(5)(\mathrm{Contraceptive~use}_i)\\[2ex]
+&amp;= 6.84 - 2.05 - 0.05(\mathrm{Contraceptive~use}_i) + 0.02(\mathrm{Contraceptive~use}_i) \\[2ex]
 &amp;= 4.79 - 0.03(\mathrm{Contraceptive~use}_i)
 \end{split}
 \]</span></p>
 <p><br></p>
-</section>
-<section id="female-education-level-of-8" class="level4" data-number="22.2.1.2">
-<h4 data-number="22.2.1.2" class="anchored" data-anchor-id="female-education-level-of-8"><span class="header-section-number">22.2.1.2</span> Female education level of 8</h4>
+<p><strong>Female education level of 8</strong></p>
 <p><span class="math display">\[
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &amp;= 6.84 - 0.41(8) - 0.05(\mathrm{Contraceptive~use}_i) + 0.004(8)(\mathrm{Contraceptive~use}_i)\\
-&amp;= 6.84 - 3.28 - 0.05(\mathrm{Contraceptive~use}_i) + 0.032(\mathrm{Contraceptive~use}_i) \\
+\hat{\mathrm{Fertility~rate}_i} &amp;= 6.84 - 0.41(8) - 0.05(\mathrm{Contraceptive~use}_i) +\\
+&amp;~~~~~0.004(8)(\mathrm{Contraceptive~use}_i)\\[2ex]
+&amp;= 6.84 - 3.28 - 0.05(\mathrm{Contraceptive~use}_i) + 0.032(\mathrm{Contraceptive~use}_i) \\[2ex]
 &amp;= 3.56 - 0.018(\mathrm{Contraceptive~use}_i)
 \end{split}
 \]</span></p>
 <p><br></p>
-</section>
-<section id="female-education-level-of-10" class="level4" data-number="22.2.1.3">
-<h4 data-number="22.2.1.3" class="anchored" data-anchor-id="female-education-level-of-10"><span class="header-section-number">22.2.1.3</span> Female education level of 10</h4>
+<p><strong>Female education level of 10</strong></p>
 <p><span class="math display">\[
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &amp;= 6.84 - 0.41(10) - 0.05(\mathrm{Contraceptive~use}_i) + 0.004(10)(\mathrm{Contraceptive~use}_i)\\
-&amp;= 6.84 - 4.1 - 0.05(\mathrm{Contraceptive~use}_i) + 0.04(\mathrm{Contraceptive~use}_i) \\
+\hat{\mathrm{Fertility~rate}_i} &amp;= 6.84 - 0.41(10) - 0.05(\mathrm{Contraceptive~use}_i) +\\
+&amp;~~~~~0.004(10)(\mathrm{Contraceptive~use}_i)\\[2ex]
+&amp;= 6.84 - 4.1 - 0.05(\mathrm{Contraceptive~use}_i) + 0.04(\mathrm{Contraceptive~use}_i) \\[2ex]
 &amp;= 2.74 - 0.01(\mathrm{Contraceptive~use}_i)
 \end{split}
 \]</span></p>
@@ -699,18 +701,18 @@ Figure&nbsp;22.1: Scatterplot displaying the relationship between contraception 
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">4.79</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.03</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">3.56</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.018</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">2.74</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">color =</span> <span class="st">"#758e4f"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme_bw() +</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-fitted-lines" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-fitted-lines" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Plot of fertility rate as a function of contraceptive use and female education level. Partial regression lines are displayed for female education levels of 5th grade (blue, dotted line), 8th grade (orange, dashed line) and 10th grade (green, solid line)." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-fitted-lines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="06-02-more-interaction-effects_files/figure-html/fig-fitted-lines-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fitted-lines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-fitted-lines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;22.2: Plot of fertility rate as a function of contraceptive use and female education level. Partial regression lines are displayed for female education levels of 5th grade (blue, dotted line), 8th grade (orange, dashed line) and 10th grade (green, solid line).
 </figcaption>
+<div aria-describedby="fig-fitted-lines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-02-more-interaction-effects_files/figure-html/fig-fitted-lines-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Plot of fertility rate as a function of contraceptive use and female education level. Partial regression lines are displayed for female education levels of 5th grade (blue, dotted line), 8th grade (orange, dashed line) and 10th grade (green, solid line).">
+</div>
 </figure>
 </div>
 </div>
@@ -720,15 +722,15 @@ Figure&nbsp;22.2: Plot of fertility rate as a function of contraceptive use and 
 <p><br></p>
 </section>
 </section>
-</section>
 <section id="interpreting-the-individual-effects-from-the-tidy-output" class="level2" data-number="22.3">
 <h2 data-number="22.3" class="anchored" data-anchor-id="interpreting-the-individual-effects-from-the-tidy-output"><span class="header-section-number">22.3</span> Interpreting the Individual Effects from the tidy() Output</h2>
 <p>In practice, it is enough to say there is an interaction, and to use the plot of the results to interpret the nature of the interaction effects rather than to interpret the actual coefficient values estimated by the <code>lm()</code> function. This being said, in simple models, we can actually interpret the coefficients more directly. To do this, write out the fitted equations for countries that differ in female education level by 1 year. We will write the fitted equations for countries that have a female education level of 0 years and those with a female education level of 1 year. (Do the substitution yourself to verify these equations.)</p>
+<p><strong>0 Years</strong></p>
 <p><span class="math display">\[
-\begin{split}
-\mathbf{0~years:~}\hat{\mathrm{Fertility~rate}_i} &amp;= 6.84 - 0.048(\mathrm{Contraceptive~use}_i) \\
-\mathbf{1~year:~}\hat{\mathrm{Fertility~rate}_i} &amp;= \left[6.84 -0.408 \right] + \left[ -0.0479 + 0.00350 \right](\mathrm{Contraceptive~use}_i)\\
-\end{split}
+\hat{\mathrm{Fertility~rate}_i} = 6.84 - 0.048(\mathrm{Contraceptive~use}_i)
+\]</span> <strong>1 Year</strong></p>
+<p><span class="math display">\[
+\hat{\mathrm{Fertility~rate}_i} = \left[6.84 -0.408 \right] + \left[ -0.0479 + 0.00350 \right](\mathrm{Contraceptive~use}_i)
 \]</span></p>
 <ul>
 <li>The intercept (<span class="math inline">\(\hat{\beta_0}=6.84\)</span>) is the average fertility rate for countries with a female education level of 0 years and contraception use of 0. (extrapolation).</li>
@@ -781,41 +783,38 @@ Figure&nbsp;22.2: Plot of fertility rate as a function of contraceptive use and 
 </ul>
 <p>To better understand the nature of the effects, especially the interaction, we will plot the fitted model. We choose female education values of 5, and 10 (the nearest integer values to the 25th and 75th percentile values) to create my plot. We also choose infant mortality values of 7 and 41 (the nearest integer values to the 25th and 75th percentile values) to show the effect of infant mortality rate.</p>
 <p><br></p>
-<section id="female-education-level-of-5-infant-mortality-rate-of-7" class="level4" data-number="22.4.0.1">
-<h4 data-number="22.4.0.1" class="anchored" data-anchor-id="female-education-level-of-5-infant-mortality-rate-of-7"><span class="header-section-number">22.4.0.1</span> Female education level of 5; Infant mortality rate of 7</h4>
+<p><strong>Female education level of 5; Infant mortality rate of 7</strong></p>
 <p><span class="math display">\[
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(5) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(7) + 0.002(5)(\mathrm{Contraceptive~use}_i)\\
+\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(5) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(7) +\\
+&amp;~~~~~0.002(5)(\mathrm{Contraceptive~use}_i)\\[2ex]
 &amp;= 3.61 - 0.02(\mathrm{Contraceptive~use}_i)
 \end{split}
 \]</span></p>
 <p><br></p>
-</section>
-<section id="female-education-level-of-5-infant-mortality-rate-of-41" class="level4" data-number="22.4.0.2">
-<h4 data-number="22.4.0.2" class="anchored" data-anchor-id="female-education-level-of-5-infant-mortality-rate-of-41"><span class="header-section-number">22.4.0.2</span> Female education level of 5; Infant mortality rate of 41</h4>
+<p><strong>Female education level of 5; Infant mortality rate of 41</strong></p>
 <p><span class="math display">\[
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(5) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(41) + 0.002(5)(\mathrm{Contraceptive~use}_i)\\
+\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(5) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(41) +\\
+&amp;~~~~~0.002(5)(\mathrm{Contraceptive~use}_i)\\[2ex]
 &amp;= 4.29 - 0.02(\mathrm{Contraceptive~use}_i)
 \end{split}
 \]</span></p>
 <p><br></p>
-</section>
-<section id="female-education-level-of-10-infant-mortality-rate-of-7" class="level4" data-number="22.4.0.3">
-<h4 data-number="22.4.0.3" class="anchored" data-anchor-id="female-education-level-of-10-infant-mortality-rate-of-7"><span class="header-section-number">22.4.0.3</span> Female education level of 10; Infant mortality rate of 7</h4>
+<p><strong>Female education level of 10; Infant mortality rate of 7</strong></p>
 <p><span class="math display">\[
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(10) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(7) + 0.002(10)(\mathrm{Contraceptive~use}_i)\\
+\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(10) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(7) +\\
+&amp;~~~~~0.002(10)(\mathrm{Contraceptive~use}_i)\\[2ex]
 &amp;= 2.25 - 0.01(\mathrm{Contraceptive~use}_i)
 \end{split}
 \]</span></p>
 <p><br></p>
-</section>
-<section id="female-education-level-of-10-infant-mortality-rate-of-41" class="level4" data-number="22.4.0.4">
-<h4 data-number="22.4.0.4" class="anchored" data-anchor-id="female-education-level-of-10-infant-mortality-rate-of-41"><span class="header-section-number">22.4.0.4</span> Female education level of 10; Infant mortality rate of 41</h4>
+<p><strong>Female education level of 10; Infant mortality rate of 41</strong></p>
 <p><span class="math display">\[
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(10) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(41) + 0.002(10)(\mathrm{Contraceptive~use}_i)\\
+\hat{\mathrm{Fertility~rate}_i} &amp;= 4.82 - 0.271(10) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(41) +\\
+&amp;~~~~~0.002(10)(\mathrm{Contraceptive~use}_i)\\[2ex]
 &amp;= 2.93 - 0.01(\mathrm{Contraceptive~use}_i)
 \end{split}
 \]</span></p>
@@ -826,38 +825,37 @@ Figure&nbsp;22.2: Plot of fertility rate as a function of contraceptive use and 
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">3.61</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.02</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">2.25</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme_bw() +</span></span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Infant mortality rate at the first quartile (7%)"</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"First quartile (7%)"</span>)</span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 41)</span></span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate)) <span class="sc">+</span></span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">4.29</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.02</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">2.93</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme_bw() +</span></span>
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Infant mortality rate at the third quartile (41%)"</span>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Third quartile (41%)"</span>)</span>
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout side-by-side plot</span></span>
 <span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-fitted-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-fitted-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-fitted-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="06-02-more-interaction-effects_files/figure-html/fig-fitted-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fitted-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-fitted-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;22.3: Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values.
 </figcaption>
+<div aria-describedby="fig-fitted-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-02-more-interaction-effects_files/figure-html/fig-fitted-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values.">
+</div>
 </figure>
 </div>
 </div>
 </div>
 <p><br></p>
-</section>
 </section>
 <section id="higher-order-interactions" class="level2" data-number="22.5">
 <h2 data-number="22.5" class="anchored" data-anchor-id="higher-order-interactions"><span class="header-section-number">22.5</span> Higher Order Interactions</h2>
@@ -893,23 +891,25 @@ Figure&nbsp;22.3: Plot of fertility rate as a function of contraceptive use, fem
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 5
-  term                                     estimate std.error statistic  p.value
-  &lt;chr&gt;                                       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1 (Intercept)                               7.02e+0 1.02           6.86 3.52e-10
-2 educ_female                              -5.12e-1 0.124         -4.14 6.51e- 5
-3 contraceptive                            -7.54e-2 0.0168        -4.47 1.80e- 5
-4 infant_mortality                         -1.82e-2 0.0138        -1.32 1.90e- 1
-5 educ_female:contraceptive                 7.06e-3 0.00185        3.81 2.21e- 4
-6 contraceptive:infant_mortality            9.62e-4 0.000325       2.96 3.74e- 3
-7 educ_female:infant_mortality              4.55e-3 0.00285        1.59 1.14e- 1
-8 educ_female:contraceptive:infant_mortal… -1.04e-4 0.0000516     -2.01 4.69e- 2</code></pre>
+  term                           estimate std.error statistic  p.value
+  &lt;chr&gt;                             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)                     7.02e+0 1.02           6.86 3.52e-10
+2 educ_female                    -5.12e-1 0.124         -4.14 6.51e- 5
+3 contraceptive                  -7.54e-2 0.0168        -4.47 1.80e- 5
+4 infant_mortality               -1.82e-2 0.0138        -1.32 1.90e- 1
+5 educ_female:contraceptive       7.06e-3 0.00185        3.81 2.21e- 4
+6 contraceptive:infant_mortality  9.62e-4 0.000325       2.96 3.74e- 3
+7 educ_female:infant_mortality    4.55e-3 0.00285        1.59 1.14e- 1
+8 educ_female:contraceptive:inf… -1.04e-4 0.0000516     -2.01 4.69e- 2</code></pre>
 </div>
 </div>
 <p>The fitted equation is:</p>
 <p><span class="math display">\[
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &amp;= 7.02 - 0.512(\mathrm{Female~education}_i) - 0.08(\mathrm{Contraceptive~use}_i) - 0.02(\mathrm{Infant~mortality}_i) + \\
-&amp; 0.007(\mathrm{Female~education}_i)(\mathrm{Contraceptive~use}_i) + 0.001(\mathrm{Contraceptive~use}_i)(\mathrm{Infant~mortality}_i) + \\
+\hat{\mathrm{Fertility~rate}_i} = &amp;7.02 - 0.512(\mathrm{Female~education}_i) - 0.08(\mathrm{Contraceptive~use}_i) -\\
+&amp;0.02(\mathrm{Infant~mortality}_i) + \\
+&amp;0.007(\mathrm{Female~education}_i)(\mathrm{Contraceptive~use}_i) +\\
+&amp;0.001(\mathrm{Contraceptive~use}_i)(\mathrm{Infant~mortality}_i) + \\
 &amp; 0.005(\mathrm{Female~education}_i)(\mathrm{Infant~mortality}_i) \\
 &amp;- 0.0001(\mathrm{Female~education}_i)(\mathrm{Contraceptive~use}_i)(\mathrm{Infant~mortality}_i)
 \end{split}
@@ -921,32 +921,32 @@ Figure&nbsp;22.3: Plot of fertility rate as a function of contraceptive use, fem
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">4.49</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.04</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">2.09</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.005</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme_bw() +</span></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Infant mortality rate at the first quartile (7%)"</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"First quartile (7%)"</span>)</span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fitted model (infant mortality rate = 41)</span></span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> contraceptive, <span class="at">y =</span> fertility_rate)) <span class="sc">+</span></span>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">4.65</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.02</span>, <span class="at">color =</span> <span class="st">"#f26419"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">3.02</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.008</span>, <span class="at">color =</span> <span class="st">"#022f40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme_bw() +</span></span>
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Contraceptive use"</span>) <span class="sc">+</span></span>
 <span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fertility rate"</span>) <span class="sc">+</span></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Infant mortality rate at the third quartile (41%)"</span>)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Third quartile (41%)"</span>)</span>
 <span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout side-by-side plot</span></span>
 <span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-fitted-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-fitted-3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-fitted-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="06-02-more-interaction-effects_files/figure-html/fig-fitted-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fitted-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-fitted-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;22.4: Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values.
 </figcaption>
+<div aria-describedby="fig-fitted-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-02-more-interaction-effects_files/figure-html/fig-fitted-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values.">
+</div>
 </figure>
 </div>
 </div>

@@ -9,6 +9,8 @@ source("scripts/_common.R")
 In this chapter, you will learn about how to include categorical predictors with more than two categories in the regression model. To do so, we will use the **pew.csv** data to examine whether American's news knowledge differs based on the source of their news. To begin, we will load several libraries and import the data into an object called `pew`.
 
 :::fyi
+**PROTIP**
+
 The **tidyverse** library is a meta-package that includes **dplyr**, **forcats**, **ggplot2**, **purrr**, **readr**, **stringr**, **tibble**, and **tidyr**. Loading **tidyverse** allows you to use all of the functionality in these other packages without having to load eight different packages.
 :::
 
@@ -38,20 +40,22 @@ To begin, as always, we will plot the marginal distributions of news knowledge (
 ```{r}
 #| label: fig-family-explore
 #| fig-cap: "LEFT: Density plot of news knowledge. RIGHT: Bar plot of news source."
+#| fig-alt: "LEFT: Density plot of news knowledge. RIGHT: Bar plot of news source."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
+
 # Density plot of news knowledge
 p1 = ggplot(data = pew, aes(x = knowledge)) +
   stat_density(geom = "line", color = "#c62f4b") +
-  theme_bw() +
+  #theme_bw() +
   xlab("News knowledge") +
   ylab("Probability density")
 
 # Bar plot of news source
 p2 = ggplot(data = pew, aes(x = news_source)) +
   geom_bar(fill = "#c62f4b") +
-  theme_bw() +
+  #theme_bw() +
   xlab("News source") +
   ylab("Frequency")
 
@@ -71,11 +75,12 @@ What does the distribution of news knowledge look like once we condition on news
 #| fig-width: 8
 #| fig-height: 4
 #| out-width: "70%"
+
 # Scatterplot
 ggplot(data = pew, aes(x = news_source, y = knowledge)) +
   geom_boxplot() +
-  geom_jitter(width=0.2, alpha = 0.3) +
-  theme_bw() +
+  geom_jitter(width = 0.2, alpha = 0.3) +
+  #theme_bw() +
   xlab("News source") +
   ylab("News knowledge")
 
@@ -190,6 +195,8 @@ By using any three of the indicators, we can identify the news source for everyo
 To examine the effect of news source, we will fit the regression using any three of the four dummy-coded indicator variables you created. The indicator you leave out of the model will correspond to the reference category. For example, in the model fitted below, we include all the predictors except `none` as predictors in the model. As such, people whose news source is "None" is our reference group.
 
 :::protip
+**PROTIP**
+
 Ultimately we will need to fit several models, so I often name my regression objects using the reference group. For example, in the model where "None" is the reference group, I will name my regression object `lm.none`.
 :::
 
@@ -570,6 +577,8 @@ The interpretations are provided below. While we offer them for the four covaria
 
 
 :::fyi
+**FYI**
+
 Another methodology you may have encountered in your statistics journey is analysis of covariance (ANCOVA). This method is often introduced as a way of testing mean differences while controlling for other covariates. Again, this is exactly what we are evaluating in the regression model when we included the covariates of age, education level, amount of news consumption, and political engagement. **Just as you can carry out ANOVA using regression, you can also carry out an ANCOVA using regression.**
 :::
 
@@ -740,6 +749,8 @@ And, here are some tips for creating the data frame:
 Each row in `d` represents an American who gets there news from each of the four news sources. Notice that the dummy coding in each row corresponds to a particular group. For example, the dummy coding in Row 1 corresponds to the 'None' group, while that in Row 2 corresponds to the 'Comedy News' group.
 
 :::fyi
+**FYI**
+
 When you are creating your data frame, the vector values are filling a column, not a row. But, you need the dummy coding to correspond to rows. It can be helpful to sketch out the data frame on a piece of paper first, and then write the code to create that data frame. Always look at the resulting data you create to be sure it has the correct structure!
 :::
 
@@ -819,7 +830,7 @@ ggplot(data = plot_data, aes(x = m, y = source)) +
     size = 3,
     color = "#ff2f92"
     ) +
-  theme_minimal() +
+  #theme_bw() +
   xlab("Adjusted mean news knowledge score") +
   ylab("News source(s)") +
   xlim(50, 80)

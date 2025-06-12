@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will learn about how to include and interpret interaction effects in the regression model. To do so, we will use the [work-demands.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/work-demands.csv) data to examine the effect of work contact outside of normal work hours on feelings of guilt and distress. @Glavin:2011 posits that due to societal expectations and gender stereotypes around who takes on caretaker and provider roles within a family, that "dealing with competing work and family demands may be more emotionally difficult for employed women compared to similarly situated men" (p. 46). Because of this, we will also evaluate whether there is a differential effect of work contact on guilt based on gender.  
+In this chapter, you will learn about how to include and interpret interaction effects in the regression model. To do so, we will use the **work-demands.csv** data to examine the effect of work contact outside of normal work hours on feelings of guilt and distress. @Glavin:2011 posits that due to societal expectations and gender stereotypes around who takes on caretaker and provider roles within a family, that "dealing with competing work and family demands may be more emotionally difficult for employed women compared to similarly situated men" (p. 46). Because of this, we will also evaluate whether there is a differential effect of work contact on guilt based on gender.  
 
 To begin, we will load several libraries and import the data into an object called `work`.
 
@@ -34,31 +34,33 @@ work
 To begin, as always, we would plot the marginal distributions of guilt (`guilt`) and amount of work contact outside normal working hours (`contact`). We will also examine the scatterplot to look at the relationship between amount of work contact outside normal working hours and guilt. We will also examine summary measures for each distribution and the correlation matrix.
 
 
-```{r out.width="90%"}
+```{r}
 #| label: fig-vocab-explore
 #| fig-cap: "Density plots of guilt and amount of work contact outside normal working hours, as well as, the scatterplot showing the relationship between these measures."
+#| fig-alt: "Density plots of guilt and amount of work contact outside normal working hours, as well as, the scatterplot showing the relationship between these measures."
 #| fig-width: 12
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
+
 # Density plot of pre-test scores
 p1 = ggplot(data = work, aes(x = guilt)) +
   geom_density() +
-  theme_bw() +
+  #theme_bw() +
   xlab("Guilt") +
   ylab("Probability density")
 
 # Density plot of post-test scores
 p2 = ggplot(data = work, aes(x = contact)) +
   geom_density() +
-  theme_bw() +
-  xlab("Amount of work contact outside normal working hours") +
+  #theme_bw() +
+  xlab("Amount of work contact outside\n normal working hours") +
   ylab("Probability density")
 
 # Scatterplot of post- vs. pre-test scores
 p3 = ggplot(data = work, aes(x = contact, y = guilt)) +
   geom_point() +
-  theme_bw() +
-  xlab("Amount of work contact outside normal working hours") +
+  #theme_bw() +
+  xlab("Amount of work contact outside\n normal working hours") +
   ylab("Guilt")
 
 # Layout plots
@@ -112,6 +114,7 @@ lm.c = lm(guilt ~ 1 + contact + female + authority + married, data = work)
 ```{r}
 #| echo: false
 #| eval: false
+
 library(stargazer)
 stargazer(lm.a, lm.b, lm.c, dep.var.labels = "Guilt", covariate.labels = c("Work contact", "Female", "Job authority", "Married"), keep.stat = c("rsq", "ser", "f"), notes = "Female and Married are dummy-coded indicator variables indicating gender and marital status, respectively.", notes.align = "l", notes.append = TRUE, header = FALSE, type="html")
 ```
@@ -189,9 +192,11 @@ $$
 ```{r}
 #| label: fig-model-1
 #| fig-cap: "Partial fitted regression lines showing model-predicted guilt as a function of the amount of work contact outside normal working hours for females (charcoal, solid line) and non-females (mango, dashed line). The effects of job authority (mean value) and marital status (non-married) have been partialed out."
+#| fig-alt: "Partial fitted regression lines showing model-predicted guilt as a function of the amount of work contact outside normal working hours for females (charcoal, solid line) and non-females (mango, dashed line). The effects of job authority (mean value) and marital status (non-married) have been partialed out."
+
 ggplot(data = work, aes(x = contact, y = guilt)) +
   geom_point(alpha = 0) +
-  theme_bw() +
+  #theme_bw() +
   xlab("Amount of boundary-spanning work") +
   ylab("Predicted home-life/work guilt") +
   geom_abline(intercept = 6.94, slope = 3.22, linetype = "solid", color = "#424651") +
@@ -201,6 +206,8 @@ ggplot(data = work, aes(x = contact, y = guilt)) +
 This display helps us see that the effect of work contact outside normal working hours (slopes of the lines) is THE SAME for both females and non-females, and is 3.22. We also see that females report higher levels of guilt than non-females, and that this difference in guilt is THE SAME regardless of how much work contact outside normal working hours is experienced.
 
 :::fyi
+**FYI**
+
 Remember, this type of model where the **effect of a predictor is THE SAME** for each level of another predictor is referred to as a *main-effects model*.
 :::
 
@@ -212,20 +219,7 @@ Remember, this type of model where the **effect of a predictor is THE SAME** for
 Unfortunately, the models we have interpreted and evaluated thus far do no allow us to answer whether the effect of work contact on guilt is DIFFERENT across gender. Differential effects of work contact on guilt would imply that the slopes of the regression lines showing the effect of work contact for females and non-females would not be equal (i.e., the fitted regression lines are not parallel). The main-effects models assume that the effect of work contact on guilt is the SAME for females and non-females. In this model the slopes of the  regression lines showing the effect of work contact would be the same (i.e., parallel regression lines). In statistical terms we describe differential effects as **interaction effects**. We would say there is an interaction effect between work contact outside of normal working hours and gender on  guilt
 
 
-
-
-
-
-
-
-<!-- One important question for researchers studying the effect of boundary-spanning work on home-life/work guilt is whether the effect of boundary-spanning work on guilt is actually the same for females and non-females. E -->
-
-
-
-
-<!--  -->
-
-<!-- <br /> -->
+<br />
 
 
 ### Evaluating an Interaction Effect
@@ -235,11 +229,14 @@ We can initally evaluate whether there is an interaction effect in the sample by
 ```{r}
 #| label: fig-explore-cond-gender
 #| fig-cap: "Scatterplot of guilt versus work contact conditioned on gender. The fitted simple regression lines have also been included."
-#| out-width: "70%"
+#| fig-alt: "Scatterplot of guilt versus work contact conditioned on gender. The fitted simple regression lines have also been included."
+#| fig-width: 8
+#| fig-height: 6
+
 ggplot(data = work, aes(x = contact, y = guilt, group = factor(female), color = factor(female))) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
-  theme_bw() +
+  #theme_bw() +
   scale_color_manual(
     name = "",
     values = c("#F5853F", "#424651"),
@@ -276,7 +273,10 @@ tidy(lm.d)
 For now we will focus on the coefficient-level output. The fitted equation is:
 
 $$
-\hat{\mathrm{Guilt}}_i = 7.22 + 2.62(\mathrm{Work~Contact}_i) + 0.73(\mathrm{Female}_i) + 0.81(\mathrm{Work~Contact}_i)(\mathrm{Female}_i)
+\begin{split}
+\hat{\mathrm{Guilt}}_i = &7.22 + 2.62(\mathrm{Work~Contact}_i) + 0.73(\mathrm{Female}_i) +\\
+&0.81(\mathrm{Work~Contact}_i)(\mathrm{Female}_i)
+\end{split}
 $$
 
 If we substitute in the appropriate dummy-coding we can obtain the fitted equations for females and non-females.
@@ -312,6 +312,8 @@ In our example, the inferential results suggest that there is some evidence that
 
 
 :::fyi
+**FYI**
+
 Models that include interaction (i.e., product) terms are referred to as *interaction models*. The key term in these models is often the interaction term and not the constituent main-effects.
 :::
 
@@ -332,10 +334,16 @@ $$
 To further understand the terms in the interaction model, we will write out the interaction model using the context of our example. (For ease of writing, we will drop the part of the model that specifies the model's assumptions.)
 
 $$
-\mathrm{Guilt}_i = \beta_0 + \beta_1(\mathrm{Work~Contact}_i) + \beta_2(\mathrm{Female}_i) + \beta_3(\mathrm{Work~Contact}_i)(\mathrm{Female}_i) + \epsilon_i
+\begin{split}
+\mathrm{Guilt}_i = &\beta_0 + \beta_1(\mathrm{Work~Contact}_i) + \beta_2(\mathrm{Female}_i) +\\
+&\beta_3(\mathrm{Work~Contact}_i)(\mathrm{Female}_i) + \epsilon_i
+\end{split}
 $$
+<br />
 
 :::fyi
+**FYI**
+
 Notice that  in the interaction model, if $\beta_3$, the coefficient on the interaction term, is zero, the equation reduces to the equation for the main-effects model, namely:
 
 $$
@@ -385,7 +393,10 @@ We can use these equations to understand what each term in the interaction model
 Here we will use the interaction model we fitted earlier to understand how to interpret the different coefficients in the model. Recall that the fitted equation was,
 
 $$
-\hat{\mathrm{Guilt}}_i = 7.22 + 2.62(\mathrm{Work~Contact}_i) + 0.73(\mathrm{Female}_i) + 0.81(\mathrm{Work~Contact}_i)(\mathrm{Female}_i)
+\begin{split}
+\hat{\mathrm{Guilt}}_i = &7.22 + 2.62(\mathrm{Work~Contact}_i) + 0.73(\mathrm{Female}_i) +\\
+&0.81(\mathrm{Work~Contact}_i)(\mathrm{Female}_i)
+\end{split}
 $$
 
 - The intercept term ($\hat\beta_0=7.22$) indicates that non-females (reference group) who experience no work contact outside of normal working hours have a guilt level of 7.22, on average.
@@ -393,7 +404,9 @@ $$
 - The slope term associated with the dummy-coded female predictor ($\hat\beta_2=0.73$) indicates that females who experience no work contact outside of normal working hours have a guilt level that is 0.73-units higher, on average, than non-females who experience no work contact outside of normal working hours.
 - The slope term associated with the interaction predictor ($\hat\beta_3=0.81$) indicates that, for females, the effect of work contact outside of normal working hours on guilt is 0.81-units higher, on average, than the effect of work contact outside of normal working hours on guilt for non-females. In other words, for females, each one-unit increase in the amount of work contact outside of normal working hours is associated with a 3.43-unit difference in guilt, on average---this is 0.81-units higher than the same effect for non-females.
 
-:::protip
+:::fyi
+**PROTIP**
+
 In general, the easiest way to determine how to interpret the coefficients is to actually compute the partial regression equations for both groups based on the fitted interaction equation like we did earlier. Then you can just interpret the intercept and slope terms for the groups independently.
 :::
 
@@ -407,9 +420,12 @@ Almost always, plotting the fitted model is a good idea once you have fitted an 
 ```{r}
 #| label: fig-fitted-lines
 #| fig-cap: "Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for females (charcoal, solid line) and non-females (mango, dashed line)."
+#| fig-alt: "Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for females (charcoal, solid line) and non-females (mango, dashed line)."
+
+# Plot the fitted lines
 ggplot(data = work, aes(x = contact, y = guilt)) +
   geom_point(alpha = 0) +
-  theme_bw() +
+  #theme_bw() +
   xlab("Work contact outside normal working hours") +
   ylab("Predicted guilt") +
   geom_abline(intercept = 7.95, slope = 3.43, linetype = "solid", color = "#424651") + #Females
@@ -450,8 +466,7 @@ The model explains 79.5% of the variation in guilt, which is more than we expect
 
 $$
 \begin{split}
-\hat{\mathrm{Guilt}}_i = &9.38 + 2.79(\mathrm{Work~Contact}_i) - 0.18(\mathrm{Female}_i) - 4.42(\mathrm{Authority}_i) + 2.08(\mathrm{Married}_i) + \\
-&0.69(\mathrm{Work~Contact}_i)(\mathrm{Female}_i)
+\hat{\mathrm{Guilt}}_i = &9.38 + 2.79(\mathrm{Work~Contact}_i) - 0.18(\mathrm{Female}_i) - 4.42(\mathrm{Authority}_i) +\\ &2.08(\mathrm{Married}_i) + 0.69(\mathrm{Work~Contact}_i)(\mathrm{Female}_i)
 \end{split}
 $$
 
@@ -475,7 +490,8 @@ To further aid our understanding of the results from fitting the interaction mod
 
 $$
 \begin{split}
-\hat{\mathrm{Guilt}}_i &= 9.38 + 2.79(\mathrm{Work~Contact}_i) - 0.18(0) - 4.42(0.82) + 2.08(0) +  0.69(\mathrm{Work~Contact}_i)(0) \\[2ex]
+\hat{\mathrm{Guilt}}_i &= 9.38 + 2.79(\mathrm{Work~Contact}_i) - 0.18(0) - 4.42(0.82) + 2.08(0) +\\
+&~~~~~0.69(\mathrm{Work~Contact}_i)(0) \\[2ex]
 &= 5.76 + 2.79(\mathrm{Work~Contact}_i)
 \end{split}
 $$
@@ -484,7 +500,8 @@ $$
 
 $$
 \begin{split}
-\hat{\mathrm{Guilt}}_i &= 9.38 + 2.79(\mathrm{Work~Contact}_i) - 0.18(0) - 4.42(0.82) + 2.08(1) +  0.69(\mathrm{Work~Contact}_i)(0) \\[2ex]
+\hat{\mathrm{Guilt}}_i &= 9.38 + 2.79(\mathrm{Work~Contact}_i) - 0.18(0) - 4.42(0.82) + 2.08(1) +\\
+&~~~~~0.69(\mathrm{Work~Contact}_i)(0) \\[2ex]
 &= 7.84 + 2.79(\mathrm{Work~Contact}_i)
 \end{split}
 $$
@@ -493,7 +510,8 @@ $$
 
 $$
 \begin{split}
-\hat{\mathrm{Guilt}}_i &= 9.38 + 2.79(\mathrm{Work~Contact}_i) - 0.18(1) - 4.42(0.82) + 2.08(0) +  0.69(\mathrm{Work~Contact}_i)(1) \\[2ex]
+\hat{\mathrm{Guilt}}_i &= 9.38 + 2.79(\mathrm{Work~Contact}_i) - 0.18(1) - 4.42(0.82) + 2.08(0) +\\
+&~~~~~0.69(\mathrm{Work~Contact}_i)(1) \\[2ex]
 &= 5.58 + 3.48(\mathrm{Work~Contact}_i)
 \end{split}
 $$
@@ -502,22 +520,24 @@ $$
 
 $$
 \begin{split}
-\hat{\mathrm{Guilt}}_i &= 9.38 + 2.79(\mathrm{Work~Contact}_i) - 0.18(1) - 4.42(0.82) + 2.08(1) +  0.69(\mathrm{Work~Contact}_i)(1) \\[2ex]
+\hat{\mathrm{Guilt}}_i &= 9.38 + 2.79(\mathrm{Work~Contact}_i) - 0.18(1) - 4.42(0.82) + 2.08(1) +\\
+&~~~~~0.69(\mathrm{Work~Contact}_i)(1) \\[2ex]
 &= 7.66 + 3.48(\mathrm{Work~Contact}_i)
 \end{split}
 $$
 
-```{r out.width="45%", fig.show='hold', fig.cap=}
+```{r}
 #| label: fig-fitted-lines-2
 #| fig-cap: "Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for married (dashed lines) and non-married (solid lines) employees conditioned on gender. Job authority is controlled by setting this to its mean value."
+#| fig-alt: "Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for married (dashed lines) and non-married (solid lines) employees conditioned on gender. Job authority is controlled by setting this to its mean value."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
 # Female
 p1 = ggplot(data = work, aes(x = contact, y = guilt)) +
   geom_point(alpha = 0) +
-  theme_bw() +
-  xlab("Work contact outside normal working hours") +
+  #theme_bw() +
+  xlab("Work contact outside normal\n working hours") +
   ylab("Predicted guilt") +
   geom_abline(intercept = 7.66, slope = 3.48, linetype = "dashed", color = "#424651") + #Married
   geom_abline(intercept = 5.58, slope = 3.48, linetype = "solid", color = "#424651") +  #Not married
@@ -526,8 +546,8 @@ p1 = ggplot(data = work, aes(x = contact, y = guilt)) +
 # Non-female
 p2 = ggplot(data = work, aes(x = contact, y = guilt)) +
   geom_point(alpha = 0) +
-  theme_bw() +
-  xlab("Work contact outside normal working hours") +
+  #theme_bw() +
+  xlab("Work contact outside normal\n working hours") +
   ylab("Predicted guilt") +
   geom_abline(intercept = 7.84, slope = 2.79, linetype = "dashed", color = "#f5853f") + #Married
   geom_abline(intercept = 5.76, slope = 2.79, linetype = "solid", color = "#f5853f") +  #Not married
@@ -545,14 +565,15 @@ We could also have facetted on marital status rather than gender. In this plot, 
 ```{r}
 #| label: fig-fitted-lines-3
 #| fig-cap: "Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for females (charcoal, dashed line) and non-females (mango, solid line) conditioned on marital status. Job authority is controlled by setting this to its mean value."
+#| fig-alt: "Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for females (charcoal, dashed line) and non-females (mango, solid line) conditioned on marital status. Job authority is controlled by setting this to its mean value."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
 # Non-married
 p1 = ggplot(data = work, aes(x = contact, y = guilt)) +
   geom_point(alpha = 0) +
-  theme_bw() +
-  xlab("Work contact outside normal working hours") +
+  #theme_bw() +
+  xlab("Work contact outside normal\n working hours") +
   ylab("Predicted guilt") +
   geom_abline(intercept = 5.76, slope = 2.79, linetype = "solid", color = "#f5853f") +  #Non-female
   geom_abline(intercept = 5.58, slope = 3.48, linetype = "dashed", color = "#424651") + #Female
@@ -561,8 +582,8 @@ p1 = ggplot(data = work, aes(x = contact, y = guilt)) +
 # Married
 p2 = ggplot(data = work, aes(x = contact, y = guilt)) +
   geom_point(alpha = 0) +
-  theme_bw() +
-  xlab("Work contact outside normal working hours") +
+  #theme_bw() +
+  xlab("Work contact outside normal\n working hours") +
   ylab("Predicted guilt") +
   geom_abline(intercept = 7.84, slope = 2.79, linetype = "solid", color = "#f5853f") +  #Non-female
   geom_abline(intercept = 7.66, slope = 3.48, linetype = "dashed", color = "#424651") + #Female
@@ -572,7 +593,9 @@ p2 = ggplot(data = work, aes(x = contact, y = guilt)) +
 p1 | p2
 ```
 
-:::protip
+:::fyi
+**PROTIP**
+
 Which plot should you use? It depends on what you want to emphasize. Here I would choose to use the second plot in a publication because the interaction (which is the focus of the research question) is easier to see within each facet. The fact that the lines in the married facet are higher than those in the non-married facet is of less importance since marital status was a covariate. (In the first plot, it is easier to see the marital status main-effect.)
 :::
 
@@ -588,9 +611,11 @@ Just like main-effects models, we need to examine the distributional assumptions
 ```{r}
 #| label: fig-assumptions
 #| fig-cap: "LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from Model E. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption and the shaded, grey region indicates the expected uncertainty. The loess line (blue) is also displayed."
+#| fig-alt: "LEFT: Density plot of the marginal distribution of standardized residuals from the fitted regression model (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from Model E. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption and the shaded, grey region indicates the expected uncertainty. The loess line (blue) is also displayed."
 #| fig-width: 8
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
+
 # Create augmented data
 aug_e = augment(lm.e)
 
@@ -598,7 +623,7 @@ aug_e = augment(lm.e)
 p1 = ggplot(data = aug_e, aes(x = .std.resid)) +
   stat_density_confidence(model = "normal") +
   stat_density(geom = "line") +
-  theme_bw() +
+  #theme_bw() +
   xlab("Standardized Residuals") +
   ylab("Probability density")
 
@@ -608,7 +633,7 @@ p2 = ggplot(data = aug_e, aes(x = .fitted, y = .std.resid)) +
   geom_smooth(method = "lm", se = TRUE) +
   geom_smooth(method = "loess", se = FALSE) +
   geom_hline(yintercept = 0) +
-  theme_bw() +
+  #theme_bw() +
   xlab("Fitted Values") +
   ylab("Standardized Residuals")
 
@@ -641,20 +666,22 @@ In the visual display, this interpretation would focus on the vertical distance 
 ```{r}
 #| label: fig-fitted-lines-4
 #| fig-cap: "Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for non-married females (charcoal, dash line) and non-females (mango, solid line). Job authority is controlled by setting this to its mean value."
+#| fig-alt: "Fitted regression lines showing model-predicted guilt as a function of work contact outside normal working hours for non-married females (charcoal, dash line) and non-females (mango, solid line). Job authority is controlled by setting this to its mean value."
 # Non-married
 ggplot(data = work, aes(x = contact, y = guilt)) +
   geom_point(alpha = 0) +
-  theme_bw() +
+  #theme_bw() +
   xlab("Work contact outside normal working hours") +
   ylab("Predicted guilt") +
   geom_abline(intercept = 5.76, slope = 2.79, linetype = "solid", color = "#f5853f") +  #Non-female
-  geom_abline(intercept = 5.58, slope = 3.48, linetype = "dashed", color = "#424651") + #Female
-  ggtitle("Non-married")
+  geom_abline(intercept = 5.58, slope = 3.48, linetype = "dashed", color = "#424651")   #Female
 ```
 
 In this plot, the effect of gender differs depending on the amount of boundary-spanning work. For low amounts of work contact outside normal working hour the gender effect is small, and for higher amounts of work contact outside normal working hours the gender effect is larger. Moreover, the direction of the effect switches within the range of our data (i.e., the interaction is disordinal). That is, at the lowest level of work contact outside normal working hours, non-females have a higher level of guilt, but for higher levels of work contact outside normal working hours, females have more guilt than non-females.
 
-:::protip
+:::fyi
+**PROTIP**
+
 Which interpretation of the interaction effect you use is up to you. Try them both. Although they both describe the same interaction, trying the different interpretations can sometimes lead to more information about or more natural ways of describing the effects.
 :::
 

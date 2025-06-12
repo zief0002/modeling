@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -497,6 +497,7 @@ window.Quarto = {
 
 <p>In this chapter, you will learn about how to include categorical predictors with more than two categories in the regression model. To do so, we will use the <strong>pew.csv</strong> data to examine whether American’s news knowledge differs based on the source of their news. To begin, we will load several libraries and import the data into an object called <code>pew</code>.</p>
 <div class="fyi">
+<p><strong>PROTIP</strong></p>
 <p>The <strong>tidyverse</strong> library is a meta-package that includes <strong>dplyr</strong>, <strong>forcats</strong>, <strong>ggplot2</strong>, <strong>purrr</strong>, <strong>readr</strong>, <strong>stringr</strong>, <strong>tibble</strong>, and <strong>tidyr</strong>. Loading <strong>tidyverse</strong> allows you to use all of the functionality in these other packages without having to load eight different packages.</p>
 </div>
 <div class="cell" data-layout-align="center">
@@ -515,19 +516,20 @@ window.Quarto = {
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>pew</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,094 × 9
-      id knowledge news_source   news ideology engagement   age education female
-   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; 
- 1     1        50 Conservative    63     39.3       79.5  44.4        14 Yes   
- 2     3        45 None            49     75.7       61    45.7        12 Yes   
- 3     4        26 None            22     23.5       66.8  39.3        15 Yes   
- 4     5        79 None            54     69.5       80.8  59.5        15 No    
- 5     6        31 Conservative    65     18         99.6  43.8        12 Yes   
- 6     7        22 Conservative    63     33.2       37.4  29.6        10 No    
- 7     8        93 Conservative    50     29.7       88.6  29.6        16 No    
- 8     9        23 None            12     52.5       82.4  45.1        12 Yes   
- 9    10        41 Liberal         16     14         87.3  18.7        11 No    
-10    11        23 Liberal         43     62         67    47.5         9 Yes   
-# ℹ 1,084 more rows</code></pre>
+      id knowledge news_source   news ideology engagement   age
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
+ 1     1        50 Conservative    63     39.3       79.5  44.4
+ 2     3        45 None            49     75.7       61    45.7
+ 3     4        26 None            22     23.5       66.8  39.3
+ 4     5        79 None            54     69.5       80.8  59.5
+ 5     6        31 Conservative    65     18         99.6  43.8
+ 6     7        22 Conservative    63     33.2       37.4  29.6
+ 7     8        93 Conservative    50     29.7       88.6  29.6
+ 8     9        23 None            12     52.5       82.4  45.1
+ 9    10        41 Liberal         16     14         87.3  18.7
+10    11        23 Liberal         43     62         67    47.5
+# ℹ 1,084 more rows
+# ℹ 2 more variables: education &lt;dbl&gt;, female &lt;chr&gt;</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -538,28 +540,28 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of news knowledge</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> pew, <span class="fu">aes</span>(<span class="at">x =</span> knowledge)) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#c62f4b"</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme_bw() +</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"News knowledge"</span>) <span class="sc">+</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar plot of news source</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> pew, <span class="fu">aes</span>(<span class="at">x =</span> news_source)) <span class="sc">+</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#c62f4b"</span>) <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme_bw() +</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"News source"</span>) <span class="sc">+</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frequency"</span>)</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-family-explore" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-family-explore" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="LEFT: Density plot of news knowledge. RIGHT: Bar plot of news source.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-family-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="05-02-polychotomous-predictors_files/figure-html/fig-family-explore-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-family-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-family-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;19.1: LEFT: Density plot of news knowledge. RIGHT: Bar plot of news source.
 </figcaption>
+<div aria-describedby="fig-family-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-02-polychotomous-predictors_files/figure-html/fig-family-explore-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="LEFT: Density plot of news knowledge. RIGHT: Bar plot of news source.">
+</div>
 </figure>
 </div>
 </div>
@@ -570,8 +572,8 @@ Figure&nbsp;19.1: LEFT: Density plot of news knowledge. RIGHT: Bar plot of news 
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pew, <span class="fu">aes</span>(<span class="at">x =</span> news_source, <span class="at">y =</span> knowledge)) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span><span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme_bw() +</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"News source"</span>) <span class="sc">+</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"News knowledge"</span>)</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -595,14 +597,14 @@ Figure&nbsp;19.1: LEFT: Density plot of news knowledge. RIGHT: Bar plot of news 
 4 None          48.7  21.0   497</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="fig-family-explore-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="LEFT: Boxplots of the news knowledge versus news source. The jittered points show the individual data values." data-fig-align="center">
+<div id="fig-family-explore-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="LEFT: Boxplots of the news knowledge versus news source. The jittered points show the individual data values.">
 <figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-family-explore-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.2: LEFT: Boxplots of the news knowledge versus news source. The jittered points show the individual data values.
+</figcaption>
 <div aria-describedby="fig-family-explore-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="05-02-polychotomous-predictors_files/figure-html/fig-family-explore-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="LEFT: Boxplots of the news knowledge versus news source. The jittered points show the individual data values.">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-family-explore-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19.2: LEFT: Boxplots of the news knowledge versus news source. The jittered points show the individual data values.
-</figcaption>
 </figure>
 </div>
 </div>
@@ -767,6 +769,7 @@ Table&nbsp;19.1: News source and values on the four dummy-coded indicator variab
 <p>By using any three of the indicators, we can identify the news source for everyone in the sample. For example, in the data shown in <a href="#tbl-dummies" class="quarto-xref">Table&nbsp;<span>19.1</span></a>, we used all of the indicators except for <code>none</code>. For Americans whose news source is “None”, they would have a 0 for all three of the indicators used. In other words, we don’t need the information in the <code>none</code> indicator to identify people whose news source is “None”, so long as we have the other three indicators.</p>
 <p>To examine the effect of news source, we will fit the regression using any three of the four dummy-coded indicator variables you created. The indicator you leave out of the model will correspond to the reference category. For example, in the model fitted below, we include all the predictors except <code>none</code> as predictors in the model. As such, people whose news source is “None” is our reference group.</p>
 <div class="protip">
+<p><strong>PROTIP</strong></p>
 <p>Ultimately we will need to fit several models, so I often name my regression objects using the reference group. For example, in the model where “None” is the reference group, I will name my regression object <code>lm.none</code>.</p>
 </div>
 <div class="cell" data-layout-align="center">
@@ -1019,14 +1022,14 @@ Difference</th>
 <p>Once you have more than 10 comparisons, presenting this information in a table can be overwhelming. (If you really need to do this, consider putting the table in an appendix or in online resources rather than in the manuscript itself.) There are several options for such a visualization. One that I like, which shows the same pairwise comparisons presented in tbl-mean-diffs, is the following:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-mult-comp-1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Pairwise comparisons of average teen substance use for different family structures. <br /><br />*Instructions:* Read across the row for a family structure to compare substance use with the family structures listed along the top of the chart. The symbols indicate whether the average substance use of the family structure in the row is significantly lower than that of the comparison family structure, significantly higher than that of the comparison family structure, or if there is no statistically discernible difference between the average substance use of the two countries." data-fig-align="center">
+<div id="fig-mult-comp-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Pairwise comparisons of average teen substance use for different family structures. <br /><br />*Instructions:* Read across the row for a family structure to compare substance use with the family structures listed along the top of the chart. The symbols indicate whether the average substance use of the family structure in the row is significantly lower than that of the comparison family structure, significantly higher than that of the comparison family structure, or if there is no statistically discernible difference between the average substance use of the two countries.">
 <figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-mult-comp-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.3: Pairwise comparisons of average teen substance use for different family structures. <br><br><em>Instructions:</em> Read across the row for a family structure to compare substance use with the family structures listed along the top of the chart. The symbols indicate whether the average substance use of the family structure in the row is significantly lower than that of the comparison family structure, significantly higher than that of the comparison family structure, or if there is no statistically discernible difference between the average substance use of the two countries.
+</figcaption>
 <div aria-describedby="fig-mult-comp-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figs/05-02-mult-comp-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Pairwise comparisons of average teen substance use for different family structures. <br /><br />*Instructions:* Read across the row for a family structure to compare substance use with the family structures listed along the top of the chart. The symbols indicate whether the average substance use of the family structure in the row is significantly lower than that of the comparison family structure, significantly higher than that of the comparison family structure, or if there is no statistically discernible difference between the average substance use of the two countries.">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mult-comp-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19.3: Pairwise comparisons of average teen substance use for different family structures. <br><br><em>Instructions:</em> Read across the row for a family structure to compare substance use with the family structures listed along the top of the chart. The symbols indicate whether the average substance use of the family structure in the row is significantly lower than that of the comparison family structure, significantly higher than that of the comparison family structure, or if there is no statistically discernible difference between the average substance use of the two countries.
-</figcaption>
 </figure>
 </div>
 </div>
@@ -1186,6 +1189,7 @@ H_0: \mu_{\mathrm{Com}} = \mu_{\mathrm{Con}} = \mu_{\mathrm{Lib}} = \mu_{\mathrm
 <li>Americans who get their news from liberal sources have a news knowledge score that is 5.96 points higher than Americans who have no news source, on average, after controlling for the other predictors in the model.</li>
 </ul>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>Another methodology you may have encountered in your statistics journey is analysis of covariance (ANCOVA). This method is often introduced as a way of testing mean differences while controlling for other covariates. Again, this is exactly what we are evaluating in the regression model when we included the covariates of age, education level, amount of news consumption, and political engagement. <strong>Just as you can carry out ANOVA using regression, you can also carry out an ANCOVA using regression.</strong></p>
 </div>
 <p><br></p>
@@ -1401,6 +1405,7 @@ Difference</th>
 </ul>
 <p>Each row in <code>d</code> represents an American who gets there news from each of the four news sources. Notice that the dummy coding in each row corresponds to a particular group. For example, the dummy coding in Row 1 corresponds to the ‘None’ group, while that in Row 2 corresponds to the ‘Comedy News’ group.</p>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>When you are creating your data frame, the vector values are filling a column, not a row. But, you need the dummy coding to correspond to rows. It can be helpful to sketch out the data frame on a piece of paper first, and then write the code to create that data frame. Always look at the resulting data you create to be sure it has the correct structure!</p>
 </div>
 <p>Once we have the data, we can use the <code>predict()</code> function to get predicted values (i.e., adjusted means) and standard errors. To do this, we give the function the name of the regression object we are using (<code>lm.none.2</code>). We also include the <code>newdata=</code> argument, which takes the name of the data frame we want to use for the predictions. Finally, we include <code>se = TRUE</code> to output the standard errors.</p>
@@ -1493,19 +1498,19 @@ $residual.scale
 <span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
 <span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#ff2f92"</span></span>
 <span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme_bw() +</span></span>
 <span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Adjusted mean news knowledge score"</span>) <span class="sc">+</span></span>
 <span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"News source(s)"</span>) <span class="sc">+</span></span>
 <span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">50</span>, <span class="dv">80</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-ci-plot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="95% confidence intervals for the adjusted mean news knowledge scores for Americans who get their news from eight different sources. The means are adjusted for differences in age, education level, amount of news consumed, and political engagement." data-fig-align="center">
+<div id="fig-ci-plot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="95% confidence intervals for the adjusted mean news knowledge scores for Americans who get their news from eight different sources. The means are adjusted for differences in age, education level, amount of news consumed, and political engagement.">
 <figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-ci-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.4: 95% confidence intervals for the adjusted mean news knowledge scores for Americans who get their news from eight different sources. The means are adjusted for differences in age, education level, amount of news consumed, and political engagement.
+</figcaption>
 <div aria-describedby="fig-ci-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="05-02-polychotomous-predictors_files/figure-html/fig-ci-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="95% confidence intervals for the adjusted mean news knowledge scores for Americans who get their news from eight different sources. The means are adjusted for differences in age, education level, amount of news consumed, and political engagement.">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ci-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19.4: 95% confidence intervals for the adjusted mean news knowledge scores for Americans who get their news from eight different sources. The means are adjusted for differences in age, education level, amount of news consumed, and political engagement.
-</figcaption>
 </figure>
 </div>
 </div>

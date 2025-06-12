@@ -3,11 +3,5 @@
 In this unit you will learn how we can use categorical predictors in the regression model to answer questions related to group differences. You will learn how to encode categorical predictors using numbers, and why dummy coding is often used for this process. You will also learn about methods to adjust *p*-values when to avoid false discoveries when you are comparing more than two groups.
 
 
-```{r}
-#| echo: false
-knitr::include_graphics("figs/05-00-categorical-predictors.png")
-```
-
-
 
 <br /><br />

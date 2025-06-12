@@ -7,7 +7,7 @@ source("scripts/_common.R")
 ```
 
 
-In this set of notes, you will begin your foray into regression analysis. To do so, we will use the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv) data to examine **whether education level is related to income**. The data contain five attributes collected from a random sample of $n=32$ employees working for the city of Riverview, a hypothetical midwestern city (see the [data codebook](#riverview)). To begin, we will load several libraries and import the data into an object called `city`.
+In this set of notes, you will begin your foray into regression analysis. To do so, we will use the **riverview.csv** data to examine whether education level is related to income. The data contain five attributes collected from a random sample of $n=32$ employees working for the city of Riverview, a hypothetical midwestern city. To begin, we will load several libraries and import the data into an object called `city`.
 
 ```{r}
 # Load libraries
@@ -37,7 +37,9 @@ It is typical to begin by exploring the distribution of each variable used in th
 To begin this exploration, we will examine the marginal distribution of employee incomes. We can plot a marginal distribution using functionality from the `{ggplot2}` package.
 
 ```{r}
+#| label: fig-dens-income
 #| fig-cap: "Density plot of employee incomes."
+#| fig-alt: "Density plot of employee incomes."
 ggplot(data = city, aes(x = income)) +
   stat_density(geom = "line") +
   theme_bw() +
@@ -48,12 +50,15 @@ ggplot(data = city, aes(x = income)) +
 This plot suggests that the distribution of employee incomes is unimodal with a little bit of positive (right) skew. Most of the incomes are between roughly \$50,000 and \$70,000. The smallest income in the sample is about \$25,000 and the largest income is over \$80,000. This indicates there is a fair amount of variation in the data. A typical income looks to be about \$55,000.
 
 :::fyi
+**FYI**
+
 When describing the marginal distribution of a variable, you want to describe three features: the shape of the distribution, typical value(s) in the distribution (i.e., "center") and the variability in the distribution.
 :::
 
 To further summarize the distribution, it is typical to compute and report summary statistics such as the mean and standard deviation. One way to compute these values is to use functions from the `{dplyr}` library.
 
 ```{r}
+# COmpute mean and SD of incomes
 city |>
   summarize(
     M = mean(income),
@@ -74,7 +79,10 @@ Describing this variable we might write,
 
 We will also examine the marginal distribution of the education level variable.
 
-```{r fig.cap="Density plot of employee education levels."}
+```{r}
+#| label: fig-dens-educ
+#| fig-cap: "Density plot of employee education levels."
+#| fig-alt: "Density plot of employee education levels."
 # Plot
 ggplot(data = city, aes(x = education)) +
   stat_density(geom = "line") +
@@ -85,7 +93,7 @@ ggplot(data = city, aes(x = education)) +
 
 
 ```{r}
-# Summary statistics
+# Mean and SD of education level
 city |>
   summarize(
     M = mean(education),
@@ -106,7 +114,9 @@ Again, we might write,
 Although examining the marginal distributions is an important first step, those descriptions do not help us directly answer our research question. To better understand any relationship between income and education level we need to explore how the distribution of income differs as a function of education. To do this, we will create a scatterplot of income versus education.
 
 ```{r}
+#| label: fig-scatter-inc-educ
 #| fig-cap: "Scatterplot displaying the relationship between employee education levels and incomes."
+#| fig-alt: "Scatterplot displaying the relationship between employee education levels and incomes."
 ggplot(data = city, aes(x = education, y = income)) +
   geom_point() +
   theme_bw() +
@@ -131,6 +141,7 @@ A *functional form* refers to the algebraic (mathematical) description of the re
 ```{r}
 #| label: fig-functional-forms
 #| fig-cap: "Four functional forms commonly used to describe relationships in the educational and social sciences."
+#| fig-alt: "Four functional forms commonly used to describe relationships in the educational and social sciences."
 #| fig-width: 8
 #| fig-height: 8
 #| out-width: "100%"
@@ -238,6 +249,7 @@ Once we pick the functional form, the next thing we want to do is identify the *
 ```{r}
 #| label: fig-direction
 #| fig-cap: "A positive, negative, and flat linear relationship."
+#| fig-alt: "A positive, negative, and flat linear relationship."
 #| fig-width: 9
 #| fig-height: 3
 #| out-width: "100%"
@@ -305,6 +317,8 @@ A positive relationship would imply that lower values of *x* are associated with
 
 
 :::fyi
+**FYI**
+
 When you describe what the direction/trend implies, be careful about the language you use. For example, we would not want to say "when *x* goes up, *y* goes up" when describing a positive relationship. This is because that statement is not true for all of our cases. The trend describes the general pattern in the relationship, which does not apply to all cases. That is why we use the wording "is associated with", which to other researchers indicates the general pattern. Other ways to describe a positive relationship would be that:
 
 - *On average*, higher values of *x* correspond to higher values of *y*.
@@ -312,6 +326,7 @@ When you describe what the direction/trend implies, be careful about the languag
 :::
 
 <br />
+
 
 ### Magnitude
 
@@ -323,6 +338,7 @@ To better understand this, consider the three linear relationships in @fig-magni
 ```{r}
 #| label: fig-magnitude
 #| fig-cap: "A steep, moderately steep, and shallow, positive linear relationship."
+#| fig-alt: "A steep, moderately steep, and shallow, positive linear relationship."
 #| fig-width: 9
 #| fig-height: 3
 #| out-width: "100%"
@@ -401,6 +417,7 @@ The strength of the relationship describes how well the data adhere to the funct
 ```{r}
 #| label: fig-strength
 #| fig-cap: "A weak, moderate, and strong positive linear relationship."
+#| fig-alt: "A weak, moderate, and strong positive linear relationship."
 #| fig-width: 9
 #| fig-height: 3
 #| out-width: "100%"
@@ -468,6 +485,8 @@ p1 | p2 | p3
 As you describe the strength of a relationship, know that the qualifiers 'weak', 'moderate', and 'strong' are somewhat subjective. For now, use your best judgment.
 
 :::fyi
+**PROTIP**
+
 After positing the functional form, put that line or curve on the scatterplot in your mind. This will help you better consider and describe the strength of the relationship. In a later chapter, we will actually learn how to do this in R.
 :::
 
@@ -480,6 +499,7 @@ Lastly, you also want to identify any observations that do not fit the trend. Th
 ```{r}
 #| label: fig-outlier
 #| fig-cap: "The reddish, purple observation does not fit the trend."
+#| fig-alt: "The reddish, purple observation does not fit the trend."
 #| out-width: "60%"
 #| echo: false
 
@@ -521,7 +541,9 @@ When we identify potential outliers, we do so by referencing their coordinates i
 Let's return to the scatterplot showing the relationship between education level and income and use what we have learned to describe that relationship using the context of the data.
 
 ```{r}
+#| label: fig-scat
 #| fig-cap: "Scatterplot displaying the relationship between employee education levels and incomes."
+#| fig-alt: "Scatterplot displaying the relationship between employee education levels and incomes."
 ggplot(data = city, aes(x = education, y = income)) +
   geom_point() +
   theme_bw() +
@@ -543,6 +565,7 @@ One issue that arises when we describe the magnitude and strength of the relatio
 ```{r}
 #| label: fig-scale
 #| fig-cap: "The two plots show the exact same data plotted using different scales on the x- and y-axis. This difference in scales can influence how we perceive both the magnitude and the strength of the relationship."
+#| fig-alt: "The two plots show the exact same data plotted using different scales on the x- and y-axis. This difference in scales can influence how we perceive both the magnitude and the strength of the relationship."
 #| fig-width: 6
 #| fig-height: 3
 #| out-width: "100%"

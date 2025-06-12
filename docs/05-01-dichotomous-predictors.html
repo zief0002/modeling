@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -495,7 +495,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this chapter, you will learn about how to include dichotomous categorical predictors (i.e., predictors with two levels) in the regression model. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/mn-schools.csv">mn-schools.csv</a> data to examine whether there are differences in graduation rates between public and private colleges and universities (see the <a href="#mn-schools">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>mn</code>.</p>
+<p>In this chapter, you will learn about how to include dichotomous categorical predictors (i.e., predictors with two levels) in the regression model. To do so, we will use the <strong>mn-schools.csv</strong> data to examine whether there are differences in graduation rates between public and private colleges and universities. To begin, we will load several libraries and import the data into an object called <code>mn</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
@@ -556,14 +556,14 @@ window.Quarto = {
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">|</span> p2) <span class="sc">/</span> p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mn-explore" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-mn-explore" class="quarto-float quarto-figure quarto-figure-center anchored" alt="LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-mn-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="05-01-dichotomous-predictors_files/figure-html/fig-mn-explore-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mn-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-mn-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.1: LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector.
 </figcaption>
+<div aria-describedby="fig-mn-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-01-dichotomous-predictors_files/figure-html/fig-mn-explore-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="LEFT: Density plot of six-year graduation rates. CENTER: Bar plot of education sector. RIGHT: Scatterplot of the six-year graduation rate versus educational sector.">
+</div>
 </figure>
 </div>
 </div>
@@ -585,7 +585,7 @@ Figure&nbsp;18.1: LEFT: Density plot of six-year graduation rates. CENTER: Bar p
 Table&nbsp;18.1: Mean (M), standard deviation (SD), and sample size (N) of the six-year graduation rates for 33 Minnesota colleges and universities conditioned on educational sector.
 </figcaption>
 <div aria-describedby="tbl-mn-explore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="gtrzoqrhaf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="nskksjhaca" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="40%" data-bgcolor="#FFFFFF">
@@ -635,18 +635,18 @@ Table&nbsp;18.1: Mean (M), standard deviation (SD), and sample size (N) of the s
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>mn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 33 × 6
-   name                               grad sector    sat tuition indicator
-   &lt;chr&gt;                             &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
- 1 Augsburg College                   65.2 Private  1030    39.3        10
- 2 Bethany Lutheran College           52.6 Private  1065    30.5        10
- 3 Bethel University, Saint Paul, MN  73.3 Private  1145    39.4        10
- 4 Carleton College                   92.6 Private  1400    54.3        10
- 5 College of Saint Benedict          81.1 Private  1185    43.2        10
- 6 Concordia College at Moorhead      69.4 Private  1145    36.6        10
- 7 Concordia University-Saint Paul    47.9 Private   990    37.8        10
- 8 Crossroads College                 26.9 Private   970    25.3        10
- 9 Crown College                      51.3 Private  1030    33.2        10
-10 Gustavus Adolphus College          81.7 Private  1225    43.8        10
+   name                            grad sector   sat tuition indicator
+   &lt;chr&gt;                          &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+ 1 Augsburg College                65.2 Priva…  1030    39.3        10
+ 2 Bethany Lutheran College        52.6 Priva…  1065    30.5        10
+ 3 Bethel University, Saint Paul…  73.3 Priva…  1145    39.4        10
+ 4 Carleton College                92.6 Priva…  1400    54.3        10
+ 5 College of Saint Benedict       81.1 Priva…  1185    43.2        10
+ 6 Concordia College at Moorhead   69.4 Priva…  1145    36.6        10
+ 7 Concordia University-Saint Pa…  47.9 Priva…   990    37.8        10
+ 8 Crossroads College              26.9 Priva…   970    25.3        10
+ 9 Crown College                   51.3 Priva…  1030    33.2        10
+10 Gustavus Adolphus College       81.7 Priva…  1225    43.8        10
 # ℹ 23 more rows</code></pre>
 </div>
 </div>
@@ -691,6 +691,7 @@ Table&nbsp;18.1: Mean (M), standard deviation (SD), and sample size (N) of the s
 </div>
 </div>
 <div class="fyi">
+<p><strong>PROTIP</strong></p>
 <p>Chaining the <code>glance()</code> output in the <code>print()</code> function allows us to include the argument <code>width=Inf</code>. This argument prints ALL the columns from the <code>glance()</code> output instead of truncating the output. This hack can also be used to print all of the columns from a data frame that gets truncated as well.</p>
 </div>
 <p>Differences in these indicator values (i.e., educational sector) explain 15.75% of the variation in graduation rates. This is statistically reliable, <span class="math inline">\(F(1, 31) = 5.80\)</span>, <span class="math inline">\(p=0.022\)</span>. Interpreting the coefficients,</p>
@@ -726,18 +727,18 @@ Table&nbsp;18.1: Mean (M), standard deviation (SD), and sample size (N) of the s
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>mn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 33 × 7
-   name                          grad sector   sat tuition indicator indicator_2
-   &lt;chr&gt;                        &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
- 1 Augsburg College              65.2 Priva…  1030    39.3        10           7
- 2 Bethany Lutheran College      52.6 Priva…  1065    30.5        10           7
- 3 Bethel University, Saint Pa…  73.3 Priva…  1145    39.4        10           7
- 4 Carleton College              92.6 Priva…  1400    54.3        10           7
- 5 College of Saint Benedict     81.1 Priva…  1185    43.2        10           7
- 6 Concordia College at Moorhe…  69.4 Priva…  1145    36.6        10           7
- 7 Concordia University-Saint …  47.9 Priva…   990    37.8        10           7
- 8 Crossroads College            26.9 Priva…   970    25.3        10           7
- 9 Crown College                 51.3 Priva…  1030    33.2        10           7
-10 Gustavus Adolphus College     81.7 Priva…  1225    43.8        10           7
+   name                grad sector   sat tuition indicator indicator_2
+   &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Augsburg College    65.2 Priva…  1030    39.3        10           7
+ 2 Bethany Lutheran …  52.6 Priva…  1065    30.5        10           7
+ 3 Bethel University…  73.3 Priva…  1145    39.4        10           7
+ 4 Carleton College    92.6 Priva…  1400    54.3        10           7
+ 5 College of Saint …  81.1 Priva…  1185    43.2        10           7
+ 6 Concordia College…  69.4 Priva…  1145    36.6        10           7
+ 7 Concordia Univers…  47.9 Priva…   990    37.8        10           7
+ 8 Crossroads College  26.9 Priva…   970    25.3        10           7
+ 9 Crown College       51.3 Priva…  1030    33.2        10           7
+10 Gustavus Adolphus…  81.7 Priva…  1225    43.8        10           7
 # ℹ 23 more rows</code></pre>
 </div>
 </div>
@@ -808,18 +809,18 @@ Table&nbsp;18.1: Mean (M), standard deviation (SD), and sample size (N) of the s
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>mn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 33 × 8
-   name                  grad sector   sat tuition indicator indicator_2 private
-   &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;
- 1 Augsburg College      65.2 Priva…  1030    39.3        10           7       1
- 2 Bethany Lutheran Co…  52.6 Priva…  1065    30.5        10           7       1
- 3 Bethel University, …  73.3 Priva…  1145    39.4        10           7       1
- 4 Carleton College      92.6 Priva…  1400    54.3        10           7       1
- 5 College of Saint Be…  81.1 Priva…  1185    43.2        10           7       1
- 6 Concordia College a…  69.4 Priva…  1145    36.6        10           7       1
- 7 Concordia Universit…  47.9 Priva…   990    37.8        10           7       1
- 8 Crossroads College    26.9 Priva…   970    25.3        10           7       1
- 9 Crown College         51.3 Priva…  1030    33.2        10           7       1
-10 Gustavus Adolphus C…  81.7 Priva…  1225    43.8        10           7       1
+   name        grad sector   sat tuition indicator indicator_2 private
+   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Augsburg …  65.2 Priva…  1030    39.3        10           7       1
+ 2 Bethany L…  52.6 Priva…  1065    30.5        10           7       1
+ 3 Bethel Un…  73.3 Priva…  1145    39.4        10           7       1
+ 4 Carleton …  92.6 Priva…  1400    54.3        10           7       1
+ 5 College o…  81.1 Priva…  1185    43.2        10           7       1
+ 6 Concordia…  69.4 Priva…  1145    36.6        10           7       1
+ 7 Concordia…  47.9 Priva…   990    37.8        10           7       1
+ 8 Crossroad…  26.9 Priva…   970    25.3        10           7       1
+ 9 Crown Col…  51.3 Priva…  1030    33.2        10           7       1
+10 Gustavus …  81.7 Priva…  1225    43.8        10           7       1
 # ℹ 23 more rows</code></pre>
 </div>
 </div>
@@ -894,19 +895,20 @@ Table&nbsp;18.1: Mean (M), standard deviation (SD), and sample size (N) of the s
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>mn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 33 × 9
-   name           grad sector   sat tuition indicator indicator_2 private public
-   &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
- 1 Augsburg Col…  65.2 Priva…  1030    39.3        10           7       1      0
- 2 Bethany Luth…  52.6 Priva…  1065    30.5        10           7       1      0
- 3 Bethel Unive…  73.3 Priva…  1145    39.4        10           7       1      0
- 4 Carleton Col…  92.6 Priva…  1400    54.3        10           7       1      0
- 5 College of S…  81.1 Priva…  1185    43.2        10           7       1      0
- 6 Concordia Co…  69.4 Priva…  1145    36.6        10           7       1      0
- 7 Concordia Un…  47.9 Priva…   990    37.8        10           7       1      0
- 8 Crossroads C…  26.9 Priva…   970    25.3        10           7       1      0
- 9 Crown College  51.3 Priva…  1030    33.2        10           7       1      0
-10 Gustavus Ado…  81.7 Priva…  1225    43.8        10           7       1      0
-# ℹ 23 more rows</code></pre>
+   name        grad sector   sat tuition indicator indicator_2 private
+   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Augsburg …  65.2 Priva…  1030    39.3        10           7       1
+ 2 Bethany L…  52.6 Priva…  1065    30.5        10           7       1
+ 3 Bethel Un…  73.3 Priva…  1145    39.4        10           7       1
+ 4 Carleton …  92.6 Priva…  1400    54.3        10           7       1
+ 5 College o…  81.1 Priva…  1185    43.2        10           7       1
+ 6 Concordia…  69.4 Priva…  1145    36.6        10           7       1
+ 7 Concordia…  47.9 Priva…   990    37.8        10           7       1
+ 8 Crossroad…  26.9 Priva…   970    25.3        10           7       1
+ 9 Crown Col…  51.3 Priva…  1030    33.2        10           7       1
+10 Gustavus …  81.7 Priva…  1225    43.8        10           7       1
+# ℹ 23 more rows
+# ℹ 1 more variable: public &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Using the dummy coded indicator to compute correlations and fit the regression model, we find:</p>
@@ -999,14 +1001,14 @@ Table&nbsp;18.1: Mean (M), standard deviation (SD), and sample size (N) of the s
 <span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
 <span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-assumptions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-assumptions" class="quarto-float quarto-figure quarto-figure-center anchored" alt="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="05-01-dichotomous-predictors_files/figure-html/fig-assumptions-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.2: LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed.
 </figcaption>
+<div aria-describedby="fig-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-01-dichotomous-predictors_files/figure-html/fig-assumptions-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed.">
+</div>
 </figure>
 </div>
 </div>
@@ -1041,14 +1043,14 @@ Figure&nbsp;18.2: LEFT: Density plot of the marginal distribution of standardize
 <span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
 <span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-assumptions-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-assumptions-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for  private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-assumptions-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="05-01-dichotomous-predictors_files/figure-html/fig-assumptions-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assumptions-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-assumptions-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.3: Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools.
 </figcaption>
+<div aria-describedby="fig-assumptions-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-01-dichotomous-predictors_files/figure-html/fig-assumptions-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Density plot of the standardized residuals from the regression model using educational sector to predict variation in six-year graduation rates for  private (LEFT) and public (RIGHT) colleges and universities (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area) for both sets of schools.">
+</div>
 </figure>
 </div>
 </div>
@@ -1163,7 +1165,7 @@ Figure&nbsp;18.3: Density plot of the standardized residuals from the regression
 Table&nbsp;18.2: Unadjusted and adjusted mean six-year graduation rates for private and public colleges and universities in Minnesota.
 </figcaption>
 <div aria-describedby="tbl-means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="tmcskldvvt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="oejwxdsrpu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
@@ -1284,14 +1286,15 @@ Table&nbsp;18.2: Unadjusted and adjusted mean six-year graduation rates for priv
 <span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aug_f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 10
-   grad   sat tuition private .fitted .resid   .hat .sigma .cooksd .std.resid
-  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
-1  65.2  1030    39.3       1    57.1   8.14 0.104    6.48 0.0497       1.31 
-2  52.6  1065    30.5       1    56.6  -3.96 0.0839   6.63 0.00908     -0.630
-3  73.3  1145    39.4       1    69.0   4.25 0.0458   6.63 0.00528      0.663
-4  92.6  1400    54.3       1   102.   -9.90 0.264    6.31 0.276       -1.76 
-5  81.1  1185    43.2       1    75.0   6.12 0.0609   6.57 0.0150       0.962
-6  69.4  1145    36.6       1    67.7   1.67 0.0563   6.67 0.00103      0.262</code></pre>
+   grad   sat tuition private .fitted .resid   .hat .sigma .cooksd
+  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1  65.2  1030    39.3       1    57.1   8.14 0.104    6.48 0.0497 
+2  52.6  1065    30.5       1    56.6  -3.96 0.0839   6.63 0.00908
+3  73.3  1145    39.4       1    69.0   4.25 0.0458   6.63 0.00528
+4  92.6  1400    54.3       1   102.   -9.90 0.264    6.31 0.276  
+5  81.1  1185    43.2       1    75.0   6.12 0.0609   6.57 0.0150 
+6  69.4  1145    36.6       1    67.7   1.67 0.0563   6.67 0.00103
+# ℹ 1 more variable: .std.resid &lt;dbl&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of the marginal standardized residuals</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> aug_f, <span class="fu">aes</span>(<span class="at">x =</span> .std.resid)) <span class="sc">+</span></span>
@@ -1313,14 +1316,14 @@ Table&nbsp;18.2: Unadjusted and adjusted mean six-year graduation rates for priv
 <span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
 <span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-assumptions-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-assumptions-3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-assumptions-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="05-01-dichotomous-predictors_files/figure-html/fig-assumptions-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assumptions-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-assumptions-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.4: LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at <span class="math inline">\(Y=0\)</span> shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed.
 </figcaption>
+<div aria-describedby="fig-assumptions-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-01-dichotomous-predictors_files/figure-html/fig-assumptions-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="LEFT: Density plot of the marginal distribution of standardized residuals from a regression model using median SAT score, tuition rates, and educational sector to predict variation in six-year graduation rates (raspberry line). The sampling uncertainty associated with the normal distribution is also displayed (blue shaded area). RIGHT: Scatterplot of the standardized residuals versus the fitted values from the same model. A horizontal line at $Y=0$ shows the expected mean residual under the linearity assumption and the expected uncertainty (grey shaded area). The empirical loess smoother (blue) is also displayed.">
+</div>
 </figure>
 </div>
 </div>
@@ -1440,6 +1443,7 @@ RMSE
 </tbody>
 </table>
 <div class="protip">
+<p><strong>FYI</strong></p>
 <p>Notice that when presenting results we referred to the three models as Model A, B, and C, despite the fact that these were named <code>lm.c</code>, <code>lm.e</code>, and <code>lm.f</code>. You need to make decisions about what you present and your naming structure in the final manuscript doesn’t need to reflect the names used in your analysis. By using A, B, and C, it makes it easier for the reader!</p>
 </div>
 <p><br></p>
@@ -1486,7 +1490,7 @@ RMSE
 Table&nbsp;18.3: Unadjusted and adjusted mean six-year graduation rates for private and public colleges and universities in Minnesota.
 </figcaption>
 <div aria-describedby="tbl-means-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="sygqabtwqh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ehswtrlwja" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="80%" data-bgcolor="#FFFFFF">
@@ -1557,14 +1561,14 @@ Table&nbsp;18.3: Unadjusted and adjusted mean six-year graduation rates for priv
 <span id="cb72-15"><a href="#cb72-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#56b4e9"</span>, <span class="st">"#e69f00"</span>)</span>
 <span id="cb72-16"><a href="#cb72-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-final-plot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-final-plot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Predicted mean graduation rate for public (orange) and private (blue) institutions in Minnesota. In Models B and C, the means are adjusted for median SAT score (Model B) and median SAT score and tuition rate (Model C), respectively." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-final-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="05-01-dichotomous-predictors_files/figure-html/fig-final-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-final-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-final-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.5: Predicted mean graduation rate for public (orange) and private (blue) institutions in Minnesota. In Models B and C, the means are adjusted for median SAT score (Model B) and median SAT score and tuition rate (Model C), respectively.
 </figcaption>
+<div aria-describedby="fig-final-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-01-dichotomous-predictors_files/figure-html/fig-final-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Predicted mean graduation rate for public (orange) and private (blue) institutions in Minnesota. In Models B and C, the means are adjusted for median SAT score (Model B) and median SAT score and tuition rate (Model C), respectively.">
+</div>
 </figure>
 </div>
 </div>
@@ -1599,14 +1603,14 @@ Figure&nbsp;18.5: Predicted mean graduation rate for public (orange) and private
 <span id="cb74-19"><a href="#cb74-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb74-20"><a href="#cb74-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-final-plot-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-final-plot-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Predicted difference in mean graduation rate between private and public institutions in Minnesota. Model A is the uncontrolled model while Model B controlls for median SAT score and Model C controld for both median SAT score and tuition rate. The line $Y=0$ indicates no difference. Differences that are statistically discernible from 0 are colored pink." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-final-plot-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="05-01-dichotomous-predictors_files/figure-html/fig-final-plot-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-final-plot-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-final-plot-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.6: Predicted difference in mean graduation rate between private and public institutions in Minnesota. Model A is the uncontrolled model while Model B controlls for median SAT score and Model C controld for both median SAT score and tuition rate. The line <span class="math inline">\(Y=0\)</span> indicates no difference. Differences that are statistically discernible from 0 are colored pink.
 </figcaption>
+<div aria-describedby="fig-final-plot-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-01-dichotomous-predictors_files/figure-html/fig-final-plot-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Predicted difference in mean graduation rate between private and public institutions in Minnesota. Model A is the uncontrolled model while Model B controlls for median SAT score and Model C controld for both median SAT score and tuition rate. The line $Y=0$ indicates no difference. Differences that are statistically discernible from 0 are colored pink.">
+</div>
 </figure>
 </div>
 </div>

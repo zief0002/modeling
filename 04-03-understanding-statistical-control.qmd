@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will learn about how including multiple predictors into the regression model helps us evaluate these alternative explanations by providing a measure of *statistical control*. To do so, we will return to the [keith-gpa.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv) data to examine whether time spent on homework is related to GPA (see the [data codebook](#keith)). However this time, we will control for parent education level. To begin, we will load several libraries and import the data into an object called `keith`. We will also fit our simple and multiple regression models.
+In this chapter, you will learn about how including multiple predictors into the regression model helps us evaluate these alternative explanations by providing a measure of *statistical control*. To do so, we will return to the **keith-gpa.csv** data to examine whether time spent on homework is related to GPA. However this time, we will control for parent education level. To begin, we will load several libraries and import the data into an object called `keith`. We will also fit our simple and multiple regression models.
 
 
 ```{r}
@@ -103,6 +103,7 @@ Let's also assume that these student all have parent education level of 12 years
 #| label: tbl-gpa-vary-hw
 #| tbl-cap: "Predicted average GPA for students who spend 1, 2, and 3 hours a week on homework with parent education level of 12 years."
 #| echo: false
+
 data.frame(
   Homework = c(1, 2, 3),
   Parent = c(12, 12, 12),
@@ -131,6 +132,7 @@ What if we had chosen a parent education level of 13 years instead?
 #| label: tbl-gpa-vary-hw-13
 #| tbl-cap: "Predicted average GPA for students who spend 1, 2, and 3 hours a week on homework with parent education level of 13 years."
 #| echo: false
+
 data.frame(
   Homework = c(1, 2, 3),
   Parent = c(13, 13, 13),
@@ -237,7 +239,9 @@ Now I will create a plot of the outcome versus the predictor we left as a variab
 ```{r}
 #| label: fig-model
 #| fig-cap: "Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line)."
+#| fig-alt: "Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line)."
 #| out-width: "60%"
+
 ggplot(data = keith, aes(x = homework, y = gpa)) +
   geom_point(alpha = 0) +
   theme_bw() +
@@ -255,7 +259,9 @@ We can interpret the effect of parent level of education by fixing time spent on
 ```{r}
 #| label: fig-model-2
 #| fig-cap: "Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line). The model predicted GPAs for students who spend six hours a week on homework are also displayed."
+#| fig-alt: "Model predicted GPA as a function of time spent on homework for students with a parent education level of 8 years (blue, dot-dashed line), 12 years (orange, solid line), and 16 years (red, dashed line). The model predicted GPAs for students who spend six hours a week on homework are also displayed."
 #| out-width: "60%"
+
 ggplot(data = keith, aes(x = homework, y = gpa)) +
   geom_point(alpha = 0) +
   theme_bw() +
@@ -275,6 +281,7 @@ How much do the model predicted GPAs vary for these three parent education level
 #| label: tbl-gpa-vary-parented
 #| tbl-cap: "Predicted GPA for students who spend six hours a week on homework with 8, 12, and 16 years of parent education."
 #| echo: false
+
 data.frame(
   Homework = c(6, 6, 6),
   Parent = c(8, 12, 16),
@@ -308,6 +315,7 @@ What if we would have chosen parent education levels that differed by one year r
 #| label: tbl-gpa-vary-parented-2
 #| tbl-cap: "Predicted GPA for students who spend six hours a week on homework with with parent education of 8, 9, and 10 years"
 #| echo: false
+
 data.frame(
   Homework = c(6, 6, 6),
   Parent = c(8, 9, 10),
@@ -350,9 +358,11 @@ The plot we created earlier put all three fitted lines on the same plot. An alte
 ```{r}
 #| label: fig-triptych
 #| fig-cap: "Model predicted GPA as a function of time spent on homework for students with a parent education level of 8, 12, and 16 years."
+#| fig-alt: "Model predicted GPA as a function of time spent on homework for students with a parent education level of 8, 12, and 16 years."
 #| fig-width: 12
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
+
 # Load package
 library(patchwork)
 
@@ -411,9 +421,11 @@ Then we create the triptych plot showing the resulting equations:
 ```{r}
 #| label: fig-triptych-2
 #| fig-cap: "Model predicted GPA as a function of parent education level for students who spend 2 hours, 5 hours, and 10 hours a week on homework."
+#| fig-alt: "Model predicted GPA as a function of parent education level for students who spend 2 hours, 5 hours, and 10 hours a week on homework."
 #| fig-width: 12
 #| fig-height: 4
-#| out-width: "90%"
+#| out-width: "100%"
+
 # Create plot 1
 p4 = ggplot(data = keith, aes(x = parent_ed, y = gpa)) +
       geom_point(alpha = 0) +
@@ -463,6 +475,8 @@ Plotting this we get a single line which displays the effect of time spent on ho
 ```{r}
 #| label: fig-single-effect
 #| fig-cap: "Model predicted GPA as a function of time spent on homework for students with an average parent education level (14.03 years)."
+#| fig-alt: "Model predicted GPA as a function of time spent on homework for students with an average parent education level (14.03 years)."
+
 ggplot(data = keith, aes(x = homework, y = gpa)) +
  geom_point(alpha = 0) +
  geom_abline(intercept = 75.43, slope = 0.99) +

@@ -7,10 +7,12 @@ source("scripts/_common.R")
 ```
 
 
-In this set of notes, you will continue your foray into regression analysis. To do so, we will continue our analysis of the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv) data (see the [data codebook](#riverview)) to examine **whether education level is related to income**.  To begin, we will load several libraries and import the data into an object called `city`. We will also create the scatterplot to show the relationship between education level and income.
+In this set of notes, you will continue your foray into regression analysis. To do so, we will continue our analysis of the **riverview.csv** data to examine whether education level is related to income.  To begin, we will load several libraries and import the data into an object called `city`. We will also create the scatterplot to show the relationship between education level and income.
 
 ```{r}
+#| label: fig-02-02-scatterplot
 #| fig-cap: "Scatterplot displaying the relationship between employee education levels and incomes."
+#| fig-alt: "Scatterplot displaying the relationship between employee education levels and incomes."
 # Load libraries
 library(corrr)
 library(dplyr)
@@ -108,8 +110,11 @@ For example, the difference between the mean income for those employees who have
 To help better understand the model, consider the following plot:
 
 ```{r}
-#| echo: false 
+#| label: fig-cond-dist1 
 #| fig-cap: "Plot displaying conditional distribution of *Y* at several *X* values. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for each conditional distribution."
+#| fig-alt: "Plot displaying conditional distribution of *Y* at several *X* values. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for each conditional distribution."
+#| echo: false 
+
 include_graphics("figs/conditional-means.png")
 ```
 
@@ -148,8 +153,10 @@ To compute an observation's residual, we compute the difference between the obse
 To further understand the residual term, consider the plot below. This figure shows the relationship between education and income we plotted earlier, and also includes the regression line.
 
 ```{r}
-#| echo: false
+#| label: fig-02-02-scatterplot2
 #| fig-cap: "Scatterplot displaying the relationship between employee education levels and incomes. The OLS fitted regression line is also displayed."
+#| fig-alt: "Scatterplot displaying the relationship between employee education levels and incomes. The OLS fitted regression line is also displayed."
+#| echo: false
 ggplot( data = city, aes(x = education, y = income) ) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
@@ -261,8 +268,10 @@ To interpret this value, remember that $\hat{Y}_i$ is a conditional mean. In thi
 
 ```{r}
 #| label: fig-intercept
-#| echo: false
 #| fig-cap: "Plot displaying conditional distribution of *Y* at $X=0$. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for this conditional distribution---which corresponds to the intercept value of the regression line."
+#| fig-alt: "Plot displaying conditional distribution of *Y* at $X=0$. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for this conditional distribution---which corresponds to the intercept value of the regression line."
+#| echo: false
+
 include_graphics("figs/conditional-means-intercept.png")
 ```
 
@@ -272,6 +281,8 @@ Interpreting the intercept coefficient from our example,
 
 
 :::fyi
+**FYI**
+
 When interpreting the intercept, beware of *extrapolation*. Extrapolation is making a prediction outside of the range of the data used to fit the model. For example, in our interpretation, we are making a prediction of the mean income for emplyees that have an education level of 0 years. The smallest education level in our data is 8 years. Because 0 is outside the range of our data, this prediction is an extrapolation. The problem with extrapolation is that we don't know if the relationship continues to be linear outside the range of our data. If it isn't linear, then the prtediction we make will be quite errant. 
 :::
 
@@ -291,8 +302,11 @@ $$
 Again, because $\hat{Y}$ is a conditional mean, the slope represents the difference in predicted mean incomes for each one-year difference in education level. Graphically,
 
 ```{r}
-#| echo: false
+#| label: fig-cond-dist
 #| fig-cap: "Plot displaying conditional distribution of *Y* at $X=0$ and $X=1$. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for these conditional distributions---the relative change which corresponds to the slope value of the regression line."
+#| fig-alt: "Plot displaying conditional distribution of *Y* at $X=0$ and $X=1$. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for these conditional distributions---the relative change which corresponds to the slope value of the regression line."
+#| echo: false
+
 include_graphics("figs/conditional-means-slope.png")
 ```
 
@@ -376,8 +390,11 @@ $$
 The negative residual, $\hat\epsilon_{25} = -9.669$, suggests that this employee earns \$9,669 less than the average predicted income for employees with 20 years of education. We can also represent these values graphically.
 
 ```{r}
-#| echo: false
+#| label: fig-fitted
 #| fig-cap: "Plot displaying the OLS fitted regression line (blue) between employee education levels and incomes. The 25th employee's observed data (black dot) is plotted, and a visual representation of the employee's residual (red line) is also displayed."
+#| fig-alt: "Plot displaying the OLS fitted regression line (blue) between employee education levels and incomes. The 25th employee's observed data (black dot) is plotted, and a visual representation of the employee's residual (red line) is also displayed."
+#| echo: false
+
 ggplot(data = city, aes(x = education, y = income)) +
   geom_segment(x = 20, xend = 20, y = 64.341, yend = 54.672, color = "darkred") +
   geom_point(x = 20, y = 54.672, size = 4) +
@@ -408,6 +425,8 @@ city |>
 ```
 
 :::fyi
+**PROTIP**
+
 The order of attributes in the `select()` function is irrelevant. However, typically the response (or outcome) variable is the first variable provided in the `select()` function, followed by the predictor.
 :::
 
@@ -431,7 +450,9 @@ The size of the correlation coefficient gives us an indication of the strength o
 - Values around $-0.8$ or $+0.8$ might indicate a strong linear relationship.
 - Values of $-1$ or $+1$ indicate a perfect linear relationship (super-duper strong).
 
-:::protip
+:::fyi
+**FYI**
+
 These guidelines may or may not be useful. You really have to know the substantive literature in your discipline to know for sure what values indicate a strong or weak relationship. For example, in the educational sciences most of the relationships we see with educational outcomes (e.g., GPA, test scores) have correlation values that are less than 0.4. So $r \approx 0.5$ would often be considered a strong relationship. 
 :::
 
@@ -448,6 +469,7 @@ It is important to keep in mind that the correlation coefficient is only useful 
 ```{r}
 #| label: fig-daylight
 #| fig-cap: "Hours of daylight versus day of the year for $n=75$ days in Minneapolis."
+#| fig-alt: "Hours of daylight versus day of the year for $n=75$ days in Minneapolis."
 #| echo: false
 #| message: false
 # Reproduce sampling
@@ -474,6 +496,7 @@ Another situation in which correlation can mislead is when you have subpopulatio
 ```{r}
 #| label: fig-salary-neuroticism-01
 #| fig-cap: "Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company."
+#| fig-alt: "Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company."
 #| out-width: "100%"
 #| echo: false
 #| message: false
@@ -508,6 +531,7 @@ data |>
 ```{r}
 #| label: fig-salary-neuroticism
 #| fig-cap: "Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company. The data are colored by education level."
+#| fig-alt: "Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company. The data are colored by education level."
 #| out-width: "100%"
 #| echo: false
 #| message: false
@@ -531,7 +555,9 @@ data |>
 If we treat these data as one population (an assumption for using the correlation) the relationship between neurotocism and salary is positive; employees who are more neurotic tend to have higher salaries, on average. However, if we account for education level, the relationship between neurotocism and salary is negative for each of the education levels; once we account for education level, employees who are more neurotic tend to have lower salaries, on average. This reversal of the direction of the relationship once we account for other variables is quite common (so common it has a name, [Simpson's Paradox](https://en.wikipedia.org/wiki/Simpson%27s_paradox)) and makes it difficult to be sure about the "true" relationship between variables in observational data.
 
 
-:::protip
+:::fyi
+**PROTIP**
+
 You should always create a scatterplot to examine the relationship graphically before computing a correlation coefficient to numerically summarize it.
 :::
 
@@ -551,8 +577,8 @@ Although these metrics can give us a description of the relationship, it is only
 
 <br />
 
-:::mathnote
-## Optional: Effect of the Predictor (Calculus Edition) {-}
+:::fyi
+**OPTIONAL: Effect of the Predictor (Calculus Edition)**
 
 The slope is often referred to as the *effect* of the predictor, and mathematically indicates the rate-of-change in the outcome as the predictor changes. How much does the outcome change for a one-unit change in the predictor? The way that mathematicians measure the rate-of-change is by computing the derivative of a function. In a simple regression, we would compute the derivative of the fitted equation:
 
@@ -576,14 +602,4 @@ In a linear function, the rate-of-change is the slope of the line.
 <br />
 
 
-<!-- ## Additional Resources -->
-
-<!-- Here are a couple other resources for understanding correlations and using the `{corrr}` package. -->
-
-<!-- - [corrr Package Vignette](https://github.com/tidymodels/corrr) -->
-<!-- - [Exploring correlations in R with corrr](https://drsimonj.svbtle.com/exploring-correlations-in-r-with-corrr) -->
-<!-- - [Guess the Correlation Game](http://guessthecorrelation.com/) [fun game] -->
-
-
-<!-- <br /> -->
 

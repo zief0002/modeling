@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will continue to learn about how to include and interpret interaction effects in the regression model. Here we will emphasize interactions between two continuous predictors. To do so, we will use the [fertility.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/fertility.csv) data to examine predictors of fertility rates; see the [data codebook](#fertility)). In particular we will evaluate whether the effect of contraception on fertility rates is a function of females' education level.
+In this chapter, you will continue to learn about how to include and interpret interaction effects in the regression model. Here we will emphasize interactions between two continuous predictors. To do so, we will use the **fertility.csv** data to examine predictors of fertility rates. In particular we will evaluate whether the effect of contraception on fertility rates is a function of females' education level.
 
 To begin, we will load several libraries and import the data into an object called `fert`.
 
@@ -52,11 +52,13 @@ Based on the quartiles, we might choose four distinct ranges of female education
 - $8 \leq$ Female education level $< 10.25$
 - $10.25 \leq$ Female education level
 
-:::protip
+:::fyi
+**FYI**
+
 Note that you will want to use the entire range of data to explore effects, otherwise, you might see a spurious relationship. Also, and this is VERY IMPORTANT, _**This discretizing is ONLY carried out to create the plot. When we fit the actual interaction in the regression model, we use the continuous predictor.**_
 :::
 
-There are several R functions that can be employed to discretize a continuous variable. We will use the `case_when()` function from the `{dplyr}` package (or `{tidyverse}`) to create a new variable that has four different categories, one for each distinct range. (Read more about using `case_when()` [here](https://dplyr.tidyverse.org/reference/case_when.html).) 
+There are several R functions that can be employed to discretize a continuous variable. We will use the `case_when()` function from the `{dplyr}` package (or `{tidyverse}`) to create a new variable that has four different categories, one for each distinct range. ([Read more about using case_when() here.](https://dplyr.tidyverse.org/reference/case_when.html)) 
 
 ```{r}
 # Discretize female education level
@@ -80,17 +82,17 @@ Now we have discretized female education level, we can use our new discretized v
 ```{r}
 #| label: fig-fert-explore
 #| fig-cap: "Scatterplot displaying the relationship between contraception use and fertility rate conditioned on female education level. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender."
-#| fig-width: 12
-#| fig-height: 3
-#| out-width: "90%"
+#| fig-alt: "Scatterplot displaying the relationship between contraception use and fertility rate conditioned on female education level. RIGHT: Density plot of standardized amount of boundary-spanning work conditioned on gender."
+
+
 ggplot(data = fert, aes(x = contraceptive, y = fertility_rate, color = female_educ_discrete)) +
   geom_point(alpha = 0.4) +
   geom_smooth(method = "lm", se = FALSE) +
-	theme_bw() +
+	#theme_bw() +
 	xlab("Contraception use") +
 	ylab("Fertility rate") +
   scale_color_brewer(palette = "Set2") +
-  facet_wrap(~female_educ_discrete, nrow = 1) +
+  facet_wrap(~female_educ_discrete, nrow = 2) +
   guides(color = FALSE)
 ```
 
@@ -127,17 +129,20 @@ To examine whether there is an interaction effect in  the population, we evaluat
 To further understand the nature of the interaction, we will create a plot of the effect of contraception use on fertility rates for different levels of female education. (Or, you could create a plot of the effect of female education level on fertility rates for different values of contraception use.) Here we will choose female education values of 5, 8, and 10 (the nearest integer values to the 25th, 50th, and 75th percentile values) to create the plot. First we will substitute these values into the fitted equation to find the partial equation for each selected female education level:
 
 $$
-\hat{\mathrm{Fertility~rate}_i} = 6.84 - 0.41(\mathrm{Education~level}_i) - 0.05(\mathrm{Contraceptive~use}_i) + 0.004(\mathrm{Contraceptive~use}_i)(\mathrm{Education~level}_i)
+\begin{split}
+\hat{\mathrm{Fertility~rate}_i} = &6.84 - 0.41(\mathrm{Education~level}_i) - 0.05(\mathrm{Contraceptive~use}_i) +\\
+&0.004(\mathrm{Contraceptive~use}_i)(\mathrm{Education~level}_i)
+\end{split}
 $$
 <br />
 
 
-#### Female education level of 5
+**Female education level of 5**
 
 $$
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &= 6.84 - 0.41(5) - 0.05(\mathrm{Contraceptive~use}_i) + 0.004(5)(\mathrm{Contraceptive~use}_i)\\
-&= 6.84 - 2.05 - 0.05(\mathrm{Contraceptive~use}_i) + 0.02(\mathrm{Contraceptive~use}_i) \\
+\hat{\mathrm{Fertility~rate}_i} &= 6.84 - 0.41(5) - 0.05(\mathrm{Contraceptive~use}_i) +\\ &~~~~~0.004(5)(\mathrm{Contraceptive~use}_i)\\[2ex]
+&= 6.84 - 2.05 - 0.05(\mathrm{Contraceptive~use}_i) + 0.02(\mathrm{Contraceptive~use}_i) \\[2ex]
 &= 4.79 - 0.03(\mathrm{Contraceptive~use}_i)
 \end{split}
 $$
@@ -145,12 +150,13 @@ $$
 <br />
 
 
-#### Female education level of 8
+**Female education level of 8**
 
 $$
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &= 6.84 - 0.41(8) - 0.05(\mathrm{Contraceptive~use}_i) + 0.004(8)(\mathrm{Contraceptive~use}_i)\\
-&= 6.84 - 3.28 - 0.05(\mathrm{Contraceptive~use}_i) + 0.032(\mathrm{Contraceptive~use}_i) \\
+\hat{\mathrm{Fertility~rate}_i} &= 6.84 - 0.41(8) - 0.05(\mathrm{Contraceptive~use}_i) +\\
+&~~~~~0.004(8)(\mathrm{Contraceptive~use}_i)\\[2ex]
+&= 6.84 - 3.28 - 0.05(\mathrm{Contraceptive~use}_i) + 0.032(\mathrm{Contraceptive~use}_i) \\[2ex]
 &= 3.56 - 0.018(\mathrm{Contraceptive~use}_i)
 \end{split}
 $$
@@ -158,12 +164,13 @@ $$
 <br />
 
 
-#### Female education level of 10
+**Female education level of 10**
 
 $$
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &= 6.84 - 0.41(10) - 0.05(\mathrm{Contraceptive~use}_i) + 0.004(10)(\mathrm{Contraceptive~use}_i)\\
-&= 6.84 - 4.1 - 0.05(\mathrm{Contraceptive~use}_i) + 0.04(\mathrm{Contraceptive~use}_i) \\
+\hat{\mathrm{Fertility~rate}_i} &= 6.84 - 0.41(10) - 0.05(\mathrm{Contraceptive~use}_i) +\\
+&~~~~~0.004(10)(\mathrm{Contraceptive~use}_i)\\[2ex]
+&= 6.84 - 4.1 - 0.05(\mathrm{Contraceptive~use}_i) + 0.04(\mathrm{Contraceptive~use}_i) \\[2ex]
 &= 2.74 - 0.01(\mathrm{Contraceptive~use}_i)
 \end{split}
 $$
@@ -173,13 +180,15 @@ Now we can create out plot of fertility rates versus contraception use and add t
 ```{r}
 #| label: fig-fitted-lines
 #| fig-cap: "Plot of fertility rate as a function of contraceptive use and female education level. Partial regression lines are displayed for female education levels of 5th grade (blue, dotted line), 8th grade (orange, dashed line) and 10th grade (green, solid line)."
+#| fig-alt: "Plot of fertility rate as a function of contraceptive use and female education level. Partial regression lines are displayed for female education levels of 5th grade (blue, dotted line), 8th grade (orange, dashed line) and 10th grade (green, solid line)."
+
 # Plot the fitted model
 ggplot(data = fert, aes(x = contraceptive, y = fertility_rate)) +
   geom_point(alpha = 0) +
   geom_abline(intercept = 4.79, slope = -0.03, color = "#022f40", linetype = "dotted") +
   geom_abline(intercept = 3.56, slope = -0.018, color = "#f26419", linetype = "dashed") +
   geom_abline(intercept = 2.74, slope = -0.01, color = "#758e4f", linetype = "solid") +
-  theme_bw() +
+  #theme_bw() +
   xlab("Contraceptive use") +
   ylab("Fertility rate")
 ```
@@ -195,11 +204,15 @@ Remember that every interaction effect has two interpretations. We can also focu
 
 In practice, it is enough to say there is an interaction, and to use the plot of the results to interpret the nature of the interaction effects rather than to interpret the actual coefficient values estimated by the `lm()` function. This being said, in simple models, we can actually interpret the coefficients more directly. To do this, write out the fitted equations for countries that differ in female education level by 1 year. We will write the fitted equations for countries that have a female education level of 0 years and those with a female education level of 1 year. (Do the substitution yourself to verify these equations.)
 
+**0 Years**
+
 $$
-\begin{split}
-\mathbf{0~years:~}\hat{\mathrm{Fertility~rate}_i} &= 6.84 - 0.048(\mathrm{Contraceptive~use}_i) \\
-\mathbf{1~year:~}\hat{\mathrm{Fertility~rate}_i} &= \left[6.84 -0.408 \right] + \left[ -0.0479 + 0.00350 \right](\mathrm{Contraceptive~use}_i)\\
-\end{split}
+\hat{\mathrm{Fertility~rate}_i} = 6.84 - 0.048(\mathrm{Contraceptive~use}_i)
+$$
+**1 Year**
+
+$$
+\hat{\mathrm{Fertility~rate}_i} = \left[6.84 -0.408 \right] + \left[ -0.0479 + 0.00350 \right](\mathrm{Contraceptive~use}_i)
 $$
 
 
@@ -245,11 +258,12 @@ To better understand the nature of the effects, especially the interaction, we w
 <br />
 
 
-#### Female education level of 5; Infant mortality rate of 7
+**Female education level of 5; Infant mortality rate of 7**
 
 $$
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &= 4.82 - 0.271(5) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(7) + 0.002(5)(\mathrm{Contraceptive~use}_i)\\
+\hat{\mathrm{Fertility~rate}_i} &= 4.82 - 0.271(5) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(7) +\\
+&~~~~~0.002(5)(\mathrm{Contraceptive~use}_i)\\[2ex]
 &= 3.61 - 0.02(\mathrm{Contraceptive~use}_i)
 \end{split}
 $$
@@ -257,11 +271,12 @@ $$
 <br />
 
 
-#### Female education level of 5; Infant mortality rate of 41
+**Female education level of 5; Infant mortality rate of 41**
 
 $$
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &= 4.82 - 0.271(5) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(41) + 0.002(5)(\mathrm{Contraceptive~use}_i)\\
+\hat{\mathrm{Fertility~rate}_i} &= 4.82 - 0.271(5) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(41) +\\
+&~~~~~0.002(5)(\mathrm{Contraceptive~use}_i)\\[2ex]
 &= 4.29 - 0.02(\mathrm{Contraceptive~use}_i)
 \end{split}
 $$
@@ -269,11 +284,12 @@ $$
 <br />
 
 
-#### Female education level of 10; Infant mortality rate of 7
+**Female education level of 10; Infant mortality rate of 7**
 
 $$
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &= 4.82 - 0.271(10) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(7) + 0.002(10)(\mathrm{Contraceptive~use}_i)\\
+\hat{\mathrm{Fertility~rate}_i} &= 4.82 - 0.271(10) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(7) +\\
+&~~~~~0.002(10)(\mathrm{Contraceptive~use}_i)\\[2ex]
 &= 2.25 - 0.01(\mathrm{Contraceptive~use}_i)
 \end{split}
 $$
@@ -281,11 +297,12 @@ $$
 <br />
 
 
-#### Female education level of 10; Infant mortality rate of 41
+**Female education level of 10; Infant mortality rate of 41**
 
 $$
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &= 4.82 - 0.271(10) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(41) + 0.002(10)(\mathrm{Contraceptive~use}_i)\\
+\hat{\mathrm{Fertility~rate}_i} &= 4.82 - 0.271(10) - 0.03(\mathrm{Contraceptive~use}_i) + 0.02(41) +\\
+&~~~~~0.002(10)(\mathrm{Contraceptive~use}_i)\\[2ex]
 &= 2.93 - 0.01(\mathrm{Contraceptive~use}_i)
 \end{split}
 $$
@@ -295,28 +312,30 @@ Now we can create out plot of fertility rates versus contraception use and add t
 ```{r}
 #| label: fig-fitted-2
 #| fig-cap: "Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values."
+#| fig-alt: "Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values."
 #| fig-width: 10
 #| fig-height: 5
-#| out-width: "90%"
+#| out-width: "100%"
+
 # Plot the fitted model (infant mortality rate = 7)
 p1 = ggplot(data = fert, aes(x = contraceptive, y = fertility_rate)) +
   geom_point(alpha = 0) +
   geom_abline(intercept = 3.61, slope = -0.02, color = "#f26419", linetype = "solid") +
   geom_abline(intercept = 2.25, slope = -0.01, color = "#022f40", linetype = "dashed") +
-  theme_bw() +
+  #theme_bw() +
   xlab("Contraceptive use") +
   ylab("Fertility rate") +
-  ggtitle("Infant mortality rate at the first quartile (7%)")
+  ggtitle("First quartile (7%)")
 
 # Plot the fitted model (infant mortality rate = 41)
 p2 = ggplot(data = fert, aes(x = contraceptive, y = fertility_rate)) +
   geom_point(alpha = 0) +
   geom_abline(intercept = 4.29, slope = -0.02, color = "#f26419", linetype = "solid") +
   geom_abline(intercept = 2.93, slope = -0.01, color = "#022f40", linetype = "dashed") +
-  theme_bw() +
+  #theme_bw() +
   xlab("Contraceptive use") +
   ylab("Fertility rate") +
-  ggtitle("Infant mortality rate at the third quartile (41%)")
+  ggtitle("Third quartile (41%)")
 
 # Layout side-by-side plot
 p1 | p2
@@ -361,8 +380,10 @@ The fitted equation is:
 
 $$
 \begin{split}
-\hat{\mathrm{Fertility~rate}_i} &= 7.02 - 0.512(\mathrm{Female~education}_i) - 0.08(\mathrm{Contraceptive~use}_i) - 0.02(\mathrm{Infant~mortality}_i) + \\
-& 0.007(\mathrm{Female~education}_i)(\mathrm{Contraceptive~use}_i) + 0.001(\mathrm{Contraceptive~use}_i)(\mathrm{Infant~mortality}_i) + \\
+\hat{\mathrm{Fertility~rate}_i} = &7.02 - 0.512(\mathrm{Female~education}_i) - 0.08(\mathrm{Contraceptive~use}_i) -\\
+&0.02(\mathrm{Infant~mortality}_i) + \\
+&0.007(\mathrm{Female~education}_i)(\mathrm{Contraceptive~use}_i) +\\
+&0.001(\mathrm{Contraceptive~use}_i)(\mathrm{Infant~mortality}_i) + \\
 & 0.005(\mathrm{Female~education}_i)(\mathrm{Infant~mortality}_i) \\
 &- 0.0001(\mathrm{Female~education}_i)(\mathrm{Contraceptive~use}_i)(\mathrm{Infant~mortality}_i)
 \end{split}
@@ -387,28 +408,30 @@ crossing(
 ```{r}
 #| label: fig-fitted-3
 #| fig-cap: "Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values."
+#| fig-alt: "Plot of fertility rate as a function of contraceptive use, female education level, and infant mortality rate. Partial regression lines are displayed for female education levels of 5th grade (orange, solid line), 8th grade (blue, dashed line) for countries with infant mortality rates at the first (7%) and third (41%) quartile values."
 #| fig-width: 10
 #| fig-height: 5
-#| out-width: "90%"
+#| out-width: "100%"
+
 # Plot the fitted model (infant mortality rate = 7)
 p1 = ggplot(data = fert, aes(x = contraceptive, y = fertility_rate)) +
   geom_point(alpha = 0) +
   geom_abline(intercept = 4.49, slope = -0.04, color = "#f26419", linetype = "solid") +
   geom_abline(intercept = 2.09, slope = -0.005, color = "#022f40", linetype = "dashed") +
-  theme_bw() +
+  #theme_bw() +
   xlab("Contraceptive use") +
   ylab("Fertility rate") +
-  ggtitle("Infant mortality rate at the first quartile (7%)")
+  ggtitle("First quartile (7%)")
 
 # Plot the fitted model (infant mortality rate = 41)
 p2 = ggplot(data = fert, aes(x = contraceptive, y = fertility_rate)) +
   geom_point(alpha = 0) +
   geom_abline(intercept = 4.65, slope = -0.02, color = "#f26419", linetype = "solid") +
   geom_abline(intercept = 3.02, slope = -0.008, color = "#022f40", linetype = "dashed") +
-  theme_bw() +
+  #theme_bw() +
   xlab("Contraceptive use") +
   ylab("Fertility rate") +
-  ggtitle("Infant mortality rate at the third quartile (41%)")
+  ggtitle("Third quartile (41%)")
 
 # Layout side-by-side plot
 p1 | p2

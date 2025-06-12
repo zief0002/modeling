@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will learn about statistical inference at the coefficient-level for regression models. To do so, we will use the [keith-gpa.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv) data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of $n=100$ 8th-grade students (see the [data codebook](#keith)). To begin, we will load several libraries and import the data into an object called `keith`. 
+In this chapter, you will learn about statistical inference at the coefficient-level for regression models. To do so, we will use the **keith-gpa.csv** data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of $n=100$ 8th-grade students. To begin, we will load several libraries and import the data into an object called `keith`. 
 
 ```{r}
 # Load libraries
@@ -37,9 +37,10 @@ We begin by looking at the marginal distributions of both time spent on homework
 ::: {layout-ncol=2}
 
 ```{r}
-#| out-width: "100%"
 #| label: fig-02-03-gpa
 #| fig-cap: "Density plots of the marginal distribution of GPA."
+#| fig-alt: "Density plots of the marginal distribution of GPA."
+#| out-width: "100%"
 #| code-fold: true
 # Marginal distribution of GPA
 ggplot(data = keith, aes(x = gpa)) +
@@ -52,9 +53,11 @@ ggplot(data = keith, aes(x = gpa)) +
 
 ```{r}
 #| label: fig-02-03-hw
+#| fig-cap: "Density plots of the marginal distribution of time spent on homework."
+#| fig-alt: "Density plots of the marginal distribution of time spent on homework."
 #| code-fold: true
 #| out-width: "100%"
-#| fig-cap: "Density plots of the marginal distribution of time spent on homework."
+
 # Marginal distribution of homework
 ggplot(data = keith, aes(x = homework)) +
   stat_density(geom = "line") +
@@ -67,8 +70,10 @@ ggplot(data = keith, aes(x = homework)) +
 
 ```{r}
 #| label: fig-02-03-gpa-hw
-#| code-fold: true
 #| fig-cap: "Scatterplot showing the relationship between GPA and time spent on homework."
+#| fig-alt: "Scatterplot showing the relationship between GPA and time spent on homework."
+#| code-fold: true
+
 # Scatterplot of GPA versus homework
 ggplot( data = keith, aes(x = homework, y = gpa) ) +
   geom_point() +
@@ -110,6 +115,7 @@ We could also present this information in a table. This table could be extended 
 #| label: tbl-corr
 #| tbl-cap: "Correlations between 8th-Grade students' GPA and weekly time spent on homework. Means and standard deviations (in parentheses) are displayed on the main diagonal."
 #| echo: false
+
 # Correlation
 table_01 = keith |>
   dplyr::select(gpa, homework) |>
@@ -203,8 +209,10 @@ Now, sample another *n* observations from the population. Again, find the mean. 
 ```{r}
 #| label: fig-thought-exp-mean
 #| fig-cap: "Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the mean."
+#| fig-alt: "Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the mean."
 #| out-width: "80%"
 #| echo: false
+
 include_graphics("figs/02-04-thought-experiment-means.png")
 ```
 
@@ -217,7 +225,9 @@ $$
 The important thing is not that you memorize this result, but that you understand that **the process of randomly sampling from a known population can lead to predictable results in the distribution of statistical summaries** (e.g., the distribution of sample means). The other crucial thing is that there the sampling variation can be quantified. The standard error is the quantification of that sampling error. In this case, it gives a numerical answer to the question of how variable the sample mean will be because of random sampling.
 
 :::fyi
-When we report information about theoretical distributions,  we *parameterize* the distribution by reporting all the necessary parameter values that are needed to reproduce it. For example to parameterize a normal distribution we need to report not only that it is normal, but also the mean and standard deviation. Notice that these two parameters specifically define the center (mean) and variability (standard deviation) of the distribution. In addition to the shape (normal) these give a perfect description of the distribution. Mathematically, we write that description as:
+**FYI**
+
+When we report information about theoretical distributions, we *parameterize* the distribution by reporting all the necessary parameter values that are needed to reproduce it. For example to parameterize a normal distribution we need to report not only that it is normal, but also the mean and standard deviation. Notice that these two parameters specifically define the center (mean) and variability (standard deviation) of the distribution. In addition to the shape (normal) these give a perfect description of the distribution. Mathematically, we write that description as:
 
 $$
 \sim\mathcal{N}\left(\text{Mean}, ~\text{SD}\right)
@@ -231,9 +241,10 @@ $$
 
 We can extend these ideas to regression. Now the thought experiment goes something like this: Imagine you have a population that is infinitely large. The observations in this population have two attributes, call them *X* and *Y*. The relationship between these two attributes can be expressed via a regression equation as: $Y_i=\beta_0 + \beta_1(X_i) + \epsilon_i$. Randomly sample *n* observations from the population. This time, rather than computing a mean, regress the sample *Y* values on the sample *X* values. Since the sample regression coefficients are estimates of the population parameters, we will write this as: $\hat{Y}=\hat{\beta}_{0,1} + \hat{\beta}_{1,1}(X)$. Repeat the process. This time the regression equation is: $\hat{Y}=\hat{\beta}_{0,2} + \hat{\beta}_{1,2}(X)$. Continue this process an infinite number of times.
 
-```{r echo=FALSE, out.width='80%', fig.cap=''}
+```{r}
 #| label: fig-thought-exp-reg
 #| fig-cap: "Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the regression coefficients."
+#| fig-alt: "Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of the regression coefficients."
 #| out-width: "80%"
 #| echo: false
 include_graphics("figs/02-04-thought-experiment-coefficients.png")
@@ -273,6 +284,7 @@ One question of interest may be: Is there evidence that the average GPA differs 
 ```{r echo=FALSE, out.width='80%'}
 #| label: fig-thought-exp-reg-2
 #| fig-cap: "Thought experiment for sampling samples of size n from the population where there is no effect of X ($\\beta_1=0$) to obtain the sampling distribution of the slopes."
+#| fig-alt: "Thought experiment for sampling samples of size n from the population where there is no effect of X ($\\beta_1=0$) to obtain the sampling distribution of the slopes."
 #| out-width: "80%"
 #| echo: false
 include_graphics("figs/02-07-thought-experiment-hyp-test.png")
@@ -307,6 +319,7 @@ One way to envision this is as a distribution.
 ```{r}
 #| label: fig-sampling-dist-slope
 #| fig-cap: "Sampling distribution of the slope coefficient under the hypothesis that $\\beta_1=0$. The distribution is approximately normal with a mean of 0 and a standard error of 0.35."
+#| fig-alt: "Sampling distribution of the slope coefficient under the hypothesis that $\\beta_1=0$. The distribution is approximately normal with a mean of 0 and a standard error of 0.35."
 #| fig-width: 6
 #| fig-height: 4
 #| echo: false
@@ -340,6 +353,7 @@ In practice these values are typically unknown and are estimated from the sample
 ```{r}
 #| label: fig-norm-dist-comp
 #| fig-cap: "Comparison of two distributions. The normal distribution (solid, blue) and one with additional uncertainty (dashed, orange)."
+#| fig-alt: "Comparison of two distributions. The normal distribution (solid, blue) and one with additional uncertainty (dashed, orange)."
 #| fig-width: 6
 #| fig-height: 4
 #| echo: false
@@ -370,6 +384,7 @@ It is important to note that the amount of uncertainty affects how closely the s
 ```{r}
 #| label: fig-norm-dist-comp2
 #| fig-cap: "The normal distribution (solid, blue), a distribution with estimates based on a larger sample size (dashed, orange), and one based on a smaller sample size (dotted, green)."
+#| fig-alt: "The normal distribution (solid, blue), a distribution with estimates based on a larger sample size (dashed, orange), and one based on a smaller sample size (dotted, green)."
 #| fig-width: 6
 #| fig-height: 4
 #| echo: false
@@ -460,6 +475,7 @@ Based on this, we will evaluate our observed *t*-value of 3.42 using a *t*-distr
 ```{r}
 #| label: fig-t-98
 #| fig-cap: "Plot of the probability curve for the t(98) distribution. The shaded area under the curve represents the p-value for a two-tailed test evaluating whether the population slope is zero using an observed t-value of 73.42."
+#| fig-alt: "Plot of the probability curve for the t(98) distribution. The shaded area under the curve represents the p-value for a two-tailed test evaluating whether the population slope is zero using an observed t-value of 73.42."
 #| fig-width: 6
 #| fig-height: 4
 #| echo: false
@@ -521,6 +537,8 @@ Assuming the null hypothesis that $\beta_0=0$ is true, the probability of observ
 
 
 :::fyi
+**FYI**
+
 How small does our *p*-value have to be for the empirical data are inconsistent with the null hypothesis? That is something that is decided by the researcher *prior* to doing any data analysis. Typically in the social and educational sciences we say that for the empirical data are inconsistent with the null hypothesis the *p*-value needs to be less than 0.05. The value we choose is referred to as the alpha value ($\alpha = .05$). 
 :::
 
@@ -548,6 +566,9 @@ Instead, we want to begin to see the *p*-value as a measure of incompatibility b
 
 
 ```{r}
+#| label: fig-tinder
+#| fig-cap: "Small *p*-values are like a right-swipe in Tinder. It means you have an interest. It doesn't mean you're ready to book the wedding venue."
+#| fig-alt: "Small *p*-values are like a right-swipe in Tinder. It means you have an interest. It doesn't mean you're ready to book the wedding venue."
 #| out-width: "60%"
 #| echo: false
 include_graphics("figs/02-04-pvalue-and-tinder.jpg")
@@ -565,6 +586,8 @@ Because of this, one suggestion in writing about the results is to use the words
 > The hypothesis test suggests that the effect of homework ($B = 1.21$) is statistically discernible from 0 ($p=0.000885$).
 
 :::fyi
+**PROTIP**
+
 When reporting *p*-values for the social sciences, we typically round to three decimal places. So our *p*-value of 0.000885 would be rounded to 0.000. However, since the *p*-value is not actually 0, we would instead report this as $p < .001$.
 :::
 
@@ -614,10 +637,12 @@ Interpreting this, we might say,
 > The average GPA for all 8th-grade students in the district who spend zero hopurs per week on homework is between 70.4 and 78.1.
 
 
-:::protip
+:::fyi
+**PROTIP**
+
 When reporting results from hypothesis tests, in addition to the *p*-value, always include either the standard error or the confidence interval in reporting your results. This allows readers to see how different from 0 the observed result is after accounting for uncertainty. This allows them to judge the scientific importance using their domain knowledge. For example,
 
-> The hypothesis test suggests that the effect of homework ($B = 1.21$) is statistically discernible from 0 ($p<0.001$). The 95% CI suggests that the effect of homework for 8th-graders is likely between 0.51 and 1.91, indicating that each 1-hour of homework is associated with a difference of between 0.51 and 1.91 GPA points.
+*The hypothesis test suggests that the effect of homework ($B = 1.21$) is statistically discernible from 0 ($p<0.001$). The 95% CI suggests that the effect of homework for 8th-graders is likely between 0.51 and 1.91, indicating that each 1-hour of homework is associated with a difference of between 0.51 and 1.91 GPA points.*
 :::
 
 <br />

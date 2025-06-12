@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -495,7 +495,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this chapter, you will learn about including multiple predictors into the regression model. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students (see the <a href="#keith">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
+<p>In this chapter, you will learn about including multiple predictors into the regression model. To do so, we will use the <strong>keith-gpa.csv</strong> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students. To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
@@ -542,6 +542,7 @@ window.Quarto = {
 <p>Experimental data are data that have been collected from a study in which the researcher <em>randomly assigned cases/participants</em> in their sample to different levels of the predictor. In an introductory statistics class you probably encountered this in the context of a predictor with only two levels (e.g., treatment and control). In those situations the goal was to determine the effect of the treatment on some outcome.</p>
 <p>We can also think about random assignment with predictors that have more than two levels. For example, if you were studying the effect of the amount of tutoring on some educational outcome you might have several levels of the predictor: 30 min of tutoring, 45 min of tutoring, 60 min of tutoring, 75 min of tutoring, 90 min of tutoring, etc. The data here can also be experimental so long as the participants in the study were randomly assigned to the different levels of tutoring.</p>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>The key question to determine whether the data are experimental is: were cases/participants randomly assigned to different levels of the predictor?</p>
 </div>
 <p>Let’s ask that question about our homework/GPA data…were students randomly assigned to spend different amount of time on homework? The answer is no. Students were not randomly assigned to different levels of the predictor. They self select how much time they spend on homework. Because of this, these data are not experimental in nature. We instead refer to these data as observational in nature. Observational data are any data in which cases/participants were not randomly assigned to levels of the predictor. Most data collected or used in the social and educational sciences are observational in nature!</p>
@@ -553,9 +554,14 @@ window.Quarto = {
 <p>We can depict some of these ideas in a path diagram. A path diagram visualizes the different variables under study and the effects of those variables. Variables are depicted as rectangles<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and effects are depicted as single-headed arrows. For example, the following path diagram shows the two variables time spent on homework and GPA. Note that the arrow representing the effect of time spent on homework on GPA originates from the predictor rectangle and points toward the outcome. This shows that the effect is on the outcome.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/04-01-path-diagram-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+<div id="fig-path1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Path diagram showing the hypothesized causal effect of time spent on homework on GPA." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-path1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.1: Path diagram showing the hypothesized causal effect of time spent on homework on GPA.
+</figcaption>
+<div aria-describedby="fig-path1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-path-diagram-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="Path diagram showing the hypothesized causal effect of time spent on homework on GPA.">
+</div>
 </figure>
 </div>
 </div>
@@ -563,9 +569,14 @@ window.Quarto = {
 <p>Recall that our potential confounder (parent education) has an effect on both the predictor and the outcome. The path diagram showing this is depicted as:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/04-01-path-diagram-02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+<div id="fig-path2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Path diagram showing both the hypothesized causal effect of time spent on homework on GPA, and the confounding effect of parent education." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-path2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.2: Path diagram showing both the hypothesized causal effect of time spent on homework on GPA, and the confounding effect of parent education.
+</figcaption>
+<div aria-describedby="fig-path2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-path-diagram-02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="Path diagram showing both the hypothesized causal effect of time spent on homework on GPA, and the confounding effect of parent education.">
+</div>
 </figure>
 </div>
 </div>
@@ -574,9 +585,14 @@ window.Quarto = {
 <p>With experimental studies, since participants are assigned randomly by the researcher, there is theoretically no such thing as a confounder. This is because other predictors (e.g., parent education) cannot influence the level of predictor sicne it is a random mechanism that is determining the level of the predictor. The path diagram if this were experimental data would look like this:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/04-01-path-diagram-03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+<div id="fig-path3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Path diagram showing both the hypothesized causal effect of time spent on homework and parent education on GPA if the data were from an experiment." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-path3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.3: Path diagram showing both the hypothesized causal effect of time spent on homework and parent education on GPA if the data were from an experiment.
+</figcaption>
+<div aria-describedby="fig-path3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-path-diagram-03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="Path diagram showing both the hypothesized causal effect of time spent on homework and parent education on GPA if the data were from an experiment.">
+</div>
 </figure>
 </div>
 </div>
@@ -585,14 +601,20 @@ window.Quarto = {
 <p>More importantly, with experimental data whatever the effect of time spent on homework was on GPA in the simple two rectangle model, it is theoretically the same, regardless of any other predictor that might be influencing the outcome. That is, even if parent education influences students’ GPA, the effect of time spent on homework would not change the original effect, it would remain a small, positive effect. Whereas, with observational data, we just don’t know whether nor how the effect will change.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/04-01-path-diagram-04.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+<div id="fig-path4" class="quarto-float quarto-figure quarto-figure-center anchored" alt="LEFT: Path diagram showing both the hypothesized causal effect of time spent on homework on GPA, and the confounding effect of parent education. RIGHT: Path diagram showing both the hypothesized causal effect of time spent on homework and parent education on GPA if the data were from an experiment." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-path4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.4: LEFT: Path diagram showing both the hypothesized causal effect of time spent on homework on GPA, and the confounding effect of parent education. RIGHT: Path diagram showing both the hypothesized causal effect of time spent on homework and parent education on GPA if the data were from an experiment.
+</figcaption>
+<div aria-describedby="fig-path4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-path-diagram-04.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="LEFT: Path diagram showing both the hypothesized causal effect of time spent on homework on GPA, and the confounding effect of parent education. RIGHT: Path diagram showing both the hypothesized causal effect of time spent on homework and parent education on GPA if the data were from an experiment.">
+</div>
 </figure>
 </div>
 </div>
 </div>
 <div class="fyi">
+<p><strong>PROTIP</strong></p>
 <p>Drawing out a path diagram helps you document the effects you are evaluating. It can also help you identify confounders when you have observational data.</p>
 </div>
 <p><br></p>
@@ -602,6 +624,7 @@ window.Quarto = {
 <h2 data-number="14.2" class="anchored" data-anchor-id="multiple-regression-the-key-to-evaluating-observational-data"><span class="header-section-number">14.2</span> Multiple Regression: The Key to Evaluating Observational Data</h2>
 <p>To understand whether or how the effect of time spent on homework on GPA is impacted by the confounder of parent education, we can include parent education level as an additional predictor in the model (along with time spent on homework). By looking at the resulting effect of time spent on homework on GPA we get a better understanding of what the true effect is.</p>
 <div class="protip">
+<p><strong>FYI</strong></p>
 <p>While multiple regression is helpful for dealing with confounders in observational data, we can use multiple regression to quantify effects for any type of data, including experimental data.</p>
 </div>
 <p><br></p>
@@ -616,14 +639,14 @@ window.Quarto = {
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Parent education level"</span>) <span class="sc">+</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-density-seniority" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-density-seniority" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Density plot of the marginal distribution of parent education level." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-density-seniority-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="04-01-intro-to-multiple-regression_files/figure-html/fig-density-seniority-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-density-seniority-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.1: Density plot of the marginal distribution of parent education level.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-density-seniority-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.5: Density plot of the marginal distribution of parent education level.
 </figcaption>
+<div aria-describedby="fig-density-seniority-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-01-intro-to-multiple-regression_files/figure-html/fig-density-seniority-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Density plot of the marginal distribution of parent education level.">
+</div>
 </figure>
 </div>
 </div>
@@ -655,14 +678,14 @@ Figure&nbsp;14.1: Density plot of the marginal distribution of parent education 
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Parent education level"</span>) <span class="sc">+</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"GPA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-seniority-income" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-seniority-income" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot showing the relationship between parent education level and GPA." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-seniority-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="04-01-intro-to-multiple-regression_files/figure-html/fig-seniority-income-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seniority-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.2: Scatterplot showing the relationship between parent education level and GPA.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-seniority-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.6: Scatterplot showing the relationship between parent education level and GPA.
 </figcaption>
+<div aria-describedby="fig-seniority-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-01-intro-to-multiple-regression_files/figure-html/fig-seniority-income-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot showing the relationship between parent education level and GPA.">
+</div>
 </figure>
 </div>
 </div>
@@ -688,9 +711,14 @@ Figure&nbsp;14.2: Scatterplot showing the relationship between parent education 
 <p>Note here that parent education level seems to be related to the predictor and the outcome. This suggests that it may be a confounder. (In an experimental study, the correlation between parent education level and time spent on homework would be close to 0.) Sometimes people show the correlations on a path diagram. Correlations are shown as double-headed arrows rather than single-headed arrows.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/04-01-path-diagram-05.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+<div id="fig-path5" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Path diagram showing the correlations between the time spent on homework, parent education, and GPA." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-path5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.7: Path diagram showing the correlations between the time spent on homework, parent education, and GPA.
+</figcaption>
+<div aria-describedby="fig-path5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-path-diagram-05.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Path diagram showing the correlations between the time spent on homework, parent education, and GPA.">
+</div>
 </figure>
 </div>
 </div>
@@ -809,6 +837,7 @@ H_0:\beta_{\mathrm{Time~on~HW}} = \beta_{\mathrm{Parent~Education~Level}} = 0.
 </ul>
 </blockquote>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>The language “after accounting for” is not ubiquitous in interpreting partial regression coefficients. Some researchers instead use “controlling for”, “holding constant”, or “partialling out the effects of”. For example, the time spent on homework effect could also be interpreted these ways:</p>
 <ul>
 <li><p>A one hour difference in time spent on homework is associated with a 0.99 grade-point difference in GPA (on average), <em>after controlling for differences</em> in parent education level.</p></li>
@@ -837,6 +866,7 @@ H_0: \beta_{\mathrm{Parent~Education~Level}} = 0
 <p>The test for the focal predictor, time spent on homework is evaluating the null hypothesis that there is NO EFFECT of the amount of time spent on homework on GPA after accounting for differences in parent education level: <span class="math inline">\(H_0: \beta_{\mathrm{Time~on~HW}} = 0\)</span>. The empirical evidence is also inconsistent with this hypothesis, <span class="math inline">\(t(97)=2.74\)</span>, <span class="math inline">\(p=.007\)</span>, suggesting that there is likely an effect of the amount of time spent on homework on GPA after controlling for differences in parent education level.</p>
 <p>Based on these results, both predictors seem to have an effect on GPA.</p>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>It is important to note that unlike in simple regression models, the <em>p</em>-value at the model-level for multiple regression models is different from any of the coefficient-level <em>p</em>-values. In our example the <em>p</em>-value from the model-level <em>F</em>-test was 0.0003, while those for the coefficient-level <em>t</em>-tests were 0.026 and 0.007 respectively. This is because when we include more than one predictor in a model, the hypotheses being tested at the model- and coefficient-levels are different. The model-level test is a simultaneous test of all the predictor effects, while the coefficient-level tests are testing the added effect of a particular predictor after we control for all other predictors in the model.</p>
 </div>
 <p><br></p>
@@ -846,14 +876,14 @@ H_0: \beta_{\mathrm{Parent~Education~Level}} = 0
 <p>We can now include the coefficients from the fitted multiple regression model to update our path diagram.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-path-model-final" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-path-model-final" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Path diagram for the multiple regression model. Path values are unstandardized coefficients." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-path-model-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/04-01-path-diagram-06.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-path-model-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.3: Path diagram for the multiple regression model. Path values are unstandardized coefficients.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-path-model-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.8: Path diagram for the multiple regression model. Path values are unstandardized coefficients.
 </figcaption>
+<div aria-describedby="fig-path-model-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-path-diagram-06.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Path diagram for the multiple regression model. Path values are unstandardized coefficients.">
+</div>
 </figure>
 </div>
 </div>
@@ -862,14 +892,14 @@ Figure&nbsp;14.3: Path diagram for the multiple regression model. Path values ar
 <p>By comparing the effect of time spent on homework on GPA from the simple and the multiple regression model, we have a more accurate understanding of the effect.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-path-model-final-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-path-model-final-2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Path diagram for the simple and multiple regression model. Path values are unstandardized coefficients." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-path-model-final-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/04-01-path-diagram-07.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-path-model-final-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.4: Path diagram for the simple and multiple regression model. Path values are unstandardized coefficients.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-path-model-final-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.9: Path diagram for the simple and multiple regression model. Path values are unstandardized coefficients.
 </figcaption>
+<div aria-describedby="fig-path-model-final-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-path-diagram-07.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Path diagram for the simple and multiple regression model. Path values are unstandardized coefficients.">
+</div>
 </figure>
 </div>
 </div>
@@ -894,14 +924,14 @@ Y_i = \beta_0 + \beta_1(X1_{i}) + \beta_2(X2_{i}) + \ldots + \beta_k(Xk_{i}) + \
 <p>The data and regression plane defined by the parent education level, time spent on homework, and GPA for the <code>keith</code> data is shown below. The regression plane is tilted up in both the education level direction (corresponding to a positive partial slope of education) and in the seniority level direction (corresponding to a positive partial slope of seniority). The blue points are above the plane (employees with a positive residual) and the yellow points are below the plane (employees with a negative residual).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-scatter3d" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-scatter3d" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-scatter3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/04-01-3dscatterplot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatter3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.5: Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-scatter3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.10: Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual.
 </figcaption>
+<div aria-describedby="fig-scatter3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-3dscatterplot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual.">
+</div>
 </figure>
 </div>
 </div>
@@ -933,17 +963,17 @@ Figure&nbsp;14.5: Three-dimensional scatterplot showing the relationship between
 &amp;= 1.51
 \end{split}
 \]</span></p>
-<p>Given this student’s parent education level and the amount of time they spend on homework, their GPA is above average by 1.51 grade-points. This is depicted in <a href="#fig-scatter3d-resid" class="quarto-xref">Figure&nbsp;<span>14.6</span></a>.</p>
+<p>Given this student’s parent education level and the amount of time they spend on homework, their GPA is above average by 1.51 grade-points. This is depicted in <a href="#fig-scatter3d-resid" class="quarto-xref">Figure&nbsp;<span>14.11</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-scatter3d-resid" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-scatter3d-resid" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual. Observation 1 is shown in orange and its residual depicted as a blue vertical line extending to the regression plane." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-scatter3d-resid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/04-01-3dscatterplot-resid.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatter3d-resid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.6: Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual. Observation 1 is shown in orange and its residual depicted as a blue vertical line extending to the regression plane.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-scatter3d-resid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.11: Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual. Observation 1 is shown in orange and its residual depicted as a blue vertical line extending to the regression plane.
 </figcaption>
+<div aria-describedby="fig-scatter3d-resid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/04-01-3dscatterplot-resid.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Three-dimensional scatterplot showing the relationship between parent education level, time spent on homework, and GPA. The fitted regression plane is also shown. Blue observations have a positive residual and pink observations have a negative residual. Observation 1 is shown in orange and its residual depicted as a blue vertical line extending to the regression plane.">
+</div>
 </figure>
 </div>
 </div>
@@ -993,6 +1023,7 @@ Figure&nbsp;14.6: Three-dimensional scatterplot showing the relationship between
 </div>
 <p>Both the model-level and coefficient-level output is identical regardless of the order that the predictors are entered into the <code>lm()</code> function.</p>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>While this means you don’t have to stress about the order you enter predictors in the model, conventionally if you have a focal predictor that is entered into the model last. That is why we included parent education level prior to time spent on homework in the <code>lm()</code> initially.</p>
 </div>
 <p><br></p>

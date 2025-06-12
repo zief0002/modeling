@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -495,7 +495,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this set of notes, you will continue your foray into regression analysis. To do so, we will continue our analysis of the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv">riverview.csv</a> data (see the <a href="#riverview">data codebook</a>) to examine <strong>whether education level is related to income</strong>. To begin, we will load several libraries and import the data into an object called <code>city</code>. We will also create the scatterplot to show the relationship between education level and income.</p>
+<p>In this set of notes, you will continue your foray into regression analysis. To do so, we will continue our analysis of the <strong>riverview.csv</strong> data to examine whether education level is related to income. To begin, we will load several libraries and import the data into an object called <code>city</code>. We will also create the scatterplot to show the relationship between education level and income.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
@@ -531,10 +531,14 @@ window.Quarto = {
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Education (in years)"</span>) <span class="sc">+</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Income (in U.S. dollars)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-02-simple-regression-and-correlation_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Scatterplot displaying the relationship between employee education levels and incomes.</figcaption>
+<div id="fig-02-02-scatterplot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Scatterplot displaying the relationship between employee education levels and incomes.">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-02-02-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: Scatterplot displaying the relationship between employee education levels and incomes.
+</figcaption>
+<div aria-describedby="fig-02-02-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-02-simple-regression-and-correlation_files/figure-html/fig-02-02-scatterplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot displaying the relationship between employee education levels and incomes.">
+</div>
 </figure>
 </div>
 </div>
@@ -593,10 +597,14 @@ Y_i = \underbrace{\beta_0 + \beta_1(X_i)}_{\substack{\text{Systematic} \\ \text{
 <p>To help better understand the model, consider the following plot:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/conditional-means.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Plot displaying conditional distribution of <em>Y</em> at several <em>X</em> values. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <em>Y</em> for each conditional distribution.</figcaption>
+<div id="fig-cond-dist1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Plot displaying conditional distribution of *Y* at several *X* values. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for each conditional distribution.">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-cond-dist1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.2: Plot displaying conditional distribution of <em>Y</em> at several <em>X</em> values. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <em>Y</em> for each conditional distribution.
+</figcaption>
+<div aria-describedby="fig-cond-dist1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/conditional-means.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Plot displaying conditional distribution of *Y* at several *X* values. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for each conditional distribution.">
+</div>
 </figure>
 </div>
 </div>
@@ -626,10 +634,14 @@ Y_i &amp;= \mu_{Y \vert X_i} + \epsilon_i
 <p>To further understand the residual term, consider the plot below. This figure shows the relationship between education and income we plotted earlier, and also includes the regression line.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-02-simple-regression-and-correlation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Scatterplot displaying the relationship between employee education levels and incomes. The OLS fitted regression line is also displayed.</figcaption>
+<div id="fig-02-02-scatterplot2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Scatterplot displaying the relationship between employee education levels and incomes. The OLS fitted regression line is also displayed.">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-02-02-scatterplot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.3: Scatterplot displaying the relationship between employee education levels and incomes. The OLS fitted regression line is also displayed.
+</figcaption>
+<div aria-describedby="fig-02-02-scatterplot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-02-simple-regression-and-correlation_files/figure-html/fig-02-02-scatterplot2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot displaying the relationship between employee education levels and incomes. The OLS fitted regression line is also displayed.">
+</div>
 </figure>
 </div>
 </div>
@@ -716,14 +728,14 @@ Coefficients:
 <p>To interpret this value, remember that <span class="math inline">\(\hat{Y}_i\)</span> is a conditional mean. In this case, it represents the model predicted mean income for all employees that have an education level of 0 years. Graphically this looks like the following.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-intercept" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-intercept" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Plot displaying conditional distribution of *Y* at $X=0$. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for this conditional distribution---which corresponds to the intercept value of the regression line.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-intercept-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/conditional-means-intercept.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intercept-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.1: Plot displaying conditional distribution of <em>Y</em> at <span class="math inline">\(X=0\)</span>. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <em>Y</em> for this conditional distribution—which corresponds to the intercept value of the regression line.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-intercept-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.4: Plot displaying conditional distribution of <em>Y</em> at <span class="math inline">\(X=0\)</span>. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <em>Y</em> for this conditional distribution—which corresponds to the intercept value of the regression line.
 </figcaption>
+<div aria-describedby="fig-intercept-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/conditional-means-intercept.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Plot displaying conditional distribution of *Y* at $X=0$. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for this conditional distribution---which corresponds to the intercept value of the regression line.">
+</div>
 </figure>
 </div>
 </div>
@@ -733,6 +745,7 @@ Figure&nbsp;7.1: Plot displaying conditional distribution of <em>Y</em> at <span
 <p>The model predicted mean income for all employees that have an education level of 0 years is $11,321.</p>
 </blockquote>
 <div class="fyi">
+<p><strong>FYI</strong></p>
 <p>When interpreting the intercept, beware of <em>extrapolation</em>. Extrapolation is making a prediction outside of the range of the data used to fit the model. For example, in our interpretation, we are making a prediction of the mean income for emplyees that have an education level of 0 years. The smallest education level in our data is 8 years. Because 0 is outside the range of our data, this prediction is an extrapolation. The problem with extrapolation is that we don’t know if the relationship continues to be linear outside the range of our data. If it isn’t linear, then the prtediction we make will be quite errant.</p>
 </div>
 <p><br></p>
@@ -746,10 +759,14 @@ Figure&nbsp;7.1: Plot displaying conditional distribution of <em>Y</em> at <span
 <p>Again, because <span class="math inline">\(\hat{Y}\)</span> is a conditional mean, the slope represents the difference in predicted mean incomes for each one-year difference in education level. Graphically,</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/conditional-means-slope.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Plot displaying conditional distribution of <em>Y</em> at <span class="math inline">\(X=0\)</span> and <span class="math inline">\(X=1\)</span>. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <em>Y</em> for these conditional distributions—the relative change which corresponds to the slope value of the regression line.</figcaption>
+<div id="fig-cond-dist" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Plot displaying conditional distribution of *Y* at $X=0$ and $X=1$. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for these conditional distributions---the relative change which corresponds to the slope value of the regression line.">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-cond-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.5: Plot displaying conditional distribution of <em>Y</em> at <span class="math inline">\(X=0\)</span> and <span class="math inline">\(X=1\)</span>. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of <em>Y</em> for these conditional distributions—the relative change which corresponds to the slope value of the regression line.
+</figcaption>
+<div aria-describedby="fig-cond-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/conditional-means-slope.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Plot displaying conditional distribution of *Y* at $X=0$ and $X=1$. The OLS fitted regression line (dotted) is also shown. The red points show the mean value of *Y* for these conditional distributions---the relative change which corresponds to the slope value of the regression line.">
+</div>
 </figure>
 </div>
 </div>
@@ -823,10 +840,14 @@ Figure&nbsp;7.1: Plot displaying conditional distribution of <em>Y</em> at <span
 <p>The negative residual, <span class="math inline">\(\hat\epsilon_{25} = -9.669\)</span>, suggests that this employee earns $9,669 less than the average predicted income for employees with 20 years of education. We can also represent these values graphically.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-02-simple-regression-and-correlation_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Plot displaying the OLS fitted regression line (blue) between employee education levels and incomes. The 25th employee’s observed data (black dot) is plotted, and a visual representation of the employee’s residual (red line) is also displayed.</figcaption>
+<div id="fig-fitted" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Plot displaying the OLS fitted regression line (blue) between employee education levels and incomes. The 25th employee's observed data (black dot) is plotted, and a visual representation of the employee's residual (red line) is also displayed.">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-fitted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.6: Plot displaying the OLS fitted regression line (blue) between employee education levels and incomes. The 25th employee’s observed data (black dot) is plotted, and a visual representation of the employee’s residual (red line) is also displayed.
+</figcaption>
+<div aria-describedby="fig-fitted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-02-simple-regression-and-correlation_files/figure-html/fig-fitted-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Plot displaying the OLS fitted regression line (blue) between employee education levels and incomes. The 25th employee's observed data (black dot) is plotted, and a visual representation of the employee's residual (red line) is also displayed.">
+</div>
 </figure>
 </div>
 </div>
@@ -851,6 +872,7 @@ Figure&nbsp;7.1: Plot displaying conditional distribution of <em>Y</em> at <span
 </div>
 </div>
 <div class="fyi">
+<p><strong>PROTIP</strong></p>
 <p>The order of attributes in the <code>select()</code> function is irrelevant. However, typically the response (or outcome) variable is the first variable provided in the <code>select()</code> function, followed by the predictor.</p>
 </div>
 <p>The correlation between education level and income is 0.795. Mathematically we use the lower-case letter “r” to indicate a correlation. In our example,</p>
@@ -871,7 +893,8 @@ r_{\text{Education Level, Income}} = 0.795
 <li>Values around <span class="math inline">\(-0.8\)</span> or <span class="math inline">\(+0.8\)</span> might indicate a strong linear relationship.</li>
 <li>Values of <span class="math inline">\(-1\)</span> or <span class="math inline">\(+1\)</span> indicate a perfect linear relationship (super-duper strong).</li>
 </ul>
-<div class="protip">
+<div class="fyi">
+<p><strong>FYI</strong></p>
 <p>These guidelines may or may not be useful. You really have to know the substantive literature in your discipline to know for sure what values indicate a strong or weak relationship. For example, in the educational sciences most of the relationships we see with educational outcomes (e.g., GPA, test scores) have correlation values that are less than 0.4. So <span class="math inline">\(r \approx 0.5\)</span> would often be considered a strong relationship.</p>
 </div>
 <p>Returning to our example, the correlation coefficient of 0.795 indicates a strong linear relationship between education level and incomes. The positive value of the correlation coefficient also indicates that the relationship between education level and income is positive. That is, employess with higher education levels also tend to have higher incomes.</p>
@@ -881,14 +904,14 @@ r_{\text{Education Level, Income}} = 0.795
 <p>It is important to keep in mind that the correlation coefficient is only useful as a measure of the strength of the relationship when the relationship between variables is linear. Here is an example where the correlation coefficient would be misleading about the strength of the relationship.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-daylight" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-daylight" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Hours of daylight versus day of the year for $n=75$ days in Minneapolis.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-02-simple-regression-and-correlation_files/figure-html/fig-daylight-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.2: Hours of daylight versus day of the year for <span class="math inline">\(n=75\)</span> days in Minneapolis.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.7: Hours of daylight versus day of the year for <span class="math inline">\(n=75\)</span> days in Minneapolis.
 </figcaption>
+<div aria-describedby="fig-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-02-simple-regression-and-correlation_files/figure-html/fig-daylight-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Hours of daylight versus day of the year for $n=75$ days in Minneapolis.">
+</div>
 </figure>
 </div>
 </div>
@@ -899,28 +922,28 @@ Figure&nbsp;7.2: Hours of daylight versus day of the year for <span class="math 
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
-<div id="fig-salary-neuroticism-01" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-salary-neuroticism-01" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-salary-neuroticism-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-02-simple-regression-and-correlation_files/figure-html/fig-salary-neuroticism-01-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-salary-neuroticism-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.3: Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for <span class="math inline">\(n=1000\)</span> employees from a Fortune 500 company.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-salary-neuroticism-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.8: Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for <span class="math inline">\(n=1000\)</span> employees from a Fortune 500 company.
 </figcaption>
+<div aria-describedby="fig-salary-neuroticism-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-02-simple-regression-and-correlation_files/figure-html/fig-salary-neuroticism-01-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company.">
+</div>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
-<div id="fig-salary-neuroticism" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-salary-neuroticism" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company. The data are colored by education level.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-salary-neuroticism-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-02-simple-regression-and-correlation_files/figure-html/fig-salary-neuroticism-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-salary-neuroticism-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.4: Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for <span class="math inline">\(n=1000\)</span> employees from a Fortune 500 company. The data are colored by education level.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-salary-neuroticism-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.9: Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for <span class="math inline">\(n=1000\)</span> employees from a Fortune 500 company. The data are colored by education level.
 </figcaption>
+<div aria-describedby="fig-salary-neuroticism-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-02-simple-regression-and-correlation_files/figure-html/fig-salary-neuroticism-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Salary versus neuroticism (0 = not at all neurotic; 7= very neurotic) as measured by the Big Five personality survey for $n=1000$ employees from a Fortune 500 company. The data are colored by education level.">
+</div>
 </figure>
 </div>
 </div>
@@ -928,7 +951,8 @@ Figure&nbsp;7.4: Salary versus neuroticism (0 = not at all neurotic; 7= very neu
 </div>
 </div>
 <p>If we treat these data as one population (an assumption for using the correlation) the relationship between neurotocism and salary is positive; employees who are more neurotic tend to have higher salaries, on average. However, if we account for education level, the relationship between neurotocism and salary is negative for each of the education levels; once we account for education level, employees who are more neurotic tend to have lower salaries, on average. This reversal of the direction of the relationship once we account for other variables is quite common (so common it has a name, <a href="https://en.wikipedia.org/wiki/Simpson%27s_paradox">Simpson’s Paradox</a>) and makes it difficult to be sure about the “true” relationship between variables in observational data.</p>
-<div class="protip">
+<div class="fyi">
+<p><strong>PROTIP</strong></p>
 <p>You should always create a scatterplot to examine the relationship graphically before computing a correlation coefficient to numerically summarize it.</p>
 </div>
 <p><br></p>
@@ -943,9 +967,8 @@ Figure&nbsp;7.4: Salary versus neuroticism (0 = not at all neurotic; 7= very neu
 <p>Here the regression analysis provides a quantitative summary of the relationship between education level and income. It provides us with information about the direction of the relationship (positive) and the magnitude of that relationship. The correlation coefficient adds to this description by helping quantify the strength of the relationship.</p>
 <p>Although these metrics can give us a description of the relationship, it is only for the sample of data you looked at (i.e., for these 32 employees). To make further statements about whether there is a relationship between education level and income in a broader population (e.g., all Riverview employees, or all California residents), we need more information, namely <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3105563/">whether the sample is representative of the larger population</a> and also statistical information about the amount of sampling error we have. (We will cover sampling error in Chapter 5.)</p>
 <p><br></p>
-</section>
-<section id="optional-effect-of-the-predictor-calculus-edition" class="level2 unnumbered mathnote">
-<h2 class="unnumbered anchored" data-anchor-id="optional-effect-of-the-predictor-calculus-edition">Optional: Effect of the Predictor (Calculus Edition)</h2>
+<div class="fyi">
+<p><strong>OPTIONAL: Effect of the Predictor (Calculus Edition)</strong></p>
 <p>The slope is often referred to as the <em>effect</em> of the predictor, and mathematically indicates the rate-of-change in the outcome as the predictor changes. How much does the outcome change for a one-unit change in the predictor? The way that mathematicians measure the rate-of-change is by computing the derivative of a function. In a simple regression, we would compute the derivative of the fitted equation:</p>
 <p><span class="math display">\[
 \textrm{rate-of-change} = \frac{\partial}{\partial x} \quad \hat{\beta}_0 + \hat{\beta}_1(x)
@@ -958,16 +981,11 @@ Figure&nbsp;7.4: Salary versus neuroticism (0 = not at all neurotic; 7= very neu
 \end{split}
 \]</span></p>
 <p>In a linear function, the rate-of-change is the slope of the line.</p>
-</section>
+</div>
 <p><br></p>
-<!-- ## Additional Resources -->
-<!-- Here are a couple other resources for understanding correlations and using the `{corrr}` package. -->
-<!-- - [corrr Package Vignette](https://github.com/tidymodels/corrr) -->
-<!-- - [Exploring correlations in R with corrr](https://drsimonj.svbtle.com/exploring-correlations-in-r-with-corrr) -->
-<!-- - [Guess the Correlation Game](http://guessthecorrelation.com/) [fun game] -->
-<!-- <br /> -->
 
 
+</section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>

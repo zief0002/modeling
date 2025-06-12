@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -495,7 +495,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this chapter, you will learn about statistical inference at the model-level for regression models. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/keith-gpa.csv">keith-gpa.csv</a> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students (see the <a href="#keith">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
+<p>In this chapter, you will learn about statistical inference at the model-level for regression models. To do so, we will use the <strong>keith-gpa.csv</strong> data to examine whether time spent on homework is related to GPA. The data contain three attributes collected from a random sample of <span class="math inline">\(n=100\)</span> 8th-grade students. To begin, we will load several libraries and import the data into an object called <code>keith</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
@@ -529,7 +529,7 @@ window.Quarto = {
 <p><br></p>
 <section id="model-level-inference" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="model-level-inference"><span class="header-section-number">12.1</span> Model-Level Inference</h2>
-<p>In the <a href="03-01-coefficient-level-inference.html">previous chapter</a>, we looked at how to carry out statistical tests of hypotheses and quantify the uncertainty associated with the coefficients in the simple regression model. Sometimes you are interested in the model as a whole, rather than the individual parameters. For example, you may be interested in whether a set of predictors <em>together</em> explains variation in the outcome. (This is more relevant when we have multiple predictors!) Model-level information is displayed using the <code>glance()</code> output from the <code>{broom}</code> package. Below we fit a model by regressing GPA on time spent on homework, store those results in an object called <code>lm.a</code>, and then print the model-level output.</p>
+<p>In the <strong>Coefficient-Level Inference</strong> chapter, we looked at how to carry out statistical tests of hypotheses and quantify the uncertainty associated with the coefficients in the simple regression model. Sometimes you are interested in the model as a whole, rather than the individual parameters. For example, you may be interested in whether a set of predictors <em>together</em> explains variation in the outcome. (This is more relevant when we have multiple predictors!) Model-level information is displayed using the <code>glance()</code> output from the <code>{broom}</code> package. Below we fit a model by regressing GPA on time spent on homework, store those results in an object called <code>lm.a</code>, and then print the model-level output.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>lm.a <span class="ot">=</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> homework, <span class="at">data =</span> keith)</span>
@@ -555,14 +555,14 @@ H_0: \rho^2 = 0
 <p>To test this, we need to be able to obtain the sampling distribution of <span class="math inline">\(R^2\)</span> to estimate the uncertainty in the sample estimate. The thought experiment for this goes something like this: Imagine you have a population that is infinitely large. The observations in this population have two attributes, call them <em>X</em> and <em>Y</em>. There is NO relationship between these two attributes; <span class="math inline">\(\rho^2 = 0\)</span>. Randomly sample <em>n</em> observations from the population. Fit the regression and compute the <span class="math inline">\(R^2\)</span> value. Repeat the process an infinite number of times.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-thought-exp-r2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-thought-exp-r2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-thought-exp-r2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/02-05-thought-experiment-r2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thought-exp-r2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-thought-exp-r2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.1: Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared.
 </figcaption>
+<div aria-describedby="fig-thought-exp-r2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/02-05-thought-experiment-r2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Thought experiment for sampling samples of size n from the population to obtain the sampling distribution of R-squared.">
+</div>
 </figure>
 </div>
 </div>
@@ -570,14 +570,14 @@ Figure&nbsp;12.1: Thought experiment for sampling samples of size n from the pop
 <p>Below is a density plot of the sampling distribution for <span class="math inline">\(R^2\)</span> based on 1,000 random samples of size 32 drawn from a population where <span class="math inline">\(\rho^2=0\)</span>. (Not an infinite number of draws, but large enough that we should have an idea of what the distribution might look like.)</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-samp-dist-r2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-samp-dist-r2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\rho^2=0$.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-samp-dist-r2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-02-model-level-inference_files/figure-html/fig-samp-dist-r2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-samp-dist-r2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-samp-dist-r2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.2: Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where <span class="math inline">\(\rho^2=0\)</span>.
 </figcaption>
+<div aria-describedby="fig-samp-dist-r2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-02-model-level-inference_files/figure-html/fig-samp-dist-r2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Sampling distribution based on 1000 simple random samples of size 32 drawn from a population where $\rho^2=0$.">
+</div>
 </figure>
 </div>
 </div>
@@ -614,14 +614,14 @@ F &amp;= \frac{0.107}{1 - 0.107} \times \frac{98}{1} \\[1em]
 <p>Thus, our observed <em>F</em>-value is: <span class="math inline">\(F(1,98)=11.74\)</span>. To evaluate this under the null hypothesis, we find the area under the <span class="math inline">\(F(1,98)\)</span> density curve that corresponds to <em>F</em>-values <em>at least as extreme</em> as our observed <em>F</em>-value of 11.74.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-prob-f" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-prob-f" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-prob-f-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-02-model-level-inference_files/figure-html/fig-prob-f-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prob-f-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-prob-f-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.3: Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the <em>p</em>-value for a test evaluating whether the population rho-squared is zero using an observed <em>F</em>-value of 11.74.
 </figcaption>
+<div aria-describedby="fig-prob-f-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-02-model-level-inference_files/figure-html/fig-prob-f-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Plot of the probability curve for the F(1,98) distribution. The shaded area under the curve represents the *p*-value for a test evaluating whether the population rho-squared is zero using an observed *F*-value of 11.74.">
+</div>
 </figure>
 </div>
 </div>
@@ -816,14 +816,14 @@ Residuals 99 5752.9   58.11               </code></pre>
 <p>Re-consider our thought experiment. Again, imagine you have a population that is infinitely large. The observations in this population have two attributes, call them <em>X</em> and <em>Y</em>. The relationship between these two attributes can be expressed via a regression equation as: <span class="math inline">\(\hat{Y}=\beta_0 + \beta_1(X)\)</span>. Randomly sample <em>n</em> observations from the population, and compute the fitted regression equation, this time plotting the line (rather than only paying attention to the numerical estimates of the slope or intercept). Continue sampling from this population, each time drawing the fitted regression equation.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-thought-exp-confenv" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-thought-exp-confenv" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Thought experiment for sampling samples of size *n* from the population to obtain the fitted regression line.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-thought-exp-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/02-05-thought-experiment-confidence-envelope.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thought-exp-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-thought-exp-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.4: Thought experiment for sampling samples of size <em>n</em> from the population to obtain the fitted regression line.
 </figcaption>
+<div aria-describedby="fig-thought-exp-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/02-05-thought-experiment-confidence-envelope.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Thought experiment for sampling samples of size *n* from the population to obtain the fitted regression line.">
+</div>
 </figure>
 </div>
 </div>
@@ -831,14 +831,14 @@ Figure&nbsp;12.4: Thought experiment for sampling samples of size <em>n</em> fro
 <p>Now, imagine superimposing all of these lines on the same plot.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-superimposed-lines" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-superimposed-lines" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Plot showing the fitted regression lines for many, many random samples of size *n*.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-superimposed-lines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/02-05-superimposed-lines.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-superimposed-lines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-superimposed-lines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.5: Plot showing the fitted regression lines for many, many random samples of size <em>n</em>.
 </figcaption>
+<div aria-describedby="fig-superimposed-lines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/02-05-superimposed-lines.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Plot showing the fitted regression lines for many, many random samples of size *n*.">
+</div>
 </figure>
 </div>
 </div>
@@ -853,14 +853,14 @@ Figure&nbsp;12.5: Plot showing the fitted regression lines for many, many random
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"GPA (on a 100-pt. scale)"</span>) <span class="sc">+</span></span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-scatterplot-regline" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-scatterplot-regline" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-scatterplot-regline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-02-model-level-inference_files/figure-html/fig-scatterplot-regline-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterplot-regline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-scatterplot-regline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.6: GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed.
 </figcaption>
+<div aria-describedby="fig-scatterplot-regline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-02-model-level-inference_files/figure-html/fig-scatterplot-regline-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed.">
+</div>
 </figure>
 </div>
 </div>
@@ -870,14 +870,14 @@ Figure&nbsp;12.6: GPA plotted as a function of time spent on homework. The OLS r
 <p>However, we also now understand that there is uncertainty associated with estimates obtained from sample data. How much uncertainty is there in that estimate of 81.6? We can use the bounds of the confidence envelope at <span class="math inline">\(X=6\)</span> to answer this question. The lower bound of the confidence envelope at <span class="math inline">\(X=6\)</span> is approximately 80 and the upper bound is approximately 83. This tells, based on the sample data, we think the mean GPA for students who spend 6 hours each week on homework is between 80 and 83. Graphically, we can see these values in the plot.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-scatterplot-confenv" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-scatterplot-confenv" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-scatterplot-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-02-model-level-inference_files/figure-html/fig-scatterplot-confenv-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterplot-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-scatterplot-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.7: GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed. The fitted value at <em>X</em>=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar.
 </figcaption>
+<div aria-describedby="fig-scatterplot-confenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-02-model-level-inference_files/figure-html/fig-scatterplot-confenv-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="GPA plotted as a function of time spent on homework. The OLS regression line (raspberry) and confidence envelope (grey shaded area) are also displayed. The fitted value at *X*=6 is displayed as a point and the uncertainty in the estimate is displayed as an error bar.">
+</div>
 </figure>
 </div>
 </div>

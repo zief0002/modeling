@@ -2,15 +2,6 @@
 
 In this unit we will introduce the ideas of regression. You will learn about the plots and summaries we use to explore data in regression analyses. You will also learn how to describe the relationship between two quantitative variables using the simple regression model. You will also learn how the parameters for this model are estimated and how correlation and regression are related. Finally, you will learn about carrying out regression on standardized variables.
 
-<!-- Finally you will learn how to carry out statistical inference on the regression parameters. -->
-
-
-```{r}
-#| echo: false
-#| out-width: "100%"
-knitr::include_graphics("figs/02-00-intro-regression.png")
-```
-
 
 
 <br /><br />

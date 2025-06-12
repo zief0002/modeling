@@ -6,7 +6,7 @@ source("scripts/_common.R")
 ```
 
 
-In this chapter, you will learn about standardized regression. You will also learn how the regression coefficients from a simple regression can be computed from other summary measures. This will help you see how these measures impact the regression coefficients. We will use the [riverview.csv](https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv) data to examine whether education level is related to income (see the [data codebook](#riverview)). To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.a`. 
+In this chapter, you will learn about standardized regression. You will also learn how the regression coefficients from a simple regression can be computed from other summary measures. This will help you see how these measures impact the regression coefficients. We will use the **riverview.csv** data to examine whether education level is related to income. To begin, we will load several libraries and import the data into an object called `city`. We will also fit a model by regressing income on education level and storing those results in an object called `lm.a`. 
 
 ```{r}
 # Load libraries
@@ -37,9 +37,10 @@ Recall also that we had previously computed summary measures for the outcome and
 
 ```{r}
 #| label: tbl-02-03-1
-#| echo: false
 #| tbl-cap: "Correlation between income and education level for the Riverview employees. The mean and standard deviations for each attribute is displayed on the main diagonal."
 #| results: asis
+#| echo: false
+
 library(gt)
 library(gtExtras)
 
@@ -68,97 +69,6 @@ data.frame(
 ```
 
 <br />
-
-
-<!-- ## Understanding Correlation -->
-
-<!-- There are many equivalent computational formulas for calculating the correlation coefficient. Each of these were useful in the days when we needed to hand-calculate the correlation. In practice, we now just use the computer to calculate the value of the correlation coefficient. That being said, some of these formulas are useful in helping us better understand what the correlation coefficient is measuring. Below is one such expression: -->
-
-<!-- $$ -->
-<!-- r_{xy} = \frac{1}{n-1}\sum_{i=1}^n\bigg(\frac{x_i - \bar{x}}{s_x}\bigg)\bigg(\frac{y_i - \bar{y}}{s_y}\bigg) -->
-<!-- $$ -->
-
-<!-- where, *n* is the sample size; $x_i$ and $y_i$ are the values for observation *i* of the variables *x* and *y*, respectively; $\bar{x}$ and $\bar{y}$ are the mean values for the variables *x* and *y*, respectively; and $s_x$ and $s_y$ are the standard deviations for the variables *x* and *y*, respectively. -->
-
-<!-- Note that the terms in the parentheses are the *z*-scores for the *x*- and *y*-values for a particular observation. Thus, this formula can be re-written as: -->
-
-<!-- $$ -->
-<!-- r_{xy} = \frac{1}{n-1}\sum_{i=1}^n\bigg(z_{xi}\bigg)\bigg(z_{yi}\bigg) -->
-<!-- $$ -->
-
-<!-- This formula essentially says, multiply the *z*-scores of *x* and *y* together for each observation; add them together, and divide by the sample size.^[Technically divide by the total degrees of freedom, but for large values of *n* this difference is minor.] Adding things together and dividing by the sample size is the way we calculate an average. The correlation coefficient is an average of sorts! It is essentially the average product of the *z*-scores. -->
-
-<!-- As we consider the product of the *z*-scores for *x* and *y*, recall that the *z*-score gives us information about how many standard deviations an observation is from the mean. Moreover, it gives us information about whether the observation is above the mean (positive *z*-score) or below the mean (negative *z*-score). Consider an observation that has both an *x*-value and *y*-value above the mean. That observation's product would be positive. -->
-
-<!-- $$ -->
-<!-- \begin{split} -->
-<!-- \mathrm{\scriptsize +} z_{x_i} &\times \mathrm{\scriptsize +} z_{y_i} \\ -->
-<!-- \mathrm{positive~number} &\times \mathrm{positive~number} -->
-<!-- \end{split} -->
-<!-- $$ -->
-
-<!-- This would also be true for an observation that has both an *x*-value and *y*-value below the mean. -->
-
-<!-- $$ -->
-<!-- \begin{split} -->
-<!-- -z_{x_i} &\times -z_{y_i} \\ -->
-<!-- \mathrm{negative~number} &\times \mathrm{negative~number} -->
-<!-- \end{split} -->
-<!-- $$ -->
-
-<!-- Observations the are above the mean on one variable and below the mean on the other would have a negative product. Here is a plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed. -->
-
-<!-- ```{r} -->
-<!-- #| label: fig-02-03-z -->
-<!-- #| fig-cap: "Plot of the standardized GPA versus the standardized time spent on homework for the 100 observations. The mean values are also displayed." -->
-<!-- #| echo: false -->
-<!-- keith = keith |> -->
-<!--   mutate( -->
-<!--     z_gpa = scale(gpa), -->
-<!--     z_homework = scale(homework) -->
-<!--   ) -->
-
-<!-- ggplot(data = keith, aes(x = z_homework, y = z_gpa)) + -->
-<!--   geom_point() + -->
-<!--   theme_bw() + -->
-<!--   xlab("Time spent on homework (standardized)") + -->
-<!--   ylab("GPA (standardized)") + -->
-<!--   geom_hline(yintercept = 0, linetype = "dashed") + -->
-<!--   geom_vline(xintercept = 0, linetype = "dashed") + -->
-<!--   annotate("text", x = -1.8, y = 2, label = paste("n[1] == 25"), parse = TRUE, color = "red") + -->
-<!--   annotate("text", x = 2.5, y = 1.2, label = paste("n[2] == 23"), parse = TRUE, color = "red") + -->
-<!--   annotate("text", x = -1.8, y = -1.8, label = paste("n[4] == 37"), parse = TRUE, color = "red") + -->
-<!--   annotate("text", x = 2.5, y = -1.8, label = paste("n[3] == 23"), parse = TRUE, color = "red") -->
-<!-- ``` -->
-
-<!-- In this case there more observations having a positive product of *z*-scores than a negative product of *z*-scores. This suggests that the sum of all of these products will be positive; the correlation coefficient will be positive.^[The sum also depends on the magnitude of the products. For example, if the magnitude of each the negative products is much higher than that for each of the positive products, the sum will be negative despite more positive products.] -->
-
-<!-- Conceptually, that sum of products of *z*-scores in the formula for the correlation coefficient gives us an indication of the patterns of deviation from the mean values of *x* and *y* for the propensity of the data. The division by $n-1$ serves to give us an indication of the magnitude of the "average" product. This is why we interpret positive and negative relationships the way we do; a positive relationship suggests that higher values of *x* are typically associated with higher values of *y* and that lower values of *x* are typically associated with lower values of *y*. (Note that the words "higher" and "lower" in that interpretation could more accurately be replaced with "values above the mean" and "values below the mean", respectively.) -->
-
-<!-- When we say the direction of the relationship is positive, we statistically mean that the average product of *z*-scores is positive, which means that the propensity of the data has values of both variables either above or below the mean.  -->
-
-<!-- Of course, we don't have to use *z*-scores to see this pattern, afterall we typically look at a scatterplot of the unstandardized values to make this interpretation. -->
-
-<!-- ```{r} -->
-<!-- #| label: fig-gpa-hw-unst -->
-<!-- #| fig-cap: "Plot of GPA versus the time spent on homework (both unstandardized) for the 100 observations. The mean values are also displayed." -->
-<!-- #| echo: false -->
-<!-- ggplot(data = keith, aes(x = homework, y = gpa)) + -->
-<!--   geom_point() + -->
-<!--   theme_bw() + -->
-<!--   xlab("Time spent on homework") + -->
-<!--   ylab("GPA") + -->
-<!--   geom_hline(yintercept = mean(keith$gpa), linetype = "dashed") + -->
-<!--   geom_vline(xintercept = mean(keith$homework), linetype = "dashed") + -->
-<!--   annotate("text", x = 1.39, y = 95.7, label = paste("n[1] == 25"), parse = TRUE, color = "red") + -->
-<!--   annotate("text", x = 10.2, y = 89.6, label = paste("n[2] == 23"), parse = TRUE, color = "red") + -->
-<!--   annotate("text", x = 1.39, y = 66.7, label = paste("n[4] == 37"), parse = TRUE, color = "red") + -->
-<!--   annotate("text", x = 10.2, y = 66.7, label = paste("n[3] == 23"), parse = TRUE, color = "red") -->
-<!-- ``` -->
-
-<!-- Converting to *z*-scores is only useful to remove the metrics from the unstandardized values and place them on a common scale. This way values of the correlation coefficient are not dependent on the scales used in the data. This is why we do not put a metric on the correlation coefficient (e.g., it is just 0.30, not 0.30 feet). -->
-
-<!-- <br /> -->
 
 
 ## Correlation's Relationship to Regression
@@ -201,12 +111,13 @@ This is the same value for the slope that we got from the `lm()` output.
 
 In standardized regression, the correlation plays a more obvious role. Standardized regression is simply regression performed on the standardized variables (*z*-scores) rather than on the unstandardized variables. To carry out a standardized regression:
 
-1. Standardize the outcome and predictor(s) by turning all the observations into *z*-scores
+1. Standardize the outcome and all predictor(s) by turning all the observations into *z*-scores
 2. Fit a model by regressing $z_y$ on $z_x$
 
 Here we will perform a standardized regression on the Riverview data.
 
 <br />
+
 
 ### Step 1: Standardizing the Variables
 
@@ -219,6 +130,8 @@ $$
 That is we subtract the mean from our observation and then divide by the standard deviation. When we standardize a variable, we are going to turn each of the original observations into a *z*-score. 
 
 :::fyi
+**FYI**
+
 A standardized variable will always have a mean of 0 and a standard deviation of 1. Subtracting the mean from each observation (this process is called *mean centering*) we are making the mean of the newly transformed observations 0 --- we re-centered the distribution so. Then, by dividing by the standard deviation (called *scaling*) we are changing the SD of the transformed observations to be 1. Anytime you add/subtract a value from each observation in a variable, you will shift the mean of that distribution. Anytime you multiply/divide each observation in a variable by some number, you change the SD.
 :::
 
@@ -236,7 +149,9 @@ head(city)
 ```
 
 ```{r}
+#| label: fig-std1
 #| fig-cap: "Density plot of the standardized employee incomes and standardized education levels."
+#| fig-alt: "Density plot of the standardized employee incomes and standardized education levels."
 #| out-width: "45%"
 #| fig-show: hold
 # Marginal distribution of the standardized incomes
@@ -297,8 +212,8 @@ $$
 
 The intercept in a standardized regression is always 0.^[R or other statistical software might round this to a very small number. The intercept should always be reported as zero, or dropped from the fitted equation.] Notice that the slope of the standardized regression is the correlation between the predictor and outcome. 
 
-:::exercises
-### Your Turn
+:::fyi
+**YOUR TURN**
 
 Use the formula for the slope to understand why the slope from a standardized regression will always be equal to the value of the correlation coefficient.
 :::
@@ -316,7 +231,11 @@ Remember that standardized variables have a mean equal to 0 and a standard devia
 
 Here is a scatterplot of the standardized variables along with the fitted standardized regression line. This will help you visually see the results of the standardized regression analysis.
 
-```{r fig.cap="Plot of the standardized income versus the standardized education level for the Riverview employees. The mean values are also displayed (dashed lines) along with the fitted regression line (solid line)."}
+```{r}
+#| label: fig-std2
+#| fig-cap: "Plot of the standardized income versus the standardized education level for the Riverview employees. The mean values are also displayed (dashed lines) along with the fitted regression line (solid line)."
+#| fig-alt: "Plot of the standardized income versus the standardized education level for the Riverview employees. The mean values are also displayed (dashed lines) along with the fitted regression line (solid line)."
+
 ggplot(data = city, aes(x = z_education, y = z_income)) +
   geom_point() +
   theme_bw() +
@@ -330,6 +249,8 @@ ggplot(data = city, aes(x = z_education, y = z_income)) +
 Using standardized regression results allows us to talk about the effect of *x* on *y* in a standard metric (standard deviation difference). This can be quite helpful when the unstandardized metric is less meaningful. This is also why some researchers refer to correlation as an effect, even though the value of $R^2$ is more useful in summarizing the usefulness of the model. Standardized regression also makes the intercept interpretable, since the mean value of *x* is not extrapolated. 
 
 :::fyi
+**FYI**
+
 The choice to standardize, center, or scale the outcome or predictors only impacts the interpretations of the intercept and slope, it does not change the underlying relationships between the variables in the model. When it is helpful to have these different interpretations, then transfom the variables. Otherwise, don't worry about it.
 :::
 

@@ -94,7 +94,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb776eb05695932991fab5376e9523f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -328,7 +328,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-02-more-multiple-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-02-multiple-regression-anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression: ANOVA Decomposition</span></span></a>
   </div>
 </li>
@@ -400,7 +400,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Codebooks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -515,7 +515,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the <a href="https://raw.githubusercontent.com/zief0002/modeling/main/data/riverview.csv">riverview.csv</a> data to examine whether education level is related to income (see the <a href="#riverview">data codebook</a>). To begin, we will load several libraries and import the data into an object called <code>city</code>. We will also fit a model by regressing income on education level and storing those results in an object called <code>lm.a</code>.</p>
+<p>In this set of notes, you will learn how the coefficients from the fitted regression equation are estimated from the data. Recall that in the previous set of notes, we used the <strong>riverview.csv</strong> data to examine whether education level is related to income. To begin, we will load several libraries and import the data into an object called <code>city</code>. We will also fit a model by regressing income on education level and storing those results in an object called <code>lm.a</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -572,7 +572,7 @@ Table&nbsp;8.1: Toy data set with predictor (X) and outcome (Y) for five observa
 </figcaption>
 <div aria-describedby="tbl-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="pmxfoovfzj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="jvvdxinvxg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="40%" data-bgcolor="#FFFFFF">
@@ -622,20 +622,28 @@ Table&nbsp;8.1: Toy data set with predictor (X) and outcome (Y) for five observa
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-03-ols-estimation_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Scatterplot of the observed toy data and the OLS fitted regression line for Model A.</figcaption>
+<div id="fig-toy" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of the observed toy data and the OLS fitted regression line for Model A." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-toy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: Scatterplot of the observed toy data and the OLS fitted regression line for Model A.
+</figcaption>
+<div aria-describedby="fig-toy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-03-ols-estimation_files/figure-html/fig-toy-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Scatterplot of the observed toy data and the OLS fitted regression line for Model A.">
+</div>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-03-ols-estimation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Scatterplot of the observed toy data and the OLS fitted regression line for Model B.</figcaption>
+<div id="fig-toy2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of the observed toy data and the OLS fitted regression line for Model B." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-toy2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2: Scatterplot of the observed toy data and the OLS fitted regression line for Model B.
+</figcaption>
+<div aria-describedby="fig-toy2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-03-ols-estimation_files/figure-html/fig-toy2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Scatterplot of the observed toy data and the OLS fitted regression line for Model B.">
+</div>
 </figure>
 </div>
 </div>
@@ -654,7 +662,7 @@ Table&nbsp;8.1: Toy data set with predictor (X) and outcome (Y) for five observa
 Table&nbsp;8.2: Observed values, predicted values and residuals for Model A.
 </figcaption>
 <div aria-describedby="tbl-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="zccumyiajw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="gcdtcgmgmw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
@@ -710,7 +718,7 @@ Table&nbsp;8.2: Observed values, predicted values and residuals for Model A.
 Table&nbsp;8.3: Observed values, predicted values and residuals for Model B.
 </figcaption>
 <div aria-describedby="tbl-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="asihyydrhk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bilezvvxio" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
@@ -774,7 +782,7 @@ Table&nbsp;8.3: Observed values, predicted values and residuals for Model B.
 Table&nbsp;8.4: Observed values, predicted values, residuals, and squared residuals for Model A.
 </figcaption>
 <div aria-describedby="tbl-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="efixtnvmxv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bwuufimokh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
@@ -836,7 +844,7 @@ Table&nbsp;8.4: Observed values, predicted values, residuals, and squared residu
 Table&nbsp;8.5: Observed values, predicted values, residuals, and squared residuals for Model B.
 </figcaption>
 <div aria-describedby="tbl-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="focvjcmths" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="igymhbcaoa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
@@ -904,42 +912,54 @@ Table&nbsp;8.5: Observed values, predicted values, residuals, and squared residu
 <p>To further understand the sum of squared error, we can examine a visual representation of the SSE for Model A. Recall that visually, the residual is the vertical distance between an observation and the fitted value (which lie on the fitted line). The residual indicates how different these two quantities are on the <em>Y</em>-metric. In the formula we squared each of the residuals. Visually, this is equivalent to producing the area of a square that has a side length equal to the absolute value of the residual.</p>
 <div id="fig-two-models-2" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-two-models-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.3: Scatterplot of the observed toy data and the OLS fitted regression line for Model A.
+</figcaption>
 <div aria-describedby="fig-two-models-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
-<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-03-ols-estimation_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>This plot visually displays the residual values as line segments with negative residuals shown as dashed lines.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-03-ols-estimation_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>This plot visually displays the squared residuals as the area of a square with side length equal to the absolute value of the residual.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-two-models-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8.1: Scatterplot of the observed toy data and the OLS fitted regression line for Model A.
+<div class="cell quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-two-models-2" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display quarto-layout-cell-subref" data-ref-parent="fig-two-models-2">
+<div id="fig-residuals" class="quarto-float quarto-figure quarto-figure-center anchored" alt="This plot visually displays the residual values as line segments with negative residuals shown as dashed lines." data-fig-align="center">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-fig" id="fig-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) This plot visually displays the residual values as line segments with negative residuals shown as dashed lines.
 </figcaption>
+<div aria-describedby="fig-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-03-ols-estimation_files/figure-html/fig-residuals-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" data-ref-parent="fig-two-models-2" alt="This plot visually displays the residual values as line segments with negative residuals shown as dashed lines.">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-two-models-2" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display quarto-layout-cell-subref" data-ref-parent="fig-two-models-2">
+<div id="fig-sq-res" class="quarto-float quarto-figure quarto-figure-center anchored" alt="This plot visually displays the squared residuals as the area of a square with side length equal to the absolute value of the residual." data-fig-align="center">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-fig" id="fig-sq-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) This plot visually displays the squared residuals as the area of a square with side length equal to the absolute value of the residual.
+</figcaption>
+<div aria-describedby="fig-sq-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-03-ols-estimation_files/figure-html/fig-sq-res-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" data-ref-parent="fig-two-models-2" alt="This plot visually displays the squared residuals as the area of a square with side length equal to the absolute value of the residual.">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
 </figure>
 </div>
 <p>The SSE is simply the total area encompassed by all of the squares. Note that the observation that is directly on the line has a residual of 0 and thus does not contribute a quantity to the SSE. If you computed the SSE for a line with different intercept or slope values, the SSE will be different. The plot below shows what this might look like for the flat line produced by <span class="math inline">\(~~\hat{Y_i} = 50\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-03-ols-estimation_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.</figcaption>
+<div id="fig-res-sq" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-res-sq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.4: Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.
+</figcaption>
+<div aria-describedby="fig-res-sq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-03-ols-estimation_files/figure-html/fig-res-sq-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Scatterplot of the observed toy data and the fitted flat line with Y-intercept of 50. The plot visually shows the squared residuals as the area of a square with side length equal to the absolute value of the residual.">
+</div>
 </figure>
 </div>
 </div>
@@ -966,7 +986,7 @@ Figure&nbsp;8.1: Scatterplot of the observed toy data and the OLS fitted regress
 Table&nbsp;8.6: Observed values, predicted values, residuals, and squared residuals for the ‘best’ fitting model.
 </figcaption>
 <div aria-describedby="tbl-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="gudcpkaqnd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="godrzhuauf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false" width="60%" data-bgcolor="#FFFFFF">
@@ -1024,11 +1044,11 @@ Table&nbsp;8.6: Observed values, predicted values, residuals, and squared residu
 </div>
 <p>The SSE is 661.16. This is the smallest SSE possible for a linear model. Any other value for the slope or intercept would result in a higher SSE.</p>
 <p><br></p>
-<section id="mathematical-optimization" class="level3 mathnote" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="mathematical-optimization"><span class="header-section-number">8.3.1</span> Mathematical Optimization</h3>
+<div class="fyi">
+<p><strong>MATHEMATICAL OPTIMIZATION</strong></p>
 <p>Finding the intercept and slope that give the lowest SSE is referred to as an optimization problem in the field of mathematics. Optimization is such an important (and sometimes difficult) problem that there have been several mathematical and computational optimization methods that have been developed over the years. You can <a href="https://en.wikipedia.org/wiki/Mathematical_optimization">read more about mathematical optimization on Wikipedia</a> if you are interested.</p>
-<p>One common mathematical method to find the minimum SSE involves calculus. We would write the SSE as a function of<span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, compute the partial derivatives (w.r.t. each of the coefficients), set these equal to zero, and solve to find the values of the coefficients. <!--You can read [here](https://isites.harvard.edu/fs/docs/icb.topic515975.files/OLSDerivation.pdf).--> The <code>lm()</code> function actually uses an optimization method called <a href="https://en.wikipedia.org/wiki/QR_decomposition">QR decomposition</a> to obtain the regression coefficients. The actual mechanics and computation of these methods are beyond the scope of this course. We will just trust that the <code>lm()</code> function is doing things correctly in this course.</p>
-</section>
+<p>One common mathematical method to find the minimum SSE involves calculus. We would write the SSE as a function of<span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, compute the partial derivatives (w.r.t. each of the coefficients), set these equal to zero, and solve to find the values of the coefficients. The <code>lm()</code> function actually uses an optimization method called <a href="https://en.wikipedia.org/wiki/QR_decomposition">QR decomposition</a> to obtain the regression coefficients. The actual mechanics and computation of these methods are beyond the scope of this course. We will just trust that the <code>lm()</code> function is doing things correctly in this course.</p>
+</div>
 <p><br></p>
 </section>
 <section id="computing-the-sse-for-the-model-fitted-to-the-riverview-data" class="level2" data-number="8.4">
@@ -1065,6 +1085,7 @@ Table&nbsp;8.6: Observed values, predicted values, residuals, and squared residu
 </div>
 <p>The SSE gives us information about the variation in <em>Y</em> (the outcome variable) that is left over (residual) after we fit the regression model. Since the regression model is a function of <em>X</em>, the SSE tells us about the variation in <em>Y</em> that is left over after we remove the variation associated with, or accounted for by <em>X</em>. In our example it tells us about the residual variation in incomes after we account for employee education level.</p>
 <div class="protip">
+<p><strong>PROTIP</strong></p>
 <p>In practice, we often report the SSE, but <em>we do not interpret the actual value</em>. The value of the SSE is more useful when comparing models that have been fitted using the same outcome. When researchers are considering different models, the SSEs from these models are compared to determine which model produces the least amount of misfit to the data (similar to what we did earlier).</p>
 </div>
 <p><br></p>
