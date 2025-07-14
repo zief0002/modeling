@@ -1,6 +1,6 @@
-# Data Codebooks {-}
+# Data Dictionaries {-}
 
-In this section you can find the codebook that is associated with each of the datasets used in the book.
+In this section you can find the data dictionaries that are associated with each of the datasets used in the book.
 
 
 - [broadband.csv](codebooks/broadband.qmd)

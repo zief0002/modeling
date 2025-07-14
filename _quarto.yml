@@ -54,22 +54,10 @@ book:
         - 06-01-intro-to-interaction-effects.qmd
         - 06-02-more-interaction-effects.qmd
   appendices:
-    - codebooks/broadband.qmd
-    - codebooks/comic-characters.qmd
-    - codebooks/evaluations.qmd
-    - codebooks/fertility.qmd
-    - codebooks/gapminder.qmd
-    - codebooks/keith-gpa.qmd
-    - codebooks/mn-schools.qmd
-    - codebooks/pew.qmd
-    - codebooks/riverview.qmd
-    - codebooks/scoobydoo.qmd
-    - codebooks/spice-girls.qmd
-    - codebooks/state-education.qmd
-    - codebooks/work-demands.qmd
+    - 07-00-data-codebooks.qmd
 
 language:
-  section-title-appendices: "Data Codebooks"
+  section-title-appendices: "Appendices"
 bibliography: ["assets/modeling.bib", "assets/packages.bib"]
 csl: 'assets/apa-single-spaced.csl'
 

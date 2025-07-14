@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-21f15c15219cae8171071bd1662d9885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-44b64cbf1a1a4e5718d81f3787ba6ba1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -149,9 +149,9 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-00-categorical-predictors.html">Categorical Predictors</a></li><li class="breadcrumb-item"><a href="./05-02-polychotomous-predictors.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span id="polychotomous" class="quarto-section-identifier"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></h1>
+        </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -476,9 +476,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-00-categorical-predictors.html">Categorical Predictors</a></li><li class="breadcrumb-item"><a href="./05-02-polychotomous-predictors.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="polychotomous" class="quarto-section-identifier"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></h1>
+<h1 class="title d-none d-lg-block"><span id="polychotomous" class="quarto-section-identifier"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Polychotomous Categorical Predictors</span></span></h1>
 </div>
 
 
@@ -639,7 +639,7 @@ $$
 <p>$$</p>
 <p>Below we write the syntax to create all four dummy variables and save the new columns in the <code>pew</code> data frame.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create all eight dummy variables</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create all four dummy variables</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pew <span class="ot">=</span> pew <span class="sc">|&gt;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">none    =</span> <span class="fu">if_else</span>(news_source <span class="sc">==</span> <span class="st">"None"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
@@ -1169,8 +1169,8 @@ H_0: \mu_{\mathrm{Com}} = \mu_{\mathrm{Con}} = \mu_{\mathrm{Lib}} = \mu_{\mathrm
 <p>The fitted regression equation is</p>
 <p><span class="math display">\[
 \begin{split}
-\hat{\mathrm{Knowledge}_i} = &amp;-27.80 + 0.19(\mathrm{Age}_i) + 3.24(\mathrm{Education}_i) + 0.23(\mathrm{News~Consumption}_i) + 0.23(\mathrm{Engagement}_i) +\\
-&amp; 7.87(\mathrm{Com}_i) + 0.08(\mathrm{Con}_i) +  5.96(\mathrm{Lib}_i)
+\hat{\mathrm{Knowledge}_i} = &amp;-27.80 + 0.19(\mathrm{Age}_i) + 3.24(\mathrm{Education}_i) + 0.23(\mathrm{News~Consumption}_i) + \\
+&amp; 0.23(\mathrm{Engagement}_i) + 7.87(\mathrm{Com}_i) + 0.08(\mathrm{Con}_i) +  5.96(\mathrm{Lib}_i)
 \end{split}
 \]</span></p>
 <p>The interpretations are provided below. While we offer them for the four covariates, we note that the only interpretations that we care about are those for our focal predictors of news source.</p>

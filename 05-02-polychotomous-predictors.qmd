@@ -133,7 +133,7 @@ $$
 Below we write the syntax to create all four dummy variables and save the new columns in the `pew` data frame.
 
 ```{r}
-# Create all eight dummy variables
+# Create all four dummy variables
 pew = pew |>
   mutate(
     none    = if_else(news_source == "None", 1, 0),
@@ -553,8 +553,8 @@ The fitted regression equation is
 
 $$
 \begin{split}
-\hat{\mathrm{Knowledge}_i} = &-27.80 + 0.19(\mathrm{Age}_i) + 3.24(\mathrm{Education}_i) + 0.23(\mathrm{News~Consumption}_i) + 0.23(\mathrm{Engagement}_i) +\\
-& 7.87(\mathrm{Com}_i) + 0.08(\mathrm{Con}_i) +  5.96(\mathrm{Lib}_i)
+\hat{\mathrm{Knowledge}_i} = &-27.80 + 0.19(\mathrm{Age}_i) + 3.24(\mathrm{Education}_i) + 0.23(\mathrm{News~Consumption}_i) + \\
+& 0.23(\mathrm{Engagement}_i) + 7.87(\mathrm{Com}_i) + 0.08(\mathrm{Con}_i) +  5.96(\mathrm{Lib}_i)
 \end{split}
 $$
 
