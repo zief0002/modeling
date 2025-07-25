@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,10 +91,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-732fb9ccd080a018ca85ca5d15770f52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-c3c2c9e745155556954bc4da23476b10.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-44b64cbf1a1a4e5718d81f3787ba6ba1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b2f62c139c04ac665e494790b1cf650f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -398,23 +398,6 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-00-data-codebooks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Dictionaries</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -484,7 +467,7 @@ $ population   &lt;dbl&gt; 37.2000, 2.8800, 42.2000, 0.0770, 30.8000, 0.09…</c
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-understand" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Scatterplot of CO2 emissions versus income.">
+<div id="fig-understand" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of CO2 emissions versus income." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-understand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.1: Scatterplot of CO2 emissions versus income.
@@ -510,7 +493,7 @@ Figure&nbsp;5.1: Scatterplot of CO2 emissions versus income.
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> co2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-global" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The background layer for the plot is drawn. The domain (x-values) and range (y-values) is based on data in the income and co2 attributes.">
+<div id="fig-global" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The background layer for the plot is drawn. The domain (x-values) and range (y-values) is based on data in the income and co2 attributes." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-global-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.2: The background layer for the plot is drawn. The domain (x-values) and range (y-values) is based on data in the income and co2 attributes.
@@ -550,7 +533,7 @@ Figure&nbsp;5.2: The background layer for the plot is drawn. The domain (x-value
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> co2)) <span class="sc">+</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-adding" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Points are added on top of the plot's background layer.">
+<div id="fig-adding" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Points are added on top of the plot's background layer." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-adding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.3: Points are added on top of the plot’s background layer.
@@ -578,7 +561,7 @@ Figure&nbsp;5.3: Points are added on top of the plot’s background layer.
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-layer" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother.">
+<div id="fig-layer" class="quarto-float quarto-figure quarto-figure-center anchored" alt="LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-layer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.4: LEFT: The smoother is drawn on top of the points. RIGHT: The points are drawn on top of the smoother.
@@ -623,7 +606,7 @@ Figure&nbsp;5.4: LEFT: The smoother is drawn on top of the points. RIGHT: The po
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-aes" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers.">
+<div id="fig-aes" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-aes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.5: The global aesthetic mappings of x- and y-positioning, as well as, color are applied to the smoother and point layers.
@@ -647,7 +630,7 @@ Figure&nbsp;5.5: The global aesthetic mappings of x- and y-positioning, as well 
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> region))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-aes2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer.">
+<div id="fig-aes2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-aes2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.6: The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer.
@@ -680,7 +663,7 @@ Figure&nbsp;5.6: The global aesthetic mappings of x- and y-positioning are appli
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">fill =</span> region), <span class="at">shape =</span> <span class="dv">22</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-aes3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics.">
+<div id="fig-aes3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-aes3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.7: The global aesthetic mappings of x- and y-positioning are applied to the smoother and point layers. The aesthetic mapping of color is only applied to the point layer. The point layer also includes several fixed aesthetics.
@@ -718,7 +701,7 @@ Figure&nbsp;5.7: The global aesthetic mappings of x- and y-positioning are appli
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-facet2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions.">
+<div id="fig-facet2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-facet2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.8: Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions.
@@ -741,7 +724,7 @@ Figure&nbsp;5.8: Scatterplot of per person CO2 emissions versus income for 193 c
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(region <span class="sc">~</span> co2_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-facet3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007.">
+<div id="fig-facet3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-facet3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.9: Scatterplot of per person CO2 emissions versus income for 193 countries. This plot is shown for each of the four world regions and whether or not CO2 emissions increased or decreased since 2007.
@@ -771,7 +754,7 @@ Figure&nbsp;5.9: Scatterplot of per person CO2 emissions versus income for 193 c
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Per-person income (in thousands of international dollars, fixed for 2017 prices)"</span>) <span class="sc">+</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Per-person CO2 emissions (in metric tonnes)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-axis" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Using xlab() and ylab() to change the labels on the axes.">
+<div id="fig-axis" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Using xlab() and ylab() to change the labels on the axes." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-axis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.10: Using xlab() and ylab() to change the labels on the axes.
@@ -798,7 +781,7 @@ Figure&nbsp;5.10: Using xlab() and ylab() to change the labels on the axes.
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">125</span>) <span class="sc">+</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-limits" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Using xlim() and ylim() to change the limits on the axes.">
+<div id="fig-limits" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Using xlim() and ylim() to change the limits on the axes." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-limits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.11: Using xlim() and ylim() to change the limits on the axes.
@@ -835,7 +818,7 @@ Figure&nbsp;5.11: Using xlim() and ylim() to change the limits on the axes.
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Per-person CO2 emissions (in metric tonnes)"</span>) <span class="sc">+</span></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-all" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Scale on the x-axis set to have a label, as well as, specific limits, and break lines.">
+<div id="fig-all" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scale on the x-axis set to have a label, as well as, specific limits, and break lines." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.12: Scale on the x-axis set to have a label, as well as, specific limits, and break lines.
@@ -861,7 +844,7 @@ Figure&nbsp;5.12: Scale on the x-axis set to have a label, as well as, specific 
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="fu">aes</span>(<span class="at">fill =</span> region)) <span class="sc">+</span></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"skyblue"</span>, <span class="st">"plum"</span>, <span class="st">"orange"</span>, <span class="st">"chartreuse"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-color" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Color palette set manually using named color values.">
+<div id="fig-color" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Color palette set manually using named color values." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-color-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.13: Color palette set manually using named color values.
@@ -895,7 +878,7 @@ Figure&nbsp;5.13: Color palette set manually using named color values.
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-color2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the `scale_fill_manula()` layer.">
+<div id="fig-color2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the `scale_fill_manula()` layer." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-color2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.14: Color palette set manually using named color values. Colors are assigned to specific regions by naming them in the <code>scale_fill_manula()</code> layer.
@@ -932,7 +915,7 @@ Figure&nbsp;5.14: Color palette set manually using named color values. Colors ar
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-color3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Color palette set manually using RGB triplets.">
+<div id="fig-color3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Color palette set manually using RGB triplets." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-color3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.15: Color palette set manually using RGB triplets.
@@ -973,7 +956,7 @@ Figure&nbsp;5.15: Color palette set manually using RGB triplets.
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-color4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Color palette set manually using hex notation.">
+<div id="fig-color4" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Color palette set manually using hex notation." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-color4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.16: Color palette set manually using hex notation.
@@ -1014,7 +997,7 @@ Figure&nbsp;5.16: Color palette set manually using hex notation.
 <p>You will also want to think about accessibility in your choice of color palette. Roughly 8% of males and 0.5% of females have some form of color vision deficiency which will affect how they see and interpret the plot. One good palette for colorblindness is the Okabe Ito palette.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-brewer" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Okabe Ito colorblind-friendly palette. Colors include #000000, #e69f00, #56b4e9, #009e73, #f0e442, #0072b2, #d55e00, and #cc79a7.">
+<div id="fig-brewer" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Okabe Ito colorblind-friendly palette. Colors include #000000, #e69f00, #56b4e9, #009e73, #f0e442, #0072b2, #d55e00, and #cc79a7." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-brewer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.17: Okabe Ito colorblind-friendly palette.
@@ -1065,7 +1048,7 @@ Figure&nbsp;5.17: Okabe Ito colorblind-friendly palette.
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Africa"</span>, <span class="st">"The Americas"</span>, <span class="st">"Asia"</span>, <span class="st">"Europe"</span>)</span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-legend" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Customizing the legend with the `labels=` argument in `scale_color_manual()`.">
+<div id="fig-legend" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Customizing the legend with the `labels=` argument in `scale_color_manual()`." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-legend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.18: Customizing the legend with the <code>labels=</code> argument in <code>scale_color_manual()</code>.
@@ -1094,7 +1077,7 @@ Figure&nbsp;5.18: Customizing the legend with the <code>labels=</code> argument 
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-theme" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Using the `theme_minimal()` layer to update the look of the plot.">
+<div id="fig-theme" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Using the `theme_minimal()` layer to update the look of the plot." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-theme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.19: Using the <code>theme_minimal()</code> layer to update the look of the plot.
@@ -1125,7 +1108,7 @@ Figure&nbsp;5.19: Using the <code>theme_minimal()</code> layer to update the loo
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_wsj</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-wsj" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Using the `theme_wsj()` layer from the `{ggthemes}` package to update the look of the plot to look like plots in the Wall Street Journal.">
+<div id="fig-wsj" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Using the `theme_wsj()` layer from the `{ggthemes}` package to update the look of the plot to look like plots in the Wall Street Journal." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-wsj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.20: Using the <code>theme_wsj()</code> layer from the <code>{ggthemes}</code> package to update the look of the plot to look like plots in the Wall Street Journal.
@@ -1158,7 +1141,7 @@ Figure&nbsp;5.20: Using the <code>theme_wsj()</code> layer from the <code>{ggthe
 <span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>)</span>
 <span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-theme-custom" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="You can customize almost any part of the theme using the `theme()` layer. In this plot we changed the font color on the x-axis label and increased the font size of all the text elements in the plot.">
+<div id="fig-theme-custom" class="quarto-float quarto-figure quarto-figure-center anchored" alt="You can customize almost any part of the theme using the `theme()` layer. In this plot we changed the font color on the x-axis label and increased the font size of all the text elements in the plot." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-theme-custom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.21: You can customize almost any part of the theme using the <code>theme()</code> layer. In this plot we changed the font color on the x-axis label and increased the font size of all the text elements in the plot.
@@ -1205,7 +1188,7 @@ Figure&nbsp;5.21: You can customize almost any part of the theme using the <code
 <span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_andy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-andy" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="You can also create your own theme to use with any plot.">
+<div id="fig-andy" class="quarto-float quarto-figure quarto-figure-center anchored" alt="You can also create your own theme to use with any plot." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-andy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.22: You can also create your own theme to use with any plot.
@@ -1225,7 +1208,7 @@ Figure&nbsp;5.22: You can also create your own theme to use with any plot.
 <p>There are several packages that extend the functionality of <code>{ggplot2}</code>. Many of these packages are listed at the <a href="https://exts.ggplot2.tidyverse.org/">ggplot2 Extensions</a> page.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-extensions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Extensions are available at the ggplot2 extensions website.">
+<div id="fig-extensions" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Extensions are available at the ggplot2 extensions website." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-extensions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.23: Extensions are available at the ggplot2 extensions website.
@@ -1258,7 +1241,7 @@ Figure&nbsp;5.23: Extensions are available at the ggplot2 extensions website.
 <span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-scales" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The `{scales}` package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis.">
+<div id="fig-scales" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The `{scales}` package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-scales-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.24: The <code>{scales}</code> package helps format labels on the axes. Here we have used it to add a dollar sign in front of labels on the x-axis.

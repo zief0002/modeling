@@ -51,12 +51,6 @@ Icon and note ideas and prototypes by [Desirée De Leon](http://desiree.rbind.io
 
 The book is typeset using [Atkinson Hyperlegible](https://fonts.google.com/specimen/Atkinson+Hyperlegible). The color palette was generated using [coolors.co](https://coolors.co/).
 
-**Statistical Computing**
-
-- Laptop icon made by [Tomas Knop](https://www.flaticon.com/authors/tomas-knop) from [www.flaticon.com](https://www.flaticon.com/)
-- Directory icon made by [Darius Dan](https://www.flaticon.com/authors/darius-dan) from [www.flaticon.com](https://www.flaticon.com/)
-- Brain icon made by [Aranagraphics](https://www.flaticon.com/authors/aranagraphics) from [www.flaticon.com](https://www.flaticon.com/)
-- Internet icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com/)
 
 <br />
 

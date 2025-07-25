@@ -34,7 +34,7 @@
     "href": "index.html#colophon",
     "title": "Statistical Modeling and Computation for Educational Scientists",
     "section": "Colophon",
-    "text": "Colophon\nArtwork by @allison_horst\nIcon and note ideas and prototypes by Desirée De Leon.\nThe book is typeset using Atkinson Hyperlegible. The color palette was generated using coolors.co.\nStatistical Computing\n\nLaptop icon made by Tomas Knop from www.flaticon.com\nDirectory icon made by Darius Dan from www.flaticon.com\nBrain icon made by Aranagraphics from www.flaticon.com\nInternet icon made by Freepik from www.flaticon.com",
+    "text": "Colophon\nArtwork by @allison_horst\nIcon and note ideas and prototypes by Desirée De Leon.\nThe book is typeset using Atkinson Hyperlegible. The color palette was generated using coolors.co.",
     "crumbs": [
       "Front Matter"
     ]
@@ -1832,17 +1832,6 @@
     "crumbs": [
       "Interaction Effects",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>More Interaction Effects</span>"
-    ]
-  },
-  {
-    "objectID": "07-00-data-codebooks.html",
-    "href": "07-00-data-codebooks.html",
-    "title": "Data Dictionaries",
-    "section": "",
-    "text": "In this section you can find the data dictionaries that are associated with each of the datasets used in the book.\n\nbroadband.csv\ncomic-characters.csv\nevaluations.csv\nfertility.csv\ngapminder.csv\nkeith-gpa.csv\nmn-schools.csv\npew.csv\nriverview.csv\nscoobydoo.csv\nspice-girls.csv\nstate-education.csv\nwork-demands.csv",
-    "crumbs": [
-      "Appendices",
-      "Data Dictionaries"
     ]
   }
 ]

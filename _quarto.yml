@@ -53,8 +53,8 @@ book:
       chapters:
         - 06-01-intro-to-interaction-effects.qmd
         - 06-02-more-interaction-effects.qmd
-  appendices:
-    - 07-00-data-codebooks.qmd
+  # appendices:
+  #   - 07-00-data-codebooks.qmd
 
 language:
   section-title-appendices: "Appendices"
@@ -73,7 +73,7 @@ format:
       <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     code-copy: true
     code-overflow: wrap
-    highlight-style: a11y-dark
+    highlight-style: 'a11y-dark'
     mainfont: 'Atkinson Hyperlegible'
     fontsize: '13pt'
     linestretch: '1.5em'
